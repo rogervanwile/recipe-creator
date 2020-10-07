@@ -1,0 +1,92 @@
+<div class="recipe-manager-pro--block">
+	{{#if name}}
+	<h2>{{{name}}}</h2>
+	{{/if}}
+
+	{{#if description}}
+	<p>{{ description }}</p>
+	{{/if}}
+
+	<div class="recipe-manager-pro--block--meta">
+		<div>
+			<ul class="inline-list">
+				{{#if prepTime}}
+				<li>
+					{{translations/prepTime}}:
+					{{#formatDuration prepTime}}{{/formatDuration}}
+				</li>
+				{{/if}}
+
+				{{#if cookTime}}
+				<li>
+					{{translations/cookTime}}:
+					{{#formatDuration cookTime}}{{/formatDuration}}
+				</li>
+				{{/if}}
+
+				{{#if totalTime}}
+				<li>
+					{{translations/totalTime}}:
+					{{#formatDuration totalTime}}{{/formatDuration}}
+				</li>
+				{{/if}}
+
+				{{#if recipeYield}}
+				<li>
+					{{translations/yield}}:
+					{{ recipeYield }}
+				</li>
+				{{/if}}
+			</ul>
+		</div>
+		<div>
+			{{#if image4_3}}
+			<img src="{{ image4_3 }}" title="{{{ name }}}" />
+			{{/if}}
+		</div>
+	</div>
+
+	{{#if ingredients}}
+	<h2>{{translations/ingredients}}</h2>
+	<ul class="recipe-ingredients-list">
+		{{{ingredients}}}
+	</ul>
+	{{/if}}
+
+	{{#if preparationSteps}}
+	<h2>{{translations/preparationSteps}}</h2>
+	<ol class="recipe-preparation-steps-list">
+		{{{preparationSteps}}}
+	</ol>
+	{{/if}}
+
+	{{#if notes}}
+	<h2>{{translations/notes}}</h2>
+	<p>{{notes}}</p>
+	{{/if}}
+
+	<h2>{{translations/yourRating}}</h2>
+	<div class="recipe-manager-pro--block--rating" data-post-id="{{postId}}" data-save-url="{{ajaxUrl}}" data-nonce="{{nonce}}">
+		<ol>
+			<li class="recipe-manager-pro--block--star" data-rating="1">1</li>
+			<li class="recipe-manager-pro--block--star" data-rating="2">2</li>
+			<li class="recipe-manager-pro--block--star" data-rating="3">3</li>
+			<li class="recipe-manager-pro--block--star" data-rating="4">4</li>
+			<li class="recipe-manager-pro--block--star" data-rating="5">5</li>
+		</ol>
+		{{#if averageRating}}
+			<p><small>{{translations/averageRating}}: <span class="recipe-manager-pro--block--average-voting">{{averageRating}}</span></small></p>
+		{{/if}}
+	</div>
+
+	<script>
+		var RecipeManagerPro = RecipeManagerPro || {};
+		RecipeManagerPro.config = {
+			ajaxUrl: '{{ajaxUrl}}',
+			nonce: '{{nonce}}'
+		};
+	</script>
+	<script type="application/ld+json">
+		{{#toJSON ldJson}}{{/toJSON}}
+  </script>
+</div>

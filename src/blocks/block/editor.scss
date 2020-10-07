@@ -1,0 +1,28 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+@import "../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+.wp-block-recipe-manager-pro-block {
+	hr {
+		border: 0;
+		border-bottom: 1px solid #ffffff;
+	}
+
+	h4 {
+		margin-top: 10px !important;
+	}
+
+	img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.components-base-control .components-base-control__help {
+		margin-bottom: 8px;
+	}
+}

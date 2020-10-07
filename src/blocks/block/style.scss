@@ -1,0 +1,142 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ */
+
+.recipe-manager-pro--block.recipe-manager-pro--block {
+  padding: 24px;
+  margin-bottom: 32px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  border-radius: 8px;
+  background-color: #fefcfc;
+
+  .recipe-manager-pro--block--meta {
+    display: flex;
+    margin-bottom: 24px;
+    flex-direction: column-reverse;
+
+    div + div {
+      flex-grow: 1;
+      margin-bottom: 24px;
+    }
+    
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+      
+      div + div {
+        margin-left: 64px;
+        margin-bottom: 0px;
+      }
+    }
+  }
+
+  h2 {
+    font-size: 24px;
+    line-height: 32px;
+    margin-top: 0;
+    font-family: "Luna-Regular", sans-serif;
+  }
+
+  ul {
+    margin-top: 24px;
+  }
+
+  .recipe-ingredients-list {
+    display: block;
+    list-style: none;
+    padding: 0;
+
+    li {
+      display: block;
+      padding: 8px;
+      margin: 0;
+
+      &:nth-child(odd) {
+        background-color: #f7e9e9;
+        border-radius: 2px;
+      }
+    }
+  }
+
+  .recipe-preparation-steps-list {
+    display: block;
+    list-style: none;
+    padding: 0;
+    counter-reset: recipe-manager-steps;
+
+    li {
+      display: block;
+      padding: 8px;
+      margin: 0;
+      line-height: 24px;
+
+      &::before {
+        counter-increment: recipe-manager-steps;
+        content: counter(recipe-manager-steps);
+        text-align: center;
+        font-weight: bold;
+        display: block;
+        width: 24px;
+        height: 24px;
+        float: left;
+        margin-right: 8px;
+        background-color: #f7e9e9;
+        border-radius: 50%;
+        color: #e27a7a;
+      }
+    }
+  }
+
+  .inline-list {
+    list-style: none;
+    display: block;
+    margin-left: 0;
+    opacity: 0.8;
+    font-style: italic;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: block;
+      margin-left: 0;
+      white-space: nowrap;
+    }
+  }
+
+  .recipe-manager-pro--block--rating {
+    text-align: center;
+
+    ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 0;
+      line-height: 0;
+      margin: 0 auto;
+      display: block;
+
+      li.recipe-manager-pro--block--star {
+        margin: 0 4px;
+        padding: 0;
+
+        display: inline-block;
+        width: 48px;
+        height: 48px;
+        background-image: url("../../../assets/star.svg");
+        background-size: 48px 48px;
+        background-repeat: center center;
+        text-indent: -999em;
+
+        &.selected {
+          background-image: url("../../../assets/star-filled.svg");
+        }
+      }
+    }
+
+    p {
+      text-align: center;
+    }
+  }
+}
