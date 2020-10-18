@@ -25,16 +25,12 @@ class RecipeManagerPro
 		// add_action('admin_enqueue_scripts', array($this, 'enqueue'));
 		// add_action('wp_enqueue_scripts', array($this, 'enqueue'));
 
-		add_action('init', array($this, 'initRecipeBlock'));
-		// add_action('admin_head', array($this, 'registerBlock'));
+		add_action('init', array($this, 'addRessources'));
+		add_action('init', array($this, 'registerBlock'));
 
 		// Frontend-AJAX-Actions
 		add_action('wp_ajax_recipe_manager_pro_set_rating', array($this, 'setRating'));
 		add_action('wp_ajax_nopriv_recipe_manager_pro_set_rating', array($this, 'setRating'));
-
-		// add_action('init', array($this, 'migrateSpRecipe'));
-
-		// add_action('admin_head', array($this, 'getRecipeFromSP'));
 	}
 
 	public function getRecipeFromSP()
@@ -111,28 +107,6 @@ class RecipeManagerPro
 		return '<li>' . implode('</li><li>', $array) . '</li>';
 	}
 
-	public function migrateSpRecipe()
-	{
-		global $wpdb;
-
-		$affectedPosts = $wpdb->get_results("SELECT `ID`, `post_content` FROM wp_isabelleposts");
-
-		foreach ($affectedPosts as $post) {
-			if ($post->ID) {
-				$recipeInfos = $wpdb->get_results("SELECT * FROM `wp_isabellepostmeta` WHERE `post_id` = " . $post->ID . " AND `meta_key` LIKE 'sp-recipe-%' AND `meta_value` <> ''");
-
-				$recipe = $this->extractRecipeFromMeta($recipeInfos);
-
-				$block = PHP_EOL . PHP_EOL . get_comment_delimited_block_content('recipe-manager-pro/block', $recipe, '');
-
-				wp_update_post([
-					"ID" => $post->ID,
-					"post_content" => $post->post_content . addslashes($block)
-				], true);
-			}
-		}
-	}
-
 	public function activate()
 	{
 		flush_rewrite_rules();
@@ -152,7 +126,7 @@ class RecipeManagerPro
 		}
 	}
 
-	public function initRecipeBlock()
+	public function addRessources()
 	{
 		$dir = dirname(__FILE__);
 
@@ -195,8 +169,6 @@ class RecipeManagerPro
 			array(),
 			filemtime("$dir/$style_css")
 		);
-
-		$this->registerBlock();
 	}
 
 	public function registerBlock()
@@ -229,6 +201,10 @@ class RecipeManagerPro
 				'description' => array(
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'description') . '::STORE_DEFAULT_VALUE_HACK'
+				),
+				'difficulty' => array(
+					'type' => 'string',
+					'default' => $this->getPropertyFromRecipe($recipe, 'difficulty') . '::STORE_DEFAULT_VALUE_HACK'
 				),
 				'notes' => array(
 					'type' => 'string',
@@ -285,6 +261,10 @@ class RecipeManagerPro
 				'className' => array(
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'className') . '::STORE_DEFAULT_VALUE_HACK'
+				),
+				'align' => array(
+					'type' => 'string',
+					'default' => 'wide'
 				),
 			),
 			'render_callback' => array($this, 'renderBlock'),

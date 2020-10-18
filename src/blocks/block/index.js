@@ -68,6 +68,7 @@ registerBlockType("recipe-manager-pro/block", {
 	supports: {
 		// Removes support for an HTML mode.
 		html: false,
+    align: ['center', 'wide', 'full']
 	},
 
 	/**

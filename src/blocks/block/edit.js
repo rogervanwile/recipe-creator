@@ -37,14 +37,16 @@ import "./editor.scss";
 var recipeManagerProMigrationDone = false;
 
 export default function Edit(props) {
-
   // Workaround for https://github.com/WordPress/gutenberg/issues/7342
   if (!recipeManagerProMigrationDone) {
     const cleanedDefaultData = {};
-    
-    Object.keys(props.attributes).forEach(key => {
-      cleanedDefaultData[key] = props.attributes[key].replace('::STORE_DEFAULT_VALUE_HACK', '');
-    })
+
+    Object.keys(props.attributes).forEach((key) => {
+      cleanedDefaultData[key] = props.attributes[key].replace(
+        "::STORE_DEFAULT_VALUE_HACK",
+        ""
+      );
+    });
 
     props.setAttributes(cleanedDefaultData);
     recipeManagerProMigrationDone = true;
@@ -94,6 +96,14 @@ export default function Edit(props) {
     disabled: true,
   });
 
+  const difficultyOptions = [
+    __("Simple", "recipe-manager-pro"),
+    __("Normal", "recipe-manager-pro"),
+    __("Difficult", "recipe-manager-pro"),
+  ].map((value) => {
+    return { label: value, value: value };
+  });
+
   return (
     <div className={props.className}>
       <div>
@@ -126,6 +136,16 @@ export default function Edit(props) {
                 )}
                 value={props.attributes.description}
                 onChange={(description) => props.setAttributes({ description })}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-12">
+              <SelectControl
+                label={__("Difficulty", "recipe-manager-pro")}
+                value={props.attributes.difficulty}
+                options={difficultyOptions}
+                onChange={(difficulty) => props.setAttributes({ difficulty })}
               />
             </div>
           </div>
