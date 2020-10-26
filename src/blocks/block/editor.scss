@@ -301,7 +301,19 @@
 
   .seo-section {
     border-top: 1px solid #efefef;
-    background-color: #fefefe;
+    background-color: #f8f8f8;
+
+    .seo-preview {
+      margin: 24px 0;
+      background-color: #ffffff;
+      border: 1px dashed #efefef;
+      border-radius: 16px;
+      padding: 24px;
+
+      h5 {
+        margin-top: 0;
+      }
+    }
   }
 
   .features-result-preview {

@@ -2751,7 +2751,15 @@ html {
       font: 12px arial, sans-serif; }
   .wp-block-recipe-manager-pro-block .seo-section {
     border-top: 1px solid #efefef;
-    background-color: #fefefe; }
+    background-color: #f8f8f8; }
+    .wp-block-recipe-manager-pro-block .seo-section .seo-preview {
+      margin: 24px 0;
+      background-color: #ffffff;
+      border: 1px dashed #efefef;
+      border-radius: 16px;
+      padding: 24px; }
+      .wp-block-recipe-manager-pro-block .seo-section .seo-preview h5 {
+        margin-top: 0; }
   .wp-block-recipe-manager-pro-block .features-result-preview {
     font-family: arial, sans-serif; }
     .wp-block-recipe-manager-pro-block .features-result-preview .features-result-preview--url {

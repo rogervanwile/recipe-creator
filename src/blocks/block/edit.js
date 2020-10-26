@@ -384,9 +384,8 @@ export default function Edit(props) {
           </div>
 
           <div className="col-4">
-            <h4>{__("Cuisine", "recipe-manager-pro")}</h4>
-
             <TextControl
+              label={__("Cuisine", "recipe-manager-pro")}
               value={props.attributes.recipeCuisine}
               placeholder={__(
                 'e.g. "Italian" or "German"',
@@ -398,8 +397,8 @@ export default function Edit(props) {
             />
           </div>
           <div className="col-4">
-            <h4>{__("Category", "recipe-manager-pro")}</h4>
             <SelectControl
+              label={__("Category", "recipe-manager-pro")}
               value={props.attributes.recipeCategorys}
               options={categoryOptions}
               onChange={(recipeCategory) =>
@@ -409,8 +408,8 @@ export default function Edit(props) {
           </div>
 
           <div className="col-4">
-            <h4>{__("Keywords", "recipe-manager-pro")}</h4>
             <TextControl
+              label={__("Keywords", "recipe-manager-pro")}
               value={props.attributes.keywords}
               placeholder={__(
                 "quick & easy, vegetarian",
@@ -513,151 +512,157 @@ export default function Edit(props) {
               />
             </MediaUploadCheck>
           </div>
-          <div className="col-12">
-            <h5>{__("Previews", "recipe-manager-pro")}</h5>
-          </div>
-          <div className="col-12">
-            {/* <h4>16:9</h4> */}
-            <section className="features-snipped-preview">
-              <MediaUploadCheck>
-                <MediaUpload
-                  onSelect={(media) => {
-                    if (media) {
-                      props.setAttributes({ image16_9: media.url });
-                    }
-                  }}
-                  allowedTypes={ALLOWED_MEDIA_TYPES}
-                  value={props.attributes.image16_9}
-                  render={({ open }) => (
-                    <div
-                      className="features-snipped-preview--image-wrapper"
-                      onClick={open}
-                    >
-                      <div
-                        className="features-snipped-preview--image"
-                        style={{
-                          backgroundImage:
-                            "url(" + props.attributes.image16_9 + ")",
+          <div class="col-12">
+            <div class="seo-preview">
+              <div class="row">
+                <div className="col-12">
+                  <h5>{__("Previews", "recipe-manager-pro")}</h5>
+                </div>
+                <div className="col-12">
+                  {/* <h4>16:9</h4> */}
+                  <section className="features-snipped-preview">
+                    <MediaUploadCheck>
+                      <MediaUpload
+                        onSelect={(media) => {
+                          if (media) {
+                            props.setAttributes({ image16_9: media.url });
+                          }
                         }}
-                      ></div>
+                        allowedTypes={ALLOWED_MEDIA_TYPES}
+                        value={props.attributes.image16_9}
+                        render={({ open }) => (
+                          <div
+                            className="features-snipped-preview--image-wrapper"
+                            onClick={open}
+                          >
+                            <div
+                              className="features-snipped-preview--image"
+                              style={{
+                                backgroundImage:
+                                  "url(" + props.attributes.image16_9 + ")",
+                              }}
+                            ></div>
+                          </div>
+                        )}
+                      />
+                    </MediaUploadCheck>
+                    <div className="features-snipped-preview--title">
+                      {props.attributes.name}
                     </div>
-                  )}
-                />
-              </MediaUploadCheck>
-              <div className="features-snipped-preview--title">
-                {props.attributes.name}
-              </div>
-              <div className="features-snipped-preview--blog-title">
-                Titel des Blogs
-              </div>
-              <div className="features-snipped-preview--rating">
-                4,7
-                <span className="features-snipped-preview--stars"></span>
-                (199)
-              </div>
-              <div className="features-snipped-preview--total-time">
-                30 Min.
-              </div>
-            </section>
-          {/* </div>
+                    <div className="features-snipped-preview--blog-title">
+                      Titel des Blogs
+                    </div>
+                    <div className="features-snipped-preview--rating">
+                      4,7
+                      <span className="features-snipped-preview--stars"></span>
+                      (199)
+                    </div>
+                    <div className="features-snipped-preview--total-time">
+                      30 Min.
+                    </div>
+                  </section>
+                  {/* </div>
           <div className="col-4"> */}
-            {/* <h4>4:3</h4> */}
-            <section className="features-snipped-preview">
-              <MediaUploadCheck>
-                <MediaUpload
-                  onSelect={(media) => {
-                    if (media) {
-                      props.setAttributes({ image4_3: media.url });
-                    }
-                  }}
-                  allowedTypes={ALLOWED_MEDIA_TYPES}
-                  value={props.attributes.image4_3}
-                  render={({ open }) => (
-                    <div
-                      className="features-snipped-preview--image-wrapper features-snipped-preview--43"
-                      onClick={open}
-                    >
-                      <div
-                        className="features-snipped-preview--image"
-                        style={{
-                          backgroundImage:
-                            "url(" + props.attributes.image4_3 + ")",
+                  {/* <h4>4:3</h4> */}
+                  <section className="features-snipped-preview">
+                    <MediaUploadCheck>
+                      <MediaUpload
+                        onSelect={(media) => {
+                          if (media) {
+                            props.setAttributes({ image4_3: media.url });
+                          }
                         }}
-                      ></div>
+                        allowedTypes={ALLOWED_MEDIA_TYPES}
+                        value={props.attributes.image4_3}
+                        render={({ open }) => (
+                          <div
+                            className="features-snipped-preview--image-wrapper features-snipped-preview--43"
+                            onClick={open}
+                          >
+                            <div
+                              className="features-snipped-preview--image"
+                              style={{
+                                backgroundImage:
+                                  "url(" + props.attributes.image4_3 + ")",
+                              }}
+                            ></div>
+                          </div>
+                        )}
+                      />
+                    </MediaUploadCheck>
+                    <div className="features-snipped-preview--title">
+                      {props.attributes.name}
                     </div>
-                  )}
-                />
-              </MediaUploadCheck>
-              <div className="features-snipped-preview--title">
-                {props.attributes.name}
-              </div>
-              <div className="features-snipped-preview--blog-title">
-                Titel des Blogs
-              </div>
-              <div className="features-snipped-preview--rating">
-                4,7
-                <span className="features-snipped-preview--stars"></span>
-                (199)
-              </div>
-              <div className="features-snipped-preview--total-time">
-                30 Min.
-              </div>
-            </section>
-          </div>
-          <div className="col-8">
-            {/* <h4>1:1</h4> */}
-            <section className="features-result-preview">
-              <div className="features-result-preview--url">
-                www.chefkoch.de
-                <span className="features-result-preview--breadcrumb">
-                  › ... › Kategorien › Menüart › Dessert
-                </span>
-              </div>
-              <h3 className="features-result-preview--headline">
-                {props.attributes.name}
-              </h3>
-              <div className="features-result-preview--image-text">
-                <MediaUploadCheck>
-                  <MediaUpload
-                    onSelect={(media) => {
-                      if (media) {
-                        props.setAttributes({ image1_1: media.url });
-                      }
-                    }}
-                    allowedTypes={ALLOWED_MEDIA_TYPES}
-                    value={props.attributes.image1_1}
-                    render={({ open }) => (
-                      <div
-                        className="features-result-preview--image"
-                        onClick={open}
-                        style={{
-                          backgroundImage:
-                            "url(" + props.attributes.image1_1 + ")",
-                        }}
-                      ></div>
-                    )}
-                  ></MediaUpload>
-                </MediaUploadCheck>
-                <div className="features-result-preview--text">
-                  <div className="features-result-preview--extract">
-                    <span className="features-result-preview--date">
-                      {" "}
-                      08.05.2002 —{" "}
-                    </span>
-                    französische, hauchdünne Pfannkuchen. Über 667 Bewertungen
-                    und für schmackhaft befunden. Mit ▻ Portionsrechner ▻
-                    Kochbuch&nbsp;...
-                  </div>
+                    <div className="features-snipped-preview--blog-title">
+                      Titel des Blogs
+                    </div>
+                    <div className="features-snipped-preview--rating">
+                      4,7
+                      <span className="features-snipped-preview--stars"></span>
+                      (199)
+                    </div>
+                    <div className="features-snipped-preview--total-time">
+                      30 Min.
+                    </div>
+                  </section>
+                </div>
+                <div className="col-8">
+                  {/* <h4>1:1</h4> */}
+                  <section className="features-result-preview">
+                    <div className="features-result-preview--url">
+                      www.chefkoch.de
+                      <span className="features-result-preview--breadcrumb">
+                        › ... › Kategorien › Menüart › Dessert
+                      </span>
+                    </div>
+                    <h3 className="features-result-preview--headline">
+                      {props.attributes.name}
+                    </h3>
+                    <div className="features-result-preview--image-text">
+                      <MediaUploadCheck>
+                        <MediaUpload
+                          onSelect={(media) => {
+                            if (media) {
+                              props.setAttributes({ image1_1: media.url });
+                            }
+                          }}
+                          allowedTypes={ALLOWED_MEDIA_TYPES}
+                          value={props.attributes.image1_1}
+                          render={({ open }) => (
+                            <div
+                              className="features-result-preview--image"
+                              onClick={open}
+                              style={{
+                                backgroundImage:
+                                  "url(" + props.attributes.image1_1 + ")",
+                              }}
+                            ></div>
+                          )}
+                        ></MediaUpload>
+                      </MediaUploadCheck>
+                      <div className="features-result-preview--text">
+                        <div className="features-result-preview--extract">
+                          <span className="features-result-preview--date">
+                            {" "}
+                            08.05.2002 —{" "}
+                          </span>
+                          französische, hauchdünne Pfannkuchen. Über 667
+                          Bewertungen und für schmackhaft befunden. Mit ▻
+                          Portionsrechner ▻ Kochbuch&nbsp;...
+                        </div>
 
-                  <div className="features-result-preview--meta">
-                    <span className="features-result-preview--rating"></span>
-                    <span>Bewertung: 4,7</span> · &lrm;
-                    <span>667 Ergebnisse</span> · &lrm;<span>30 Min.</span> ·
-                    &lrm;<span>Kalorien: 163</span>
-                  </div>
+                        <div className="features-result-preview--meta">
+                          <span className="features-result-preview--rating"></span>
+                          <span>Bewertung: 4,7</span> · &lrm;
+                          <span>667 Ergebnisse</span> · &lrm;
+                          <span>30 Min.</span> · &lrm;<span>Kalorien: 163</span>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
                 </div>
               </div>
-            </section>
+            </div>
           </div>
           {/* {props.attributes.image1_1 && (
               <img src={props.attributes.image1_1} />
