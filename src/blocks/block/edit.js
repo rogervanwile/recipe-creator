@@ -5,14 +5,26 @@
  */
 import { __ } from "@wordpress/i18n";
 
-import { RichText } from "@wordpress/block-editor";
 import {
   TextControl,
   TextareaControl,
   SelectControl,
   Button,
+  // RadioGroup,
+  // Radio
 } from "@wordpress/components";
-import { MediaUpload, MediaUploadCheck } from "@wordpress/block-editor";
+
+import {
+  __experimentalRadio as Radio,
+  __experimentalRadioGroup as RadioGroup,
+} from "@wordpress/components";
+
+import {
+  MediaUpload,
+  MediaUploadCheck,
+  RichText,
+  InspectorControls,
+} from "@wordpress/block-editor";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -52,14 +64,6 @@ export default function Edit(props) {
     recipeManagerProMigrationDone = true;
   }
 
-  const onChangeIngredients = (value) => {
-    props.setAttributes({ ingredients: value });
-  };
-
-  const onChangePreparationSteps = (value) => {
-    props.setAttributes({ preparationSteps: value });
-  };
-
   const ALLOWED_MEDIA_TYPES = ["image"];
 
   const categoryOptions = [
@@ -83,272 +87,85 @@ export default function Edit(props) {
     disabled: true,
   });
 
-  const unitOptions = [
-    __("Stück", "recipe-manager-pro"),
-    __("Gramm", "recipe-manager-pro"),
-  ].map((value) => {
-    return { label: value, value: value };
-  });
+  function updateTime(settingKey, value) {
+    let prepTime = parseInt(props.attributes.prepTime, 10) || 0;
+    let restTime = parseInt(props.attributes.restTime, 10) || 0;
+    let cookTime = parseInt(props.attributes.cookTime, 10) || 0;
 
-  unitOptions.unshift({
-    value: null,
-    label: __("Select a unit", "recipe-manager-pro"),
-    disabled: true,
-  });
+    const update = {};
 
-  const difficultyOptions = [
-    __("Simple", "recipe-manager-pro"),
-    __("Normal", "recipe-manager-pro"),
-    __("Difficult", "recipe-manager-pro"),
-  ].map((value) => {
-    return { label: value, value: value };
-  });
+    switch (settingKey) {
+      case "prepTime":
+        prepTime = parseInt(value, 10);
+        update["prepTime"] = prepTime;
+        break;
+      case "restTime":
+        restTime = parseInt(value, 10);
+        update["restTime"] = restTime;
+        break;
+      case "cookTime":
+        cookTime = parseInt(value, 10);
+        update["cookTime"] = cookTime;
+        break;
+    }
+
+    update["totalTime"] = prepTime + restTime + cookTime;
+
+    props.setAttributes(update);
+  }
 
   return (
     <div className={props.className}>
       <div>
         <div className="container">
-          <hr />
           <div className="row">
-            <div className="col-12">
-              <h2>{__("Recipe", "recipe-manager-pro")}</h2>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-12">
-              <TextControl
-                label={__("Name", "recipe-manager-pro")}
+            <div className="col-6">
+              <RichText
+                tagName="h2"
                 value={props.attributes.name}
-                placeholder={__("Vegetarian meat soup", "recipe-manager-pro")}
+                placeholder={__(
+                  "Title of your recipe",
+                  "kantina-delicacy-plugin"
+                )}
                 onChange={(name) => {
                   props.setAttributes({ name });
                 }}
               />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-12">
-              <TextareaControl
-                label={__("Description", "recipe-manager-pro")}
-                placeholder={__(
-                  "This delicious vegetarian meal is super easy to make.",
-                  "recipe-manager-pro"
-                )}
+
+              <RichText
+                tagName="p"
                 value={props.attributes.description}
-                onChange={(description) => props.setAttributes({ description })}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-12">
-              <SelectControl
-                label={__("Difficulty", "recipe-manager-pro")}
-                value={props.attributes.difficulty}
-                options={difficultyOptions}
-                onChange={(difficulty) => props.setAttributes({ difficulty })}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-12">
-              <TextControl
-                label={__("Keywords", "recipe-manager-pro")}
-                placeholder={__('e.g. "quick & easy" or "vegetarian"')}
-                help={__(
-                  "Please separate the keywords with comma.",
-                  "recipe-manager-pro"
+                placeholder={__(
+                  "Short description of your recipe",
+                  "kantina-delicacy-plugin"
                 )}
-                value={props.attributes.keywords}
-                onChange={(keywords) => props.setAttributes({ keywords })}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-6">
-              <TextControl
-                type="number"
-                label={__("Prep time", "recipe-manager-pro")}
-                value={props.attributes.prepTime}
-                placeholder="15"
-                onChange={(prepTime) => {
-                  props.setAttributes({
-                    prepTime,
-                    totalTime: props.attributes.cookTime
-                      ? "" + (+props.attributes.cookTime + +prepTime)
-                      : prepTime,
-                  });
-
-                  console.log(props.attributes);
+                onChange={(description) => {
+                  props.setAttributes({ description });
                 }}
-                help={__("Duration in minutes", "recipe-manager-pro")}
               />
+
+              <div className="components-base-control__field">
+                <label className="components-base-control__label">
+                  {__("Difficulty", "kantina-delicacy-plugin")}
+                </label>
+
+                <RadioGroup
+                  onChange={(difficulty) => props.setAttributes({ difficulty })}
+                  checked={props.attributes.difficulty}
+                >
+                  <Radio value={__("Simple", "recipe-manager-pro")}>
+                    {__("Simple", "recipe-manager-pro")}
+                  </Radio>
+                  <Radio value={__("Moderate", "kantina-delicacy-plugin")}>
+                    {__("Moderate", "kantina-delicacy-plugin")}
+                  </Radio>
+                  <Radio value={__("Challenging", "kantina-delicacy-plugin")}>
+                    {__("Challenging", "kantina-delicacy-plugin")}
+                  </Radio>
+                </RadioGroup>
+              </div>
             </div>
             <div className="col-6">
-              <TextControl
-                type="number"
-                label={__("Cook time", "recipe-manager-pro")}
-                placeholder="30"
-                value={props.attributes.cookTime}
-                onChange={(cookTime) => {
-                  props.setAttributes({
-                    cookTime,
-                    totalTime: props.attributes.prepTime
-                      ? "" + (+props.attributes.prepTime + +cookTime)
-                      : cookTime,
-                  });
-
-                  console.log(props.attributes);
-                }}
-                help={__("Duration in minutes", "recipe-manager-pro")}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-6">
-              <TextControl
-                label={__("Yield", "recipe-manager-pro")}
-                value={props.attributes.recipeYield}
-                placeholder={__(
-                  'e.g. "4 portions" or "12 muffins"',
-                  "recipe-manager-pro"
-                )}
-                onChange={(recipeYield) => props.setAttributes({ recipeYield })}
-              />
-            </div>
-            <div className="col-6">
-              <TextControl
-                label={__("Calories", "recipe-manager-pro")}
-                value={props.attributes.calories}
-                placeholder={__("450 calories", "recipe-manager-pro")}
-                onChange={(calories) => props.setAttributes({ calories })}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-6">
-              <TextControl
-                label={__("Cuisine", "recipe-manager-pro")}
-                value={props.attributes.recipeCuisine}
-                placeholder={__(
-                  'e.g. "Italian" or "German"',
-                  "recipe-manager-pro"
-                )}
-                onChange={(recipeCuisine) =>
-                  props.setAttributes({ recipeCuisine })
-                }
-              />
-            </div>
-            <div className="col-6">
-              <SelectControl
-                label={__("Category", "recipe-manager-pro")}
-                value={props.attributes.recipeCategorys}
-                options={categoryOptions}
-                onChange={(recipeCategory) =>
-                  props.setAttributes({ recipeCategory })
-                }
-              />
-            </div>
-          </div>
-
-          <hr />
-
-          <div class="row">
-            <div class="col-12">
-              <h3>{__("Ingredients", "recipe-manager-pro")}</h3>
-              <RichText
-                tagName="ul"
-                multiline="li"
-                placeholder={__(
-                  "Add the ingredients here...",
-                  "recipe-manager-pro"
-                )}
-                value={props.attributes.ingredients}
-                onChange={onChangeIngredients}
-              />
-
-              {/* <div class="container">
-          <div class="row">
-            <div class="col-2">
-              <TextControl type="number" placeholder="500" />
-            </div>
-            <div class="col-3">
-              <SelectControl options={unitOptions} />
-            </div>
-            <div class="col-7">
-              <TextControl placeholder={__("Noodles", "recipe-manager-pro")} />
-            </div>
-          </div>
-        </div> */}
-
-              <h3>{__("Steps of preparation", "recipe-manager-pro")}</h3>
-              <RichText
-                tagName="ol"
-                multiline="li"
-                placeholder={__(
-                  "Add the steps of preparation here...",
-                  "recipe-manager-pro"
-                )}
-                value={props.attributes.preparationSteps}
-                onChange={onChangePreparationSteps}
-              />
-            </div>
-          </div>
-
-          <hr />
-
-          <div className="row">
-            <div className="col-12">
-              <TextareaControl
-                label={__("Notes", "recipe-manager-pro")}
-                placeholder={__("Notes", "recipe-manager-pro")}
-                value={props.attributes.notes}
-                onChange={(notes) => props.setAttributes({ notes })}
-              />
-            </div>
-          </div>
-          <hr />
-          <div className="row">
-            <div className="col-12">
-              <h3>
-                {__("Picture of the finished dish", "recipe-manager-pro")}
-              </h3>
-              <p>
-                {__(
-                  "Google recommends 3 pictures in different aspect ratios. You should provide them have a change for a featured snippet in the search results.",
-                  "recipe-manager-pro"
-                )}
-              </p>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-4">
-              {props.attributes.image1_1 && (
-                <img src={props.attributes.image1_1} />
-              )}
-              <MediaUploadCheck>
-                <MediaUpload
-                  onSelect={(media) => {
-                    if (media) {
-                      props.setAttributes({ image1_1: media.url });
-                    }
-                  }}
-                  allowedTypes={ALLOWED_MEDIA_TYPES}
-                  value={props.attributes.image1_1}
-                  render={({ open }) => (
-                    <div>
-                      <label>{__("Image (1:1)", "recipe-manager-pro")}</label>
-                      <Button onClick={open} isSecondary={true}>
-                        {__("Open Media Library", "recipe-manager-pro")}
-                      </Button>
-                    </div>
-                  )}
-                />
-              </MediaUploadCheck>
-            </div>
-            <div className="col-4">
-              {props.attributes.image4_3 && (
-                <img src={props.attributes.image4_3} />
-              )}
               <MediaUploadCheck>
                 <MediaUpload
                   onSelect={(media) => {
@@ -359,20 +176,349 @@ export default function Edit(props) {
                   allowedTypes={ALLOWED_MEDIA_TYPES}
                   value={props.attributes.image4_3}
                   render={({ open }) => (
-                    <div>
-                      <label>{__("Image (4:3)", "recipe-manager-pro")}</label>
-                      <Button onClick={open} isSecondary={true}>
-                        {__("Open Media Library", "recipe-manager-pro")}
-                      </Button>
-                    </div>
+                    <img
+                      src={props.attributes.image4_3}
+                      className="img-fluid mb-4 d-block mx-auto"
+                      onClick={open}
+                    />
                   )}
                 />
               </MediaUploadCheck>
             </div>
-            <div className="col-4">
-              {props.attributes.image16_9 && (
-                <img src={props.attributes.image16_9} />
+          </div>
+          <div className="row icon-row">
+            <div className="col">
+              <div className="meta-with-icon">
+                <header>{__("Prep time", "kantina-delicacy-plugin")}</header>
+                <img src="https://placehold.it/64x64" width="64" height="64" />
+                <div>
+                  <TextControl
+                    type="number"
+                    min="0"
+                    value={props.attributes.prepTime}
+                    placeholder={__("15", "kantina-delicacy-plugin")}
+                    onChange={(prepTime) => {
+                      updateTime("prepTime", prepTime);
+                    }}
+                  />
+                  <span>{props.attributes.prepTimeUnit}</span>
+                </div>
+              </div>
+            </div>
+            <div className="col">
+              <div className="meta-with-icon">
+                <header>{__("Rest time", "kantina-delicacy-plugin")}</header>
+                <img src="https://placehold.it/64x64" width="64" height="64" />
+                <div>
+                  <TextControl
+                    type="number"
+                    min="0"
+                    value={props.attributes.restTime}
+                    placeholder={__("15", "kantina-delicacy-plugin")}
+                    onChange={(restTime) => {
+                      updateTime("restTime", restTime);
+                    }}
+                  />
+                  <span>{props.attributes.restTimeUnit}</span>
+                </div>
+              </div>
+            </div>
+            <div className="col">
+              <div className="meta-with-icon">
+                <header>{__("Cook time", "kantina-delicacy-plugin")}</header>
+                <img src="https://placehold.it/64x64" width="64" height="64" />
+                <div>
+                  <TextControl
+                    type="number"
+                    min="0"
+                    value={props.attributes.cookTime}
+                    placeholder={__("15", "kantina-delicacy-plugin")}
+                    onChange={(cookTime) => {
+                      updateTime("cookTime", cookTime);
+                    }}
+                  />{" "}
+                  <span>{props.attributes.cookTimeUnit}</span>
+                </div>
+              </div>
+            </div>
+            <div className="col">
+              <div className="meta-with-icon">
+                <header>{__("Total time", "kantina-delicacy-plugin")}</header>
+                <img src="https://placehold.it/64x64" width="64" height="64" />
+                <div>
+                  <span>{props.attributes.totalTime}</span>&nbsp;
+                  <span>{props.attributes.totalTimeUnit}</span>
+                </div>
+              </div>
+            </div>
+            <div className="col">
+              <div className="meta-with-icon">
+                <header>{__("Yield", "kantina-delicacy-plugin")}</header>
+                <img src="https://placehold.it/64x64" width="64" height="64" />
+                <div>
+                  <TextControl
+                    type="number"
+                    min="0"
+                    value={props.attributes.recipeYield}
+                    placeholder={__("4", "kantina-delicacy-plugin")}
+                    onChange={(recipeYield) => {
+                      props.setAttributes({ recipeYield });
+                    }}
+                  />{" "}
+                  <span>{__("piece", "kantina-delicacy-plugin")}</span>
+                </div>
+              </div>
+            </div>
+            <div className="col">
+              <div className="meta-with-icon">
+                <header>{__("Servings", "kantina-delicacy-plugin")}</header>
+                <img src="https://placehold.it/64x64" width="64" height="64" />
+                <div>
+                  <TextControl
+                    type="number"
+                    min="0"
+                    value={props.attributes.servings}
+                    placeholder={__("4", "kantina-delicacy-plugin")}
+                    onChange={(servings) => {
+                      props.setAttributes({ servings });
+                    }}
+                  />{" "}
+                  <span>{__("servings", "kantina-delicacy-plugin")}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-12">
+            <h3>{__("Ingredients", "recipe-manager-pro")}</h3>
+
+            <RichText
+              tagName="ul"
+              multiline="li"
+              className="recipe-ingredients-list"
+              placeholder={__(
+                "Add the ingredients here...",
+                "recipe-manager-pro"
               )}
+              value={props.attributes.ingredients}
+              onChange={(ingredients) => props.setAttributes({ ingredients })}
+            />
+
+            <h3>{__("Steps of preparation", "recipe-manager-pro")}</h3>
+            <RichText
+              tagName="ol"
+              multiline="li"
+              className="recipe-preparation-steps-list"
+              placeholder={__(
+                "Add the steps of preparation here...",
+                "recipe-manager-pro"
+              )}
+              value={props.attributes.preparationSteps}
+              onChange={(preparationSteps) =>
+                props.setAttributes({ preparationSteps })
+              }
+            />
+          </div>
+        </div>
+
+        <hr />
+
+        <div className="row">
+          <div className="col-12">
+            <h3>{__("Notes", "kantina-delicacy-plugin")}</h3>
+
+            <RichText
+              tagName="p"
+              value={props.attributes.notes}
+              placeholder={__(
+                "Additional notes ...",
+                "kantina-delicacy-plugin"
+              )}
+              onChange={(notes) => {
+                props.setAttributes({ notes });
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-12">
+            <h3>Nutrition</h3>
+
+            <p>
+              <em>
+                {__(
+                  "Please provide the incredients related to the given servings, so this plugin cna calculate the nutrion automatically.",
+                  "recipe-manager-pro"
+                )}
+              </em>
+            </p>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-12">
+            <h3>Video</h3>
+          </div>
+          <div className="col-12">
+            <TextControl
+              label={__("Video-URL", "recipe-manager-pro")}
+              value={props.attributes.videoUrl}
+              type="number"
+              onChange={(videoUrl) => props.setAttributes({ videoUrl })}
+            />
+          </div>
+        </div>
+
+        <div className="row seo-section">
+          <div className="col-12">
+            <h3>{__("SEO", "recipe-manager-pro")}</h3>
+            <p>
+              {__(
+                "Google and other search enginges needs some more informations to process your recipe. These informations are not visible to your user, but will have impact on the ranking of your recipe in search engines. So we recommend to provide all these informations.",
+                "recipe-manager-pro"
+              )}
+            </p>
+          </div>
+
+          <div className="col-4">
+            <h4>{__("Cuisine", "recipe-manager-pro")}</h4>
+
+            <TextControl
+              value={props.attributes.recipeCuisine}
+              placeholder={__(
+                'e.g. "Italian" or "German"',
+                "recipe-manager-pro"
+              )}
+              onChange={(recipeCuisine) => {
+                props.setAttributes({ recipeCuisine });
+              }}
+            />
+          </div>
+          <div className="col-4">
+            <h4>{__("Category", "recipe-manager-pro")}</h4>
+            <SelectControl
+              value={props.attributes.recipeCategorys}
+              options={categoryOptions}
+              onChange={(recipeCategory) =>
+                props.setAttributes({ recipeCategory })
+              }
+            />
+          </div>
+
+          <div className="col-4">
+            <h4>{__("Keywords", "recipe-manager-pro")}</h4>
+            <TextControl
+              value={props.attributes.keywords}
+              placeholder={__(
+                "quick & easy, vegetarian",
+                "kantina-delicacy-plugin"
+              )}
+              onChange={(keywords) => {
+                props.setAttributes({ keywords });
+              }}
+            />
+          </div>
+          <div className="col-12">
+            <h4>{__("Picture of the finished dish", "recipe-manager-pro")}</h4>
+            <p>
+              {__(
+                "You should add 3 pictures in different aspect ratios to this recipe to have a change for a more prominent display in the Google search results. The 16:9 or sometimes the 4:3 aspect ratio is used for the featured snipped. If you provide a square image, Google sometimes display it in your search result.",
+                "recipe-manager-pro"
+              )}
+            </p>
+          </div>
+          <div className="col-12">
+            <MediaUploadCheck>
+              <MediaUpload
+                onSelect={(media) => {
+                  if (media) {
+                    props.setAttributes({ image1_1: media.url });
+                  }
+                }}
+                allowedTypes={ALLOWED_MEDIA_TYPES}
+                value={props.attributes.image1_1}
+                render={({ open }) => (
+                  <div
+                    className="image-preview image-preview-1-1"
+                    style={{
+                      backgroundImage: "url(" + props.attributes.image1_1 + ")",
+                    }}
+                    onClick={open}
+                  >
+                    {!props.attributes.image1_1 ? (
+                      <span class="aspect-ratio">1:1</span>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                )}
+              />
+            </MediaUploadCheck>
+
+            <MediaUploadCheck>
+              <MediaUpload
+                onSelect={(media) => {
+                  if (media) {
+                    props.setAttributes({ image4_3: media.url });
+                  }
+                }}
+                allowedTypes={ALLOWED_MEDIA_TYPES}
+                value={props.attributes.image4_3}
+                render={({ open }) => (
+                  <div
+                    className="image-preview image-preview-4-3"
+                    style={{
+                      backgroundImage: "url(" + props.attributes.image4_3 + ")",
+                    }}
+                    onClick={open}
+                  >
+                    {!props.attributes.image4_3 ? (
+                      <span class="aspect-ratio">4:3</span>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                )}
+              />
+            </MediaUploadCheck>
+
+            <MediaUploadCheck>
+              <MediaUpload
+                onSelect={(media) => {
+                  if (media) {
+                    props.setAttributes({ image16_9: media.url });
+                  }
+                }}
+                allowedTypes={ALLOWED_MEDIA_TYPES}
+                value={props.attributes.image16_9}
+                render={({ open }) => (
+                  <div
+                    className="image-preview image-preview-16-9"
+                    style={{
+                      backgroundImage:
+                        "url(" + props.attributes.image16_9 + ")",
+                    }}
+                    onClick={open}
+                  >
+                    {!props.attributes.image16_9 ? (
+                      <span class="aspect-ratio">16:9</span>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                )}
+              />
+            </MediaUploadCheck>
+          </div>
+          <div className="col-12">
+            <h5>{__("Previews", "recipe-manager-pro")}</h5>
+          </div>
+          <div className="col-12">
+            {/* <h4>16:9</h4> */}
+            <section className="features-snipped-preview">
               <MediaUploadCheck>
                 <MediaUpload
                   onSelect={(media) => {
@@ -383,17 +529,207 @@ export default function Edit(props) {
                   allowedTypes={ALLOWED_MEDIA_TYPES}
                   value={props.attributes.image16_9}
                   render={({ open }) => (
-                    <div>
-                      <label>{__("Image (16:9)", "recipe-manager-pro")}</label>
-                      <Button onClick={open} isSecondary={true}>
-                        {__("Open Media Library", "recipe-manager-pro")}
-                      </Button>
+                    <div
+                      className="features-snipped-preview--image-wrapper"
+                      onClick={open}
+                    >
+                      <div
+                        className="features-snipped-preview--image"
+                        style={{
+                          backgroundImage:
+                            "url(" + props.attributes.image16_9 + ")",
+                        }}
+                      ></div>
                     </div>
                   )}
                 />
               </MediaUploadCheck>
-            </div>
+              <div className="features-snipped-preview--title">
+                {props.attributes.name}
+              </div>
+              <div className="features-snipped-preview--blog-title">
+                Titel des Blogs
+              </div>
+              <div className="features-snipped-preview--rating">
+                4,7
+                <span className="features-snipped-preview--stars"></span>
+                (199)
+              </div>
+              <div className="features-snipped-preview--total-time">
+                30 Min.
+              </div>
+            </section>
+          {/* </div>
+          <div className="col-4"> */}
+            {/* <h4>4:3</h4> */}
+            <section className="features-snipped-preview">
+              <MediaUploadCheck>
+                <MediaUpload
+                  onSelect={(media) => {
+                    if (media) {
+                      props.setAttributes({ image4_3: media.url });
+                    }
+                  }}
+                  allowedTypes={ALLOWED_MEDIA_TYPES}
+                  value={props.attributes.image4_3}
+                  render={({ open }) => (
+                    <div
+                      className="features-snipped-preview--image-wrapper features-snipped-preview--43"
+                      onClick={open}
+                    >
+                      <div
+                        className="features-snipped-preview--image"
+                        style={{
+                          backgroundImage:
+                            "url(" + props.attributes.image4_3 + ")",
+                        }}
+                      ></div>
+                    </div>
+                  )}
+                />
+              </MediaUploadCheck>
+              <div className="features-snipped-preview--title">
+                {props.attributes.name}
+              </div>
+              <div className="features-snipped-preview--blog-title">
+                Titel des Blogs
+              </div>
+              <div className="features-snipped-preview--rating">
+                4,7
+                <span className="features-snipped-preview--stars"></span>
+                (199)
+              </div>
+              <div className="features-snipped-preview--total-time">
+                30 Min.
+              </div>
+            </section>
           </div>
+          <div className="col-8">
+            {/* <h4>1:1</h4> */}
+            <section className="features-result-preview">
+              <div className="features-result-preview--url">
+                www.chefkoch.de
+                <span className="features-result-preview--breadcrumb">
+                  › ... › Kategorien › Menüart › Dessert
+                </span>
+              </div>
+              <h3 className="features-result-preview--headline">
+                {props.attributes.name}
+              </h3>
+              <div className="features-result-preview--image-text">
+                <MediaUploadCheck>
+                  <MediaUpload
+                    onSelect={(media) => {
+                      if (media) {
+                        props.setAttributes({ image1_1: media.url });
+                      }
+                    }}
+                    allowedTypes={ALLOWED_MEDIA_TYPES}
+                    value={props.attributes.image1_1}
+                    render={({ open }) => (
+                      <div
+                        className="features-result-preview--image"
+                        onClick={open}
+                        style={{
+                          backgroundImage:
+                            "url(" + props.attributes.image1_1 + ")",
+                        }}
+                      ></div>
+                    )}
+                  ></MediaUpload>
+                </MediaUploadCheck>
+                <div className="features-result-preview--text">
+                  <div className="features-result-preview--extract">
+                    <span className="features-result-preview--date">
+                      {" "}
+                      08.05.2002 —{" "}
+                    </span>
+                    französische, hauchdünne Pfannkuchen. Über 667 Bewertungen
+                    und für schmackhaft befunden. Mit ▻ Portionsrechner ▻
+                    Kochbuch&nbsp;...
+                  </div>
+
+                  <div className="features-result-preview--meta">
+                    <span className="features-result-preview--rating"></span>
+                    <span>Bewertung: 4,7</span> · &lrm;
+                    <span>667 Ergebnisse</span> · &lrm;<span>30 Min.</span> ·
+                    &lrm;<span>Kalorien: 163</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          {/* {props.attributes.image1_1 && (
+              <img src={props.attributes.image1_1} />
+            )}
+            <MediaUploadCheck>
+              <MediaUpload
+                onSelect={(media) => {
+                  if (media) {
+                    props.setAttributes({ image1_1: media.url });
+                  }
+                }}
+                allowedTypes={ALLOWED_MEDIA_TYPES}
+                value={props.attributes.image16_9}
+                render={({ open }) => (
+                  <div>
+                    <label>{__("Image (1:1)", "recipe-manager-pro")}</label>
+                    <Button onClick={open} isSecondary={true}>
+                      {__("Open Media Library", "recipe-manager-pro")}
+                    </Button>
+                  </div>
+                )}
+              />
+            </MediaUploadCheck> */}
+          {/* </div> */}
+          {/* <div className="col-4">
+            {props.attributes.image4_3 && (
+              <img src={props.attributes.image4_3} />
+            )}
+            <MediaUploadCheck>
+              <MediaUpload
+                onSelect={(media) => {
+                  if (media) {
+                    props.setAttributes({ image4_3: media.url });
+                  }
+                }}
+                allowedTypes={ALLOWED_MEDIA_TYPES}
+                value={props.attributes.image4_3}
+                render={({ open }) => (
+                  <div>
+                    <label>{__("Image (4:3)", "recipe-manager-pro")}</label>
+                    <Button onClick={open} isSecondary={true}>
+                      {__("Open Media Library", "recipe-manager-pro")}
+                    </Button>
+                  </div>
+                )}
+              />
+            </MediaUploadCheck>
+          </div> */}
+          {/* <div className="col-4">
+            {props.attributes.image16_9 && (
+              <img src={props.attributes.image16_9} />
+            )}
+            <MediaUploadCheck>
+              <MediaUpload
+                onSelect={(media) => {
+                  if (media) {
+                    props.setAttributes({ image16_9: media.url });
+                  }
+                }}
+                allowedTypes={ALLOWED_MEDIA_TYPES}
+                value={props.attributes.image16_9}
+                render={({ open }) => (
+                  <div>
+                    <label>{__("Image (16:9)", "recipe-manager-pro")}</label>
+                    <Button onClick={open} isSecondary={true}>
+                      {__("Open Media Library", "recipe-manager-pro")}
+                    </Button>
+                  </div>
+                )}
+              />
+            </MediaUploadCheck>
+          </div> */}
         </div>
       </div>
     </div>

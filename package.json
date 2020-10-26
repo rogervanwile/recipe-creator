@@ -17,6 +17,7 @@
 		"@wordpress/scripts": "^12.2.0"
 	},
 	"dependencies": {
+		"@wordpress/keycodes": "^2.16.0",
 		"@wordpress/media-utils": "^1.16.0",
 		"bootstrap": "^4.5.2"
 	}

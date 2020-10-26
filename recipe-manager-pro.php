@@ -9,6 +9,11 @@
  * Domain Path:     /languages
  */
 
+// API-KEY
+// https://fdc.nal.usda.gov/
+// 2iwJE712Dw0XdRX1W37lKEVpiitkbZObX9qBtCNW
+// Example: https://api.nal.usda.gov/fdc/v1/foods/search?api_key=2iwJE712Dw0XdRX1W37lKEVpiitkbZObX9qBtCNW&query=Cheddar%20Cheese
+
 if (!defined('ABSPATH')) {
 	die;
 }
@@ -190,6 +195,9 @@ class RecipeManagerPro
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'ingredients') . '::STORE_DEFAULT_VALUE_HACK'
 				),
+				'ingredientsArray' => array(
+					'type' => 'array',
+				),
 				'preparationSteps' => array(
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'preparationSteps') . '::STORE_DEFAULT_VALUE_HACK'
@@ -218,17 +226,41 @@ class RecipeManagerPro
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'prepTime') . '::STORE_DEFAULT_VALUE_HACK'
 				),
+				'prepTimeUnit' => array(
+					'type' => 'string',
+					'default' => ($this->getPropertyFromRecipe($recipe, 'prepTimeUnit') ?: 'Min') . '::STORE_DEFAULT_VALUE_HACK'
+				),
+				'restTime' => array(
+					'type' => 'string',
+					'default' => $this->getPropertyFromRecipe($recipe, 'restTime') . '::STORE_DEFAULT_VALUE_HACK'
+				),
+				'restTimeUnit' => array(
+					'type' => 'string',
+					'default' => ($this->getPropertyFromRecipe($recipe, 'restTimeUnit') ?: 'Min') . '::STORE_DEFAULT_VALUE_HACK'
+				),
 				'cookTime' => array(
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'cookTime') . '::STORE_DEFAULT_VALUE_HACK'
+				),
+				'cookTimeUnit' => array(
+					'type' => 'string',
+					'default' => ($this->getPropertyFromRecipe($recipe, 'cookTimeUnit') ?: 'Min') . '::STORE_DEFAULT_VALUE_HACK'
 				),
 				'totalTime' => array(
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'totalTime') . '::STORE_DEFAULT_VALUE_HACK'
 				),
+				'totalTimeUnit' => array(
+					'type' => 'string',
+					'default' => ($this->getPropertyFromRecipe($recipe, 'totalTimeUnit') ?: 'Min') . '::STORE_DEFAULT_VALUE_HACK'
+				),
 				'recipeYield' => array(
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'recipeYield') . '::STORE_DEFAULT_VALUE_HACK'
+				),
+				'servings' => array(
+					'type' => 'string',
+					'default' => $this->getPropertyFromRecipe($recipe, 'servings') . '::STORE_DEFAULT_VALUE_HACK'
 				),
 				'calories' => array(
 					'type' => 'string',
@@ -253,6 +285,10 @@ class RecipeManagerPro
 				'image16_9' => array(
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'image16_9') . '::STORE_DEFAULT_VALUE_HACK'
+				),
+				'videoUrl' => array(
+					'type' => 'string',
+					'default' => $this->getPropertyFromRecipe($recipe, 'videoUrl') . '::STORE_DEFAULT_VALUE_HACK'
 				),
 				'content' => array(
 					'type' => 'string',
