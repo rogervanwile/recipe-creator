@@ -6,7 +6,6 @@
 .recipe-manager-pro--block.recipe-manager-pro--block {
   padding: 24px;
   margin-bottom: 32px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   border-radius: 8px;
   background-color: #fefcfc;
@@ -15,6 +14,7 @@
     width: 100%;
     height: auto;
     border-radius: 4px;
+    box-shadow: 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   }
 
   h2 {
@@ -81,6 +81,7 @@
       padding: 8px;
       margin: 0;
       line-height: 24px;
+      display: flex;
 
       &::before {
         counter-increment: recipe-manager-steps;
@@ -89,6 +90,7 @@
         font-weight: bold;
         display: block;
         width: 24px;
+        min-width: 24px;
         height: 24px;
         float: left;
         margin-right: 8px;
