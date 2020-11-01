@@ -100,7 +100,7 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 document.addEventListener("DOMContentLoaded", function () {
-  var ratingElements = document.querySelectorAll(".recipe-manager-pro--block--rating");
+  var ratingElements = document.querySelectorAll(".recipe-manager-pro--block--rating.recipe-manager-pro--block--interactive");
 
   var storeRatingInDatabase = function storeRatingInDatabase(postId, rating) {
     fetch(RecipeManagerPro.config.ajaxUrl, {
@@ -166,23 +166,114 @@ document.addEventListener("DOMContentLoaded", function () {
           starElement.addEventListener("click", function (event) {
             markAsSelected(starElement);
             var rating = starElement.getAttribute("data-rating"); // To show the users vote and prevent multiple votes
-            // window.localStorage.setItem(
-            //   "recipe-manager-pro::" + postId,
-            //   rating
-            // );
 
+            window.localStorage.setItem("recipe-manager-pro::" + postId, rating);
             storeRatingInDatabase(postId, rating);
           });
         });
       } else {
-        var selectedStarElement = ratingElement.querySelector('.recipe-manager-pro--block--star[data-rating="' + savedRating + '"]');
+        try {
+          // Hide the user rating section if the user has already voted.
+          ratingElement.closest(".recipe-manager-pro--block--user-rating").style.display = "none";
+        } catch (e) {
+          console.error(e);
+          debugger;
+        } // ratingElement.classList.remove(
+        //   "recipe-manager-pro--block--interactive"
+        // );
+        // var selectedStarElement = ratingElement.querySelector(
+        //   '.recipe-manager-pro--block--star[data-rating="' + savedRating + '"]'
+        // );
+        // if (selectedStarElement) {
+        //   markAsSelected(selectedStarElement);
+        // }
 
-        if (selectedStarElement) {
-          markAsSelected(selectedStarElement);
-        }
       }
     });
   }
+
+  var servings = null;
+  var ingredientsTable = null;
+  var shrinkButton = null;
+  var increaseButton = null;
+  var servingsDisplay = null; // Servings calculator
+
+  var initServingCalculator = function initServingCalculator() {
+    var servingsEditorElement = document.querySelector(".recipe-servings-editor");
+    ingredientsTable = document.querySelector(".recipe-ingredients-list");
+
+    if (servingsEditorElement) {
+      shrinkButton = servingsEditorElement.querySelector(".recipe-shrink-servings");
+      increaseButton = servingsEditorElement.querySelector(".recipe-increase-servings");
+      servingsDisplay = servingsEditorElement.querySelector(".recipe-servings");
+
+      if (servingsDisplay) {
+        servings = parseInt(servingsDisplay.innerHTML.trim(), 10);
+
+        if (shrinkButton) {
+          shrinkButton.addEventListener("click", function () {
+            if (servings > 1) {
+              servings--;
+              refreshServingsDisplay();
+              refreshIngredients();
+            }
+          });
+        }
+
+        if (increaseButton) {
+          increaseButton.addEventListener("click", function () {
+            servings++;
+            refreshServingsDisplay();
+            refreshIngredients();
+          });
+        }
+      }
+    }
+  };
+
+  var refreshServingsDisplay = function refreshServingsDisplay() {
+    servingsDisplay.innerText = servings;
+  };
+
+  var refreshIngredients = function refreshIngredients() {
+    if (ingredientsTable) {
+      ingredientsTable.querySelectorAll("tr .amount").forEach(function (amountElement) {
+        var baseAmount = parseFloat(amountElement.getAttribute("data-recipe-base-amount"), 10);
+        var baseUnit = amountElement.getAttribute("data-recipe-base-unit");
+
+        if (baseAmount) {
+          var amount = baseAmount * servings;
+          var unit = baseUnit; // TODO: Umrechnen ^^
+
+          if (amount >= 1000) {
+            switch (unit) {
+              case "g":
+                unit = "kg";
+                amount = amount / 1000;
+                break;
+
+              case "ml":
+                unit = "l";
+                amount = amount / 1000;
+                break;
+            }
+          }
+
+          var formattedAmount = amount;
+
+          try {
+            formattedAmount = new Intl.NumberFormat("de-DE").format(amount);
+          } catch (e) {}
+
+          if (amountElement) {
+            amountElement.innerText = formattedAmount + " " + unit;
+          }
+        }
+      });
+    }
+  };
+
+  initServingCalculator();
 });
 
 /***/ })

@@ -155,16 +155,16 @@ class RecipeManagerPro
 		wp_register_style(
 			'recipe-manager-pro-block-editor',
 			plugins_url($editor_css, __FILE__),
-			array(),
-			filemtime("$dir/$editor_css")
+			array()
+			// filemtime("$dir/$editor_css")
 		);
 
 		$frontend_js = 'build/frontend.js';
 		wp_register_script(
 			'recipe-manager-pro-block',
 			plugins_url($frontend_js, __FILE__),
-			array(),
-			filemtime("$dir/$frontend_js")
+			array()
+			// filemtime("$dir/$frontend_js")
 		);
 
 		$style_css = 'build/style-index.css';
@@ -223,7 +223,7 @@ class RecipeManagerPro
 					'default' => $this->getPropertyFromRecipe($recipe, 'keywords') . '::STORE_DEFAULT_VALUE_HACK'
 				),
 				'prepTime' => array(
-					'type' => 'string',
+					'type' => 'number',
 					'default' => $this->getPropertyFromRecipe($recipe, 'prepTime') . '::STORE_DEFAULT_VALUE_HACK'
 				),
 				'prepTimeUnit' => array(
@@ -231,7 +231,7 @@ class RecipeManagerPro
 					'default' => ($this->getPropertyFromRecipe($recipe, 'prepTimeUnit') ?: 'Min') . '::STORE_DEFAULT_VALUE_HACK'
 				),
 				'restTime' => array(
-					'type' => 'string',
+					'type' => 'number',
 					'default' => $this->getPropertyFromRecipe($recipe, 'restTime') . '::STORE_DEFAULT_VALUE_HACK'
 				),
 				'restTimeUnit' => array(
@@ -239,7 +239,7 @@ class RecipeManagerPro
 					'default' => ($this->getPropertyFromRecipe($recipe, 'restTimeUnit') ?: 'Min') . '::STORE_DEFAULT_VALUE_HACK'
 				),
 				'cookTime' => array(
-					'type' => 'string',
+					'type' => 'number',
 					'default' => $this->getPropertyFromRecipe($recipe, 'cookTime') . '::STORE_DEFAULT_VALUE_HACK'
 				),
 				'cookTimeUnit' => array(
@@ -247,7 +247,7 @@ class RecipeManagerPro
 					'default' => ($this->getPropertyFromRecipe($recipe, 'cookTimeUnit') ?: 'Min') . '::STORE_DEFAULT_VALUE_HACK'
 				),
 				'totalTime' => array(
-					'type' => 'string',
+					'type' => 'number',
 					'default' => $this->getPropertyFromRecipe($recipe, 'totalTime') . '::STORE_DEFAULT_VALUE_HACK'
 				),
 				'totalTimeUnit' => array(
@@ -363,6 +363,25 @@ class RecipeManagerPro
 		}
 	}
 
+	private function extractIngredients($ingredientsHtml)
+	{
+		$ingredientsArray = explode('</li><li>', $ingredientsHtml);
+		$ingredientsArray = array_map(function ($item) {
+			return strip_tags($item);
+		}, $ingredientsArray);
+
+		$ingredientsArray = array_map(function ($item) {
+			preg_match('/^ *([0-9,.\/]*)? *(gramm|milliliter|g|ml)? *(.*)$/i', $item, $matches);
+			return [
+				"amount" => $matches[1],
+				"unit" => $matches[2],
+				"ingredient" => $matches[3],
+			];
+		}, $ingredientsArray);
+
+		return $ingredientsArray;
+	}
+
 	public function renderBlock($attributes, $context)
 	{
 		// Return the frontend output for our block
@@ -391,6 +410,13 @@ class RecipeManagerPro
 				'toJSON' => function ($context, $options) {
 					return json_encode($context);
 				},
+				'ifMoreOrEqual' => function ($arg1, $arg2, $options) {
+					if ($arg1 >= $arg2) {
+						return $options['fn']();
+					} else {
+						return $options['inverse']();
+					}
+				}
 			)
 		));
 
@@ -400,8 +426,11 @@ class RecipeManagerPro
 		// Get the render function from the php file
 		$renderer = include('render.php');
 
+
+
 		$attributes['translations'] = [
 			"prepTime" => __('Prep time', 'recipe-manager-pro'),
+			"restTime" => __('Rest time', 'recipe-manager-pro'),
 			"cookTime" => __('Cook time', 'recipe-manager-pro'),
 			"totalTime" => __('Total time', 'recipe-manager-pro'),
 			"yield" => __('Servings', 'recipe-manager-pro'),
@@ -410,6 +439,8 @@ class RecipeManagerPro
 			"yourRating" => __('Your rating', 'recipe-manager-pro'),
 			"averageRating" => __('Average rating', 'recipe-manager-pro'),
 			"notes" => __('Notes', 'recipe-manager-pro'),
+			"feedback" => __('How do you like the recipe?', 'recipe-manager-pro'),
+			"servings" => __('servings', 'recipe-manager-pro')
 		];
 
 		$attributes['postId'] = get_the_ID();
@@ -418,6 +449,34 @@ class RecipeManagerPro
 
 		$averageRating = get_post_meta(get_the_ID(), 'average_rating', true) ?: 0;
 		$ratingCount = get_post_meta(get_the_ID(), 'rating_count', true) ?: 0;
+
+		$attributes['servings'] = isset($attributes['servings']) ? intval($attributes['servings']) : 1;
+
+		$attributes['ingredients'] = array_map(function ($item) use ($attributes) {
+			if (isset($item['amount'])) {
+				$item['baseAmount'] = intval($item['amount']) / $attributes['servings'];
+			}
+
+			if ($item['unit']) {
+				if (preg_match("/^(g|ml)$/i", $item['unit'])) {
+					$item['baseUnit'] = $item['unit'];
+				} else if (preg_match("/^(kilo|kilogramm|kg)$/i", $item['unit'])) {
+					$item['baseUnit'] = $item['g'];
+					if (isset($item['baseAmount'])) {
+						$item['baseAmount'] = $item['baseAmount'] / 1000;
+					}
+				} else if (preg_match("/^(liter)$/i", $item['unit'])) {
+					$item['baseUnit'] = $item['ml'];
+					if (isset($item['baseAmount'])) {
+						$item['baseAmount'] = $item['baseAmount'] / 1000;
+					}
+				} else {
+					$item['baseUnit'] = $item['unit'];
+				}
+			}
+
+			return $item;
+		}, $this->extractIngredients($attributes['ingredients']));
 
 		$attributes['averageRating'] = $averageRating;
 
@@ -450,8 +509,8 @@ class RecipeManagerPro
 			"recipeIngredient" =>
 			isset($attributes['ingredients']) ?
 				array_map(function ($item) {
-					return strip_tags($item);
-				}, explode('\n', str_replace('li><li', 'li>\n<li', $attributes['ingredients']))) : '',
+					return trim($item['amount'] . ' ' . $item['unit'] . ' ' . $item['ingredient']);
+				}, $attributes['ingredients']) : '',
 			"recipeInstructions" =>
 			isset($attributes['preparationSteps']) ?
 				array_map(function ($item) {

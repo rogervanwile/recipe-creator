@@ -448,7 +448,7 @@ export default function Edit(props) {
                     onClick={open}
                   >
                     {!props.attributes.image1_1 ? (
-                      <span class="aspect-ratio">1:1</span>
+                      <span className="aspect-ratio">1:1</span>
                     ) : (
                       ""
                     )}
@@ -475,7 +475,7 @@ export default function Edit(props) {
                     onClick={open}
                   >
                     {!props.attributes.image4_3 ? (
-                      <span class="aspect-ratio">4:3</span>
+                      <span className="aspect-ratio">4:3</span>
                     ) : (
                       ""
                     )}
@@ -503,7 +503,7 @@ export default function Edit(props) {
                     onClick={open}
                   >
                     {!props.attributes.image16_9 ? (
-                      <span class="aspect-ratio">16:9</span>
+                      <span className="aspect-ratio">16:9</span>
                     ) : (
                       ""
                     )}
@@ -512,9 +512,9 @@ export default function Edit(props) {
               />
             </MediaUploadCheck>
           </div>
-          <div class="col-12">
-            <div class="seo-preview">
-              <div class="row">
+          <div className="col-12">
+            <div className="seo-preview">
+              <div className="row">
                 <div className="col-12">
                   <h5>{__("Previews", "recipe-manager-pro")}</h5>
                 </div>

@@ -13,4 +13,4 @@ SELECT * FROM `wp_isabellepostmeta` WHERE `post_id` = 12555 AND `meta_key` LIKE 
 
 Icons:
 
-https://thenounproject.com/jaclyneooi/collection/in-the-kitchen/
+https://github.com/tabler/tabler-icons
