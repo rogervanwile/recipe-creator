@@ -115,10 +115,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // Servings calculator
   var initServingCalculator = function () {
     const servingsEditorElement = document.querySelector(
-      ".recipe-servings-editor"
+      ".recipe-manager-pro--block--servings-editor"
     );
 
-    ingredientsTable = document.querySelector(".recipe-ingredients-list");
+    ingredientsTable = document.querySelector(".recipe-manager-pro--block--ingredients");
 
     if (servingsEditorElement) {
       shrinkButton = servingsEditorElement.querySelector(
@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var refreshIngredients = function () {
     if (ingredientsTable) {
       ingredientsTable
-        .querySelectorAll("tr .amount")
+        .querySelectorAll("tr .recipe-manager-pro--block--amount")
         .forEach((amountElement) => {
           const baseAmount = parseFloat(
             amountElement.getAttribute("data-recipe-base-amount"),

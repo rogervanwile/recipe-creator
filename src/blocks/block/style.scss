@@ -3,58 +3,219 @@
  * and in the editor.
  */
 
+// :root {
+//   --headline-font-family: "Playfair Display", serif;
+//   --headline-font-size: 40px;
+//   --headline-font-weight: bold;
+//   --sub-headline-font-size: 32px;
+//   --sub-headline-font-weight: normal;
+//   --background: #fefcfc;
+//   --grey: #efefef;
+//   --primary: #e27a7a;
+//   --primary-light: #f7e9e9;
+// }
+
+:root {
+  --headline-font-family: Luna-Regular, sans-serif;
+  --headline-font-size: 32px;
+  --headline-font-weight: normal;
+  --sub-headline-font-size: 24px;
+  --sub-headline-font-weight: normal;
+  --background: #fefcfc;
+  --grey: #efefef;
+  --primary: #e27a7a;
+  --primary-light: #f7e9e9;
+}
+
 .recipe-manager-pro--block.recipe-manager-pro--block {
   padding: 24px;
   margin-bottom: 32px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   border-radius: 8px;
-  background-color: #fefcfc;
+  background-color: var(--background);
 
-  img {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-    box-shadow: 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  .recipe-manager-pro--block--intro {
+    display: flex;
+    text-align: left;
+    margin: 0 -16px 1.5rem -16px;
+    flex-direction: column-reverse;
+
+    > * {
+      padding: 0 16px;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      box-shadow: 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      margin-bottom: 1rem;
+    }
+
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+
+      img {
+        margin-bottom: 0;
+      }
+    }
   }
 
   h2 {
-    font-size: 40px;
-    line-height: 56px;
-    margin-bottom: 0;
-    font-weight: bold;
+    font-size: var(--headline-font-size);
+    font-weight: var(--headline-font-weight);
+    font-family: var(--headline-font-family);
+    line-height: 1.5;
+    margin: 0 0 1.5rem 0;
   }
 
   h3 {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: var(--sub-headline-font-size);
+    font-weight: (--sub-headline-font-weight);
+    font-family: var(--headline-font-family);
+    line-height: 1.2;
     margin-bottom: 0;
-    font-weight: normal;
   }
 
-  .recipe-ingredients-list {
+  hr {
+    margin: 0;
     padding: 0;
+    border-color: var(--grey);
+    border-style: solid;
+    border-width: 0px 0px 1px 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .recipe-manager-pro--block--timing-list {
+    ul {
+      font-style: normal;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: 0;
+      opacity: 0.8;
+      font-size: 16px;
+      margin: 0;
+      padding: 0;
+      justify-content: left;
+      align-items: center;
+
+      &::before {
+        content: "";
+        background-image: url("../../../assets/clock.svg");
+        width: 64px;
+        height: 64px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 40px 40px;
+        margin-right: 16px;
+      }
+
+      li {
+        display: block;
+        margin-left: 0;
+        white-space: nowrap;
+        margin: 0 32px 0 0;
+      }
+
+      header {
+        font-size: 13px;
+        font-family: var(--headline-font-family);
+        font-style: none;
+      }
+
+      span {
+        font-style: normal;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .recipe-manager-pro--block--headline {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  .recipe-manager-pro--block--servings-editor {
+    display: flex;
+    margin-top: 0.5rem;
     width: 100%;
 
+    > span,
+    button {
+      display: block;
+      background-color: var(--grey);
+      border: 0;
+      border-radius: 4px;
+      appearance: none;
+      padding: 8px 16px;
+      line-height: 1.4;
+      cursor: pointer;
+
+      &[disabled] {
+        cursor: default;
+      }
+    }
+
+    > span {
+      margin: 0 4px;
+      flex-grow: 1;
+    }
+
+    @media screen and (min-width: 768px) {
+      margin-top: 0;
+      width: auto;
+
+      > span {
+        flex-grow: unset;
+      }
+    }
+  }
+
+  .recipe-manager-pro--block--ingredients {
+    padding: 0;
+    width: 100%;
+    border-collapse: collapse;
+    border-width: 0;
+    box-sizing: border-box;
+    border-spacing: 0px;
+
     tr {
+      background-color: transparent;
+
       td {
         padding: 8px;
         margin: 0;
+        text-align: left;
+        border: none;
 
-        &.amount {
+        &.recipe-manager-pro--block--amount {
           text-align: right;
           white-space: nowrap;
           padding-left: 24px;
           padding-right: 0;
         }
 
-        &.ingredient {
+        &.recipe-manager-pro--block--ingredient {
           width: 100%;
         }
       }
 
       &:nth-child(odd) {
         td {
-          background-color: #f7e9e9;
+          background-color: var(--primary-light);
 
           &:first-child {
             border-top-left-radius: 2px;
@@ -70,7 +231,7 @@
     }
   }
 
-  .recipe-preparation-steps-list {
+  .recipe-manager-pro--block--preparation-steps {
     display: block;
     list-style: none;
     padding: 0;
@@ -94,65 +255,20 @@
         height: 24px;
         float: left;
         margin-right: 8px;
-        background-color: #f7e9e9;
+        background-color: var(--primary-light);
         border-radius: 50%;
-        color: #e27a7a;
+        color: var(--primary);
       }
     }
   }
 
-  .inline-list {
-    list-style: none;
-    display: flex;
-    margin-left: 0;
-    opacity: 0.8;
-    font-size: 16px;
-    margin: 0;
-    padding: 0;
-    justify-content: left;
-    align-items: center;
-
-    li {
-      display: block;
-      margin-left: 0;
-      white-space: nowrap;
-      margin-right: 32px;
-    }
-  }
-
-  .timing-list {
-    font-style: normal;
-
-    &::before {
-      content: "";
-      background-image: url("../../../assets/clock.svg");
-      width: 64px;
-      height: 64px;
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: 40px 40px;
-      margin-right: 16px;
-    }
-
-    header {
-      font-size: 13px;
-      font-family: "Playfair Display", serif;
-      font-style: none;
-    }
-
-    span {
-      font-style: normal;
-      font-weight: bold;
-    }
-  }
-
-  .difficulty {
+  .recipe-manager-pro--block--difficulty {
     border-radius: 8px;
-    background-color: #f7e9e9;
+    background-color: var(--primary-light);
     padding: 2px 12px;
     margin-bottom: 1rem;
-    border: 1px solid #e27a7a;
-    color: #e27a7a;
+    border: 1px solid var(--primary);
+    color: var(--primary);
     display: inline-block;
     font-size: 14px;
     line-height: 20px;

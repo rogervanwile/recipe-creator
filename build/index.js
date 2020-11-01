@@ -284,7 +284,7 @@ function Edit(props) {
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
     tagName: "h2",
     value: props.attributes.name,
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Title of your recipe", "kantina-delicacy-plugin"),
+    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Title of your recipe", "recipe-manager-pro"),
     onChange: function onChange(name) {
       props.setAttributes({
         name: name
@@ -293,7 +293,7 @@ function Edit(props) {
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
     tagName: "p",
     value: props.attributes.description,
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Short description of your recipe", "kantina-delicacy-plugin"),
+    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Short description of your recipe", "recipe-manager-pro"),
     onChange: function onChange(description) {
       props.setAttributes({
         description: description
@@ -303,7 +303,7 @@ function Edit(props) {
     className: "components-base-control__field"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("label", {
     className: "components-base-control__label"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Difficulty", "kantina-delicacy-plugin")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["__experimentalRadioGroup"], {
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Difficulty", "recipe-manager-pro")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["__experimentalRadioGroup"], {
     onChange: function onChange(difficulty) {
       return props.setAttributes({
         difficulty: difficulty
@@ -313,10 +313,10 @@ function Edit(props) {
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["__experimentalRadio"], {
     value: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Simple", "recipe-manager-pro")
   }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Simple", "recipe-manager-pro")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["__experimentalRadio"], {
-    value: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Moderate", "kantina-delicacy-plugin")
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Moderate", "kantina-delicacy-plugin")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["__experimentalRadio"], {
-    value: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Challenging", "kantina-delicacy-plugin")
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Challenging", "kantina-delicacy-plugin"))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    value: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Moderate", "recipe-manager-pro")
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Moderate", "recipe-manager-pro")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["__experimentalRadio"], {
+    value: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Challenging", "recipe-manager-pro")
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Challenging", "recipe-manager-pro"))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "col-6"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["MediaUploadCheck"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["MediaUpload"], {
     onSelect: function onSelect(media) {
@@ -342,7 +342,7 @@ function Edit(props) {
     className: "col"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "meta-with-icon"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Prep time", "kantina-delicacy-plugin")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Prep time", "recipe-manager-pro")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
     src: "https://placehold.it/64x64",
     width: "64",
     height: "64"
@@ -350,7 +350,7 @@ function Edit(props) {
     type: "number",
     min: "0",
     value: props.attributes.prepTime,
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("15", "kantina-delicacy-plugin"),
+    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("15", "recipe-manager-pro"),
     onChange: function onChange(prepTime) {
       updateTime("prepTime", prepTime);
     }
@@ -358,7 +358,7 @@ function Edit(props) {
     className: "col"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "meta-with-icon"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Rest time", "kantina-delicacy-plugin")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Rest time", "recipe-manager-pro")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
     src: "https://placehold.it/64x64",
     width: "64",
     height: "64"
@@ -366,7 +366,7 @@ function Edit(props) {
     type: "number",
     min: "0",
     value: props.attributes.restTime,
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("15", "kantina-delicacy-plugin"),
+    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("15", "recipe-manager-pro"),
     onChange: function onChange(restTime) {
       updateTime("restTime", restTime);
     }
@@ -374,7 +374,7 @@ function Edit(props) {
     className: "col"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "meta-with-icon"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Cook time", "kantina-delicacy-plugin")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Cook time", "recipe-manager-pro")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
     src: "https://placehold.it/64x64",
     width: "64",
     height: "64"
@@ -382,7 +382,7 @@ function Edit(props) {
     type: "number",
     min: "0",
     value: props.attributes.cookTime,
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("15", "kantina-delicacy-plugin"),
+    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("15", "recipe-manager-pro"),
     onChange: function onChange(cookTime) {
       updateTime("cookTime", cookTime);
     }
@@ -390,7 +390,7 @@ function Edit(props) {
     className: "col"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "meta-with-icon"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Total time", "kantina-delicacy-plugin")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Total time", "recipe-manager-pro")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
     src: "https://placehold.it/64x64",
     width: "64",
     height: "64"
@@ -398,7 +398,7 @@ function Edit(props) {
     className: "col"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "meta-with-icon"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Yield", "kantina-delicacy-plugin")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Yield", "recipe-manager-pro")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
     src: "https://placehold.it/64x64",
     width: "64",
     height: "64"
@@ -406,17 +406,17 @@ function Edit(props) {
     type: "number",
     min: "0",
     value: props.attributes.recipeYield,
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("4", "kantina-delicacy-plugin"),
+    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("4", "recipe-manager-pro"),
     onChange: function onChange(recipeYield) {
       props.setAttributes({
         recipeYield: recipeYield
       });
     }
-  }), " ", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("piece", "kantina-delicacy-plugin"))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  }), " ", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("piece", "recipe-manager-pro"))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "col"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "meta-with-icon"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Servings", "kantina-delicacy-plugin")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Servings", "recipe-manager-pro")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
     src: "https://placehold.it/64x64",
     width: "64",
     height: "64"
@@ -424,13 +424,13 @@ function Edit(props) {
     type: "number",
     min: "0",
     value: props.attributes.servings,
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("4", "kantina-delicacy-plugin"),
+    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("4", "recipe-manager-pro"),
     onChange: function onChange(servings) {
       props.setAttributes({
         servings: servings
       });
     }
-  }), " ", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("servings", "kantina-delicacy-plugin"))))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  }), " ", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("servings", "recipe-manager-pro"))))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "row"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "col-12"
@@ -460,10 +460,10 @@ function Edit(props) {
     className: "row"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "col-12"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h3", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Notes", "kantina-delicacy-plugin")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h3", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Notes", "recipe-manager-pro")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
     tagName: "p",
     value: props.attributes.notes,
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Additional notes ...", "kantina-delicacy-plugin"),
+    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Additional notes ...", "recipe-manager-pro"),
     onChange: function onChange(notes) {
       props.setAttributes({
         notes: notes
@@ -519,7 +519,7 @@ function Edit(props) {
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["TextControl"], {
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Keywords", "recipe-manager-pro"),
     value: props.attributes.keywords,
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("quick & easy, vegetarian", "kantina-delicacy-plugin"),
+    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("quick & easy, vegetarian", "recipe-manager-pro"),
     onChange: function onChange(keywords) {
       props.setAttributes({
         keywords: keywords

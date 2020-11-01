@@ -199,8 +199,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var servingsDisplay = null; // Servings calculator
 
   var initServingCalculator = function initServingCalculator() {
-    var servingsEditorElement = document.querySelector(".recipe-servings-editor");
-    ingredientsTable = document.querySelector(".recipe-ingredients-list");
+    var servingsEditorElement = document.querySelector(".recipe-manager-pro--block--servings-editor");
+    ingredientsTable = document.querySelector(".recipe-manager-pro--block--ingredients");
 
     if (servingsEditorElement) {
       shrinkButton = servingsEditorElement.querySelector(".recipe-shrink-servings");
@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var refreshIngredients = function refreshIngredients() {
     if (ingredientsTable) {
-      ingredientsTable.querySelectorAll("tr .amount").forEach(function (amountElement) {
+      ingredientsTable.querySelectorAll("tr .recipe-manager-pro--block--amount").forEach(function (amountElement) {
         var baseAmount = parseFloat(amountElement.getAttribute("data-recipe-base-amount"), 10);
         var baseUnit = amountElement.getAttribute("data-recipe-base-unit");
 

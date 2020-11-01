@@ -125,7 +125,7 @@ export default function Edit(props) {
                 value={props.attributes.name}
                 placeholder={__(
                   "Title of your recipe",
-                  "kantina-delicacy-plugin"
+                  "recipe-manager-pro"
                 )}
                 onChange={(name) => {
                   props.setAttributes({ name });
@@ -137,7 +137,7 @@ export default function Edit(props) {
                 value={props.attributes.description}
                 placeholder={__(
                   "Short description of your recipe",
-                  "kantina-delicacy-plugin"
+                  "recipe-manager-pro"
                 )}
                 onChange={(description) => {
                   props.setAttributes({ description });
@@ -146,7 +146,7 @@ export default function Edit(props) {
 
               <div className="components-base-control__field">
                 <label className="components-base-control__label">
-                  {__("Difficulty", "kantina-delicacy-plugin")}
+                  {__("Difficulty", "recipe-manager-pro")}
                 </label>
 
                 <RadioGroup
@@ -156,11 +156,11 @@ export default function Edit(props) {
                   <Radio value={__("Simple", "recipe-manager-pro")}>
                     {__("Simple", "recipe-manager-pro")}
                   </Radio>
-                  <Radio value={__("Moderate", "kantina-delicacy-plugin")}>
-                    {__("Moderate", "kantina-delicacy-plugin")}
+                  <Radio value={__("Moderate", "recipe-manager-pro")}>
+                    {__("Moderate", "recipe-manager-pro")}
                   </Radio>
-                  <Radio value={__("Challenging", "kantina-delicacy-plugin")}>
-                    {__("Challenging", "kantina-delicacy-plugin")}
+                  <Radio value={__("Challenging", "recipe-manager-pro")}>
+                    {__("Challenging", "recipe-manager-pro")}
                   </Radio>
                 </RadioGroup>
               </div>
@@ -189,14 +189,14 @@ export default function Edit(props) {
           <div className="row icon-row">
             <div className="col">
               <div className="meta-with-icon">
-                <header>{__("Prep time", "kantina-delicacy-plugin")}</header>
+                <header>{__("Prep time", "recipe-manager-pro")}</header>
                 <img src="https://placehold.it/64x64" width="64" height="64" />
                 <div>
                   <TextControl
                     type="number"
                     min="0"
                     value={props.attributes.prepTime}
-                    placeholder={__("15", "kantina-delicacy-plugin")}
+                    placeholder={__("15", "recipe-manager-pro")}
                     onChange={(prepTime) => {
                       updateTime("prepTime", prepTime);
                     }}
@@ -207,14 +207,14 @@ export default function Edit(props) {
             </div>
             <div className="col">
               <div className="meta-with-icon">
-                <header>{__("Rest time", "kantina-delicacy-plugin")}</header>
+                <header>{__("Rest time", "recipe-manager-pro")}</header>
                 <img src="https://placehold.it/64x64" width="64" height="64" />
                 <div>
                   <TextControl
                     type="number"
                     min="0"
                     value={props.attributes.restTime}
-                    placeholder={__("15", "kantina-delicacy-plugin")}
+                    placeholder={__("15", "recipe-manager-pro")}
                     onChange={(restTime) => {
                       updateTime("restTime", restTime);
                     }}
@@ -225,14 +225,14 @@ export default function Edit(props) {
             </div>
             <div className="col">
               <div className="meta-with-icon">
-                <header>{__("Cook time", "kantina-delicacy-plugin")}</header>
+                <header>{__("Cook time", "recipe-manager-pro")}</header>
                 <img src="https://placehold.it/64x64" width="64" height="64" />
                 <div>
                   <TextControl
                     type="number"
                     min="0"
                     value={props.attributes.cookTime}
-                    placeholder={__("15", "kantina-delicacy-plugin")}
+                    placeholder={__("15", "recipe-manager-pro")}
                     onChange={(cookTime) => {
                       updateTime("cookTime", cookTime);
                     }}
@@ -243,7 +243,7 @@ export default function Edit(props) {
             </div>
             <div className="col">
               <div className="meta-with-icon">
-                <header>{__("Total time", "kantina-delicacy-plugin")}</header>
+                <header>{__("Total time", "recipe-manager-pro")}</header>
                 <img src="https://placehold.it/64x64" width="64" height="64" />
                 <div>
                   <span>{props.attributes.totalTime}</span>&nbsp;
@@ -253,37 +253,37 @@ export default function Edit(props) {
             </div>
             <div className="col">
               <div className="meta-with-icon">
-                <header>{__("Yield", "kantina-delicacy-plugin")}</header>
+                <header>{__("Yield", "recipe-manager-pro")}</header>
                 <img src="https://placehold.it/64x64" width="64" height="64" />
                 <div>
                   <TextControl
                     type="number"
                     min="0"
                     value={props.attributes.recipeYield}
-                    placeholder={__("4", "kantina-delicacy-plugin")}
+                    placeholder={__("4", "recipe-manager-pro")}
                     onChange={(recipeYield) => {
                       props.setAttributes({ recipeYield });
                     }}
                   />{" "}
-                  <span>{__("piece", "kantina-delicacy-plugin")}</span>
+                  <span>{__("piece", "recipe-manager-pro")}</span>
                 </div>
               </div>
             </div>
             <div className="col">
               <div className="meta-with-icon">
-                <header>{__("Servings", "kantina-delicacy-plugin")}</header>
+                <header>{__("Servings", "recipe-manager-pro")}</header>
                 <img src="https://placehold.it/64x64" width="64" height="64" />
                 <div>
                   <TextControl
                     type="number"
                     min="0"
                     value={props.attributes.servings}
-                    placeholder={__("4", "kantina-delicacy-plugin")}
+                    placeholder={__("4", "recipe-manager-pro")}
                     onChange={(servings) => {
                       props.setAttributes({ servings });
                     }}
                   />{" "}
-                  <span>{__("servings", "kantina-delicacy-plugin")}</span>
+                  <span>{__("servings", "recipe-manager-pro")}</span>
                 </div>
               </div>
             </div>
@@ -327,14 +327,14 @@ export default function Edit(props) {
 
         <div className="row">
           <div className="col-12">
-            <h3>{__("Notes", "kantina-delicacy-plugin")}</h3>
+            <h3>{__("Notes", "recipe-manager-pro")}</h3>
 
             <RichText
               tagName="p"
               value={props.attributes.notes}
               placeholder={__(
                 "Additional notes ...",
-                "kantina-delicacy-plugin"
+                "recipe-manager-pro"
               )}
               onChange={(notes) => {
                 props.setAttributes({ notes });
@@ -413,7 +413,7 @@ export default function Edit(props) {
               value={props.attributes.keywords}
               placeholder={__(
                 "quick & easy, vegetarian",
-                "kantina-delicacy-plugin"
+                "recipe-manager-pro"
               )}
               onChange={(keywords) => {
                 props.setAttributes({ keywords });

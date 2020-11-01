@@ -1,94 +1,88 @@
 <div class="recipe-manager-pro--block{{#if align}} align{{align}}{{/if}}">
-<div class="row align-items-center">
-	<div class="col-12 mb-3">
-		{{#if name}}
-			<h2 class="mb-2">{{{name}}}</h2>
-		{{/if}}
-	</div>
-	<div class="col-12 col-md-6">
+	{{#if name}}
+		<h2>{{{name}}}</h2>
+	{{/if}}
 
-		{{#if difficulty}}
-			<span class="difficulty">{{ difficulty }}</span>
-		{{/if}}
+	<div class="recipe-manager-pro--block--intro">
+		<div>
+			{{#if difficulty}}
+				<span class="recipe-manager-pro--block--difficulty">{{ difficulty }}</span>
+			{{/if}}
 
-		{{#if description}}
-			<p>{{ description }}</p>
-		{{/if}}
-		<div class="recipe-manager-pro--block--rating recipe-manager-pro--block--rating--small">
-			<ol>
-				<li class="recipe-manager-pro--block--star{{#if averageRating}} selected{{/if}}" data-rating="1">1</li>
-				<li class="recipe-manager-pro--block--star{{#ifMoreOrEqual averageRating 2}} selected{{else}}{{#ifMoreOrEqual averageRating 1.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="2">2</li>
-				<li class="recipe-manager-pro--block--star{{#ifMoreOrEqual averageRating 3}} selected{{else}}{{#ifMoreOrEqual averageRating 2.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="3">3</li>
-				<li class="recipe-manager-pro--block--star{{#ifMoreOrEqual averageRating 4}} selected{{else}}{{#ifMoreOrEqual averageRating 3.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="4">4</li>
-				<li class="recipe-manager-pro--block--star{{#ifMoreOrEqual averageRating 5}} selected{{else}}{{#ifMoreOrEqual averageRating 4.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="5">5</li>
-			</ol>
-			{{averageRating}}
+			{{#if description}}
+				<p>{{ description }}</p>
+			{{/if}}
+			<div class="recipe-manager-pro--block--rating recipe-manager-pro--block--rating--small">
+				<ol>
+					<li class="recipe-manager-pro--block--star{{#if averageRating}} selected{{/if}}" data-rating="1">1</li>
+					<li class="recipe-manager-pro--block--star{{#ifMoreOrEqual averageRating 2}} selected{{else}}{{#ifMoreOrEqual averageRating 1.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="2">2</li>
+					<li class="recipe-manager-pro--block--star{{#ifMoreOrEqual averageRating 3}} selected{{else}}{{#ifMoreOrEqual averageRating 2.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="3">3</li>
+					<li class="recipe-manager-pro--block--star{{#ifMoreOrEqual averageRating 4}} selected{{else}}{{#ifMoreOrEqual averageRating 3.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="4">4</li>
+					<li class="recipe-manager-pro--block--star{{#ifMoreOrEqual averageRating 5}} selected{{else}}{{#ifMoreOrEqual averageRating 4.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="5">5</li>
+				</ol>
+				{{averageRating}}
+			</div>
+		</div>
+		<div>
+			{{#if image4_3}}
+				<img src="{{ image4_3 }}" title="{{{ name }}}" />
+			{{/if}}
 		</div>
 	</div>
-	<div class="col-12 col-md-6">
-		{{#if image4_3}}
-			<img src="{{ image4_3 }}" title="{{{ name }}}" />
-		{{/if}}
-	</div>
-</div>
 
 	<hr />
 
-	<div class="recipe-manager-pro--block--meta">
-		<div>
-			<ul class="inline-list timing-list">
-				{{#if prepTime}}
-				<li>
-					<header>{{translations/prepTime}}:</header>
-					<span>{{#formatDuration prepTime}}{{/formatDuration}}</span>
-				</li>
-				{{/if}}
+	<div class="recipe-manager-pro--block--timing-list">
+		<ul>
+			{{#if prepTime}}
+			<li>
+				<header>{{translations/prepTime}}:</header>
+				<span>{{#formatDuration prepTime}}{{/formatDuration}}</span>
+			</li>
+			{{/if}}
 
-				{{#if restTime}}
-				<li>
-					<header>{{translations/restTime}}:</header>
-					<span>
-					{{#formatDuration restTime}}{{/formatDuration}}</span>
-				</li>
-				{{/if}}
+			{{#if restTime}}
+			<li>
+				<header>{{translations/restTime}}:</header>
+				<span>
+				{{#formatDuration restTime}}{{/formatDuration}}</span>
+			</li>
+			{{/if}}
 
-				{{#if cookTime}}
-				<li>
-					<header>{{translations/cookTime}}:</header>
-					<span>
-					{{#formatDuration cookTime}}{{/formatDuration}}</span>
-				</li>
-				{{/if}}
+			{{#if cookTime}}
+			<li>
+				<header>{{translations/cookTime}}:</header>
+				<span>
+				{{#formatDuration cookTime}}{{/formatDuration}}</span>
+			</li>
+			{{/if}}
 
-				{{#if totalTime}}
-				<li>
-					<header>{{translations/totalTime}}:</header>
-					<span>{{#formatDuration totalTime}}{{/formatDuration}}</span>
-				</li>
-				{{/if}}
-			</ul>
-		</div>
-		<div>
-		</div>
+			{{#if totalTime}}
+			<li>
+				<header>{{translations/totalTime}}:</header>
+				<span>{{#formatDuration totalTime}}{{/formatDuration}}</span>
+			</li>
+			{{/if}}
+		</ul>
 	</div>
 
 	<hr />
 
 	{{#if ingredients}}
-	<div class="d-flex justify-content-between align-items-center mb-3">
+	<div class="recipe-manager-pro--block--headline">
 		<h3>{{translations/ingredients}}</h3>
-		<div class="btn-group recipe-servings-editor">
+		<div class="recipe-manager-pro--block--servings-editor">
 		  <button type="button" class="btn btn-secondary recipe-shrink-servings">-</button>
-		  <button type="button" class="btn btn-secondary disabled"><span class="recipe-servings">{{servings}}</span> {{translations/servings}}</button>
+		  <span disabled="disabled"><span class="recipe-servings">{{servings}}</span> {{translations/servings}}</span>
 		  <button type="button" class="btn btn-secondary recipe-increase-servings">+</button>
 		</div>
 	</div>
-	<table class="recipe-ingredients-list">
+	<table class="recipe-manager-pro--block--ingredients">
 		<tbody>
 			{{#each ingredients}}
 				<tr>
-					<td class="amount" data-recipe-base-amount="{{this/baseAmount}}" data-recipe-base-unit="{{this/baseUnit}}">{{this/amount}} {{this/unit}}</td>
-					<td class="ingredient">{{this/ingredient}}</td>
+					<td class="recipe-manager-pro--block--amount" data-recipe-base-amount="{{this/baseAmount}}" data-recipe-base-unit="{{this/baseUnit}}">{{this/amount}} {{this/unit}}</td>
+					<td class="recipe-manager-pro--block--ingredient">{{this/ingredient}}</td>
 				</tr>
 			{{/each}}
 		</tbody>
@@ -98,8 +92,11 @@
 	<hr />
 
 	{{#if preparationSteps}}
-	<h3 class="mb-3">{{translations/preparationSteps}}</h3>
-	<ol class="recipe-preparation-steps-list">
+
+	<div class="recipe-manager-pro--block--headline">
+		<h3>{{translations/preparationSteps}}</h3>
+	</div>
+	<ol class="recipe-manager-pro--block--preparation-steps">
 		{{{preparationSteps}}}
 	</ol>
 	{{/if}}
@@ -107,14 +104,18 @@
 	<hr />
 
 	{{#if notes}}
-	<h3 class="mb-3">{{translations/notes}}</h3>
-	<p class="mb-0">{{notes}}</p>
+	<section>
+		<header class="recipe-manager-pro--block--headline">
+			<h3>{{translations/notes}}</h3>
+		</header>
+		<p>{{notes}}</p>
+	</section>
 	{{/if}}
 	
 	<div class="recipe-manager-pro--block--user-rating">
 		<hr />
 
-		<h3 class="mb-3">{{translations/feedback}}</h3>
+		<h3>{{translations/feedback}}</h3>
 		<div class="recipe-manager-pro--block--rating recipe-manager-pro--block--interactive" data-post-id="{{postId}}" data-save-url="{{ajaxUrl}}" data-nonce="{{nonce}}">
 			<ol>
 				<li class="recipe-manager-pro--block--star{{#if userRating}} selected{{/if}}" data-rating="1">1</li>
