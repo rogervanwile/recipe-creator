@@ -266,7 +266,7 @@ export default function Edit(props) {
                       type="number"
                       min="0"
                       value={props.attributes.prepTime}
-                      placeholder={__("15", "recipe-manager-pro")}
+                      placeholder="15"
                       onChange={(prepTime) => {
                         updateTime("prepTime", prepTime);
                       }}
@@ -286,7 +286,7 @@ export default function Edit(props) {
                       type="number"
                       min="0"
                       value={props.attributes.restTime}
-                      placeholder={__("15", "recipe-manager-pro")}
+                      placeholder="15"
                       onChange={(restTime) => {
                         updateTime("restTime", restTime);
                       }}
@@ -306,7 +306,7 @@ export default function Edit(props) {
                       type="number"
                       min="0"
                       value={props.attributes.cookTime}
-                      placeholder={__("15", "recipe-manager-pro")}
+                      placeholder="15"
                       onChange={(cookTime) => {
                         updateTime("cookTime", cookTime);
                       }}
@@ -338,7 +338,7 @@ export default function Edit(props) {
                 type="number"
                 min="0"
                 value={props.attributes.recipeYield}
-                placeholder={__("4", "recipe-manager-pro")}
+                placeholder="12"
                 onChange={(recipeYield) => {
                   props.setAttributes({ recipeYield });
                 }}
@@ -354,7 +354,7 @@ export default function Edit(props) {
                 label={__("Servings", "recipe-manager-pro")}
                 min="0"
                 value={props.attributes.servings}
-                placeholder={__("4", "recipe-manager-pro")}
+                placeholder="4"
                 onChange={(servings) => {
                   props.setAttributes({ servings });
                 }}

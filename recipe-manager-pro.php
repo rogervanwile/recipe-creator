@@ -6,7 +6,6 @@
  * Version:         0.0.1
  * Author:          Oliver Wagner
  * Text Domain:     recipe-manager-pro
- * Domain Path:     /languages
  */
 
 // API-KEY

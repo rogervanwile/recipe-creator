@@ -1,0 +1,312 @@
+# Copyright (C) 2020 Oliver Wagner
+# This file is distributed under the same license as the Recipe Manager Pro plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Recipe Manager Pro 0.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recipe-manager-"
+"pro\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-11-06T19:43:35+00:00\n"
+"PO-Revision-Date: 2020-11-06 20:51+0100\n"
+"X-Generator: Poedit 2.4.1\n"
+"X-Domain: recipe-manager-pro\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de_DE\n"
+
+#. Plugin Name of the plugin
+msgid "Recipe Manager Pro"
+msgstr "Rezepte-Manager Pro"
+
+#. Description of the plugin
+#: build/index.js:753 src/blocks/block/index.js:14
+msgid ""
+"Manage recipes and optimize them automatically for Google Featured Snippets."
+msgstr ""
+"Verwalte deine Rezepte und optimiere sie automatisch um die Chance auf ein "
+"Google Features Snippet zu bekommen."
+
+#. Author of the plugin
+msgid "Oliver Wagner"
+msgstr "Oliver Wagner"
+
+#: recipe-manager-pro.php:456 recipe-manager-pro.php:461
+#: src/blocks/block/save.js:20 src/blocks/block/save.js:32
+msgid "minutes"
+msgstr "Minuten"
+
+#: recipe-manager-pro.php:461 src/blocks/block/save.js:28
+msgid "hours"
+msgstr "Stunden"
+
+#: recipe-manager-pro.php:489 build/index.js:399 src/blocks/block/edit.js:263
+#: src/blocks/block/save.js:44
+msgid "Prep time"
+msgstr "Vorbereitungszeit"
+
+#: recipe-manager-pro.php:490 build/index.js:410 src/blocks/block/edit.js:283
+msgid "Rest time"
+msgstr "Ruhezeit"
+
+#: recipe-manager-pro.php:491 build/index.js:421 src/blocks/block/edit.js:303
+#: src/blocks/block/save.js:50
+msgid "Cook time"
+msgstr "Zubereitungszeit"
+
+#: recipe-manager-pro.php:492 build/index.js:431 src/blocks/block/edit.js:321
+#: src/blocks/block/save.js:56
+msgid "Total time"
+msgstr "Gesamtzeit"
+
+#: recipe-manager-pro.php:493
+msgid "yields"
+msgstr "Stück"
+
+#: recipe-manager-pro.php:494 build/index.js:433 src/blocks/block/edit.js:331
+#: src/blocks/block/save.js:71
+msgid "Ingredients"
+msgstr "Zutaten"
+
+#: recipe-manager-pro.php:495 build/index.js:476 src/blocks/block/edit.js:377
+#: src/blocks/block/save.js:80
+msgid "Steps of preparation"
+msgstr "Zubereitung"
+
+#: recipe-manager-pro.php:496
+msgid "Your rating"
+msgstr "Deine Bewertung"
+
+#: recipe-manager-pro.php:497
+msgid "Average rating"
+msgstr "Durchschnittliche Bewertung"
+
+#: recipe-manager-pro.php:498 build/index.js:489 src/blocks/block/edit.js:397
+msgid "Notes"
+msgstr "Notizen"
+
+#: recipe-manager-pro.php:499
+msgid "How do you like the recipe?"
+msgstr "Wie findest du das Rezept?"
+
+#: recipe-manager-pro.php:500 build/index.js:461 src/blocks/block/edit.js:361
+msgid "servings"
+msgstr "Portionen"
+
+#: build/index.js:214 src/blocks/block/edit.js:48
+msgid "Breakfast"
+msgstr "Frühstück"
+
+#: build/index.js:214 src/blocks/block/edit.js:49
+msgid "Bread"
+msgstr "Brot"
+
+#: build/index.js:214 src/blocks/block/edit.js:50
+msgid "Appetizers & Snacks"
+msgstr "Vorspeisen & Sacks"
+
+#: build/index.js:214 src/blocks/block/edit.js:51
+msgid "Salads"
+msgstr "Salate"
+
+#: build/index.js:214 src/blocks/block/edit.js:52
+msgid "Soups & Stews"
+msgstr "Suppen & Eintöpfe"
+
+#: build/index.js:214 src/blocks/block/edit.js:53
+msgid "Main Dishes"
+msgstr "Hauptgerichte"
+
+#: build/index.js:214 src/blocks/block/edit.js:54
+msgid "Side Dishes"
+msgstr "Beilagen"
+
+#: build/index.js:214 src/blocks/block/edit.js:55
+msgid "Desserts"
+msgstr "Nachspeisen"
+
+#: build/index.js:214 src/blocks/block/edit.js:56
+msgid "Drinks"
+msgstr "Getränk"
+
+#: build/index.js:214 src/blocks/block/edit.js:57
+msgid "Sweets"
+msgstr "Süßigkeit"
+
+#: build/index.js:222 src/blocks/block/edit.js:64
+msgid "Select a category"
+msgstr "Wähle eine Kategorie aus"
+
+#: build/index.js:279 src/blocks/block/edit.js:125
+msgid "No reviews"
+msgstr "Keine Bewertungen"
+
+#: build/index.js:284 src/blocks/block/edit.js:134
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: build/index.js:285 src/blocks/block/edit.js:136
+msgid "Timings"
+msgstr "Zeiten"
+
+#: build/index.js:287 build/index.js:295 build/index.js:303
+#: src/blocks/block/edit.js:141 src/blocks/block/edit.js:150
+#: src/blocks/block/edit.js:159
+msgid "Show prep time"
+msgstr "Vorbereitungszeit anzeigen"
+
+#: build/index.js:309 src/blocks/block/edit.js:166
+msgid "Calculation"
+msgstr "Kalkulation"
+
+#: build/index.js:311 src/blocks/block/edit.js:171
+msgid "Show yield"
+msgstr "Stückzahl anzeigen"
+
+#: build/index.js:328 src/blocks/block/edit.js:185
+msgid "Show servings"
+msgstr "Portionen anzeigen"
+
+#: build/index.js:348 src/blocks/block/edit.js:202
+msgid "Title of your recipe"
+msgstr "Titel des Rezepts"
+
+#: build/index.js:364 build/index.js:365 src/blocks/block/edit.js:213
+#: src/blocks/block/edit.js:214
+msgid "Simple"
+msgstr "einfach"
+
+#: build/index.js:366 build/index.js:367 src/blocks/block/edit.js:216
+#: src/blocks/block/edit.js:217
+msgid "Moderate"
+msgstr "mittel"
+
+#: build/index.js:368 build/index.js:369 src/blocks/block/edit.js:219
+#: src/blocks/block/edit.js:220
+msgid "Challenging"
+msgstr "herausfordernd"
+
+#: build/index.js:372 src/blocks/block/edit.js:227
+msgid "Short description of your recipe"
+msgstr "Kurze Beschreibung deines Rezeptes"
+
+#: build/index.js:403 build/index.js:414 build/index.js:425
+msgid "15"
+msgstr ""
+
+#: build/index.js:407 build/index.js:418 build/index.js:429 build/index.js:431
+#: src/blocks/block/edit.js:273 src/blocks/block/edit.js:293
+#: src/blocks/block/edit.js:313 src/blocks/block/edit.js:324
+msgid "Minutes"
+msgstr "Minuten"
+
+#: build/index.js:437 src/blocks/block/edit.js:337
+msgid "Yield"
+msgstr "Stückzahl"
+
+#: build/index.js:441 build/index.js:455
+msgid "4"
+msgstr ""
+
+#: build/index.js:447 src/blocks/block/edit.js:345
+msgid "piece"
+msgstr "Stück"
+
+#: build/index.js:452 src/blocks/block/edit.js:354
+msgid "Servings"
+msgstr "Portionen"
+
+#: build/index.js:467 src/blocks/block/edit.js:371
+msgid "Add the ingredients here..."
+msgstr "Füge hier die Zutaten ein..."
+
+#: build/index.js:480 src/blocks/block/edit.js:384
+msgid "Add the steps of preparation here..."
+msgstr "Füge die die Schritte der Zubereitung ein..."
+
+#: build/index.js:492 src/blocks/block/edit.js:403
+msgid "Additional notes ..."
+msgstr "Zusätzliche Notizen"
+
+#: build/index.js:500 src/blocks/block/edit.js:411
+msgid "Video"
+msgstr "Video"
+
+#: build/index.js:501 src/blocks/block/edit.js:414
+msgid "Video-URL"
+msgstr "Video-URL"
+
+#: build/index.js:513 src/blocks/block/edit.js:423
+msgid "SEO"
+msgstr "SEO"
+
+#: build/index.js:513 src/blocks/block/edit.js:427
+msgid ""
+"Google and other search enginges needs some more informations to process "
+"your recipe. These informations are not visible to your user, but will have "
+"impact on the ranking of your recipe in search engines. So we recommend to "
+"provide all these informations."
+msgstr ""
+"Google und andere Suchmaschinen brauchen mehr Informationen, um dein Rezept "
+"zu verarbeiten. Diese Informationen sind für deine Benutzer nicht sichtbar, "
+"haben aber Einfluss auf das Ranking deines Rezeptes in den Suchmaschinen. "
+"Wir empfehlen daher, alle diese Informationen anzugeben."
+
+#: build/index.js:516 src/blocks/block/edit.js:435
+msgid "Cuisine"
+msgstr "Küche"
+
+#: build/index.js:518 src/blocks/block/edit.js:437
+msgid "e.g. \"Italian\" or \"German\""
+msgstr "z.B. „Italienisch“ oder „Deutsch“"
+
+#: build/index.js:525 src/blocks/block/edit.js:447
+msgid "Category"
+msgstr "Kategorie"
+
+#: build/index.js:534 src/blocks/block/edit.js:456
+msgid "Keywords"
+msgstr "Stichworte"
+
+#: build/index.js:536 src/blocks/block/edit.js:458
+msgid "quick & easy, vegetarian"
+msgstr "schnell & einfach, vegetarisch"
+
+#: build/index.js:542 src/blocks/block/edit.js:466
+msgid "Picture of the finished dish"
+msgstr "Bild des fertigen Gerichtes"
+
+#: build/index.js:542 src/blocks/block/edit.js:468
+msgid ""
+"You should add 3 pictures in different aspect ratios to this recipe to have "
+"a change for a more prominent display in the Google search results. The 16:9 "
+"or sometimes the 4:3 aspect ratio is used for the featured snipped. If you "
+"provide a square image, Google sometimes display it in your search result."
+msgstr ""
+"Du solltest 3 Bilder in verschiedenen Seitenverhältnissen zu diesem Rezept "
+"hinzufügen, um eine Änderung für eine prominentere Darstellung in den Google-"
+"Suchergebnissen zu haben. Das 16:9 oder manchmal das 4:3 Seitenverhältnis "
+"wird für die vorgestellten Ausschnitte verwendet. Wenn du ein quadratisches "
+"Bild angibst, zeigt Google es manchmal in deinem Suchergebnis an."
+
+#: build/index.js:608 src/blocks/block/edit.js:556
+msgid "Previews"
+msgstr "Vorschau"
+
+#: build/index.js:709 src/blocks/block/edit.js:683
+msgid "Rating"
+msgstr "Bewertung"
+
+#: build/index.js:709 src/blocks/block/edit.js:689
+msgid "reviews"
+msgstr "Ergebnisse"
+
+#: build/index.js:752 src/blocks/block/index.js:13
+msgid "Recipe Block"
+msgstr "Rezeptblock"
+
+#: src/blocks/block/save.js:64
+msgid "Result"
+msgstr "Portionen"
