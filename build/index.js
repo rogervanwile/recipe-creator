@@ -192,34 +192,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_editor_scss__WEBPACK_IMPORTED_MODULE_4__);
 
 
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
- */
 
 
 
-
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
-
-
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
- *
- * @param {Object} [props]           Properties passed from the editor.
- * @param {string} [props.className] Class name generated for the block.
- *
- * @return {WPElement} Element to render.
- */
 
 var recipeManagerProMigrationDone = false;
 function Edit(props) {
@@ -301,7 +276,7 @@ function Edit(props) {
     } else {
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
         className: "features-snipped-preview--rating"
-      }, "Keine Rezensionen");
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("No reviews", "recipe-manager-pro"));
     }
   }
 
@@ -731,7 +706,7 @@ function Edit(props) {
     style: {
       width: getRatedStarsWidth(props.data.meta.average_rating) + "px"
     }
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, "\xA0Bewertung: ", props.data.meta.average_rating), " ", "\xB7 \u200E", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, props.data.meta.rating_count, " Ergebnisse"), " \xB7 \u200E", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, props.attributes.totalTime, " Min.")))))))));
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, "\xA0", Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Rating", "recipe-manager-pro"), ":", " ", props.data.meta.average_rating), " ", "\xB7 \u200E", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, props.data.meta.rating_count, " ", Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("reviews", "recipe-manager-pro")), " ", "\xB7 \u200E", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, props.attributes.totalTime, " Min.")))))))));
 }
 
 /***/ }),
@@ -767,81 +742,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/block/style.scss");
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./edit */ "./src/blocks/block/edit.js");
-/**
- * Registers a new block provided a unique name and an object defining its behavior.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
- */
-
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
- */
 
 
 
 
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * All files containing `style` keyword are bundled together. The code used
- * gets applied both to the front of your site and to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
 
-
-/**
- * Internal dependencies
- */
-
-
-/**
- * Every block starts by registering a new block type definition.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
- */
 
 Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])("recipe-manager-pro/block", {
-  /**
-   * This is the display title for your block, which can be translated with `i18n` functions.
-   * The block inserter will show this name.
-   */
   title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Recipe Block", "recipe-manager-pro"),
-
-  /**
-   * This is a short description for your block, can be translated with `i18n` functions.
-   * It will be shown in the Block Tab in the Settings Sidebar.
-   */
   description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Manage recipes and optimize them automatically for Google Featured Snippets.", "recipe-manager-pro"),
-
-  /**
-   * Blocks are grouped into categories to help users browse and discover them.
-   * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
-   */
   category: "formatting",
-
-  /**
-   * An icon property should be specified to make it easier to identify a block.
-   * These can be any of WordPress’ Dashicons, or a custom svg element.
-   */
   icon: "carrot",
-
-  /**
-   * Optional block extended support features.
-   */
   supports: {
     // Removes support for an HTML mode.
     html: false,
     align: ["center", "wide", "full"]
   },
-
-  /**
-   * @see ./edit.js
-   */
   edit: Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["withSelect"])(function (select) {
     var site = select("core").getSite();
-    var publishDate = wp.date.format("d.m.Y", wp.data.select("core/editor").getEditedPostAttribute("date"));
+    var publishDate = Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_3__["format"])("d.m.Y", wp.data.select("core/editor").getEditedPostAttribute("date"));
     return {
       data: {
         title: site ? site.title : null,
@@ -850,10 +769,6 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])("rec
       }
     };
   })(_edit__WEBPACK_IMPORTED_MODULE_5__["default"]),
-
-  /**
-   * @see ./save.js
-   */
   save: function save(props) {
     return props;
   }

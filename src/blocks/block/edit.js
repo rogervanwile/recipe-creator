@@ -1,8 +1,3 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
- */
 import { __ } from "@wordpress/i18n";
 
 import {
@@ -25,25 +20,7 @@ import {
 
 import { Fragment } from "@wordpress/element";
 
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
 import "./editor.scss";
-
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
- *
- * @param {Object} [props]           Properties passed from the editor.
- * @param {string} [props.className] Class name generated for the block.
- *
- * @return {WPElement} Element to render.
- */
 
 var recipeManagerProMigrationDone = false;
 
@@ -145,7 +122,7 @@ export default function Edit(props) {
     } else {
       return (
         <div className="features-snipped-preview--rating">
-          Keine Rezensionen
+          {__("No reviews", "recipe-manager-pro")}
         </div>
       );
     }
@@ -656,12 +633,6 @@ export default function Edit(props) {
           </section>
           <div>
             <section className="features-result-preview">
-              {/* <div className="features-result-preview--url">
-              www.chefkoch.de
-              <span className="features-result-preview--breadcrumb">
-                › ... › Kategorien › Menüart › Dessert
-              </span>
-            </div> */}
               <h3 className="features-result-preview--headline">
                 {props.attributes.name}
               </h3>
@@ -709,11 +680,15 @@ export default function Edit(props) {
                       ></span>
                     </span>
                     <span>
-                      &nbsp;Bewertung: {props.data.meta.average_rating}
+                      &nbsp;{__("Rating", "recipe-manager-pro")}:{" "}
+                      {props.data.meta.average_rating}
                     </span>{" "}
                     · &lrm;
-                    <span>{props.data.meta.rating_count} Ergebnisse</span> ·
-                    &lrm;
+                    <span>
+                      {props.data.meta.rating_count}{" "}
+                      {__("reviews", "recipe-manager-pro")}
+                    </span>{" "}
+                    · &lrm;
                     <span>{props.attributes.totalTime} Min.</span>
                   </div>
                 </div>
