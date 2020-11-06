@@ -17,8 +17,6 @@ Icons:
 
 Todos:
 
-- Editor-Ansicht anpassen
-- Preview-Texte anpassen
 - In der Editor-Block-Sidebar einstellen welche Timings angezeigt weren können
 - Übersetzung
 - Farben in Plugin-Settings einstellen lassen

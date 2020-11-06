@@ -2826,5 +2826,10 @@ html {
       line-height: 1.58;
       font-size: 14px; }
 
+.block-editor-block-inspector .components-base-control {
+  width: 100%; }
+  .block-editor-block-inspector .components-base-control .components-base-control__field {
+    display: flex; }
+
 
 /*# sourceMappingURL=index.css.map*/

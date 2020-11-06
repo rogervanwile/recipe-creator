@@ -201,7 +201,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -224,8 +223,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var recipeManagerProMigrationDone = false;
 function Edit(props) {
-  console.log("props", props); // Workaround for https://github.com/WordPress/gutenberg/issues/7342
-
+  // Workaround for https://github.com/WordPress/gutenberg/issues/7342
   if (!recipeManagerProMigrationDone) {
     var cleanedDefaultData = {};
     Object.keys(props.attributes).forEach(function (key) {
@@ -251,10 +249,10 @@ function Edit(props) {
   });
 
   function updateTime(settingKey, value) {
+    var update = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
     var prepTime = parseInt(props.attributes.prepTime, 10) || 0;
     var restTime = parseInt(props.attributes.restTime, 10) || 0;
     var cookTime = parseInt(props.attributes.cookTime, 10) || 0;
-    var update = {};
     var intValue = parseInt(value, 10);
 
     if (!isNaN(intValue)) {
@@ -307,7 +305,67 @@ function Edit(props) {
     }
   }
 
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelBody"], {
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Settings", "recipe-manager-pro")
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h3", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Timings", "recipe-manager-pro"))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["CheckboxControl"], {
+    checked: props.attributes.showPrepTime,
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Show prep time", "recipe-manager-pro"),
+    onChange: function onChange(showPrepTime) {
+      updateTime("prepTime", 0, {
+        showPrepTime: showPrepTime
+      });
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["CheckboxControl"], {
+    checked: props.attributes.showRestTime,
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Show prep time", "recipe-manager-pro"),
+    onChange: function onChange(showRestTime) {
+      updateTime("restTime", 0, {
+        showRestTime: showRestTime
+      });
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["CheckboxControl"], {
+    checked: props.attributes.showCookTime,
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Show prep time", "recipe-manager-pro"),
+    onChange: function onChange(showCookTime) {
+      updateTime("cookTime", 0, {
+        showCookTime: showCookTime
+      });
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h3", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Calculation", "recipe-manager-pro"))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["CheckboxControl"], {
+    checked: props.attributes.showYield,
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Show yield", "recipe-manager-pro"),
+    onChange: function onChange(showYield) {
+      props.setAttributes({
+        showYield: showYield
+      });
+      var update = {
+        showYield: showYield
+      };
+
+      if (!showYield) {
+        update.recipeYield = 0;
+      }
+
+      props.setAttributes(update);
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["CheckboxControl"], {
+    checked: props.attributes.showServings,
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Show servings", "recipe-manager-pro"),
+    onChange: function onChange(showServings) {
+      props.setAttributes({
+        showServings: showServings
+      });
+      var update = {
+        showServings: showServings
+      };
+
+      if (!showServings) {
+        update.servings = 0;
+      }
+
+      props.setAttributes(update);
+    }
+  })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "recipe-manager-pro--block " + props.className
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
     tagName: "h2",
@@ -362,62 +420,72 @@ function Edit(props) {
     }
   })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("hr", null), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "recipe-manager-pro--block--timing-list"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("ul", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Prep time", "recipe-manager-pro"), ":"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["__experimentalInputControl"], {
-    type: "number",
-    min: "0",
-    value: props.attributes.prepTime,
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("15", "recipe-manager-pro"),
-    onChange: function onChange(prepTime) {
-      updateTime("prepTime", prepTime);
-    },
-    suffix: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Minutes", "recipe-manager-pro")
-  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Rest time", "recipe-manager-pro"), ":"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["__experimentalInputControl"], {
-    type: "number",
-    min: "0",
-    value: props.attributes.restTime,
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("15", "recipe-manager-pro"),
-    onChange: function onChange(restTime) {
-      updateTime("restTime", restTime);
-    },
-    suffix: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Minutes", "recipe-manager-pro")
-  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Cook time", "recipe-manager-pro"), ":"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["__experimentalInputControl"], {
-    type: "number",
-    min: "0",
-    value: props.attributes.cookTime,
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("15", "recipe-manager-pro"),
-    onChange: function onChange(cookTime) {
-      updateTime("cookTime", cookTime);
-    },
-    suffix: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Minutes", "recipe-manager-pro")
-  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Total time", "recipe-manager-pro"), ":"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, props.attributes.totalTime, " ", Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Minutes", "recipe-manager-pro"))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("hr", null), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("ul", null, function () {
+    return props.attributes.showPrepTime ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Prep time", "recipe-manager-pro"), ":"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["__experimentalInputControl"], {
+      type: "number",
+      min: "0",
+      value: props.attributes.prepTime,
+      placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("15", "recipe-manager-pro"),
+      onChange: function onChange(prepTime) {
+        updateTime("prepTime", prepTime);
+      },
+      suffix: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Minutes", "recipe-manager-pro")
+    }))) : null;
+  }(), function () {
+    return props.attributes.showRestTime ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Rest time", "recipe-manager-pro"), ":"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["__experimentalInputControl"], {
+      type: "number",
+      min: "0",
+      value: props.attributes.restTime,
+      placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("15", "recipe-manager-pro"),
+      onChange: function onChange(restTime) {
+        updateTime("restTime", restTime);
+      },
+      suffix: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Minutes", "recipe-manager-pro")
+    }))) : null;
+  }(), function () {
+    return props.attributes.showCookTime ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Cook time", "recipe-manager-pro"), ":"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["__experimentalInputControl"], {
+      type: "number",
+      min: "0",
+      value: props.attributes.cookTime,
+      placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("15", "recipe-manager-pro"),
+      onChange: function onChange(cookTime) {
+        updateTime("cookTime", cookTime);
+      },
+      suffix: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Minutes", "recipe-manager-pro")
+    }))) : null;
+  }(), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("header", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Total time", "recipe-manager-pro"), ":"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, props.attributes.totalTime, " ", Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Minutes", "recipe-manager-pro"))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("hr", null), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "recipe-manager-pro--block--headline"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h3", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Ingredients", "recipe-manager-pro"))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "recipe-manager-pro--block--flex-container"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["__experimentalInputControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Yield", "recipe-manager-pro"),
-    type: "number",
-    min: "0",
-    value: props.attributes.recipeYield,
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("4", "recipe-manager-pro"),
-    onChange: function onChange(recipeYield) {
-      props.setAttributes({
-        recipeYield: recipeYield
-      });
-    },
-    suffix: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("piece", "recipe-manager-pro")
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["__experimentalInputControl"], {
-    type: "number",
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Servings", "recipe-manager-pro"),
-    min: "0",
-    value: props.attributes.servings,
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("4", "recipe-manager-pro"),
-    onChange: function onChange(servings) {
-      props.setAttributes({
-        servings: servings
-      });
-    },
-    suffix: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("servings", "recipe-manager-pro")
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
+  }, function () {
+    return props.attributes.showYield ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["__experimentalInputControl"], {
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Yield", "recipe-manager-pro"),
+      type: "number",
+      min: "0",
+      value: props.attributes.recipeYield,
+      placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("4", "recipe-manager-pro"),
+      onChange: function onChange(recipeYield) {
+        props.setAttributes({
+          recipeYield: recipeYield
+        });
+      },
+      suffix: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("piece", "recipe-manager-pro")
+    }) : null;
+  }(), function () {
+    return props.attributes.showServings ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["__experimentalInputControl"], {
+      type: "number",
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Servings", "recipe-manager-pro"),
+      min: "0",
+      value: props.attributes.servings,
+      placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("4", "recipe-manager-pro"),
+      onChange: function onChange(servings) {
+        props.setAttributes({
+          servings: servings
+        });
+      },
+      suffix: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("servings", "recipe-manager-pro")
+    }) : null;
+  }()), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
     tagName: "ul",
     multiline: "li",
     className: "recipe-manager-pro--block--ingredients",
@@ -663,7 +731,7 @@ function Edit(props) {
     style: {
       width: getRatedStarsWidth(props.data.meta.average_rating) + "px"
     }
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, "\xA0Bewertung: ", props.data.meta.average_rating), " ", "\xB7 \u200E", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, props.data.meta.rating_count, " Ergebnisse"), " \xB7 \u200E", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, props.attributes.totalTime, " Min."))))))));
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, "\xA0Bewertung: ", props.data.meta.average_rating), " ", "\xB7 \u200E", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, props.data.meta.rating_count, " Ergebnisse"), " \xB7 \u200E", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, props.attributes.totalTime, " Min.")))))))));
 }
 
 /***/ }),

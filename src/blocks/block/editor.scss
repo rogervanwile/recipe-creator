@@ -367,3 +367,13 @@
     }
   }
 }
+
+.block-editor-block-inspector {
+  .components-base-control {
+    width: 100%;
+
+    .components-base-control__field {
+      display: flex;
+    }
+  }
+}

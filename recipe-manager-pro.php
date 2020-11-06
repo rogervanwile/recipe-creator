@@ -231,12 +231,29 @@ class RecipeManagerPro
 			'script'        => 'recipe-manager-pro-block',
 			'style'         => 'recipe-manager-pro-block',
 			'attributes' => array(
+				"showPrepTime" => array(
+					'type' => 'boolean',
+					'default' => true
+				),
+				"showRestTime" => array(
+					'type' => 'boolean',
+					'default' => true
+				),
+				"showCookTime" => array(
+					'type' => 'boolean',
+					'default' => true
+				),
+				"showYield" => array(
+					'type' => 'boolean',
+					'default' => true
+				),
+				"showServings" => array(
+					'type' => 'boolean',
+					'default' => true
+				),
 				'ingredients' => array(
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'ingredients') . '::STORE_DEFAULT_VALUE_HACK'
-				),
-				'ingredientsArray' => array(
-					'type' => 'array',
 				),
 				'preparationSteps' => array(
 					'type' => 'string',
@@ -473,7 +490,7 @@ class RecipeManagerPro
 			"restTime" => __('Rest time', 'recipe-manager-pro'),
 			"cookTime" => __('Cook time', 'recipe-manager-pro'),
 			"totalTime" => __('Total time', 'recipe-manager-pro'),
-			"yield" => __('Servings', 'recipe-manager-pro'),
+			"yield" => __('yields', 'recipe-manager-pro'),
 			"ingredients" => __('Ingredients', 'recipe-manager-pro'),
 			"preparationSteps" => __('Steps of preparation', 'recipe-manager-pro'),
 			"yourRating" => __('Your rating', 'recipe-manager-pro'),
@@ -490,11 +507,15 @@ class RecipeManagerPro
 		$averageRating = get_post_meta(get_the_ID(), 'average_rating', true) ?: 0;
 		$ratingCount = get_post_meta(get_the_ID(), 'rating_count', true) ?: 0;
 
-		$attributes['servings'] = isset($attributes['servings']) ? intval($attributes['servings']) : 1;
+		$attributes['servings'] = isset($attributes['servings']) ? intval($attributes['servings']) : 0;
+		$attributes['recipeYield'] = isset($attributes['recipeYield']) ? intval($attributes['recipeYield']) : 0;
+
 
 		$attributes['ingredients'] = array_map(function ($item) use ($attributes) {
-			if (isset($item['amount'])) {
-				$item['baseAmount'] = intval($item['amount']) / $attributes['servings'];
+			$baseItemsAmount = $attributes['servings'] ?: $attributes['recipeYield'];
+
+			if (isset($item['amount']) && $baseItemsAmount !== 0) {
+				$item['baseAmount'] = intval($item['amount']) / $baseItemsAmount;
 			}
 
 			if ($item['unit']) {

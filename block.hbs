@@ -69,36 +69,45 @@
 	<hr />
 
 	{{#if ingredients}}
-	<div class="recipe-manager-pro--block--headline">
-		<h3>{{translations/ingredients}}</h3>
-		<div class="recipe-manager-pro--block--servings-editor">
-		  <button type="button" class="btn btn-secondary recipe-shrink-servings">-</button>
-		  <span disabled="disabled"><span class="recipe-servings">{{servings}}</span> {{translations/servings}}</span>
-		  <button type="button" class="btn btn-secondary recipe-increase-servings">+</button>
+		<div class="recipe-manager-pro--block--headline">
+			<h3>{{translations/ingredients}}</h3>
+			{{#if servings}}
+				<div class="recipe-manager-pro--block--servings-editor">
+				  <button type="button" class="btn btn-secondary recipe-shrink-servings">-</button>
+				  <span disabled="disabled"><span class="recipe-servings">{{servings}}</span> {{translations/servings}}</span>
+				  <button type="button" class="btn btn-secondary recipe-increase-servings">+</button>
+				</div>
+			{{else}}
+				{{#if recipeYield}}
+					<div class="recipe-manager-pro--block--servings-editor">
+					  <button type="button" class="btn btn-secondary recipe-shrink-servings">-</button>
+					  <span disabled="disabled"><span class="recipe-servings">{{recipeYield}}</span> {{translations/yield}}</span>
+					  <button type="button" class="btn btn-secondary recipe-increase-servings">+</button>
+					</div>
+				{{/if}}
+			{{/if}}
 		</div>
-	</div>
-	<table class="recipe-manager-pro--block--ingredients">
-		<tbody>
-			{{#each ingredients}}
-				<tr>
-					<td class="recipe-manager-pro--block--amount" data-recipe-base-amount="{{this/baseAmount}}" data-recipe-base-unit="{{this/baseUnit}}">{{this/amount}} {{this/unit}}</td>
-					<td class="recipe-manager-pro--block--ingredient">{{this/ingredient}}</td>
-				</tr>
-			{{/each}}
-		</tbody>
-	</table>
+		<table class="recipe-manager-pro--block--ingredients">
+			<tbody>
+				{{#each ingredients}}
+					<tr>
+						<td class="recipe-manager-pro--block--amount" data-recipe-base-amount="{{this/baseAmount}}" data-recipe-base-unit="{{this/baseUnit}}">{{this/amount}} {{this/unit}}</td>
+						<td class="recipe-manager-pro--block--ingredient">{{this/ingredient}}</td>
+					</tr>
+				{{/each}}
+			</tbody>
+		</table>
 	{{/if}}
 
 	<hr />
 
 	{{#if preparationSteps}}
-
-	<div class="recipe-manager-pro--block--headline">
-		<h3>{{translations/preparationSteps}}</h3>
-	</div>
-	<ol class="recipe-manager-pro--block--preparation-steps">
-		{{{preparationSteps}}}
-	</ol>
+		<div class="recipe-manager-pro--block--headline">
+			<h3>{{translations/preparationSteps}}</h3>
+		</div>
+		<ol class="recipe-manager-pro--block--preparation-steps">
+			{{{preparationSteps}}}
+		</ol>
 	{{/if}}
 
 	<hr />
