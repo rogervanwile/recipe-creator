@@ -32,10 +32,50 @@ class RecipeManagerPro
 
 		add_action('init', array($this, 'addRessources'));
 		add_action('init', array($this, 'registerBlock'));
+		add_action('init', array($this, 'registerMeta'));
 
 		// Frontend-AJAX-Actions
 		add_action('wp_ajax_recipe_manager_pro_set_rating', array($this, 'setRating'));
 		add_action('wp_ajax_nopriv_recipe_manager_pro_set_rating', array($this, 'setRating'));
+	}
+
+	public function registerMeta()
+	{
+		register_meta('post', 'rating_1_votes', array(
+			'show_in_rest' => true,
+			'type' => 'number',
+			'single' => true,
+		));
+		register_meta('post', 'rating_2_votes', array(
+			'show_in_rest' => true,
+			'type' => 'number',
+			'single' => true,
+		));
+		register_meta('post', 'rating_3_votes', array(
+			'show_in_rest' => true,
+			'type' => 'number',
+			'single' => true,
+		));
+		register_meta('post', 'rating_4_votes', array(
+			'show_in_rest' => true,
+			'type' => 'number',
+			'single' => true,
+		));
+		register_meta('post', 'rating_5_votes', array(
+			'show_in_rest' => true,
+			'type' => 'number',
+			'single' => true,
+		));
+		register_meta('post', 'rating_count', array(
+			'show_in_rest' => true,
+			'type' => 'number',
+			'single' => true,
+		));
+		register_meta('post', 'average_rating', array(
+			'show_in_rest' => true,
+			'type' => 'number',
+			'single' => true,
+		));
 	}
 
 	public function getRecipeFromSP()

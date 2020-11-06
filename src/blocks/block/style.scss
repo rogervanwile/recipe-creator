@@ -42,6 +42,8 @@
 
     > * {
       padding: 0 16px;
+      box-sizing: border-box;
+      width: 50%;
     }
 
     img {
@@ -54,6 +56,10 @@
 
     @media screen and (min-width: 768px) {
       flex-direction: row;
+
+      > * {
+        width: 100%;
+      }
 
       img {
         margin-bottom: 0;
@@ -90,6 +96,8 @@
   }
 
   .recipe-manager-pro--block--timing-list {
+    padding: 1rem 0;
+
     ul {
       font-style: normal;
       list-style: none;
@@ -106,8 +114,8 @@
       &::before {
         content: "";
         background-image: url("../../../assets/clock.svg");
-        width: 64px;
-        height: 64px;
+        width: 40px;
+        height: 40px;
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 40px 40px;
@@ -239,7 +247,7 @@
 
     li {
       display: block;
-      padding: 8px;
+      padding: 8px 0;
       margin: 0;
       line-height: 24px;
       display: flex;
@@ -346,6 +354,16 @@
 
     p {
       text-align: center;
+    }
+  }
+
+  .dummy-text {
+    background-color: #4d5156;
+    background-color: #70757a;
+    color: transparent;
+
+    &.light {
+      background-color: #70757a;
     }
   }
 }

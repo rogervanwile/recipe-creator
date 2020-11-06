@@ -9,8 +9,18 @@ SELECT * FROM `wp_isabellepostmeta` WHERE `post_id` = 12555 AND `meta_key` LIKE 
 ```
 
 `$ wp i18n make-pot .`
-
+```
 
 Icons:
 
-https://github.com/tabler/tabler-icons
+- https://github.com/tabler/tabler-icons
+
+Todos:
+
+- Editor-Ansicht anpassen
+- Preview-Texte anpassen
+- In der Editor-Block-Sidebar einstellen welche Timings angezeigt weren können
+- Übersetzung
+- Farben in Plugin-Settings einstellen lassen
+- Buy-Button für Calculator
+````
