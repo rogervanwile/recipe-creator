@@ -12,6 +12,7 @@
 			{{#if description}}
 				<p>{{ description }}</p>
 			{{/if}}
+			{{#if averageRating}}
 			<div class="recipe-manager-pro--block--rating recipe-manager-pro--block--rating--small">
 				<ol>
 					<li class="recipe-manager-pro--block--star{{#if averageRating}} selected{{/if}}" data-rating="1">1</li>
@@ -22,10 +23,14 @@
 				</ol>
 				{{averageRating}}
 			</div>
+			{{/if}}
 		</div>
 		<div>
 			{{#if image4_3}}
-				<img src="{{ image4_3 }}" title="{{{ name }}}" />
+        <div
+          class="recipe-manager-pro--block--main-image"
+          style="background-image: url('{{image4_3}}');" title="{{{ name }}}"
+        ></div>
 			{{/if}}
 		</div>
 	</div>
@@ -110,9 +115,10 @@
 		</ol>
 	{{/if}}
 
-	<hr />
 
 	{{#if notes}}
+	<hr />
+
 	<section>
 		<header class="recipe-manager-pro--block--headline">
 			<h3>{{translations/notes}}</h3>
@@ -121,10 +127,11 @@
 	</section>
 	{{/if}}
 	
-	<div class="recipe-manager-pro--block--user-rating">
+	<section class="recipe-manager-pro--block--user-rating">
 		<hr />
-
-		<h3>{{translations/feedback}}</h3>
+		<header class="recipe-manager-pro--block--headline">
+			<h3>{{translations/feedback}}</h3>
+		</header>	
 		<div class="recipe-manager-pro--block--rating recipe-manager-pro--block--interactive" data-post-id="{{postId}}" data-save-url="{{ajaxUrl}}" data-nonce="{{nonce}}">
 			<ol>
 				<li class="recipe-manager-pro--block--star{{#if userRating}} selected{{/if}}" data-rating="1">1</li>
@@ -134,7 +141,7 @@
 				<li class="recipe-manager-pro--block--star{{#ifMoreOrEqual userRating 5}} selected{{else}}{{/ifMoreOrEqual}}" data-rating="5">5</li>
 			</ol>
 		</div>
-	</div>
+	</section>
 	<script>
 		var RecipeManagerPro = RecipeManagerPro || {};
 		RecipeManagerPro.config = {

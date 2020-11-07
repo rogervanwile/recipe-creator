@@ -30,17 +30,39 @@ export default function Edit(props) {
     const cleanedDefaultData = {};
 
     Object.keys(props.attributes).forEach((key) => {
-      if (typeof props.attributes[key] === "string") {
+      if (
+        typeof props.attributes[key] === "string" &&
+        props.attributes[key].indexOf("::STORE_DEFAULT_VALUE_HACK") !== -1
+      ) {
         cleanedDefaultData[key] = props.attributes[key].replace(
           "::STORE_DEFAULT_VALUE_HACK",
           ""
         );
+      } else if (
+        typeof props.attributes[key] === "string" &&
+        props.attributes[key].indexOf("::STORE_DEFAULT_VALUE_NUMBER_HACK") !==
+          -1
+      ) {
+        cleanedDefaultData[key] = parseInt(
+          props.attributes[key].replace(
+            "::STORE_DEFAULT_VALUE_NUMBER_HACK",
+            ""
+          ),
+          10
+        );
+      } else {
+        cleanedDefaultData[key] = props.attributes[key];
       }
     });
 
-    props.setAttributes(cleanedDefaultData);
+    console.log("cleanedDefaultData", cleanedDefaultData);
+
     recipeManagerProMigrationDone = true;
+
+    props.setAttributes(cleanedDefaultData);
   }
+
+  console.log("props", props);
 
   const ALLOWED_MEDIA_TYPES = ["image"];
 
@@ -244,11 +266,13 @@ export default function Edit(props) {
                 allowedTypes={ALLOWED_MEDIA_TYPES}
                 value={props.attributes.image4_3}
                 render={({ open }) => (
-                  <img
-                    src={props.attributes.image4_3}
-                    className="img-fluid mb-4 d-block mx-auto"
+                  <div
+                    className="recipe-manager-pro--block--main-image"
+                    style={{
+                      backgroundImage: "url(" + props.attributes.image4_3 + ")",
+                    }}
                     onClick={open}
-                  />
+                  ></div>
                 )}
               />
             </MediaUploadCheck>
@@ -266,7 +290,7 @@ export default function Edit(props) {
                       type="number"
                       min="0"
                       value={props.attributes.prepTime}
-                      placeholder="15"
+                      placeholder="0"
                       onChange={(prepTime) => {
                         updateTime("prepTime", prepTime);
                       }}
@@ -286,7 +310,7 @@ export default function Edit(props) {
                       type="number"
                       min="0"
                       value={props.attributes.restTime}
-                      placeholder="15"
+                      placeholder="0"
                       onChange={(restTime) => {
                         updateTime("restTime", restTime);
                       }}
@@ -306,7 +330,7 @@ export default function Edit(props) {
                       type="number"
                       min="0"
                       value={props.attributes.cookTime}
-                      placeholder="15"
+                      placeholder="0"
                       onChange={(cookTime) => {
                         updateTime("cookTime", cookTime);
                       }}
@@ -338,7 +362,7 @@ export default function Edit(props) {
                 type="number"
                 min="0"
                 value={props.attributes.recipeYield}
-                placeholder="12"
+                placeholder="0"
                 onChange={(recipeYield) => {
                   props.setAttributes({ recipeYield });
                 }}
@@ -354,7 +378,7 @@ export default function Edit(props) {
                 label={__("Servings", "recipe-manager-pro")}
                 min="0"
                 value={props.attributes.servings}
-                placeholder="4"
+                placeholder="0"
                 onChange={(servings) => {
                   props.setAttributes({ servings });
                 }}

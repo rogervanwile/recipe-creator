@@ -202,14 +202,20 @@ function Edit(props) {
   if (!recipeManagerProMigrationDone) {
     var cleanedDefaultData = {};
     Object.keys(props.attributes).forEach(function (key) {
-      if (typeof props.attributes[key] === "string") {
+      if (typeof props.attributes[key] === "string" && props.attributes[key].indexOf("::STORE_DEFAULT_VALUE_HACK") !== -1) {
         cleanedDefaultData[key] = props.attributes[key].replace("::STORE_DEFAULT_VALUE_HACK", "");
+      } else if (typeof props.attributes[key] === "string" && props.attributes[key].indexOf("::STORE_DEFAULT_VALUE_NUMBER_HACK") !== -1) {
+        cleanedDefaultData[key] = parseInt(props.attributes[key].replace("::STORE_DEFAULT_VALUE_NUMBER_HACK", ""), 10);
+      } else {
+        cleanedDefaultData[key] = props.attributes[key];
       }
     });
-    props.setAttributes(cleanedDefaultData);
+    console.log("cleanedDefaultData", cleanedDefaultData);
     recipeManagerProMigrationDone = true;
+    props.setAttributes(cleanedDefaultData);
   }
 
+  console.log("props", props);
   var ALLOWED_MEDIA_TYPES = ["image"];
   var categoryOptions = [Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Breakfast", "recipe-manager-pro"), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Bread", "recipe-manager-pro"), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Appetizers & Snacks", "recipe-manager-pro"), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Salads", "recipe-manager-pro"), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Soups & Stews", "recipe-manager-pro"), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Main Dishes", "recipe-manager-pro"), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Side Dishes", "recipe-manager-pro"), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Desserts", "recipe-manager-pro"), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Drinks", "recipe-manager-pro"), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Sweets", "recipe-manager-pro")].map(function (value) {
     return {
@@ -387,9 +393,11 @@ function Edit(props) {
     value: props.attributes.image4_3,
     render: function render(_ref) {
       var open = _ref.open;
-      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
-        src: props.attributes.image4_3,
-        className: "img-fluid mb-4 d-block mx-auto",
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+        className: "recipe-manager-pro--block--main-image",
+        style: {
+          backgroundImage: "url(" + props.attributes.image4_3 + ")"
+        },
         onClick: open
       });
     }
@@ -400,7 +408,7 @@ function Edit(props) {
       type: "number",
       min: "0",
       value: props.attributes.prepTime,
-      placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("15", "recipe-manager-pro"),
+      placeholder: "0",
       onChange: function onChange(prepTime) {
         updateTime("prepTime", prepTime);
       },
@@ -411,7 +419,7 @@ function Edit(props) {
       type: "number",
       min: "0",
       value: props.attributes.restTime,
-      placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("15", "recipe-manager-pro"),
+      placeholder: "0",
       onChange: function onChange(restTime) {
         updateTime("restTime", restTime);
       },
@@ -422,7 +430,7 @@ function Edit(props) {
       type: "number",
       min: "0",
       value: props.attributes.cookTime,
-      placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("15", "recipe-manager-pro"),
+      placeholder: "0",
       onChange: function onChange(cookTime) {
         updateTime("cookTime", cookTime);
       },
@@ -438,7 +446,7 @@ function Edit(props) {
       type: "number",
       min: "0",
       value: props.attributes.recipeYield,
-      placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("4", "recipe-manager-pro"),
+      placeholder: "0",
       onChange: function onChange(recipeYield) {
         props.setAttributes({
           recipeYield: recipeYield
@@ -452,7 +460,7 @@ function Edit(props) {
       label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Servings", "recipe-manager-pro"),
       min: "0",
       value: props.attributes.servings,
-      placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("4", "recipe-manager-pro"),
+      placeholder: "0",
       onChange: function onChange(servings) {
         props.setAttributes({
           servings: servings

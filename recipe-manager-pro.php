@@ -3,7 +3,7 @@
 /**
  * Plugin Name:     Recipe Manager Pro
  * Description:     Manage recipes and optimize them automatically for Google Featured Snippets.
- * Version:         0.0.1
+ * Version:         0.0.2
  * Author:          Oliver Wagner
  * Text Domain:     recipe-manager-pro
  */
@@ -161,12 +161,20 @@ class RecipeManagerPro
 		flush_rewrite_rules();
 	}
 
-	private function getPropertyFromRecipe($recipe, $property)
+	private function getPropertyFromRecipe($recipe, $property, $type = 'string')
 	{
 		if (isset($recipe) && isset($recipe[$property])) {
-			return $recipe[$property];
+			if ($type === 'string') {
+				return $recipe[$property] .  '::STORE_DEFAULT_VALUE_HACK';
+			} else {
+				return intval($recipe[$property]) . '::STORE_DEFAULT_VALUE_NUMBER_HACK';
+			}
 		} else {
-			return null;
+			if ($type === 'string') {
+				return '';
+			} else {
+				return '';
+			}
 		}
 	}
 
@@ -218,6 +226,7 @@ class RecipeManagerPro
 	public function registerBlock()
 	{
 		$recipe = $this->getRecipeFromSP();
+		// $recipe = null;
 
 		// The value of a property is not stored in the database if it is the default value
 		// So I add a suffix on the default which is removed in "edit.js" and so it is possible
@@ -252,111 +261,95 @@ class RecipeManagerPro
 				),
 				'ingredients' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'ingredients') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'ingredients')
 				),
 				'preparationSteps' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'preparationSteps') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'preparationSteps')
 				),
 				'name' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'name') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'name')
 				),
 				'description' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'description') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'description')
 				),
 				'difficulty' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'difficulty') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'difficulty')
 				),
 				'notes' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'notes') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'notes')
 				),
 				'keywords' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'keywords') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'keywords')
 				),
 				'prepTime' => array(
 					'type' => 'number',
-					'default' => $this->getPropertyFromRecipe($recipe, 'prepTime') . '::STORE_DEFAULT_VALUE_HACK'
-				),
-				'prepTimeUnit' => array(
-					'type' => 'string',
-					'default' => ($this->getPropertyFromRecipe($recipe, 'prepTimeUnit') ?: 'Min') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'prepTime', 'number')
 				),
 				'restTime' => array(
 					'type' => 'number',
-					'default' => $this->getPropertyFromRecipe($recipe, 'restTime') . '::STORE_DEFAULT_VALUE_HACK'
-				),
-				'restTimeUnit' => array(
-					'type' => 'string',
-					'default' => ($this->getPropertyFromRecipe($recipe, 'restTimeUnit') ?: 'Min') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'restTime', 'number')
 				),
 				'cookTime' => array(
 					'type' => 'number',
-					'default' => $this->getPropertyFromRecipe($recipe, 'cookTime') . '::STORE_DEFAULT_VALUE_HACK'
-				),
-				'cookTimeUnit' => array(
-					'type' => 'string',
-					'default' => ($this->getPropertyFromRecipe($recipe, 'cookTimeUnit') ?: 'Min') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'cookTime', 'number')
 				),
 				'totalTime' => array(
 					'type' => 'number',
-					'default' => $this->getPropertyFromRecipe($recipe, 'totalTime') . '::STORE_DEFAULT_VALUE_HACK'
-				),
-				'totalTimeUnit' => array(
-					'type' => 'string',
-					'default' => ($this->getPropertyFromRecipe($recipe, 'totalTimeUnit') ?: 'Min') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'totalTime', 'number')
 				),
 				'recipeYield' => array(
-					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'recipeYield') . '::STORE_DEFAULT_VALUE_HACK'
+					'type' => 'number',
+					'default' => 0
 				),
 				'servings' => array(
-					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'servings') . '::STORE_DEFAULT_VALUE_HACK'
+					'type' => 'number',
+					'default' => $this->getPropertyFromRecipe($recipe, 'recipeYield', "number")
 				),
 				'calories' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'calories') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'calories')
 				),
 				'recipeCategory' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'recipeCategory') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'recipeCategory')
 				),
 				'recipeCuisine' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'recipeCuisine') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'recipeCuisine')
 				),
 				'image1_1' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'image1_1') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'image1_1')
 				),
 				'image4_3' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'image4_3') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'image4_3')
 				),
 				'image16_9' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'image16_9') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'image16_9')
 				),
 				'videoUrl' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'videoUrl') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'videoUrl')
 				),
 				'content' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'content') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'content')
 				),
 				'className' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'className') . '::STORE_DEFAULT_VALUE_HACK'
+					'default' => $this->getPropertyFromRecipe($recipe, 'className')
 				),
 				'align' => array(
 					'type' => 'string',
-					'default' => 'wide'
+					'default' => 'center'
 				),
 			),
 			'render_callback' => array($this, 'renderBlock'),
@@ -427,7 +420,7 @@ class RecipeManagerPro
 		}, $ingredientsArray);
 
 		$ingredientsArray = array_map(function ($item) {
-			preg_match('/^ *([0-9,.\/]*)? *(gramm|milliliter|g|ml)? *(.*)$/i', $item, $matches);
+			preg_match('/^ *([0-9,.\/]*)? *(gramm|milliliter|g|ml|tl|el)? *(.*)$/i', $item, $matches);
 			return [
 				"amount" => $matches[1],
 				"unit" => $matches[2],
@@ -440,6 +433,14 @@ class RecipeManagerPro
 
 	public function renderBlock($attributes, $context)
 	{
+
+		// echo '<pre>';
+		// var_dump($attributes);
+		// echo '<hr>';
+		// var_dump($context);
+		// echo '</pre>';
+		// die();
+
 		// Return the frontend output for our block
 		$dir = dirname(__FILE__);
 		$template = file_get_contents($dir . '/block.hbs');

@@ -2606,6 +2606,8 @@ html {
     font-weight: bold; }
   .wp-block-recipe-manager-pro-block .components-base-control__label + .components-text-control__input {
     border-color: inherit; }
+  .wp-block-recipe-manager-pro-block .recipe-manager-pro--block--main-image {
+    background-color: #EFEFEF; }
   .wp-block-recipe-manager-pro-block .image-preview {
     display: inline-block;
     font-size: 0;
