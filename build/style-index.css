@@ -25,6 +25,8 @@
     text-align: left;
     margin: 0 -16px 1.5rem -16px;
     flex-direction: column-reverse; }
+    .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--intro p:last-child {
+      margin-bottom: 0; }
     .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--intro > * {
       padding: 0 16px;
       box-sizing: border-box;
@@ -76,8 +78,6 @@ sans-serif;
     border-color: var(--grey);
     border-style: solid;
     border-width: 0px 0px 1px 0; }
-  .recipe-manager-pro--block.recipe-manager-pro--block p:last-child {
-    margin-bottom: 0; }
   .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--timing-list {
     padding: 1rem 0; }
     .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--timing-list ul {
@@ -192,10 +192,10 @@ sans-serif;
     counter-reset: recipe-manager-steps; }
     .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--preparation-steps li {
       display: block;
-      padding: 8px 0;
+      padding: 8px 0 8px 32px;
       margin: 0;
       line-height: 24px;
-      display: flex; }
+      position: relative; }
       .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--preparation-steps li::before {
         counter-increment: recipe-manager-steps;
         content: counter(recipe-manager-steps);
@@ -211,7 +211,10 @@ sans-serif;
         background-color: var(--primary-light);
         border-radius: 50%;
         color: #e27a7a;
-        color: var(--primary); }
+        color: var(--primary);
+        position: absolute;
+        top: 8px;
+        left: 0; }
   .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--difficulty {
     border-radius: 8px;
     background-color: #f7e9e9;

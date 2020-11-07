@@ -240,21 +240,21 @@ function Edit(props) {
       switch (settingKey) {
         case "prepTime":
           prepTime = intValue;
-          update["prepTime"] = prepTime;
+          update["prepTime"] = "" + prepTime;
           break;
 
         case "restTime":
           restTime = intValue;
-          update["restTime"] = restTime;
+          update["restTime"] = "" + restTime;
           break;
 
         case "cookTime":
           cookTime = intValue;
-          update["cookTime"] = cookTime;
+          update["cookTime"] = "" + cookTime;
           break;
       }
 
-      update["totalTime"] = prepTime + restTime + cookTime;
+      update["totalTime"] = "" + (prepTime + restTime + cookTime);
       props.setAttributes(update);
     }
   }

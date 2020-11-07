@@ -163,6 +163,7 @@ class RecipeManagerPro
 
 	private function getPropertyFromRecipe($recipe, $property, $type = 'string')
 	{
+
 		if (isset($recipe) && isset($recipe[$property])) {
 			if ($type === 'string') {
 				return $recipe[$property] .  '::STORE_DEFAULT_VALUE_HACK';
@@ -173,7 +174,7 @@ class RecipeManagerPro
 			if ($type === 'string') {
 				return '';
 			} else {
-				return '';
+				return 0;
 			}
 		}
 	}
@@ -288,28 +289,28 @@ class RecipeManagerPro
 					'default' => $this->getPropertyFromRecipe($recipe, 'keywords')
 				),
 				'prepTime' => array(
-					'type' => 'number',
-					'default' => $this->getPropertyFromRecipe($recipe, 'prepTime', 'number')
+					'type' => 'string',
+					'default' => $this->getPropertyFromRecipe($recipe, 'prepTime')
 				),
 				'restTime' => array(
-					'type' => 'number',
-					'default' => $this->getPropertyFromRecipe($recipe, 'restTime', 'number')
+					'type' => 'string',
+					'default' => $this->getPropertyFromRecipe($recipe, 'restTime')
 				),
 				'cookTime' => array(
-					'type' => 'number',
-					'default' => $this->getPropertyFromRecipe($recipe, 'cookTime', 'number')
+					'type' => 'string',
+					'default' => $this->getPropertyFromRecipe($recipe, 'cookTime')
 				),
 				'totalTime' => array(
-					'type' => 'number',
-					'default' => $this->getPropertyFromRecipe($recipe, 'totalTime', 'number')
+					'type' => 'string',
+					'default' => $this->getPropertyFromRecipe($recipe, 'totalTime')
 				),
 				'recipeYield' => array(
-					'type' => 'number',
-					'default' => 0
+					'type' => 'string',
+					'default' => '0'
 				),
 				'servings' => array(
-					'type' => 'number',
-					'default' => $this->getPropertyFromRecipe($recipe, 'recipeYield', "number")
+					'type' => 'string',
+					'default' => $this->getPropertyFromRecipe($recipe, 'recipeYield')
 				),
 				'calories' => array(
 					'type' => 'string',
@@ -416,16 +417,24 @@ class RecipeManagerPro
 	{
 		$ingredientsArray = explode('</li><li>', $ingredientsHtml);
 		$ingredientsArray = array_map(function ($item) {
-			return strip_tags($item);
+			$result = str_replace(['<li>', '</li>'], '', $item);
+			return $result;
+			// return strip_tags($item);
 		}, $ingredientsArray);
 
 		$ingredientsArray = array_map(function ($item) {
-			preg_match('/^ *([0-9,.\/]*)? *(gramm|milliliter|g|ml|tl|el)? *(.*)$/i', $item, $matches);
-			return [
-				"amount" => $matches[1],
-				"unit" => $matches[2],
-				"ingredient" => $matches[3],
-			];
+			preg_match('/^ *([0-9,.\/]*)? *(gramm|milliliter|kg|g|ml|tl|el|l)? (.*)$/i', $item, $matches);
+			if (count($matches) >= 3) {
+				return [
+					"amount" => $matches[1],
+					"unit" => $matches[2],
+					"ingredient" => $matches[3],
+				];
+			} else {
+				return [
+					"ingredient" => $item,
+				];
+			}
 		}, $ingredientsArray);
 
 		return $ingredientsArray;
@@ -433,14 +442,6 @@ class RecipeManagerPro
 
 	public function renderBlock($attributes, $context)
 	{
-
-		// echo '<pre>';
-		// var_dump($attributes);
-		// echo '<hr>';
-		// var_dump($context);
-		// echo '</pre>';
-		// die();
-
 		// Return the frontend output for our block
 		$dir = dirname(__FILE__);
 		$template = file_get_contents($dir . '/block.hbs');
@@ -522,12 +523,12 @@ class RecipeManagerPro
 				if (preg_match("/^(g|ml)$/i", $item['unit'])) {
 					$item['baseUnit'] = $item['unit'];
 				} else if (preg_match("/^(kilo|kilogramm|kg)$/i", $item['unit'])) {
-					$item['baseUnit'] = $item['g'];
+					$item['baseUnit'] = 'g';
 					if (isset($item['baseAmount'])) {
-						$item['baseAmount'] = $item['baseAmount'] / 1000;
+						$item['baseAmount'] = $item['baseAmount'];
 					}
 				} else if (preg_match("/^(liter)$/i", $item['unit'])) {
-					$item['baseUnit'] = $item['ml'];
+					$item['baseUnit'] = 'ml';
 					if (isset($item['baseAmount'])) {
 						$item['baseAmount'] = $item['baseAmount'] / 1000;
 					}

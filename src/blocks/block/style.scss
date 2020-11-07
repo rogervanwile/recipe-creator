@@ -40,6 +40,10 @@
     margin: 0 -16px 1.5rem -16px;
     flex-direction: column-reverse;
 
+    p:last-child {
+      margin-bottom: 0;
+    }
+
     > * {
       padding: 0 16px;
       box-sizing: border-box;
@@ -97,10 +101,6 @@
     border-color: var(--grey);
     border-style: solid;
     border-width: 0px 0px 1px 0;
-  }
-
-  p:last-child {
-    margin-bottom: 0;
   }
 
   .recipe-manager-pro--block--timing-list {
@@ -255,10 +255,10 @@
 
     li {
       display: block;
-      padding: 8px 0;
+      padding: 8px 0 8px 32px;
       margin: 0;
       line-height: 24px;
-      display: flex;
+      position: relative;
 
       &::before {
         counter-increment: recipe-manager-steps;
@@ -274,6 +274,9 @@
         background-color: var(--primary-light);
         border-radius: 50%;
         color: var(--primary);
+        position: absolute;
+        top: 8px;
+        left: 0;
       }
     }
   }
