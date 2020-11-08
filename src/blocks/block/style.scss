@@ -104,37 +104,41 @@
   }
 
   .recipe-manager-pro--block--timing-list {
-    padding: 1rem 0;
+    padding: 1rem 0 0.25rem 0;
 
     ul {
       font-style: normal;
       list-style: none;
-      display: flex;
-      flex-wrap: wrap;
       margin-left: 0;
       opacity: 0.8;
       font-size: 16px;
       margin: 0;
       padding: 0;
-      justify-content: left;
-      align-items: center;
+      text-align: left;
+      padding-left: 56px;
+      position: relative;
 
       &::before {
         content: "";
         background-image: url("../../../assets/clock.svg");
-        width: 40px;
-        height: 40px;
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 40px 40px;
         margin-right: 16px;
+        display: block;
+        position: absolute;
+        top: -3px;
+        left: 0;
+        width: 40px;
+        height: 40px;
       }
 
       li {
-        display: block;
+        display: inline-block;
         margin-left: 0;
         white-space: nowrap;
         margin: 0 32px 0 0;
+        margin-bottom: 0.75rem;
       }
 
       header {

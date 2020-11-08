@@ -3,15 +3,11 @@
 /**
  * Plugin Name:     Recipe Manager Pro
  * Description:     Manage recipes and optimize them automatically for Google Featured Snippets.
- * Version:         0.0.2
+ * Version:         0.0.3
  * Author:          Oliver Wagner
  * Text Domain:     recipe-manager-pro
+ * Domain Path:     /languages
  */
-
-// API-KEY
-// https://fdc.nal.usda.gov/
-// 2iwJE712Dw0XdRX1W37lKEVpiitkbZObX9qBtCNW
-// Example: https://api.nal.usda.gov/fdc/v1/foods/search?api_key=2iwJE712Dw0XdRX1W37lKEVpiitkbZObX9qBtCNW&query=Cheddar%20Cheese
 
 if (!defined('ABSPATH')) {
 	die;
@@ -19,23 +15,25 @@ if (!defined('ABSPATH')) {
 
 require "vendor/autoload.php";
 
-
 use LightnCandy\LightnCandy;
 
 class RecipeManagerPro
 {
 	function __construct()
 	{
-		// add_action('admin_enqueue_scripts', array($this, 'enqueue'));
-		// add_action('wp_enqueue_scripts', array($this, 'enqueue'));
-
 		add_action('init', array($this, 'addRessources'));
 		add_action('init', array($this, 'registerBlock'));
 		add_action('init', array($this, 'registerMeta'));
+		add_action('init', array($this, 'loadTranslations'));
 
 		// Frontend-AJAX-Actions
 		add_action('wp_ajax_recipe_manager_pro_set_rating', array($this, 'setRating'));
 		add_action('wp_ajax_nopriv_recipe_manager_pro_set_rating', array($this, 'setRating'));
+	}
+
+	public function loadTranslations()
+	{
+		load_plugin_textdomain('recipe-manager-pro', FALSE, basename(dirname(__FILE__)) . '/languages/');
 	}
 
 	public function registerMeta()
@@ -197,7 +195,7 @@ class RecipeManagerPro
 			$script_asset['dependencies'],
 			$script_asset['version']
 		);
-		wp_set_script_translations('recipe-manager-pro-block-editor', 'block');
+		wp_set_script_translations('recipe-manager-pro-block-editor', 'recipe-manager-pro', plugin_dir_path(__FILE__) . 'languages');
 
 		$editor_css = 'build/index.css';
 		wp_register_style(
@@ -252,14 +250,6 @@ class RecipeManagerPro
 					'type' => 'boolean',
 					'default' => true
 				),
-				"showYield" => array(
-					'type' => 'boolean',
-					'default' => true
-				),
-				"showServings" => array(
-					'type' => 'boolean',
-					'default' => true
-				),
 				'ingredients' => array(
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'ingredients')
@@ -277,8 +267,7 @@ class RecipeManagerPro
 					'default' => $this->getPropertyFromRecipe($recipe, 'description')
 				),
 				'difficulty' => array(
-					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'difficulty')
+					'type' => 'string'
 				),
 				'notes' => array(
 					'type' => 'string',
@@ -308,6 +297,11 @@ class RecipeManagerPro
 					'type' => 'string',
 					'default' => '0'
 				),
+				'recipeYieldUnit' => array(
+					'type' => 'string',
+					'default' => ''
+				),
+				// DEPRECATED, löschen wenn Isas Blog durch ist 
 				'servings' => array(
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'recipeYield')
@@ -426,7 +420,7 @@ class RecipeManagerPro
 			preg_match('/^ *([0-9,.\/]*)? *(gramm|milliliter|kg|g|ml|tl|el|l)? (.*)$/i', $item, $matches);
 			if (count($matches) >= 3) {
 				return [
-					"amount" => $matches[1],
+					"amount" => str_replace(',', '.', $matches[1]),
 					"unit" => $matches[2],
 					"ingredient" => $matches[3],
 				];
@@ -459,7 +453,7 @@ class RecipeManagerPro
 							$hours = floor($minutes / 60);
 							$rest = $minutes % 60;
 
-							return $hours . ' ' . __('hours', 'recipe-manager-pro') . ($rest > 0 ? ', ' . $rest . ' ' . __('minutes', 'recipe-manager-pro') : '');
+							return $hours . ' ' . __('hours', 'recipe-manager-pro') . ($rest > 0 ? ' ' . $rest . ' ' . __('minutes', 'recipe-manager-pro') : '');
 						}
 					}
 
@@ -483,8 +477,6 @@ class RecipeManagerPro
 
 		// Get the render function from the php file
 		$renderer = include('render.php');
-
-
 
 		$attributes['translations'] = [
 			"prepTime" => __('Prep time', 'recipe-manager-pro'),
@@ -511,15 +503,27 @@ class RecipeManagerPro
 		$attributes['servings'] = isset($attributes['servings']) ? intval($attributes['servings']) : 0;
 		$attributes['recipeYield'] = isset($attributes['recipeYield']) ? intval($attributes['recipeYield']) : 0;
 
+		$attributes['prepTime'] = floatval($attributes['prepTime']);
+		$attributes['restTime'] = floatval($attributes['restTime']);
+		$attributes['cookTime'] = floatval($attributes['cookTime']);
+		$attributes['totalTime'] = floatval($attributes['totalTime']);
+
+		if (isset($attributes['difficulty']) && !empty($attributes['difficulty'])) {
+			$attributes['difficulty'] = __($attributes['difficulty'], 'recipe-manager-pro');
+		}
+
+		if (isset($attributes['recipeYieldUnit']) && !empty($attributes['recipeYieldUnit'])) {
+			$attributes['recipeYieldUnit'] = __($attributes['recipeYieldUnit'], 'recipe-manager-pro');
+		}
 
 		$attributes['ingredients'] = array_map(function ($item) use ($attributes) {
 			$baseItemsAmount = $attributes['servings'] ?: $attributes['recipeYield'];
 
 			if (isset($item['amount']) && $baseItemsAmount !== 0) {
-				$item['baseAmount'] = intval($item['amount']) / $baseItemsAmount;
+				$item['baseAmount'] = floatval($item['amount']) / $baseItemsAmount;
 			}
 
-			if ($item['unit']) {
+			if (isset($item['unit'])) {
 				if (preg_match("/^(g|ml)$/i", $item['unit'])) {
 					$item['baseUnit'] = $item['unit'];
 				} else if (preg_match("/^(kilo|kilogramm|kg)$/i", $item['unit'])) {
@@ -562,7 +566,7 @@ class RecipeManagerPro
 			"cookTime" => isset($attributes['cookTime']) ? $this->toIso8601Duration(intval($attributes['cookTime']) * 60) : '',
 			"totalTime" => isset($attributes['totalTime']) ? $this->toIso8601Duration(intval($attributes['totalTime']) * 60) : '',
 			"keywords" => isset($attributes['keywords']) ? $attributes['keywords'] : '',
-			"recipeYield" => isset($attributes['recipeYield']) ? $attributes['recipeYield'] : '',
+			"recipeYield" => isset($attributes['recipeYield']) ? $attributes['recipeYield'] . (isset($attributes['recipeYieldUnit']) ? ' ' . $attributes['recipeYieldUnit'] : '') : '',
 			"recipeCategory" => isset($attributes['recipeCategory']) ? $attributes['recipeCategory'] : '',
 			"nutrition" => isset($attributes['calories']) ? [
 				"@type" => "NutritionInformation",
@@ -571,7 +575,7 @@ class RecipeManagerPro
 			"recipeIngredient" =>
 			isset($attributes['ingredients']) ?
 				array_map(function ($item) {
-					return trim($item['amount'] . ' ' . $item['unit'] . ' ' . $item['ingredient']);
+					return trim((isset($item['amount']) ? $item['amount'] : '') . ' ' . (isset($item['unit']) ? $item['unit'] : '') . ' ' . (isset($item['ingredient']) ? $item['ingredient'] : ''));
 				}, $attributes['ingredients']) : '',
 			"recipeInstructions" =>
 			isset($attributes['preparationSteps']) ?

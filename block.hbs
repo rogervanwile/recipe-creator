@@ -76,20 +76,14 @@
 	{{#if ingredients}}
 		<div class="recipe-manager-pro--block--headline">
 			<h3>{{translations/ingredients}}</h3>
-			{{#if servings}}
+			{{#if recipeYield}}
 				<div class="recipe-manager-pro--block--servings-editor">
 				  <button type="button" class="btn btn-secondary recipe-shrink-servings">-</button>
-				  <span disabled="disabled"><span class="recipe-servings">{{servings}}</span> {{translations/servings}}</span>
+				  <span disabled="disabled"><span class="recipe-servings">{{recipeYield}}</span>
+						{{recipeYieldUnit}}
+					</span>
 				  <button type="button" class="btn btn-secondary recipe-increase-servings">+</button>
 				</div>
-			{{else}}
-				{{#if recipeYield}}
-					<div class="recipe-manager-pro--block--servings-editor">
-					  <button type="button" class="btn btn-secondary recipe-shrink-servings">-</button>
-					  <span disabled="disabled"><span class="recipe-servings">{{recipeYield}}</span> {{translations/yield}}</span>
-					  <button type="button" class="btn btn-secondary recipe-increase-servings">+</button>
-					</div>
-				{{/if}}
 			{{/if}}
 		</div>
 		<table class="recipe-manager-pro--block--ingredients">

@@ -1,10 +1,20 @@
 # Create Translations
 
-`$ wp i18n make-pot .`
+`$ wp i18n make-pot ./ languages/recipe-manager-pro.pot`
 
-Then open the file with Poedit
+Open the file and create a translation.
+When done, export mo file
+Than do the following stuff
 
-Move the generated files to `wp-content/translations/plugins`
+## JavaScript
+
+The translations for the JS files have to be a JSON file.
+
+To convert po to JSON, use this command inside the `languages` folder
+
+`wp i18n make-json languages/recipe-manager-pro-de_DE.po --no-purge`
+
+More Infos: https://developer.wordpress.org/block-editor/developers/internationalization/
 
 # Icons
 
@@ -14,7 +24,6 @@ Move the generated files to `wp-content/translations/plugins`
 
 - Übersetzung
 - Farben in Plugin-Settings einstellen lassen
-- Buy-Button für Calculator
 
 # Develop
 

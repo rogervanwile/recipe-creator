@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Recipe Manager Pro plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Recipe Manager Pro 0.0.2\n"
+"Project-Id-Version: Recipe Manager Pro 0.0.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recipe-manager-pro\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-11-06T19:43:35+00:00\n"
+"POT-Creation-Date: 2020-11-08T19:33:49+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: recipe-manager-pro\n"
@@ -19,7 +19,7 @@ msgid "Recipe Manager Pro"
 msgstr ""
 
 #. Description of the plugin
-#: build/index.js:753
+#: build/index.js:744
 #: src/blocks/block/index.js:14
 msgid "Manage recipes and optimize them automatically for Google Featured Snippets."
 msgstr ""
@@ -28,335 +28,303 @@ msgstr ""
 msgid "Oliver Wagner"
 msgstr ""
 
+#: recipe-manager-pro.php:451
 #: recipe-manager-pro.php:456
-#: recipe-manager-pro.php:461
 #: src/blocks/block/save.js:20
 #: src/blocks/block/save.js:32
 msgid "minutes"
 msgstr ""
 
-#: recipe-manager-pro.php:461
+#: recipe-manager-pro.php:456
 #: src/blocks/block/save.js:28
 msgid "hours"
 msgstr ""
 
-#: recipe-manager-pro.php:489
-#: build/index.js:399
-#: src/blocks/block/edit.js:263
+#: recipe-manager-pro.php:482
+#: build/index.js:398
+#: src/blocks/block/edit.js:280
 #: src/blocks/block/save.js:44
 msgid "Prep time"
 msgstr ""
 
-#: recipe-manager-pro.php:490
-#: build/index.js:410
-#: src/blocks/block/edit.js:283
+#: recipe-manager-pro.php:483
+#: build/index.js:409
+#: src/blocks/block/edit.js:300
 msgid "Rest time"
 msgstr ""
 
-#: recipe-manager-pro.php:491
-#: build/index.js:421
-#: src/blocks/block/edit.js:303
+#: recipe-manager-pro.php:484
+#: build/index.js:420
+#: src/blocks/block/edit.js:320
 #: src/blocks/block/save.js:50
 msgid "Cook time"
 msgstr ""
 
-#: recipe-manager-pro.php:492
-#: build/index.js:431
-#: src/blocks/block/edit.js:321
+#: recipe-manager-pro.php:485
+#: build/index.js:430
+#: src/blocks/block/edit.js:338
 #: src/blocks/block/save.js:56
 msgid "Total time"
 msgstr ""
 
-#: recipe-manager-pro.php:493
+#: recipe-manager-pro.php:486
 msgid "yields"
 msgstr ""
 
-#: recipe-manager-pro.php:494
-#: build/index.js:433
-#: src/blocks/block/edit.js:331
+#: recipe-manager-pro.php:487
+#: build/index.js:432
+#: src/blocks/block/edit.js:348
 #: src/blocks/block/save.js:71
 msgid "Ingredients"
 msgstr ""
 
-#: recipe-manager-pro.php:495
-#: build/index.js:476
-#: src/blocks/block/edit.js:377
+#: recipe-manager-pro.php:488
+#: build/index.js:467
+#: src/blocks/block/edit.js:382
 #: src/blocks/block/save.js:80
 msgid "Steps of preparation"
 msgstr ""
 
-#: recipe-manager-pro.php:496
+#: recipe-manager-pro.php:489
 msgid "Your rating"
 msgstr ""
 
-#: recipe-manager-pro.php:497
+#: recipe-manager-pro.php:490
 msgid "Average rating"
 msgstr ""
 
-#: recipe-manager-pro.php:498
-#: build/index.js:489
-#: src/blocks/block/edit.js:397
+#: recipe-manager-pro.php:491
+#: build/index.js:480
+#: src/blocks/block/edit.js:402
 msgid "Notes"
 msgstr ""
 
-#: recipe-manager-pro.php:499
+#: recipe-manager-pro.php:492
 msgid "How do you like the recipe?"
 msgstr ""
 
-#: recipe-manager-pro.php:500
-#: build/index.js:461
-#: src/blocks/block/edit.js:361
+#: recipe-manager-pro.php:493
+#: build/index.js:251
+#: src/blocks/block/edit.js:108
 msgid "servings"
 msgstr ""
 
-#: build/index.js:214
-#: src/blocks/block/edit.js:48
+#: build/index.js:238
+#: src/blocks/block/edit.js:85
 msgid "Breakfast"
 msgstr ""
 
-#: build/index.js:214
-#: src/blocks/block/edit.js:49
+#: build/index.js:238
+#: src/blocks/block/edit.js:86
 msgid "Bread"
 msgstr ""
 
-#: build/index.js:214
-#: src/blocks/block/edit.js:50
+#: build/index.js:238
+#: src/blocks/block/edit.js:87
 msgid "Appetizers & Snacks"
 msgstr ""
 
-#: build/index.js:214
-#: src/blocks/block/edit.js:51
+#: build/index.js:238
+#: src/blocks/block/edit.js:88
 msgid "Salads"
 msgstr ""
 
-#: build/index.js:214
-#: src/blocks/block/edit.js:52
+#: build/index.js:238
+#: src/blocks/block/edit.js:89
 msgid "Soups & Stews"
 msgstr ""
 
-#: build/index.js:214
-#: src/blocks/block/edit.js:53
+#: build/index.js:238
+#: src/blocks/block/edit.js:90
 msgid "Main Dishes"
 msgstr ""
 
-#: build/index.js:214
-#: src/blocks/block/edit.js:54
+#: build/index.js:238
+#: src/blocks/block/edit.js:91
 msgid "Side Dishes"
 msgstr ""
 
-#: build/index.js:214
-#: src/blocks/block/edit.js:55
+#: build/index.js:238
+#: src/blocks/block/edit.js:92
 msgid "Desserts"
 msgstr ""
 
-#: build/index.js:214
-#: src/blocks/block/edit.js:56
+#: build/index.js:238
+#: src/blocks/block/edit.js:93
 msgid "Drinks"
 msgstr ""
 
-#: build/index.js:214
-#: src/blocks/block/edit.js:57
+#: build/index.js:238
+#: src/blocks/block/edit.js:94
 msgid "Sweets"
 msgstr ""
 
-#: build/index.js:222
-#: src/blocks/block/edit.js:64
+#: build/index.js:246
+#: src/blocks/block/edit.js:101
 msgid "Select a category"
 msgstr ""
 
-#: build/index.js:279
-#: src/blocks/block/edit.js:125
-msgid "No reviews"
-msgstr ""
-
-#: build/index.js:284
-#: src/blocks/block/edit.js:134
-msgid "Settings"
-msgstr ""
-
-#: build/index.js:285
-#: src/blocks/block/edit.js:136
-msgid "Timings"
-msgstr ""
-
-#: build/index.js:287
-#: build/index.js:295
-#: build/index.js:303
-#: src/blocks/block/edit.js:141
-#: src/blocks/block/edit.js:150
-#: src/blocks/block/edit.js:159
-msgid "Show prep time"
-msgstr ""
-
-#: build/index.js:309
-#: src/blocks/block/edit.js:166
-msgid "Calculation"
-msgstr ""
-
-#: build/index.js:311
-#: src/blocks/block/edit.js:171
-msgid "Show yield"
-msgstr ""
-
-#: build/index.js:328
-#: src/blocks/block/edit.js:185
-msgid "Show servings"
-msgstr ""
-
-#: build/index.js:348
-#: src/blocks/block/edit.js:202
-msgid "Title of your recipe"
-msgstr ""
-
-#: build/index.js:364
-#: build/index.js:365
-#: src/blocks/block/edit.js:213
-#: src/blocks/block/edit.js:214
-msgid "Simple"
-msgstr ""
-
-#: build/index.js:366
-#: build/index.js:367
-#: src/blocks/block/edit.js:216
-#: src/blocks/block/edit.js:217
-msgid "Moderate"
-msgstr ""
-
-#: build/index.js:368
-#: build/index.js:369
-#: src/blocks/block/edit.js:219
-#: src/blocks/block/edit.js:220
-msgid "Challenging"
-msgstr ""
-
-#: build/index.js:372
-#: src/blocks/block/edit.js:227
-msgid "Short description of your recipe"
-msgstr ""
-
-#: build/index.js:403
-#: build/index.js:414
-#: build/index.js:425
-msgid "15"
-msgstr ""
-
-#: build/index.js:407
-#: build/index.js:418
-#: build/index.js:429
-#: build/index.js:431
-#: src/blocks/block/edit.js:273
-#: src/blocks/block/edit.js:293
-#: src/blocks/block/edit.js:313
-#: src/blocks/block/edit.js:324
-msgid "Minutes"
-msgstr ""
-
-#: build/index.js:437
-#: src/blocks/block/edit.js:337
-msgid "Yield"
-msgstr ""
-
-#: build/index.js:441
-#: build/index.js:455
-msgid "4"
-msgstr ""
-
-#: build/index.js:447
-#: src/blocks/block/edit.js:345
+#: build/index.js:254
+#: src/blocks/block/edit.js:112
 msgid "piece"
 msgstr ""
 
-#: build/index.js:452
-#: src/blocks/block/edit.js:354
-msgid "Servings"
+#: build/index.js:310
+#: src/blocks/block/edit.js:173
+msgid "No reviews"
 msgstr ""
 
-#: build/index.js:467
-#: src/blocks/block/edit.js:371
+#: build/index.js:315
+#: src/blocks/block/edit.js:182
+msgid "Settings"
+msgstr ""
+
+#: build/index.js:316
+#: src/blocks/block/edit.js:184
+msgid "Timings"
+msgstr ""
+
+#: build/index.js:318
+#: build/index.js:326
+#: build/index.js:334
+#: src/blocks/block/edit.js:189
+#: src/blocks/block/edit.js:198
+#: src/blocks/block/edit.js:207
+msgid "Show prep time"
+msgstr ""
+
+#: build/index.js:345
+#: src/blocks/block/edit.js:219
+msgid "Title of your recipe"
+msgstr ""
+
+#: build/index.js:362
+#: src/blocks/block/edit.js:230
+msgid "simple"
+msgstr ""
+
+#: build/index.js:364
+#: src/blocks/block/edit.js:232
+msgid "moderate"
+msgstr ""
+
+#: build/index.js:366
+#: src/blocks/block/edit.js:235
+msgid "challenging"
+msgstr ""
+
+#: build/index.js:369
+#: src/blocks/block/edit.js:242
+msgid "Short description of your recipe"
+msgstr ""
+
+#: build/index.js:406
+#: build/index.js:417
+#: build/index.js:428
+#: build/index.js:430
+#: src/blocks/block/edit.js:290
+#: src/blocks/block/edit.js:310
+#: src/blocks/block/edit.js:330
+#: src/blocks/block/edit.js:341
+msgid "Minutes"
+msgstr ""
+
+#: build/index.js:435
+#: src/blocks/block/edit.js:352
+msgid "Results in"
+msgstr ""
+
+#: build/index.js:446
+#: src/blocks/block/edit.js:363
+msgid "Unit"
+msgstr ""
+
+#: build/index.js:458
+#: src/blocks/block/edit.js:376
 msgid "Add the ingredients here..."
 msgstr ""
 
-#: build/index.js:480
-#: src/blocks/block/edit.js:384
+#: build/index.js:471
+#: src/blocks/block/edit.js:389
 msgid "Add the steps of preparation here..."
 msgstr ""
 
-#: build/index.js:492
-#: src/blocks/block/edit.js:403
+#: build/index.js:483
+#: src/blocks/block/edit.js:408
 msgid "Additional notes ..."
 msgstr ""
 
-#: build/index.js:500
-#: src/blocks/block/edit.js:411
+#: build/index.js:491
+#: src/blocks/block/edit.js:416
 msgid "Video"
 msgstr ""
 
-#: build/index.js:501
-#: src/blocks/block/edit.js:414
+#: build/index.js:492
+#: src/blocks/block/edit.js:419
 msgid "Video-URL"
 msgstr ""
 
-#: build/index.js:513
-#: src/blocks/block/edit.js:423
+#: build/index.js:504
+#: src/blocks/block/edit.js:428
 msgid "SEO"
 msgstr ""
 
-#: build/index.js:513
-#: src/blocks/block/edit.js:427
+#: build/index.js:504
+#: src/blocks/block/edit.js:432
 msgid "Google and other search enginges needs some more informations to process your recipe. These informations are not visible to your user, but will have impact on the ranking of your recipe in search engines. So we recommend to provide all these informations."
 msgstr ""
 
-#: build/index.js:516
-#: src/blocks/block/edit.js:435
+#: build/index.js:507
+#: src/blocks/block/edit.js:440
 msgid "Cuisine"
 msgstr ""
 
-#: build/index.js:518
-#: src/blocks/block/edit.js:437
+#: build/index.js:509
+#: src/blocks/block/edit.js:442
 msgid "e.g. \"Italian\" or \"German\""
 msgstr ""
 
-#: build/index.js:525
-#: src/blocks/block/edit.js:447
+#: build/index.js:516
+#: src/blocks/block/edit.js:452
 msgid "Category"
 msgstr ""
 
-#: build/index.js:534
-#: src/blocks/block/edit.js:456
+#: build/index.js:525
+#: src/blocks/block/edit.js:461
 msgid "Keywords"
 msgstr ""
 
-#: build/index.js:536
-#: src/blocks/block/edit.js:458
+#: build/index.js:527
+#: src/blocks/block/edit.js:463
 msgid "quick & easy, vegetarian"
 msgstr ""
 
-#: build/index.js:542
-#: src/blocks/block/edit.js:466
+#: build/index.js:533
+#: src/blocks/block/edit.js:471
 msgid "Picture of the finished dish"
 msgstr ""
 
-#: build/index.js:542
-#: src/blocks/block/edit.js:468
+#: build/index.js:533
+#: src/blocks/block/edit.js:473
 msgid "You should add 3 pictures in different aspect ratios to this recipe to have a change for a more prominent display in the Google search results. The 16:9 or sometimes the 4:3 aspect ratio is used for the featured snipped. If you provide a square image, Google sometimes display it in your search result."
 msgstr ""
 
-#: build/index.js:608
-#: src/blocks/block/edit.js:556
+#: build/index.js:599
+#: src/blocks/block/edit.js:561
 msgid "Previews"
 msgstr ""
 
-#: build/index.js:709
-#: src/blocks/block/edit.js:683
+#: build/index.js:700
+#: src/blocks/block/edit.js:688
 msgid "Rating"
 msgstr ""
 
-#: build/index.js:709
-#: src/blocks/block/edit.js:689
+#: build/index.js:700
+#: src/blocks/block/edit.js:694
 msgid "reviews"
 msgstr ""
 
-#: build/index.js:752
+#: build/index.js:743
 #: src/blocks/block/index.js:13
 msgid "Recipe Block"
 msgstr ""

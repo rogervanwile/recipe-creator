@@ -55,14 +55,26 @@ export default function Edit(props) {
       }
     });
 
-    console.log("cleanedDefaultData", cleanedDefaultData);
-
     recipeManagerProMigrationDone = true;
 
     props.setAttributes(cleanedDefaultData);
   }
 
-  console.log("props", props);
+  if (props.attributes.servings) {
+    if (!props.attributes.recipeYield) {
+      props.setAttributes({
+        recipeYield: props.attributes.servings,
+        recipeYieldUnit: "servings",
+        servings: "",
+      });
+    } else {
+      props.setAttributes({ servings: "", recipeYieldUnit: "piece" });
+    }
+  }
+
+  if (props.attributes.recipeYield && !props.attributes.recipeYieldUnit) {
+    props.setAttributes({ recipeYieldUnit: "piece" });
+  }
 
   const ALLOWED_MEDIA_TYPES = ["image"];
 
@@ -86,6 +98,17 @@ export default function Edit(props) {
     label: __("Select a category", "recipe-manager-pro"),
     disabled: true,
   });
+
+  const recipeYieldUnitOptions = [
+    {
+      value: "servings",
+      label: __("servings", "recipe-manager-pro"),
+    },
+    {
+      value: "piece",
+      label: __("piece", "recipe-manager-pro"),
+    },
+  ];
 
   function updateTime(settingKey, value, update = {}) {
     let prepTime = parseInt(props.attributes.prepTime, 10) || 0;
@@ -184,37 +207,6 @@ export default function Edit(props) {
               }}
             />
           </PanelRow>
-          <PanelRow>
-            <h3>{__("Calculation", "recipe-manager-pro")}</h3>
-          </PanelRow>
-          <PanelRow>
-            <CheckboxControl
-              checked={props.attributes.showYield}
-              label={__("Show yield", "recipe-manager-pro")}
-              onChange={(showYield) => {
-                props.setAttributes({ showYield });
-                const update = { showYield };
-                if (!showYield) {
-                  update.recipeYield = 0;
-                }
-                props.setAttributes(update);
-              }}
-            />
-          </PanelRow>
-          <PanelRow>
-            <CheckboxControl
-              checked={props.attributes.showServings}
-              label={__("Show servings", "recipe-manager-pro")}
-              onChange={(showServings) => {
-                props.setAttributes({ showServings });
-                const update = { showServings };
-                if (!showServings) {
-                  update.servings = 0;
-                }
-                props.setAttributes(update);
-              }}
-            />
-          </PanelRow>
         </PanelBody>
       </InspectorControls>
       <div className={"recipe-manager-pro--block " + props.className}>
@@ -232,14 +224,12 @@ export default function Edit(props) {
               onChange={(difficulty) => props.setAttributes({ difficulty })}
               checked={props.attributes.difficulty}
             >
-              <Radio value={__("Simple", "recipe-manager-pro")}>
-                {__("Simple", "recipe-manager-pro")}
+              <Radio value="simple">{__("simple", "recipe-manager-pro")}</Radio>
+              <Radio value="moderate">
+                {__("moderate", "recipe-manager-pro")}
               </Radio>
-              <Radio value={__("Moderate", "recipe-manager-pro")}>
-                {__("Moderate", "recipe-manager-pro")}
-              </Radio>
-              <Radio value={__("Challenging", "recipe-manager-pro")}>
-                {__("Challenging", "recipe-manager-pro")}
+              <Radio value="challenging">
+                {__("challenging", "recipe-manager-pro")}
               </Radio>
             </RadioGroup>
 
@@ -355,37 +345,25 @@ export default function Edit(props) {
           <h3>{__("Ingredients", "recipe-manager-pro")}</h3>
         </div>
         <div className="recipe-manager-pro--block--flex-container">
-          {(() => {
-            return props.attributes.showYield ? (
-              <InputControl
-                label={__("Yield", "recipe-manager-pro")}
-                type="number"
-                min="0"
-                value={props.attributes.recipeYield}
-                placeholder="0"
-                onChange={(recipeYield) => {
-                  props.setAttributes({ recipeYield });
-                }}
-                suffix={__("piece", "recipe-manager-pro")}
-              />
-            ) : null;
-          })()}
+          <TextControl
+            label={__("Results in", "recipe-manager-pro")}
+            type="number"
+            min="0"
+            value={props.attributes.recipeYield}
+            placeholder="0"
+            onChange={(recipeYield) => {
+              props.setAttributes({ recipeYield });
+            }}
+          />
 
-          {(() => {
-            return props.attributes.showServings ? (
-              <InputControl
-                type="number"
-                label={__("Servings", "recipe-manager-pro")}
-                min="0"
-                value={props.attributes.servings}
-                placeholder="0"
-                onChange={(servings) => {
-                  props.setAttributes({ servings });
-                }}
-                suffix={__("servings", "recipe-manager-pro")}
-              />
-            ) : null;
-          })()}
+          <SelectControl
+            label={__("Unit", "recipe-manager-pro")}
+            value={props.attributes.recipeYieldUnit}
+            options={recipeYieldUnitOptions}
+            onChange={(recipeYieldUnit) =>
+              props.setAttributes({ recipeYieldUnit })
+            }
+          />
         </div>
 
         <RichText
@@ -469,7 +447,7 @@ export default function Edit(props) {
 
             <SelectControl
               label={__("Category", "recipe-manager-pro")}
-              value={props.attributes.recipeCategorys}
+              value={props.attributes.recipeCategory}
               options={categoryOptions}
               onChange={(recipeCategory) =>
                 props.setAttributes({ recipeCategory })
