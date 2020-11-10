@@ -22,8 +22,11 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 
 # Todos
 
-- Übersetzung
-- Farben in Plugin-Settings einstellen lassen
+- servings entfernen
+- Bild in Vorschau komprimieren
+- Frühstück nicht per Default auswählen
+- "Süßes" statt "Süßigkeit"
+- Plugin umbennenen?
 
 # Develop
 

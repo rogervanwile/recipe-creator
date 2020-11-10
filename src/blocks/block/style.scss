@@ -1,28 +1,11 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- */
-
-// :root {
-//   --headline-font-family: "Playfair Display", serif;
-//   --headline-font-size: 40px;
-//   --headline-font-weight: bold;
-//   --sub-headline-font-size: 32px;
-//   --sub-headline-font-weight: normal;
-//   --background: #fefcfc;
-//   --grey: #efefef;
-//   --primary: #e27a7a;
-//   --primary-light: #f7e9e9;
-// }
-
-:root {
-  --headline-font-family: Luna-Regular, sans-serif;
+.recipe-manager-pro--block {
+  --headline-font-family: "Luna-Regular", sans-serif;
   --headline-font-size: 32px;
   --headline-font-weight: normal;
   --sub-headline-font-size: 24px;
   --sub-headline-font-weight: normal;
   --background: #fefcfc;
-  --grey: #efefef;
+  --secondary: #efefef;
   --primary: #e27a7a;
   --primary-light: #f7e9e9;
 }
@@ -98,7 +81,7 @@
   hr {
     margin: 0;
     padding: 0;
-    border-color: var(--grey);
+    border-color: var(--secondary);
     border-style: solid;
     border-width: 0px 0px 1px 0;
   }
@@ -176,7 +159,7 @@
     > span,
     button {
       display: block;
-      background-color: var(--grey);
+      background-color: var(--secondary);
       border: 0;
       border-radius: 4px;
       appearance: none;
@@ -308,29 +291,6 @@
       margin: 0;
       display: inline-block;
       vertical-align: middle;
-
-      li.recipe-manager-pro--block--star {
-        margin: 0;
-        padding: 0 2px;
-        box-sizing: content-box;
-        background-repeat: no-repeat;
-
-        display: inline-block;
-        width: 32px;
-        height: 32px;
-        background-image: url("../../../assets/star.svg");
-        background-size: 32px 32px;
-        background-repeat: center center;
-        text-indent: -999em;
-
-        &.selected {
-          background-image: url("../../../assets/star-filled.svg");
-        }
-
-        &.half-selected {
-          background-image: url("../../../assets/star-half-filled.svg");
-        }
-      }
     }
 
     &.recipe-manager-pro--block--rating--small {
@@ -350,6 +310,7 @@
           li.recipe-manager-pro--block--star.selected,
           li.recipe-manager-pro--block--star.half-selected {
             background-image: url("../../../assets/star-highlighted.svg");
+            background-image: var(--star-highlighted-url);
           }
         }
 
@@ -360,7 +321,8 @@
           &.selected:hover,
           &.half-selected:hover {
             ~ * {
-              background-image: url("../../../assets/star.svg") !important;
+              background-image: url("../../../assets/star.svg");
+              background-image: var(--star-url);
             }
           }
         }
@@ -372,13 +334,29 @@
     }
   }
 
-  .dummy-text {
-    background-color: #4d5156;
-    background-color: #70757a;
-    color: transparent;
+  .recipe-manager-pro--block--star {
+    margin: 0;
+    padding: 0 2px;
+    box-sizing: content-box;
+    background-repeat: no-repeat;
 
-    &.light {
-      background-color: #70757a;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-image: url("../../../assets/star.svg");
+    background-image: var(--star-url);
+    background-size: 32px 32px;
+    background-repeat: center center;
+    text-indent: -999em;
+
+    &.selected {
+      background-image: url("../../../assets/star-filled.svg");
+      background-image: var(--star-filled-url);
+    }
+
+    &.half-selected {
+      background-image: url("../../../assets/star-half-filled.svg");
+      background-image: var(--star-half-filled-url);
     }
   }
 }

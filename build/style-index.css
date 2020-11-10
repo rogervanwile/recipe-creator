@@ -1,15 +1,11 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- */
-:root {
-  --headline-font-family: Luna-Regular, sans-serif;
+.recipe-manager-pro--block {
+  --headline-font-family: "Luna-Regular", sans-serif;
   --headline-font-size: 32px;
   --headline-font-weight: normal;
   --sub-headline-font-size: 24px;
   --sub-headline-font-weight: normal;
   --background: #fefcfc;
-  --grey: #efefef;
+  --secondary: #efefef;
   --primary: #e27a7a;
   --primary-light: #f7e9e9; }
 
@@ -18,7 +14,6 @@
   margin-bottom: 32px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   border-radius: 8px;
-  background-color: #fefcfc;
   background-color: var(--background); }
   .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--intro {
     display: flex;
@@ -51,31 +46,21 @@
         .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--intro .recipe-manager-pro--block--main-image {
           margin-bottom: 0; } }
   .recipe-manager-pro--block.recipe-manager-pro--block h2 {
-    font-size: 32px;
     font-size: var(--headline-font-size);
-    font-weight: normal;
     font-weight: var(--headline-font-weight);
-    font-family: Luna-Regular
-,
-sans-serif;
     font-family: var(--headline-font-family);
     line-height: 1.5;
     margin: 0 0 1.5rem 0; }
   .recipe-manager-pro--block.recipe-manager-pro--block h3 {
-    font-size: 24px;
     font-size: var(--sub-headline-font-size);
     font-weight: --sub-headline-font-weight;
-    font-family: Luna-Regular
-,
-sans-serif;
     font-family: var(--headline-font-family);
     line-height: 1.2;
     margin-bottom: 0; }
   .recipe-manager-pro--block.recipe-manager-pro--block hr {
     margin: 0;
     padding: 0;
-    border-color: #efefef;
-    border-color: var(--grey);
+    border-color: var(--secondary);
     border-style: solid;
     border-width: 0px 0px 1px 0; }
   .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--timing-list {
@@ -112,9 +97,6 @@ sans-serif;
         margin-bottom: 0.75rem; }
       .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--timing-list ul header {
         font-size: 13px;
-        font-family: Luna-Regular
-,
-sans-serif;
         font-family: var(--headline-font-family);
         font-style: none; }
       .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--timing-list ul span {
@@ -137,8 +119,7 @@ sans-serif;
     .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--servings-editor > span,
     .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--servings-editor button {
       display: block;
-      background-color: #efefef;
-      background-color: var(--grey);
+      background-color: var(--secondary);
       border: 0;
       border-radius: 4px;
       -webkit-appearance: none;
@@ -181,7 +162,6 @@ sans-serif;
         .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--ingredients tr td.recipe-manager-pro--block--ingredient {
           width: 100%; }
       .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--ingredients tr:nth-child(odd) td {
-        background-color: #f7e9e9;
         background-color: var(--primary-light); }
         .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--ingredients tr:nth-child(odd) td:first-child {
           border-top-left-radius: 2px;
@@ -211,23 +191,18 @@ sans-serif;
         height: 24px;
         float: left;
         margin-right: 8px;
-        background-color: #f7e9e9;
         background-color: var(--primary-light);
         border-radius: 50%;
-        color: #e27a7a;
         color: var(--primary);
         position: absolute;
         top: 8px;
         left: 0; }
   .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--difficulty {
     border-radius: 8px;
-    background-color: #f7e9e9;
     background-color: var(--primary-light);
     padding: 2px 12px;
     margin-bottom: 1rem;
-    border: 1px solid #e27a7a;
     border: 1px solid var(--primary);
-    color: #e27a7a;
     color: var(--primary);
     display: inline-block;
     font-size: 14px;
@@ -242,22 +217,6 @@ sans-serif;
       margin: 0;
       display: inline-block;
       vertical-align: middle; }
-      .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--rating ol li.recipe-manager-pro--block--star {
-        margin: 0;
-        padding: 0 2px;
-        box-sizing: content-box;
-        background-repeat: no-repeat;
-        display: inline-block;
-        width: 32px;
-        height: 32px;
-        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNlMjdhN2EiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLXN0YXIiPjxwb2x5Z29uIHBvaW50cz0iMTIgMiAxNS4wOSA4LjI2IDIyIDkuMjcgMTcgMTQuMTQgMTguMTggMjEuMDIgMTIgMTcuNzcgNS44MiAyMS4wMiA3IDE0LjE0IDIgOS4yNyA4LjkxIDguMjYgMTIgMiI+PC9wb2x5Z29uPjwvc3ZnPg==);
-        background-size: 32px 32px;
-        background-repeat: center center;
-        text-indent: -999em; }
-        .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--rating ol li.recipe-manager-pro--block--star.selected {
-          background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjZTI3YTdhIiBzdHJva2U9IiNlMjdhN2EiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLXN0YXIiPjxwb2x5Z29uIHBvaW50cz0iMTIgMiAxNS4wOSA4LjI2IDIyIDkuMjcgMTcgMTQuMTQgMTguMTggMjEuMDIgMTIgMTcuNzcgNS44MiAyMS4wMiA3IDE0LjE0IDIgOS4yNyA4LjkxIDguMjYgMTIgMiI+PC9wb2x5Z29uPjwvc3ZnPg==); }
-        .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--rating ol li.recipe-manager-pro--block--star.half-selected {
-          background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ1cmwoI2hhbGZfZ3JhZCkiIHN0cm9rZT0iI2UyN2E3YSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItc3RhciI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImhhbGZfZ3JhZCI+CiAgICAgICAgPHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiNlMjdhN2EiLz4KICAgICAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0id2hpdGUiIHN0b3Atb3BhY2l0eT0iMSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxwb2x5Z29uIHBvaW50cz0iMTIgMiAxNS4wOSA4LjI2IDIyIDkuMjcgMTcgMTQuMTQgMTguMTggMjEuMDIgMTIgMTcuNzcgNS44MiAyMS4wMiA3IDE0LjE0IDIgOS4yNyA4LjkxIDguMjYgMTIgMiI+PC9wb2x5Z29uPgo8L3N2Zz4=); }
     .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--rating.recipe-manager-pro--block--rating--small {
       text-align: left; }
       .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--rating.recipe-manager-pro--block--rating--small li.recipe-manager-pro--block--star {
@@ -267,19 +226,34 @@ sans-serif;
     .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--rating.recipe-manager-pro--block--interactive ol:hover li.recipe-manager-pro--block--star,
     .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--rating.recipe-manager-pro--block--interactive ol:hover li.recipe-manager-pro--block--star.selected,
     .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--rating.recipe-manager-pro--block--interactive ol:hover li.recipe-manager-pro--block--star.half-selected {
-      background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjZDU1YTVhIiBzdHJva2U9IiNkNTVhNWEiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLXN0YXIiPjxwb2x5Z29uIHBvaW50cz0iMTIgMiAxNS4wOSA4LjI2IDIyIDkuMjcgMTcgMTQuMTQgMTguMTggMjEuMDIgMTIgMTcuNzcgNS44MiAyMS4wMiA3IDE0LjE0IDIgOS4yNyA4LjkxIDguMjYgMTIgMiI+PC9wb2x5Z29uPjwvc3ZnPg==); }
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjZDU1YTVhIiBzdHJva2U9IiNkNTVhNWEiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLXN0YXIiPjxwb2x5Z29uIHBvaW50cz0iMTIgMiAxNS4wOSA4LjI2IDIyIDkuMjcgMTcgMTQuMTQgMTguMTggMjEuMDIgMTIgMTcuNzcgNS44MiAyMS4wMiA3IDE0LjE0IDIgOS4yNyA4LjkxIDguMjYgMTIgMiI+PC9wb2x5Z29uPjwvc3ZnPg==);
+      background-image: var(--star-highlighted-url); }
     .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--rating.recipe-manager-pro--block--interactive ol li.recipe-manager-pro--block--star {
       cursor: pointer; }
       .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--rating.recipe-manager-pro--block--interactive ol li.recipe-manager-pro--block--star:hover ~ *, .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--rating.recipe-manager-pro--block--interactive ol li.recipe-manager-pro--block--star.selected:hover ~ *, .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--rating.recipe-manager-pro--block--interactive ol li.recipe-manager-pro--block--star.half-selected:hover ~ * {
-        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNlMjdhN2EiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLXN0YXIiPjxwb2x5Z29uIHBvaW50cz0iMTIgMiAxNS4wOSA4LjI2IDIyIDkuMjcgMTcgMTQuMTQgMTguMTggMjEuMDIgMTIgMTcuNzcgNS44MiAyMS4wMiA3IDE0LjE0IDIgOS4yNyA4LjkxIDguMjYgMTIgMiI+PC9wb2x5Z29uPjwvc3ZnPg==) !important; }
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNlMjdhN2EiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLXN0YXIiPjxwb2x5Z29uIHBvaW50cz0iMTIgMiAxNS4wOSA4LjI2IDIyIDkuMjcgMTcgMTQuMTQgMTguMTggMjEuMDIgMTIgMTcuNzcgNS44MiAyMS4wMiA3IDE0LjE0IDIgOS4yNyA4LjkxIDguMjYgMTIgMiI+PC9wb2x5Z29uPjwvc3ZnPg==);
+        background-image: var(--star-url); }
     .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--rating p {
       text-align: center; }
-  .recipe-manager-pro--block.recipe-manager-pro--block .dummy-text {
-    background-color: #4d5156;
-    background-color: #70757a;
-    color: transparent; }
-    .recipe-manager-pro--block.recipe-manager-pro--block .dummy-text.light {
-      background-color: #70757a; }
+  .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--star {
+    margin: 0;
+    padding: 0 2px;
+    box-sizing: content-box;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNlMjdhN2EiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLXN0YXIiPjxwb2x5Z29uIHBvaW50cz0iMTIgMiAxNS4wOSA4LjI2IDIyIDkuMjcgMTcgMTQuMTQgMTguMTggMjEuMDIgMTIgMTcuNzcgNS44MiAyMS4wMiA3IDE0LjE0IDIgOS4yNyA4LjkxIDguMjYgMTIgMiI+PC9wb2x5Z29uPjwvc3ZnPg==);
+    background-image: var(--star-url);
+    background-size: 32px 32px;
+    background-repeat: center center;
+    text-indent: -999em; }
+    .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--star.selected {
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjZTI3YTdhIiBzdHJva2U9IiNlMjdhN2EiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLXN0YXIiPjxwb2x5Z29uIHBvaW50cz0iMTIgMiAxNS4wOSA4LjI2IDIyIDkuMjcgMTcgMTQuMTQgMTguMTggMjEuMDIgMTIgMTcuNzcgNS44MiAyMS4wMiA3IDE0LjE0IDIgOS4yNyA4LjkxIDguMjYgMTIgMiI+PC9wb2x5Z29uPjwvc3ZnPg==);
+      background-image: var(--star-filled-url); }
+    .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--star.half-selected {
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ1cmwoI2hhbGZfZ3JhZCkiIHN0cm9rZT0iI2UyN2E3YSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItc3RhciI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJoYWxmX2dyYWQiPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjZTI3YTdhIi8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IndoaXRlIiBzdG9wLW9wYWNpdHk9IjEiIC8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHBvbHlnb24gcG9pbnRzPSIxMiAyIDE1LjA5IDguMjYgMjIgOS4yNyAxNyAxNC4xNCAxOC4xOCAyMS4wMiAxMiAxNy43NyA1LjgyIDIxLjAyIDcgMTQuMTQgMiA5LjI3IDguOTEgOC4yNiAxMiAyIj48L3BvbHlnb24+PC9zdmc+);
+      background-image: var(--star-half-filled-url); }
 
 
 /*# sourceMappingURL=style-index.css.map*/

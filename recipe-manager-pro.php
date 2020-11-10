@@ -19,6 +19,12 @@ use LightnCandy\LightnCandy;
 
 class RecipeManagerPro
 {
+	private $primaryColorDefault = '#e27a7a';
+	private $primaryColorLightDefault = '#f7e9e9';
+	private $primaryColorDarkDefault = '#d55a5a';
+	private $secondaryColorDefault = '#efefef';
+	private $backgroundColorDefault = '#fefcfc';
+
 	function __construct()
 	{
 		add_action('init', array($this, 'addRessources'));
@@ -26,9 +32,165 @@ class RecipeManagerPro
 		add_action('init', array($this, 'registerMeta'));
 		add_action('init', array($this, 'loadTranslations'));
 
+		add_action('admin_init', array($this, 'registerSettings'));
+		add_action('admin_menu', array($this, 'registerSettingsPage'));
+
+		add_action('admin_enqueue_scripts', array($this, 'enqueueAdminJs'));
+
 		// Frontend-AJAX-Actions
 		add_action('wp_ajax_recipe_manager_pro_set_rating', array($this, 'setRating'));
 		add_action('wp_ajax_nopriv_recipe_manager_pro_set_rating', array($this, 'setRating'));
+	}
+
+	public function enqueueAdminJs()
+	{
+		// Enable Color Picker for Settings Page
+		wp_enqueue_style('wp-color-picker');
+		wp_enqueue_script('recipe-manager-pro-settings', 	plugins_url('build/settings.js', __FILE__), array('jquery', 'wp-color-picker'), '', true);
+	}
+
+	public function registerSettingsPage()
+	{
+		add_menu_page(
+			__("Recipe Manager Pro", "recipe-manager-pro"),
+			__('Recipe Manager', "recipe-manager-pro"),
+			'manage_options',
+			'recipe_manager_pro',
+			function () {
+				return require_once(plugin_dir_path(__FILE__) . 'templates/admin-index-page.php');
+			},
+			'dashicons-carrot',
+			100
+		);
+
+		add_submenu_page(
+			'recipe_manager_pro',
+			__('Recipe Manager', "recipe-manager-pro"),
+			__("Settings", "recipe-manager-pro"),
+			'manage_options',
+			'recipe_manager_pro',
+			function () {
+				return require_once(plugin_dir_path(__FILE__) . 'templates/admin-index-page.php');
+			}
+		);
+	}
+
+	private function renderColorPickerInput($name, $defaultValue)
+	{
+		$value = esc_attr(get_option($name));
+		echo '<input type="text" class="regular-text recipe-manager-pro--color-picker" name="' . $name . '" value="' . $value . '" data-default-value="' .  $defaultValue . '" />';
+	}
+
+	public function registerSettings()
+	{
+		// Settings
+		register_setting(
+			'recipe_manager_pro__general',
+			'recipe_manager_pro__primary_color',
+			array(
+				"default" => $this->primaryColorDefault
+			)
+		);
+		register_setting(
+			'recipe_manager_pro__general',
+			'recipe_manager_pro__primary_color_light',
+			array(
+				"default" => $this->primaryColorLightDefault
+			)
+		);
+		register_setting(
+			'recipe_manager_pro__general',
+			'recipe_manager_pro__primary_color_dark',
+			array(
+				"default" => $this->primaryColorDarkDefault
+			)
+		);
+		register_setting(
+			'recipe_manager_pro__general',
+			'recipe_manager_pro__secondary_color',
+			array(
+				"default" => $this->secondaryColorDefault
+			)
+		);
+		register_setting(
+			'recipe_manager_pro__general',
+			'recipe_manager_pro__background_color',
+			array(
+				"default" => $this->backgroundColorDefault
+			)
+		);
+
+		// Sections
+		add_settings_section(
+			'recipe_manager_pro__general',
+			'General settings',
+			function () {
+				echo '<p>Configure the general content and functionality of your cookie consent hint.</p>';
+			},
+			'recipe_manager_pro__general'
+		);
+
+		// Fields
+		add_settings_field(
+			'recipe_manager_pro__primary_color',
+			__('Primary color', 'recipe-manager-pro'),
+			function () {
+				$this->renderColorPickerInput('recipe_manager_pro__primary_color', $this->primaryColorDefault);
+			},
+			'recipe_manager_pro__general',
+			'recipe_manager_pro__general',
+			array(
+				'label_for' => 'recipe_manager_pro__primary_color'
+			)
+		);
+		add_settings_field(
+			'recipe_manager_pro__primary_color_light',
+			__('Primary color (light)', 'recipe-manager-pro'),
+			function () {
+				$this->renderColorPickerInput('recipe_manager_pro__primary_color_light', $this->primaryColorLightDefault);
+			},
+			'recipe_manager_pro__general',
+			'recipe_manager_pro__general',
+			array(
+				'label_for' => 'recipe_manager_pro__primary_color_light'
+			)
+		);
+		add_settings_field(
+			'recipe_manager_pro__primary_color_dark',
+			__('Primary color (dark)', 'recipe-manager-pro'),
+			function () {
+				$this->renderColorPickerInput('recipe_manager_pro__primary_color_dark', $this->primaryColorDarkDefault);
+			},
+			'recipe_manager_pro__general',
+			'recipe_manager_pro__general',
+			array(
+				'label_for' => 'recipe_manager_pro__primary_color_dark'
+			)
+		);
+		add_settings_field(
+			'recipe_manager_pro__secondary_color',
+			__('Secondary color', 'recipe-manager-pro'),
+			function () {
+				$this->renderColorPickerInput('recipe_manager_pro__secondary_color', $this->secondaryColorDefault);
+			},
+			'recipe_manager_pro__general',
+			'recipe_manager_pro__general',
+			array(
+				'label_for' => 'recipe_manager_pro__secondary_color'
+			)
+		);
+		add_settings_field(
+			'recipe_manager_pro__background_color',
+			__('Background color', 'recipe-manager-pro'),
+			function () {
+				$this->renderColorPickerInput('recipe_manager_pro__background_color', $this->backgroundColorDefault);
+			},
+			'recipe_manager_pro__general',
+			'recipe_manager_pro__general',
+			array(
+				'label_for' => 'recipe_manager_pro__background_color'
+			)
+		);
 	}
 
 	public function loadTranslations()
@@ -617,6 +779,17 @@ class RecipeManagerPro
 
 		// Remove empty strings from ldJon
 		$attributes['ldJson'] = array_filter($attributes['ldJson']);
+
+		$attributes['options'] = array(
+			"primaryColor" => get_option('recipe_manager_pro__primary_color', '#e27a7a'),
+			"primaryColorLight" => get_option('recipe_manager_pro__primary_color_light', '#f7e9e9'),
+			"secondaryColor" => get_option('recipe_manager_pro__secondary_color', '#efefef'),
+			"backgroundColor" => get_option('recipe_manager_pro__background_color', '#fefcfc'),
+
+			"primaryColorEncoded" => urlencode(get_option('recipe_manager_pro__primary_color', '#e27a7a')),
+			"primaryColorLightEncoded" => urlencode(get_option('recipe_manager_pro__primary_color_light', '#f7e9e9')),
+			"primaryColorDarkEncoded" => urlencode(get_option('recipe_manager_pro__primary_color_dark', '#d55a5a')),
+		);
 
 		return $renderer($attributes);
 	}
