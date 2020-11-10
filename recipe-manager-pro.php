@@ -357,16 +357,16 @@ class RecipeManagerPro
 		wp_register_style(
 			'recipe-manager-pro-block-editor',
 			plugins_url($editor_css, __FILE__),
-			array()
-			// filemtime("$dir/$editor_css")
+			array(),
+			filemtime("$dir/$editor_css")
 		);
 
 		$frontend_js = 'build/frontend.js';
 		wp_register_script(
 			'recipe-manager-pro-block',
 			plugins_url($frontend_js, __FILE__),
-			array()
-			// filemtime("$dir/$frontend_js")
+			array(),
+			filemtime("$dir/$frontend_js")
 		);
 
 		$style_css = 'build/style-index.css';
@@ -588,40 +588,43 @@ class RecipeManagerPro
 		$dir = dirname(__FILE__);
 		$template = file_get_contents($dir . '/block.hbs');
 
-		$phpStr = LightnCandy::compile($template, array(
-			'flags' => LightnCandy::FLAG_HANDLEBARSJS | LightnCandy::FLAG_ERROR_EXCEPTION,
-			'helpers' => array(
-				'formatDuration' => function ($context, $options) {
-					if (isset($context) && $context !== '') {
-						$minutes = intval($context);
+		// TODO: Das im Build-Prozess erzeugen
+		if (!file_exists('./render.php')) {
+			$phpStr = LightnCandy::compile($template, array(
+				'flags' => LightnCandy::FLAG_HANDLEBARSJS | LightnCandy::FLAG_ERROR_EXCEPTION,
+				'helpers' => array(
+					'formatDuration' => function ($context, $options) {
+						if (isset($context) && $context !== '') {
+							$minutes = intval($context);
 
-						if ($minutes < 60) {
-							return $minutes . ' ' . __('minutes', 'recipe-manager-pro');
+							if ($minutes < 60) {
+								return $minutes . ' ' . __('minutes', 'recipe-manager-pro');
+							} else {
+								$hours = floor($minutes / 60);
+								$rest = $minutes % 60;
+
+								return $hours . ' ' . __('hours', 'recipe-manager-pro') . ($rest > 0 ? ' ' . $rest . ' ' . __('minutes', 'recipe-manager-pro') : '');
+							}
+						}
+
+						return '';
+					},
+					'toJSON' => function ($context, $options) {
+						return json_encode($context);
+					},
+					'ifMoreOrEqual' => function ($arg1, $arg2, $options) {
+						if ($arg1 >= $arg2) {
+							return $options['fn']();
 						} else {
-							$hours = floor($minutes / 60);
-							$rest = $minutes % 60;
-
-							return $hours . ' ' . __('hours', 'recipe-manager-pro') . ($rest > 0 ? ' ' . $rest . ' ' . __('minutes', 'recipe-manager-pro') : '');
+							return $options['inverse']();
 						}
 					}
+				)
+			));
 
-					return '';
-				},
-				'toJSON' => function ($context, $options) {
-					return json_encode($context);
-				},
-				'ifMoreOrEqual' => function ($arg1, $arg2, $options) {
-					if ($arg1 >= $arg2) {
-						return $options['fn']();
-					} else {
-						return $options['inverse']();
-					}
-				}
-			)
-		));
-
-		// Save the compiled PHP code into a php file
-		file_put_contents('./render.php', '<?php ' . $phpStr . '?>');
+			// Save the compiled PHP code into a php file
+			file_put_contents('./render.php', '<?php ' . $phpStr . '?>');
+		}
 
 		// Get the render function from the php file
 		$renderer = include('render.php');
