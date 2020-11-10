@@ -243,9 +243,8 @@ function Edit(props) {
     };
   });
   categoryOptions.unshift({
-    value: null,
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Select a category", "recipe-manager-pro"),
-    disabled: true
+    value: '',
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Select a category", "recipe-manager-pro")
   });
   var recipeYieldUnitOptions = [{
     value: "servings",

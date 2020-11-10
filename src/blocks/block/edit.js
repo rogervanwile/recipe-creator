@@ -94,9 +94,8 @@ export default function Edit(props) {
   });
 
   categoryOptions.unshift({
-    value: null,
+    value: '',
     label: __("Select a category", "recipe-manager-pro"),
-    disabled: true,
   });
 
   const recipeYieldUnitOptions = [
