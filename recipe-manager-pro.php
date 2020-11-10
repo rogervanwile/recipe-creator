@@ -267,9 +267,6 @@ class RecipeManagerPro
 				case 'sp-recipe-description':
 					$recipe['description'] = $value[0];
 					break;
-				case 'sp-recipe-keywords':
-					$recipe['keywords'] = $value[0];
-					break;
 				case 'sp-recipe-servings':
 					$recipe['recipeYield'] = $value[0];
 					break;
@@ -281,9 +278,6 @@ class RecipeManagerPro
 					break;
 				case 'sp-recipe-time-total':
 					$recipe['totalTime'] = strval(intval($value[0]));
-					break;
-				case 'sp-recipe-category':
-					$recipe['recipeCategory'] = $value[0];
 					break;
 				case 'sp-recipe-cuisine':
 					$recipe['recipeCuisine'] = $value[0];
@@ -435,10 +429,6 @@ class RecipeManagerPro
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'notes')
 				),
-				'keywords' => array(
-					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'keywords')
-				),
 				'prepTime' => array(
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'prepTime')
@@ -471,10 +461,6 @@ class RecipeManagerPro
 				'calories' => array(
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'calories')
-				),
-				'recipeCategory' => array(
-					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'recipeCategory')
 				),
 				'recipeCuisine' => array(
 					'type' => 'string',
@@ -708,6 +694,25 @@ class RecipeManagerPro
 
 		$attributes['averageRating'] = $averageRating;
 
+		$keywords = get_the_tags();
+
+		if ($keywords !== false && count($keywords) > 0) {
+			$keywordsString = implode(', ', array_map(function ($tag) {
+				return $tag->name;
+			}, $keywords));
+		} else {
+			$keywordsString = '';
+		}
+
+		$categories = get_the_category();
+		if ($categories !== false && count($categories) > 0) {
+			$category = array_map(function ($category) {
+				return $category->name;
+			}, $categories)[0];
+		} else {
+			$category = '';
+		}
+
 		$attributes['ldJson'] = [
 			"@context" => "https://schema.org/",
 			"@type" => "Recipe",
@@ -727,9 +732,9 @@ class RecipeManagerPro
 			"prepTime" => isset($attributes['prepTime']) ? $this->toIso8601Duration(intval($attributes['prepTime']) * 60) : '',
 			"cookTime" => isset($attributes['cookTime']) ? $this->toIso8601Duration(intval($attributes['cookTime']) * 60) : '',
 			"totalTime" => isset($attributes['totalTime']) ? $this->toIso8601Duration(intval($attributes['totalTime']) * 60) : '',
-			"keywords" => isset($attributes['keywords']) ? $attributes['keywords'] : '',
+			"keywords" => $keywordsString,
 			"recipeYield" => isset($attributes['recipeYield']) ? $attributes['recipeYield'] . (isset($attributes['recipeYieldUnit']) ? ' ' . $attributes['recipeYieldUnit'] : '') : '',
-			"recipeCategory" => isset($attributes['recipeCategory']) ? $attributes['recipeCategory'] : '',
+			"recipeCategory" => $category,
 			"nutrition" => isset($attributes['calories']) ? [
 				"@type" => "NutritionInformation",
 				"calories" => $attributes['calories']
@@ -737,7 +742,7 @@ class RecipeManagerPro
 			"recipeIngredient" =>
 			isset($attributes['ingredients']) ?
 				array_map(function ($item) {
-					return trim((isset($item['amount']) ? $item['amount'] : '') . ' ' . (isset($item['unit']) ? $item['unit'] : '') . ' ' . (isset($item['ingredient']) ? $item['ingredient'] : ''));
+					return trim((isset($item['amount']) ? $item['amount'] : '') . ' ' . (isset($item['unit']) ? $item['unit'] : '') . ' ' . (isset($item['ingredient']) ? strip_tags($item['ingredient']) : ''));
 				}, $attributes['ingredients']) : '',
 			"recipeInstructions" =>
 			isset($attributes['preparationSteps']) ?
@@ -781,14 +786,14 @@ class RecipeManagerPro
 		$attributes['ldJson'] = array_filter($attributes['ldJson']);
 
 		$attributes['options'] = array(
-			"primaryColor" => get_option('recipe_manager_pro__primary_color', '#e27a7a'),
-			"primaryColorLight" => get_option('recipe_manager_pro__primary_color_light', '#f7e9e9'),
-			"secondaryColor" => get_option('recipe_manager_pro__secondary_color', '#efefef'),
-			"backgroundColor" => get_option('recipe_manager_pro__background_color', '#fefcfc'),
+			"primaryColor" => get_option('recipe_manager_pro__primary_color', $this->primaryColorDefault),
+			"primaryColorLight" => get_option('recipe_manager_pro__primary_color_light', $this->primaryColorLightDefault),
+			"secondaryColor" => get_option('recipe_manager_pro__secondary_color', $this->secondaryColorDefault),
+			"backgroundColor" => get_option('recipe_manager_pro__background_color', $this->backgroundColorDefault),
 
-			"primaryColorEncoded" => urlencode(get_option('recipe_manager_pro__primary_color', '#e27a7a')),
-			"primaryColorLightEncoded" => urlencode(get_option('recipe_manager_pro__primary_color_light', '#f7e9e9')),
-			"primaryColorDarkEncoded" => urlencode(get_option('recipe_manager_pro__primary_color_dark', '#d55a5a')),
+			"primaryColorEncoded" => urlencode(get_option('recipe_manager_pro__primary_color', $this->primaryColorDefault)),
+			"primaryColorLightEncoded" => urlencode(get_option('recipe_manager_pro__primary_color_light', $this->primaryColorLightDefault)),
+			"primaryColorDarkEncoded" => urlencode(get_option('recipe_manager_pro__primary_color_dark', $this->primaryColorDarkDefault)),
 		);
 
 		return $renderer($attributes);

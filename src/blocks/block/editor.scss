@@ -4,8 +4,6 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-@import "../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
-
 .wp-block-recipe-manager-pro-block {
   text-align: left;
 
@@ -45,7 +43,7 @@
   }
 
   .recipe-manager-pro--block--main-image {
-    background-color: #EFEFEF;
+    background-color: #efefef;
   }
 
   .image-preview {
@@ -90,7 +88,9 @@
   }
 
   h4 {
-    margin-top: 10px !important;
+    margin-top: 1rem !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 1rem !important;
   }
 
   img {

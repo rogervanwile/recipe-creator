@@ -19,7 +19,6 @@
 	"dependencies": {
 		"@wordpress/date": "^3.12.0",
 		"@wordpress/keycodes": "^2.16.0",
-		"@wordpress/media-utils": "^1.16.0",
-		"bootstrap": "^4.5.2"
+		"@wordpress/media-utils": "^1.16.0"
 	}
 }

@@ -243,7 +243,7 @@ function Edit(props) {
     };
   });
   categoryOptions.unshift({
-    value: '',
+    value: "",
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Select a category", "recipe-manager-pro")
   });
   var recipeYieldUnitOptions = [{
@@ -512,22 +512,15 @@ function Edit(props) {
         recipeCuisine: recipeCuisine
       });
     }
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["SelectControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Category", "recipe-manager-pro"),
-    value: props.attributes.recipeCategory,
-    options: categoryOptions,
-    onChange: function onChange(recipeCategory) {
-      return props.setAttributes({
-        recipeCategory: recipeCategory
-      });
-    }
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["TextControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Keywords", "recipe-manager-pro"),
-    value: props.attributes.keywords,
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("quick & easy, vegetarian", "recipe-manager-pro"),
-    onChange: function onChange(keywords) {
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["__experimentalInputControl"], {
+    type: "number",
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Calories", "recipe-manager-pro"),
+    value: props.attributes.calories,
+    description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Calories per serving or piece"),
+    suffix: "kcal",
+    onChange: function onChange(calories) {
       props.setAttributes({
-        keywords: keywords
+        calories: calories
       });
     }
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h4", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("Picture of the finished dish", "recipe-manager-pro")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("You should add 3 pictures in different aspect ratios to this recipe to have a change for a more prominent display in the Google search results. The 16:9 or sometimes the 4:3 aspect ratio is used for the featured snipped. If you provide a square image, Google sometimes display it in your search result.", "recipe-manager-pro"))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["MediaUploadCheck"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["MediaUpload"], {

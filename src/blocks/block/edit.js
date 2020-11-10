@@ -94,7 +94,7 @@ export default function Edit(props) {
   });
 
   categoryOptions.unshift({
-    value: '',
+    value: "",
     label: __("Select a category", "recipe-manager-pro"),
   });
 
@@ -444,21 +444,14 @@ export default function Edit(props) {
               }}
             />
 
-            <SelectControl
-              label={__("Category", "recipe-manager-pro")}
-              value={props.attributes.recipeCategory}
-              options={categoryOptions}
-              onChange={(recipeCategory) =>
-                props.setAttributes({ recipeCategory })
-              }
-            />
-
-            <TextControl
-              label={__("Keywords", "recipe-manager-pro")}
-              value={props.attributes.keywords}
-              placeholder={__("quick & easy, vegetarian", "recipe-manager-pro")}
-              onChange={(keywords) => {
-                props.setAttributes({ keywords });
+            <InputControl
+              type="number"
+              label={__("Calories", "recipe-manager-pro")}
+              value={props.attributes.calories}
+              description={__("Calories per serving or piece")}
+              suffix="kcal"
+              onChange={(calories) => {
+                props.setAttributes({ calories });
               }}
             />
           </div>

@@ -24,7 +24,6 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 
 - servings entfernen
 - Bild in Vorschau komprimieren
-- Frühstück nicht per Default auswählen
 - Plugin umbennenen?
 
 # Develop
