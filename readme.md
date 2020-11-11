@@ -23,7 +23,6 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 # Todos
 
 - servings entfernen
-- Bild in Vorschau komprimieren
 - Plugin umbennenen?
 - Build-Prozess
 

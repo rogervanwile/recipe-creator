@@ -49,7 +49,7 @@ class RecipeManagerPro
 	{
 		// Enable Color Picker for Settings Page
 		wp_enqueue_style('wp-color-picker');
-		wp_enqueue_script('recipe-manager-pro-settings', 	plugins_url('build/settings.js', __FILE__), array('jquery', 'wp-color-picker'), '', true);
+		wp_enqueue_script('recipe-manager-pro-settings', 	plugins_url('build/admin.js', __FILE__), array('jquery', 'wp-color-picker'), '', true);
 	}
 
 	public function registerSettingsPage()
