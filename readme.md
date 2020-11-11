@@ -24,7 +24,6 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 
 - servings entfernen
 - Plugin umbennenen?
-- Build-Prozess
 
 # Develop
 

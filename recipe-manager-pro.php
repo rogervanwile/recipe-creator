@@ -621,10 +621,10 @@ class RecipeManagerPro
 	{
 		// Return the frontend output for our block
 		$dir = dirname(__FILE__);
-		$template = file_get_contents($dir . '/block.hbs');
+		$template = file_get_contents($dir . '/src/blocks/block/block.hbs');
 
 		// TODO: Das im Build-Prozess erzeugen
-		if (!file_exists('./render.php') || WP_DEBUG) {
+		if (!file_exists(plugin_dir_path(__FILE__) . '/build/block-template.php') || WP_DEBUG) {
 			$phpStr = LightnCandy::compile($template, array(
 				'flags' => LightnCandy::FLAG_HANDLEBARSJS | LightnCandy::FLAG_ERROR_EXCEPTION,
 				'helpers' => array(
@@ -658,11 +658,11 @@ class RecipeManagerPro
 			));
 
 			// Save the compiled PHP code into a php file
-			file_put_contents('./render.php', '<?php ' . $phpStr . '?>');
+			file_put_contents(plugin_dir_path(__FILE__) . '/build/block-template.php', '<?php ' . $phpStr . '?>');
 		}
 
 		// Get the render function from the php file
-		$renderer = include('render.php');
+		$renderer = include(plugin_dir_path(__FILE__) . '/build/block-template.php');
 
 		$attributes['translations'] = [
 			"prepTime" => __('Prep time', 'recipe-manager-pro'),
