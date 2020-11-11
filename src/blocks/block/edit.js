@@ -25,6 +25,7 @@ import "./editor.scss";
 var recipeManagerProMigrationDone = false;
 
 export default function Edit(props) {
+  // TODO: Migration, remove for live version
   // Workaround for https://github.com/WordPress/gutenberg/issues/7342
   if (!recipeManagerProMigrationDone) {
     const cleanedDefaultData = {};
@@ -60,6 +61,7 @@ export default function Edit(props) {
     props.setAttributes(cleanedDefaultData);
   }
 
+  // TODO: Migration, remove for live version
   if (props.attributes.servings) {
     if (!props.attributes.recipeYield) {
       props.setAttributes({
@@ -249,7 +251,10 @@ export default function Edit(props) {
               <MediaUpload
                 onSelect={(media) => {
                   if (media) {
-                    props.setAttributes({ image4_3: media.url });
+                    props.setAttributes({
+                      image4_3: media.url,
+                      image4_3Id: media.id,
+                    });
                   }
                 }}
                 allowedTypes={ALLOWED_MEDIA_TYPES}
@@ -470,7 +475,10 @@ export default function Edit(props) {
             <MediaUpload
               onSelect={(media) => {
                 if (media) {
-                  props.setAttributes({ image1_1: media.url });
+                  props.setAttributes({
+                    image1_1: media.url,
+                    image1_1Id: media.id,
+                  });
                 }
               }}
               allowedTypes={ALLOWED_MEDIA_TYPES}
@@ -497,7 +505,10 @@ export default function Edit(props) {
             <MediaUpload
               onSelect={(media) => {
                 if (media) {
-                  props.setAttributes({ image4_3: media.url });
+                  props.setAttributes({
+                    image4_3: media.url,
+                    image4_3Id: media.id,
+                  });
                 }
               }}
               allowedTypes={ALLOWED_MEDIA_TYPES}
@@ -524,7 +535,10 @@ export default function Edit(props) {
             <MediaUpload
               onSelect={(media) => {
                 if (media) {
-                  props.setAttributes({ image16_9: media.url });
+                  props.setAttributes({
+                    image16_9: media.url,
+                    image16_9Id: media.id,
+                  });
                 }
               }}
               allowedTypes={ALLOWED_MEDIA_TYPES}
@@ -554,7 +568,10 @@ export default function Edit(props) {
               <MediaUpload
                 onSelect={(media) => {
                   if (media) {
-                    props.setAttributes({ image4_3: media.url });
+                    props.setAttributes({
+                      image4_3: media.url,
+                      image4_3Id: media.id,
+                    });
                   }
                 }}
                 allowedTypes={ALLOWED_MEDIA_TYPES}
@@ -593,7 +610,10 @@ export default function Edit(props) {
               <MediaUpload
                 onSelect={(media) => {
                   if (media) {
-                    props.setAttributes({ image16_9: media.url });
+                    props.setAttributes({
+                      image16_9: media.url,
+                      image16_9Id: media.id,
+                    });
                   }
                 }}
                 allowedTypes={ALLOWED_MEDIA_TYPES}
@@ -635,7 +655,10 @@ export default function Edit(props) {
                   <MediaUpload
                     onSelect={(media) => {
                       if (media) {
-                        props.setAttributes({ image1_1: media.url });
+                        props.setAttributes({
+                          image1_1: media.url,
+                          image1_1Id: media.id,
+                        });
                       }
                     }}
                     allowedTypes={ALLOWED_MEDIA_TYPES}

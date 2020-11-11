@@ -25,7 +25,7 @@
     .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--intro > * {
       padding: 0 16px;
       box-sizing: border-box;
-      width: 50%; }
+      width: 100%; }
     .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--intro .recipe-manager-pro--block--main-image {
       width: 100%;
       margin-bottom: 1rem;
@@ -42,7 +42,7 @@
       .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--intro {
         flex-direction: row; }
         .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--intro > * {
-          width: 100%; }
+          width: 50%; }
         .recipe-manager-pro--block.recipe-manager-pro--block .recipe-manager-pro--block--intro .recipe-manager-pro--block--main-image {
           margin-bottom: 0; } }
   .recipe-manager-pro--block.recipe-manager-pro--block h2 {

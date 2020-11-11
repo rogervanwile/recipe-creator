@@ -24,6 +24,7 @@ class RecipeManagerPro
 	private $primaryColorDarkDefault = '#d55a5a';
 	private $secondaryColorDefault = '#efefef';
 	private $backgroundColorDefault = '#fefcfc';
+	private $thumnailSizeDefault = 330;
 
 	function __construct()
 	{
@@ -36,6 +37,8 @@ class RecipeManagerPro
 		add_action('admin_menu', array($this, 'registerSettingsPage'));
 
 		add_action('admin_enqueue_scripts', array($this, 'enqueueAdminJs'));
+
+		add_image_size('recipe-manager-pro--thumbnail', get_option('recipe_manager_pro__thumbnail_size', $this->thumnailSizeDefault));
 
 		// Frontend-AJAX-Actions
 		add_action('wp_ajax_recipe_manager_pro_set_rating', array($this, 'setRating'));
@@ -119,6 +122,13 @@ class RecipeManagerPro
 				"default" => $this->backgroundColorDefault
 			)
 		);
+		register_setting(
+			'recipe_manager_pro__general',
+			'recipe_manager_pro__thumbnail_size',
+			array(
+				"default" => $this->thumnailSizeDefault
+			)
+		);
 
 		// Sections
 		add_settings_section(
@@ -189,6 +199,22 @@ class RecipeManagerPro
 			'recipe_manager_pro__general',
 			array(
 				'label_for' => 'recipe_manager_pro__background_color'
+			)
+		);
+		add_settings_field(
+			'recipe_manager_pro__thumbnail_size',
+			__('Thumbnail size', 'recipe-manager-pro'),
+			function () {
+				$value = esc_attr(get_option('recipe_manager_pro__thumbnail_size'));
+				echo '<input type="number" class="regular-text" name="recipe_manager_pro__thumbnail_size" value="' . $value . '" />';
+				echo '<p class="description">';
+				printf(__("If you change this value, you must recreate your thumbnails.<br /> This can be done with the great plugin %s.", 'recipe-manager-pro'), '<a href="https://wordpress.org/plugins/regenerate-thumbnails/" target="_blank">Regenerate Thumbnails</a>');
+				echo '</p>';
+			},
+			'recipe_manager_pro__general',
+			'recipe_manager_pro__general',
+			array(
+				'label_for' => 'recipe_manager_pro__thumbnail_size'
 			)
 		);
 	}
@@ -470,13 +496,22 @@ class RecipeManagerPro
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'image1_1')
 				),
+				'image1_1Id' => array(
+					'type' => 'number'
+				),
 				'image4_3' => array(
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'image4_3')
 				),
+				'image4_3Id' => array(
+					'type' => 'number',
+				),
 				'image16_9' => array(
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'image16_9')
+				),
+				'image16_9Id' => array(
+					'type' => 'number',
 				),
 				'videoUrl' => array(
 					'type' => 'string',
@@ -589,7 +624,7 @@ class RecipeManagerPro
 		$template = file_get_contents($dir . '/block.hbs');
 
 		// TODO: Das im Build-Prozess erzeugen
-		if (!file_exists('./render.php')) {
+		if (!file_exists('./render.php') || WP_DEBUG) {
 			$phpStr = LightnCandy::compile($template, array(
 				'flags' => LightnCandy::FLAG_HANDLEBARSJS | LightnCandy::FLAG_ERROR_EXCEPTION,
 				'helpers' => array(
@@ -714,6 +749,18 @@ class RecipeManagerPro
 			}, $categories)[0];
 		} else {
 			$category = '';
+		}
+
+		if (isset($attributes['image4_3Id'])) {
+			$image = wp_get_attachment_image_src($attributes['image4_3Id'], 'recipe-manager-pro--thumbnail');
+
+			if ($image) {
+				$attributes['thumbnail'] = $image[0];
+			}
+		}
+
+		if (!isset($attributes['thumbnail'])) {
+			$attributes['thumbnail'] = $attributes['image4_3'];
 		}
 
 		$attributes['ldJson'] = [
