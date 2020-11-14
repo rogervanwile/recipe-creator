@@ -14,15 +14,38 @@
   p {
     margin-top: 0 !important;
     margin-bottom: 16px !important;
+    color: var(--background-contrast) !important;
+  }
+
+  // Difficulty Button
+  .components-button.is-secondary {
+    box-shadow: inset 0 0 0 1px var(--primary);
+    color: var(--primary);
+    background: var(--primary-light);
+  }
+
+  .components-button.is-primary {
+    background: var(--primary);
+    color: var(--primary-contrast);
+  }
+
+  .components-button.is-primary:hover:not(:disabled) {
+    background: var(--primary);
+    color: var(--primary-contrast);
+  }
+
+  .components-button.is-secondary:hover:not(:disabled),
+  .components-button.is-tertiary:hover:not(:disabled) {
+    background: var(--primary);
+    color: var(--primary-contrast);
+    box-shadow: inset 0 0 0 1px var(--primary-contrast);
   }
 
   .components-button-group {
     margin-bottom: 16px;
   }
 
-  border: 1px solid #efefef;
   padding: 16px;
-  // background-color: lightgoldenrodyellow;
 
   .components-input-control {
     border-color: transparent;
@@ -80,11 +103,6 @@
     &.image-preview-16-9 {
       width: 266px;
     }
-  }
-
-  hr {
-    border: 0;
-    border-bottom: 1px solid #ffffff;
   }
 
   h4 {
@@ -158,39 +176,9 @@
       margin: 0;
 
       &:nth-child(odd) {
-        background-color: #f7e9e9;
+        background-color: var(--primary-light);
+        color: var(--primary-light-contrast);
         border-radius: 2px;
-      }
-    }
-  }
-
-  .recipe-preparation-steps-list {
-    display: block;
-    list-style: none;
-    padding: 0;
-    counter-reset: recipe-manager-steps;
-
-    li {
-      display: block;
-      padding: 8px;
-      margin: 0;
-      line-height: 24px;
-      display: flex;
-
-      &::before {
-        counter-increment: recipe-manager-steps;
-        content: counter(recipe-manager-steps);
-        text-align: center;
-        font-weight: bold;
-        display: block;
-        width: 24px;
-        min-width: 24px;
-        height: 24px;
-        float: left;
-        margin-right: 8px;
-        background-color: #f7e9e9;
-        border-radius: 50%;
-        color: #e27a7a;
       }
     }
   }
@@ -293,6 +281,10 @@
     margin-right: -24px;
     margin-bottom: -24px;
     margin-top: 24px;
+
+    * {
+      color: black !important;
+    }
 
     .seo-preview {
       margin: 24px 0;

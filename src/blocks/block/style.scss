@@ -5,9 +5,20 @@
   --sub-headline-font-size: 24px;
   --sub-headline-font-weight: normal;
   --background: #fefcfc;
+  --background-contrast: #000000;
   --secondary: #efefef;
-  --primary: #e27a7a;
+  --secondary-contrast: #000000;
+  --primary: #030303;
   --primary-light: #f7e9e9;
+  --primary-light-contrast: #000000;
+  --primary-dark: #f7e9e9;
+
+  --clock-url: url("../../../assets/clock.svg");
+
+  --star-url: url("../../../assets/star.svg");
+  --star-filled-url: url("../../../assets/star-filled.svg");
+  --star-half-filled-url: url("../../../assets/star-half-filled.svg");
+  --star-highlighted-url: url("../../../assets/star-highlighted.svg");
 }
 
 .recipe-manager-pro--block.recipe-manager-pro--block {
@@ -16,6 +27,15 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   border-radius: 8px;
   background-color: var(--background);
+  color: var(--background-contrast);
+
+  h2,
+  h3 {
+    color: var(--background-contrast);
+  }
+
+  p {
+  }
 
   .recipe-manager-pro--block--intro {
     display: flex;
@@ -35,7 +55,7 @@
 
     .recipe-manager-pro--block--main-image {
       width: 100%;
-      margin-bottom: 1rem;
+      margin: 0 0 1rem 0;
       background-size: cover;
       background-repeat: no-repeat;
       border-radius: 4px;
@@ -81,19 +101,19 @@
   hr {
     margin: 0;
     padding: 0;
-    border-color: var(--secondary);
+    border-color: var(--primary-light);
     border-style: solid;
     border-width: 0px 0px 1px 0;
   }
 
   .recipe-manager-pro--block--timing-list {
     padding: 1rem 0 0.25rem 0;
+    margin: 0;
 
     ul {
       font-style: normal;
       list-style: none;
       margin-left: 0;
-      opacity: 0.8;
       font-size: 16px;
       margin: 0;
       padding: 0;
@@ -103,7 +123,7 @@
 
       &::before {
         content: "";
-        background-image: url("../../../assets/clock.svg");
+        background-image: var(--clock-url);
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 40px 40px;
@@ -160,6 +180,7 @@
     button {
       display: block;
       background-color: var(--secondary);
+      color: var(--secondary-contrast);
       border: 0;
       border-radius: 4px;
       appearance: none;
@@ -194,6 +215,7 @@
     border-width: 0;
     box-sizing: border-box;
     border-spacing: 0px;
+    margin-bottom: 1rem;
 
     tr {
       background-color: transparent;
@@ -219,6 +241,7 @@
       &:nth-child(odd) {
         td {
           background-color: var(--primary-light);
+          color: var(--primary-light-contrast);
 
           &:first-child {
             border-top-left-radius: 2px;
@@ -237,6 +260,7 @@
   .recipe-manager-pro--block--preparation-steps {
     display: block;
     list-style: none;
+    margin: 0 0 1rem 0;
     padding: 0;
     counter-reset: recipe-manager-steps;
 
@@ -309,7 +333,6 @@
           li.recipe-manager-pro--block--star,
           li.recipe-manager-pro--block--star.selected,
           li.recipe-manager-pro--block--star.half-selected {
-            background-image: url("../../../assets/star-highlighted.svg");
             background-image: var(--star-highlighted-url);
           }
         }
@@ -321,7 +344,6 @@
           &.selected:hover,
           &.half-selected:hover {
             ~ * {
-              background-image: url("../../../assets/star.svg");
               background-image: var(--star-url);
             }
           }
@@ -339,23 +361,19 @@
     padding: 0 2px;
     box-sizing: content-box;
     background-repeat: no-repeat;
-
     display: inline-block;
     width: 32px;
     height: 32px;
-    background-image: url("../../../assets/star.svg");
     background-image: var(--star-url);
     background-size: 32px 32px;
-    background-repeat: center center;
+    background-position: center center;
     text-indent: -999em;
 
     &.selected {
-      background-image: url("../../../assets/star-filled.svg");
       background-image: var(--star-filled-url);
     }
 
     &.half-selected {
-      background-image: url("../../../assets/star-half-filled.svg");
       background-image: var(--star-half-filled-url);
     }
   }

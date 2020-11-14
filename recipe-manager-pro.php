@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name:     Recipe Manager Pro
+ * Plugin Name:     WP Recipe Block
  * Description:     Manage recipes and optimize them automatically for Google Featured Snippets.
  * Version:         0.0.3
  * Author:          Oliver Wagner
@@ -21,9 +21,12 @@ class RecipeManagerPro
 {
 	private $primaryColorDefault = '#e27a7a';
 	private $primaryColorLightDefault = '#f7e9e9';
+	private $primaryColorLightContrastDefault = '#000000';
 	private $primaryColorDarkDefault = '#d55a5a';
 	private $secondaryColorDefault = '#efefef';
+	private $secondaryColorContrastDefault = '#000000';
 	private $backgroundColorDefault = '#fefcfc';
+	private $backgroundColorContrastDefault = '#000000';
 	private $thumnailSizeDefault = 330;
 
 	function __construct()
@@ -49,14 +52,26 @@ class RecipeManagerPro
 	{
 		// Enable Color Picker for Settings Page
 		wp_enqueue_style('wp-color-picker');
-		wp_enqueue_script('recipe-manager-pro-settings', 	plugins_url('build/admin.js', __FILE__), array('jquery', 'wp-color-picker'), '', true);
+		wp_enqueue_style('iris');
+
+
+		wp_enqueue_script('recipe-manager-pro-settings-js', 	plugins_url('build/admin.js', __FILE__), array('jquery', 'wp-color-picker', 'iris'), '', true);
+
+		wp_enqueue_style('recipe-manager-pro-settings-admin-css', 	plugins_url('build/admin.css', __FILE__), array(), '', 'all');
+
+		// TODO: Über admin.scss einbinden
+		wp_enqueue_style('recipe-manager-pro-settings-css', 	plugins_url('build/style-index.css', __FILE__), array(), '', 'all');
+
+		echo $this->renderStyleBlockTemplate();
 	}
+
+
 
 	public function registerSettingsPage()
 	{
 		add_menu_page(
-			__("Recipe Manager Pro", "recipe-manager-pro"),
-			__('Recipe Manager', "recipe-manager-pro"),
+			__("WP Recipe Block", "recipe-manager-pro"),
+			__('WP Recipe Block', "recipe-manager-pro"),
 			'manage_options',
 			'recipe_manager_pro',
 			function () {
@@ -80,8 +95,14 @@ class RecipeManagerPro
 
 	private function renderColorPickerInput($name, $defaultValue)
 	{
-		$value = esc_attr(get_option($name));
-		echo '<input type="text" class="regular-text recipe-manager-pro--color-picker" name="' . $name . '" value="' . $value . '" data-default-value="' .  $defaultValue . '" />';
+		$value = esc_attr(get_option($name, $defaultValue));
+		echo '<input type="text" class="recipe-manager-pro--color-picker" name="' . $name . '" value="' . $value . '" data-default-value="' .  $defaultValue . '" />';
+	}
+
+	private function renderHiddenInput($name, $defaultValue)
+	{
+		$value = esc_attr(get_option($name, $defaultValue));
+		echo '<input type="hidden" name="' . $name . '" value="' . $value . '" />';
 	}
 
 	public function registerSettings()
@@ -103,6 +124,13 @@ class RecipeManagerPro
 		);
 		register_setting(
 			'recipe_manager_pro__general',
+			'recipe_manager_pro__primary_color_light_contrast',
+			array(
+				"default" => $this->primaryColorLightContrastDefault
+			)
+		);
+		register_setting(
+			'recipe_manager_pro__general',
 			'recipe_manager_pro__primary_color_dark',
 			array(
 				"default" => $this->primaryColorDarkDefault
@@ -117,9 +145,23 @@ class RecipeManagerPro
 		);
 		register_setting(
 			'recipe_manager_pro__general',
+			'recipe_manager_pro__secondary_color_contrast',
+			array(
+				"default" => $this->secondaryColorContrastDefault
+			)
+		);
+		register_setting(
+			'recipe_manager_pro__general',
 			'recipe_manager_pro__background_color',
 			array(
 				"default" => $this->backgroundColorDefault
+			)
+		);
+		register_setting(
+			'recipe_manager_pro__general',
+			'recipe_manager_pro__background_color_contrast',
+			array(
+				"default" => $this->backgroundColorContrastDefault
 			)
 		);
 		register_setting(
@@ -153,30 +195,42 @@ class RecipeManagerPro
 				'label_for' => 'recipe_manager_pro__primary_color'
 			)
 		);
-		add_settings_field(
-			'recipe_manager_pro__primary_color_light',
-			__('Primary color (light)', 'recipe-manager-pro'),
-			function () {
-				$this->renderColorPickerInput('recipe_manager_pro__primary_color_light', $this->primaryColorLightDefault);
-			},
-			'recipe_manager_pro__general',
-			'recipe_manager_pro__general',
-			array(
-				'label_for' => 'recipe_manager_pro__primary_color_light'
-			)
-		);
-		add_settings_field(
-			'recipe_manager_pro__primary_color_dark',
-			__('Primary color (dark)', 'recipe-manager-pro'),
-			function () {
-				$this->renderColorPickerInput('recipe_manager_pro__primary_color_dark', $this->primaryColorDarkDefault);
-			},
-			'recipe_manager_pro__general',
-			'recipe_manager_pro__general',
-			array(
-				'label_for' => 'recipe_manager_pro__primary_color_dark'
-			)
-		);
+		// add_settings_field(
+		// 	'recipe_manager_pro__primary_color_light',
+		// 	null,
+		// 	function () {
+		// 		$this->renderHiddenInput('recipe_manager_pro__primary_color_light', $this->primaryColorLightDefault);
+		// 	},
+		// 	'recipe_manager_pro__general',
+		// 	'recipe_manager_pro__general',
+		// 	array(
+		// 		'label_for' => 'recipe_manager_pro__primary_color_light'
+		// 	)
+		// );
+		// add_settings_field(
+		// 	'recipe_manager_pro__primary_color_light_contrast',
+		// 	__('Primary color (light)', 'recipe-manager-pro'),
+		// 	function () {
+		// 		$this->renderHiddenInput('recipe_manager_pro__primary_color_light_contrast', $this->primaryColorLightContrastDefault);
+		// 	},
+		// 	'recipe_manager_pro__general',
+		// 	'recipe_manager_pro__general',
+		// 	array(
+		// 		'label_for' => 'recipe_manager_pro__primary_color_light_contrast'
+		// 	)
+		// );
+		// add_settings_field(
+		// 	'recipe_manager_pro__primary_color_dark',
+		// 	__('Primary color (dark)', 'recipe-manager-pro'),
+		// 	function () {
+		// 		$this->renderHiddenInput('recipe_manager_pro__primary_color_dark', $this->primaryColorDarkDefault);
+		// 	},
+		// 	'recipe_manager_pro__general',
+		// 	'recipe_manager_pro__general',
+		// 	array(
+		// 		'label_for' => 'recipe_manager_pro__primary_color_dark'
+		// 	)
+		// );
 		add_settings_field(
 			'recipe_manager_pro__secondary_color',
 			__('Secondary color', 'recipe-manager-pro'),
@@ -189,6 +243,18 @@ class RecipeManagerPro
 				'label_for' => 'recipe_manager_pro__secondary_color'
 			)
 		);
+		// add_settings_field(
+		// 	'recipe_manager_pro__secondary_color_contrast',
+		// 	__('Secondary color', 'recipe-manager-pro'),
+		// 	function () {
+		// 		$this->renderHiddenInput('recipe_manager_pro__secondary_color_contrast', $this->secondaryColorContrastDefault);
+		// 	},
+		// 	'recipe_manager_pro__general',
+		// 	'recipe_manager_pro__general',
+		// 	array(
+		// 		'label_for' => 'recipe_manager_pro__secondary_color_contrast'
+		// 	)
+		// );
 		add_settings_field(
 			'recipe_manager_pro__background_color',
 			__('Background color', 'recipe-manager-pro'),
@@ -201,12 +267,24 @@ class RecipeManagerPro
 				'label_for' => 'recipe_manager_pro__background_color'
 			)
 		);
+		// add_settings_field(
+		// 	'recipe_manager_pro__background_color_contrast',
+		// 	__('Background color', 'recipe-manager-pro'),
+		// 	function () {
+		// 		$this->renderHiddenInput('recipe_manager_pro__background_color_contrast', $this->backgroundColorContrastDefault);
+		// 	},
+		// 	'recipe_manager_pro__general',
+		// 	'recipe_manager_pro__general',
+		// 	array(
+		// 		'label_for' => 'recipe_manager_pro__background_color_contrast'
+		// 	)
+		// );
 		add_settings_field(
 			'recipe_manager_pro__thumbnail_size',
 			__('Thumbnail size', 'recipe-manager-pro'),
 			function () {
 				$value = esc_attr(get_option('recipe_manager_pro__thumbnail_size'));
-				echo '<input type="number" class="regular-text" name="recipe_manager_pro__thumbnail_size" value="' . $value . '" />';
+				echo '<input type="number" name="recipe_manager_pro__thumbnail_size" value="' . $value . '" />';
 				echo '<p class="description">';
 				printf(__("If you change this value, you must recreate your thumbnails.<br /> This can be done with the great plugin %s.", 'recipe-manager-pro'), '<a href="https://wordpress.org/plugins/regenerate-thumbnails/" target="_blank">Regenerate Thumbnails</a>');
 				echo '</p>';
@@ -590,6 +668,8 @@ class RecipeManagerPro
 		}
 	}
 
+
+
 	private function extractIngredients($ingredientsHtml)
 	{
 		$ingredientsArray = explode('</li><li>', $ingredientsHtml);
@@ -617,14 +697,65 @@ class RecipeManagerPro
 		return $ingredientsArray;
 	}
 
-	public function renderBlock($attributes, $context)
+	public function getStyleBlockTemplate()
 	{
-		// Return the frontend output for our block
 		$dir = dirname(__FILE__);
-		$template = file_get_contents($dir . '/src/blocks/block/block.hbs');
+		return file_get_contents($dir . '/src/blocks/block/style-block.hbs');
+	}
 
-		// TODO: Das im Build-Prozess erzeugen
+	private function getStyleBlockRenderer()
+	{
+		if (!file_exists(plugin_dir_path(__FILE__) . '/build/style-block-template.php') || WP_DEBUG) {
+			$dir = dirname(__FILE__);
+			$template = file_get_contents($dir . '/src/blocks/block/style-block.hbs');
+
+			$phpStr = LightnCandy::compile($template, array(
+				'flags' => LightnCandy::FLAG_HANDLEBARSJS | LightnCandy::FLAG_ERROR_EXCEPTION,
+				'helpers' => array(
+					'encode' => function ($context, $options) {
+						return urlencode($context);
+					},
+					'shade' => function ($color, $shade, $options) {
+						return $this->shadeColor($color, $shade);
+					},
+				)
+			));
+
+			// Save the compiled PHP code into a php file
+			file_put_contents(plugin_dir_path(__FILE__) . '/build/style-block-template.php', '<?php ' . $phpStr . '?>');
+		}
+
+		// Get the render function from the php file
+		return include(plugin_dir_path(__FILE__) . '/build/style-block-template.php');
+	}
+
+	public function renderStyleBlockTemplate()
+	{
+		$options = $this->getStyleOptions();
+		$renderer = $this->getStyleBlockRenderer();
+		return $renderer(array(
+			"options" => $options
+		));
+	}
+
+	private function shadeColor($color, $shade)
+	{
+		$num = base_convert(substr($color, 1), 16, 10);
+		$amt = round(2.55 * $shade);
+		$r = ($num >> 16) + $amt;
+		$b = ($num >> 8 & 0x00ff) + $amt;
+		$g = ($num & 0x0000ff) + $amt;
+
+		return '#' . substr(base_convert(0x1000000 + ($r < 255 ? ($r < 1 ? 0 : $r) : 255) * 0x10000 + ($b < 255 ? ($b < 1 ? 0 : $b) : 255) * 0x100 + ($g < 255 ? ($g < 1 ? 0 : $g) : 255), 10, 16), 1);
+	}
+
+	private function getTemplateRenderer()
+	{
 		if (!file_exists(plugin_dir_path(__FILE__) . '/build/block-template.php') || WP_DEBUG) {
+			$dir = dirname(__FILE__);
+			$template = file_get_contents($dir . '/src/blocks/block/block.hbs');
+			$styleBlockTemplate = $this->getStyleBlockTemplate();
+
 			$phpStr = LightnCandy::compile($template, array(
 				'flags' => LightnCandy::FLAG_HANDLEBARSJS | LightnCandy::FLAG_ERROR_EXCEPTION,
 				'helpers' => array(
@@ -647,6 +778,12 @@ class RecipeManagerPro
 					'toJSON' => function ($context, $options) {
 						return json_encode($context);
 					},
+					'encode' => function ($context, $options) {
+						return urlencode($context);
+					},
+					'shade' => function ($color, $shade, $options) {
+						return $this->shadeColor($color, $shade);
+					},
 					'ifMoreOrEqual' => function ($arg1, $arg2, $options) {
 						if ($arg1 >= $arg2) {
 							return $options['fn']();
@@ -654,6 +791,9 @@ class RecipeManagerPro
 							return $options['inverse']();
 						}
 					}
+				),
+				"partials" => array(
+					"styleBlock" => $styleBlockTemplate
 				)
 			));
 
@@ -662,9 +802,77 @@ class RecipeManagerPro
 		}
 
 		// Get the render function from the php file
-		$renderer = include(plugin_dir_path(__FILE__) . '/build/block-template.php');
+		return include(plugin_dir_path(__FILE__) . '/build/block-template.php');
+	}
 
-		$attributes['translations'] = [
+	private function renderTemplate($data)
+	{
+		$renderer = $this->getTemplateRenderer();
+		return $renderer($data);
+	}
+
+	public function getDummyData()
+	{
+		return array(
+			"translations" => $this->getTemplateTranslations(),
+			"recipeYield" => 10,
+			"recipeYieldUnit" => __("piece", 'recipe-manager-pro'),
+			"difficulty" => __('simple', 'recipe-manager-pro'),
+			'prepTime' => 15,
+			'cookTime' => 30,
+			'name' => __("Crêpes", 'recipe-manager-pro'),
+			'totalTime' => 105,
+			"ingredients" => array(
+				array(
+					"baseUnit" => "g",
+					"baseAmount" => 25,
+					"amount" => 250,
+					"unit" => "g",
+					"ingredient" => __("Flour", "recipe-manager-pro")
+				),
+				array(
+					"baseUnit" => "g",
+					"baseAmount" => 5,
+					"amount" => 50,
+					"unit" => "g",
+					"ingredient" => __("Butter", "recipe-manager-pro")
+				),
+				array(
+					"baseUnit" => "ml",
+					"baseAmount" => 50,
+					"amount" => 500,
+					"unit" => "ml",
+					"ingredient" => __("Milk", "recipe-manager-pro")
+				),
+				array(
+					"baseUnit" => "",
+					"baseAmount" => 0.4,
+					"amount" => 4,
+					"unit" => "",
+					"ingredient" => __("Eggs", "recipe-manager-pro")
+				),
+			),
+			"preparationSteps" => '<li>Step 1</li><li>Step 2</li>',
+			"averageRating" => 4.5,
+			"description" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu ex fermentum, porta est in, congue ligula.",
+			// TODO: Besserer Placeholder
+			"thumbnail" => "https://placehold.it/300x200",
+			"notes" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu ex fermentum, porta est in, congue ligula. Donec tristique massa id condimentum porttitor. Morbi quis neque eu libero volutpat dictum. Aenean nec enim sed massa aliquet congue. Duis sed aliquam odio. Aenean ut lorem pharetra, suscipit odio ac, blandit nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam vel massa justo. Sed laoreet tempus urna id convallis. Curabitur in felis in metus sollicitudin tristique."
+		);
+	}
+
+	public function renderDummyTemplate()
+	{
+		$dummyData = $this->getDummyData();
+
+		$renderer = $this->getTemplateRenderer();
+
+		return $renderer($dummyData);
+	}
+
+	private function getTemplateTranslations()
+	{
+		return [
 			"prepTime" => __('Prep time', 'recipe-manager-pro'),
 			"restTime" => __('Rest time', 'recipe-manager-pro'),
 			"cookTime" => __('Cook time', 'recipe-manager-pro'),
@@ -678,6 +886,11 @@ class RecipeManagerPro
 			"feedback" => __('How do you like the recipe?', 'recipe-manager-pro'),
 			"servings" => __('servings', 'recipe-manager-pro')
 		];
+	}
+
+	public function renderBlock($attributes, $context)
+	{
+		$attributes['translations'] = $this->getTemplateTranslations();
 
 		$attributes['postId'] = get_the_ID();
 		$attributes['ajaxUrl'] = admin_url('admin-ajax.php');
@@ -835,18 +1048,23 @@ class RecipeManagerPro
 		// Remove empty strings from ldJon
 		$attributes['ldJson'] = array_filter($attributes['ldJson']);
 
-		$attributes['options'] = array(
+		$attributes['options'] = $this->getStyleOptions();
+
+		return $this->renderTemplate($attributes);
+	}
+
+	private function getStyleOptions()
+	{
+		return array(
 			"primaryColor" => get_option('recipe_manager_pro__primary_color', $this->primaryColorDefault),
 			"primaryColorLight" => get_option('recipe_manager_pro__primary_color_light', $this->primaryColorLightDefault),
+			"primaryColorLightContrast" => get_option('recipe_manager_pro__primary_color_light_contrast', $this->primaryColorLightContrastDefault),
+			"primaryColorDark" => get_option('recipe_manager_pro__primary_color_dark', $this->primaryColorDarkDefault),
 			"secondaryColor" => get_option('recipe_manager_pro__secondary_color', $this->secondaryColorDefault),
+			"secondaryColorContrast" => get_option('recipe_manager_pro__secondary_color_contrast', $this->secondaryColorContrastDefault),
 			"backgroundColor" => get_option('recipe_manager_pro__background_color', $this->backgroundColorDefault),
-
-			"primaryColorEncoded" => urlencode(get_option('recipe_manager_pro__primary_color', $this->primaryColorDefault)),
-			"primaryColorLightEncoded" => urlencode(get_option('recipe_manager_pro__primary_color_light', $this->primaryColorLightDefault)),
-			"primaryColorDarkEncoded" => urlencode(get_option('recipe_manager_pro__primary_color_dark', $this->primaryColorDarkDefault)),
+			"backgroundColorContrast" => get_option('recipe_manager_pro__background_color_contrast', $this->backgroundColorContrastDefault),
 		);
-
-		return $renderer($attributes);
 	}
 
 	private function toIso8601Duration($seconds)

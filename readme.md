@@ -24,6 +24,10 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 
 - servings entfernen
 - Plugin umbennenen?
+- Steps in JSONLD mal angucken was da so drin steht
+- Zahlenfelder gehen nicht richtig
+- Kontrastfarben berechnen
+- Hell Dunkel als Helper-Funktionen
 
 # Develop
 
