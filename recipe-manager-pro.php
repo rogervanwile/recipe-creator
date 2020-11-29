@@ -1085,15 +1085,23 @@ class RecipeManagerPro
 			$attributes['thumbnail'] = $attributes['image4_3'];
 		}
 
+		$images = [];
+
+		if (isset($attributes['image1_1']) && !empty($attributes['image1_1'])) {
+			$images[] = $attributes['image1_1'];
+		}
+		if (isset($attributes['image4_3']) && !empty($attributes['image4_3'])) {
+			$images[] = $attributes['image4_3'];
+		}
+		if (isset($attributes['image16_9']) && !empty($attributes['image16_9'])) {
+			$images[] = $attributes['image16_9'];
+		}
+
 		$attributes['ldJson'] = [
 			"@context" => "https://schema.org/",
 			"@type" => "Recipe",
 			"name" => isset($attributes['name']) ? $attributes['name'] : '',
-			"image" => [
-				isset($attributes['image1_1']) ? $attributes['image1_1'] : '',
-				isset($attributes['image4_3']) ? $attributes['image4_3'] : '',
-				isset($attributes['image16_9']) ? $attributes['image16_9'] : ''
-			],
+			"image" => $images,
 			"author" => [
 				"@type" => "Person",
 				"name" => get_the_author_meta('display_name')
@@ -1107,7 +1115,7 @@ class RecipeManagerPro
 			"keywords" => $keywordsString,
 			"recipeYield" => isset($attributes['recipeYield']) ? $attributes['recipeYield'] . (isset($attributes['recipeYieldUnit']) ? ' ' . $attributes['recipeYieldUnit'] : '') : '',
 			"recipeCategory" => $category,
-			"nutrition" => isset($attributes['calories']) ? [
+			"nutrition" => (isset($attributes['calories']) && !empty($attributes['calories'])) ? [
 				"@type" => "NutritionInformation",
 				"calories" => $attributes['calories']
 			] : '',
