@@ -1,1 +1,282 @@
-!function(e){var r={};function t(n){if(r[n])return r[n].exports;var o=r[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=e,t.c=r,t.d=function(e,r,n){t.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:n})},t.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},t.t=function(e,r){if(1&r&&(e=t(e)),8&r)return e;if(4&r&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(t.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&r&&"string"!=typeof e)for(var o in e)t.d(n,o,function(r){return e[r]}.bind(null,o));return n},t.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(r,"a",r),r},t.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},t.p="",t(t.s=9)}({9:function(e,r){function t(e,r){var t;if("undefined"==typeof Symbol||null==e[Symbol.iterator]){if(Array.isArray(e)||(t=function(e,r){if(!e)return;if("string"==typeof e)return n(e,r);var t=Object.prototype.toString.call(e).slice(8,-1);"Object"===t&&e.constructor&&(t=e.constructor.name);if("Map"===t||"Set"===t)return Array.from(e);if("Arguments"===t||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t))return n(e,r)}(e))||r&&e&&"number"==typeof e.length){t&&(e=t);var o=0,a=function(){};return{s:a,n:function(){return o>=e.length?{done:!0}:{done:!1,value:e[o++]}},e:function(e){throw e},f:a}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}var i,c=!0,l=!1;return{s:function(){t=e[Symbol.iterator]()},n:function(){var e=t.next();return c=e.done,e},e:function(e){l=!0,i=e},f:function(){try{c||null==t.return||t.return()}finally{if(l)throw i}}}}function n(e,r){(null==r||r>e.length)&&(r=e.length);for(var t=0,n=new Array(r);t<r;t++)n[t]=e[t];return n}document.addEventListener("DOMContentLoaded",(function(){var e=document.querySelectorAll(".recipe-manager-pro--block--rating.recipe-manager-pro--block--interactive");e&&e.forEach((function(e){var r=e.getAttribute("data-post-id");if(window.localStorage.getItem("recipe-manager-pro::"+r))try{e.closest(".recipe-manager-pro--block--user-rating").style.display="none"}catch(e){console.error(e)}else e.querySelectorAll(".recipe-manager-pro--block--star").forEach((function(e){e.addEventListener("click",(function(n){!function(e){var r,n=!1,o=t(e.parentElement.children);try{for(o.s();!(r=o.n()).done;){var a=r.value;a===e?(a.classList.add("selected"),n=!0):n?n&&a.classList.remove("selected"):a.classList.add("selected")}}catch(e){o.e(e)}finally{o.f()}}(e);var o=e.getAttribute("data-rating");window.localStorage.setItem("recipe-manager-pro::"+r,o),function(e,r){fetch(RecipeManagerPro.config.ajaxUrl,{method:"POST",body:new URLSearchParams({_ajax_nonce:RecipeManagerPro.config.nonce,action:"recipe_manager_pro_set_rating",postId:e,rating:r})}).then((function(r){0!==r&&400!==r.status&&r.json().then((function(r){if(r&&r.data&&r.data.averageRating){var t=document.querySelector('[data-post-id="'+e+'"] .recipe-manager-pro--block--average-voting');t&&(t.innerHTML=r.data.averageRating)}}))})).catch((function(e){console.error(e)}))}(r,o)}))}))}));var r,n=null,o=null,a=null,i=null,c=null,l=function(){c.innerText=n},u=function(){o&&o.querySelectorAll("tr .recipe-manager-pro--block--amount").forEach((function(e){var r=parseFloat(e.getAttribute("data-recipe-base-amount"),10),t=e.getAttribute("data-recipe-base-unit");if(r){var o=r*n,a=t;if(o>=1e3)switch(a){case"g":a="kg",o/=1e3;break;case"ml":a="l",o/=1e3}var i=o;try{i=new Intl.NumberFormat("de-DE").format(o)}catch(e){}e&&(e.innerText=i+" "+a)}}))};r=document.querySelector(".recipe-manager-pro--block--servings-editor"),o=document.querySelector(".recipe-manager-pro--block--ingredients"),r&&(a=r.querySelector(".recipe-shrink-servings"),i=r.querySelector(".recipe-increase-servings"),(c=r.querySelector(".recipe-servings"))&&(n=parseInt(c.innerHTML.trim(),10),a&&a.addEventListener("click",(function(){n>1&&(n--,l(),u())})),i&&i.addEventListener("click",(function(){n++,l(),u()}))))}))}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/frontend.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./src/frontend.js":
+/*!*************************!*\
+  !*** ./src/frontend.js ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+document.addEventListener("DOMContentLoaded", function () {
+  var ratingElements = document.querySelectorAll(".recipe-manager-pro--block--rating.recipe-manager-pro--block--interactive");
+
+  var storeRatingInDatabase = function storeRatingInDatabase(postId, rating) {
+    fetch(RecipeManagerPro.config.ajaxUrl, {
+      method: "POST",
+      body: new URLSearchParams({
+        _ajax_nonce: RecipeManagerPro.config.nonce,
+        action: "recipe_manager_pro_set_rating",
+        postId: postId,
+        rating: rating
+      })
+    }).then(function (response) {
+      if (response === 0 || response.status === 400) {
+        return;
+      }
+
+      response.json().then(function (responseData) {
+        if (responseData && responseData.data && responseData.data.averageRating) {
+          var averageVotingElement = document.querySelector('[data-post-id="' + postId + '"] .recipe-manager-pro--block--average-voting');
+
+          if (averageVotingElement) {
+            averageVotingElement.innerHTML = responseData.data.averageRating;
+          }
+        }
+      });
+    }).catch(function (error) {
+      console.error(error);
+    });
+  };
+
+  var markAsSelected = function markAsSelected(selectedStarElement) {
+    var foundItem = false;
+
+    var _iterator = _createForOfIteratorHelper(selectedStarElement.parentElement.children),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var element = _step.value;
+
+        if (element === selectedStarElement) {
+          element.classList.add("selected");
+          foundItem = true;
+        } else if (!foundItem) {
+          element.classList.add("selected");
+        } else if (foundItem) {
+          element.classList.remove("selected");
+        }
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+  };
+
+  if (ratingElements) {
+    ratingElements.forEach(function (ratingElement) {
+      var postId = ratingElement.getAttribute("data-post-id");
+      var savedRating = window.localStorage.getItem("recipe-manager-pro::" + postId);
+
+      if (!savedRating) {
+        ratingElement.querySelectorAll(".recipe-manager-pro--block--star").forEach(function (starElement) {
+          starElement.addEventListener("click", function (event) {
+            markAsSelected(starElement);
+            var rating = starElement.getAttribute("data-rating"); // To show the users vote and prevent multiple votes
+
+            window.localStorage.setItem("recipe-manager-pro::" + postId, rating);
+            storeRatingInDatabase(postId, rating);
+          });
+        });
+      } else {
+        try {
+          // Hide the user rating section if the user has already voted.
+          ratingElement.closest(".recipe-manager-pro--block--user-rating").style.display = "none";
+        } catch (e) {
+          console.error(e);
+          debugger;
+        } // ratingElement.classList.remove(
+        //   "recipe-manager-pro--block--interactive"
+        // );
+        // var selectedStarElement = ratingElement.querySelector(
+        //   '.recipe-manager-pro--block--star[data-rating="' + savedRating + '"]'
+        // );
+        // if (selectedStarElement) {
+        //   markAsSelected(selectedStarElement);
+        // }
+
+      }
+    });
+  }
+
+  var servings = null;
+  var ingredientsTable = null;
+  var shrinkButton = null;
+  var increaseButton = null;
+  var servingsDisplay = null; // Servings calculator
+
+  var initServingCalculator = function initServingCalculator() {
+    var servingsEditorElement = document.querySelector(".recipe-manager-pro--block--servings-editor");
+    ingredientsTable = document.querySelector(".recipe-manager-pro--block--ingredients");
+
+    if (servingsEditorElement) {
+      shrinkButton = servingsEditorElement.querySelector(".recipe-shrink-servings");
+      increaseButton = servingsEditorElement.querySelector(".recipe-increase-servings");
+      servingsDisplay = servingsEditorElement.querySelector(".recipe-servings");
+
+      if (servingsDisplay) {
+        servings = parseInt(servingsDisplay.innerHTML.trim(), 10);
+
+        if (shrinkButton) {
+          shrinkButton.addEventListener("click", function () {
+            if (servings > 1) {
+              servings--;
+              refreshServingsDisplay();
+              refreshIngredients();
+            }
+          });
+        }
+
+        if (increaseButton) {
+          increaseButton.addEventListener("click", function () {
+            servings++;
+            refreshServingsDisplay();
+            refreshIngredients();
+          });
+        }
+      }
+    }
+  };
+
+  var refreshServingsDisplay = function refreshServingsDisplay() {
+    servingsDisplay.innerText = servings;
+  };
+
+  var refreshIngredients = function refreshIngredients() {
+    if (ingredientsTable) {
+      ingredientsTable.querySelectorAll("tr .recipe-manager-pro--block--amount").forEach(function (amountElement) {
+        var baseAmount = parseFloat(amountElement.getAttribute("data-recipe-base-amount"), 10);
+        var baseUnit = amountElement.getAttribute("data-recipe-base-unit");
+
+        if (baseAmount) {
+          var amount = baseAmount * servings;
+          var unit = baseUnit; // TODO: Umrechnen ^^
+
+          if (amount >= 1000) {
+            switch (unit) {
+              case "g":
+                unit = "kg";
+                amount = amount / 1000;
+                break;
+
+              case "ml":
+                unit = "l";
+                amount = amount / 1000;
+                break;
+            }
+          }
+
+          var formattedAmount = amount;
+
+          try {
+            formattedAmount = new Intl.NumberFormat("de-DE").format(amount);
+          } catch (e) {}
+
+          if (amountElement) {
+            amountElement.innerText = formattedAmount + " " + unit;
+          }
+        }
+      });
+    }
+  };
+
+  initServingCalculator();
+});
+
+/***/ })
+
+/******/ });
+//# sourceMappingURL=frontend.js.map

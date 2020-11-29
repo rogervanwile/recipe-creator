@@ -6,6 +6,8 @@ import {
   PanelRow,
   SelectControl,
   CheckboxControl,
+  FormFileUpload,
+  Button,
   __experimentalInputControl as InputControl,
   __experimentalRadio as Radio,
   __experimentalRadioGroup as RadioGroup,
@@ -21,6 +23,8 @@ import {
 import { Fragment } from "@wordpress/element";
 
 import "./editor.scss";
+
+import ImageUpload from "./ImageUpload";
 
 var recipeManagerProMigrationDone = false;
 
@@ -151,11 +155,11 @@ export default function Edit(props) {
   function getRatingElement() {
     if (props.data.meta.rating_count) {
       return (
-        <div className="features-snipped-preview--rating">
+        <div className="featured-snipped-preview--rating">
           {props.data.meta.average_rating}&nbsp;
-          <span className="features-snipped-preview--stars">
+          <span className="featured-snipped-preview--stars">
             <span
-              className="features-snipped-preview--stars--rated"
+              className="featured-snipped-preview--stars--rated"
               style={{
                 width:
                   getRatedStarsWidth(props.data.meta.average_rating) + "px",
@@ -167,7 +171,7 @@ export default function Edit(props) {
       );
     } else {
       return (
-        <div className="features-snipped-preview--rating">
+        <div className="featured-snipped-preview--rating">
           {__("No reviews", "recipe-manager-pro")}
         </div>
       );
@@ -177,36 +181,243 @@ export default function Edit(props) {
   return (
     <Fragment>
       <InspectorControls>
-        <PanelBody title={__("Settings", "recipe-manager-pro")}>
+        <PanelBody
+          title={__("SEO", "recipe-manager-pro")}
+          className="recipe-manager-pro--sidebar"
+        >
           <PanelRow>
-            <h3>{__("Timings", "recipe-manager-pro")}</h3>
+            <p>
+              {__(
+                "Google and other search engines need more information to present your recipe in the best possible way. You should provide this information as good as possible.",
+                "recipe-manager-pro"
+              )}
+            </p>
           </PanelRow>
           <PanelRow>
-            <CheckboxControl
-              checked={props.attributes.showPrepTime}
-              label={__("Show prep time", "recipe-manager-pro")}
-              onChange={(showPrepTime) => {
-                updateTime("prepTime", 0, { showPrepTime });
+            <TextControl
+              label={__("Cuisine", "recipe-manager-pro")}
+              value={props.attributes.recipeCuisine}
+              placeholder={__(
+                'e.g. "Italian" or "German"',
+                "recipe-manager-pro"
+              )}
+              onChange={(recipeCuisine) => {
+                props.setAttributes({ recipeCuisine });
               }}
             />
           </PanelRow>
           <PanelRow>
-            <CheckboxControl
-              checked={props.attributes.showRestTime}
-              label={__("Show prep time", "recipe-manager-pro")}
-              onChange={(showRestTime) => {
-                updateTime("restTime", 0, { showRestTime });
+            <TextControl
+              type="number"
+              label={__("Calories", "recipe-manager-pro")}
+              value={props.attributes.calories}
+              description={__("Calories per serving or piece")}
+              suffix="kcal"
+              onChange={(calories) => {
+                props.setAttributes({ calories });
               }}
             />
           </PanelRow>
+
+          <hr />
+
           <PanelRow>
-            <CheckboxControl
-              checked={props.attributes.showCookTime}
-              label={__("Show prep time", "recipe-manager-pro")}
-              onChange={(showCookTime) => {
-                updateTime("cookTime", 0, { showCookTime });
-              }}
-            />
+            <h4>{__("Picture of the finished dish", "recipe-manager-pro")}</h4>
+            <p>
+              {__(
+                "Depending on the usage Google uses different image formats of your recipe.",
+                "recipe-manager-pro"
+              )}
+            </p>
+          </PanelRow>
+          <PanelRow>
+            <ImageUpload
+              props={props}
+              keyName="image1_1"
+              label="1:1"
+              className="1-1"
+            ></ImageUpload>
+          </PanelRow>
+          <hr />
+          <PanelRow>
+            <ImageUpload
+              props={props}
+              keyName="image4_3"
+              label="4:3"
+              className="4-3"
+            ></ImageUpload>
+          </PanelRow>
+          <hr />
+          <PanelRow>
+            <ImageUpload
+              props={props}
+              keyName="image16_9"
+              label="16:9"
+              className="16-9"
+            ></ImageUpload>
+          </PanelRow>
+
+          <hr />
+
+          <PanelRow>
+            <h3>{__("Previews", "recipe-manager-pro")}</h3>
+            <h4>{__("Featured Snipped", "recipe-manager-pro")}</h4>
+          </PanelRow>
+
+          <PanelRow>
+            <section className="featured-snipped-preview">
+              <div className="featured-snipped-preview--image-wrapper">
+                <div
+                  className="featured-snipped-preview--image"
+                  style={{
+                    backgroundImage: "url(" + props.attributes.image16_9 + ")",
+                  }}
+                ></div>
+              </div>
+              <div className="featured-snipped-preview--title">
+                {props.attributes.name}
+              </div>
+              <div className="featured-snipped-preview--blog-title">
+                {props.data.title}
+              </div>
+              {getRatingElement()}
+              <div className="featured-snipped-preview--total-time">
+                {props.attributes.totalTime} Min.
+              </div>
+            </section>
+          </PanelRow>
+
+          <PanelRow>
+            <h4>{__("Mobile Search Result", "recipe-manager-pro")}</h4>
+          </PanelRow>
+
+          {/* <PanelRow>
+            <section className="featured-result-preview-desktop">
+              <h3 className="featured-result-preview-desktop--headline">
+                {props.attributes.name}
+              </h3>
+              <div className="featured-result-preview-desktop--image-text">
+                <MediaUploadCheck>
+                  <MediaUpload
+                    onSelect={(media) => {
+                      if (media) {
+                        props.setAttributes({
+                          image1_1: media.url,
+                          image1_1Id: media.id,
+                        });
+                      }
+                    }}
+                    allowedTypes={ALLOWED_MEDIA_TYPES}
+                    value={props.attributes.image1_1}
+                    render={({ open }) => (
+                      <div
+                        className="featured-result-preview-desktop--image"
+                        onClick={open}
+                        style={{
+                          backgroundImage:
+                            "url(" + props.attributes.image1_1 + ")",
+                        }}
+                      ></div>
+                    )}
+                  ></MediaUpload>
+                </MediaUploadCheck>
+                <div className="featured-result-preview-desktop--text">
+                  <div className="featured-result-preview-desktop--extract">
+                    <span className="featured-result-preview-desktop--date">
+                      {props.data.publishDate} —
+                    </span>
+                    &nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit. Morbi nec lectus gravida, sollicitudin velit sed,
+                    consectetur quam.
+                  </div>
+
+                  <div className="featured-result-preview-desktop--meta">
+                    <span className="featured-snipped-preview--stars">
+                      <span
+                        className="featured-snipped-preview--stars--rated"
+                        style={{
+                          width:
+                            getRatedStarsWidth(props.data.meta.average_rating) +
+                            "px",
+                        }}
+                      ></span>
+                    </span>
+                    <span>
+                      &nbsp;{__("Rating", "recipe-manager-pro")}:{" "}
+                      {props.data.meta.average_rating}
+                    </span>{" "}
+                    · &lrm;
+                    <span>
+                      {props.data.meta.rating_count}{" "}
+                      {__("reviews", "recipe-manager-pro")}
+                    </span>{" "}
+                    · &lrm;
+                    <span>{props.attributes.totalTime} Min.</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </PanelRow> */}
+
+          <PanelRow>
+            <section className="featured-result-preview-mobile">
+              <header className="featured-result-preview-mobile--header">
+                <span className="featured-result-preview-mobile--breadcrumb">
+                  www.domain.com
+                </span>
+                <h3 className="featured-result-preview-mobile--headline">
+                  {props.attributes.name}
+                </h3>
+              </header>
+              <div className="featured-result-preview-mobile--image-text">
+                <div
+                  className="featured-result-preview-mobile--image"
+                  style={{
+                    backgroundImage: "url(" + props.attributes.image1_1 + ")",
+                  }}
+                ></div>
+                <div className="featured-result-preview-mobile--text">
+                  <div className="featured-result-preview-mobile--extract">
+                    {/* <span className="featured-result-preview-mobile--date">
+                      {props.data.publishDate} —
+                    </span> */}
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Morbi nec lectus gravida, sollicitudin velit sed,
+                    consectetur quam.
+                  </div>
+                </div>
+              </div>
+
+              <div className="featured-result-preview-mobile--footer">
+                <div className="featured-result-preview-mobile--rating-col">
+                  <header>{__("Rating", "recipe-manager-pro")}</header>
+                  <p>
+                    <span>{props.data.meta.average_rating}</span>
+                    <span className="featured-snipped-preview--stars">
+                      <span
+                        className="featured-snipped-preview--stars--rated"
+                        style={{
+                          width:
+                            getRatedStarsWidth(props.data.meta.average_rating) +
+                            "px",
+                        }}
+                      ></span>
+                    </span>
+                    <span>({props.data.meta.rating_count})</span>{" "}
+                  </p>
+                </div>
+
+                <div className="featured-result-preview-mobile--time-col">
+                  <header>{__("Preparation", "recipe-manager-pro")}</header>
+                  <p>{props.attributes.totalTime} Min.</p>
+                </div>
+
+                {/* <div className="featured-result-preview-mobile--calories-col">
+                  <header>{__("Calories", "recipe-manager-pro")}</header>
+                  <p>{__("Calories", "recipe-manager-pro")}: 99</p>
+                </div> */}
+              </div>
+            </section>
           </PanelRow>
         </PanelBody>
       </InspectorControls>
@@ -221,18 +432,43 @@ export default function Edit(props) {
         />
         <div className="recipe-manager-pro--block--intro">
           <div>
-            <RadioGroup
-              onChange={(difficulty) => props.setAttributes({ difficulty })}
-              checked={props.attributes.difficulty}
+            <span
+              className={
+                "recipe-manager-pro--block--difficulty" +
+                (props.attributes.difficulty !== "simple" ? " unselected" : "")
+              }
+              onClick={() => {
+                props.setAttributes({ difficulty: "simple" });
+              }}
             >
-              <Radio value="simple">{__("simple", "recipe-manager-pro")}</Radio>
-              <Radio value="moderate">
-                {__("moderate", "recipe-manager-pro")}
-              </Radio>
-              <Radio value="challenging">
-                {__("challenging", "recipe-manager-pro")}
-              </Radio>
-            </RadioGroup>
+              {__("simple", "recipe-manager-pro")}
+            </span>
+            <span
+              className={
+                "recipe-manager-pro--block--difficulty" +
+                (props.attributes.difficulty !== "moderate"
+                  ? " unselected"
+                  : "")
+              }
+              onClick={() => {
+                props.setAttributes({ difficulty: "moderate" });
+              }}
+            >
+              {__("moderate", "recipe-manager-pro")}
+            </span>
+            <span
+              className={
+                "recipe-manager-pro--block--difficulty" +
+                (props.attributes.difficulty !== "challenging"
+                  ? " unselected"
+                  : "")
+              }
+              onClick={() => {
+                props.setAttributes({ difficulty: "challenging" });
+              }}
+            >
+              {__("challenging", "recipe-manager-pro")}
+            </span>
 
             <RichText
               tagName="p"
@@ -275,65 +511,51 @@ export default function Edit(props) {
         <hr />
         <div className="recipe-manager-pro--block--timing-list">
           <ul>
-            {(() => {
-              return props.attributes.showPrepTime ? (
-                <li>
-                  <header>{__("Prep time", "recipe-manager-pro")}:</header>
-                  <span>
-                    <InputControl
-                      type="number"
-                      min="0"
-                      value={props.attributes.prepTime}
-                      placeholder="0"
-                      onChange={(prepTime) => {
-                        updateTime("prepTime", prepTime);
-                      }}
-                      suffix={__("Minutes", "recipe-manager-pro")}
-                    />
-                  </span>
-                </li>
-              ) : null;
-            })()}
-
-            {(() => {
-              return props.attributes.showRestTime ? (
-                <li>
-                  <header>{__("Rest time", "recipe-manager-pro")}:</header>
-                  <span>
-                    <InputControl
-                      type="number"
-                      min="0"
-                      value={props.attributes.restTime}
-                      placeholder="0"
-                      onChange={(restTime) => {
-                        updateTime("restTime", restTime);
-                      }}
-                      suffix={__("Minutes", "recipe-manager-pro")}
-                    />
-                  </span>
-                </li>
-              ) : null;
-            })()}
-
-            {(() => {
-              return props.attributes.showCookTime ? (
-                <li>
-                  <header>{__("Cook time", "recipe-manager-pro")}:</header>
-                  <span>
-                    <InputControl
-                      type="number"
-                      min="0"
-                      value={props.attributes.cookTime}
-                      placeholder="0"
-                      onChange={(cookTime) => {
-                        updateTime("cookTime", cookTime);
-                      }}
-                      suffix={__("Minutes", "recipe-manager-pro")}
-                    />
-                  </span>
-                </li>
-              ) : null;
-            })()}
+            <li>
+              <header>{__("Prep time", "recipe-manager-pro")}:</header>
+              <span>
+                <InputControl
+                  type="number"
+                  min="0"
+                  value={props.attributes.prepTime}
+                  placeholder="0"
+                  onChange={(prepTime) => {
+                    updateTime("prepTime", prepTime);
+                  }}
+                  suffix={__("Minutes", "recipe-manager-pro")}
+                />
+              </span>
+            </li>
+            <li>
+              <header>{__("Rest time", "recipe-manager-pro")}:</header>
+              <span>
+                <InputControl
+                  type="number"
+                  min="0"
+                  value={props.attributes.restTime}
+                  placeholder="0"
+                  onChange={(restTime) => {
+                    updateTime("restTime", restTime);
+                  }}
+                  suffix={__("Minutes", "recipe-manager-pro")}
+                />
+              </span>
+            </li>
+            <li>
+              <header>{__("Cook time", "recipe-manager-pro")}:</header>
+              <span>
+                <InputControl
+                  type="number"
+                  min="0"
+                  value={props.attributes.cookTime}
+                  placeholder="0"
+                  onChange={(cookTime) => {
+                    updateTime("cookTime", cookTime);
+                  }}
+                  suffix={__("Minutes", "recipe-manager-pro")}
+                />
+              </span>
+            </li>
 
             <li>
               <header>{__("Total time", "recipe-manager-pro")}:</header>
@@ -412,7 +634,7 @@ export default function Edit(props) {
           }}
         />
 
-        <section>
+        {/* <section>
           <div className="recipe-manager-pro--block--headline">
             <h3>{__("Video", "recipe-manager-pro")}</h3>
           </div>
@@ -422,297 +644,7 @@ export default function Edit(props) {
             type="number"
             onChange={(videoUrl) => props.setAttributes({ videoUrl })}
           />
-        </section>
-
-        <section className="seo-section">
-          <div className="recipe-manager-pro--block--headline">
-            <h3>{__("SEO", "recipe-manager-pro")}</h3>
-          </div>
-
-          <p>
-            {__(
-              "Google and other search enginges needs some more informations to process your recipe. These informations are not visible to your user, but will have impact on the ranking of your recipe in search engines. So we recommend to provide all these informations.",
-              "recipe-manager-pro"
-            )}
-          </p>
-
-          <div className="recipe-manager-pro--block--flex-container">
-            <TextControl
-              label={__("Cuisine", "recipe-manager-pro")}
-              value={props.attributes.recipeCuisine}
-              placeholder={__(
-                'e.g. "Italian" or "German"',
-                "recipe-manager-pro"
-              )}
-              onChange={(recipeCuisine) => {
-                props.setAttributes({ recipeCuisine });
-              }}
-            />
-
-            <InputControl
-              type="number"
-              label={__("Calories", "recipe-manager-pro")}
-              value={props.attributes.calories}
-              description={__("Calories per serving or piece")}
-              suffix="kcal"
-              onChange={(calories) => {
-                props.setAttributes({ calories });
-              }}
-            />
-          </div>
-
-          <div>
-            <h4>{__("Picture of the finished dish", "recipe-manager-pro")}</h4>
-            <p>
-              {__(
-                "You should add 3 pictures in different aspect ratios to this recipe to have a change for a more prominent display in the Google search results. The 16:9 or sometimes the 4:3 aspect ratio is used for the featured snipped. If you provide a square image, Google sometimes display it in your search result.",
-                "recipe-manager-pro"
-              )}
-            </p>
-          </div>
-
-          <MediaUploadCheck>
-            <MediaUpload
-              onSelect={(media) => {
-                if (media) {
-                  props.setAttributes({
-                    image1_1: media.url,
-                    image1_1Id: media.id,
-                  });
-                }
-              }}
-              allowedTypes={ALLOWED_MEDIA_TYPES}
-              value={props.attributes.image1_1}
-              render={({ open }) => (
-                <div
-                  className="image-preview image-preview-1-1"
-                  style={{
-                    backgroundImage: "url(" + props.attributes.image1_1 + ")",
-                  }}
-                  onClick={open}
-                >
-                  {!props.attributes.image1_1 ? (
-                    <span className="aspect-ratio">1:1</span>
-                  ) : (
-                    ""
-                  )}
-                </div>
-              )}
-            />
-          </MediaUploadCheck>
-
-          <MediaUploadCheck>
-            <MediaUpload
-              onSelect={(media) => {
-                if (media) {
-                  props.setAttributes({
-                    image4_3: media.url,
-                    image4_3Id: media.id,
-                  });
-                }
-              }}
-              allowedTypes={ALLOWED_MEDIA_TYPES}
-              value={props.attributes.image4_3}
-              render={({ open }) => (
-                <div
-                  className="image-preview image-preview-4-3"
-                  style={{
-                    backgroundImage: "url(" + props.attributes.image4_3 + ")",
-                  }}
-                  onClick={open}
-                >
-                  {!props.attributes.image4_3 ? (
-                    <span className="aspect-ratio">4:3</span>
-                  ) : (
-                    ""
-                  )}
-                </div>
-              )}
-            />
-          </MediaUploadCheck>
-
-          <MediaUploadCheck>
-            <MediaUpload
-              onSelect={(media) => {
-                if (media) {
-                  props.setAttributes({
-                    image16_9: media.url,
-                    image16_9Id: media.id,
-                  });
-                }
-              }}
-              allowedTypes={ALLOWED_MEDIA_TYPES}
-              value={props.attributes.image16_9}
-              render={({ open }) => (
-                <div
-                  className="image-preview image-preview-16-9"
-                  style={{
-                    backgroundImage: "url(" + props.attributes.image16_9 + ")",
-                  }}
-                  onClick={open}
-                >
-                  {!props.attributes.image16_9 ? (
-                    <span className="aspect-ratio">16:9</span>
-                  ) : (
-                    ""
-                  )}
-                </div>
-              )}
-            />
-          </MediaUploadCheck>
-
-          <h5>{__("Previews", "recipe-manager-pro")}</h5>
-
-          <section className="features-snipped-preview">
-            <MediaUploadCheck>
-              <MediaUpload
-                onSelect={(media) => {
-                  if (media) {
-                    props.setAttributes({
-                      image4_3: media.url,
-                      image4_3Id: media.id,
-                    });
-                  }
-                }}
-                allowedTypes={ALLOWED_MEDIA_TYPES}
-                value={props.attributes.image4_3}
-                render={({ open }) => (
-                  <div
-                    className="features-snipped-preview--image-wrapper features-snipped-preview--43"
-                    onClick={open}
-                  >
-                    <div
-                      className="features-snipped-preview--image"
-                      style={{
-                        backgroundImage:
-                          "url(" + props.attributes.image4_3 + ")",
-                      }}
-                    ></div>
-                  </div>
-                )}
-              />
-            </MediaUploadCheck>
-            <div className="features-snipped-preview--title">
-              {props.attributes.name}
-            </div>
-            <div className="features-snipped-preview--blog-title">
-              {props.data.title}
-            </div>
-
-            {getRatingElement()}
-            <div className="features-snipped-preview--total-time">
-              {props.attributes.totalTime} Min.
-            </div>
-          </section>
-
-          <section className="features-snipped-preview">
-            <MediaUploadCheck>
-              <MediaUpload
-                onSelect={(media) => {
-                  if (media) {
-                    props.setAttributes({
-                      image16_9: media.url,
-                      image16_9Id: media.id,
-                    });
-                  }
-                }}
-                allowedTypes={ALLOWED_MEDIA_TYPES}
-                value={props.attributes.image16_9}
-                render={({ open }) => (
-                  <div
-                    className="features-snipped-preview--image-wrapper"
-                    onClick={open}
-                  >
-                    <div
-                      className="features-snipped-preview--image"
-                      style={{
-                        backgroundImage:
-                          "url(" + props.attributes.image16_9 + ")",
-                      }}
-                    ></div>
-                  </div>
-                )}
-              />
-            </MediaUploadCheck>
-            <div className="features-snipped-preview--title">
-              {props.attributes.name}
-            </div>
-            <div className="features-snipped-preview--blog-title">
-              {props.data.title}
-            </div>
-            {getRatingElement()}
-            <div className="features-snipped-preview--total-time">
-              {props.attributes.totalTime} Min.
-            </div>
-          </section>
-          <div>
-            <section className="features-result-preview">
-              <h3 className="features-result-preview--headline">
-                {props.attributes.name}
-              </h3>
-              <div className="features-result-preview--image-text">
-                <MediaUploadCheck>
-                  <MediaUpload
-                    onSelect={(media) => {
-                      if (media) {
-                        props.setAttributes({
-                          image1_1: media.url,
-                          image1_1Id: media.id,
-                        });
-                      }
-                    }}
-                    allowedTypes={ALLOWED_MEDIA_TYPES}
-                    value={props.attributes.image1_1}
-                    render={({ open }) => (
-                      <div
-                        className="features-result-preview--image"
-                        onClick={open}
-                        style={{
-                          backgroundImage:
-                            "url(" + props.attributes.image1_1 + ")",
-                        }}
-                      ></div>
-                    )}
-                  ></MediaUpload>
-                </MediaUploadCheck>
-                <div className="features-result-preview--text">
-                  <div className="features-result-preview--extract">
-                    <span className="features-result-preview--date">
-                      {props.data.publishDate} —
-                    </span>
-                    &nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit. Morbi nec lectus gravida, sollicitudin velit sed,
-                    consectetur quam.
-                  </div>
-
-                  <div className="features-result-preview--meta">
-                    <span className="features-snipped-preview--stars">
-                      <span
-                        className="features-snipped-preview--stars--rated"
-                        style={{
-                          width:
-                            getRatedStarsWidth(props.data.meta.average_rating) +
-                            "px",
-                        }}
-                      ></span>
-                    </span>
-                    <span>
-                      &nbsp;{__("Rating", "recipe-manager-pro")}:{" "}
-                      {props.data.meta.average_rating}
-                    </span>{" "}
-                    · &lrm;
-                    <span>
-                      {props.data.meta.rating_count}{" "}
-                      {__("reviews", "recipe-manager-pro")}
-                    </span>{" "}
-                    · &lrm;
-                    <span>{props.attributes.totalTime} Min.</span>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-        </section>
+        </section> */}
       </div>
     </Fragment>
   );

@@ -92,7 +92,7 @@
 
   h3 {
     font-size: var(--sub-headline-font-size);
-    font-weight: (--sub-headline-font-weight);
+    font-weight: var(--sub-headline-font-weight);
     font-family: var(--headline-font-family);
     line-height: 1.2;
     margin-bottom: 0;
@@ -147,7 +147,7 @@
       header {
         font-size: 13px;
         font-family: var(--headline-font-family);
-        font-style: none;
+        font-style: normal;
       }
 
       span {
