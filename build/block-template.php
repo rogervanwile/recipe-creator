@@ -4,12 +4,12 @@
 							$minutes = intval($context);
 
 							if ($minutes < 60) {
-								return $minutes . ' ' . __('minutes', 'recipe-manager-pro');
+								return $minutes . ' ' . __('minutes', 'foodblogkitchen-recipes');
 							} else {
 								$hours = floor($minutes / 60);
 								$rest = $minutes % 60;
 
-								return $hours . ' ' . __('hours', 'recipe-manager-pro') . ($rest > 0 ? ' ' . $rest . ' ' . __('minutes', 'recipe-manager-pro') : '');
+								return $hours . ' ' . __('hours', 'foodblogkitchen-recipes') . ($rest > 0 ? ' ' . $rest . ' ' . __('minutes', 'foodblogkitchen-recipes') : '');
 							}
 						}
 
@@ -58,27 +58,27 @@
     );
     
     $inary=is_array($in);
-    return '<div class="recipe-manager-pro--block'.((LR::ifvar($cx, (($inary && isset($in['align'])) ? $in['align'] : null), false)) ? ' align'.LR::encq($cx, (($inary && isset($in['align'])) ? $in['align'] : null)).'' : '').'">
+    return '<div class="foodblogkitchen-recipes--block'.((LR::ifvar($cx, (($inary && isset($in['align'])) ? $in['align'] : null), false)) ? ' align'.LR::encq($cx, (($inary && isset($in['align'])) ? $in['align'] : null)).'' : '').'">
 '.((LR::ifvar($cx, (($inary && isset($in['name'])) ? $in['name'] : null), false)) ? '		<h2>'.LR::raw($cx, (($inary && isset($in['name'])) ? $in['name'] : null)).'</h2>
 ' : '').'	
-	<div class="recipe-manager-pro--block--intro">
+	<div class="foodblogkitchen-recipes--block--intro">
 		<div>
-'.((LR::ifvar($cx, (($inary && isset($in['difficulty'])) ? $in['difficulty'] : null), false)) ? '				<span class="recipe-manager-pro--block--difficulty">'.LR::encq($cx, (($inary && isset($in['difficulty'])) ? $in['difficulty'] : null)).'</span>
+'.((LR::ifvar($cx, (($inary && isset($in['difficulty'])) ? $in['difficulty'] : null), false)) ? '				<span class="foodblogkitchen-recipes--block--difficulty">'.LR::encq($cx, (($inary && isset($in['difficulty'])) ? $in['difficulty'] : null)).'</span>
 ' : '').'
 '.((LR::ifvar($cx, (($inary && isset($in['description'])) ? $in['description'] : null), false)) ? '				<p>'.LR::encq($cx, (($inary && isset($in['description'])) ? $in['description'] : null)).'</p>
-' : '').''.((LR::ifvar($cx, (($inary && isset($in['averageRating'])) ? $in['averageRating'] : null), false)) ? '			<div class="recipe-manager-pro--block--rating recipe-manager-pro--block--rating--small">
+' : '').''.((LR::ifvar($cx, (($inary && isset($in['averageRating'])) ? $in['averageRating'] : null), false)) ? '			<div class="foodblogkitchen-recipes--block--rating foodblogkitchen-recipes--block--rating--small">
 				<ol>
-					<li class="recipe-manager-pro--block--star'.((LR::ifvar($cx, (($inary && isset($in['averageRating'])) ? $in['averageRating'] : null), false)) ? ' selected' : '').'" data-rating="1">1</li>
-					<li class="recipe-manager-pro--block--star'.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['averageRating'])) ? $in['averageRating'] : null),2),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' selected';}, function($cx, $in) {$inary=is_array($in);return ''.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['averageRating'])) ? $in['averageRating'] : null),1.5),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' half-selected';}).'';}).'" data-rating="2">2</li>
-					<li class="recipe-manager-pro--block--star'.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['averageRating'])) ? $in['averageRating'] : null),3),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' selected';}, function($cx, $in) {$inary=is_array($in);return ''.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['averageRating'])) ? $in['averageRating'] : null),2.5),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' half-selected';}).'';}).'" data-rating="3">3</li>
-					<li class="recipe-manager-pro--block--star'.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['averageRating'])) ? $in['averageRating'] : null),4),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' selected';}, function($cx, $in) {$inary=is_array($in);return ''.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['averageRating'])) ? $in['averageRating'] : null),3.5),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' half-selected';}).'';}).'" data-rating="4">4</li>
-					<li class="recipe-manager-pro--block--star'.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['averageRating'])) ? $in['averageRating'] : null),5),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' selected';}, function($cx, $in) {$inary=is_array($in);return ''.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['averageRating'])) ? $in['averageRating'] : null),4.5),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' half-selected';}).'';}).'" data-rating="5">5</li>
+					<li class="foodblogkitchen-recipes--block--star'.((LR::ifvar($cx, (($inary && isset($in['averageRating'])) ? $in['averageRating'] : null), false)) ? ' selected' : '').'" data-rating="1">1</li>
+					<li class="foodblogkitchen-recipes--block--star'.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['averageRating'])) ? $in['averageRating'] : null),2),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' selected';}, function($cx, $in) {$inary=is_array($in);return ''.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['averageRating'])) ? $in['averageRating'] : null),1.5),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' half-selected';}).'';}).'" data-rating="2">2</li>
+					<li class="foodblogkitchen-recipes--block--star'.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['averageRating'])) ? $in['averageRating'] : null),3),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' selected';}, function($cx, $in) {$inary=is_array($in);return ''.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['averageRating'])) ? $in['averageRating'] : null),2.5),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' half-selected';}).'';}).'" data-rating="3">3</li>
+					<li class="foodblogkitchen-recipes--block--star'.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['averageRating'])) ? $in['averageRating'] : null),4),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' selected';}, function($cx, $in) {$inary=is_array($in);return ''.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['averageRating'])) ? $in['averageRating'] : null),3.5),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' half-selected';}).'';}).'" data-rating="4">4</li>
+					<li class="foodblogkitchen-recipes--block--star'.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['averageRating'])) ? $in['averageRating'] : null),5),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' selected';}, function($cx, $in) {$inary=is_array($in);return ''.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['averageRating'])) ? $in['averageRating'] : null),4.5),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' half-selected';}).'';}).'" data-rating="5">5</li>
 				</ol>
 			</div>
 ' : '').'		</div>
 		<div>
 '.((LR::ifvar($cx, (($inary && isset($in['thumbnail'])) ? $in['thumbnail'] : null), false)) ? '        <div
-          class="recipe-manager-pro--block--main-image"
+          class="foodblogkitchen-recipes--block--main-image"
           style="background-image: url(\''.LR::encq($cx, (($inary && isset($in['thumbnail'])) ? $in['thumbnail'] : null)).'\');" title="'.LR::encq($cx, (($inary && isset($in['name'])) ? $in['name'] : null)).'"
         ></div>
 ' : '').'		</div>
@@ -86,7 +86,7 @@
 
 	<hr />
 
-	<div class="recipe-manager-pro--block--timing-list">
+	<div class="foodblogkitchen-recipes--block--timing-list">
 		<ul>
 '.((LR::ifvar($cx, (($inary && isset($in['prepTime'])) ? $in['prepTime'] : null), false)) ? '			<li>
 				<header>'.LR::encq($cx, ((isset($in['translations']) && is_array($in['translations']) && isset($in['translations']['prepTime'])) ? $in['translations']['prepTime'] : null)).':</header>
@@ -114,9 +114,9 @@
 
 	<hr />
 
-'.((LR::ifvar($cx, (($inary && isset($in['ingredients'])) ? $in['ingredients'] : null), false)) ? '		<div class="recipe-manager-pro--block--headline">
+'.((LR::ifvar($cx, (($inary && isset($in['ingredients'])) ? $in['ingredients'] : null), false)) ? '		<div class="foodblogkitchen-recipes--block--headline">
 			<h3>'.LR::encq($cx, ((isset($in['translations']) && is_array($in['translations']) && isset($in['translations']['ingredients'])) ? $in['translations']['ingredients'] : null)).'</h3>
-'.((LR::ifvar($cx, (($inary && isset($in['recipeYield'])) ? $in['recipeYield'] : null), false)) ? '				<div class="recipe-manager-pro--block--servings-editor">
+'.((LR::ifvar($cx, (($inary && isset($in['recipeYield'])) ? $in['recipeYield'] : null), false)) ? '				<div class="foodblogkitchen-recipes--block--servings-editor">
 				  <button type="button" class="btn btn-secondary recipe-shrink-servings">-</button>
 				  <span disabled="disabled"><span class="recipe-servings">'.LR::encq($cx, (($inary && isset($in['recipeYield'])) ? $in['recipeYield'] : null)).'</span>
 						'.LR::encq($cx, (($inary && isset($in['recipeYieldUnit'])) ? $in['recipeYieldUnit'] : null)).'
@@ -124,21 +124,21 @@
 				  <button type="button" class="btn btn-secondary recipe-increase-servings">+</button>
 				</div>
 ' : '').'		</div>
-		<table class="recipe-manager-pro--block--ingredients">
+		<table class="foodblogkitchen-recipes--block--ingredients">
 			<tbody>
 '.LR::sec($cx, (($inary && isset($in['ingredients'])) ? $in['ingredients'] : null), null, $in, true, function($cx, $in) {$inary=is_array($in);return '					<tr>
-						<td class="recipe-manager-pro--block--amount" data-recipe-base-amount="'.LR::encq($cx, (($inary && isset($in['baseAmount'])) ? $in['baseAmount'] : null)).'" data-recipe-base-unit="'.LR::encq($cx, (($inary && isset($in['baseUnit'])) ? $in['baseUnit'] : null)).'">'.LR::encq($cx, (($inary && isset($in['amount'])) ? $in['amount'] : null)).' '.LR::encq($cx, (($inary && isset($in['unit'])) ? $in['unit'] : null)).'</td>
-						<td class="recipe-manager-pro--block--ingredient">'.LR::raw($cx, (($inary && isset($in['ingredient'])) ? $in['ingredient'] : null)).'</td>
+						<td class="foodblogkitchen-recipes--block--amount" data-recipe-base-amount="'.LR::encq($cx, (($inary && isset($in['baseAmount'])) ? $in['baseAmount'] : null)).'" data-recipe-base-unit="'.LR::encq($cx, (($inary && isset($in['baseUnit'])) ? $in['baseUnit'] : null)).'">'.LR::encq($cx, (($inary && isset($in['amount'])) ? $in['amount'] : null)).' '.LR::encq($cx, (($inary && isset($in['unit'])) ? $in['unit'] : null)).'</td>
+						<td class="foodblogkitchen-recipes--block--ingredient">'.LR::raw($cx, (($inary && isset($in['ingredient'])) ? $in['ingredient'] : null)).'</td>
 					</tr>
 ';}).'			</tbody>
 		</table>
 ' : '').'
 	<hr />
 
-'.((LR::ifvar($cx, (($inary && isset($in['preparationSteps'])) ? $in['preparationSteps'] : null), false)) ? '		<div class="recipe-manager-pro--block--headline">
+'.((LR::ifvar($cx, (($inary && isset($in['preparationSteps'])) ? $in['preparationSteps'] : null), false)) ? '		<div class="foodblogkitchen-recipes--block--headline">
 			<h3>'.LR::encq($cx, ((isset($in['translations']) && is_array($in['translations']) && isset($in['translations']['preparationSteps'])) ? $in['translations']['preparationSteps'] : null)).'</h3>
 		</div>
-		<ol class="recipe-manager-pro--block--preparation-steps">
+		<ol class="foodblogkitchen-recipes--block--preparation-steps">
 			'.LR::raw($cx, (($inary && isset($in['preparationSteps'])) ? $in['preparationSteps'] : null)).'
 		</ol>
 ' : '').'
@@ -146,30 +146,30 @@
 '.((LR::ifvar($cx, (($inary && isset($in['notes'])) ? $in['notes'] : null), false)) ? '	<hr />
 
 	<section>
-		<header class="recipe-manager-pro--block--headline">
+		<header class="foodblogkitchen-recipes--block--headline">
 			<h3>'.LR::encq($cx, ((isset($in['translations']) && is_array($in['translations']) && isset($in['translations']['notes'])) ? $in['translations']['notes'] : null)).'</h3>
 		</header>
 		<p>'.LR::encq($cx, (($inary && isset($in['notes'])) ? $in['notes'] : null)).'</p>
 	</section>
 ' : '').'	
-	<section class="recipe-manager-pro--block--user-rating">
+	<section class="foodblogkitchen-recipes--block--user-rating">
 		<hr />
-		<header class="recipe-manager-pro--block--headline">
+		<header class="foodblogkitchen-recipes--block--headline">
 			<h3>'.LR::encq($cx, ((isset($in['translations']) && is_array($in['translations']) && isset($in['translations']['feedback'])) ? $in['translations']['feedback'] : null)).'</h3>
 		</header>	
-		<div class="recipe-manager-pro--block--rating recipe-manager-pro--block--interactive" data-post-id="'.LR::encq($cx, (($inary && isset($in['postId'])) ? $in['postId'] : null)).'" data-save-url="'.LR::encq($cx, (($inary && isset($in['ajaxUrl'])) ? $in['ajaxUrl'] : null)).'" data-nonce="'.LR::encq($cx, (($inary && isset($in['nonce'])) ? $in['nonce'] : null)).'">
+		<div class="foodblogkitchen-recipes--block--rating foodblogkitchen-recipes--block--interactive" data-post-id="'.LR::encq($cx, (($inary && isset($in['postId'])) ? $in['postId'] : null)).'" data-save-url="'.LR::encq($cx, (($inary && isset($in['ajaxUrl'])) ? $in['ajaxUrl'] : null)).'" data-nonce="'.LR::encq($cx, (($inary && isset($in['nonce'])) ? $in['nonce'] : null)).'">
 			<ol>
-				<li class="recipe-manager-pro--block--star'.((LR::ifvar($cx, (($inary && isset($in['userRating'])) ? $in['userRating'] : null), false)) ? ' selected' : '').'" data-rating="1">1</li>
-				<li class="recipe-manager-pro--block--star'.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['userRating'])) ? $in['userRating'] : null),2),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' selected';}, function($cx, $in) {$inary=is_array($in);return '';}).'" data-rating="2">2</li>
-				<li class="recipe-manager-pro--block--star'.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['userRating'])) ? $in['userRating'] : null),3),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' selected';}, function($cx, $in) {$inary=is_array($in);return '';}).'" data-rating="3">3</li>
-				<li class="recipe-manager-pro--block--star'.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['userRating'])) ? $in['userRating'] : null),4),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' selected';}, function($cx, $in) {$inary=is_array($in);return '';}).'" data-rating="4">4</li>
-				<li class="recipe-manager-pro--block--star'.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['userRating'])) ? $in['userRating'] : null),5),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' selected';}, function($cx, $in) {$inary=is_array($in);return '';}).'" data-rating="5">5</li>
+				<li class="foodblogkitchen-recipes--block--star'.((LR::ifvar($cx, (($inary && isset($in['userRating'])) ? $in['userRating'] : null), false)) ? ' selected' : '').'" data-rating="1">1</li>
+				<li class="foodblogkitchen-recipes--block--star'.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['userRating'])) ? $in['userRating'] : null),2),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' selected';}, function($cx, $in) {$inary=is_array($in);return '';}).'" data-rating="2">2</li>
+				<li class="foodblogkitchen-recipes--block--star'.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['userRating'])) ? $in['userRating'] : null),3),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' selected';}, function($cx, $in) {$inary=is_array($in);return '';}).'" data-rating="3">3</li>
+				<li class="foodblogkitchen-recipes--block--star'.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['userRating'])) ? $in['userRating'] : null),4),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' selected';}, function($cx, $in) {$inary=is_array($in);return '';}).'" data-rating="4">4</li>
+				<li class="foodblogkitchen-recipes--block--star'.LR::hbbch($cx, 'ifMoreOrEqual', array(array((($inary && isset($in['userRating'])) ? $in['userRating'] : null),5),array()), $in, false, function($cx, $in) {$inary=is_array($in);return ' selected';}, function($cx, $in) {$inary=is_array($in);return '';}).'" data-rating="5">5</li>
 			</ol>
 		</div>
 	</section>
 	<script>
-		var RecipeManagerPro = RecipeManagerPro || {};
-		RecipeManagerPro.config = {
+		var FoodblogKitchenRecipes = FoodblogKitchenRecipes || {};
+		FoodblogKitchenRecipes.config = {
 			ajaxUrl: \''.LR::encq($cx, (($inary && isset($in['ajaxUrl'])) ? $in['ajaxUrl'] : null)).'\',
 			nonce: \''.LR::encq($cx, (($inary && isset($in['nonce'])) ? $in['nonce'] : null)).'\'
 		};
@@ -179,7 +179,7 @@
   </script>
 '.((LR::ifvar($cx, (($inary && isset($in['options'])) ? $in['options'] : null), false)) ? '
 '.'		<style>
-		  .recipe-manager-pro--block.recipe-manager-pro--block {
+		  .foodblogkitchen-recipes--block.foodblogkitchen-recipes--block {
 		    --headline-font-family: Luna-Regular, sans-serif;
 		    --headline-font-size: 32px;
 		    --headline-font-weight: normal;

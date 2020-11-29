@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Plugin Name:     WP Recipe Block
- * Description:     Manage recipes and optimize them automatically for Google Featured Snippets.
- * Version:         0.0.3
- * Author:          Oliver Wagner
- * Text Domain:     recipe-manager-pro
+ * Plugin Name:     Recipes | foodblogkitchen
+ * Description:     Recipe block for the Gutenberg editor to easily include recipes and automatically optimize them for search engines.
+ * Version:         1.0.0
+ * Author:          foodblogkitchen.com
+ * Text Domain:     foodblogkitchen-recipes
  * Domain Path:     /languages
  */
 
@@ -17,7 +17,7 @@ require "vendor/autoload.php";
 
 use LightnCandy\LightnCandy;
 
-class RecipeManagerPro
+class FoodblogKitchenRecipes
 {
 	private $primaryColorDefault = '#e27a7a';
 	private $primaryColorLightDefault = '#f7e9e9';
@@ -41,11 +41,11 @@ class RecipeManagerPro
 
 		add_action('admin_enqueue_scripts', array($this, 'enqueueAdminJs'));
 
-		add_image_size('recipe-manager-pro--thumbnail', get_option('recipe_manager_pro__thumbnail_size', $this->thumnailSizeDefault));
+		add_image_size('foodblogkitchen-recipes--thumbnail', get_option('foodblogkitchen_recipes__thumbnail_size', $this->thumnailSizeDefault));
 
 		// Frontend-AJAX-Actions
-		add_action('wp_ajax_recipe_manager_pro_set_rating', array($this, 'setRating'));
-		add_action('wp_ajax_nopriv_recipe_manager_pro_set_rating', array($this, 'setRating'));
+		add_action('wp_ajax_foodblogkitchen_recipes_set_rating', array($this, 'setRating'));
+		add_action('wp_ajax_nopriv_foodblogkitchen_recipes_set_rating', array($this, 'setRating'));
 
 		// Enable Auto-Update
 		// https://rudrastyh.com/wordpress/self-hosted-plugin-update.html
@@ -61,7 +61,7 @@ class RecipeManagerPro
 			return false;
 		}
 
-		$plugin_slug = 'recipe-manager-pro'; // we are going to use it in many places in this function
+		$plugin_slug = 'foodblogkitchen-recipes'; // we are going to use it in many places in this function
 
 		// do nothing if it is not our plugin
 		if ($plugin_slug !== $args->slug) {
@@ -71,7 +71,7 @@ class RecipeManagerPro
 		// trying to get from cache first
 		if (false == $remote = get_transient('misha_update_' . $plugin_slug)) {
 			// info.json is the file with the actual plugin information on your server
-			$remote = wp_remote_get('https://codingyourideas.de/plugin-updates/recipe-manager-pro.json', array(
+			$remote = wp_remote_get('https://codingyourideas.de/plugin-updates/foodblogkitchen-recipes.json', array(
 				'timeout' => 10,
 				'headers' => array(
 					'Accept' => 'application/json'
@@ -129,10 +129,10 @@ class RecipeManagerPro
 		}
 
 		// trying to get from cache first, to disable cache comment 10,20,21,22,24
-		if (false == $remote = get_transient('misha_upgrade_recipe-manager-pro')) {
+		if (false == $remote = get_transient('misha_upgrade_foodblogkitchen-recipes')) {
 
 			// info.json is the file with the actual plugin information on your server
-			$remote = wp_remote_get('https://codingyourideas.de/plugin-updates/recipe-manager-pro.json', array(
+			$remote = wp_remote_get('https://codingyourideas.de/plugin-updates/foodblogkitchen-recipes.json', array(
 				'timeout' => 10,
 				'headers' => array(
 					'Accept' => 'application/json'
@@ -140,7 +140,7 @@ class RecipeManagerPro
 			));
 
 			if (!is_wp_error($remote) && isset($remote['response']['code']) && $remote['response']['code'] == 200 && !empty($remote['body'])) {
-				set_transient('misha_upgrade_recipe-manager-pro', $remote, 43200); // 12 hours cache
+				set_transient('misha_upgrade_foodblogkitchen-recipes', $remote, 43200); // 12 hours cache
 			}
 		}
 
@@ -151,8 +151,8 @@ class RecipeManagerPro
 			// your installed plugin version should be on the line below! You can obtain it dynamically of course 
 			if ($remote && version_compare('1.0', $remote->version, '<') && version_compare($remote->requires, get_bloginfo('version'), '<')) {
 				$res = new stdClass();
-				$res->slug = 'recipe-manager-pro';
-				$res->plugin = 'recipe-manager-pro/recipe-manager-pro.php'; // it could be just recipe-manager-pro.php if your plugin doesn't have its own directory
+				$res->slug = 'foodblogkitchen-recipes';
+				$res->plugin = 'foodblogkitchen-recipes/foodblogkitchen-recipes.php'; // it could be just foodblogkitchen-recipes.php if your plugin doesn't have its own directory
 				$res->new_version = $remote->version;
 				$res->tested = $remote->tested;
 				$res->package = $remote->download_url;
@@ -167,7 +167,7 @@ class RecipeManagerPro
 	{
 		if ($options['action'] == 'update' && $options['type'] === 'plugin') {
 			// just clean the cache when new plugin version is installed
-			delete_transient('misha_upgrade_recipe-manager-pro');
+			delete_transient('misha_upgrade_foodblogkitchen-recipes');
 		}
 	}
 
@@ -178,12 +178,9 @@ class RecipeManagerPro
 		wp_enqueue_style('iris');
 
 
-		wp_enqueue_script('recipe-manager-pro-settings-js', 	plugins_url('build/admin.js', __FILE__), array('jquery', 'wp-color-picker', 'iris'), '', true);
+		wp_enqueue_script('foodblogkitchen-recipes-settings-js', 	plugins_url('build/admin.js', __FILE__), array('jquery', 'wp-color-picker', 'iris'), '', true);
 
-		wp_enqueue_style('recipe-manager-pro-settings-admin-css', 	plugins_url('build/admin.css', __FILE__), array(), '', 'all');
-
-		// TODO: Über admin.scss einbinden
-		wp_enqueue_style('recipe-manager-pro-settings-css', 	plugins_url('build/style-index.css', __FILE__), array(), '', 'all');
+		wp_enqueue_style('foodblogkitchen-recipes-settings-admin-css', 	plugins_url('build/admin.css', __FILE__), array(), '', 'all');
 
 		echo $this->renderStyleBlockTemplate();
 	}
@@ -191,10 +188,10 @@ class RecipeManagerPro
 	public function registerSettingsPage()
 	{
 		add_menu_page(
-			__("WP Recipe Block", "recipe-manager-pro"),
-			__('WP Recipe Block', "recipe-manager-pro"),
+			__("foodblogkitchen", "foodblogkitchen-recipes"),
+			__('foodblogkitchen', "foodblogkitchen-recipes"),
 			'manage_options',
-			'recipe_manager_pro',
+			'foodblogkitchen_recipes',
 			function () {
 				return require_once(plugin_dir_path(__FILE__) . 'templates/admin-index-page.php');
 			},
@@ -203,11 +200,11 @@ class RecipeManagerPro
 		);
 
 		add_submenu_page(
-			'recipe_manager_pro',
-			__('Recipe Manager', "recipe-manager-pro"),
-			__("Settings", "recipe-manager-pro"),
+			'foodblogkitchen_recipes',
+			__('Recipes', "foodblogkitchen-recipes"),
+			__("Settings", "foodblogkitchen-recipes"),
 			'manage_options',
-			'recipe_manager_pro',
+			'foodblogkitchen_recipes',
 			function () {
 				return require_once(plugin_dir_path(__FILE__) . 'templates/admin-index-page.php');
 			}
@@ -217,7 +214,7 @@ class RecipeManagerPro
 	private function renderColorPickerInput($name, $defaultValue)
 	{
 		$value = esc_attr(get_option($name, $defaultValue));
-		echo '<input type="text" class="recipe-manager-pro--color-picker" name="' . $name . '" value="' . $value . '" data-default-value="' .  $defaultValue . '" />';
+		echo '<input type="text" class="foodblogkitchen-recipes--color-picker" name="' . $name . '" value="' . $value . '" data-default-value="' .  $defaultValue . '" />';
 	}
 
 	private function renderHiddenInput($name, $defaultValue)
@@ -230,64 +227,64 @@ class RecipeManagerPro
 	{
 		// Settings
 		register_setting(
-			'recipe_manager_pro__general',
-			'recipe_manager_pro__primary_color',
+			'foodblogkitchen_recipes__general',
+			'foodblogkitchen_recipes__primary_color',
 			array(
 				"default" => $this->primaryColorDefault
 			)
 		);
 		register_setting(
-			'recipe_manager_pro__general',
-			'recipe_manager_pro__primary_color_light',
+			'foodblogkitchen_recipes__general',
+			'foodblogkitchen_recipes__primary_color_light',
 			array(
 				"default" => $this->primaryColorLightDefault
 			)
 		);
 		register_setting(
-			'recipe_manager_pro__general',
-			'recipe_manager_pro__primary_color_light_contrast',
+			'foodblogkitchen_recipes__general',
+			'foodblogkitchen_recipes__primary_color_light_contrast',
 			array(
 				"default" => $this->primaryColorLightContrastDefault
 			)
 		);
 		register_setting(
-			'recipe_manager_pro__general',
-			'recipe_manager_pro__primary_color_dark',
+			'foodblogkitchen_recipes__general',
+			'foodblogkitchen_recipes__primary_color_dark',
 			array(
 				"default" => $this->primaryColorDarkDefault
 			)
 		);
 		register_setting(
-			'recipe_manager_pro__general',
-			'recipe_manager_pro__secondary_color',
+			'foodblogkitchen_recipes__general',
+			'foodblogkitchen_recipes__secondary_color',
 			array(
 				"default" => $this->secondaryColorDefault
 			)
 		);
 		register_setting(
-			'recipe_manager_pro__general',
-			'recipe_manager_pro__secondary_color_contrast',
+			'foodblogkitchen_recipes__general',
+			'foodblogkitchen_recipes__secondary_color_contrast',
 			array(
 				"default" => $this->secondaryColorContrastDefault
 			)
 		);
 		register_setting(
-			'recipe_manager_pro__general',
-			'recipe_manager_pro__background_color',
+			'foodblogkitchen_recipes__general',
+			'foodblogkitchen_recipes__background_color',
 			array(
 				"default" => $this->backgroundColorDefault
 			)
 		);
 		register_setting(
-			'recipe_manager_pro__general',
-			'recipe_manager_pro__background_color_contrast',
+			'foodblogkitchen_recipes__general',
+			'foodblogkitchen_recipes__background_color_contrast',
 			array(
 				"default" => $this->backgroundColorContrastDefault
 			)
 		);
 		register_setting(
-			'recipe_manager_pro__general',
-			'recipe_manager_pro__thumbnail_size',
+			'foodblogkitchen_recipes__general',
+			'foodblogkitchen_recipes__thumbnail_size',
 			array(
 				"default" => $this->thumnailSizeDefault
 			)
@@ -295,132 +292,133 @@ class RecipeManagerPro
 
 		// Sections
 		add_settings_section(
-			'recipe_manager_pro__general',
-			'General settings',
+			'foodblogkitchen_recipes__general',
+			__('General settings', "foodblogkitchen-recipes"),
 			function () {
-				echo '<p>Configure the general content and functionality of your cookie consent hint.</p>';
+				echo '<p>' . __("Configure how the recipe block should look for your visitors.", "foodblogkitchen-recipes") . '</p>';
 			},
-			'recipe_manager_pro__general'
+			'foodblogkitchen_recipes__general'
 		);
 
 		// Fields
 		add_settings_field(
-			'recipe_manager_pro__primary_color',
-			__('Primary color', 'recipe-manager-pro'),
+			'foodblogkitchen_recipes__primary_color',
+			__('Primary color', 'foodblogkitchen-recipes'),
 			function () {
-				$this->renderColorPickerInput('recipe_manager_pro__primary_color', $this->primaryColorDefault);
+				$this->renderColorPickerInput('foodblogkitchen_recipes__primary_color', $this->primaryColorDefault);
 			},
-			'recipe_manager_pro__general',
-			'recipe_manager_pro__general',
+			'foodblogkitchen_recipes__general',
+			'foodblogkitchen_recipes__general',
 			array(
-				'label_for' => 'recipe_manager_pro__primary_color'
+				'label_for' => 'foodblogkitchen_recipes__primary_color'
 			)
 		);
 		// add_settings_field(
-		// 	'recipe_manager_pro__primary_color_light',
+		// 	'foodblogkitchen_recipes__primary_color_light',
 		// 	null,
 		// 	function () {
-		// 		$this->renderHiddenInput('recipe_manager_pro__primary_color_light', $this->primaryColorLightDefault);
+		// 		$this->renderHiddenInput('foodblogkitchen_recipes__primary_color_light', $this->primaryColorLightDefault);
 		// 	},
-		// 	'recipe_manager_pro__general',
-		// 	'recipe_manager_pro__general',
+		// 	'foodblogkitchen_recipes__general',
+		// 	'foodblogkitchen_recipes__general',
 		// 	array(
-		// 		'label_for' => 'recipe_manager_pro__primary_color_light'
+		// 		'label_for' => 'foodblogkitchen_recipes__primary_color_light'
 		// 	)
 		// );
 		// add_settings_field(
-		// 	'recipe_manager_pro__primary_color_light_contrast',
-		// 	__('Primary color (light)', 'recipe-manager-pro'),
+		// 	'foodblogkitchen_recipes__primary_color_light_contrast',
+		// 	__('Primary color (light)', 'foodblogkitchen-recipes'),
 		// 	function () {
-		// 		$this->renderHiddenInput('recipe_manager_pro__primary_color_light_contrast', $this->primaryColorLightContrastDefault);
+		// 		$this->renderHiddenInput('foodblogkitchen_recipes__primary_color_light_contrast', $this->primaryColorLightContrastDefault);
 		// 	},
-		// 	'recipe_manager_pro__general',
-		// 	'recipe_manager_pro__general',
+		// 	'foodblogkitchen_recipes__general',
+		// 	'foodblogkitchen_recipes__general',
 		// 	array(
-		// 		'label_for' => 'recipe_manager_pro__primary_color_light_contrast'
+		// 		'label_for' => 'foodblogkitchen_recipes__primary_color_light_contrast'
 		// 	)
 		// );
 		// add_settings_field(
-		// 	'recipe_manager_pro__primary_color_dark',
-		// 	__('Primary color (dark)', 'recipe-manager-pro'),
+		// 	'foodblogkitchen_recipes__primary_color_dark',
+		// 	__('Primary color (dark)', 'foodblogkitchen-recipes'),
 		// 	function () {
-		// 		$this->renderHiddenInput('recipe_manager_pro__primary_color_dark', $this->primaryColorDarkDefault);
+		// 		$this->renderHiddenInput('foodblogkitchen_recipes__primary_color_dark', $this->primaryColorDarkDefault);
 		// 	},
-		// 	'recipe_manager_pro__general',
-		// 	'recipe_manager_pro__general',
+		// 	'foodblogkitchen_recipes__general',
+		// 	'foodblogkitchen_recipes__general',
 		// 	array(
-		// 		'label_for' => 'recipe_manager_pro__primary_color_dark'
+		// 		'label_for' => 'foodblogkitchen_recipes__primary_color_dark'
 		// 	)
 		// );
 		add_settings_field(
-			'recipe_manager_pro__secondary_color',
-			__('Secondary color', 'recipe-manager-pro'),
+			'foodblogkitchen_recipes__secondary_color',
+			__('Secondary color', 'foodblogkitchen-recipes'),
 			function () {
-				$this->renderColorPickerInput('recipe_manager_pro__secondary_color', $this->secondaryColorDefault);
+				$this->renderColorPickerInput('foodblogkitchen_recipes__secondary_color', $this->secondaryColorDefault);
 			},
-			'recipe_manager_pro__general',
-			'recipe_manager_pro__general',
+			'foodblogkitchen_recipes__general',
+			'foodblogkitchen_recipes__general',
 			array(
-				'label_for' => 'recipe_manager_pro__secondary_color'
+				'label_for' => 'foodblogkitchen_recipes__secondary_color'
 			)
 		);
 		// add_settings_field(
-		// 	'recipe_manager_pro__secondary_color_contrast',
-		// 	__('Secondary color', 'recipe-manager-pro'),
+		// 	'foodblogkitchen_recipes__secondary_color_contrast',
+		// 	__('Secondary color', 'foodblogkitchen-recipes'),
 		// 	function () {
-		// 		$this->renderHiddenInput('recipe_manager_pro__secondary_color_contrast', $this->secondaryColorContrastDefault);
+		// 		$this->renderHiddenInput('foodblogkitchen_recipes__secondary_color_contrast', $this->secondaryColorContrastDefault);
 		// 	},
-		// 	'recipe_manager_pro__general',
-		// 	'recipe_manager_pro__general',
+		// 	'foodblogkitchen_recipes__general',
+		// 	'foodblogkitchen_recipes__general',
 		// 	array(
-		// 		'label_for' => 'recipe_manager_pro__secondary_color_contrast'
+		// 		'label_for' => 'foodblogkitchen_recipes__secondary_color_contrast'
 		// 	)
 		// );
 		add_settings_field(
-			'recipe_manager_pro__background_color',
-			__('Background color', 'recipe-manager-pro'),
+			'foodblogkitchen_recipes__background_color',
+			__('Background color', 'foodblogkitchen-recipes'),
 			function () {
-				$this->renderColorPickerInput('recipe_manager_pro__background_color', $this->backgroundColorDefault);
+				$this->renderColorPickerInput('foodblogkitchen_recipes__background_color', $this->backgroundColorDefault);
 			},
-			'recipe_manager_pro__general',
-			'recipe_manager_pro__general',
+			'foodblogkitchen_recipes__general',
+			'foodblogkitchen_recipes__general',
 			array(
-				'label_for' => 'recipe_manager_pro__background_color'
+				'label_for' => 'foodblogkitchen_recipes__background_color'
 			)
 		);
 		// add_settings_field(
-		// 	'recipe_manager_pro__background_color_contrast',
-		// 	__('Background color', 'recipe-manager-pro'),
+		// 	'foodblogkitchen_recipes__background_color_contrast',
+		// 	__('Background color', 'foodblogkitchen-recipes'),
 		// 	function () {
-		// 		$this->renderHiddenInput('recipe_manager_pro__background_color_contrast', $this->backgroundColorContrastDefault);
+		// 		$this->renderHiddenInput('foodblogkitchen_recipes__background_color_contrast', $this->backgroundColorContrastDefault);
 		// 	},
-		// 	'recipe_manager_pro__general',
-		// 	'recipe_manager_pro__general',
+		// 	'foodblogkitchen_recipes__general',
+		// 	'foodblogkitchen_recipes__general',
 		// 	array(
-		// 		'label_for' => 'recipe_manager_pro__background_color_contrast'
+		// 		'label_for' => 'foodblogkitchen_recipes__background_color_contrast'
 		// 	)
 		// );
 		add_settings_field(
-			'recipe_manager_pro__thumbnail_size',
-			__('Thumbnail size', 'recipe-manager-pro'),
+			'foodblogkitchen_recipes__thumbnail_size',
+			__('Thumbnail size', 'foodblogkitchen-recipes'),
 			function () {
-				$value = esc_attr(get_option('recipe_manager_pro__thumbnail_size'));
-				echo '<input type="number" name="recipe_manager_pro__thumbnail_size" value="' . $value . '" />';
+				$value = esc_attr(get_option('foodblogkitchen_recipes__thumbnail_size'));
+				echo '<input type="number" name="foodblogkitchen_recipes__thumbnail_size" value="' . $value . '" />';
 				echo '<p class="description">';
-				printf(__("If you change this value, you must recreate your thumbnails.<br /> This can be done with the great plugin %s.", 'recipe-manager-pro'), '<a href="https://wordpress.org/plugins/regenerate-thumbnails/" target="_blank">Regenerate Thumbnails</a>');
+				/* translators: %s is replaced with link to the plugin  */
+				printf(__("If you change this value, you must recreate your thumbnails.<br /> This can be done with the great plugin %s.", 'foodblogkitchen-recipes'), '<a href="https://wordpress.org/plugins/regenerate-thumbnails/" target="_blank">Regenerate Thumbnails</a>');
 				echo '</p>';
 			},
-			'recipe_manager_pro__general',
-			'recipe_manager_pro__general',
+			'foodblogkitchen_recipes__general',
+			'foodblogkitchen_recipes__general',
 			array(
-				'label_for' => 'recipe_manager_pro__thumbnail_size'
+				'label_for' => 'foodblogkitchen_recipes__thumbnail_size'
 			)
 		);
 	}
 
 	public function loadTranslations()
 	{
-		load_plugin_textdomain('recipe-manager-pro', FALSE, basename(dirname(__FILE__)) . '/languages/');
+		load_plugin_textdomain('foodblogkitchen-recipes', FALSE, basename(dirname(__FILE__)) . '/languages/');
 	}
 
 	public function registerMeta()
@@ -565,22 +563,22 @@ class RecipeManagerPro
 		$script_asset_path = "$dir/build/index.asset.php";
 		if (!file_exists($script_asset_path)) {
 			throw new Error(
-				'You need to run `npm start` or `npm run build` for the "recipe-manager-pro/block" block first.'
+				'You need to run `npm start` or `npm run build` for the "foodblogkitchen-recipes/block" block first.'
 			);
 		}
 		$script_asset = require($script_asset_path);
 
 		wp_register_script(
-			'recipe-manager-pro-block-editor',
+			'foodblogkitchen-recipes-block-editor',
 			plugins_url('build/index.js', __FILE__),
 			$script_asset['dependencies'],
 			$script_asset['version']
 		);
-		wp_set_script_translations('recipe-manager-pro-block-editor', 'recipe-manager-pro', plugin_dir_path(__FILE__) . 'languages');
+		wp_set_script_translations('foodblogkitchen-recipes-block-editor', 'foodblogkitchen-recipes', plugin_dir_path(__FILE__) . 'languages');
 
 		$editor_css = 'build/index.css';
 		wp_register_style(
-			'recipe-manager-pro-block-editor',
+			'foodblogkitchen-recipes-block-editor',
 			plugins_url($editor_css, __FILE__),
 			array(),
 			filemtime("$dir/$editor_css")
@@ -588,7 +586,7 @@ class RecipeManagerPro
 
 		$frontend_js = 'build/frontend.js';
 		wp_register_script(
-			'recipe-manager-pro-block',
+			'foodblogkitchen-recipes-block',
 			plugins_url($frontend_js, __FILE__),
 			array(),
 			filemtime("$dir/$frontend_js")
@@ -596,7 +594,7 @@ class RecipeManagerPro
 
 		$style_css = 'build/style-index.css';
 		wp_register_style(
-			'recipe-manager-pro-block',
+			'foodblogkitchen-recipes-block',
 			plugins_url($style_css, __FILE__),
 			array(),
 			filemtime("$dir/$style_css")
@@ -613,11 +611,11 @@ class RecipeManagerPro
 		// to store the migrated data.
 		// Workaround for https://github.com/WordPress/gutenberg/issues/7342
 
-		register_block_type('recipe-manager-pro/block', array(
-			'editor_script' => 'recipe-manager-pro-block-editor',
-			'editor_style'  => 'recipe-manager-pro-block-editor',
-			'script'        => 'recipe-manager-pro-block',
-			'style'         => 'recipe-manager-pro-block',
+		register_block_type('foodblogkitchen-recipes/block', array(
+			'editor_script' => 'foodblogkitchen-recipes-block-editor',
+			'editor_style'  => 'foodblogkitchen-recipes-block-editor',
+			'script'        => 'foodblogkitchen-recipes-block',
+			'style'         => 'foodblogkitchen-recipes-block',
 			'attributes' => array(
 				'ingredients' => array(
 					'type' => 'string',
@@ -723,7 +721,7 @@ class RecipeManagerPro
 
 	public function setRating()
 	{
-		if (!check_ajax_referer('recipe-manager-pro')) {
+		if (!check_ajax_referer('foodblogkitchen-recipes')) {
 			wp_send_json_error();
 			wp_die();
 		} else {
@@ -873,12 +871,12 @@ class RecipeManagerPro
 							$minutes = intval($context);
 
 							if ($minutes < 60) {
-								return $minutes . ' ' . __('minutes', 'recipe-manager-pro');
+								return $minutes . ' ' . __('minutes', 'foodblogkitchen-recipes');
 							} else {
 								$hours = floor($minutes / 60);
 								$rest = $minutes % 60;
 
-								return $hours . ' ' . __('hours', 'recipe-manager-pro') . ($rest > 0 ? ' ' . $rest . ' ' . __('minutes', 'recipe-manager-pro') : '');
+								return $hours . ' ' . __('hours', 'foodblogkitchen-recipes') . ($rest > 0 ? ' ' . $rest . ' ' . __('minutes', 'foodblogkitchen-recipes') : '');
 							}
 						}
 
@@ -925,11 +923,11 @@ class RecipeManagerPro
 		return array(
 			"translations" => $this->getTemplateTranslations(),
 			"recipeYield" => 10,
-			"recipeYieldUnit" => __("piece", 'recipe-manager-pro'),
-			"difficulty" => __('simple', 'recipe-manager-pro'),
+			"recipeYieldUnit" => __("piece", 'foodblogkitchen-recipes'),
+			"difficulty" => __('simple', 'foodblogkitchen-recipes'),
 			'prepTime' => 15,
 			'cookTime' => 30,
-			'name' => __("Crêpes", 'recipe-manager-pro'),
+			'name' => __("Crêpes", 'foodblogkitchen-recipes'),
 			'totalTime' => 105,
 			"ingredients" => array(
 				array(
@@ -937,28 +935,28 @@ class RecipeManagerPro
 					"baseAmount" => 25,
 					"amount" => 250,
 					"unit" => "g",
-					"ingredient" => __("Flour", "recipe-manager-pro")
+					"ingredient" => __("Flour", "foodblogkitchen-recipes")
 				),
 				array(
 					"baseUnit" => "g",
 					"baseAmount" => 5,
 					"amount" => 50,
 					"unit" => "g",
-					"ingredient" => __("Butter", "recipe-manager-pro")
+					"ingredient" => __("Butter", "foodblogkitchen-recipes")
 				),
 				array(
 					"baseUnit" => "ml",
 					"baseAmount" => 50,
 					"amount" => 500,
 					"unit" => "ml",
-					"ingredient" => __("Milk", "recipe-manager-pro")
+					"ingredient" => __("Milk", "foodblogkitchen-recipes")
 				),
 				array(
 					"baseUnit" => "",
 					"baseAmount" => 0.4,
 					"amount" => 4,
 					"unit" => "",
-					"ingredient" => __("Eggs", "recipe-manager-pro")
+					"ingredient" => __("Eggs", "foodblogkitchen-recipes")
 				),
 			),
 			"preparationSteps" => '<li>Step 1</li><li>Step 2</li>',
@@ -982,18 +980,18 @@ class RecipeManagerPro
 	private function getTemplateTranslations()
 	{
 		return [
-			"prepTime" => __('Prep time', 'recipe-manager-pro'),
-			"restTime" => __('Rest time', 'recipe-manager-pro'),
-			"cookTime" => __('Cook time', 'recipe-manager-pro'),
-			"totalTime" => __('Total time', 'recipe-manager-pro'),
-			"yield" => __('yields', 'recipe-manager-pro'),
-			"ingredients" => __('Ingredients', 'recipe-manager-pro'),
-			"preparationSteps" => __('Steps of preparation', 'recipe-manager-pro'),
-			"yourRating" => __('Your rating', 'recipe-manager-pro'),
-			"averageRating" => __('Average rating', 'recipe-manager-pro'),
-			"notes" => __('Notes', 'recipe-manager-pro'),
-			"feedback" => __('How do you like the recipe?', 'recipe-manager-pro'),
-			"servings" => __('servings', 'recipe-manager-pro')
+			"prepTime" => __('Prep time', 'foodblogkitchen-recipes'),
+			"restTime" => __('Rest time', 'foodblogkitchen-recipes'),
+			"cookTime" => __('Cook time', 'foodblogkitchen-recipes'),
+			"totalTime" => __('Total time', 'foodblogkitchen-recipes'),
+			"yield" => __('yields', 'foodblogkitchen-recipes'),
+			"ingredients" => __('Ingredients', 'foodblogkitchen-recipes'),
+			"preparationSteps" => __('Steps of preparation', 'foodblogkitchen-recipes'),
+			"yourRating" => __('Your rating', 'foodblogkitchen-recipes'),
+			"averageRating" => __('Average rating', 'foodblogkitchen-recipes'),
+			"notes" => __('Notes', 'foodblogkitchen-recipes'),
+			"feedback" => __('How do you like the recipe?', 'foodblogkitchen-recipes'),
+			"servings" => __('servings', 'foodblogkitchen-recipes')
 		];
 	}
 
@@ -1003,7 +1001,7 @@ class RecipeManagerPro
 
 		$attributes['postId'] = get_the_ID();
 		$attributes['ajaxUrl'] = admin_url('admin-ajax.php');
-		$attributes['nonce'] =  wp_create_nonce('recipe-manager-pro');
+		$attributes['nonce'] =  wp_create_nonce('foodblogkitchen-recipes');
 
 		$averageRating = get_post_meta(get_the_ID(), 'average_rating', true) ?: 0;
 		$ratingCount = get_post_meta(get_the_ID(), 'rating_count', true) ?: 0;
@@ -1017,11 +1015,11 @@ class RecipeManagerPro
 		$attributes['totalTime'] = floatval($attributes['totalTime']);
 
 		if (isset($attributes['difficulty']) && !empty($attributes['difficulty'])) {
-			$attributes['difficulty'] = __($attributes['difficulty'], 'recipe-manager-pro');
+			$attributes['difficulty'] = __($attributes['difficulty'], 'foodblogkitchen-recipes');
 		}
 
 		if (isset($attributes['recipeYieldUnit']) && !empty($attributes['recipeYieldUnit'])) {
-			$attributes['recipeYieldUnit'] = __($attributes['recipeYieldUnit'], 'recipe-manager-pro');
+			$attributes['recipeYieldUnit'] = __($attributes['recipeYieldUnit'], 'foodblogkitchen-recipes');
 		}
 
 		$attributes['ingredients'] = array_map(function ($item) use ($attributes) {
@@ -1074,7 +1072,7 @@ class RecipeManagerPro
 		}
 
 		if (isset($attributes['image4_3Id'])) {
-			$image = wp_get_attachment_image_src($attributes['image4_3Id'], 'recipe-manager-pro--thumbnail');
+			$image = wp_get_attachment_image_src($attributes['image4_3Id'], 'foodblogkitchen-recipes--thumbnail');
 
 			if ($image) {
 				$attributes['thumbnail'] = $image[0];
@@ -1173,14 +1171,14 @@ class RecipeManagerPro
 	private function getStyleOptions()
 	{
 		return array(
-			"primaryColor" => get_option('recipe_manager_pro__primary_color', $this->primaryColorDefault),
-			"primaryColorLight" => get_option('recipe_manager_pro__primary_color_light', $this->primaryColorLightDefault),
-			"primaryColorLightContrast" => get_option('recipe_manager_pro__primary_color_light_contrast', $this->primaryColorLightContrastDefault),
-			"primaryColorDark" => get_option('recipe_manager_pro__primary_color_dark', $this->primaryColorDarkDefault),
-			"secondaryColor" => get_option('recipe_manager_pro__secondary_color', $this->secondaryColorDefault),
-			"secondaryColorContrast" => get_option('recipe_manager_pro__secondary_color_contrast', $this->secondaryColorContrastDefault),
-			"backgroundColor" => get_option('recipe_manager_pro__background_color', $this->backgroundColorDefault),
-			"backgroundColorContrast" => get_option('recipe_manager_pro__background_color_contrast', $this->backgroundColorContrastDefault),
+			"primaryColor" => get_option('foodblogkitchen_recipes__primary_color', $this->primaryColorDefault),
+			"primaryColorLight" => get_option('foodblogkitchen_recipes__primary_color_light', $this->primaryColorLightDefault),
+			"primaryColorLightContrast" => get_option('foodblogkitchen_recipes__primary_color_light_contrast', $this->primaryColorLightContrastDefault),
+			"primaryColorDark" => get_option('foodblogkitchen_recipes__primary_color_dark', $this->primaryColorDarkDefault),
+			"secondaryColor" => get_option('foodblogkitchen_recipes__secondary_color', $this->secondaryColorDefault),
+			"secondaryColorContrast" => get_option('foodblogkitchen_recipes__secondary_color_contrast', $this->secondaryColorContrastDefault),
+			"backgroundColor" => get_option('foodblogkitchen_recipes__background_color', $this->backgroundColorDefault),
+			"backgroundColorContrast" => get_option('foodblogkitchen_recipes__background_color_contrast', $this->backgroundColorContrastDefault),
 		);
 	}
 
@@ -1199,10 +1197,10 @@ class RecipeManagerPro
 	}
 }
 
-if (class_exists('RecipeManagerPro')) {
-	$recipeManagerPro = new RecipeManagerPro();
+if (class_exists('FoodblogKitchenRecipes')) {
+	$foodblogKitchenRecipes = new FoodblogKitchenRecipes();
 
-	register_activation_hook(__FILE__, array($recipeManagerPro, 'activate'));
+	register_activation_hook(__FILE__, array($foodblogKitchenRecipes, 'activate'));
 
-	register_deactivation_hook(__FILE__, array($recipeManagerPro, 'deactivate'));
+	register_deactivation_hook(__FILE__, array($foodblogKitchenRecipes, 'deactivate'));
 }

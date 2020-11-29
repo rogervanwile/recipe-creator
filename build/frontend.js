@@ -100,14 +100,14 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 document.addEventListener("DOMContentLoaded", function () {
-  var ratingElements = document.querySelectorAll(".recipe-manager-pro--block--rating.recipe-manager-pro--block--interactive");
+  var ratingElements = document.querySelectorAll(".foodblogkitchen-recipes--block--rating.foodblogkitchen-recipes--block--interactive");
 
   var storeRatingInDatabase = function storeRatingInDatabase(postId, rating) {
-    fetch(RecipeManagerPro.config.ajaxUrl, {
+    fetch(FoodblogKitchenRecipes.config.ajaxUrl, {
       method: "POST",
       body: new URLSearchParams({
-        _ajax_nonce: RecipeManagerPro.config.nonce,
-        action: "recipe_manager_pro_set_rating",
+        _ajax_nonce: FoodblogKitchenRecipes.config.nonce,
+        action: "foodblogkitchen_recipes_set_rating",
         postId: postId,
         rating: rating
       })
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       response.json().then(function (responseData) {
         if (responseData && responseData.data && responseData.data.averageRating) {
-          var averageVotingElement = document.querySelector('[data-post-id="' + postId + '"] .recipe-manager-pro--block--average-voting');
+          var averageVotingElement = document.querySelector('[data-post-id="' + postId + '"] .foodblogkitchen-recipes--block--average-voting');
 
           if (averageVotingElement) {
             averageVotingElement.innerHTML = responseData.data.averageRating;
@@ -159,30 +159,30 @@ document.addEventListener("DOMContentLoaded", function () {
   if (ratingElements) {
     ratingElements.forEach(function (ratingElement) {
       var postId = ratingElement.getAttribute("data-post-id");
-      var savedRating = window.localStorage.getItem("recipe-manager-pro::" + postId);
+      var savedRating = window.localStorage.getItem("foodblogkitchen-recipes::" + postId);
 
       if (!savedRating) {
-        ratingElement.querySelectorAll(".recipe-manager-pro--block--star").forEach(function (starElement) {
+        ratingElement.querySelectorAll(".foodblogkitchen-recipes--block--star").forEach(function (starElement) {
           starElement.addEventListener("click", function (event) {
             markAsSelected(starElement);
             var rating = starElement.getAttribute("data-rating"); // To show the users vote and prevent multiple votes
 
-            window.localStorage.setItem("recipe-manager-pro::" + postId, rating);
+            window.localStorage.setItem("foodblogkitchen-recipes::" + postId, rating);
             storeRatingInDatabase(postId, rating);
           });
         });
       } else {
         try {
           // Hide the user rating section if the user has already voted.
-          ratingElement.closest(".recipe-manager-pro--block--user-rating").style.display = "none";
+          ratingElement.closest(".foodblogkitchen-recipes--block--user-rating").style.display = "none";
         } catch (e) {
           console.error(e);
           debugger;
         } // ratingElement.classList.remove(
-        //   "recipe-manager-pro--block--interactive"
+        //   "foodblogkitchen-recipes--block--interactive"
         // );
         // var selectedStarElement = ratingElement.querySelector(
-        //   '.recipe-manager-pro--block--star[data-rating="' + savedRating + '"]'
+        //   '.foodblogkitchen-recipes--block--star[data-rating="' + savedRating + '"]'
         // );
         // if (selectedStarElement) {
         //   markAsSelected(selectedStarElement);
@@ -199,8 +199,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var servingsDisplay = null; // Servings calculator
 
   var initServingCalculator = function initServingCalculator() {
-    var servingsEditorElement = document.querySelector(".recipe-manager-pro--block--servings-editor");
-    ingredientsTable = document.querySelector(".recipe-manager-pro--block--ingredients");
+    var servingsEditorElement = document.querySelector(".foodblogkitchen-recipes--block--servings-editor");
+    ingredientsTable = document.querySelector(".foodblogkitchen-recipes--block--ingredients");
 
     if (servingsEditorElement) {
       shrinkButton = servingsEditorElement.querySelector(".recipe-shrink-servings");
@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var refreshIngredients = function refreshIngredients() {
     if (ingredientsTable) {
-      ingredientsTable.querySelectorAll("tr .recipe-manager-pro--block--amount").forEach(function (amountElement) {
+      ingredientsTable.querySelectorAll("tr .foodblogkitchen-recipes--block--amount").forEach(function (amountElement) {
         var baseAmount = parseFloat(amountElement.getAttribute("data-recipe-base-amount"), 10);
         var baseUnit = amountElement.getAttribute("data-recipe-base-unit");
 

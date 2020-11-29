@@ -13,7 +13,7 @@
     };
 
     var initColorPicker = function () {
-      $(".recipe-manager-pro--color-picker").each(function () {
+      $(".foodblogkitchen-recipes--color-picker").each(function () {
         var defaultValue = $(this).attr("data-default-value") || null;
         $(this).wpColorPicker({
           defaultColor: defaultValue,
@@ -151,7 +151,7 @@
       if (!styleBlockTemplate) {
         try {
           var templateElement = document.getElementById(
-            "recipe-manager-pro--style-block-template"
+            "foodblogkitchen-recipes--style-block-template"
           );
 
           if (templateElement) {
@@ -211,7 +211,7 @@
 
       Object.keys(data).map((key) => {
         switch (key) {
-          case "recipe_manager_pro__primary_color":
+          case "foodblogkitchen_recipes__primary_color":
             migratedData["primaryColor"] = data[key];
             migratedData["primaryColorLight"] = calcColor(0.9, data[key]);
             migratedData["primaryColorLightContrast"] = getContrastColor(
@@ -220,44 +220,44 @@
             migratedData["primaryColorDark"] = calcColor(-0.4, data[key]);
 
             updateSettingsFormField(
-              "recipe_manager_pro__primary_color_light",
+              "foodblogkitchen_recipes__primary_color_light",
               migratedData["primaryColorLight"]
             );
             updateSettingsFormField(
-              "recipe_manager_pro__primary_color_light_contrast",
+              "foodblogkitchen_recipes__primary_color_light_contrast",
               migratedData["primaryColorLightContrast"]
             );
             updateSettingsFormField(
-              "recipe_manager_pro__primary_color_dark",
+              "foodblogkitchen_recipes__primary_color_dark",
               migratedData["primaryColorDark"]
             );
             break;
-          case "recipe_manager_pro__secondary_color":
+          case "foodblogkitchen_recipes__secondary_color":
             migratedData["secondaryColor"] = data[key];
             migratedData["secondaryColorContrast"] = getContrastColor(
               data[key]
             );
 
             updateSettingsFormField(
-              "recipe_manager_pro__secondary_color_contrast",
+              "foodblogkitchen_recipes__secondary_color_contrast",
               migratedData["secondaryColorContrast"]
             );
             break;
-          case "recipe_manager_pro__background_color":
+          case "foodblogkitchen_recipes__background_color":
             migratedData["backgroundColor"] = data[key];
             migratedData["backgroundColorContrast"] = getContrastColor(
               data[key]
             );
 
             updateSettingsFormField(
-              "recipe_manager_pro__background_color_contrast",
+              "foodblogkitchen_recipes__background_color_contrast",
               migratedData["backgroundColorContrast"]
             );
             break;
-          // case "recipe_manager_pro__primary_color_light":
+          // case "foodblogkitchen_recipes__primary_color_light":
           //   migratedData["primaryColorLight"] = data[key];
           //   break;
-          // case "recipe_manager_pro__primary_color_dark":
+          // case "foodblogkitchen_recipes__primary_color_dark":
           //   migratedData["primaryColorDark"] = data[key];
           //   break;
         }
@@ -267,7 +267,7 @@
 
       if (!styleContainer) {
         styleContainer = document.getElementById(
-          "recipe-manager-pro--style-container"
+          "foodblogkitchen-recipes--style-container"
         );
       }
 
@@ -282,7 +282,7 @@
     var updateSettingsFormField = function (name, value) {
       if (!settingsForm) {
         settingsForm = document.getElementById(
-          "recipe-manager-pro--settings-form"
+          "foodblogkitchen-recipes--settings-form"
         );
       }
 
@@ -301,7 +301,7 @@
     var getFormValue = function () {
       if (!settingsForm) {
         settingsForm = document.getElementById(
-          "recipe-manager-pro--settings-form"
+          "foodblogkitchen-recipes--settings-form"
         );
       }
 

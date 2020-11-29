@@ -33,7 +33,7 @@
     
     $inary=is_array($in);
     return '<style>
-  .recipe-manager-pro--block.recipe-manager-pro--block {
+  .foodblogkitchen-recipes--block.foodblogkitchen-recipes--block {
     --headline-font-family: Luna-Regular, sans-serif;
     --headline-font-size: 32px;
     --headline-font-weight: normal;

@@ -3,10 +3,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Recipe Manager Pro 0.0.3\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recipe-manager-"
-"pro\n"
-"POT-Creation-Date: 2020-11-29T13:02:45+00:00\n"
-"PO-Revision-Date: 2020-11-29 14:03+0100\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/foodblogkitchen-"
+"recipes\n"
+"POT-Creation-Date: 2020-11-29T13:55:30+00:00\n"
+"PO-Revision-Date: 2020-11-29 14:56+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -14,55 +14,72 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.4.2\n"
-"X-Domain: recipe-manager-pro\n"
+"X-Domain: foodblogkitchen-recipes\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. Plugin Name of the plugin
-#: recipe-manager-pro.php:194 recipe-manager-pro.php:195
-#, fuzzy
-#| msgid "Recipe Block"
-msgid "WP Recipe Block"
-msgstr "Rezeptblock"
+msgid "Recipes | foodblogkitchen"
+msgstr "Rezepte | foodblogkitchen"
 
 #. Description of the plugin
-#: build/index.js:670 src/blocks/block/index.js:14
 msgid ""
-"Manage recipes and optimize them automatically for Google Featured Snippets."
+"Recipe block for the Gutenberg editor to easily include recipes and "
+"automatically optimize them for search engines."
 msgstr ""
-"Verwalte deine Rezepte und optimiere sie automatisch um die Chance auf ein "
-"Google Features Snippet zu bekommen."
+"Rezepte-Block für den Gutenberg-Editor um einfach Rezepte einzubinden und "
+"diese automatisch für Suchmaschinen zu optimieren."
 
 #. Author of the plugin
-msgid "Oliver Wagner"
-msgstr "Oliver Wagner"
+msgid "foodblogkitchen.com"
+msgstr "foodblogkitchen.com"
 
-#: recipe-manager-pro.php:207
-#, fuzzy
-#| msgid "Recipe Manager Pro"
-msgid "Recipe Manager"
-msgstr "Rezepte-Manager Pro"
+#: build/block-template.php:7 build/block-template.php:12
+#: foodblogkitchen-recipes.php:874 foodblogkitchen-recipes.php:879
+msgid "minutes"
+msgstr "Minuten"
 
-#: recipe-manager-pro.php:208
+#: build/block-template.php:12 foodblogkitchen-recipes.php:879
+msgid "hours"
+msgstr "Stunden"
+
+#: foodblogkitchen-recipes.php:191 foodblogkitchen-recipes.php:192
+msgid "foodblogkitchen"
+msgstr "foodblogkitchen"
+
+#: foodblogkitchen-recipes.php:204
+msgid "Recipes"
+msgstr "Rezepte"
+
+#: foodblogkitchen-recipes.php:205
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: recipe-manager-pro.php:309
+#: foodblogkitchen-recipes.php:296
+msgid "General settings"
+msgstr "Allgemeine Einstellungen"
+
+#: foodblogkitchen-recipes.php:298
+msgid "Configure how the recipe block should look for your visitors."
+msgstr "Konfiguriere, wie der Rezeptblock für deine Besucher aussehen soll."
+
+#: foodblogkitchen-recipes.php:306
 msgid "Primary color"
 msgstr "Hauptfarbe"
 
-#: recipe-manager-pro.php:357
+#: foodblogkitchen-recipes.php:354
 msgid "Secondary color"
 msgstr "Nebenfarbe"
 
-#: recipe-manager-pro.php:381
+#: foodblogkitchen-recipes.php:378
 msgid "Background color"
 msgstr "Hintergrundfarbe"
 
-#: recipe-manager-pro.php:405
+#: foodblogkitchen-recipes.php:402
 msgid "Thumbnail size"
 msgstr "Vorschaubild-Größe"
 
-#: recipe-manager-pro.php:410
+#. translators: %s is replaced with link to the plugin
+#: foodblogkitchen-recipes.php:408
 msgid ""
 "If you change this value, you must recreate your thumbnails.<br /> This can "
 "be done with the great plugin %s."
@@ -70,155 +87,161 @@ msgstr ""
 "Wenn du diesen Wert änderst, musst du deine Thumbnails neu erstellen. <br /> "
 "Dies kannst du mit dem tollen Plugin %s machen."
 
-#: recipe-manager-pro.php:876 recipe-manager-pro.php:881
-msgid "minutes"
-msgstr "Minuten"
-
-#: recipe-manager-pro.php:881
-msgid "hours"
-msgstr "Stunden"
-
-#: recipe-manager-pro.php:928 build/index.js:329 src/blocks/block/edit.js:114
+#: foodblogkitchen-recipes.php:926 build/index.js:328
+#: src/blocks/block/edit.js:114
 msgid "piece"
 msgstr "Stück"
 
-#: recipe-manager-pro.php:929 build/index.js:494 src/blocks/block/edit.js:444
+#: foodblogkitchen-recipes.php:927 build/index.js:493
+#: src/blocks/block/edit.js:444
 msgid "simple"
 msgstr "einfach"
 
-#: recipe-manager-pro.php:932
+#: foodblogkitchen-recipes.php:930
 msgid "Crêpes"
 msgstr "Crêpes"
 
-#: recipe-manager-pro.php:940
+#: foodblogkitchen-recipes.php:938
 msgid "Flour"
 msgstr "Mehl"
 
-#: recipe-manager-pro.php:947
+#: foodblogkitchen-recipes.php:945
 msgid "Butter"
 msgstr "Butter"
 
-#: recipe-manager-pro.php:954
+#: foodblogkitchen-recipes.php:952
 msgid "Milk"
 msgstr "Milch"
 
-#: recipe-manager-pro.php:961
+#: foodblogkitchen-recipes.php:959
 msgid "Eggs"
 msgstr "Eier"
 
-#: recipe-manager-pro.php:985 build/index.js:540 src/blocks/block/edit.js:515
+#: foodblogkitchen-recipes.php:983 build/index.js:539
+#: src/blocks/block/edit.js:515
 msgid "Prep time"
 msgstr "Vorbereitungszeit"
 
-#: recipe-manager-pro.php:986 build/index.js:549 src/blocks/block/edit.js:530
+#: foodblogkitchen-recipes.php:984 build/index.js:548
+#: src/blocks/block/edit.js:530
 msgid "Rest time"
 msgstr "Ruhezeit"
 
-#: recipe-manager-pro.php:987 build/index.js:558 src/blocks/block/edit.js:545
+#: foodblogkitchen-recipes.php:985 build/index.js:557
+#: src/blocks/block/edit.js:545
 msgid "Cook time"
 msgstr "Zubereitungszeit"
 
-#: recipe-manager-pro.php:988 build/index.js:567 src/blocks/block/edit.js:561
+#: foodblogkitchen-recipes.php:986 build/index.js:566
+#: src/blocks/block/edit.js:561
 msgid "Total time"
 msgstr "Gesamtzeit"
 
-#: recipe-manager-pro.php:989
+#: foodblogkitchen-recipes.php:987
 msgid "yields"
 msgstr "Stück"
 
-#: recipe-manager-pro.php:990 build/index.js:569 src/blocks/block/edit.js:571
+#: foodblogkitchen-recipes.php:988 build/index.js:568
+#: src/blocks/block/edit.js:571
 msgid "Ingredients"
 msgstr "Zutaten"
 
-#: recipe-manager-pro.php:991 build/index.js:604 src/blocks/block/edit.js:605
+#: foodblogkitchen-recipes.php:989 build/index.js:603
+#: src/blocks/block/edit.js:605
 msgid "Steps of preparation"
 msgstr "Zubereitung"
 
-#: recipe-manager-pro.php:992
+#: foodblogkitchen-recipes.php:990
 msgid "Your rating"
 msgstr "Deine Bewertung"
 
-#: recipe-manager-pro.php:993
+#: foodblogkitchen-recipes.php:991
 msgid "Average rating"
 msgstr "Durchschnittliche Bewertung"
 
-#: recipe-manager-pro.php:994 build/index.js:617 src/blocks/block/edit.js:625
+#: foodblogkitchen-recipes.php:992 build/index.js:616
+#: src/blocks/block/edit.js:625
 msgid "Notes"
 msgstr "Notizen"
 
-#: recipe-manager-pro.php:995
+#: foodblogkitchen-recipes.php:993
 msgid "How do you like the recipe?"
 msgstr "Wie findest du das Rezept?"
 
-#: recipe-manager-pro.php:996 build/index.js:326 src/blocks/block/edit.js:110
+#: foodblogkitchen-recipes.php:994 build/index.js:325
+#: src/blocks/block/edit.js:110
 msgid "servings"
 msgstr "Portionen"
 
-#: build/index.js:227 src/blocks/block/ImageUpload.js:50
+#: templates/admin-index-page.php:6
+msgid "Recipes settings"
+msgstr "Einstellungen für Rezepte"
+
+#: build/index.js:226 src/blocks/block/ImageUpload.js:49
 msgid "Change image"
 msgstr "Bild wechseln"
 
-#: build/index.js:234 src/blocks/block/ImageUpload.js:60
+#: build/index.js:233 src/blocks/block/ImageUpload.js:59
 msgid "Remove image"
 msgstr "Bild entfernen"
 
-#: build/index.js:237 src/blocks/block/ImageUpload.js:65
+#: build/index.js:236 src/blocks/block/ImageUpload.js:64
 msgid "Select image"
 msgstr "Bild auswählen"
 
-#: build/index.js:314 src/blocks/block/edit.js:88
+#: build/index.js:313 src/blocks/block/edit.js:88
 msgid "Breakfast"
 msgstr "Frühstück"
 
-#: build/index.js:314 src/blocks/block/edit.js:89
+#: build/index.js:313 src/blocks/block/edit.js:89
 msgid "Bread"
 msgstr "Brot"
 
-#: build/index.js:314 src/blocks/block/edit.js:90
+#: build/index.js:313 src/blocks/block/edit.js:90
 msgid "Appetizers & Snacks"
 msgstr "Vorspeisen & Snacks"
 
-#: build/index.js:314 src/blocks/block/edit.js:91
+#: build/index.js:313 src/blocks/block/edit.js:91
 msgid "Salads"
 msgstr "Salate"
 
-#: build/index.js:314 src/blocks/block/edit.js:92
+#: build/index.js:313 src/blocks/block/edit.js:92
 msgid "Soups & Stews"
 msgstr "Suppen & Eintöpfe"
 
-#: build/index.js:314 src/blocks/block/edit.js:93
+#: build/index.js:313 src/blocks/block/edit.js:93
 msgid "Main Dishes"
 msgstr "Hauptgerichte"
 
-#: build/index.js:314 src/blocks/block/edit.js:94
+#: build/index.js:313 src/blocks/block/edit.js:94
 msgid "Side Dishes"
 msgstr "Beilagen"
 
-#: build/index.js:314 src/blocks/block/edit.js:95
+#: build/index.js:313 src/blocks/block/edit.js:95
 msgid "Desserts"
 msgstr "Nachspeisen"
 
-#: build/index.js:314 src/blocks/block/edit.js:96
+#: build/index.js:313 src/blocks/block/edit.js:96
 msgid "Drinks"
 msgstr "Getränk"
 
-#: build/index.js:314 src/blocks/block/edit.js:97
+#: build/index.js:313 src/blocks/block/edit.js:97
 msgid "Sweets"
 msgstr "Süßes"
 
-#: build/index.js:322 src/blocks/block/edit.js:104
+#: build/index.js:321 src/blocks/block/edit.js:104
 msgid "Select a category"
 msgstr "Wähle eine Kategorie aus"
 
-#: build/index.js:385 src/blocks/block/edit.js:175
+#: build/index.js:384 src/blocks/block/edit.js:175
 msgid "No reviews"
 msgstr "Keine Bewertungen"
 
-#: build/index.js:390 src/blocks/block/edit.js:185
+#: build/index.js:389 src/blocks/block/edit.js:185
 msgid "SEO"
 msgstr "SEO"
 
-#: build/index.js:392 src/blocks/block/edit.js:190
+#: build/index.js:391 src/blocks/block/edit.js:190
 msgid ""
 "Google and other search engines need more information to present your recipe "
 "in the best possible way. You should provide this information as good as "
@@ -228,94 +251,109 @@ msgstr ""
 "bestmöglich zu präsentieren. Du solltest diese Informationen so gut wie "
 "möglich angeben."
 
-#: build/index.js:393 src/blocks/block/edit.js:198
+#: build/index.js:392 src/blocks/block/edit.js:198
 msgid "Cuisine"
 msgstr "Küche"
 
-#: build/index.js:395 src/blocks/block/edit.js:200
+#: build/index.js:394 src/blocks/block/edit.js:200
 msgid "e.g. \"Italian\" or \"German\""
 msgstr "z.B. „Italienisch“ oder „Deutsch“"
 
-#: build/index.js:403 src/blocks/block/edit.js:212
+#: build/index.js:402 src/blocks/block/edit.js:212
 msgid "Calories"
 msgstr "Kalorien"
 
-#: build/index.js:412 src/blocks/block/edit.js:225
+#: build/index.js:411 src/blocks/block/edit.js:225
 msgid "Picture of the finished dish"
 msgstr "Bild des fertigen Gerichtes"
 
-#: build/index.js:412 src/blocks/block/edit.js:227
+#: build/index.js:411 src/blocks/block/edit.js:227
 msgid ""
 "Depending on the usage Google uses different image formats of your recipe."
 msgstr ""
 "Abhängig von der Nutzung verwendet Google verschiedene Bildformate deines "
 "Rezeptes."
 
-#: build/index.js:427 src/blocks/block/edit.js:263
+#: build/index.js:426 src/blocks/block/edit.js:263
 msgid "Previews"
 msgstr "Vorschau"
 
-#: build/index.js:427 src/blocks/block/edit.js:264
+#: build/index.js:426 src/blocks/block/edit.js:264
 msgid "Featured Snippet"
 msgstr "Featured Snippet"
 
-#: build/index.js:442 src/blocks/block/edit.js:291
+#: build/index.js:441 src/blocks/block/edit.js:291
 msgid "Mobile Search Result"
 msgstr "Mobiles Suchergebnis"
 
-#: build/index.js:465 src/blocks/block/edit.js:393
+#: build/index.js:464 src/blocks/block/edit.js:393
 msgid "Rating"
 msgstr "Bewertung"
 
-#: build/index.js:474 src/blocks/block/edit.js:411
+#: build/index.js:473 src/blocks/block/edit.js:411
 msgid "Preparation"
 msgstr "Vorbereitung"
 
-#: build/index.js:479 src/blocks/block/edit.js:428
+#: build/index.js:478 src/blocks/block/edit.js:428
 msgid "Title of your recipe"
 msgstr "Titel des Rezepts"
 
-#: build/index.js:501 src/blocks/block/edit.js:457
+#: build/index.js:500 src/blocks/block/edit.js:457
 msgid "moderate"
 msgstr "mittel"
 
-#: build/index.js:508 src/blocks/block/edit.js:470
+#: build/index.js:507 src/blocks/block/edit.js:470
 msgid "challenging"
 msgstr "herausfordernd"
 
-#: build/index.js:511 src/blocks/block/edit.js:476
+#: build/index.js:510 src/blocks/block/edit.js:476
 msgid "Short description of your recipe"
 msgstr "Kurze Beschreibung deines Rezeptes"
 
-#: build/index.js:548 build/index.js:557 build/index.js:566 build/index.js:567
+#: build/index.js:547 build/index.js:556 build/index.js:565 build/index.js:566
 #: src/blocks/block/edit.js:525 src/blocks/block/edit.js:540
 #: src/blocks/block/edit.js:555 src/blocks/block/edit.js:564
 msgid "Minutes"
 msgstr "Minuten"
 
-#: build/index.js:572 src/blocks/block/edit.js:575
+#: build/index.js:571 src/blocks/block/edit.js:575
 msgid "Results in"
 msgstr "Ergibt"
 
-#: build/index.js:583 src/blocks/block/edit.js:586
+#: build/index.js:582 src/blocks/block/edit.js:586
 msgid "Unit"
 msgstr "Einheit"
 
-#: build/index.js:595 src/blocks/block/edit.js:599
+#: build/index.js:594 src/blocks/block/edit.js:599
 msgid "Add the ingredients here..."
 msgstr "Füge hier die Zutaten ein..."
 
-#: build/index.js:608 src/blocks/block/edit.js:612
+#: build/index.js:607 src/blocks/block/edit.js:612
 msgid "Add the steps of preparation here..."
 msgstr "Füge die die Schritte der Zubereitung ein..."
 
-#: build/index.js:620 src/blocks/block/edit.js:631
+#: build/index.js:619 src/blocks/block/edit.js:631
 msgid "Additional notes ..."
 msgstr "Zusätzliche Notizen …"
 
-#: build/index.js:669 src/blocks/block/index.js:13
+#: build/index.js:668 src/blocks/block/index.js:13
 msgid "Recipe Block"
 msgstr "Rezeptblock"
+
+#: build/index.js:669 src/blocks/block/index.js:14
+msgid ""
+"Manage recipes and optimize them automatically for Google Featured Snippets."
+msgstr ""
+"Verwalte deine Rezepte und optimiere sie automatisch um die Chance auf ein "
+"Google Features Snippet zu bekommen."
+
+#, fuzzy
+#~| msgid "Recipe Manager Pro"
+#~ msgid "Recipe Manager"
+#~ msgstr "Rezepte-Manager Pro"
+
+#~ msgid "Oliver Wagner"
+#~ msgstr "Oliver Wagner"
 
 #~ msgid "Recipe Manager Pro"
 #~ msgstr "Rezepte-Manager Pro"

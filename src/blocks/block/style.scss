@@ -1,4 +1,4 @@
-.recipe-manager-pro--block {
+.foodblogkitchen-recipes--block {
   --headline-font-family: "Luna-Regular", sans-serif;
   --headline-font-size: 32px;
   --headline-font-weight: normal;
@@ -21,7 +21,7 @@
   --star-highlighted-url: url("../../../assets/star-highlighted.svg");
 }
 
-.recipe-manager-pro--block.recipe-manager-pro--block {
+.foodblogkitchen-recipes--block.foodblogkitchen-recipes--block {
   padding: 24px;
   margin-bottom: 32px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -37,7 +37,7 @@
   p {
   }
 
-  .recipe-manager-pro--block--intro {
+  .foodblogkitchen-recipes--block--intro {
     display: flex;
     text-align: left;
     margin: 0 -16px 1.5rem -16px;
@@ -53,7 +53,7 @@
       width: 100%;
     }
 
-    .recipe-manager-pro--block--main-image {
+    .foodblogkitchen-recipes--block--main-image {
       width: 100%;
       margin: 0 0 1rem 0;
       background-size: cover;
@@ -76,7 +76,7 @@
         width: 50%;
       }
 
-      .recipe-manager-pro--block--main-image {
+      .foodblogkitchen-recipes--block--main-image {
         margin-bottom: 0;
       }
     }
@@ -106,7 +106,7 @@
     border-width: 0px 0px 1px 0;
   }
 
-  .recipe-manager-pro--block--timing-list {
+  .foodblogkitchen-recipes--block--timing-list {
     padding: 1rem 0 0.25rem 0;
     margin: 0;
 
@@ -157,7 +157,7 @@
     }
   }
 
-  .recipe-manager-pro--block--headline {
+  .foodblogkitchen-recipes--block--headline {
     display: flex;
     justify-content: space-between;
     padding: 1rem 0;
@@ -171,7 +171,7 @@
     }
   }
 
-  .recipe-manager-pro--block--servings-editor {
+  .foodblogkitchen-recipes--block--servings-editor {
     display: flex;
     margin-top: 0.5rem;
     width: 100%;
@@ -208,7 +208,7 @@
     }
   }
 
-  .recipe-manager-pro--block--ingredients {
+  .foodblogkitchen-recipes--block--ingredients {
     padding: 0;
     width: 100%;
     border-collapse: collapse;
@@ -226,14 +226,14 @@
         text-align: left;
         border: none;
 
-        &.recipe-manager-pro--block--amount {
+        &.foodblogkitchen-recipes--block--amount {
           text-align: right;
           white-space: nowrap;
           padding-left: 24px;
           padding-right: 0;
         }
 
-        &.recipe-manager-pro--block--ingredient {
+        &.foodblogkitchen-recipes--block--ingredient {
           width: 100%;
         }
       }
@@ -257,12 +257,12 @@
     }
   }
 
-  .recipe-manager-pro--block--preparation-steps {
+  .foodblogkitchen-recipes--block--preparation-steps {
     display: block;
     list-style: none;
     margin: 0 0 1rem 0;
     padding: 0;
-    counter-reset: recipe-manager-steps;
+    counter-reset: foodblogkitchen-recipes-steps;
 
     li {
       display: block;
@@ -272,8 +272,8 @@
       position: relative;
 
       &::before {
-        counter-increment: recipe-manager-steps;
-        content: counter(recipe-manager-steps);
+        counter-increment: foodblogkitchen-recipes-steps;
+        content: counter(foodblogkitchen-recipes-steps);
         text-align: center;
         font-weight: bold;
         display: block;
@@ -292,7 +292,7 @@
     }
   }
 
-  .recipe-manager-pro--block--difficulty {
+  .foodblogkitchen-recipes--block--difficulty {
     border-radius: 8px;
     background-color: var(--primary-light);
     padding: 2px 12px;
@@ -304,7 +304,7 @@
     line-height: 20px;
   }
 
-  .recipe-manager-pro--block--rating {
+  .foodblogkitchen-recipes--block--rating {
     text-align: center;
 
     ol {
@@ -317,27 +317,27 @@
       vertical-align: middle;
     }
 
-    &.recipe-manager-pro--block--rating--small {
+    &.foodblogkitchen-recipes--block--rating--small {
       text-align: left;
 
-      li.recipe-manager-pro--block--star {
+      li.foodblogkitchen-recipes--block--star {
         width: 24px;
         height: 24px;
         background-size: 24px 24px;
       }
     }
 
-    &.recipe-manager-pro--block--interactive {
+    &.foodblogkitchen-recipes--block--interactive {
       ol {
         &:hover {
-          li.recipe-manager-pro--block--star,
-          li.recipe-manager-pro--block--star.selected,
-          li.recipe-manager-pro--block--star.half-selected {
+          li.foodblogkitchen-recipes--block--star,
+          li.foodblogkitchen-recipes--block--star.selected,
+          li.foodblogkitchen-recipes--block--star.half-selected {
             background-image: var(--star-highlighted-url);
           }
         }
 
-        li.recipe-manager-pro--block--star {
+        li.foodblogkitchen-recipes--block--star {
           cursor: pointer;
 
           &:hover,
@@ -356,7 +356,7 @@
     }
   }
 
-  .recipe-manager-pro--block--star {
+  .foodblogkitchen-recipes--block--star {
     margin: 0;
     padding: 0 2px;
     box-sizing: content-box;

@@ -12,11 +12,11 @@
   --primary-light: #f7e9e9;
   --primary-light-contrast: #000000;
   --primary-dark: #f7e9e9;
-  --clock-url: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZT0iY3VycmVudENvbG9yIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIHN0cm9rZT0ibm9uZSIgZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjkiIC8+PHBvbHlsaW5lIHBvaW50cz0iMTIgNyAxMiAxMiAxNSAxNSIgLz48L3N2Zz4K);
-  --star-url: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNlMjdhN2EiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLXN0YXIiPjxwb2x5Z29uIHBvaW50cz0iMTIgMiAxNS4wOSA4LjI2IDIyIDkuMjcgMTcgMTQuMTQgMTguMTggMjEuMDIgMTIgMTcuNzcgNS44MiAyMS4wMiA3IDE0LjE0IDIgOS4yNyA4LjkxIDguMjYgMTIgMiI+PC9wb2x5Z29uPjwvc3ZnPg==);
-  --star-filled-url: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjZTI3YTdhIiBzdHJva2U9IiNlMjdhN2EiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLXN0YXIiPjxwb2x5Z29uIHBvaW50cz0iMTIgMiAxNS4wOSA4LjI2IDIyIDkuMjcgMTcgMTQuMTQgMTguMTggMjEuMDIgMTIgMTcuNzcgNS44MiAyMS4wMiA3IDE0LjE0IDIgOS4yNyA4LjkxIDguMjYgMTIgMiI+PC9wb2x5Z29uPjwvc3ZnPg==);
-  --star-half-filled-url: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ1cmwoI2hhbGZfZ3JhZCkiIHN0cm9rZT0iI2UyN2E3YSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItc3RhciI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJoYWxmX2dyYWQiPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjZTI3YTdhIi8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IndoaXRlIiBzdG9wLW9wYWNpdHk9IjEiIC8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHBvbHlnb24gcG9pbnRzPSIxMiAyIDE1LjA5IDguMjYgMjIgOS4yNyAxNyAxNC4xNCAxOC4xOCAyMS4wMiAxMiAxNy43NyA1LjgyIDIxLjAyIDcgMTQuMTQgMiA5LjI3IDguOTEgOC4yNiAxMiAyIj48L3BvbHlnb24+PC9zdmc+);
-  --star-highlighted-url: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjZDU1YTVhIiBzdHJva2U9IiNkNTVhNWEiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLXN0YXIiPjxwb2x5Z29uIHBvaW50cz0iMTIgMiAxNS4wOSA4LjI2IDIyIDkuMjcgMTcgMTQuMTQgMTguMTggMjEuMDIgMTIgMTcuNzcgNS44MiAyMS4wMiA3IDE0LjE0IDIgOS4yNyA4LjkxIDguMjYgMTIgMiI+PC9wb2x5Z29uPjwvc3ZnPg==); }
+  --clock-url: url("../../../assets/clock.svg");
+  --star-url: url("../../../assets/star.svg");
+  --star-filled-url: url("../../../assets/star-filled.svg");
+  --star-half-filled-url: url("../../../assets/star-half-filled.svg");
+  --star-highlighted-url: url("../../../assets/star-highlighted.svg"); }
 
 .foodblogkitchen-recipes--block.foodblogkitchen-recipes--block {
   padding: 24px;
@@ -136,9 +136,7 @@
       color: var(--secondary-contrast);
       border: 0;
       border-radius: 4px;
-      -webkit-appearance: none;
-         -moz-appearance: none;
-              appearance: none;
+      appearance: none;
       padding: 8px 16px;
       line-height: 1.4;
       cursor: pointer; }
@@ -190,7 +188,7 @@
     list-style: none;
     margin: 0 0 1rem 0;
     padding: 0;
-    counter-reset: recipe-manager-steps; }
+    counter-reset: foodblogkitchen-recipes-steps; }
     .foodblogkitchen-recipes--block.foodblogkitchen-recipes--block .foodblogkitchen-recipes--block--preparation-steps li {
       display: block;
       padding: 8px 0 8px 32px;
@@ -198,8 +196,8 @@
       line-height: 24px;
       position: relative; }
       .foodblogkitchen-recipes--block.foodblogkitchen-recipes--block .foodblogkitchen-recipes--block--preparation-steps li::before {
-        counter-increment: recipe-manager-steps;
-        content: counter(recipe-manager-steps);
+        counter-increment: foodblogkitchen-recipes-steps;
+        content: counter(foodblogkitchen-recipes-steps);
         text-align: center;
         font-weight: bold;
         display: block;
@@ -267,5 +265,6 @@
     .foodblogkitchen-recipes--block.foodblogkitchen-recipes--block .foodblogkitchen-recipes--block--star.half-selected {
       background-image: var(--star-half-filled-url); }
 
-
-/*# sourceMappingURL=style-index.css.map*/
+.wrap .foodblogkitchen-recipes--block {
+  max-width: 600px !important;
+  margin: 0 auto !important; }

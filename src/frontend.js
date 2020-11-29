@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
   var ratingElements = document.querySelectorAll(
-    ".recipe-manager-pro--block--rating.recipe-manager-pro--block--interactive"
+    ".foodblogkitchen-recipes--block--rating.foodblogkitchen-recipes--block--interactive"
   );
 
   var storeRatingInDatabase = function (postId, rating) {
-    fetch(RecipeManagerPro.config.ajaxUrl, {
+    fetch(FoodblogKitchenRecipes.config.ajaxUrl, {
       method: "POST",
       body: new URLSearchParams({
-        _ajax_nonce: RecipeManagerPro.config.nonce,
-        action: "recipe_manager_pro_set_rating",
+        _ajax_nonce: FoodblogKitchenRecipes.config.nonce,
+        action: "foodblogkitchen_recipes_set_rating",
         postId: postId,
         rating: rating,
       }),
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
             var averageVotingElement = document.querySelector(
               '[data-post-id="' +
                 postId +
-                '"] .recipe-manager-pro--block--average-voting'
+                '"] .foodblogkitchen-recipes--block--average-voting'
             );
 
             if (averageVotingElement) {
@@ -61,12 +61,12 @@ document.addEventListener("DOMContentLoaded", function () {
       var postId = ratingElement.getAttribute("data-post-id");
 
       var savedRating = window.localStorage.getItem(
-        "recipe-manager-pro::" + postId
+        "foodblogkitchen-recipes::" + postId
       );
 
       if (!savedRating) {
         ratingElement
-          .querySelectorAll(".recipe-manager-pro--block--star")
+          .querySelectorAll(".foodblogkitchen-recipes--block--star")
           .forEach((starElement) => {
             starElement.addEventListener("click", (event) => {
               markAsSelected(starElement);
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
               // To show the users vote and prevent multiple votes
               window.localStorage.setItem(
-                "recipe-manager-pro::" + postId,
+                "foodblogkitchen-recipes::" + postId,
                 rating
               );
 
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
           // Hide the user rating section if the user has already voted.
           ratingElement.closest(
-            ".recipe-manager-pro--block--user-rating"
+            ".foodblogkitchen-recipes--block--user-rating"
           ).style.display = "none";
         } catch (e) {
           console.error(e);
@@ -94,10 +94,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // ratingElement.classList.remove(
-        //   "recipe-manager-pro--block--interactive"
+        //   "foodblogkitchen-recipes--block--interactive"
         // );
         // var selectedStarElement = ratingElement.querySelector(
-        //   '.recipe-manager-pro--block--star[data-rating="' + savedRating + '"]'
+        //   '.foodblogkitchen-recipes--block--star[data-rating="' + savedRating + '"]'
         // );
         // if (selectedStarElement) {
         //   markAsSelected(selectedStarElement);
@@ -115,10 +115,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // Servings calculator
   var initServingCalculator = function () {
     const servingsEditorElement = document.querySelector(
-      ".recipe-manager-pro--block--servings-editor"
+      ".foodblogkitchen-recipes--block--servings-editor"
     );
 
-    ingredientsTable = document.querySelector(".recipe-manager-pro--block--ingredients");
+    ingredientsTable = document.querySelector(".foodblogkitchen-recipes--block--ingredients");
 
     if (servingsEditorElement) {
       shrinkButton = servingsEditorElement.querySelector(
@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var refreshIngredients = function () {
     if (ingredientsTable) {
       ingredientsTable
-        .querySelectorAll("tr .recipe-manager-pro--block--amount")
+        .querySelectorAll("tr .foodblogkitchen-recipes--block--amount")
         .forEach((amountElement) => {
           const baseAmount = parseFloat(
             amountElement.getAttribute("data-recipe-base-amount"),

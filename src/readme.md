@@ -1,23 +1,22 @@
 # Update Translations-Template file (POT)
 
-`$ wp i18n make-pot ./ languages/recipe-manager-pro.pot`
+`$ wp i18n make-pot ./ languages/foodblogkitchen-recipes.pot`
 
-- Open `recipe-manager-pro-de_DE.po` in Poedit
+- Open `foodblogkitchen-recipes-de_DE.po` in Poedit
 - Click "Katalog" > "Aus POT-Datei aktualisieren"
-- Select the `recipe-manager-pro.pot`
+- Select the `foodblogkitchen-recipes.pot`
 - Update the translations
 - Save the file and click "Datei" > "MO-Datei erstellen"
 
 The translations for the JS files have to be a JSON file.
 
-`wp i18n make-json languages/recipe-manager-pro-de_DE.po --no-purge`
+`wp i18n make-json languages/foodblogkitchen-recipes-de_DE.po --no-purge`
 
 More Infos: https://developer.wordpress.org/block-editor/developers/internationalization/
 
 # Todos
 
-- Plugin umbennenen?
-- Zahlenfelder gehen nicht richtig
+- Zahlenfelder gehen manchmal nicht richtig
 
 # Development
 

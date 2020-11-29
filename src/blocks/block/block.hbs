@@ -1,25 +1,25 @@
-<div class="recipe-manager-pro--block{{#if align}} align{{align}}{{/if}}">
+<div class="foodblogkitchen-recipes--block{{#if align}} align{{align}}{{/if}}">
 	{{#if name}}
 		<h2>{{{name}}}</h2>
 	{{/if}}
 	
-	<div class="recipe-manager-pro--block--intro">
+	<div class="foodblogkitchen-recipes--block--intro">
 		<div>
 			{{#if difficulty}}
-				<span class="recipe-manager-pro--block--difficulty">{{ difficulty }}</span>
+				<span class="foodblogkitchen-recipes--block--difficulty">{{ difficulty }}</span>
 			{{/if}}
 
 			{{#if description}}
 				<p>{{ description }}</p>
 			{{/if}}
 			{{#if averageRating}}
-			<div class="recipe-manager-pro--block--rating recipe-manager-pro--block--rating--small">
+			<div class="foodblogkitchen-recipes--block--rating foodblogkitchen-recipes--block--rating--small">
 				<ol>
-					<li class="recipe-manager-pro--block--star{{#if averageRating}} selected{{/if}}" data-rating="1">1</li>
-					<li class="recipe-manager-pro--block--star{{#ifMoreOrEqual averageRating 2}} selected{{else}}{{#ifMoreOrEqual averageRating 1.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="2">2</li>
-					<li class="recipe-manager-pro--block--star{{#ifMoreOrEqual averageRating 3}} selected{{else}}{{#ifMoreOrEqual averageRating 2.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="3">3</li>
-					<li class="recipe-manager-pro--block--star{{#ifMoreOrEqual averageRating 4}} selected{{else}}{{#ifMoreOrEqual averageRating 3.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="4">4</li>
-					<li class="recipe-manager-pro--block--star{{#ifMoreOrEqual averageRating 5}} selected{{else}}{{#ifMoreOrEqual averageRating 4.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="5">5</li>
+					<li class="foodblogkitchen-recipes--block--star{{#if averageRating}} selected{{/if}}" data-rating="1">1</li>
+					<li class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual averageRating 2}} selected{{else}}{{#ifMoreOrEqual averageRating 1.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="2">2</li>
+					<li class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual averageRating 3}} selected{{else}}{{#ifMoreOrEqual averageRating 2.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="3">3</li>
+					<li class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual averageRating 4}} selected{{else}}{{#ifMoreOrEqual averageRating 3.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="4">4</li>
+					<li class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual averageRating 5}} selected{{else}}{{#ifMoreOrEqual averageRating 4.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="5">5</li>
 				</ol>
 			</div>
 			{{/if}}
@@ -27,7 +27,7 @@
 		<div>
 			{{#if thumbnail}}
         <div
-          class="recipe-manager-pro--block--main-image"
+          class="foodblogkitchen-recipes--block--main-image"
           style="background-image: url('{{thumbnail}}');" title="{{ name }}"
         ></div>
 			{{/if}}
@@ -36,7 +36,7 @@
 
 	<hr />
 
-	<div class="recipe-manager-pro--block--timing-list">
+	<div class="foodblogkitchen-recipes--block--timing-list">
 		<ul>
 			{{#if prepTime}}
 			<li>
@@ -73,10 +73,10 @@
 	<hr />
 
 	{{#if ingredients}}
-		<div class="recipe-manager-pro--block--headline">
+		<div class="foodblogkitchen-recipes--block--headline">
 			<h3>{{translations/ingredients}}</h3>
 			{{#if recipeYield}}
-				<div class="recipe-manager-pro--block--servings-editor">
+				<div class="foodblogkitchen-recipes--block--servings-editor">
 				  <button type="button" class="btn btn-secondary recipe-shrink-servings">-</button>
 				  <span disabled="disabled"><span class="recipe-servings">{{recipeYield}}</span>
 						{{recipeYieldUnit}}
@@ -85,12 +85,12 @@
 				</div>
 			{{/if}}
 		</div>
-		<table class="recipe-manager-pro--block--ingredients">
+		<table class="foodblogkitchen-recipes--block--ingredients">
 			<tbody>
 				{{#each ingredients}}
 					<tr>
-						<td class="recipe-manager-pro--block--amount" data-recipe-base-amount="{{this/baseAmount}}" data-recipe-base-unit="{{this/baseUnit}}">{{this/amount}} {{this/unit}}</td>
-						<td class="recipe-manager-pro--block--ingredient">{{{this/ingredient}}}</td>
+						<td class="foodblogkitchen-recipes--block--amount" data-recipe-base-amount="{{this/baseAmount}}" data-recipe-base-unit="{{this/baseUnit}}">{{this/amount}} {{this/unit}}</td>
+						<td class="foodblogkitchen-recipes--block--ingredient">{{{this/ingredient}}}</td>
 					</tr>
 				{{/each}}
 			</tbody>
@@ -100,10 +100,10 @@
 	<hr />
 
 	{{#if preparationSteps}}
-		<div class="recipe-manager-pro--block--headline">
+		<div class="foodblogkitchen-recipes--block--headline">
 			<h3>{{translations/preparationSteps}}</h3>
 		</div>
-		<ol class="recipe-manager-pro--block--preparation-steps">
+		<ol class="foodblogkitchen-recipes--block--preparation-steps">
 			{{{preparationSteps}}}
 		</ol>
 	{{/if}}
@@ -113,31 +113,31 @@
 	<hr />
 
 	<section>
-		<header class="recipe-manager-pro--block--headline">
+		<header class="foodblogkitchen-recipes--block--headline">
 			<h3>{{translations/notes}}</h3>
 		</header>
 		<p>{{notes}}</p>
 	</section>
 	{{/if}}
 	
-	<section class="recipe-manager-pro--block--user-rating">
+	<section class="foodblogkitchen-recipes--block--user-rating">
 		<hr />
-		<header class="recipe-manager-pro--block--headline">
+		<header class="foodblogkitchen-recipes--block--headline">
 			<h3>{{translations/feedback}}</h3>
 		</header>	
-		<div class="recipe-manager-pro--block--rating recipe-manager-pro--block--interactive" data-post-id="{{postId}}" data-save-url="{{ajaxUrl}}" data-nonce="{{nonce}}">
+		<div class="foodblogkitchen-recipes--block--rating foodblogkitchen-recipes--block--interactive" data-post-id="{{postId}}" data-save-url="{{ajaxUrl}}" data-nonce="{{nonce}}">
 			<ol>
-				<li class="recipe-manager-pro--block--star{{#if userRating}} selected{{/if}}" data-rating="1">1</li>
-				<li class="recipe-manager-pro--block--star{{#ifMoreOrEqual userRating 2}} selected{{else}}{{/ifMoreOrEqual}}" data-rating="2">2</li>
-				<li class="recipe-manager-pro--block--star{{#ifMoreOrEqual userRating 3}} selected{{else}}{{/ifMoreOrEqual}}" data-rating="3">3</li>
-				<li class="recipe-manager-pro--block--star{{#ifMoreOrEqual userRating 4}} selected{{else}}{{/ifMoreOrEqual}}" data-rating="4">4</li>
-				<li class="recipe-manager-pro--block--star{{#ifMoreOrEqual userRating 5}} selected{{else}}{{/ifMoreOrEqual}}" data-rating="5">5</li>
+				<li class="foodblogkitchen-recipes--block--star{{#if userRating}} selected{{/if}}" data-rating="1">1</li>
+				<li class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual userRating 2}} selected{{else}}{{/ifMoreOrEqual}}" data-rating="2">2</li>
+				<li class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual userRating 3}} selected{{else}}{{/ifMoreOrEqual}}" data-rating="3">3</li>
+				<li class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual userRating 4}} selected{{else}}{{/ifMoreOrEqual}}" data-rating="4">4</li>
+				<li class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual userRating 5}} selected{{else}}{{/ifMoreOrEqual}}" data-rating="5">5</li>
 			</ol>
 		</div>
 	</section>
 	<script>
-		var RecipeManagerPro = RecipeManagerPro || {};
-		RecipeManagerPro.config = {
+		var FoodblogKitchenRecipes = FoodblogKitchenRecipes || {};
+		FoodblogKitchenRecipes.config = {
 			ajaxUrl: '{{ajaxUrl}}',
 			nonce: '{{nonce}}'
 		};

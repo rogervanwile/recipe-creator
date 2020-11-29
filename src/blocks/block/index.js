@@ -9,11 +9,11 @@ import "./style.scss";
 
 import Edit from "./edit";
 
-registerBlockType("recipe-manager-pro/block", {
-  title: __("Recipe Block", "recipe-manager-pro"),
+registerBlockType("foodblogkitchen-recipes/block", {
+  title: __("Recipe Block", "foodblogkitchen-recipes"),
   description: __(
     "Manage recipes and optimize them automatically for Google Featured Snippets.",
-    "recipe-manager-pro"
+    "foodblogkitchen-recipes"
   ),
   category: "formatting",
   icon: "carrot",

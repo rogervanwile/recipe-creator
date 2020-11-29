@@ -26,12 +26,12 @@ import "./editor.scss";
 
 import ImageUpload from "./ImageUpload";
 
-var recipeManagerProMigrationDone = false;
+var foodblogKitchenRecipesMigrationDone = false;
 
 export default function Edit(props) {
   // TODO: Migration, remove for live version
   // Workaround for https://github.com/WordPress/gutenberg/issues/7342
-  if (!recipeManagerProMigrationDone) {
+  if (!foodblogKitchenRecipesMigrationDone) {
     const cleanedDefaultData = {};
 
     Object.keys(props.attributes).forEach((key) => {
@@ -60,7 +60,7 @@ export default function Edit(props) {
       }
     });
 
-    recipeManagerProMigrationDone = true;
+    foodblogKitchenRecipesMigrationDone = true;
 
     props.setAttributes(cleanedDefaultData);
   }
@@ -85,33 +85,33 @@ export default function Edit(props) {
   const ALLOWED_MEDIA_TYPES = ["image"];
 
   const categoryOptions = [
-    __("Breakfast", "recipe-manager-pro"),
-    __("Bread", "recipe-manager-pro"),
-    __("Appetizers & Snacks", "recipe-manager-pro"),
-    __("Salads", "recipe-manager-pro"),
-    __("Soups & Stews", "recipe-manager-pro"),
-    __("Main Dishes", "recipe-manager-pro"),
-    __("Side Dishes", "recipe-manager-pro"),
-    __("Desserts", "recipe-manager-pro"),
-    __("Drinks", "recipe-manager-pro"),
-    __("Sweets", "recipe-manager-pro"),
+    __("Breakfast", "foodblogkitchen-recipes"),
+    __("Bread", "foodblogkitchen-recipes"),
+    __("Appetizers & Snacks", "foodblogkitchen-recipes"),
+    __("Salads", "foodblogkitchen-recipes"),
+    __("Soups & Stews", "foodblogkitchen-recipes"),
+    __("Main Dishes", "foodblogkitchen-recipes"),
+    __("Side Dishes", "foodblogkitchen-recipes"),
+    __("Desserts", "foodblogkitchen-recipes"),
+    __("Drinks", "foodblogkitchen-recipes"),
+    __("Sweets", "foodblogkitchen-recipes"),
   ].map((value) => {
     return { label: value, value: value };
   });
 
   categoryOptions.unshift({
     value: "",
-    label: __("Select a category", "recipe-manager-pro"),
+    label: __("Select a category", "foodblogkitchen-recipes"),
   });
 
   const recipeYieldUnitOptions = [
     {
       value: "servings",
-      label: __("servings", "recipe-manager-pro"),
+      label: __("servings", "foodblogkitchen-recipes"),
     },
     {
       value: "piece",
-      label: __("piece", "recipe-manager-pro"),
+      label: __("piece", "foodblogkitchen-recipes"),
     },
   ];
 
@@ -172,7 +172,7 @@ export default function Edit(props) {
     } else {
       return (
         <div className="featured-snipped-preview--rating">
-          {__("No reviews", "recipe-manager-pro")}
+          {__("No reviews", "foodblogkitchen-recipes")}
         </div>
       );
     }
@@ -182,24 +182,24 @@ export default function Edit(props) {
     <Fragment>
       <InspectorControls>
         <PanelBody
-          title={__("SEO", "recipe-manager-pro")}
-          className="recipe-manager-pro--sidebar"
+          title={__("SEO", "foodblogkitchen-recipes")}
+          className="foodblogkitchen-recipes--sidebar"
         >
           <PanelRow>
             <p>
               {__(
                 "Google and other search engines need more information to present your recipe in the best possible way. You should provide this information as good as possible.",
-                "recipe-manager-pro"
+                "foodblogkitchen-recipes"
               )}
             </p>
           </PanelRow>
           <PanelRow>
             <TextControl
-              label={__("Cuisine", "recipe-manager-pro")}
+              label={__("Cuisine", "foodblogkitchen-recipes")}
               value={props.attributes.recipeCuisine}
               placeholder={__(
                 'e.g. "Italian" or "German"',
-                "recipe-manager-pro"
+                "foodblogkitchen-recipes"
               )}
               onChange={(recipeCuisine) => {
                 props.setAttributes({ recipeCuisine });
@@ -209,7 +209,7 @@ export default function Edit(props) {
           <PanelRow>
             <TextControl
               type="number"
-              label={__("Calories", "recipe-manager-pro")}
+              label={__("Calories", "foodblogkitchen-recipes")}
               value={props.attributes.calories}
               description={__("Calories per serving or piece")}
               suffix="kcal"
@@ -222,11 +222,11 @@ export default function Edit(props) {
           <hr />
 
           <PanelRow>
-            <h4>{__("Picture of the finished dish", "recipe-manager-pro")}</h4>
+            <h4>{__("Picture of the finished dish", "foodblogkitchen-recipes")}</h4>
             <p>
               {__(
                 "Depending on the usage Google uses different image formats of your recipe.",
-                "recipe-manager-pro"
+                "foodblogkitchen-recipes"
               )}
             </p>
           </PanelRow>
@@ -260,8 +260,8 @@ export default function Edit(props) {
           <hr />
 
           <PanelRow>
-            <h3>{__("Previews", "recipe-manager-pro")}</h3>
-            <h4>{__("Featured Snippet", "recipe-manager-pro")}</h4>
+            <h3>{__("Previews", "foodblogkitchen-recipes")}</h3>
+            <h4>{__("Featured Snippet", "foodblogkitchen-recipes")}</h4>
           </PanelRow>
 
           <PanelRow>
@@ -288,7 +288,7 @@ export default function Edit(props) {
           </PanelRow>
 
           <PanelRow>
-            <h4>{__("Mobile Search Result", "recipe-manager-pro")}</h4>
+            <h4>{__("Mobile Search Result", "foodblogkitchen-recipes")}</h4>
           </PanelRow>
 
           {/* <PanelRow>
@@ -343,13 +343,13 @@ export default function Edit(props) {
                       ></span>
                     </span>
                     <span>
-                      &nbsp;{__("Rating", "recipe-manager-pro")}:{" "}
+                      &nbsp;{__("Rating", "foodblogkitchen-recipes")}:{" "}
                       {props.data.meta.average_rating}
                     </span>{" "}
                     · &lrm;
                     <span>
                       {props.data.meta.rating_count}{" "}
-                      {__("reviews", "recipe-manager-pro")}
+                      {__("reviews", "foodblogkitchen-recipes")}
                     </span>{" "}
                     · &lrm;
                     <span>{props.attributes.totalTime} Min.</span>
@@ -390,7 +390,7 @@ export default function Edit(props) {
 
               <div className="featured-result-preview-mobile--footer">
                 <div className="featured-result-preview-mobile--rating-col">
-                  <header>{__("Rating", "recipe-manager-pro")}</header>
+                  <header>{__("Rating", "foodblogkitchen-recipes")}</header>
                   <p>
                     <span>{props.data.meta.average_rating}</span>
                     <span className="featured-snipped-preview--stars">
@@ -408,44 +408,44 @@ export default function Edit(props) {
                 </div>
 
                 <div className="featured-result-preview-mobile--time-col">
-                  <header>{__("Preparation", "recipe-manager-pro")}</header>
+                  <header>{__("Preparation", "foodblogkitchen-recipes")}</header>
                   <p>{props.attributes.totalTime} Min.</p>
                 </div>
 
                 {/* <div className="featured-result-preview-mobile--calories-col">
-                  <header>{__("Calories", "recipe-manager-pro")}</header>
-                  <p>{__("Calories", "recipe-manager-pro")}: 99</p>
+                  <header>{__("Calories", "foodblogkitchen-recipes")}</header>
+                  <p>{__("Calories", "foodblogkitchen-recipes")}: 99</p>
                 </div> */}
               </div>
             </section>
           </PanelRow>
         </PanelBody>
       </InspectorControls>
-      <div className={"recipe-manager-pro--block " + props.className}>
+      <div className={"foodblogkitchen-recipes--block " + props.className}>
         <RichText
           tagName="h2"
           value={props.attributes.name}
-          placeholder={__("Title of your recipe", "recipe-manager-pro")}
+          placeholder={__("Title of your recipe", "foodblogkitchen-recipes")}
           onChange={(name) => {
             props.setAttributes({ name });
           }}
         />
-        <div className="recipe-manager-pro--block--intro">
+        <div className="foodblogkitchen-recipes--block--intro">
           <div>
             <span
               className={
-                "recipe-manager-pro--block--difficulty" +
+                "foodblogkitchen-recipes--block--difficulty" +
                 (props.attributes.difficulty !== "simple" ? " unselected" : "")
               }
               onClick={() => {
                 props.setAttributes({ difficulty: "simple" });
               }}
             >
-              {__("simple", "recipe-manager-pro")}
+              {__("simple", "foodblogkitchen-recipes")}
             </span>
             <span
               className={
-                "recipe-manager-pro--block--difficulty" +
+                "foodblogkitchen-recipes--block--difficulty" +
                 (props.attributes.difficulty !== "moderate"
                   ? " unselected"
                   : "")
@@ -454,11 +454,11 @@ export default function Edit(props) {
                 props.setAttributes({ difficulty: "moderate" });
               }}
             >
-              {__("moderate", "recipe-manager-pro")}
+              {__("moderate", "foodblogkitchen-recipes")}
             </span>
             <span
               className={
-                "recipe-manager-pro--block--difficulty" +
+                "foodblogkitchen-recipes--block--difficulty" +
                 (props.attributes.difficulty !== "challenging"
                   ? " unselected"
                   : "")
@@ -467,7 +467,7 @@ export default function Edit(props) {
                 props.setAttributes({ difficulty: "challenging" });
               }}
             >
-              {__("challenging", "recipe-manager-pro")}
+              {__("challenging", "foodblogkitchen-recipes")}
             </span>
 
             <RichText
@@ -475,7 +475,7 @@ export default function Edit(props) {
               value={props.attributes.description}
               placeholder={__(
                 "Short description of your recipe",
-                "recipe-manager-pro"
+                "foodblogkitchen-recipes"
               )}
               onChange={(description) => {
                 props.setAttributes({ description });
@@ -497,7 +497,7 @@ export default function Edit(props) {
                 value={props.attributes.image4_3}
                 render={({ open }) => (
                   <div
-                    className="recipe-manager-pro--block--main-image"
+                    className="foodblogkitchen-recipes--block--main-image"
                     style={{
                       backgroundImage: "url(" + props.attributes.image4_3 + ")",
                     }}
@@ -509,10 +509,10 @@ export default function Edit(props) {
           </div>
         </div>
         <hr />
-        <div className="recipe-manager-pro--block--timing-list">
+        <div className="foodblogkitchen-recipes--block--timing-list">
           <ul>
             <li>
-              <header>{__("Prep time", "recipe-manager-pro")}:</header>
+              <header>{__("Prep time", "foodblogkitchen-recipes")}:</header>
               <span>
                 <InputControl
                   type="number"
@@ -522,12 +522,12 @@ export default function Edit(props) {
                   onChange={(prepTime) => {
                     updateTime("prepTime", prepTime);
                   }}
-                  suffix={__("Minutes", "recipe-manager-pro")}
+                  suffix={__("Minutes", "foodblogkitchen-recipes")}
                 />
               </span>
             </li>
             <li>
-              <header>{__("Rest time", "recipe-manager-pro")}:</header>
+              <header>{__("Rest time", "foodblogkitchen-recipes")}:</header>
               <span>
                 <InputControl
                   type="number"
@@ -537,12 +537,12 @@ export default function Edit(props) {
                   onChange={(restTime) => {
                     updateTime("restTime", restTime);
                   }}
-                  suffix={__("Minutes", "recipe-manager-pro")}
+                  suffix={__("Minutes", "foodblogkitchen-recipes")}
                 />
               </span>
             </li>
             <li>
-              <header>{__("Cook time", "recipe-manager-pro")}:</header>
+              <header>{__("Cook time", "foodblogkitchen-recipes")}:</header>
               <span>
                 <InputControl
                   type="number"
@@ -552,27 +552,27 @@ export default function Edit(props) {
                   onChange={(cookTime) => {
                     updateTime("cookTime", cookTime);
                   }}
-                  suffix={__("Minutes", "recipe-manager-pro")}
+                  suffix={__("Minutes", "foodblogkitchen-recipes")}
                 />
               </span>
             </li>
 
             <li>
-              <header>{__("Total time", "recipe-manager-pro")}:</header>
+              <header>{__("Total time", "foodblogkitchen-recipes")}:</header>
               <span>
                 {props.attributes.totalTime}{" "}
-                {__("Minutes", "recipe-manager-pro")}
+                {__("Minutes", "foodblogkitchen-recipes")}
               </span>
             </li>
           </ul>
         </div>
         <hr />
-        <div className="recipe-manager-pro--block--headline">
-          <h3>{__("Ingredients", "recipe-manager-pro")}</h3>
+        <div className="foodblogkitchen-recipes--block--headline">
+          <h3>{__("Ingredients", "foodblogkitchen-recipes")}</h3>
         </div>
-        <div className="recipe-manager-pro--block--flex-container">
+        <div className="foodblogkitchen-recipes--block--flex-container">
           <TextControl
-            label={__("Results in", "recipe-manager-pro")}
+            label={__("Results in", "foodblogkitchen-recipes")}
             type="number"
             min="0"
             value={props.attributes.recipeYield}
@@ -583,7 +583,7 @@ export default function Edit(props) {
           />
 
           <SelectControl
-            label={__("Unit", "recipe-manager-pro")}
+            label={__("Unit", "foodblogkitchen-recipes")}
             value={props.attributes.recipeYieldUnit}
             options={recipeYieldUnitOptions}
             onChange={(recipeYieldUnit) =>
@@ -595,23 +595,23 @@ export default function Edit(props) {
         <RichText
           tagName="ul"
           multiline="li"
-          className="recipe-manager-pro--block--ingredients"
-          placeholder={__("Add the ingredients here...", "recipe-manager-pro")}
+          className="foodblogkitchen-recipes--block--ingredients"
+          placeholder={__("Add the ingredients here...", "foodblogkitchen-recipes")}
           value={props.attributes.ingredients}
           onChange={(ingredients) => props.setAttributes({ ingredients })}
         />
 
-        <div className="recipe-manager-pro--block--headline">
-          <h3>{__("Steps of preparation", "recipe-manager-pro")}</h3>
+        <div className="foodblogkitchen-recipes--block--headline">
+          <h3>{__("Steps of preparation", "foodblogkitchen-recipes")}</h3>
         </div>
 
         <RichText
           tagName="ol"
           multiline="li"
-          className="recipe-manager-pro--block--preparation-steps"
+          className="foodblogkitchen-recipes--block--preparation-steps"
           placeholder={__(
             "Add the steps of preparation here...",
-            "recipe-manager-pro"
+            "foodblogkitchen-recipes"
           )}
           value={props.attributes.preparationSteps}
           onChange={(preparationSteps) =>
@@ -621,25 +621,25 @@ export default function Edit(props) {
 
         <hr />
 
-        <div className="recipe-manager-pro--block--headline">
-          <h3>{__("Notes", "recipe-manager-pro")}</h3>
+        <div className="foodblogkitchen-recipes--block--headline">
+          <h3>{__("Notes", "foodblogkitchen-recipes")}</h3>
         </div>
 
         <RichText
           tagName="p"
           value={props.attributes.notes}
-          placeholder={__("Additional notes ...", "recipe-manager-pro")}
+          placeholder={__("Additional notes ...", "foodblogkitchen-recipes")}
           onChange={(notes) => {
             props.setAttributes({ notes });
           }}
         />
 
         {/* <section>
-          <div className="recipe-manager-pro--block--headline">
-            <h3>{__("Video", "recipe-manager-pro")}</h3>
+          <div className="foodblogkitchen-recipes--block--headline">
+            <h3>{__("Video", "foodblogkitchen-recipes")}</h3>
           </div>
           <TextControl
-            label={__("Video-URL", "recipe-manager-pro")}
+            label={__("Video-URL", "foodblogkitchen-recipes")}
             value={props.attributes.videoUrl}
             type="number"
             onChange={(videoUrl) => props.setAttributes({ videoUrl })}
