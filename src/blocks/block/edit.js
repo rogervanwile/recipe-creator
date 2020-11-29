@@ -261,7 +261,7 @@ export default function Edit(props) {
 
           <PanelRow>
             <h3>{__("Previews", "recipe-manager-pro")}</h3>
-            <h4>{__("Featured Snipped", "recipe-manager-pro")}</h4>
+            <h4>{__("Featured Snippet", "recipe-manager-pro")}</h4>
           </PanelRow>
 
           <PanelRow>

@@ -1,30 +1,24 @@
-# Create Translations
+# Update Translations-Template file (POT)
 
 `$ wp i18n make-pot ./ languages/recipe-manager-pro.pot`
 
-Open the file and create a translation.
-When done, export mo file
-Than do the following stuff
-
-## JavaScript
+- Open `recipe-manager-pro-de_DE.po` in Poedit
+- Click "Katalog" > "Aus POT-Datei aktualisieren"
+- Select the `recipe-manager-pro.pot`
+- Update the translations
+- Save the file and click "Datei" > "MO-Datei erstellen"
 
 The translations for the JS files have to be a JSON file.
-
-To convert po to JSON, use this command inside the `languages` folder
 
 `wp i18n make-json languages/recipe-manager-pro-de_DE.po --no-purge`
 
 More Infos: https://developer.wordpress.org/block-editor/developers/internationalization/
-
-# Icons
-
-- https://github.com/tabler/tabler-icons
 
 # Todos
 
 - Plugin umbennenen?
 - Zahlenfelder gehen nicht richtig
 
-# Develop
+# Development
 
 `yarn start`
