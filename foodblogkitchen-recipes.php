@@ -61,17 +61,15 @@ class FoodblogKitchenRecipes
 			return false;
 		}
 
-		$plugin_slug = 'foodblogkitchen-recipes'; // we are going to use it in many places in this function
-
 		// do nothing if it is not our plugin
-		if ($plugin_slug !== $args->slug) {
+		if ('foodblogkitchen-recipes' !== $args->slug) {
 			return false;
 		}
 
 		// trying to get from cache first
-		if (false == $remote = get_transient('misha_update_' . $plugin_slug)) {
+		if (false == $remote = get_transient('foodblogkitchen_recipes_update')) {
 			// info.json is the file with the actual plugin information on your server
-			$remote = wp_remote_get('https://codingyourideas.de/plugin-updates/foodblogkitchen-recipes.json', array(
+			$remote = wp_remote_get('https://foodblogkitchen.com/plugin-updates/foodblogkitchen-recipes.json', array(
 				'timeout' => 10,
 				'headers' => array(
 					'Accept' => 'application/json'
@@ -79,7 +77,7 @@ class FoodblogKitchenRecipes
 			));
 
 			if (!is_wp_error($remote) && isset($remote['response']['code']) && $remote['response']['code'] == 200 && !empty($remote['body'])) {
-				set_transient('misha_update_' . $plugin_slug, $remote, 43200); // 12 hours cache
+				set_transient('foodblogkitchen_recipes_update', $remote, 43200); // 12 hours cache
 			}
 		}
 
@@ -89,7 +87,7 @@ class FoodblogKitchenRecipes
 			$res = new stdClass();
 
 			$res->name = $remote->name;
-			$res->slug = $plugin_slug;
+			$res->slug = 'foodblogkitchen-recipes';
 			$res->version = $remote->version;
 			$res->tested = $remote->tested;
 			$res->requires = $remote->requires;
@@ -97,7 +95,7 @@ class FoodblogKitchenRecipes
 			$res->author_profile = 'https://profiles.wordpress.org/rudrastyh';
 			$res->download_link = $remote->download_url;
 			$res->trunk = $remote->download_url;
-			$res->requires_php = '5.3';
+			$res->requires_php = '5.3'; // TODO
 			$res->last_updated = $remote->last_updated;
 			$res->sections = array(
 				'description' => $remote->sections->description,
@@ -129,7 +127,7 @@ class FoodblogKitchenRecipes
 		}
 
 		// trying to get from cache first, to disable cache comment 10,20,21,22,24
-		if (false == $remote = get_transient('misha_upgrade_foodblogkitchen-recipes')) {
+		if (false == $remote = get_transient('foodblogkitchen_recipes_upgrade')) {
 
 			// info.json is the file with the actual plugin information on your server
 			$remote = wp_remote_get('https://codingyourideas.de/plugin-updates/foodblogkitchen-recipes.json', array(
@@ -140,7 +138,7 @@ class FoodblogKitchenRecipes
 			));
 
 			if (!is_wp_error($remote) && isset($remote['response']['code']) && $remote['response']['code'] == 200 && !empty($remote['body'])) {
-				set_transient('misha_upgrade_foodblogkitchen-recipes', $remote, 43200); // 12 hours cache
+				set_transient('foodblogkitchen_recipes_upgrade', $remote, 43200); // 12 hours cache
 			}
 		}
 
@@ -167,7 +165,7 @@ class FoodblogKitchenRecipes
 	{
 		if ($options['action'] == 'update' && $options['type'] === 'plugin') {
 			// just clean the cache when new plugin version is installed
-			delete_transient('misha_upgrade_foodblogkitchen-recipes');
+			delete_transient('foodblogkitchen_recipes_upgrade');
 		}
 	}
 

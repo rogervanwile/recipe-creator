@@ -17,6 +17,8 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 # Todos
 
 - Zahlenfelder gehen manchmal nicht richtig
+- DEFAULT-Hack ausbauen oder gucken warum es beim 2. mal kommt
+- Setup Autoupdate
 
 # Development
 

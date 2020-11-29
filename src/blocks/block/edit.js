@@ -5,12 +5,7 @@ import {
   PanelBody,
   PanelRow,
   SelectControl,
-  CheckboxControl,
-  FormFileUpload,
-  Button,
   __experimentalInputControl as InputControl,
-  __experimentalRadio as Radio,
-  __experimentalRadioGroup as RadioGroup,
 } from "@wordpress/components";
 
 import {
@@ -222,7 +217,9 @@ export default function Edit(props) {
           <hr />
 
           <PanelRow>
-            <h4>{__("Picture of the finished dish", "foodblogkitchen-recipes")}</h4>
+            <h4>
+              {__("Picture of the finished dish", "foodblogkitchen-recipes")}
+            </h4>
             <p>
               {__(
                 "Depending on the usage Google uses different image formats of your recipe.",
@@ -408,7 +405,9 @@ export default function Edit(props) {
                 </div>
 
                 <div className="featured-result-preview-mobile--time-col">
-                  <header>{__("Preparation", "foodblogkitchen-recipes")}</header>
+                  <header>
+                    {__("Preparation", "foodblogkitchen-recipes")}
+                  </header>
                   <p>{props.attributes.totalTime} Min.</p>
                 </div>
 
@@ -596,7 +595,10 @@ export default function Edit(props) {
           tagName="ul"
           multiline="li"
           className="foodblogkitchen-recipes--block--ingredients"
-          placeholder={__("Add the ingredients here...", "foodblogkitchen-recipes")}
+          placeholder={__(
+            "Add the ingredients here...",
+            "foodblogkitchen-recipes"
+          )}
           value={props.attributes.ingredients}
           onChange={(ingredients) => props.setAttributes({ ingredients })}
         />
