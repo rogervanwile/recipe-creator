@@ -1,5 +1,10 @@
 {
-	"require": {
-		"zordius/lightncandy": "dev-master"
-	}
+    "name": "oliverwagner/foodblogkitchen-recipes",
+    "authors": [
+        {
+            "name": "Oliver Wagner",
+            "email": "oliver@rogervanwile.de"
+        }
+    ],
+    "require": {}
 }

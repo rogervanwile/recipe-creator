@@ -190,7 +190,7 @@
     list-style: none;
     margin: 0 0 1rem 0;
     padding: 0;
-    counter-reset: recipe-manager-steps; }
+    counter-reset: foodblogkitchen-recipes-steps; }
     .foodblogkitchen-recipes--block.foodblogkitchen-recipes--block .foodblogkitchen-recipes--block--preparation-steps li {
       display: block;
       padding: 8px 0 8px 32px;
@@ -198,8 +198,8 @@
       line-height: 24px;
       position: relative; }
       .foodblogkitchen-recipes--block.foodblogkitchen-recipes--block .foodblogkitchen-recipes--block--preparation-steps li::before {
-        counter-increment: recipe-manager-steps;
-        content: counter(recipe-manager-steps);
+        counter-increment: foodblogkitchen-recipes-steps;
+        content: counter(foodblogkitchen-recipes-steps);
         text-align: center;
         font-weight: bold;
         display: block;
