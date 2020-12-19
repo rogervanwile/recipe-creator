@@ -23,6 +23,6 @@ Create recipes and optimize them easily for search engines.
 
 == Changelog ==
 
-= 1.0.1 =
+= 1.0.3 =
 * Inital Release
 

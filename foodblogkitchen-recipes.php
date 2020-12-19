@@ -3,7 +3,7 @@
 /**
  * Plugin Name:     Recipes | foodblogkitchen
  * Description:     Recipe block for the Gutenberg editor to easily include recipes and optimize them with a few clicks for search engines.
- * Version:         1.0.1
+ * Version:         1.0.3
  * Author:          foodblogkitchen.de
  * Text Domain:     foodblogkitchen-recipes
  * Domain Path:     /languages
@@ -72,7 +72,7 @@ class FoodblogKitchenRecipes
 		// trying to get from cache first
 		if (false == $remote = get_transient('foodblogkitchen_recipes_update')) {
 			// info.json is the file with the actual plugin information on your server
-			$remote = wp_remote_get('https://foodblogkitchen.de/plugin-updates/foodblogkitchen-recipes.json', array(
+			$remote = wp_remote_get('https://updates.foodblogkitchen.de/foodblogkitchen-recipes/info.json', array(
 				'timeout' => 10,
 				'headers' => array(
 					'Accept' => 'application/json'
@@ -94,11 +94,11 @@ class FoodblogKitchenRecipes
 			$res->version = $remote->version;
 			$res->tested = $remote->tested;
 			$res->requires = $remote->requires;
-			$res->author = '<a href="https://rudrastyh.com">Misha Rudrastyh</a>';
-			$res->author_profile = 'https://profiles.wordpress.org/rudrastyh';
+			$res->author = '<a href="https://foodblogkitchen.de">foodblogkitchen.de</a>';
+			$res->author_profile = 'https://foodblogkitchen.de';
 			$res->download_link = $remote->download_url;
 			$res->trunk = $remote->download_url;
-			$res->requires_php = '5.3'; // TODO
+			$res->requires_php = $remote->requires_php;
 			$res->last_updated = $remote->last_updated;
 			$res->sections = array(
 				'description' => $remote->sections->description,
@@ -109,14 +109,13 @@ class FoodblogKitchenRecipes
 
 			// in case you want the screenshots tab, use the following HTML format for its content:
 			// <ol><li><a href="IMG_URL" target="_blank"><img src="IMG_URL" alt="CAPTION" /></a><p>CAPTION</p></li></ol>
-			if (!empty($remote->sections->screenshots)) {
-				$res->sections['screenshots'] = $remote->sections->screenshots;
+			if (!empty($remote->screenshots)) {
+				$res['screenshots'] = $remote->screenshots;
 			}
 
-			$res->banners = array(
-				'low' => 'https://YOUR_WEBSITE/banner-772x250.jpg',
-				'high' => 'https://YOUR_WEBSITE/banner-1544x500.jpg'
-			);
+			if (!empty($remote->banners)) {
+				$res['banners'] = $remote->banners;
+			}
 			return $res;
 		}
 
@@ -133,7 +132,7 @@ class FoodblogKitchenRecipes
 		if (false == $remote = get_transient('foodblogkitchen_recipes_upgrade')) {
 
 			// info.json is the file with the actual plugin information on your server
-			$remote = wp_remote_get('https://codingyourideas.de/plugin-updates/foodblogkitchen-recipes.json', array(
+			$remote = wp_remote_get('https://updates.foodblogkitchen.de/foodblogkitchen-recipes/info.json', array(
 				'timeout' => 10,
 				'headers' => array(
 					'Accept' => 'application/json'
@@ -146,11 +145,16 @@ class FoodblogKitchenRecipes
 		}
 
 		if ($remote) {
-
 			$remote = json_decode($remote['body']);
 
+			if (!function_exists('get_plugin_data')) {
+				require_once(ABSPATH . 'wp-admin/includes/plugin.php');
+			}
+			$plugin_data = get_plugin_data(__FILE__);
+			$plugin_version = $plugin_data['Version'];
+
 			// your installed plugin version should be on the line below! You can obtain it dynamically of course 
-			if ($remote && version_compare('1.0', $remote->version, '<') && version_compare($remote->requires, get_bloginfo('version'), '<')) {
+			if ($remote && version_compare($plugin_version, $remote->version, '<') && version_compare($remote->requires, get_bloginfo('version'), '<')) {
 				$res = new stdClass();
 				$res->slug = 'foodblogkitchen-recipes';
 				$res->plugin = 'foodblogkitchen-recipes/foodblogkitchen-recipes.php'; // it could be just foodblogkitchen-recipes.php if your plugin doesn't have its own directory

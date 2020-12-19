@@ -23,3 +23,11 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 # Development
 
 `yarn start`
+
+# Publish a new version
+
+- Update version in `package.json`
+- Update version in `foodblogkitchen-recipes.php`
+- Update `/uploads/info.json`
+
+`$ ./create-archive.sh`

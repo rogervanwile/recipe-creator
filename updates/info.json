@@ -1,0 +1,13 @@
+{
+  "version": "1.0.3",
+  "download_url": "https://updates.foodblogkitchen.de/foodblogkitchen-recipes/archives/1.0.3.zip",
+  "requires": "5.5.0",
+  "tested": "5.6.0",
+  "requires_php": "7.0",
+  "last_updated": "2020-12-19 18:00:00",
+  "sections": {
+    "description": "Recipe block for the Gutenberg editor to easily include recipes and optimize them with a few clicks for search engines.",
+    "installation": "Upload the plugin to your blog, Activate it, that's it!",
+    "changelog": "<h4>1.0.3 –  December 19, 2020</h4><ul><li>Initial release</li></ul>"
+  }
+}
