@@ -26,6 +26,14 @@
     }
   }
 
+  .components-input-control__label {
+    font-size: 13px;
+  }
+
+  .components-input-control__container {
+    flex-grow: 0;
+  }
+
   .components-input-control {
     border-color: transparent;
     width: 120px;

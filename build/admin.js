@@ -5220,6 +5220,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
     var construct = function () {
       initColorPicker();
+      initOtherPicker();
     };
 
     var initColorPicker = function () {
@@ -5232,6 +5233,14 @@ return /******/ (function(modules) { // webpackBootstrap
             data[event.target.name] = ui.color.toCSS();
             refreshStyles(data);
           },
+        });
+      });
+    };
+
+    var initOtherPicker = function () {
+      $('input[type="number"],input[type="checkbox"]').each(function () {
+        $(this).on("change", function () {
+          refreshStyles();
         });
       });
     };
@@ -5464,6 +5473,15 @@ return /******/ (function(modules) { // webpackBootstrap
               migratedData["backgroundColorContrast"]
             );
             break;
+          case "foodblogkitchen_recipes__show_border":
+            migratedData["showBorder"] = data[key];
+            break;
+          case "foodblogkitchen_recipes__show_box_shadow":
+            migratedData["showBoxShadow"] = data[key];
+            break;
+          case "foodblogkitchen_recipes__border_radius":
+            migratedData["borderRadius"] = data[key];
+            break;
           // case "foodblogkitchen_recipes__primary_color_light":
           //   migratedData["primaryColorLight"] = data[key];
           //   break;
@@ -5526,6 +5544,17 @@ return /******/ (function(modules) { // webpackBootstrap
       for (var key of formData.keys()) {
         data[key] = formData.get(key);
       }
+
+      // When a checkbox is disabled, it is not part of the FormData
+      // So lets process the checkboxes before
+
+      const checkboxes = settingsForm.querySelectorAll(
+        'input[type="checkbox"]'
+      );
+
+      checkboxes.forEach((checkbox) => {
+        data[checkbox.getAttribute("name")] = checkbox.checked;
+      });
 
       return data;
     };

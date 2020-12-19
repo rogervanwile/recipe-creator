@@ -6,5 +6,7 @@
             "email": "oliver@rogervanwile.de"
         }
     ],
-    "require": {}
+    "require": {
+        "zordius/lightncandy": "^1.2"
+    }
 }

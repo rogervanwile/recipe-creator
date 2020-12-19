@@ -559,7 +559,7 @@ export default function Edit(props) {
             <li>
               <header>{__("Total time", "foodblogkitchen-recipes")}:</header>
               <span>
-                {props.attributes.totalTime}{" "}
+                {props.attributes.totalTime || "0"}{" "}
                 {__("Minutes", "foodblogkitchen-recipes")}
               </span>
             </li>
@@ -570,7 +570,7 @@ export default function Edit(props) {
           <h3>{__("Ingredients", "foodblogkitchen-recipes")}</h3>
         </div>
         <div className="foodblogkitchen-recipes--block--flex-container">
-          <TextControl
+          <InputControl
             label={__("Results in", "foodblogkitchen-recipes")}
             type="number"
             min="0"

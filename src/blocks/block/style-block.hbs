@@ -14,6 +14,20 @@
     --primary-light-contrast: {{options/primaryColorLightContrast}};
     --primary-dark: {{options/primaryColorDark}};
 
+
+    --border-radius: {{options/borderRadius}}px;
+    {{#if options/showBoxShadow}}
+    --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    {{else}}
+    --box-shadow: none;
+    {{/if}}
+
+    {{#if options/showBorder}}
+    --border: 1px solid {{options/primaryColor}};
+    {{else}}
+    --border: 0px;
+    {{/if}}
+
     --clock-url: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"{{encode options/backgroundColorContrast}}\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><circle cx=\"12\" cy=\"12\" r=\"9\" /><polyline points=\"12 7 12 12 15 15\" /></svg>");
     --star-url: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"{{encode options/primaryColor}}\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"></polygon></svg>");
     --star-filled-url: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"{{encode options/primaryColor}}\" stroke=\"{{encode options/primaryColor}}\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"></polygon></svg>");

@@ -2,9 +2,9 @@
 
 /**
  * Plugin Name:     Recipes | foodblogkitchen
- * Description:     Recipe block for the Gutenberg editor to easily include recipes and automatically optimize them for search engines.
- * Version:         0.1.0
- * Author:          foodblogkitchen.com
+ * Description:     Recipe block for the Gutenberg editor to easily include recipes and optimize them with a few clicks for search engines.
+ * Version:         1.0.1
+ * Author:          foodblogkitchen.de
  * Text Domain:     foodblogkitchen-recipes
  * Domain Path:     /languages
  */
@@ -27,6 +27,9 @@ class FoodblogKitchenRecipes
 	private $secondaryColorContrastDefault = '#000000';
 	private $backgroundColorDefault = '#fefcfc';
 	private $backgroundColorContrastDefault = '#000000';
+	private $showBoxShadowDefault = '1';
+	private $showBorderDefault = '1';
+	private $borderRadiusDefault = 8;
 	private $thumnailSizeDefault = 330;
 
 	function __construct()
@@ -69,7 +72,7 @@ class FoodblogKitchenRecipes
 		// trying to get from cache first
 		if (false == $remote = get_transient('foodblogkitchen_recipes_update')) {
 			// info.json is the file with the actual plugin information on your server
-			$remote = wp_remote_get('https://foodblogkitchen.com/plugin-updates/foodblogkitchen-recipes.json', array(
+			$remote = wp_remote_get('https://foodblogkitchen.de/plugin-updates/foodblogkitchen-recipes.json', array(
 				'timeout' => 10,
 				'headers' => array(
 					'Accept' => 'application/json'
@@ -215,6 +218,18 @@ class FoodblogKitchenRecipes
 		echo '<input type="text" class="foodblogkitchen-recipes--color-picker" name="' . $name . '" value="' . $value . '" data-default-value="' .  $defaultValue . '" />';
 	}
 
+	private function renderNumberInput($name, $defaultValue)
+	{
+		$value = esc_attr(get_option($name, $defaultValue));
+		echo '<input type="number" name="' . $name . '" value="' . $value . '" />';
+	}
+
+	private function renderCheckboxInput($name, $defaultValue, $text)
+	{
+		$value = esc_attr(get_option($name, $defaultValue));
+		echo '<label><input type="checkbox" name="' . $name . '" value="1" ' . (isset($value) && $value === '1' ? 'checked="checked"' : '') . ' /> ' . $text . '</label>';
+	}
+
 	private function renderHiddenInput($name, $defaultValue)
 	{
 		$value = esc_attr(get_option($name, $defaultValue));
@@ -282,9 +297,23 @@ class FoodblogKitchenRecipes
 		);
 		register_setting(
 			'foodblogkitchen_recipes__general',
-			'foodblogkitchen_recipes__thumbnail_size',
+			'foodblogkitchen_recipes__show_box_shadow',
 			array(
-				"default" => $this->thumnailSizeDefault
+				"default" => $this->showBoxShadowDefault
+			)
+		);
+		register_setting(
+			'foodblogkitchen_recipes__general',
+			'foodblogkitchen_recipes__show_border',
+			array(
+				"default" => $this->showBorderDefault
+			)
+		);
+		register_setting(
+			'foodblogkitchen_recipes__general',
+			'foodblogkitchen_recipes__border_radius',
+			array(
+				"default" => $this->borderRadiusDefault
 			)
 		);
 
@@ -311,42 +340,6 @@ class FoodblogKitchenRecipes
 				'label_for' => 'foodblogkitchen_recipes__primary_color'
 			)
 		);
-		// add_settings_field(
-		// 	'foodblogkitchen_recipes__primary_color_light',
-		// 	null,
-		// 	function () {
-		// 		$this->renderHiddenInput('foodblogkitchen_recipes__primary_color_light', $this->primaryColorLightDefault);
-		// 	},
-		// 	'foodblogkitchen_recipes__general',
-		// 	'foodblogkitchen_recipes__general',
-		// 	array(
-		// 		'label_for' => 'foodblogkitchen_recipes__primary_color_light'
-		// 	)
-		// );
-		// add_settings_field(
-		// 	'foodblogkitchen_recipes__primary_color_light_contrast',
-		// 	__('Primary color (light)', 'foodblogkitchen-recipes'),
-		// 	function () {
-		// 		$this->renderHiddenInput('foodblogkitchen_recipes__primary_color_light_contrast', $this->primaryColorLightContrastDefault);
-		// 	},
-		// 	'foodblogkitchen_recipes__general',
-		// 	'foodblogkitchen_recipes__general',
-		// 	array(
-		// 		'label_for' => 'foodblogkitchen_recipes__primary_color_light_contrast'
-		// 	)
-		// );
-		// add_settings_field(
-		// 	'foodblogkitchen_recipes__primary_color_dark',
-		// 	__('Primary color (dark)', 'foodblogkitchen-recipes'),
-		// 	function () {
-		// 		$this->renderHiddenInput('foodblogkitchen_recipes__primary_color_dark', $this->primaryColorDarkDefault);
-		// 	},
-		// 	'foodblogkitchen_recipes__general',
-		// 	'foodblogkitchen_recipes__general',
-		// 	array(
-		// 		'label_for' => 'foodblogkitchen_recipes__primary_color_dark'
-		// 	)
-		// );
 		add_settings_field(
 			'foodblogkitchen_recipes__secondary_color',
 			__('Secondary color', 'foodblogkitchen-recipes'),
@@ -359,18 +352,6 @@ class FoodblogKitchenRecipes
 				'label_for' => 'foodblogkitchen_recipes__secondary_color'
 			)
 		);
-		// add_settings_field(
-		// 	'foodblogkitchen_recipes__secondary_color_contrast',
-		// 	__('Secondary color', 'foodblogkitchen-recipes'),
-		// 	function () {
-		// 		$this->renderHiddenInput('foodblogkitchen_recipes__secondary_color_contrast', $this->secondaryColorContrastDefault);
-		// 	},
-		// 	'foodblogkitchen_recipes__general',
-		// 	'foodblogkitchen_recipes__general',
-		// 	array(
-		// 		'label_for' => 'foodblogkitchen_recipes__secondary_color_contrast'
-		// 	)
-		// );
 		add_settings_field(
 			'foodblogkitchen_recipes__background_color',
 			__('Background color', 'foodblogkitchen-recipes'),
@@ -383,33 +364,41 @@ class FoodblogKitchenRecipes
 				'label_for' => 'foodblogkitchen_recipes__background_color'
 			)
 		);
-		// add_settings_field(
-		// 	'foodblogkitchen_recipes__background_color_contrast',
-		// 	__('Background color', 'foodblogkitchen-recipes'),
-		// 	function () {
-		// 		$this->renderHiddenInput('foodblogkitchen_recipes__background_color_contrast', $this->backgroundColorContrastDefault);
-		// 	},
-		// 	'foodblogkitchen_recipes__general',
-		// 	'foodblogkitchen_recipes__general',
-		// 	array(
-		// 		'label_for' => 'foodblogkitchen_recipes__background_color_contrast'
-		// 	)
-		// );
+
 		add_settings_field(
-			'foodblogkitchen_recipes__thumbnail_size',
-			__('Thumbnail size', 'foodblogkitchen-recipes'),
+			'foodblogkitchen_recipes__show_border',
+			__('Border', 'foodblogkitchen-recipes'),
 			function () {
-				$value = esc_attr(get_option('foodblogkitchen_recipes__thumbnail_size'));
-				echo '<input type="number" name="foodblogkitchen_recipes__thumbnail_size" value="' . $value . '" />';
-				echo '<p class="description">';
-				/* translators: %s is replaced with link to the plugin  */
-				printf(__("If you change this value, you must recreate your thumbnails.<br /> This can be done with the great plugin %s.", 'foodblogkitchen-recipes'), '<a href="https://wordpress.org/plugins/regenerate-thumbnails/" target="_blank">Regenerate Thumbnails</a>');
-				echo '</p>';
+				$this->renderCheckboxInput('foodblogkitchen_recipes__show_border', $this->showBorderDefault, __('Show border', 'foodblogkitchen-recipes'));
 			},
 			'foodblogkitchen_recipes__general',
 			'foodblogkitchen_recipes__general',
 			array(
-				'label_for' => 'foodblogkitchen_recipes__thumbnail_size'
+				'label_for' => 'foodblogkitchen_recipes__show_border'
+			)
+		);
+		add_settings_field(
+			'foodblogkitchen_recipes__show_box_shadow',
+			__('Box shadow', 'foodblogkitchen-recipes'),
+			function () {
+				$this->renderCheckboxInput('foodblogkitchen_recipes__show_box_shadow', $this->showBoxShadowDefault, __('Show box shadow', 'foodblogkitchen-recipes'));
+			},
+			'foodblogkitchen_recipes__general',
+			'foodblogkitchen_recipes__general',
+			array(
+				'label_for' => 'foodblogkitchen_recipes__show_box_shadow'
+			)
+		);
+		add_settings_field(
+			'foodblogkitchen_recipes__border_radius',
+			__('Border radius', 'foodblogkitchen-recipes'),
+			function () {
+				$this->renderNumberInput('foodblogkitchen_recipes__border_radius', $this->borderRadiusDefault);
+			},
+			'foodblogkitchen_recipes__general',
+			'foodblogkitchen_recipes__general',
+			array(
+				'label_for' => 'foodblogkitchen_recipes__border_radius'
 			)
 		);
 	}
@@ -920,49 +909,52 @@ class FoodblogKitchenRecipes
 	{
 		return array(
 			"translations" => $this->getTemplateTranslations(),
-			"recipeYield" => 10,
-			"recipeYieldUnit" => __("piece", 'foodblogkitchen-recipes'),
+			"recipeYield" => 2,
+			"recipeYieldUnit" => __("servings", 'foodblogkitchen-recipes'),
 			"difficulty" => __('simple', 'foodblogkitchen-recipes'),
-			'prepTime' => 15,
-			'cookTime' => 30,
-			'name' => __("Crêpes", 'foodblogkitchen-recipes'),
-			'totalTime' => 105,
+			'prepTime' => 0,
+			'cookTime' => 5,
+			'name' => __("Banana shake", 'foodblogkitchen-recipes'),
+			"description" => __("You have bananas left over again and don't know what to do with them? How about a delicious shake?", "foodblogkitchen-recipes"),
+			'totalTime' => 5,
 			"ingredients" => array(
 				array(
-					"baseUnit" => "g",
-					"baseAmount" => 25,
-					"amount" => 250,
-					"unit" => "g",
-					"ingredient" => __("Flour", "foodblogkitchen-recipes")
-				),
-				array(
-					"baseUnit" => "g",
-					"baseAmount" => 5,
-					"amount" => 50,
-					"unit" => "g",
-					"ingredient" => __("Butter", "foodblogkitchen-recipes")
-				),
-				array(
 					"baseUnit" => "ml",
-					"baseAmount" => 50,
+					"baseAmount" => 250,
 					"amount" => 500,
 					"unit" => "ml",
-					"ingredient" => __("Milk", "foodblogkitchen-recipes")
+					"ingredient" => __("milk", "foodblogkitchen-recipes")
 				),
 				array(
 					"baseUnit" => "",
-					"baseAmount" => 0.4,
-					"amount" => 4,
+					"baseAmount" => 0.5,
+					"amount" => 1,
 					"unit" => "",
-					"ingredient" => __("Eggs", "foodblogkitchen-recipes")
+					"ingredient" => __("banana", "foodblogkitchen-recipes")
+				),
+				array(
+					"baseUnit" => "TL",
+					"baseAmount" => 0.5,
+					"amount" => 1,
+					"unit" => "TL",
+					"ingredient" => __("sugar", "foodblogkitchen-recipes")
+				),
+				array(
+					"baseUnit" => "",
+					"baseAmount" => 0,
+					"amount" => 0,
+					"unit" => "",
+					"ingredient" => __("cinnamon", "foodblogkitchen-recipes")
 				),
 			),
-			"preparationSteps" => '<li>Step 1</li><li>Step 2</li>',
+			"preparationSteps" => '<li>' . join("</li><li>", [
+				__("Peel banana.", "foodblogkitchen-recipes"),
+				__("Put all the ingredients in the blender and mix everything for 30 seconds.", "foodblogkitchen-recipes"),
+				__("Pour into a glass and enjoy.", "foodblogkitchen-recipes"),
+			]) . '</li>',
 			"averageRating" => 4.5,
-			"description" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu ex fermentum, porta est in, congue ligula.",
-			// TODO: Besserer Placeholder
-			"thumbnail" => "https://placehold.it/300x200",
-			"notes" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu ex fermentum, porta est in, congue ligula. Donec tristique massa id condimentum porttitor. Morbi quis neque eu libero volutpat dictum. Aenean nec enim sed massa aliquet congue. Duis sed aliquam odio. Aenean ut lorem pharetra, suscipit odio ac, blandit nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam vel massa justo. Sed laoreet tempus urna id convallis. Curabitur in felis in metus sollicitudin tristique."
+			"thumbnail" => plugins_url('assets/banana-shake-4_3.png', __FILE__),
+			"notes" => __("The milkshake becomes particularly creamy with UHT milk.", "foodblogkitchen-recipes")
 		);
 	}
 
@@ -1177,6 +1169,9 @@ class FoodblogKitchenRecipes
 			"secondaryColorContrast" => get_option('foodblogkitchen_recipes__secondary_color_contrast', $this->secondaryColorContrastDefault),
 			"backgroundColor" => get_option('foodblogkitchen_recipes__background_color', $this->backgroundColorDefault),
 			"backgroundColorContrast" => get_option('foodblogkitchen_recipes__background_color_contrast', $this->backgroundColorContrastDefault),
+			"showBorder" => get_option('foodblogkitchen_recipes__show_border', $this->showBorderDefault),
+			"showBoxShadow" => get_option('foodblogkitchen_recipes__show_box_shadow', $this->showBoxShadowDefault),
+			"borderRadius" => get_option('foodblogkitchen_recipes__border_radius', $this->borderRadiusDefault),
 		);
 	}
 

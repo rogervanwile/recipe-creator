@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f46ea674cde6b6d9980e0ff02eed94ef",
+    "content-hash": "0cecc5b2d6e673115d3514f9d11aca9d",
     "packages": [
         {
             "name": "zordius/lightncandy",
-            "version": "dev-master",
+            "version": "v1.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zordius/lightncandy.git",
-                "reference": "5f8dc549e834cee6080b3820f71f1076084fe8ea"
+                "reference": "37aa381e0f27d411a630062070c7a5a2174c62e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zordius/lightncandy/zipball/5f8dc549e834cee6080b3820f71f1076084fe8ea",
-                "reference": "5f8dc549e834cee6080b3820f71f1076084fe8ea",
+                "url": "https://api.github.com/repos/zordius/lightncandy/zipball/37aa381e0f27d411a630062070c7a5a2174c62e7",
+                "reference": "37aa381e0f27d411a630062070c7a5a2174c62e7",
                 "shasum": ""
             },
             "require": {
@@ -56,15 +56,13 @@
                 "php",
                 "template"
             ],
-            "time": "2020-03-10T11:03:48+00:00"
+            "time": "2020-03-08T06:00:24+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "zordius/lightncandy": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

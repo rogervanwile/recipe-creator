@@ -10,9 +10,9 @@ import "./style.scss";
 import Edit from "./edit";
 
 registerBlockType("foodblogkitchen-recipes/block", {
-  title: __("Recipe Block", "foodblogkitchen-recipes"),
+  title: __("Recipe", "foodblogkitchen-recipes"),
   description: __(
-    "Manage recipes and optimize them automatically for Google Featured Snippets.",
+    "Create recipes and optimize them easily for search engines.",
     "foodblogkitchen-recipes"
   ),
   category: "formatting",
