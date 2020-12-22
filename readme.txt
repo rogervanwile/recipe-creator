@@ -26,3 +26,7 @@ Create recipes and optimize them easily for search engines.
 = 1.0.3 =
 * Inital Release
 
+= 1.1.0 =
+* Change the main image to the aspect ratio of 3:2
+* Add link to foodblogkitchens blog to give more information about selecting the right images.
+

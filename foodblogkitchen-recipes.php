@@ -3,7 +3,7 @@
 /**
  * Plugin Name:     Recipes | foodblogkitchen
  * Description:     Recipe block for the Gutenberg editor to easily include recipes and optimize them with a few clicks for search engines.
- * Version:         1.0.3
+ * Version:         1.1.0
  * Author:          foodblogkitchen.de
  * Text Domain:     foodblogkitchen-recipes
  * Domain Path:     /languages
