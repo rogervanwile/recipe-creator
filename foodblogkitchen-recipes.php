@@ -675,6 +675,13 @@ class FoodblogKitchenRecipes
 				'image1_1Id' => array(
 					'type' => 'number'
 				),
+				'image3_2' => array(
+					'type' => 'string',
+					'default' => $this->getPropertyFromRecipe($recipe, 'image3_2')
+				),
+				'image3_2Id' => array(
+					'type' => 'number'
+				),
 				'image4_3' => array(
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'image4_3')
@@ -1065,22 +1072,30 @@ class FoodblogKitchenRecipes
 			$category = '';
 		}
 
-		if (isset($attributes['image4_3Id'])) {
-			$image = wp_get_attachment_image_src($attributes['image4_3Id'], 'foodblogkitchen-recipes--thumbnail');
+		$thumbnailImageCandidates = ["image3_2", "image4_3", "image16_9", "image1_1"];
 
-			if ($image) {
-				$attributes['thumbnail'] = $image[0];
+		foreach ($thumbnailImageCandidates as $imageCandidate) {
+			if (isset($attributes[$imageCandidate . 'Id'])) {
+				$image = wp_get_attachment_image_src($attributes[$imageCandidate . 'Id'], 'foodblogkitchen-recipes--thumbnail');
+
+				if ($image) {
+					$attributes['thumbnail'] = $image[0];
+					break;
+				}
 			}
-		}
 
-		if (!isset($attributes['thumbnail'])) {
-			$attributes['thumbnail'] = $attributes['image4_3'];
+			if (!isset($attributes['thumbnail']) && isset($attributes[$imageCandidate])) {
+				$attributes['thumbnail'] = $attributes[$imageCandidate];
+			}
 		}
 
 		$images = [];
 
 		if (isset($attributes['image1_1']) && !empty($attributes['image1_1'])) {
 			$images[] = $attributes['image1_1'];
+		}
+		if (isset($attributes['image3_2']) && !empty($attributes['image3_2'])) {
+			$images[] = $attributes['image3_2'];
 		}
 		if (isset($attributes['image4_3']) && !empty($attributes['image4_3'])) {
 			$images[] = $attributes['image4_3'];

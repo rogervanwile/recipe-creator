@@ -222,11 +222,31 @@ export default function Edit(props) {
             </h4>
             <p>
               {__(
-                "Depending on the usage Google uses different image formats of your recipe.",
+                "Depending on the usage Google uses different image formats of your recipe. You can find more information",
                 "foodblogkitchen-recipes"
               )}
+              &nbsp;
+              <a
+                href={__(
+                  "https://foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder/",
+                  "foodblogkitchen-recipes"
+                )}
+                target="_blank"
+              >
+                {__("here", "foodblogkitchen-recipes")}
+              </a>
+              .
             </p>
           </PanelRow>
+          <PanelRow>
+            <ImageUpload
+              props={props}
+              keyName="image3_2"
+              label="3:2"
+              className="3-2"
+            ></ImageUpload>
+          </PanelRow>
+          <hr />
           <PanelRow>
             <ImageUpload
               props={props}
@@ -487,18 +507,25 @@ export default function Edit(props) {
                 onSelect={(media) => {
                   if (media) {
                     props.setAttributes({
-                      image4_3: media.url,
-                      image4_3Id: media.id,
+                      image3_2: media.url,
+                      image3_2Id: media.id,
                     });
                   }
                 }}
                 allowedTypes={ALLOWED_MEDIA_TYPES}
-                value={props.attributes.image4_3}
+                value={props.attributes.image3_2}
                 render={({ open }) => (
                   <div
-                    className="foodblogkitchen-recipes--block--main-image"
+                    className={
+                      "foodblogkitchen-recipes--block--main-image" +
+                      (props.attributes.image3_2
+                        ? ""
+                        : " foodblogkitchen-recipes--empty")
+                    }
                     style={{
-                      backgroundImage: "url(" + props.attributes.image4_3 + ")",
+                      backgroundImage: props.attributes.image3_2
+                        ? "url(" + props.attributes.image3_2 + ")"
+                        : "",
                     }}
                     onClick={open}
                   ></div>

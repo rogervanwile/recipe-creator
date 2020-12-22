@@ -53,7 +53,23 @@
   }
 
   .foodblogkitchen-recipes--block--main-image {
-    background-color: #efefef;
+    &.foodblogkitchen-recipes--empty {
+      background-color: #efefef;
+      position: relative;
+
+      &::after {
+        content: "3:2";
+        font-size: 48px;
+        color: #cccccc;
+        line-height: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        right: 0;
+        text-align: center;
+      }
+    }
   }
 
   h4 {
@@ -229,6 +245,9 @@
       color: #cccccc;
     }
 
+    &.image-preview-3-2 {
+      width: 112.5px;
+    }
     &.image-preview-1-1 {
       width: 75px;
     }
