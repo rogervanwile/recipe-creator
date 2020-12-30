@@ -144,7 +144,7 @@ class FoodblogKitchenRecipes
 			}
 		}
 
-		if ($remote) {
+		if (isset($remote) && !is_wp_error($remote)) {
 			$remote = json_decode($remote['body']);
 
 			if (!function_exists('get_plugin_data')) {
