@@ -193,8 +193,8 @@ class FoodblogKitchenRecipes
 	public function registerSettingsPage()
 	{
 		add_menu_page(
-			__("foodblogkitchen", "foodblogkitchen-recipes"),
-			__('foodblogkitchen', "foodblogkitchen-recipes"),
+			__("Recipe Plugin", "foodblogkitchen-recipes"),
+			__('Recipe Plugin', "foodblogkitchen-recipes"),
 			'manage_options',
 			'foodblogkitchen_recipes',
 			function () {
@@ -206,14 +206,28 @@ class FoodblogKitchenRecipes
 
 		add_submenu_page(
 			'foodblogkitchen_recipes',
-			__('Recipes', "foodblogkitchen-recipes"),
-			__("Settings", "foodblogkitchen-recipes"),
+			__('Design', "foodblogkitchen-recipes"),
+			__("Design", "foodblogkitchen-recipes"),
 			'manage_options',
 			'foodblogkitchen_recipes',
 			function () {
 				return require_once(plugin_dir_path(__FILE__) . 'templates/admin-index-page.php');
 			}
 		);
+
+		add_submenu_page(
+			'foodblogkitchen_recipes',
+			__('License', "foodblogkitchen-recipes"),
+			__("License", "foodblogkitchen-recipes"),
+			'manage_options',
+			'foodblogkitchen_recipes_license',
+			function () {
+				return require_once(plugin_dir_path(__FILE__) . 'templates/admin-license-page.php');
+			}
+		);
+
+
+		add_options_page('Sample License Activation Menu', 'Sample License', 'manage_options', __FILE__, 'sample_license_management_page');
 	}
 
 	private function renderColorPickerInput($name, $defaultValue)
