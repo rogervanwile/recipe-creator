@@ -3,7 +3,7 @@ $foodblogKitchenRecipes = new FoodblogKitchenRecipes();
 ?>
 
 <div class="wrap">
-  <h1><?php echo __("Recipes settings", "foodblogkitchen-recipes"); ?></h1>
+  <h1><?php echo get_admin_page_title(); ?></h1>
   <?php settings_errors(); ?>
 
   <div id="col-container" class="wp-clearfix">

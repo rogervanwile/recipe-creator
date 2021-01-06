@@ -8,6 +8,7 @@ import { format } from "@wordpress/date";
 import "./style.scss";
 
 import Edit from "./edit";
+import NoValidLicense from "./NoValidLicense";
 
 registerBlockType("foodblogkitchen-recipes/block", {
   title: __("Recipe", "foodblogkitchen-recipes"),
@@ -22,21 +23,23 @@ registerBlockType("foodblogkitchen-recipes/block", {
     html: false,
     align: ["center", "wide", "full"],
   },
-  edit: withSelect((select) => {
-    const site = select("core").getSite();
-    const publishDate = format(
-      "d.m.Y",
-      wp.data.select("core/editor").getEditedPostAttribute("date")
-    );
+  edit: (
+    !!foodblogkitchenRecipesAdditionalData.hasValidLicense ? withSelect((select) => {
+      const site = select("core").getSite();
 
-    return {
-      data: {
-        title: site ? site.title : null,
-        publishDate: publishDate,
-        meta: select("core/editor").getEditedPostAttribute("meta"),
-      },
-    };
-  })(Edit),
+      const publishDate = format(
+        "d.m.Y",
+        wp.data.select("core/editor").getEditedPostAttribute("date")
+      );
+
+      return {
+        data: {
+          title: site ? site.title : null,
+          publishDate: publishDate,
+          meta: select("core/editor").getEditedPostAttribute("meta"),
+        },
+      };
+    })(Edit) : NoValidLicense),
 
   save: (props) => {
     return props;

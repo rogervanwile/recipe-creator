@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Recipe Manager Pro 0.0.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/foodblogkitchen-"
 "recipes\n"
-"POT-Creation-Date: 2020-12-22T16:56:54+00:00\n"
-"PO-Revision-Date: 2020-12-22 17:57+0100\n"
+"POT-Creation-Date: 2021-01-06T19:59:44+00:00\n"
+"PO-Revision-Date: 2021-01-06 21:00+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -33,82 +33,81 @@ msgstr ""
 msgid "foodblogkitchen.de"
 msgstr "foodblogkitchen.de"
 
-#: build/block-template.php:7 build/block-template.php:12
-#: foodblogkitchen-recipes.php:872 foodblogkitchen-recipes.php:877
-msgid "minutes"
-msgstr "Minuten"
+#: foodblogkitchen-recipes.php:199 foodblogkitchen-recipes.php:200
+msgid "Recipe Plugin"
+msgstr "Rezepte-Plugin"
 
-#: build/block-template.php:12 foodblogkitchen-recipes.php:877
-msgid "hours"
-msgstr "Stunden"
+#: foodblogkitchen-recipes.php:212 foodblogkitchen-recipes.php:213
+msgid "Design"
+msgstr "Design"
 
-#: foodblogkitchen-recipes.php:196 foodblogkitchen-recipes.php:197
-msgid "foodblogkitchen"
-msgstr "foodblogkitchen"
+#: foodblogkitchen-recipes.php:223 foodblogkitchen-recipes.php:224
+msgid "License"
+msgstr "Lizenz"
 
-#: foodblogkitchen-recipes.php:209
-msgid "Recipes"
-msgstr "Rezepte"
-
-#: foodblogkitchen-recipes.php:210
-msgid "Settings"
-msgstr "Einstellungen"
-
-#: foodblogkitchen-recipes.php:327
+#: foodblogkitchen-recipes.php:344
 msgid "General settings"
 msgstr "Allgemeine Einstellungen"
 
-#: foodblogkitchen-recipes.php:329
+#: foodblogkitchen-recipes.php:346
 msgid "Configure how the recipe block should look for your visitors."
 msgstr "Konfiguriere, wie der Rezeptblock für deine Besucher aussehen soll."
 
-#: foodblogkitchen-recipes.php:337
+#: foodblogkitchen-recipes.php:354
 msgid "Primary color"
 msgstr "Hauptfarbe"
 
-#: foodblogkitchen-recipes.php:349
+#: foodblogkitchen-recipes.php:366
 msgid "Secondary color"
 msgstr "Nebenfarbe"
 
-#: foodblogkitchen-recipes.php:361
+#: foodblogkitchen-recipes.php:378
 msgid "Background color"
 msgstr "Hintergrundfarbe"
 
-#: foodblogkitchen-recipes.php:374
+#: foodblogkitchen-recipes.php:391
 msgid "Border"
 msgstr "Rahmen"
 
-#: foodblogkitchen-recipes.php:376
+#: foodblogkitchen-recipes.php:393
 msgid "Show border"
 msgstr "Rahmen anzeigen"
 
-#: foodblogkitchen-recipes.php:386
+#: foodblogkitchen-recipes.php:403
 msgid "Box shadow"
 msgstr "Box-Schatten"
 
-#: foodblogkitchen-recipes.php:388
+#: foodblogkitchen-recipes.php:405
 msgid "Show box shadow"
 msgstr "Box-Schatten anzeigen"
 
-#: foodblogkitchen-recipes.php:398
+#: foodblogkitchen-recipes.php:415
 msgid "Border radius"
 msgstr "Eckradius"
 
-#: foodblogkitchen-recipes.php:924 foodblogkitchen-recipes.php:995
-#: build/index.js:325 src/blocks/block/edit.js:105
+#: foodblogkitchen-recipes.php:894 foodblogkitchen-recipes.php:899
+msgid "minutes"
+msgstr "Minuten"
+
+#: foodblogkitchen-recipes.php:899
+msgid "hours"
+msgstr "Stunden"
+
+#: foodblogkitchen-recipes.php:946 foodblogkitchen-recipes.php:1017
+#: build/index.js:1 src/blocks/block/edit.js:105
 msgid "servings"
 msgstr "Portionen"
 
-#: foodblogkitchen-recipes.php:925 build/index.js:501
+#: foodblogkitchen-recipes.php:947 build/index.js:1
 #: src/blocks/block/edit.js:463
 msgid "simple"
 msgstr "einfach"
 
-#: foodblogkitchen-recipes.php:928
+#: foodblogkitchen-recipes.php:950
 msgid "Banana shake"
 msgstr "Bananen-Shake"
 
-#: foodblogkitchen-recipes.php:929
+#: foodblogkitchen-recipes.php:951
 msgid ""
 "You have bananas left over again and don't know what to do with them? How "
 "about a delicious shake?"
@@ -116,163 +115,223 @@ msgstr ""
 "Du hast wieder Bananen übrig und weißt nichts damit anzufangen? Wie wäre es "
 "mit einem leckeren Shake?"
 
-#: foodblogkitchen-recipes.php:937
+#: foodblogkitchen-recipes.php:959
 msgid "milk"
 msgstr "Milch"
 
-#: foodblogkitchen-recipes.php:944
+#: foodblogkitchen-recipes.php:966
 msgid "banana"
 msgstr "Banane"
 
-#: foodblogkitchen-recipes.php:951
+#: foodblogkitchen-recipes.php:973
 msgid "sugar"
 msgstr "Zucker"
 
-#: foodblogkitchen-recipes.php:958
+#: foodblogkitchen-recipes.php:980
 msgid "cinnamon"
 msgstr "Zimt"
 
-#: foodblogkitchen-recipes.php:962
+#: foodblogkitchen-recipes.php:984
 msgid "Peel banana."
 msgstr "Banane schälen."
 
-#: foodblogkitchen-recipes.php:963
+#: foodblogkitchen-recipes.php:985
 msgid ""
 "Put all the ingredients in the blender and mix everything for 30 seconds."
 msgstr "Alle Zutaten in den Mixer geben und alles für 30 Sekunden mixen."
 
-#: foodblogkitchen-recipes.php:964
+#: foodblogkitchen-recipes.php:986
 msgid "Pour into a glass and enjoy."
 msgstr "In ein Glas füllen und genießen."
 
-#: foodblogkitchen-recipes.php:968
+#: foodblogkitchen-recipes.php:990
 msgid "The milkshake becomes particularly creamy with UHT milk."
 msgstr "Besonders cremig wird der Milchshake mit H-Milch."
 
-#: foodblogkitchen-recipes.php:984 build/index.js:547
-#: src/blocks/block/edit.js:534
+#: foodblogkitchen-recipes.php:1006 build/index.js:1
+#: src/blocks/block/edit.js:541
 msgid "Prep time"
 msgstr "Vorbereitungszeit"
 
-#: foodblogkitchen-recipes.php:985 build/index.js:556
-#: src/blocks/block/edit.js:549
+#: foodblogkitchen-recipes.php:1007 build/index.js:1
+#: src/blocks/block/edit.js:556
 msgid "Rest time"
 msgstr "Ruhezeit"
 
-#: foodblogkitchen-recipes.php:986 build/index.js:565
-#: src/blocks/block/edit.js:564
+#: foodblogkitchen-recipes.php:1008 build/index.js:1
+#: src/blocks/block/edit.js:571
 msgid "Cook time"
 msgstr "Zubereitungszeit"
 
-#: foodblogkitchen-recipes.php:987 build/index.js:574
-#: src/blocks/block/edit.js:580
+#: foodblogkitchen-recipes.php:1009 build/index.js:1
+#: src/blocks/block/edit.js:587
 msgid "Total time"
 msgstr "Gesamtzeit"
 
-#: foodblogkitchen-recipes.php:988
+#: foodblogkitchen-recipes.php:1010
 msgid "yields"
 msgstr "Stück"
 
-#: foodblogkitchen-recipes.php:989 build/index.js:576
-#: src/blocks/block/edit.js:590
+#: foodblogkitchen-recipes.php:1011 build/index.js:1
+#: src/blocks/block/edit.js:597
 msgid "Ingredients"
 msgstr "Zutaten"
 
-#: foodblogkitchen-recipes.php:990 build/index.js:611
-#: src/blocks/block/edit.js:627
+#: foodblogkitchen-recipes.php:1012 build/index.js:1
+#: src/blocks/block/edit.js:634
 msgid "Steps of preparation"
 msgstr "Zubereitung"
 
-#: foodblogkitchen-recipes.php:991
+#: foodblogkitchen-recipes.php:1013
 msgid "Your rating"
 msgstr "Deine Bewertung"
 
-#: foodblogkitchen-recipes.php:992
+#: foodblogkitchen-recipes.php:1014
 msgid "Average rating"
 msgstr "Durchschnittliche Bewertung"
 
-#: foodblogkitchen-recipes.php:993 build/index.js:624
-#: src/blocks/block/edit.js:647
+#: foodblogkitchen-recipes.php:1015 build/index.js:1
+#: src/blocks/block/edit.js:654
 msgid "Notes"
 msgstr "Notizen"
 
-#: foodblogkitchen-recipes.php:994
+#: foodblogkitchen-recipes.php:1016
 msgid "How do you like the recipe?"
 msgstr "Wie findest du das Rezept?"
 
-#: templates/admin-index-page.php:6
-msgid "Recipes settings"
-msgstr "Einstellungen für Rezepte"
+#: templates/admin-license-page.php:27
+msgid ""
+"There was an error while activating the license. Please try again later."
+msgstr ""
+"Bei der Aktivierung der Lizenz gab es einen Fehler. Bitte probiere es später "
+"noch einmal."
 
-#: build/index.js:226 src/blocks/block/ImageUpload.js:49
+#: templates/admin-license-page.php:40
+msgid ""
+"Your license has been successfully activated. You can now use the recipes "
+"block in the editor."
+msgstr ""
+"Deine Lizenz wurde erfolgreich aktiviert. Du kannst den Rezepte-Block im "
+"Editor nun nutzen."
+
+#: templates/admin-license-page.php:48
+msgid ""
+"There was an error while activating the license. Please check your input. If "
+"you can't find an error, please contact our support."
+msgstr ""
+"Es gab einen Fehler beim Aktivieren deiner Lizenz. Bitte überprüfe deine "
+"Eingabe. Wenn du keinen Fehler finden kannst, kontaktiere bitte unseren "
+"Support."
+
+#: templates/admin-license-page.php:79
+msgid ""
+"There was an error while deactivating the license. Please try again later."
+msgstr ""
+"Bei der Deaktivierung der Lizenz gab es einen Fehler. Bitte probiere es "
+"später noch einmal."
+
+#: templates/admin-license-page.php:93
+msgid "The license has been successfully deactivated."
+msgstr "Die Lizenz wurde erfolgreich deaktiviert."
+
+#: templates/admin-license-page.php:100
+msgid "There was an error while deactivating the license. "
+msgstr "Es gab einen Fehler beim deaktivieren der Lizenz."
+
+#: templates/admin-license-page.php:110
+msgid ""
+"Please enter the license key for this product to activate it. You were given "
+"a license key when you purchased this item."
+msgstr ""
+"Bitte gebe den Lizenzschlüssel ein. Du hast ihn in deiner Bestellbestätigung "
+"per E-Mail erhalten."
+
+#: templates/admin-license-page.php:114
+msgid "License Key"
+msgstr "Lizenzschlüssel"
+
+#: templates/admin-license-page.php:120
+msgid "Deactivate"
+msgstr "Deaktivieren"
+
+#: templates/admin-license-page.php:122
+msgid "Activate"
+msgstr "Aktivieren"
+
+#: build/index.js:1 src/blocks/block/ImageUpload.js:49
 msgid "Change image"
 msgstr "Bild wechseln"
 
-#: build/index.js:233 src/blocks/block/ImageUpload.js:59
+#: build/index.js:1 src/blocks/block/ImageUpload.js:59
 msgid "Remove image"
 msgstr "Bild entfernen"
 
-#: build/index.js:236 src/blocks/block/ImageUpload.js:64
+#: build/index.js:1 src/blocks/block/ImageUpload.js:64
 msgid "Select image"
 msgstr "Bild auswählen"
 
-#: build/index.js:313 src/blocks/block/edit.js:83
+#: build/index.js:1 src/blocks/block/index.js:18
+msgid "Recipe"
+msgstr "Rezept"
+
+#: build/index.js:1 src/blocks/block/index.js:19
+msgid "Create recipes and optimize them easily for search engines."
+msgstr ""
+"Erstelle Rezepte und optimiere sie mit wenigen Klicks für Suchmaschinen."
+
+#: build/index.js:1 src/blocks/block/edit.js:83
 msgid "Breakfast"
 msgstr "Frühstück"
 
-#: build/index.js:313 src/blocks/block/edit.js:84
+#: build/index.js:1 src/blocks/block/edit.js:84
 msgid "Bread"
 msgstr "Brot"
 
-#: build/index.js:313 src/blocks/block/edit.js:85
+#: build/index.js:1 src/blocks/block/edit.js:85
 msgid "Appetizers & Snacks"
 msgstr "Vorspeisen & Snacks"
 
-#: build/index.js:313 src/blocks/block/edit.js:86
+#: build/index.js:1 src/blocks/block/edit.js:86
 msgid "Salads"
 msgstr "Salate"
 
-#: build/index.js:313 src/blocks/block/edit.js:87
+#: build/index.js:1 src/blocks/block/edit.js:87
 msgid "Soups & Stews"
 msgstr "Suppen & Eintöpfe"
 
-#: build/index.js:313 src/blocks/block/edit.js:88
+#: build/index.js:1 src/blocks/block/edit.js:88
 msgid "Main Dishes"
 msgstr "Hauptgerichte"
 
-#: build/index.js:313 src/blocks/block/edit.js:89
+#: build/index.js:1 src/blocks/block/edit.js:89
 msgid "Side Dishes"
 msgstr "Beilagen"
 
-#: build/index.js:313 src/blocks/block/edit.js:90
+#: build/index.js:1 src/blocks/block/edit.js:90
 msgid "Desserts"
 msgstr "Nachspeisen"
 
-#: build/index.js:313 src/blocks/block/edit.js:91
+#: build/index.js:1 src/blocks/block/edit.js:91
 msgid "Drinks"
 msgstr "Getränk"
 
-#: build/index.js:313 src/blocks/block/edit.js:92
+#: build/index.js:1 src/blocks/block/edit.js:92
 msgid "Sweets"
 msgstr "Süßes"
 
-#: build/index.js:321 src/blocks/block/edit.js:99
+#: build/index.js:1 src/blocks/block/edit.js:99
 msgid "Select a category"
 msgstr "Wähle eine Kategorie aus"
 
-#: build/index.js:328 src/blocks/block/edit.js:109
+#: build/index.js:1 src/blocks/block/edit.js:109
 msgid "piece"
 msgstr "Stück"
 
-#: build/index.js:384 src/blocks/block/edit.js:170
-msgid "No reviews"
-msgstr "Keine Bewertungen"
-
-#: build/index.js:389 src/blocks/block/edit.js:180
+#: build/index.js:1 src/blocks/block/edit.js:180
 msgid "SEO"
 msgstr "SEO"
 
-#: build/index.js:391 src/blocks/block/edit.js:185
+#: build/index.js:1 src/blocks/block/edit.js:185
 msgid ""
 "Google and other search engines need more information to present your recipe "
 "in the best possible way. You should provide this information as good as "
@@ -282,23 +341,23 @@ msgstr ""
 "bestmöglich zu präsentieren. Du solltest diese Informationen so gut wie "
 "möglich angeben."
 
-#: build/index.js:392 src/blocks/block/edit.js:193
+#: build/index.js:1 src/blocks/block/edit.js:193
 msgid "Cuisine"
 msgstr "Küche"
 
-#: build/index.js:394 src/blocks/block/edit.js:195
+#: build/index.js:1 src/blocks/block/edit.js:195
 msgid "e.g. \"Italian\" or \"German\""
 msgstr "z.B. „Italienisch“ oder „Deutsch“"
 
-#: build/index.js:402 src/blocks/block/edit.js:207
+#: build/index.js:1 src/blocks/block/edit.js:207
 msgid "Calories"
 msgstr "Kalorien"
 
-#: build/index.js:411 src/blocks/block/edit.js:221
+#: build/index.js:1 src/blocks/block/edit.js:221
 msgid "Picture of the finished dish"
 msgstr "Bild des fertigen Gerichtes"
 
-#: build/index.js:411 src/blocks/block/edit.js:224
+#: build/index.js:1 src/blocks/block/edit.js:224
 msgid ""
 "Depending on the usage Google uses different image formats of your recipe. "
 "You can find more information"
@@ -306,84 +365,111 @@ msgstr ""
 "Abhängig von der Nutzung verwendet Google verschiedene Bildformate deines "
 "Rezeptes. Weitere Informationen findest du"
 
-#: build/index.js:412 src/blocks/block/edit.js:230
+#: build/index.js:1 src/blocks/block/edit.js:230
 msgid "https://foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder/"
 msgstr "https://foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder/"
 
-#: build/index.js:414 src/blocks/block/edit.js:236
+#: build/index.js:1 src/blocks/block/edit.js:236
 msgid "here"
 msgstr "hier"
 
-#: build/index.js:434 src/blocks/block/edit.js:280
+#: build/index.js:1 src/blocks/block/edit.js:280
 msgid "Previews"
 msgstr "Vorschau"
 
-#: build/index.js:434 src/blocks/block/edit.js:281
+#: build/index.js:1 src/blocks/block/edit.js:281
 msgid "Featured Snippet"
 msgstr "Featured Snippet"
 
-#: build/index.js:449 src/blocks/block/edit.js:308
+#: build/index.js:1 src/blocks/block/edit.js:170
+msgid "No reviews"
+msgstr "Keine Bewertungen"
+
+#: build/index.js:1 src/blocks/block/edit.js:308
 msgid "Mobile Search Result"
 msgstr "Mobiles Suchergebnis"
 
-#: build/index.js:472 src/blocks/block/edit.js:410
+#: build/index.js:1 src/blocks/block/edit.js:410
 msgid "Rating"
 msgstr "Bewertung"
 
-#: build/index.js:481 src/blocks/block/edit.js:429
+#: build/index.js:1 src/blocks/block/edit.js:429
 msgid "Preparation"
 msgstr "Vorbereitung"
 
-#: build/index.js:486 src/blocks/block/edit.js:447
+#: build/index.js:1 src/blocks/block/edit.js:447
 msgid "Title of your recipe"
 msgstr "Titel des Rezepts"
 
-#: build/index.js:508 src/blocks/block/edit.js:476
+#: build/index.js:1 src/blocks/block/edit.js:476
 msgid "moderate"
 msgstr "mittel"
 
-#: build/index.js:515 src/blocks/block/edit.js:489
+#: build/index.js:1 src/blocks/block/edit.js:489
 msgid "challenging"
 msgstr "herausfordernd"
 
-#: build/index.js:518 src/blocks/block/edit.js:495
+#: build/index.js:1 src/blocks/block/edit.js:495
 msgid "Short description of your recipe"
 msgstr "Kurze Beschreibung deines Rezeptes"
 
-#: build/index.js:555 build/index.js:564 build/index.js:573 build/index.js:574
-#: src/blocks/block/edit.js:544 src/blocks/block/edit.js:559
-#: src/blocks/block/edit.js:574 src/blocks/block/edit.js:583
+#: build/index.js:1 src/blocks/block/edit.js:551 src/blocks/block/edit.js:566
+#: src/blocks/block/edit.js:581 src/blocks/block/edit.js:590
 msgid "Minutes"
 msgstr "Minuten"
 
-#: build/index.js:579 src/blocks/block/edit.js:594
+#: build/index.js:1 src/blocks/block/edit.js:601
 msgid "Results in"
 msgstr "Ergibt"
 
-#: build/index.js:590 src/blocks/block/edit.js:605
+#: build/index.js:1 src/blocks/block/edit.js:612
 msgid "Unit"
 msgstr "Einheit"
 
-#: build/index.js:602 src/blocks/block/edit.js:618
+#: build/index.js:1 src/blocks/block/edit.js:625
 msgid "Add the ingredients here..."
 msgstr "Füge hier die Zutaten ein..."
 
-#: build/index.js:615 src/blocks/block/edit.js:634
+#: build/index.js:1 src/blocks/block/edit.js:641
 msgid "Add the steps of preparation here..."
 msgstr "Füge die die Schritte der Zubereitung ein..."
 
-#: build/index.js:627 src/blocks/block/edit.js:653
+#: build/index.js:1 src/blocks/block/edit.js:660
 msgid "Additional notes ..."
 msgstr "Zusätzliche Notizen …"
 
-#: build/index.js:676 src/blocks/block/index.js:13
-msgid "Recipe"
-msgstr "Rezept"
+#: build/index.js:1 src/blocks/block/noValidLicense.js:8
+msgid "You have not activated the license yet"
+msgstr "Du hast deine Lizenz noch nicht aktiviert"
 
-#: build/index.js:677 src/blocks/block/index.js:14
-msgid "Create recipes and optimize them easily for search engines."
+#: build/index.js:1 src/blocks/block/noValidLicense.js:9
+msgid ""
+"Please enter a valid license key in the settings of the recipe plugin. You "
+"have received this key by email with your purchase."
 msgstr ""
-"Erstelle Rezepte und optimiere sie mit wenigen Klicks für Suchmaschinen."
+"Bitte gebe in den Einstellungen des Rezepte-Plugins einen gültigen "
+"Lizenzschlüssel ein. Diesen hast du bei deinem Kauf per E-Mail bekommen."
+
+#: build/index.js:1 src/blocks/block/noValidLicense.js:10
+msgid "If you can no longer find your license key, please contact us at "
+msgstr ""
+"Wenn du deinen Lizenzschlüssel nicht mehr findest, melde dich bitte unter "
+
+#: build/index.js:1 src/blocks/block/noValidLicense.js:11
+msgid "Go to settings"
+msgstr "Zu den Einstellungen"
+
+#~ msgid "foodblogkitchen"
+#~ msgstr "foodblogkitchen"
+
+#~ msgid "Recipes"
+#~ msgstr "Rezepte"
+
+#~ msgid "Settings"
+#~ msgstr "Einstellungen"
+
+#~ msgid "Recipes settings"
+#~ msgstr "Einstellungen für Rezepte"
 
 #~ msgid "You can find more information"
 #~ msgstr "Weitere Informationen findest du"
@@ -492,9 +578,6 @@ msgstr ""
 #~ "Als Pasta finde ich große Nudeln wie Penne oder Rigatoni am passendsten. "
 #~ "Am liebsten von „De Cecco“, ich finde diese Nudeln am schmackhaftesten "
 #~ "und daran bleibt die Soße so gut haften."
-
-#~ msgid "Recipe Block"
-#~ msgstr "Rezeptblock"
 
 #~ msgid ""
 #~ "Manage recipes and optimize them automatically for Google Featured "

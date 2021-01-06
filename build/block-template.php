@@ -142,14 +142,13 @@
 			'.LR::raw($cx, (($inary && isset($in['preparationSteps'])) ? $in['preparationSteps'] : null)).'
 		</ol>
 ' : '').'
-
 '.((LR::ifvar($cx, (($inary && isset($in['notes'])) ? $in['notes'] : null), false)) ? '	<hr />
 
 	<section>
 		<header class="foodblogkitchen-recipes--block--headline">
 			<h3>'.LR::encq($cx, ((isset($in['translations']) && is_array($in['translations']) && isset($in['translations']['notes'])) ? $in['translations']['notes'] : null)).'</h3>
 		</header>
-		<p>'.LR::encq($cx, (($inary && isset($in['notes'])) ? $in['notes'] : null)).'</p>
+		<p>'.LR::raw($cx, (($inary && isset($in['notes'])) ? $in['notes'] : null)).'</p>
 	</section>
 ' : '').'	
 	<section class="foodblogkitchen-recipes--block--user-rating">

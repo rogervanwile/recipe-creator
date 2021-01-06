@@ -32,6 +32,10 @@ class FoodblogKitchenRecipes
 	private $borderRadiusDefault = 8;
 	private $thumnailSizeDefault = 330;
 
+	public static $licenseServer = 'https://foodblogkitchen.de';
+	public static $licenseSecretKey = '5ff5c39a7148a7.10623378';
+	public static $licenseProductName = 'Recipe Plugin';
+
 	function __construct()
 	{
 		add_action('init', array($this, 'addRessources'));
@@ -181,7 +185,6 @@ class FoodblogKitchenRecipes
 		// Enable Color Picker for Settings Page
 		wp_enqueue_style('wp-color-picker');
 		wp_enqueue_style('iris');
-
 
 		wp_enqueue_script('foodblogkitchen-recipes-settings-js', 	plugins_url('build/admin.js', __FILE__), array('jquery', 'wp-color-picker', 'iris'), '', true);
 
@@ -580,6 +583,11 @@ class FoodblogKitchenRecipes
 			$script_asset['version']
 		);
 		wp_set_script_translations('foodblogkitchen-recipes-block-editor', 'foodblogkitchen-recipes', plugin_dir_path(__FILE__) . 'languages');
+		$license = get_option('foodblogkitchen_recipes__license_key', '');
+		wp_localize_script('foodblogkitchen-recipes-block-editor', 'foodblogkitchenRecipesAdditionalData', [
+			"hasValidLicense" => !empty($license),
+			"licensePage" => get_admin_url(get_current_network_id(), 'admin.php?page=foodblogkitchen_recipes_license')
+		]);
 
 		$editor_css = 'build/index.css';
 		wp_register_style(
