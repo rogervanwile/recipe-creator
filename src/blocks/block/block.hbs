@@ -158,6 +158,11 @@
       <li>
         <button class="btn btn-secondary foodblogkitchen-recipes--block--print-button">{{translations/print}}</button>
       </li>
+      {{#if pinterestPinItUrl}}
+      <li>
+        <a href="{{pinterestPinItUrl}}" target="_blank" class="btn btn-secondary foodblogkitchen-recipes--block--share-on-pinterest">{{translations/shareOnPinterest}}</a>
+      </li>
+      {{/if}}
     </ul>
   </section>
   <script>

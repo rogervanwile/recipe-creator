@@ -49,6 +49,7 @@ class FoodblogKitchenRecipes
 		add_action('admin_enqueue_scripts', array($this, 'enqueueAdminJs'));
 
 		add_image_size('foodblogkitchen-recipes--thumbnail', get_option('foodblogkitchen_recipes__thumbnail_size', $this->thumnailSizeDefault));
+		add_image_size('foodblogkitchen-recipes--pinterest', 1200, 0, false);
 
 		// Frontend-AJAX-Actions
 		add_action('wp_ajax_foodblogkitchen_recipes_set_rating', array($this, 'setRating'));
@@ -431,6 +432,16 @@ class FoodblogKitchenRecipes
 
 	public function registerMeta()
 	{
+		register_meta('post', 'foodblogkitchen_pinterest_image_id', array(
+			'show_in_rest' => true,
+			'type' => 'number',
+			'single' => true,
+		));
+		register_meta('post', 'foodblogkitchen_pinterest_image_url', array(
+			'show_in_rest' => true,
+			'type' => 'string',
+			'single' => true,
+		));
 		register_meta('post', 'rating_1_votes', array(
 			'show_in_rest' => true,
 			'type' => 'number',
@@ -1011,6 +1022,7 @@ class FoodblogKitchenRecipes
 			"ingredients" => __('Ingredients', 'foodblogkitchen-recipes'),
 			"preparationSteps" => __('Steps of preparation', 'foodblogkitchen-recipes'),
 			"print" => __('Print', 'foodblogkitchen-recipes'),
+			"shareOnPinterest" => __('Share on Pinterest', 'foodblogkitchen-recipes'),
 			"yourRating" => __('Your rating', 'foodblogkitchen-recipes'),
 			"averageRating" => __('Average rating', 'foodblogkitchen-recipes'),
 			"notes" => __('Notes', 'foodblogkitchen-recipes'),
@@ -1127,6 +1139,22 @@ class FoodblogKitchenRecipes
 			$images[] = $attributes['image16_9'];
 		}
 
+		$description = isset($attributes['description']) ? $attributes['description'] : '';
+
+		// Process the pinterest image
+
+		$pinterestImageId = get_post_meta(get_the_ID(), 'foodblogkitchen_pinterest_image_id', true) ?: null;
+
+		if ($pinterestImageId !== null) {
+			$pinterestImageUrl = wp_get_attachment_image_src($pinterestImageId, 'foodblogkitchen-recipes--pinterest');
+			if ($pinterestImageUrl) {
+				$attributes['pinterestPinItUrl'] = 'https://www.pinterest.com/pin/create/button/' .
+					'?url=' . urlencode($_SERVER['REQUEST_URI']) .
+					'&media=' . urlencode($pinterestImageUrl[0]) .
+					'&description=' . urlencode($description);
+			}
+		}
+
 		$attributes['ldJson'] = [
 			"@context" => "https://schema.org/",
 			"@type" => "Recipe",
@@ -1137,7 +1165,7 @@ class FoodblogKitchenRecipes
 				"name" => get_the_author_meta('display_name')
 			],
 			"datePublished" => get_the_date("Y-m-d"), // "2018-03-10",
-			"description" => isset($attributes['description']) ? $attributes['description'] : '',
+			"description" => $description,
 			"recipeCuisine" => isset($attributes['recipeCuisine']) ? $attributes['recipeCuisine'] : '',
 			"prepTime" => isset($attributes['prepTime']) ? $this->toIso8601Duration(intval($attributes['prepTime']) * 60) : '',
 			"cookTime" => isset($attributes['cookTime']) ? $this->toIso8601Duration(intval($attributes['cookTime']) * 60) : '',
