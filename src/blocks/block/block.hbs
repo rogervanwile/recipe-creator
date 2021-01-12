@@ -1,152 +1,178 @@
 <div class="foodblogkitchen-recipes--block{{#if align}} align{{align}}{{/if}}">
-	{{#if name}}
-		<h2>{{{name}}}</h2>
-	{{/if}}
-	
-	<div class="foodblogkitchen-recipes--block--intro">
-		<div>
-			{{#if difficulty}}
-				<span class="foodblogkitchen-recipes--block--difficulty">{{ difficulty }}</span>
-			{{/if}}
+  {{#if name}}
+  <h2>{{{name}}}</h2>
+  {{/if}}
 
-			{{#if description}}
-				<p>{{ description }}</p>
-			{{/if}}
-			{{#if averageRating}}
-			<div class="foodblogkitchen-recipes--block--rating foodblogkitchen-recipes--block--rating--small">
-				<ol>
-					<li class="foodblogkitchen-recipes--block--star{{#if averageRating}} selected{{/if}}" data-rating="1">1</li>
-					<li class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual averageRating 2}} selected{{else}}{{#ifMoreOrEqual averageRating 1.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="2">2</li>
-					<li class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual averageRating 3}} selected{{else}}{{#ifMoreOrEqual averageRating 2.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="3">3</li>
-					<li class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual averageRating 4}} selected{{else}}{{#ifMoreOrEqual averageRating 3.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="4">4</li>
-					<li class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual averageRating 5}} selected{{else}}{{#ifMoreOrEqual averageRating 4.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}" data-rating="5">5</li>
-				</ol>
-			</div>
-			{{/if}}
-		</div>
-		<div>
-			{{#if thumbnail}}
-        <div
-          class="foodblogkitchen-recipes--block--main-image"
-          style="background-image: url('{{thumbnail}}');" title="{{ name }}"
-        ></div>
-			{{/if}}
-		</div>
-	</div>
+  <div class="foodblogkitchen-recipes--block--intro">
+    <div>
+      {{#if difficulty}}
+      <span class="foodblogkitchen-recipes--block--difficulty">{{ difficulty }}</span>
+      {{/if}}
 
-	<hr />
+      {{#if description}}
+      <p>{{ description }}</p>
+      {{/if}}
+      {{#if averageRating}}
+      <div class="foodblogkitchen-recipes--block--rating foodblogkitchen-recipes--block--rating--small">
+        <ol>
+          <li class="foodblogkitchen-recipes--block--star{{#if averageRating}} selected{{/if}}" data-rating="1">1</li>
+          <li
+            class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual averageRating 2}} selected{{else}}{{#ifMoreOrEqual averageRating 1.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
+            data-rating="2">2</li>
+          <li
+            class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual averageRating 3}} selected{{else}}{{#ifMoreOrEqual averageRating 2.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
+            data-rating="3">3</li>
+          <li
+            class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual averageRating 4}} selected{{else}}{{#ifMoreOrEqual averageRating 3.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
+            data-rating="4">4</li>
+          <li
+            class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual averageRating 5}} selected{{else}}{{#ifMoreOrEqual averageRating 4.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
+            data-rating="5">5</li>
+        </ol>
+      </div>
+      {{/if}}
+    </div>
+    <div>
+      {{#if thumbnail}}
+      <div class="foodblogkitchen-recipes--block--main-image" style="background-image: url('{{thumbnail}}');"
+        title="{{ name }}"></div>
+      {{/if}}
+    </div>
+  </div>
 
-	<div class="foodblogkitchen-recipes--block--timing-list">
-		<ul>
-			{{#if prepTime}}
-			<li>
-				<header>{{translations/prepTime}}:</header>
-				<span>{{#formatDuration prepTime}}{{/formatDuration}}</span>
-			</li>
-			{{/if}}
+  <hr />
 
-			{{#if restTime}}
-			<li>
-				<header>{{translations/restTime}}:</header>
-				<span>
-				{{#formatDuration restTime}}{{/formatDuration}}</span>
-			</li>
-			{{/if}}
+  <div class="foodblogkitchen-recipes--block--timing-list">
+    <ul>
+      {{#if prepTime}}
+      <li>
+        <header>{{translations/prepTime}}:</header>
+        <span>{{#formatDuration prepTime}}{{/formatDuration}}</span>
+      </li>
+      {{/if}}
 
-			{{#if cookTime}}
-			<li>
-				<header>{{translations/cookTime}}:</header>
-				<span>
-				{{#formatDuration cookTime}}{{/formatDuration}}</span>
-			</li>
-			{{/if}}
+      {{#if restTime}}
+      <li>
+        <header>{{translations/restTime}}:</header>
+        <span>
+          {{#formatDuration restTime}}{{/formatDuration}}</span>
+      </li>
+      {{/if}}
 
-			{{#if totalTime}}
-			<li>
-				<header>{{translations/totalTime}}:</header>
-				<span>{{#formatDuration totalTime}}{{/formatDuration}}</span>
-			</li>
-			{{/if}}
-		</ul>
-	</div>
+      {{#if cookTime}}
+      <li>
+        <header>{{translations/cookTime}}:</header>
+        <span>
+          {{#formatDuration cookTime}}{{/formatDuration}}</span>
+      </li>
+      {{/if}}
 
-	<hr />
+      {{#if totalTime}}
+      <li>
+        <header>{{translations/totalTime}}:</header>
+        <span>{{#formatDuration totalTime}}{{/formatDuration}}</span>
+      </li>
+      {{/if}}
+    </ul>
+  </div>
 
-	{{#if ingredients}}
-		<div class="foodblogkitchen-recipes--block--headline">
-			<h3>{{translations/ingredients}}</h3>
-			{{#if recipeYield}}
-				<div class="foodblogkitchen-recipes--block--servings-editor">
-				  <button type="button" class="btn btn-secondary recipe-shrink-servings">-</button>
-				  <span disabled="disabled"><span class="recipe-servings">{{recipeYield}}</span>
-						{{recipeYieldUnit}}
-					</span>
-				  <button type="button" class="btn btn-secondary recipe-increase-servings">+</button>
-				</div>
-			{{/if}}
-		</div>
-		<table class="foodblogkitchen-recipes--block--ingredients">
-			<tbody>
-				{{#each ingredients}}
-					<tr>
-						<td class="foodblogkitchen-recipes--block--amount" data-recipe-base-amount="{{this/baseAmount}}" data-recipe-base-unit="{{this/baseUnit}}">{{this/amount}} {{this/unit}}</td>
-						<td class="foodblogkitchen-recipes--block--ingredient">{{{this/ingredient}}}</td>
-					</tr>
-				{{/each}}
-			</tbody>
-		</table>
-	{{/if}}
+  <hr />
 
-	<hr />
+  {{#if ingredients}}
+  <div class="foodblogkitchen-recipes--block--headline">
+    <h3>{{translations/ingredients}}</h3>
+    {{#if recipeYield}}
+    <div class="foodblogkitchen-recipes--block--servings-editor">
+      <button type="button" class="btn btn-secondary recipe-shrink-servings">-</button>
+      <span disabled="disabled"><span class="recipe-servings">{{recipeYield}}</span>
+        {{recipeYieldUnit}}
+      </span>
+      <button type="button" class="btn btn-secondary recipe-increase-servings">+</button>
+    </div>
+    {{/if}}
+  </div>
+  <table class="foodblogkitchen-recipes--block--ingredients">
+    <tbody>
+      {{#each ingredients}}
+      <tr>
+        <td class="foodblogkitchen-recipes--block--amount" data-recipe-base-amount="{{this/baseAmount}}"
+          data-recipe-base-unit="{{this/baseUnit}}">{{this/amount}} {{this/unit}}</td>
+        <td class="foodblogkitchen-recipes--block--ingredient">{{{this/ingredient}}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{/if}}
 
-	{{#if preparationSteps}}
-		<div class="foodblogkitchen-recipes--block--headline">
-			<h3>{{translations/preparationSteps}}</h3>
-		</div>
-		<ol class="foodblogkitchen-recipes--block--preparation-steps">
-			{{{preparationSteps}}}
-		</ol>
-	{{/if}}
+  <hr />
 
-	{{#if notes}}
-	<hr />
+  {{#if preparationSteps}}
+  <div class="foodblogkitchen-recipes--block--headline">
+    <h3>{{translations/preparationSteps}}</h3>
+  </div>
+  <ol class="foodblogkitchen-recipes--block--preparation-steps">
+    {{{preparationSteps}}}
+  </ol>
+  {{/if}}
 
-	<section>
-		<header class="foodblogkitchen-recipes--block--headline">
-			<h3>{{translations/notes}}</h3>
-		</header>
-		<p>{{{notes}}}</p>
-	</section>
-	{{/if}}
-	
-	<section class="foodblogkitchen-recipes--block--user-rating">
-		<hr />
-		<header class="foodblogkitchen-recipes--block--headline">
-			<h3>{{translations/feedback}}</h3>
-		</header>	
-		<div class="foodblogkitchen-recipes--block--rating foodblogkitchen-recipes--block--interactive" data-post-id="{{postId}}" data-save-url="{{ajaxUrl}}" data-nonce="{{nonce}}">
-			<ol>
-				<li class="foodblogkitchen-recipes--block--star{{#if userRating}} selected{{/if}}" data-rating="1">1</li>
-				<li class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual userRating 2}} selected{{else}}{{/ifMoreOrEqual}}" data-rating="2">2</li>
-				<li class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual userRating 3}} selected{{else}}{{/ifMoreOrEqual}}" data-rating="3">3</li>
-				<li class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual userRating 4}} selected{{else}}{{/ifMoreOrEqual}}" data-rating="4">4</li>
-				<li class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual userRating 5}} selected{{else}}{{/ifMoreOrEqual}}" data-rating="5">5</li>
-			</ol>
-		</div>
-	</section>
-	<script>
-		var FoodblogKitchenRecipes = FoodblogKitchenRecipes || {};
-		FoodblogKitchenRecipes.config = {
-			ajaxUrl: '{{ajaxUrl}}',
-			nonce: '{{nonce}}'
-		};
-	</script>
-	<script type="application/ld+json">
+  {{#if notes}}
+  <hr />
+
+  <section>
+    <header class="foodblogkitchen-recipes--block--headline">
+      <h3>{{translations/notes}}</h3>
+    </header>
+    <p>{{{notes}}}</p>
+  </section>
+  {{/if}}
+
+  <section class="foodblogkitchen-recipes--block--user-rating">
+    <hr />
+    <header class="foodblogkitchen-recipes--block--headline">
+      <h3>{{translations/feedback}}</h3>
+    </header>
+    <div class="foodblogkitchen-recipes--block--rating foodblogkitchen-recipes--block--interactive"
+      data-post-id="{{postId}}" data-save-url="{{ajaxUrl}}" data-nonce="{{nonce}}">
+      <ol>
+        <li class="foodblogkitchen-recipes--block--star{{#if userRating}} selected{{/if}}" data-rating="1">1
+        </li>
+        <li
+          class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual userRating 2}} selected{{else}}{{/ifMoreOrEqual}}"
+          data-rating="2">2</li>
+        <li
+          class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual userRating 3}} selected{{else}}{{/ifMoreOrEqual}}"
+          data-rating="3">3</li>
+        <li
+          class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual userRating 4}} selected{{else}}{{/ifMoreOrEqual}}"
+          data-rating="4">4</li>
+        <li
+          class="foodblogkitchen-recipes--block--star{{#ifMoreOrEqual userRating 5}} selected{{else}}{{/ifMoreOrEqual}}"
+          data-rating="5">5</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="foodblogkitchen-recipes--block--save-and-share">
+    <hr />
+    <ul class="foodblogkitchen-recipes--block--share-buttons">
+      <li>
+        <button class="btn btn-secondary foodblogkitchen-recipes--block--print-button">{{translations/print}}</button>
+      </li>
+    </ul>
+  </section>
+  <script>
+    var FoodblogKitchenRecipes = FoodblogKitchenRecipes || {};
+    FoodblogKitchenRecipes.config = {
+      ajaxUrl: '{{ajaxUrl}}',
+      nonce: '{{nonce}}'
+    };
+  </script>
+  <script type="application/ld+json">
 		{{#toJSON ldJson}}{{/toJSON}}
   </script>
-	{{#if options}}
+  {{#if options}}
 
-		{{ > styleBlock }}
+  {{ > styleBlock }}
 
-	{{/if}}
+  {{/if}}
 </div>

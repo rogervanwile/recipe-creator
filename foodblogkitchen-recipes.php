@@ -1010,6 +1010,7 @@ class FoodblogKitchenRecipes
 			"yield" => __('yields', 'foodblogkitchen-recipes'),
 			"ingredients" => __('Ingredients', 'foodblogkitchen-recipes'),
 			"preparationSteps" => __('Steps of preparation', 'foodblogkitchen-recipes'),
+			"print" => __('Print', 'foodblogkitchen-recipes'),
 			"yourRating" => __('Your rating', 'foodblogkitchen-recipes'),
 			"averageRating" => __('Average rating', 'foodblogkitchen-recipes'),
 			"notes" => __('Notes', 'foodblogkitchen-recipes'),

@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
           ) {
             var averageVotingElement = document.querySelector(
               '[data-post-id="' +
-                postId +
-                '"] .foodblogkitchen-recipes--block--average-voting'
+              postId +
+              '"] .foodblogkitchen-recipes--block--average-voting'
             );
 
             if (averageVotingElement) {
@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let formattedAmount = amount;
             try {
               formattedAmount = new Intl.NumberFormat("de-DE").format(amount);
-            } catch (e) {}
+            } catch (e) { }
 
             if (amountElement) {
               amountElement.innerText = formattedAmount + " " + unit;
@@ -198,5 +198,50 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
+  var printContainer = function (container) {
+    if (container) {
+      var printWindow = window.open('', 'PRINT', 'height=600,width=800');
+      var stylesheetElements = document.querySelectorAll('link[rel="stylesheet"]#foodblogkitchen-recipes-block-css');
+      var stylesheets = Array.from(stylesheetElements);
+
+      printWindow.document.write('<html><head><title>' + document.title + '</title>');
+
+      stylesheets.forEach((stylesheet) => {
+        printWindow.document.write(stylesheet.outerHTML);
+      });
+
+      printWindow.document.write('</head><body class="foodblogkitchen-recipes--print">');
+      printWindow.document.write(container.outerHTML);
+      printWindow.document.write('</body></html>');
+
+      printWindow.document.close(); // necessary for IE >= 10
+
+      printWindow.requestAnimationFrame(() => {
+        printWindow.focus(); // necessary for IE >= 10*/
+        printWindow.print();
+        printWindow.close();
+      });
+    } else {
+      console.error('No container for printing defined');
+    }
+  };
+
+  var initPrintButtons = function () {
+    const buttons = document.querySelectorAll(
+      ".foodblogkitchen-recipes--block--print-button"
+    );
+
+    if (buttons) {
+      Array.from(buttons).forEach(button => {
+        const recipeContainer = button.closest('.foodblogkitchen-recipes--block');
+        button.addEventListener('click', function (event) {
+          event.preventDefault();
+          printContainer(recipeContainer);
+        });
+      });
+    }
+  };
+
   initServingCalculator();
+  initPrintButtons();
 });

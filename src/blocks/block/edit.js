@@ -17,9 +17,9 @@ import {
 
 import { Fragment } from "@wordpress/element";
 
-import "./editor.scss";
-
 import ImageUpload from "./ImageUpload";
+
+import "./editor.scss";
 
 var foodblogKitchenRecipesMigrationDone = false;
 
@@ -41,7 +41,7 @@ export default function Edit(props) {
       } else if (
         typeof props.attributes[key] === "string" &&
         props.attributes[key].indexOf("::STORE_DEFAULT_VALUE_NUMBER_HACK") !==
-          -1
+        -1
       ) {
         cleanedDefaultData[key] = parseInt(
           props.attributes[key].replace(
