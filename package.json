@@ -12,7 +12,10 @@
     "lint:js": "wp-scripts lint-js",
     "start": "wp-scripts start src/index.js src/frontend.js && gulp watch",
     "packages-update": "wp-scripts packages-update",
-    "archive": "node ./create-archive.js"
+    "archive": "node ./create-archive.js",
+    "sync:uebersee": "rsync -a ./ /Applications/MAMP/htdocs/uebersee/wp-content/plugins/foodblogkitchen-recipes",
+    "sync:blank": "rsync -a ./ /Applications/MAMP/htdocs/kantina-delicacy-blank/wp-content/plugins/foodblogkitchen-recipes",
+    "sync": "yarn sync:uebersee && yarn sync:blank"
   },
   "devDependencies": {
     "@wordpress/scripts": "^12.2.0",
