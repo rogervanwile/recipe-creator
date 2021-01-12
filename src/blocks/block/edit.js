@@ -1,5 +1,4 @@
 import { __ } from "@wordpress/i18n";
-
 import {
   TextControl,
   PanelBody,
@@ -7,16 +6,13 @@ import {
   SelectControl,
   __experimentalInputControl as InputControl,
 } from "@wordpress/components";
-
 import {
   MediaUpload,
   MediaUploadCheck,
   RichText,
   InspectorControls,
 } from "@wordpress/block-editor";
-
-import { Fragment } from "@wordpress/element";
-
+import { Fragment, useEffect } from "@wordpress/element";
 import ImageUpload from "./ImageUpload";
 
 import "./editor.scss";
@@ -24,6 +20,14 @@ import "./editor.scss";
 var foodblogKitchenRecipesMigrationDone = false;
 
 export default function Edit(props) {
+  console.log('Edit', props);
+
+  const updateAttributes = (data) => {
+    useEffect(() => {
+      props.setAttributes(data);
+    });
+  }
+
   // TODO: Migration, remove for live version
   // Workaround for https://github.com/WordPress/gutenberg/issues/7342
   if (!foodblogKitchenRecipesMigrationDone) {
@@ -57,24 +61,24 @@ export default function Edit(props) {
 
     foodblogKitchenRecipesMigrationDone = true;
 
-    props.setAttributes(cleanedDefaultData);
+    updateAttributes(cleanedDefaultData);
   }
 
   // TODO: Migration, remove for live version
   if (props.attributes.servings) {
     if (!props.attributes.recipeYield) {
-      props.setAttributes({
+      updateAttributes({
         recipeYield: props.attributes.servings,
         recipeYieldUnit: "servings",
         servings: "",
       });
     } else {
-      props.setAttributes({ servings: "", recipeYieldUnit: "piece" });
+      updateAttributes({ servings: "", recipeYieldUnit: "piece" });
     }
   }
 
   if (props.attributes.recipeYield && !props.attributes.recipeYieldUnit) {
-    props.setAttributes({ recipeYieldUnit: "piece" });
+    updateAttributes({ recipeYieldUnit: "piece" });
   }
 
   const ALLOWED_MEDIA_TYPES = ["image"];
@@ -135,7 +139,7 @@ export default function Edit(props) {
 
       update["totalTime"] = "" + (prepTime + restTime + cookTime);
 
-      props.setAttributes(update);
+      updateAttributes(update);
     }
   }
 
@@ -197,7 +201,7 @@ export default function Edit(props) {
                 "foodblogkitchen-recipes"
               )}
               onChange={(recipeCuisine) => {
-                props.setAttributes({ recipeCuisine });
+                updateAttributes({ recipeCuisine });
               }}
             />
           </PanelRow>
@@ -209,7 +213,7 @@ export default function Edit(props) {
               description={__("Calories per serving or piece")}
               suffix="kcal"
               onChange={(calories) => {
-                props.setAttributes({ calories });
+                updateAttributes({ calories });
               }}
             />
           </PanelRow>
@@ -308,74 +312,6 @@ export default function Edit(props) {
             <h4>{__("Mobile Search Result", "foodblogkitchen-recipes")}</h4>
           </PanelRow>
 
-          {/* <PanelRow>
-            <section className="featured-result-preview-desktop">
-              <h3 className="featured-result-preview-desktop--headline">
-                {props.attributes.name}
-              </h3>
-              <div className="featured-result-preview-desktop--image-text">
-                <MediaUploadCheck>
-                  <MediaUpload
-                    onSelect={(media) => {
-                      if (media) {
-                        props.setAttributes({
-                          image1_1: media.url,
-                          image1_1Id: media.id,
-                        });
-                      }
-                    }}
-                    allowedTypes={ALLOWED_MEDIA_TYPES}
-                    value={props.attributes.image1_1}
-                    render={({ open }) => (
-                      <div
-                        className="featured-result-preview-desktop--image"
-                        onClick={open}
-                        style={{
-                          backgroundImage:
-                            "url(" + props.attributes.image1_1 + ")",
-                        }}
-                      ></div>
-                    )}
-                  ></MediaUpload>
-                </MediaUploadCheck>
-                <div className="featured-result-preview-desktop--text">
-                  <div className="featured-result-preview-desktop--extract">
-                    <span className="featured-result-preview-desktop--date">
-                      {props.data.publishDate} —
-                    </span>
-                    &nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit. Morbi nec lectus gravida, sollicitudin velit sed,
-                    consectetur quam.
-                  </div>
-
-                  <div className="featured-result-preview-desktop--meta">
-                    <span className="featured-snipped-preview--stars">
-                      <span
-                        className="featured-snipped-preview--stars--rated"
-                        style={{
-                          width:
-                            getRatedStarsWidth(props.data.meta.average_rating) +
-                            "px",
-                        }}
-                      ></span>
-                    </span>
-                    <span>
-                      &nbsp;{__("Rating", "foodblogkitchen-recipes")}:{" "}
-                      {props.data.meta.average_rating}
-                    </span>{" "}
-                    · &lrm;
-                    <span>
-                      {props.data.meta.rating_count}{" "}
-                      {__("reviews", "foodblogkitchen-recipes")}
-                    </span>{" "}
-                    · &lrm;
-                    <span>{props.attributes.totalTime} Min.</span>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </PanelRow> */}
-
           <PanelRow>
             <section className="featured-result-preview-mobile">
               <header className="featured-result-preview-mobile--header">
@@ -446,7 +382,7 @@ export default function Edit(props) {
           value={props.attributes.name}
           placeholder={__("Title of your recipe", "foodblogkitchen-recipes")}
           onChange={(name) => {
-            props.setAttributes({ name });
+            updateAttributes({ name });
           }}
         />
         <div className="foodblogkitchen-recipes--block--intro">
@@ -457,7 +393,7 @@ export default function Edit(props) {
                 (props.attributes.difficulty !== "simple" ? " unselected" : "")
               }
               onClick={() => {
-                props.setAttributes({ difficulty: "simple" });
+                updateAttributes({ difficulty: "simple" });
               }}
             >
               {__("simple", "foodblogkitchen-recipes")}
@@ -470,7 +406,7 @@ export default function Edit(props) {
                   : "")
               }
               onClick={() => {
-                props.setAttributes({ difficulty: "moderate" });
+                updateAttributes({ difficulty: "moderate" });
               }}
             >
               {__("moderate", "foodblogkitchen-recipes")}
@@ -483,7 +419,7 @@ export default function Edit(props) {
                   : "")
               }
               onClick={() => {
-                props.setAttributes({ difficulty: "challenging" });
+                updateAttributes({ difficulty: "challenging" });
               }}
             >
               {__("challenging", "foodblogkitchen-recipes")}
@@ -497,7 +433,7 @@ export default function Edit(props) {
                 "foodblogkitchen-recipes"
               )}
               onChange={(description) => {
-                props.setAttributes({ description });
+                updateAttributes({ description });
               }}
             />
           </div>
@@ -506,7 +442,7 @@ export default function Edit(props) {
               <MediaUpload
                 onSelect={(media) => {
                   if (media) {
-                    props.setAttributes({
+                    updateAttributes({
                       image3_2: media.url,
                       image3_2Id: media.id,
                     });
@@ -604,7 +540,7 @@ export default function Edit(props) {
             value={props.attributes.recipeYield}
             placeholder="0"
             onChange={(recipeYield) => {
-              props.setAttributes({ recipeYield });
+              updateAttributes({ recipeYield });
             }}
           />
 
@@ -613,7 +549,7 @@ export default function Edit(props) {
             value={props.attributes.recipeYieldUnit}
             options={recipeYieldUnitOptions}
             onChange={(recipeYieldUnit) =>
-              props.setAttributes({ recipeYieldUnit })
+              updateAttributes({ recipeYieldUnit })
             }
           />
         </div>
@@ -627,7 +563,7 @@ export default function Edit(props) {
             "foodblogkitchen-recipes"
           )}
           value={props.attributes.ingredients}
-          onChange={(ingredients) => props.setAttributes({ ingredients })}
+          onChange={(ingredients) => updateAttributes({ ingredients })}
         />
 
         <div className="foodblogkitchen-recipes--block--headline">
@@ -644,7 +580,7 @@ export default function Edit(props) {
           )}
           value={props.attributes.preparationSteps}
           onChange={(preparationSteps) =>
-            props.setAttributes({ preparationSteps })
+            updateAttributes({ preparationSteps })
           }
         />
 
@@ -659,7 +595,7 @@ export default function Edit(props) {
           value={props.attributes.notes}
           placeholder={__("Additional notes ...", "foodblogkitchen-recipes")}
           onChange={(notes) => {
-            props.setAttributes({ notes });
+            updateAttributes({ notes });
           }}
         />
 
@@ -671,7 +607,7 @@ export default function Edit(props) {
             label={__("Video-URL", "foodblogkitchen-recipes")}
             value={props.attributes.videoUrl}
             type="number"
-            onChange={(videoUrl) => props.setAttributes({ videoUrl })}
+            onChange={(videoUrl) => updateAttributes({ videoUrl })}
           />
         </section> */}
       </div>
