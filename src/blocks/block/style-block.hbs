@@ -28,10 +28,10 @@
     --border: 0px;
     {{/if}}
 
-    --clock-url: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"{{encode options/backgroundColorContrast}}\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><circle cx=\"12\" cy=\"12\" r=\"9\" /><polyline points=\"12 7 12 12 15 15\" /></svg>");
-    --star-url: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"{{encode options/primaryColor}}\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"></polygon></svg>");
-    --star-filled-url: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"{{encode options/primaryColor}}\" stroke=\"{{encode options/primaryColor}}\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"></polygon></svg>");
-    --star-half-filled-url: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"url(%23half_grad)\" stroke=\"{{encode options/primaryColor}}\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><defs><linearGradient id=\"half_grad\"><stop offset=\"50%\" stop-color=\"{{encode options/primaryColor}}\"/><stop offset=\"50%\" stop-color=\"transparent\" stop-opacity=\"1\" /></linearGradient></defs><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"></polygon></svg>");
-    --star-highlighted-url: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"{{encode options/primaryColorDark}}\" stroke=\"{{encode options/primaryColorDark}}\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"></polygon></svg>");
+    --clock-url: url({{{svgs/clock}}});
+    --star-url: url({{{svgs/star}}});
+    --star-filled-url: url({{{svgs/starFilled}}});
+    --star-half-filled-url: url({{{svgs/starHalfFilled}}});
+    --star-highlighted-url: url({{{svgs/starHighlighted}}});
   }
 </style>

@@ -1224,6 +1224,7 @@ class FoodblogKitchenRecipes
 		$attributes['ldJson'] = array_filter($attributes['ldJson']);
 
 		$attributes['options'] = $this->getStyleOptions();
+		$attributes['svgs'] = $this->getSvgs($attributes['options']);
 
 		return $this->renderTemplate($attributes);
 	}
@@ -1257,6 +1258,46 @@ class FoodblogKitchenRecipes
 		$seconds = $seconds % 60;
 
 		return sprintf('P%dDT%dH%dM%dS', $days, $hours, $minutes, $seconds);
+	}
+
+	private function getSvgs($colors)
+	{
+		return array(
+			"clock" => $this->base64EncodeImage('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="' . $colors['backgroundColorContrast'] . '" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="9" /><polyline points="12 7 12 12 15 15" /></svg>'),
+			"star" => $this->base64EncodeImage('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="' . $colors['primaryColor'] . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>'),
+			"starFilled" => $this->base64EncodeImage('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="' . $colors['primaryColor'] . '" stroke="' . $colors['primaryColor'] . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>'),
+			"starHalfFilled" => $this->base64EncodeImage('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="url(%23half_grad)" stroke="' . $colors['primaryColor'] . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="half_grad"><stop offset="50%" stop-color="' . $colors['primaryColor'] . '"/><stop offset="50%" stop-color="transparent" stop-opacity="1" /></linearGradient></defs><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>'),
+			"starHighlighted" => $this->base64EncodeImage('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="' . $colors['primaryColorDark'] . '" stroke="' . $colors['primaryColorDark'] . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>'),
+		);
+	}
+
+	private function base64EncodeImage($svg)
+	{
+		$base64_image = 'data:image/svg+xml;base64,' . base64_encode($this->unescape(rawurlencode($svg)));
+		return $base64_image;
+	}
+
+	private function unescape($str)
+	{
+		$ret = '';
+		$len = strlen($str);
+		for ($i = 0; $i < $len; $i++) {
+			if ($str[$i] == '%' && $str[$i + 1] == 'u') {
+				$val = hexdec(substr($str, $i + 2, 4));
+				if ($val < 0x7f)
+					$ret .= chr($val);
+				else if ($val < 0x800)
+					$ret .= chr(0xc0 | ($val >> 6)) . chr(0x80 | ($val & 0x3f));
+				else
+					$ret .= chr(0xe0 | ($val >> 12)) . chr(0x80 | (($val >> 6) & 0x3f)) . chr(0x80 | ($val & 0x3f));
+				$i += 5;
+			} else if ($str[$i] == '%') {
+				$ret .= urldecode(substr($str, $i, 3));
+				$i += 2;
+			} else
+				$ret .= $str[$i];
+		}
+		return $ret;
 	}
 }
 
