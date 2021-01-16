@@ -1,5 +1,5 @@
 <style>
-  .foodblogkitchen-recipes--block.foodblogkitchen-recipes--block {
+  .foodblogkitchen-toolkit--block.foodblogkitchen-toolkit--block {
     --headline-font-family: Luna-Regular, sans-serif;
     --headline-font-size: 32px;
     --headline-font-weight: normal;
@@ -28,10 +28,12 @@
     --border: 0px;
     {{/if}}
 
+    {{#if svgs}}
     --clock-url: url({{{svgs/clock}}});
     --star-url: url({{{svgs/star}}});
     --star-filled-url: url({{{svgs/starFilled}}});
     --star-half-filled-url: url({{{svgs/starHalfFilled}}});
     --star-highlighted-url: url({{{svgs/starHighlighted}}});
+    {{/if}}
   }
 </style>

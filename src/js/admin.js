@@ -14,7 +14,7 @@
     };
 
     var initColorPicker = function () {
-      $(".foodblogkitchen-recipes--color-picker").each(function () {
+      $(".foodblogkitchen-toolkit--color-picker").each(function () {
         var defaultValue = $(this).attr("data-default-value") || null;
         $(this).wpColorPicker({
           defaultColor: defaultValue,
@@ -101,8 +101,8 @@
           c1 && c1 != "c"
             ? this.pSBCr(c1)
             : P
-            ? { r: 0, g: 0, b: 0, a: -1 }
-            : { r: 255, g: 255, b: 255, a: -1 }),
+              ? { r: 0, g: 0, b: 0, a: -1 }
+              : { r: 255, g: 255, b: 255, a: -1 }),
         (p = P ? p * -1 : p),
         (P = 1 - p);
       if (!f || !t) return null;
@@ -160,7 +160,7 @@
       if (!styleBlockTemplate) {
         try {
           var templateElement = document.getElementById(
-            "foodblogkitchen-recipes--style-block-template"
+            "foodblogkitchen-toolkit--style-block-template"
           );
 
           if (templateElement) {
@@ -220,7 +220,7 @@
 
       Object.keys(data).map((key) => {
         switch (key) {
-          case "foodblogkitchen_recipes__primary_color":
+          case "foodblogkitchen_toolkit__primary_color":
             migratedData["primaryColor"] = data[key];
             migratedData["primaryColorLight"] = calcColor(0.9, data[key]);
             migratedData["primaryColorLightContrast"] = getContrastColor(
@@ -229,53 +229,53 @@
             migratedData["primaryColorDark"] = calcColor(-0.4, data[key]);
 
             updateSettingsFormField(
-              "foodblogkitchen_recipes__primary_color_light",
+              "foodblogkitchen_toolkit__primary_color_light",
               migratedData["primaryColorLight"]
             );
             updateSettingsFormField(
-              "foodblogkitchen_recipes__primary_color_light_contrast",
+              "foodblogkitchen_toolkit__primary_color_light_contrast",
               migratedData["primaryColorLightContrast"]
             );
             updateSettingsFormField(
-              "foodblogkitchen_recipes__primary_color_dark",
+              "foodblogkitchen_toolkit__primary_color_dark",
               migratedData["primaryColorDark"]
             );
             break;
-          case "foodblogkitchen_recipes__secondary_color":
+          case "foodblogkitchen_toolkit__secondary_color":
             migratedData["secondaryColor"] = data[key];
             migratedData["secondaryColorContrast"] = getContrastColor(
               data[key]
             );
 
             updateSettingsFormField(
-              "foodblogkitchen_recipes__secondary_color_contrast",
+              "foodblogkitchen_toolkit__secondary_color_contrast",
               migratedData["secondaryColorContrast"]
             );
             break;
-          case "foodblogkitchen_recipes__background_color":
+          case "foodblogkitchen_toolkit__background_color":
             migratedData["backgroundColor"] = data[key];
             migratedData["backgroundColorContrast"] = getContrastColor(
               data[key]
             );
 
             updateSettingsFormField(
-              "foodblogkitchen_recipes__background_color_contrast",
+              "foodblogkitchen_toolkit__background_color_contrast",
               migratedData["backgroundColorContrast"]
             );
             break;
-          case "foodblogkitchen_recipes__show_border":
+          case "foodblogkitchen_toolkit__show_border":
             migratedData["showBorder"] = data[key];
             break;
-          case "foodblogkitchen_recipes__show_box_shadow":
+          case "foodblogkitchen_toolkit__show_box_shadow":
             migratedData["showBoxShadow"] = data[key];
             break;
-          case "foodblogkitchen_recipes__border_radius":
+          case "foodblogkitchen_toolkit__border_radius":
             migratedData["borderRadius"] = data[key];
             break;
-          // case "foodblogkitchen_recipes__primary_color_light":
+          // case "foodblogkitchen_toolkit__primary_color_light":
           //   migratedData["primaryColorLight"] = data[key];
           //   break;
-          // case "foodblogkitchen_recipes__primary_color_dark":
+          // case "foodblogkitchen_toolkit__primary_color_dark":
           //   migratedData["primaryColorDark"] = data[key];
           //   break;
         }
@@ -285,7 +285,7 @@
 
       if (!styleContainer) {
         styleContainer = document.getElementById(
-          "foodblogkitchen-recipes--style-container"
+          "foodblogkitchen-toolkit--style-container"
         );
       }
 
@@ -300,7 +300,7 @@
     var updateSettingsFormField = function (name, value) {
       if (!settingsForm) {
         settingsForm = document.getElementById(
-          "foodblogkitchen-recipes--settings-form"
+          "foodblogkitchen-toolkit--settings-form"
         );
       }
 
@@ -319,7 +319,7 @@
     var getFormValue = function () {
       if (!settingsForm) {
         settingsForm = document.getElementById(
-          "foodblogkitchen-recipes--settings-form"
+          "foodblogkitchen-toolkit--settings-form"
         );
       }
 

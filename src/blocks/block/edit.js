@@ -17,11 +17,9 @@ import ImageUpload from "./ImageUpload";
 
 import "./editor.scss";
 
-var foodblogKitchenRecipesMigrationDone = false;
+var foodblogkitchenToolkitMigrationDone = false;
 
 export default function Edit(props) {
-  console.log('Edit', props);
-
   const updateAttributes = (data) => {
     useEffect(() => {
       props.setAttributes(data);
@@ -30,7 +28,7 @@ export default function Edit(props) {
 
   // TODO: Migration, remove for live version
   // Workaround for https://github.com/WordPress/gutenberg/issues/7342
-  if (!foodblogKitchenRecipesMigrationDone) {
+  if (!foodblogkitchenToolkitMigrationDone) {
     const cleanedDefaultData = {};
 
     Object.keys(props.attributes).forEach((key) => {
@@ -59,7 +57,7 @@ export default function Edit(props) {
       }
     });
 
-    foodblogKitchenRecipesMigrationDone = true;
+    foodblogkitchenToolkitMigrationDone = true;
 
     updateAttributes(cleanedDefaultData);
   }
@@ -84,33 +82,33 @@ export default function Edit(props) {
   const ALLOWED_MEDIA_TYPES = ["image"];
 
   const categoryOptions = [
-    __("Breakfast", "foodblogkitchen-recipes"),
-    __("Bread", "foodblogkitchen-recipes"),
-    __("Appetizers & Snacks", "foodblogkitchen-recipes"),
-    __("Salads", "foodblogkitchen-recipes"),
-    __("Soups & Stews", "foodblogkitchen-recipes"),
-    __("Main Dishes", "foodblogkitchen-recipes"),
-    __("Side Dishes", "foodblogkitchen-recipes"),
-    __("Desserts", "foodblogkitchen-recipes"),
-    __("Drinks", "foodblogkitchen-recipes"),
-    __("Sweets", "foodblogkitchen-recipes"),
+    __("Breakfast", 'foodblogkitchen-toolkit'),
+    __("Bread", 'foodblogkitchen-toolkit'),
+    __("Appetizers & Snacks", 'foodblogkitchen-toolkit'),
+    __("Salads", 'foodblogkitchen-toolkit'),
+    __("Soups & Stews", 'foodblogkitchen-toolkit'),
+    __("Main Dishes", 'foodblogkitchen-toolkit'),
+    __("Side Dishes", 'foodblogkitchen-toolkit'),
+    __("Desserts", 'foodblogkitchen-toolkit'),
+    __("Drinks", 'foodblogkitchen-toolkit'),
+    __("Sweets", 'foodblogkitchen-toolkit'),
   ].map((value) => {
     return { label: value, value: value };
   });
 
   categoryOptions.unshift({
     value: "",
-    label: __("Select a category", "foodblogkitchen-recipes"),
+    label: __("Select a category", 'foodblogkitchen-toolkit'),
   });
 
   const recipeYieldUnitOptions = [
     {
       value: "servings",
-      label: __("servings", "foodblogkitchen-recipes"),
+      label: __("servings", 'foodblogkitchen-toolkit'),
     },
     {
       value: "piece",
-      label: __("piece", "foodblogkitchen-recipes"),
+      label: __("piece", 'foodblogkitchen-toolkit'),
     },
   ];
 
@@ -139,7 +137,7 @@ export default function Edit(props) {
 
       update["totalTime"] = "" + (prepTime + restTime + cookTime);
 
-      updateAttributes(update);
+      props.setAttributes(update);
     }
   }
 
@@ -171,7 +169,7 @@ export default function Edit(props) {
     } else {
       return (
         <div className="featured-snipped-preview--rating">
-          {__("No reviews", "foodblogkitchen-recipes")}
+          {__("No reviews", 'foodblogkitchen-toolkit')}
         </div>
       );
     }
@@ -181,39 +179,39 @@ export default function Edit(props) {
     <Fragment>
       <InspectorControls>
         <PanelBody
-          title={__("SEO", "foodblogkitchen-recipes")}
-          className="foodblogkitchen-recipes--sidebar"
+          title={__("SEO", 'foodblogkitchen-toolkit')}
+          className="foodblogkitchen-toolkit--sidebar"
         >
           <PanelRow>
             <p>
               {__(
                 "Google and other search engines need more information to present your recipe in the best possible way. You should provide this information as good as possible.",
-                "foodblogkitchen-recipes"
+                'foodblogkitchen-toolkit'
               )}
             </p>
           </PanelRow>
           <PanelRow>
             <TextControl
-              label={__("Cuisine", "foodblogkitchen-recipes")}
+              label={__("Cuisine", 'foodblogkitchen-toolkit')}
               value={props.attributes.recipeCuisine}
               placeholder={__(
                 'e.g. "Italian" or "German"',
-                "foodblogkitchen-recipes"
+                'foodblogkitchen-toolkit'
               )}
               onChange={(recipeCuisine) => {
-                updateAttributes({ recipeCuisine });
+                props.setAttributes({ recipeCuisine });
               }}
             />
           </PanelRow>
           <PanelRow>
             <TextControl
               type="number"
-              label={__("Calories", "foodblogkitchen-recipes")}
+              label={__("Calories", 'foodblogkitchen-toolkit')}
               value={props.attributes.calories}
               description={__("Calories per serving or piece")}
               suffix="kcal"
               onChange={(calories) => {
-                updateAttributes({ calories });
+                props.setAttributes({ calories });
               }}
             />
           </PanelRow>
@@ -222,22 +220,22 @@ export default function Edit(props) {
 
           <PanelRow>
             <h4>
-              {__("Picture of the finished dish", "foodblogkitchen-recipes")}
+              {__("Picture of the finished dish", 'foodblogkitchen-toolkit')}
             </h4>
             <p>
               {__(
                 "Depending on the usage Google uses different image formats of your recipe. You can find more information",
-                "foodblogkitchen-recipes"
+                'foodblogkitchen-toolkit'
               )}
               &nbsp;
               <a
                 href={__(
                   "https://foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder/",
-                  "foodblogkitchen-recipes"
+                  'foodblogkitchen-toolkit'
                 )}
                 target="_blank"
               >
-                {__("here", "foodblogkitchen-recipes")}
+                {__("here", 'foodblogkitchen-toolkit')}
               </a>
               .
             </p>
@@ -281,8 +279,8 @@ export default function Edit(props) {
           <hr />
 
           <PanelRow>
-            <h3>{__("Previews", "foodblogkitchen-recipes")}</h3>
-            <h4>{__("Featured Snippet", "foodblogkitchen-recipes")}</h4>
+            <h3>{__("Previews", 'foodblogkitchen-toolkit')}</h3>
+            <h4>{__("Featured Snippet", 'foodblogkitchen-toolkit')}</h4>
           </PanelRow>
 
           <PanelRow>
@@ -309,7 +307,7 @@ export default function Edit(props) {
           </PanelRow>
 
           <PanelRow>
-            <h4>{__("Mobile Search Result", "foodblogkitchen-recipes")}</h4>
+            <h4>{__("Mobile Search Result", 'foodblogkitchen-toolkit')}</h4>
           </PanelRow>
 
           <PanelRow>
@@ -343,7 +341,7 @@ export default function Edit(props) {
 
               <div className="featured-result-preview-mobile--footer">
                 <div className="featured-result-preview-mobile--rating-col">
-                  <header>{__("Rating", "foodblogkitchen-recipes")}</header>
+                  <header>{__("Rating", 'foodblogkitchen-toolkit')}</header>
                   <p>
                     <span>{props.data.meta.average_rating}</span>
                     <span className="featured-snipped-preview--stars">
@@ -362,67 +360,67 @@ export default function Edit(props) {
 
                 <div className="featured-result-preview-mobile--time-col">
                   <header>
-                    {__("Preparation", "foodblogkitchen-recipes")}
+                    {__("Preparation", 'foodblogkitchen-toolkit')}
                   </header>
                   <p>{props.attributes.totalTime} Min.</p>
                 </div>
 
                 {/* <div className="featured-result-preview-mobile--calories-col">
-                  <header>{__("Calories", "foodblogkitchen-recipes")}</header>
-                  <p>{__("Calories", "foodblogkitchen-recipes")}: 99</p>
+                  <header>{__("Calories", 'foodblogkitchen-toolkit')}</header>
+                  <p>{__("Calories", 'foodblogkitchen-toolkit')}: 99</p>
                 </div> */}
               </div>
             </section>
           </PanelRow>
         </PanelBody>
       </InspectorControls>
-      <div className={"foodblogkitchen-recipes--block " + props.className}>
+      <div className={"foodblogkitchen-toolkit--block " + props.className}>
         <RichText
           tagName="h2"
           value={props.attributes.name}
-          placeholder={__("Title of your recipe", "foodblogkitchen-recipes")}
+          placeholder={__("Title of your recipe", 'foodblogkitchen-toolkit')}
           onChange={(name) => {
-            updateAttributes({ name });
+            props.setAttributes({ name });
           }}
         />
-        <div className="foodblogkitchen-recipes--block--intro">
+        <div className="foodblogkitchen-toolkit--recipe-block--intro">
           <div>
             <span
               className={
-                "foodblogkitchen-recipes--block--difficulty" +
+                "foodblogkitchen-toolkit--recipe-block--difficulty" +
                 (props.attributes.difficulty !== "simple" ? " unselected" : "")
               }
               onClick={() => {
-                updateAttributes({ difficulty: "simple" });
+                props.setAttributes({ difficulty: "simple" });
               }}
             >
-              {__("simple", "foodblogkitchen-recipes")}
+              {__("simple", 'foodblogkitchen-toolkit')}
             </span>
             <span
               className={
-                "foodblogkitchen-recipes--block--difficulty" +
+                "foodblogkitchen-toolkit--recipe-block--difficulty" +
                 (props.attributes.difficulty !== "moderate"
                   ? " unselected"
                   : "")
               }
               onClick={() => {
-                updateAttributes({ difficulty: "moderate" });
+                props.setAttributes({ difficulty: "moderate" });
               }}
             >
-              {__("moderate", "foodblogkitchen-recipes")}
+              {__("moderate", 'foodblogkitchen-toolkit')}
             </span>
             <span
               className={
-                "foodblogkitchen-recipes--block--difficulty" +
+                "foodblogkitchen-toolkit--recipe-block--difficulty" +
                 (props.attributes.difficulty !== "challenging"
                   ? " unselected"
                   : "")
               }
               onClick={() => {
-                updateAttributes({ difficulty: "challenging" });
+                props.setAttributes({ difficulty: "challenging" });
               }}
             >
-              {__("challenging", "foodblogkitchen-recipes")}
+              {__("challenging", 'foodblogkitchen-toolkit')}
             </span>
 
             <RichText
@@ -430,10 +428,10 @@ export default function Edit(props) {
               value={props.attributes.description}
               placeholder={__(
                 "Short description of your recipe",
-                "foodblogkitchen-recipes"
+                'foodblogkitchen-toolkit'
               )}
               onChange={(description) => {
-                updateAttributes({ description });
+                props.setAttributes({ description });
               }}
             />
           </div>
@@ -442,7 +440,7 @@ export default function Edit(props) {
               <MediaUpload
                 onSelect={(media) => {
                   if (media) {
-                    updateAttributes({
+                    props.setAttributes({
                       image3_2: media.url,
                       image3_2Id: media.id,
                     });
@@ -453,10 +451,10 @@ export default function Edit(props) {
                 render={({ open }) => (
                   <div
                     className={
-                      "foodblogkitchen-recipes--block--main-image" +
+                      "foodblogkitchen-toolkit--recipe-block--main-image" +
                       (props.attributes.image3_2
                         ? ""
-                        : " foodblogkitchen-recipes--empty")
+                        : " foodblogkitchen-toolkit--empty")
                     }
                     style={{
                       backgroundImage: props.attributes.image3_2
@@ -471,10 +469,10 @@ export default function Edit(props) {
           </div>
         </div>
         <hr />
-        <div className="foodblogkitchen-recipes--block--timing-list">
+        <div className="foodblogkitchen-toolkit--recipe-block--timing-list">
           <ul>
             <li>
-              <header>{__("Prep time", "foodblogkitchen-recipes")}:</header>
+              <header>{__("Prep time", 'foodblogkitchen-toolkit')}:</header>
               <span>
                 <InputControl
                   type="number"
@@ -484,12 +482,12 @@ export default function Edit(props) {
                   onChange={(prepTime) => {
                     updateTime("prepTime", prepTime);
                   }}
-                  suffix={__("Minutes", "foodblogkitchen-recipes")}
+                  suffix={__("Minutes", 'foodblogkitchen-toolkit')}
                 />
               </span>
             </li>
             <li>
-              <header>{__("Rest time", "foodblogkitchen-recipes")}:</header>
+              <header>{__("Rest time", 'foodblogkitchen-toolkit')}:</header>
               <span>
                 <InputControl
                   type="number"
@@ -499,12 +497,12 @@ export default function Edit(props) {
                   onChange={(restTime) => {
                     updateTime("restTime", restTime);
                   }}
-                  suffix={__("Minutes", "foodblogkitchen-recipes")}
+                  suffix={__("Minutes", 'foodblogkitchen-toolkit')}
                 />
               </span>
             </li>
             <li>
-              <header>{__("Cook time", "foodblogkitchen-recipes")}:</header>
+              <header>{__("Cook time", 'foodblogkitchen-toolkit')}:</header>
               <span>
                 <InputControl
                   type="number"
@@ -514,42 +512,42 @@ export default function Edit(props) {
                   onChange={(cookTime) => {
                     updateTime("cookTime", cookTime);
                   }}
-                  suffix={__("Minutes", "foodblogkitchen-recipes")}
+                  suffix={__("Minutes", 'foodblogkitchen-toolkit')}
                 />
               </span>
             </li>
 
             <li>
-              <header>{__("Total time", "foodblogkitchen-recipes")}:</header>
+              <header>{__("Total time", 'foodblogkitchen-toolkit')}:</header>
               <span>
                 {props.attributes.totalTime || "0"}{" "}
-                {__("Minutes", "foodblogkitchen-recipes")}
+                {__("Minutes", 'foodblogkitchen-toolkit')}
               </span>
             </li>
           </ul>
         </div>
         <hr />
-        <div className="foodblogkitchen-recipes--block--headline">
-          <h3>{__("Ingredients", "foodblogkitchen-recipes")}</h3>
+        <div className="foodblogkitchen-toolkit--recipe-block--headline">
+          <h3>{__("Ingredients", 'foodblogkitchen-toolkit')}</h3>
         </div>
-        <div className="foodblogkitchen-recipes--block--flex-container">
+        <div className="foodblogkitchen-toolkit--recipe-block--flex-container">
           <InputControl
-            label={__("Results in", "foodblogkitchen-recipes")}
+            label={__("Results in", 'foodblogkitchen-toolkit')}
             type="number"
             min="0"
             value={props.attributes.recipeYield}
             placeholder="0"
             onChange={(recipeYield) => {
-              updateAttributes({ recipeYield });
+              props.setAttributes({ recipeYield });
             }}
           />
 
           <SelectControl
-            label={__("Unit", "foodblogkitchen-recipes")}
+            label={__("Unit", 'foodblogkitchen-toolkit')}
             value={props.attributes.recipeYieldUnit}
             options={recipeYieldUnitOptions}
             onChange={(recipeYieldUnit) =>
-              updateAttributes({ recipeYieldUnit })
+              props.setAttributes({ recipeYieldUnit })
             }
           />
         </div>
@@ -557,57 +555,57 @@ export default function Edit(props) {
         <RichText
           tagName="ul"
           multiline="li"
-          className="foodblogkitchen-recipes--block--ingredients"
+          className="foodblogkitchen-toolkit--recipe-block--ingredients"
           placeholder={__(
             "Add the ingredients here...",
-            "foodblogkitchen-recipes"
+            'foodblogkitchen-toolkit'
           )}
           value={props.attributes.ingredients}
-          onChange={(ingredients) => updateAttributes({ ingredients })}
+          onChange={(ingredients) => props.setAttributes({ ingredients })}
         />
 
-        <div className="foodblogkitchen-recipes--block--headline">
-          <h3>{__("Steps of preparation", "foodblogkitchen-recipes")}</h3>
+        <div className="foodblogkitchen-toolkit--recipe-block--headline">
+          <h3>{__("Steps of preparation", 'foodblogkitchen-toolkit')}</h3>
         </div>
 
         <RichText
           tagName="ol"
           multiline="li"
-          className="foodblogkitchen-recipes--block--preparation-steps"
+          className="foodblogkitchen-toolkit--recipe-block--preparation-steps"
           placeholder={__(
             "Add the steps of preparation here...",
-            "foodblogkitchen-recipes"
+            'foodblogkitchen-toolkit'
           )}
           value={props.attributes.preparationSteps}
           onChange={(preparationSteps) =>
-            updateAttributes({ preparationSteps })
+            props.setAttributes({ preparationSteps })
           }
         />
 
         <hr />
 
-        <div className="foodblogkitchen-recipes--block--headline">
-          <h3>{__("Notes", "foodblogkitchen-recipes")}</h3>
+        <div className="foodblogkitchen-toolkit--recipe-block--headline">
+          <h3>{__("Notes", 'foodblogkitchen-toolkit')}</h3>
         </div>
 
         <RichText
           tagName="p"
           value={props.attributes.notes}
-          placeholder={__("Additional notes ...", "foodblogkitchen-recipes")}
+          placeholder={__("Additional notes ...", 'foodblogkitchen-toolkit')}
           onChange={(notes) => {
-            updateAttributes({ notes });
+            props.setAttributes({ notes });
           }}
         />
 
         {/* <section>
-          <div className="foodblogkitchen-recipes--block--headline">
-            <h3>{__("Video", "foodblogkitchen-recipes")}</h3>
+          <div className="foodblogkitchen-toolkit--recipe-block--headline">
+            <h3>{__("Video", 'foodblogkitchen-toolkit')}</h3>
           </div>
           <TextControl
-            label={__("Video-URL", "foodblogkitchen-recipes")}
+            label={__("Video-URL", 'foodblogkitchen-toolkit')}
             value={props.attributes.videoUrl}
             type="number"
-            onChange={(videoUrl) => updateAttributes({ videoUrl })}
+            onChange={(videoUrl) => props.setAttributes({ videoUrl })}
           />
         </section> */}
       </div>

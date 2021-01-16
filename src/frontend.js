@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
   var ratingElements = document.querySelectorAll(
-    ".foodblogkitchen-recipes--block--rating.foodblogkitchen-recipes--block--interactive"
+    ".foodblogkitchen-toolkit--recipe-block--rating.foodblogkitchen-toolkit--recipe-block--interactive"
   );
 
   var storeRatingInDatabase = function (postId, rating) {
-    fetch(FoodblogKitchenRecipes.config.ajaxUrl, {
+    fetch(FoodblogkitchenToolkit.config.ajaxUrl, {
       method: "POST",
       body: new URLSearchParams({
-        _ajax_nonce: FoodblogKitchenRecipes.config.nonce,
-        action: "foodblogkitchen_recipes_set_rating",
+        _ajax_nonce: FoodblogkitchenToolkit.config.nonce,
+        action: "foodblogkitchen_toolkit_set_rating",
         postId: postId,
         rating: rating,
       }),
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
             var averageVotingElement = document.querySelector(
               '[data-post-id="' +
               postId +
-              '"] .foodblogkitchen-recipes--block--average-voting'
+              '"] .foodblogkitchen-toolkit--recipe-block--average-voting'
             );
 
             if (averageVotingElement) {
@@ -61,12 +61,12 @@ document.addEventListener("DOMContentLoaded", function () {
       var postId = ratingElement.getAttribute("data-post-id");
 
       var savedRating = window.localStorage.getItem(
-        "foodblogkitchen-recipes::" + postId
+        "foodblogkitchen-toolkit::" + postId
       );
 
       if (!savedRating) {
         ratingElement
-          .querySelectorAll(".foodblogkitchen-recipes--block--star")
+          .querySelectorAll(".foodblogkitchen-toolkit--recipe-block--star")
           .forEach((starElement) => {
             starElement.addEventListener("click", (event) => {
               markAsSelected(starElement);
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
               // To show the users vote and prevent multiple votes
               window.localStorage.setItem(
-                "foodblogkitchen-recipes::" + postId,
+                "foodblogkitchen-toolkit::" + postId,
                 rating
               );
 
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
           // Hide the user rating section if the user has already voted.
           ratingElement.closest(
-            ".foodblogkitchen-recipes--block--user-rating"
+            ".foodblogkitchen-toolkit--recipe-block--user-rating"
           ).style.display = "none";
         } catch (e) {
           console.error(e);
@@ -94,10 +94,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // ratingElement.classList.remove(
-        //   "foodblogkitchen-recipes--block--interactive"
+        //   "foodblogkitchen-toolkit--recipe-block--interactive"
         // );
         // var selectedStarElement = ratingElement.querySelector(
-        //   '.foodblogkitchen-recipes--block--star[data-rating="' + savedRating + '"]'
+        //   '.foodblogkitchen-toolkit--recipe-block--star[data-rating="' + savedRating + '"]'
         // );
         // if (selectedStarElement) {
         //   markAsSelected(selectedStarElement);
@@ -115,10 +115,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // Servings calculator
   var initServingCalculator = function () {
     const servingsEditorElement = document.querySelector(
-      ".foodblogkitchen-recipes--block--servings-editor"
+      ".foodblogkitchen-toolkit--recipe-block--servings-editor"
     );
 
-    ingredientsTable = document.querySelector(".foodblogkitchen-recipes--block--ingredients");
+    ingredientsTable = document.querySelector(".foodblogkitchen-toolkit--recipe-block--ingredients");
 
     if (servingsEditorElement) {
       shrinkButton = servingsEditorElement.querySelector(
@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var refreshIngredients = function () {
     if (ingredientsTable) {
       ingredientsTable
-        .querySelectorAll("tr .foodblogkitchen-recipes--block--amount")
+        .querySelectorAll("tr .foodblogkitchen-toolkit--recipe-block--amount")
         .forEach((amountElement) => {
           const baseAmount = parseFloat(
             amountElement.getAttribute("data-recipe-base-amount"),
@@ -198,29 +198,41 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  var printContainer = function (container) {
-    if (container) {
-      var printWindow = window.open('', 'PRINT', 'height=600,width=800');
-      var stylesheetElements = document.querySelectorAll('link[rel="stylesheet"]#foodblogkitchen-recipes-block-css');
-      var stylesheets = Array.from(stylesheetElements);
+  var hiddenElements = [];
 
-      printWindow.document.write('<html><head><title>' + document.title + '</title>');
+  var hideSiblings = function (container) {
+    Array.from(container.parentElement.children).forEach(child => {
+      console.log(child);
+      if (child !== container) {
+        child.style.display = 'none';
+        hiddenElements.push(child);
+      }
+    });
+  }
 
-      stylesheets.forEach((stylesheet) => {
-        printWindow.document.write(stylesheet.outerHTML);
-      });
+  var printContainer = function (recipeContainer) {
+    if (recipeContainer) {
+      recipeContainer.classList.add('print-mode');
 
-      printWindow.document.write('</head><body class="foodblogkitchen-recipes--print">');
-      printWindow.document.write(container.outerHTML);
-      printWindow.document.write('</body></html>');
+      // Iterate through all previous and next siblings of the container 
+      // and hide them to not print them
+      let parent = recipeContainer;
+      do {
+        hideSiblings(parent);
+        parent = parent.parentElement;
+      } while (parent !== document.body);
 
-      printWindow.document.close(); // necessary for IE >= 10
+      window.print()
 
-      printWindow.requestAnimationFrame(() => {
-        printWindow.focus(); // necessary for IE >= 10*/
-        printWindow.print();
-        printWindow.close();
-      });
+      // Show the hidden container again
+      if (hiddenElements.length) {
+        while (hiddenElements.length) {
+          const element = hiddenElements.pop();
+          element.style.display = '';
+        };
+      }
+
+      recipeContainer.classList.remove('print-mode');
     } else {
       console.error('No container for printing defined');
     }
@@ -228,12 +240,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var initPrintButtons = function () {
     const buttons = document.querySelectorAll(
-      ".foodblogkitchen-recipes--block--print-button"
+      ".foodblogkitchen-toolkit--recipe-block--print-button"
     );
 
     if (buttons) {
       Array.from(buttons).forEach(button => {
-        const recipeContainer = button.closest('.foodblogkitchen-recipes--block');
+        const recipeContainer = button.closest('.foodblogkitchen-toolkit--block');
         button.addEventListener('click', function (event) {
           event.preventDefault();
           printContainer(recipeContainer);

@@ -1,9 +1,9 @@
 {
-    "name": "oliverwagner/foodblogkitchen-recipes",
+    "name": "oliverwagner/foodblogkitchen-toolkit",
     "authors": [
         {
             "name": "Oliver Wagner",
-            "email": "oliver@rogervanwile.de"
+            "email": "oliver@foodblogkitchen.de"
         }
     ],
     "require": {

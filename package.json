@@ -1,8 +1,8 @@
 {
-  "name": "foodblogkitchen-recipes",
-  "version": "1.1.0",
+  "name": "foodblogkitchen-toolkit",
+  "version": "1.2.0",
   "description": "Manage recipes and optimize them automatically for Google Featured Snippets.",
-  "author": "The WordPress Contributors",
+  "author": "Oliver Wagner",
   "license": "GPL-2.0-or-later",
   "main": "build/index.js",
   "scripts": {
@@ -13,8 +13,8 @@
     "start": "wp-scripts start src/index.js src/frontend.js && gulp watch",
     "packages-update": "wp-scripts packages-update",
     "archive": "node ./create-archive.js",
-    "sync:uebersee": "rsync -a ./ /Applications/MAMP/htdocs/uebersee/wp-content/plugins/foodblogkitchen-recipes",
-    "sync:blank": "rsync -a ./ /Applications/MAMP/htdocs/kantina-delicacy-blank/wp-content/plugins/foodblogkitchen-recipes",
+    "sync:uebersee": "rsync -a ./ /Applications/MAMP/htdocs/uebersee/wp-content/plugins/foodblogkitchen-toolkit",
+    "sync:blank": "rsync -a ./ /Applications/MAMP/htdocs/kantina-delicacy-blank/wp-content/plugins/foodblogkitchen-toolkit",
     "sync": "yarn sync:uebersee && yarn sync:blank"
   },
   "devDependencies": {

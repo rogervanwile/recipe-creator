@@ -21,7 +21,7 @@ const FoodblogkitchenInstagramImageSettingPanel = () => {
 
     return (
         <PluginDocumentSettingPanel
-            title={__("Pinterest image", "foodblogkitchen")}
+            title={__("Pinterest image", 'foodblogkitchen-toolkit')}
         >
             <MediaUploadCheck>
                 <MediaUpload
@@ -41,7 +41,7 @@ const FoodblogkitchenInstagramImageSettingPanel = () => {
                             <img src={meta.foodblogkitchen_pinterest_image_url}
                                 onClick={open}
                             />
-                            <button type="button" className="components-button is-secondary" onClick={open}>{__("Select image", "foodblogkitchen")}</button>
+                            <button type="button" className="components-button is-secondary" onClick={open}>{__("Select image", 'foodblogkitchen-toolkit')}</button>
                         </Fragment>
                     )}
                 />

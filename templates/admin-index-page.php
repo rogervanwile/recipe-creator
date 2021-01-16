@@ -1,5 +1,5 @@
 <?php
-$foodblogKitchenRecipes = new FoodblogKitchenRecipes();
+$foodblogkitchenToolkit = new FoodblogkitchenToolkit();
 ?>
 
 <div class="wrap">
@@ -9,16 +9,16 @@ $foodblogKitchenRecipes = new FoodblogKitchenRecipes();
   <div id="col-container" class="wp-clearfix">
     <div id="col-left">
       <div class="col-wrap">
-        <form method="post" action="options.php" id="foodblogkitchen-recipes--settings-form">
-          <input type="hidden" name="foodblogkitchen_recipes__primary_color_light" value="<?= esc_attr(get_option('foodblogkitchen_recipes__primary_color_light')); ?>" />
-          <input type="hidden" name="foodblogkitchen_recipes__primary_color_light_contrast" value="<?= esc_attr(get_option('foodblogkitchen_recipes__primary_color_light_contrast')); ?>" />
-          <input type="hidden" name="foodblogkitchen_recipes__primary_color_dark" value="<?= esc_attr(get_option('foodblogkitchen_recipes__primary_color_dark')); ?>" />
-          <input type="hidden" name="foodblogkitchen_recipes__secondary_color_contrast" value="<?= esc_attr(get_option('foodblogkitchen_recipes__secondary_color_contrast')); ?>" />
-          <input type="hidden" name="foodblogkitchen_recipes__background_color_contrast" value="<?= esc_attr(get_option('foodblogkitchen_recipes__background_color_contrast')); ?>" />
+        <form method="post" action="options.php" id="foodblogkitchen-toolkit--settings-form">
+          <input type="hidden" name="foodblogkitchen_toolkit__primary_color_light" value="<?= esc_attr(get_option('foodblogkitchen_toolkit__primary_color_light')); ?>" />
+          <input type="hidden" name="foodblogkitchen_toolkit__primary_color_light_contrast" value="<?= esc_attr(get_option('foodblogkitchen_toolkit__primary_color_light_contrast')); ?>" />
+          <input type="hidden" name="foodblogkitchen_toolkit__primary_color_dark" value="<?= esc_attr(get_option('foodblogkitchen_toolkit__primary_color_dark')); ?>" />
+          <input type="hidden" name="foodblogkitchen_toolkit__secondary_color_contrast" value="<?= esc_attr(get_option('foodblogkitchen_toolkit__secondary_color_contrast')); ?>" />
+          <input type="hidden" name="foodblogkitchen_toolkit__background_color_contrast" value="<?= esc_attr(get_option('foodblogkitchen_toolkit__background_color_contrast')); ?>" />
 
           <?php
-          settings_fields('foodblogkitchen_recipes__general');
-          do_settings_sections('foodblogkitchen_recipes__general');
+          settings_fields('foodblogkitchen_toolkit__general');
+          do_settings_sections('foodblogkitchen_toolkit__general');
           submit_button();
           ?>
         </form>
@@ -27,17 +27,17 @@ $foodblogKitchenRecipes = new FoodblogKitchenRecipes();
     <div id="col-right">
       <div class="col-wrap">
         <?php
-        echo $foodblogKitchenRecipes->renderDummyTemplate();
+        echo $foodblogkitchenToolkit->renderDummyTemplate();
         ?>
       </div>
     </div>
-    <div id="foodblogkitchen-recipes--style-container">
+    <div id="foodblogkitchen-toolkit--style-container">
       <?php
-      echo $foodblogKitchenRecipes->renderStyleBlockTemplate();
+      echo $foodblogkitchenToolkit->renderStyleBlockTemplate();
       ?>
     </div>
   </div>
-  <script type="text/template" id="foodblogkitchen-recipes--style-block-template">
-    <?php echo $foodblogKitchenRecipes->getStyleBlockTemplate(); ?>
+  <script type="text/template" id="foodblogkitchen-toolkit--style-block-template">
+    <?php echo $foodblogkitchenToolkit->getStyleBlockTemplate(); ?>
   </script>
 </div>

@@ -11,10 +11,10 @@ import Edit from "./edit";
 import NoValidLicense from "./NoValidLicense";
 
 registerBlockType("foodblogkitchen-recipes/block", {
-  title: __("Recipe", "foodblogkitchen-recipes"),
+  title: __("Recipe", 'foodblogkitchen-toolkit'),
   description: __(
-    "Create recipes and optimize them easily for search engines.",
-    "foodblogkitchen-recipes"
+    "Add a recipe and optimize it easily for search engines.",
+    'foodblogkitchen-toolkit'
   ),
   category: "formatting",
   icon: "carrot",
@@ -24,7 +24,7 @@ registerBlockType("foodblogkitchen-recipes/block", {
     align: ["center", "wide", "full"],
   },
   edit: (
-    !!foodblogkitchenRecipesAdditionalData.hasValidLicense ? withSelect((select) => {
+    !!foodblogkitchenToolkitAdditionalData.hasValidLicense ? withSelect((select) => {
       const site = select("core").getSite();
 
       const publishDate = format(
