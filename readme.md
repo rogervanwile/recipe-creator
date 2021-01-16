@@ -28,6 +28,6 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 
 - Update version in `package.json`
 - Update version in `foodblogkitchen-toolkit.php`
-- Update `/uploads/info.json`
+- Update `/updates/info.json`
 
 `$ ./create-archive.sh`
