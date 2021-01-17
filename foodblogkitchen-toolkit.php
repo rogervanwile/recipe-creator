@@ -676,6 +676,10 @@ class FoodblogkitchenToolkit
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'cookTime')
 				),
+				'bakingTime' => array(
+					'type' => 'string',
+					'default' => ''
+				),
 				'totalTime' => array(
 					'type' => 'string',
 					'default' => $this->getPropertyFromRecipe($recipe, 'totalTime')
@@ -1027,6 +1031,7 @@ class FoodblogkitchenToolkit
 			"prepTime" => __('Prep time', 'foodblogkitchen-toolkit'),
 			"restTime" => __('Rest time', 'foodblogkitchen-toolkit'),
 			"cookTime" => __('Cook time', 'foodblogkitchen-toolkit'),
+			"bakingTime" => __('Baking time', 'foodblogkitchen-toolkit'),
 			"totalTime" => __('Total time', 'foodblogkitchen-toolkit'),
 			"yield" => __('yields', 'foodblogkitchen-toolkit'),
 			"ingredients" => __('Ingredients', 'foodblogkitchen-toolkit'),
@@ -1059,6 +1064,7 @@ class FoodblogkitchenToolkit
 		$attributes['prepTime'] = floatval($attributes['prepTime']);
 		$attributes['restTime'] = floatval($attributes['restTime']);
 		$attributes['cookTime'] = floatval($attributes['cookTime']);
+		$attributes['bakingTime'] = floatval($attributes['bakingTime']);
 		$attributes['totalTime'] = floatval($attributes['totalTime']);
 
 		if (isset($attributes['difficulty']) && !empty($attributes['difficulty'])) {
@@ -1167,6 +1173,7 @@ class FoodblogkitchenToolkit
 			}
 		}
 
+
 		$attributes['ldJson'] = [
 			"@context" => "https://schema.org/",
 			"@type" => "Recipe",
@@ -1180,7 +1187,7 @@ class FoodblogkitchenToolkit
 			"description" => $description,
 			"recipeCuisine" => isset($attributes['recipeCuisine']) ? $attributes['recipeCuisine'] : '',
 			"prepTime" => isset($attributes['prepTime']) ? $this->toIso8601Duration(intval($attributes['prepTime']) * 60) : '',
-			"cookTime" => isset($attributes['cookTime']) ? $this->toIso8601Duration(intval($attributes['cookTime']) * 60) : '',
+			"cookTime" => $this->getCooktimeForSchema($attributes),
 			"totalTime" => isset($attributes['totalTime']) ? $this->toIso8601Duration(intval($attributes['totalTime']) * 60) : '',
 			"keywords" => $keywordsString,
 			"recipeYield" => isset($attributes['recipeYield']) ? $attributes['recipeYield'] . (isset($attributes['recipeYieldUnit']) ? ' ' . $attributes['recipeYieldUnit'] : '') : '',
@@ -1281,6 +1288,15 @@ class FoodblogkitchenToolkit
 		$seconds = $seconds % 60;
 
 		return sprintf('P%dDT%dH%dM%dS', $days, $hours, $minutes, $seconds);
+	}
+
+	// Schema.org has only cookTime, so I calculate cook time and baking time together
+	private function getCooktimeForSchema($attributes)
+	{
+		$cookTime = isset($attributes['cookTime']) ? intval($attributes['cookTime']) : 0;
+		$bakingTime = isset($attributes['bakingTime']) ? intval($attributes['bakingTime']) : 0;
+
+		return $this->toIso8601Duration(($cookTime + $bakingTime) * 60);
 	}
 
 	private function getSvgs($colors)

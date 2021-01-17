@@ -123,6 +123,7 @@ export default function Edit(props) {
     let prepTime = parseInt(props.attributes.prepTime, 10) || 0;
     let restTime = parseInt(props.attributes.restTime, 10) || 0;
     let cookTime = parseInt(props.attributes.cookTime, 10) || 0;
+    let bakingTime = parseInt(props.attributes.bakingTime, 10) || 0;
 
     const intValue = parseInt(value, 10);
 
@@ -140,9 +141,13 @@ export default function Edit(props) {
           cookTime = intValue;
           update["cookTime"] = "" + cookTime;
           break;
+        case "bakingTime":
+          bakingTime = intValue;
+          update["bakingTime"] = "" + bakingTime;
+          break;
       }
 
-      update["totalTime"] = "" + (prepTime + restTime + cookTime);
+      update["totalTime"] = "" + (prepTime + restTime + cookTime + bakingTime);
 
       props.setAttributes(update);
     }
@@ -577,7 +582,7 @@ export default function Edit(props) {
                   onChange={(prepTime) => {
                     updateTime("prepTime", prepTime);
                   }}
-                  suffix={__("Minutes", 'foodblogkitchen-toolkit')}
+                  suffix={__("Min.", 'foodblogkitchen-toolkit')}
                 />
               </span>
             </li>
@@ -592,7 +597,7 @@ export default function Edit(props) {
                   onChange={(restTime) => {
                     updateTime("restTime", restTime);
                   }}
-                  suffix={__("Minutes", 'foodblogkitchen-toolkit')}
+                  suffix={__("Min.", 'foodblogkitchen-toolkit')}
                 />
               </span>
             </li>
@@ -607,7 +612,22 @@ export default function Edit(props) {
                   onChange={(cookTime) => {
                     updateTime("cookTime", cookTime);
                   }}
-                  suffix={__("Minutes", 'foodblogkitchen-toolkit')}
+                  suffix={__("Min.", 'foodblogkitchen-toolkit')}
+                />
+              </span>
+            </li>
+            <li>
+              <header>{__("Baking time", 'foodblogkitchen-toolkit')}:</header>
+              <span>
+                <InputControl
+                  type="number"
+                  min="0"
+                  value={props.attributes.bakingTime}
+                  placeholder="0"
+                  onChange={(bakingTime) => {
+                    updateTime("bakingTime", bakingTime);
+                  }}
+                  suffix={__("Min.", 'foodblogkitchen-toolkit')}
                 />
               </span>
             </li>
@@ -616,7 +636,7 @@ export default function Edit(props) {
               <header>{__("Total time", 'foodblogkitchen-toolkit')}:</header>
               <span>
                 {props.attributes.totalTime || "0"}{" "}
-                {__("Minutes", 'foodblogkitchen-toolkit')}
+                {__("Min.", 'foodblogkitchen-toolkit')}
               </span>
             </li>
           </ul>
@@ -685,7 +705,7 @@ export default function Edit(props) {
 
         <div className="foodblogkitchen-toolkit--recipe-block--flex-container foodblogkitchen-toolkit--recipe-block--video">
           <TextControl
-            label={__("Link zu YouTube oder Vimeo-Video", 'foodblogkitchen-toolkit')}
+            label={__("YouTube or Vimeo link", 'foodblogkitchen-toolkit')}
             value={props.attributes.videoUrl}
             onChange={(url) => {
               if (url) {

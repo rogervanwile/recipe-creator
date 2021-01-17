@@ -67,6 +67,14 @@
       </li>
       {{/if}}
 
+      {{#if bakingTime}}
+      <li>
+        <header>{{translations/bakingTime}}:</header>
+        <span>
+          {{#formatDuration bakingTime}}{{/formatDuration}}</span>
+      </li>
+      {{/if}}
+
       {{#if totalTime}}
       <li>
         <header>{{translations/totalTime}}:</header>
