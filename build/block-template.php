@@ -108,6 +108,12 @@
           '.LR::hbbch($cx, 'formatDuration', array(array((($inary && isset($in['cookTime'])) ? $in['cookTime'] : null)),array()), $in, false, function($cx, $in) {$inary=is_array($in);return '';}).'</span>
       </li>
 ' : '').'
+'.((LR::ifvar($cx, (($inary && isset($in['bakingTime'])) ? $in['bakingTime'] : null), false)) ? '      <li>
+        <header>'.LR::encq($cx, ((isset($in['translations']) && is_array($in['translations']) && isset($in['translations']['bakingTime'])) ? $in['translations']['bakingTime'] : null)).':</header>
+        <span>
+          '.LR::hbbch($cx, 'formatDuration', array(array((($inary && isset($in['bakingTime'])) ? $in['bakingTime'] : null)),array()), $in, false, function($cx, $in) {$inary=is_array($in);return '';}).'</span>
+      </li>
+' : '').'
 '.((LR::ifvar($cx, (($inary && isset($in['totalTime'])) ? $in['totalTime'] : null), false)) ? '      <li>
         <header>'.LR::encq($cx, ((isset($in['translations']) && is_array($in['translations']) && isset($in['translations']['totalTime'])) ? $in['translations']['totalTime'] : null)).':</header>
         <span>'.LR::hbbch($cx, 'formatDuration', array(array((($inary && isset($in['totalTime'])) ? $in['totalTime'] : null)),array()), $in, false, function($cx, $in) {$inary=is_array($in);return '';}).'</span>
@@ -145,6 +151,17 @@
   <ol class="foodblogkitchen-toolkit--recipe-block--preparation-steps">
     '.LR::raw($cx, (($inary && isset($in['preparationSteps'])) ? $in['preparationSteps'] : null)).'
   </ol>
+' : '').'
+'.((LR::ifvar($cx, (($inary && isset($in['videoIframeUrl'])) ? $in['videoIframeUrl'] : null), false)) ? '  <hr />
+
+  <section>
+    <header class="foodblogkitchen-toolkit--recipe-block--headline">
+      <h3>'.LR::encq($cx, ((isset($in['translations']) && is_array($in['translations']) && isset($in['translations']['video'])) ? $in['translations']['video'] : null)).'</h3>
+    </header>
+    <div class="foodblogkitchen-toolkit--recipe-block--video-wrapper">
+      <iframe src="'.LR::encq($cx, (($inary && isset($in['videoIframeUrl'])) ? $in['videoIframeUrl'] : null)).'" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>
 ' : '').'
 '.((LR::ifvar($cx, (($inary && isset($in['notes'])) ? $in['notes'] : null), false)) ? '  <hr />
 

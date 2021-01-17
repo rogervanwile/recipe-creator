@@ -194,7 +194,8 @@
     list-style: none;
     margin: 0 0 1rem 0;
     padding: 0;
-    counter-reset: foodblogkitchen-toolkit-steps; }
+    counter-reset: foodblogkitchen-toolkit-steps;
+    text-align: left; }
     .foodblogkitchen-toolkit--block.foodblogkitchen-toolkit--block .foodblogkitchen-toolkit--recipe-block--preparation-steps li {
       display: block;
       padding: 8px 0 8px 32px;
@@ -303,6 +304,8 @@
       background-color: #ffffff;
       border-color: #e60023;
       color: #e60023; }
+      .foodblogkitchen-toolkit--block.foodblogkitchen-toolkit--block .foodblogkitchen-toolkit--recipe-block--share-buttons .foodblogkitchen-toolkit--recipe-block--share-on-pinterest:hover, .foodblogkitchen-toolkit--block.foodblogkitchen-toolkit--block .foodblogkitchen-toolkit--recipe-block--share-buttons .foodblogkitchen-toolkit--recipe-block--share-on-pinterest:focus {
+        text-decoration: none; }
       .foodblogkitchen-toolkit--block.foodblogkitchen-toolkit--block .foodblogkitchen-toolkit--recipe-block--share-buttons .foodblogkitchen-toolkit--recipe-block--share-on-pinterest::before {
         content: "";
         display: block;
@@ -319,6 +322,22 @@
   .foodblogkitchen-toolkit--block.foodblogkitchen-toolkit--block.print-mode .foodblogkitchen-toolkit--recipe-block--save-and-share,
   .foodblogkitchen-toolkit--block.foodblogkitchen-toolkit--block.print-mode .foodblogkitchen-toolkit--recipe-block--user-rating {
     display: none !important; }
+  .foodblogkitchen-toolkit--block.foodblogkitchen-toolkit--block .foodblogkitchen-toolkit--recipe-block--video-wrapper {
+    position: relative;
+    margin-bottom: 16px; }
+    .foodblogkitchen-toolkit--block.foodblogkitchen-toolkit--block .foodblogkitchen-toolkit--recipe-block--video-wrapper::before {
+      content: "";
+      display: block;
+      width: 100%;
+      padding-top: 56.25%; }
+    .foodblogkitchen-toolkit--block.foodblogkitchen-toolkit--block .foodblogkitchen-toolkit--recipe-block--video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%; }
 
 .wrap .foodblogkitchen-toolkit--block {
   max-width: 600px !important;
