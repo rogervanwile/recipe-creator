@@ -297,7 +297,7 @@ export default function Edit(props) {
                 {props.attributes.name}
               </div>
               <div className="featured-snipped-preview--blog-title">
-                {props.data.title}
+                {props.data.site.title}
               </div>
               {getRatingElement()}
               <div className="featured-snipped-preview--total-time">
@@ -314,7 +314,7 @@ export default function Edit(props) {
             <section className="featured-result-preview-mobile">
               <header className="featured-result-preview-mobile--header">
                 <span className="featured-result-preview-mobile--breadcrumb">
-                  www.domain.com
+                  {(props.data.site.url || '').replace(/https?:\/\//, '')}
                 </span>
                 <h3 className="featured-result-preview-mobile--headline">
                   {props.attributes.name}

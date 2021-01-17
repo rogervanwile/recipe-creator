@@ -34,7 +34,7 @@ registerBlockType("foodblogkitchen-recipes/block", {
 
       return {
         data: {
-          title: site ? site.title : null,
+          site: site || {},
           publishDate: publishDate,
           meta: select("core/editor").getEditedPostAttribute("meta"),
         },
