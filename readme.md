@@ -31,3 +31,4 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 - Update `/updates/info.json`
 
 `$ ./create-archive.sh`
+`$ ./publish-latest.sh`
