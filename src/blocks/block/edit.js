@@ -432,9 +432,7 @@ export default function Edit(props) {
                     {/* <span className="featured-result-preview-mobile--date">
                       {props.data.publishDate} —
                     </span> */}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Morbi nec lectus gravida, sollicitudin velit sed,
-                    consectetur quam.
+                    {__("Google displays here a text that matches the search term.", "foodblogkitchen-toolkit")}
                   </div>
                 </div>
               </div>
