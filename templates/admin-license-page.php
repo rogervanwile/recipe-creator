@@ -32,7 +32,8 @@
     // License data.
     $license_data = json_decode(wp_remote_retrieve_body($response));
 
-    if ($license_data->result == 'success') { //Success was returned for the license activation
+    if ($license_data->result == 'success') {
+      //Success was returned for the license activation
       //Save the license key in the options table
       update_option('foodblogkitchen_toolkit__license_key', $license_key);
     ?>
@@ -55,7 +56,7 @@
   }
   /*** End of license activation ***/
 
-  /*** License activate button was clicked ***/
+  /*** License deactivate button was clicked ***/
   if (isset($_REQUEST['deactivate_license'])) {
     $license_key = $_REQUEST['foodblogkitchen_toolkit__license_key'];
 
@@ -87,13 +88,16 @@
         //Success was returned for the license activation
         //Remove the license key from the options table.
         delete_option('foodblogkitchen_toolkit__license_key');
-
       ?>
         <div class="updated">
           <p><?= __("The license has been successfully deactivated.", 'foodblogkitchen-toolkit'); ?></p>
         </div>
       <?php
       } else {
+        if (isset($license_data->error_code) && $license_data->error_code === 80) {
+          delete_option('foodblogkitchen_toolkit__license_key');
+        }
+
         //Show error to the user. Probably entered incorrect license key.
       ?>
         <div class="updated">
