@@ -115,6 +115,19 @@
   </ol>
   {{/if}}
 
+  {{#if videoIframeUrl}}
+  <hr />
+
+  <section>
+    <header class="foodblogkitchen-toolkit--recipe-block--headline">
+      <h3>{{translations/video}}</h3>
+    </header>
+    <div class="foodblogkitchen-toolkit--recipe-block--video-wrapper">
+      <iframe src="{{videoIframeUrl}}" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>
+  {{/if}}
+
   {{#if notes}}
   <hr />
 

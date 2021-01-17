@@ -688,6 +688,14 @@ class FoodblogkitchenToolkit
 					'type' => 'string',
 					'default' => ''
 				),
+				'videoUrl' => array(
+					'type' => 'string',
+					'default' => ''
+				),
+				'videoIframeUrl' => array(
+					'type' => 'string',
+					'default' => ''
+				),
 				// DEPRECATED, löschen wenn Isas Blog durch ist 
 				'servings' => array(
 					'type' => 'string',
@@ -1029,7 +1037,8 @@ class FoodblogkitchenToolkit
 			"averageRating" => __('Average rating', 'foodblogkitchen-toolkit'),
 			"notes" => __('Notes', 'foodblogkitchen-toolkit'),
 			"feedback" => __('How do you like the recipe?', 'foodblogkitchen-toolkit'),
-			"servings" => __('servings', 'foodblogkitchen-toolkit')
+			"servings" => __('servings', 'foodblogkitchen-toolkit'),
+			"video" => __('Video', 'foodblogkitchen-toolkit'),
 		];
 	}
 
@@ -1220,6 +1229,17 @@ class FoodblogkitchenToolkit
 				"@type" => "AggregateRating",
 				"ratingValue" => "$averageRating",
 				"ratingCount" => "$ratingCount"
+			];
+		}
+
+		if (isset($attributes['videoIframeUrl']) && !empty($attributes['videoIframeUrl'])) {
+			$attributes['ldJson']['video'] = [
+				"@type" => "VideoObject",
+				"description" => $attributes['description'],
+				"name" => isset($attributes['name']) ? $attributes['name'] : '',
+				"thumbnailUrl" => $attributes['thumbnail'],
+				"uploadDate" => get_the_date('Y-m-d'),
+				'embedUrl' => $attributes['videoIframeUrl']
 			];
 		}
 

@@ -182,6 +182,64 @@ export default function Edit(props) {
     }
   }
 
+  function getYoutubeId(url) {
+    if (url) {
+      const match = url.match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/);
+
+      if (match && match[2].length === 11) {
+        return match[2];
+      }
+    }
+
+    return null;
+  }
+
+  function generateYoutubeEmbedUrl(id) {
+    if (id) {
+      return '//www.youtube-nocookie.com/embed/' + id;
+    }
+
+    return null;
+  }
+
+  function getVimeoId(url) {
+    if (url) {
+      const match = url.match(/(?:vimeo)\.com.*(?:videos|video|channels|)\/([\d]+)/i);
+
+      if (match && match[1]) {
+        return match[1];
+      }
+    }
+
+    return null;
+  }
+
+  function generateVimeoEmbedUrl(id) {
+    if (id) {
+      return '//player.vimeo.com/video/' + id;
+    }
+
+    return null;
+  }
+
+  function generateIframeUrl(url) {
+    // Check if it is a YouTube URL
+    const youtubeId = getYoutubeId(url);
+
+    if (youtubeId) {
+      return generateYoutubeEmbedUrl(youtubeId);
+    } else {
+      // Check if it is a Vimeo URL
+      const vimeoId = getVimeoId(url);
+
+      if (vimeoId) {
+        return generateVimeoEmbedUrl(vimeoId);
+      }
+    }
+
+    return null;
+  }
+
   return (
     <Fragment>
       <InspectorControls>
@@ -622,6 +680,30 @@ export default function Edit(props) {
         <hr />
 
         <div className="foodblogkitchen-toolkit--recipe-block--headline">
+          <h3>{__("Video", 'foodblogkitchen-toolkit')}</h3>
+        </div>
+
+        <div className="foodblogkitchen-toolkit--recipe-block--flex-container foodblogkitchen-toolkit--recipe-block--video">
+          <TextControl
+            label={__("Link zu YouTube oder Vimeo-Video", 'foodblogkitchen-toolkit')}
+            value={props.attributes.videoUrl}
+            onChange={(url) => {
+              if (url) {
+                const iframeUrl = generateIframeUrl(url);
+                console.log('iframeUrl', iframeUrl);
+                if (iframeUrl) {
+                  props.setAttributes({ videoUrl: url, videoIframeUrl: iframeUrl });
+                } else {
+                  props.setAttributes({ videoUrl: url, videoIframeUrl: null });
+                }
+              }
+            }}
+          />
+        </div>
+
+        <hr />
+
+        <div className="foodblogkitchen-toolkit--recipe-block--headline">
           <h3>{__("Notes", 'foodblogkitchen-toolkit')}</h3>
         </div>
 
@@ -646,6 +728,6 @@ export default function Edit(props) {
           />
         </section> */}
       </div>
-    </Fragment>
+    </Fragment >
   );
 }
