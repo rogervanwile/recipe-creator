@@ -426,6 +426,11 @@
       border-color: #e60023;
       color: #e60023;
 
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+
       &::before {
         content: "";
         display: block;

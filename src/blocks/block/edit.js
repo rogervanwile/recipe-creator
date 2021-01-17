@@ -15,6 +15,8 @@ import {
 import { Fragment, useEffect } from "@wordpress/element";
 import ImageUpload from "./ImageUpload";
 
+import { useDispatch } from "@wordpress/data";
+
 import "./editor.scss";
 
 var foodblogkitchenToolkitMigrationDone = false;
@@ -24,6 +26,11 @@ export default function Edit(props) {
     useEffect(() => {
       props.setAttributes(data);
     });
+  }
+
+  const { editPost } = useDispatch('core/editor');
+  const setMeta = function (keyAndValue) {
+    editPost({ meta: keyAndValue })
   }
 
   // TODO: Migration, remove for live version
@@ -178,6 +185,36 @@ export default function Edit(props) {
   return (
     <Fragment>
       <InspectorControls>
+        <PanelBody
+          title={__("Pinterest", 'foodblogkitchen-toolkit')}
+          className="foodblogkitchen-toolkit--sidebar"
+        >
+          <PanelRow>
+            <MediaUploadCheck>
+              <MediaUpload
+                onSelect={(media) => {
+                  if (media) {
+                    console.log(media);
+                    setMeta({
+                      foodblogkitchen_pinterest_image_id: media.id,
+                      foodblogkitchen_pinterest_image_url: media.url,
+                    });
+                  }
+                }}
+                allowedTypes={ALLOWED_MEDIA_TYPES}
+                value={props.data.meta.foodblogkitchen_pinterest_image_url}
+                render={({ open }) => (
+                  <Fragment>
+                    <img src={props.data.meta.foodblogkitchen_pinterest_image_url}
+                      onClick={open}
+                    />
+                    <button type="button" className="components-button is-secondary" onClick={open}>{__("Select image", 'foodblogkitchen-toolkit')}</button>
+                  </Fragment>
+                )}
+              />
+            </MediaUploadCheck>
+          </PanelRow>
+        </PanelBody>
         <PanelBody
           title={__("SEO", 'foodblogkitchen-toolkit')}
           className="foodblogkitchen-toolkit--sidebar"

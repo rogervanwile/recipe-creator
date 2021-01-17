@@ -91,7 +91,6 @@ class FoodblogkitchenToolkit
 		}
 
 		if (!is_wp_error($remote) && isset($remote['response']['code']) && $remote['response']['code'] == 200 && !empty($remote['body'])) {
-
 			$remote = json_decode($remote['body']);
 			$res = new stdClass();
 
