@@ -3,7 +3,7 @@
   "download_url": "https://updates.foodblogkitchen.de/foodblogkitchen-toolkit/archives/1.2.0.zip",
   "requires": "5.5.0",
   "tested": "5.6.0",
-  "requires_php": "7.0",
+  "requires_php": "7.4",
   "last_updated": "2021-01-16 22:00:00",
   "sections": {
     "description": "Toolkit for your Foodblog to optimize your blog for search engines. Including a Recipe block for the Gutenberg editor.",
