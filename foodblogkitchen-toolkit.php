@@ -229,9 +229,6 @@ class FoodblogkitchenToolkit
 				return require_once(plugin_dir_path(__FILE__) . 'templates/admin-license-page.php');
 			}
 		);
-
-
-		add_options_page('Sample License Activation Menu', 'Sample License', 'manage_options', __FILE__, 'sample_license_management_page');
 	}
 
 	private function renderColorPickerInput($name, $defaultValue)
