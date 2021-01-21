@@ -44,7 +44,8 @@ class FoodblogkitchenToolkit
 		add_action('init', array($this, 'registerMeta'));
 		add_action('init', array($this, 'loadTranslations'));
 
-		add_action('admin_init', array($this, 'registerSettings'));
+		add_action('admin_init', array($this, 'registerRecipeBlockSettings'));
+		add_action('admin_init', array($this, 'registerPinterestSettings'));
 		add_action('admin_menu', array($this, 'registerSettingsPage'));
 
 		add_action('admin_enqueue_scripts', array($this, 'enqueueAdminJs'));
@@ -187,9 +188,9 @@ class FoodblogkitchenToolkit
 		wp_enqueue_style('wp-color-picker');
 		wp_enqueue_style('iris');
 
-		wp_enqueue_script('foodblogkitchen-toolkit-settings-js', 	plugins_url('build/admin.js', __FILE__), array('jquery', 'wp-color-picker', 'iris'), '', true);
+		wp_enqueue_script('foodblogkitchen-toolkit-settings-js',   plugins_url('build/admin.js', __FILE__), array('jquery', 'wp-color-picker', 'iris'), '', true);
 
-		wp_enqueue_style('foodblogkitchen-toolkit-settings-admin-css', 	plugins_url('build/admin.css', __FILE__), array(), '', 'all');
+		wp_enqueue_style('foodblogkitchen-toolkit-settings-admin-css',   plugins_url('build/admin.css', __FILE__), array(), '', 'all');
 
 		echo $this->renderStyleBlockTemplate();
 	}
@@ -216,6 +217,17 @@ class FoodblogkitchenToolkit
 			'foodblogkitchen_toolkit',
 			function () {
 				return require_once(plugin_dir_path(__FILE__) . 'templates/admin-index-page.php');
+			}
+		);
+
+		add_submenu_page(
+			'foodblogkitchen_toolkit',
+			__('Pinterest', 'foodblogkitchen-toolkit'),
+			__("Pinterest", 'foodblogkitchen-toolkit'),
+			'manage_options',
+			'foodblogkitchen_toolkit_pinterest',
+			function () {
+				return require_once(plugin_dir_path(__FILE__) . 'templates/admin-pinterest-page.php');
 			}
 		);
 
@@ -255,7 +267,7 @@ class FoodblogkitchenToolkit
 		echo '<input type="hidden" name="' . $name . '" value="' . $value . '" />';
 	}
 
-	public function registerSettings()
+	public function registerRecipeBlockSettings()
 	{
 		// Settings
 		register_setting(
@@ -418,6 +430,43 @@ class FoodblogkitchenToolkit
 			'foodblogkitchen_toolkit__general',
 			array(
 				'label_for' => 'foodblogkitchen_toolkit__border_radius'
+			)
+		);
+	}
+
+	public function registerPinterestSettings()
+	{
+		// Settings
+		register_setting(
+			'foodblogkitchen_toolkit__pinterest',
+			'foodblogkitchen_toolkit__pinterest_image_overlay__enabled',
+			array(
+				"default" => false
+			)
+		);
+
+		// Sections
+		add_settings_section(
+			'foodblogkitchen_toolkit__pinterest',
+			'',
+			// __('General settings', 'foodblogkitchen-toolkit'),
+			function () {
+				echo '<p>' . __("Configure the implementation of pinterest in your blog.", 'foodblogkitchen-toolkit') . '</p>';
+			},
+			'foodblogkitchen_toolkit__pinterest'
+		);
+
+		// Fields
+		add_settings_field(
+			'foodblogkitchen_toolkit__pinterest_image_overlay__enabled',
+			__('Image overlay', 'foodblogkitchen-toolkit'),
+			function () {
+				$this->renderCheckboxInput('foodblogkitchen_toolkit__pinterest_image_overlay__enabled', false, __('Show Pinterest share icon over images', 'foodblogkitchen-toolkit'));
+			},
+			'foodblogkitchen_toolkit__pinterest',
+			'foodblogkitchen_toolkit__pinterest',
+			array(
+				'label_for' => 'foodblogkitchen_toolkit__pinterest_image_overlay__enabled'
 			)
 		);
 	}
@@ -629,24 +678,25 @@ class FoodblogkitchenToolkit
 		);
 
 		// pinterest-image-overlay.js
-		// TODO: Include only when it is enabled
+
 		// TODO: Include only when images are on the page
+		if (get_option('foodblogkitchen_toolkit__pinterest_image_overlay__enabled', false)) {
+			$pinterestImageOverlayAsset = require("$dir/build/pinterest-image-overlay.asset.php");
 
-		$pinterestImageOverlayAsset = require("$dir/build/pinterest-image-overlay.asset.php");
+			wp_enqueue_script(
+				'foodblogkitchen-toolkit-pinterest-image-overlay',
+				plugins_url('build/pinterest-image-overlay.js', __FILE__),
+				$pinterestImageOverlayAsset['dependencies'],
+				$pinterestImageOverlayAsset['version'],
+			);
 
-		wp_enqueue_script(
-			'foodblogkitchen-toolkit-pinterest-image-overlay',
-			plugins_url('build/pinterest-image-overlay.js', __FILE__),
-			$pinterestImageOverlayAsset['dependencies'],
-			$pinterestImageOverlayAsset['version'],
-		);
-
-		wp_enqueue_style(
-			'foodblogkitchen-toolkit-pinterest-image-overlay',
-			plugins_url('build/pinterest-image-overlay.css', __FILE__),
-			array(),
-			$pinterestImageOverlayAsset['version'],
-		);
+			wp_enqueue_style(
+				'foodblogkitchen-toolkit-pinterest-image-overlay',
+				plugins_url('build/pinterest-image-overlay.css', __FILE__),
+				array(),
+				$pinterestImageOverlayAsset['version'],
+			);
+		}
 	}
 
 	public function registerBlock()
@@ -1233,26 +1283,6 @@ class FoodblogkitchenToolkit
 						"text" => strip_tags($item)
 					];
 				}, explode('\n', str_replace('li><li', 'li>\n<li', $attributes['preparationSteps']))) : '',
-			// "video" => [
-			// 	"@type" => "VideoObject",
-			// 	"name" => "How to make a Party Coffee Cake",
-			// 	"description" => "This is how you make a Party Coffee Cake.",
-			// 	"thumbnailUrl" => [
-			// 		"https://example.com/photos/1x1/photo.jpg",
-			// 		"https://example.com/photos/4x3/photo.jpg",
-			// 		"https://example.com/photos/16x9/photo.jpg"
-			// 	],
-			// 	"contentUrl" => "http://www.example.com/video123.mp4",
-			// 	"embedUrl" => "http://www.example.com/videoplayer?video=123",
-			// 	"uploadDate" => "2018-02-05T08:00:00+08:00",
-			// 	"duration" => "PT1M33S",
-			// 	"interactionStatistic" => [
-			// 		"@type" => "InteractionCounter",
-			// 		"interactionType" => ["@type" => "http://schema.org/WatchAction"],
-			// 		"userInteractionCount" => 2347
-			// 	],
-			// 	"expires" => "2019-02-05T08:00:00+08:00"
-			// ]
 		];
 
 		if ($averageRating > 0 && $ratingCount > 0) {
