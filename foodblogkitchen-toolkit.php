@@ -620,6 +620,17 @@ class FoodblogkitchenToolkit
 			array(),
 			filemtime("$dir/$style_css")
 		);
+
+		// PinterestImageOverlay
+		// TODO: Include only when it is enabled
+		// TODO: Include only when images are on the page
+		$pinterest_image_overlay_js = 'build/scripts/pinterest-image-overlay.js';
+		wp_enqueue_script(
+			'foodblogkitchen-toolkit-pinterest-image-overlay',
+			plugins_url($pinterest_image_overlay_js, __FILE__),
+			array(),
+			filemtime("$dir/$pinterest_image_overlay_js")
+		);
 	}
 
 	public function registerBlock()
