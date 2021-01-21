@@ -6,7 +6,7 @@ module.exports = {
   ...defaultConfig,
   entry: {
     'pinterest-image-overlay': './src/ts/pinterest-image-overlay.ts',
-    index: path.resolve(process.cwd(), 'src', 'index.js'),
+    editor: path.resolve(process.cwd(), 'src', 'editor.js'),
     frontend: path.resolve(process.cwd(), 'src', 'frontend.js'),
   },
   module: {

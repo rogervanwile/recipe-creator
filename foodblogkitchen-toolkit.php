@@ -576,60 +576,76 @@ class FoodblogkitchenToolkit
 	{
 		$dir = dirname(__FILE__);
 
-		$script_asset_path = "$dir/build/index.asset.php";
-		if (!file_exists($script_asset_path)) {
-			throw new Error(
-				'You need to run `npm start` or `npm run build` for the "foodblogkitchen-recipes/block" block first.'
-			);
-		}
-		$script_asset = require($script_asset_path);
+		// editor.js
+
+		$editorAsset = require("$dir/build/editor.asset.php");
 
 		wp_register_script(
-			'foodblogkitchen-toolkit-block-editor',
-			plugins_url('build/index.js', __FILE__),
-			$script_asset['dependencies'],
-			$script_asset['version']
+			'foodblogkitchen-toolkit-recipe-block-editor',
+			plugins_url('build/editor.js', __FILE__),
+			$editorAsset['dependencies'],
+			$editorAsset['version']
 		);
-		wp_set_script_translations('foodblogkitchen-toolkit-block-editor', 'foodblogkitchen-toolkit', plugin_dir_path(__FILE__) . 'languages');
+
+		wp_register_style(
+			'foodblogkitchen-toolkit-recipe-block-editor',
+			plugins_url('build/editor.css', __FILE__),
+			array(),
+			$editorAsset['version']
+		);
+
+		wp_enqueue_style(
+			'foodblogkitchen-toolkit-recipe-block',
+			plugins_url('build/style-editor.css', __FILE__),
+			array(),
+			$editorAsset['version']
+		);
+
+		// Add some variables for the editor script
 		$license = get_option('foodblogkitchen_toolkit__license_key', '');
-		wp_localize_script('foodblogkitchen-toolkit-block-editor', 'foodblogkitchenToolkitAdditionalData', [
+		wp_localize_script('foodblogkitchen-toolkit-recipe-block-editor', 'foodblogkitchenToolkitAdditionalData', [
 			"hasValidLicense" => !empty($license),
 			"licensePage" => get_admin_url(get_current_network_id(), 'admin.php?page=foodblogkitchen_toolkit_license')
 		]);
 
-		$editor_css = 'build/index.css';
-		wp_register_style(
-			'foodblogkitchen-toolkit-block-editor',
-			plugins_url($editor_css, __FILE__),
-			array(),
-			filemtime("$dir/$editor_css")
-		);
+		wp_set_script_translations('foodblogkitchen-toolkit-recipe-block-editor', 'foodblogkitchen-toolkit', plugin_dir_path(__FILE__) . 'languages');
 
-		$frontend_js = 'build/frontend.js';
+		// frontend.js
+
+		$frontendAsset = require("$dir/build/frontend.asset.php");
+
 		wp_register_script(
-			'foodblogkitchen-toolkit-block',
-			plugins_url($frontend_js, __FILE__),
-			array(),
-			filemtime("$dir/$frontend_js")
+			'foodblogkitchen-toolkit-recipe-block',
+			plugins_url('build/frontend.js', __FILE__),
+			$frontendAsset['dependencies'],
+			$frontendAsset['version']
 		);
 
-		$style_css = 'build/style-index.css';
 		wp_register_style(
-			'foodblogkitchen-toolkit-block',
-			plugins_url($style_css, __FILE__),
+			'foodblogkitchen-toolkit-recipe-block',
+			plugins_url('build/style-index.css', __FILE__),
 			array(),
-			filemtime("$dir/$style_css")
+			$frontendAsset['version']
 		);
 
-		// PinterestImageOverlay
+		// pinterest-image-overlay.js
 		// TODO: Include only when it is enabled
 		// TODO: Include only when images are on the page
-		$pinterest_image_overlay_js = 'build/scripts/pinterest-image-overlay.js';
+
+		$pinterestImageOverlayAsset = require("$dir/build/pinterest-image-overlay.asset.php");
+
 		wp_enqueue_script(
 			'foodblogkitchen-toolkit-pinterest-image-overlay',
-			plugins_url($pinterest_image_overlay_js, __FILE__),
+			plugins_url('build/pinterest-image-overlay.js', __FILE__),
+			$pinterestImageOverlayAsset['dependencies'],
+			$pinterestImageOverlayAsset['version'],
+		);
+
+		wp_enqueue_style(
+			'foodblogkitchen-toolkit-pinterest-image-overlay',
+			plugins_url('build/pinterest-image-overlay.css', __FILE__),
 			array(),
-			filemtime("$dir/$pinterest_image_overlay_js")
+			$pinterestImageOverlayAsset['version'],
 		);
 	}
 
@@ -644,10 +660,10 @@ class FoodblogkitchenToolkit
 		// Workaround for https://github.com/WordPress/gutenberg/issues/7342
 
 		register_block_type('foodblogkitchen-recipes/block', array(
-			'editor_script' => 'foodblogkitchen-toolkit-block-editor',
-			'editor_style'  => 'foodblogkitchen-toolkit-block-editor',
-			'script'        => 'foodblogkitchen-toolkit-block',
-			'style'         => 'foodblogkitchen-toolkit-block',
+			'editor_script' => 'foodblogkitchen-toolkit-recipe-block-editor',
+			'editor_style'  => 'foodblogkitchen-toolkit-recipe-block-editor',
+			'script'        => 'foodblogkitchen-toolkit-recipe-block',
+			'style'         => 'foodblogkitchen-toolkit-recipe-block',
 			'attributes' => array(
 				'ingredients' => array(
 					'type' => 'string',
