@@ -14,4 +14,24 @@
     background-position: center center !important;
     background-repeat: no-repeat !important;
     cursor: pointer !important;
+
+    .foodblogkitchen-toolkit--pinterest-image-overlay--tooltip {
+        position: absolute;
+        left: 36px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: white;
+        padding: 4px 6px;
+        font-size: 16px;
+        line-height: 16px;
+        display: inline-block;
+        border-radius: 2px;
+        white-space: nowrap;
+        color: black;
+        display: none;
+    }
+
+    &:hover .foodblogkitchen-toolkit--pinterest-image-overlay--tooltip {
+        display: block;
+    }
 }

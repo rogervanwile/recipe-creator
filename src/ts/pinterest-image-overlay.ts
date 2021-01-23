@@ -1,3 +1,5 @@
+// import { __ } from "@wordpress/i18n";
+
 // import * as css from './../styles/pinterest-image-overlay.scss';
 const css = require('./../styles/pinterest-image-overlay.scss')
 
@@ -10,7 +12,6 @@ export class PinterestImageOverlay {
   constructor() {
     this.imageSelectors.forEach(selector => {
       const images = document.querySelectorAll(selector);
-      console.log('images', images);
       Array.from(images).forEach((image: Element) => {
         const url = image.getAttribute('src');
 
@@ -20,6 +21,12 @@ export class PinterestImageOverlay {
           pinItLink.href = this.createPinterestPinItUrl(url, description);
           pinItLink.target = '_blank';
           pinItLink.classList.add('foodblogkitchen-toolkit--pinterest-image-overlay');
+          
+          const tooltip = document.createElement('span');
+          // tooltip.innerText = __('Pin it', 'foodblogkitchen-toolkit');
+          tooltip.innerText = 'Pin it';
+          tooltip.classList.add('foodblogkitchen-toolkit--pinterest-image-overlay--tooltip');
+          pinItLink.appendChild(tooltip);
 
           if (image.parentNode) {
             (<HTMLElement>image.parentNode).classList.add('foodblogkitchen-toolkit--pinterest-wrapper');
