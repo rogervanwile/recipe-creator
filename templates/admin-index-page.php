@@ -27,13 +27,13 @@ $foodblogkitchenToolkit = new FoodblogkitchenToolkit();
     <div id="col-right">
       <div class="col-wrap">
         <?php
-        echo $foodblogkitchenToolkit->renderDummyTemplate();
+        echo $foodblogkitchenToolkit->renderRecipeBlockDummy();
         ?>
       </div>
     </div>
     <div id="foodblogkitchen-toolkit--style-container">
       <?php
-      echo $foodblogkitchenToolkit->renderStyleBlockTemplate();
+      echo $foodblogkitchenToolkit->renderRecipeBlockStyles();
       ?>
     </div>
   </div>

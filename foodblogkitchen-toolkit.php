@@ -192,7 +192,7 @@ class FoodblogkitchenToolkit
 
 		wp_enqueue_style('foodblogkitchen-toolkit-settings-admin-css',   plugins_url('build/admin.css', __FILE__), array(), '', 'all');
 
-		echo $this->renderStyleBlockTemplate();
+		echo $this->renderRecipeBlockStyles();
 	}
 
 	public function registerSettingsPage()
@@ -832,7 +832,7 @@ class FoodblogkitchenToolkit
 					'default' => 'center'
 				),
 			),
-			'render_callback' => array($this, 'renderBlock'),
+			'render_callback' => array($this, 'renderRecipeBlock'),
 		));
 	}
 
@@ -892,8 +892,6 @@ class FoodblogkitchenToolkit
 		}
 	}
 
-
-
 	private function extractIngredients($ingredientsHtml)
 	{
 		$ingredientsArray = explode('</li><li>', $ingredientsHtml);
@@ -927,9 +925,9 @@ class FoodblogkitchenToolkit
 		return file_get_contents($dir . '/src/blocks/block/style-block.hbs');
 	}
 
-	private function getStyleBlockRenderer()
+	private function getRecipeBlockStylesRenderer()
 	{
-		if (!file_exists(plugin_dir_path(__FILE__) . '/build/style-block-template.php') || WP_DEBUG) {
+		if (!file_exists(plugin_dir_path(__FILE__) . '/build/recipe-block-styles-renderer.php') || WP_DEBUG) {
 			$dir = dirname(__FILE__);
 			$template = file_get_contents($dir . '/src/blocks/block/style-block.hbs');
 
@@ -946,18 +944,18 @@ class FoodblogkitchenToolkit
 			));
 
 			// Save the compiled PHP code into a php file
-			file_put_contents(plugin_dir_path(__FILE__) . '/build/style-block-template.php', '<?php ' . $phpStr . '?>');
+			file_put_contents(plugin_dir_path(__FILE__) . '/build/recipe-block-styles-renderer.php', '<?php ' . $phpStr . '?>');
 		}
 
 		// Get the render function from the php file
-		return include(plugin_dir_path(__FILE__) . '/build/style-block-template.php');
+		return include(plugin_dir_path(__FILE__) . '/build/recipe-block-styles-renderer.php');
 	}
 
-	public function renderStyleBlockTemplate()
+	public function renderRecipeBlockStyles()
 	{
 		$options = $this->getStyleOptions();
 		$svgs = $this->getSvgs($options);
-		$renderer = $this->getStyleBlockRenderer();
+		$renderer = $this->getRecipeBlockStylesRenderer();
 		return $renderer(array(
 			"options" => $options,
 			"svgs" => $svgs
@@ -975,9 +973,9 @@ class FoodblogkitchenToolkit
 		return '#' . substr(base_convert(0x1000000 + ($r < 255 ? ($r < 1 ? 0 : $r) : 255) * 0x10000 + ($b < 255 ? ($b < 1 ? 0 : $b) : 255) * 0x100 + ($g < 255 ? ($g < 1 ? 0 : $g) : 255), 10, 16), 1);
 	}
 
-	private function getTemplateRenderer()
+	private function getRecipeBlockRenderer()
 	{
-		if (!file_exists(plugin_dir_path(__FILE__) . '/build/block-template.php') || WP_DEBUG) {
+		if (!file_exists(plugin_dir_path(__FILE__) . '/build/recipe-block-renderer.php') || WP_DEBUG) {
 			$dir = dirname(__FILE__);
 			$template = file_get_contents($dir . '/src/blocks/block/block.hbs');
 			$styleBlockTemplate = $this->getStyleBlockTemplate();
@@ -1024,11 +1022,11 @@ class FoodblogkitchenToolkit
 			));
 
 			// Save the compiled PHP code into a php file
-			file_put_contents(plugin_dir_path(__FILE__) . '/build/block-template.php', '<?php ' . $phpStr . '?>');
+			file_put_contents(plugin_dir_path(__FILE__) . '/build/recipe-block-renderer.php', '<?php ' . $phpStr . '?>');
 		}
 
 		// Get the render function from the php file
-		return include(plugin_dir_path(__FILE__) . '/build/block-template.php');
+		return include(plugin_dir_path(__FILE__) . '/build/recipe-block-renderer.php');
 	}
 
 	private function renderTemplate($data)
@@ -1040,7 +1038,7 @@ class FoodblogkitchenToolkit
 	public function getDummyData()
 	{
 		return array(
-			"translations" => $this->getTemplateTranslations(),
+			"translations" => $this->getRecipeBlockTranslations(),
 			"recipeYield" => 2,
 			"recipeYieldUnit" => __("servings", 'foodblogkitchen-toolkit'),
 			"difficulty" => __('simple', 'foodblogkitchen-toolkit'),
@@ -1090,16 +1088,16 @@ class FoodblogkitchenToolkit
 		);
 	}
 
-	public function renderDummyTemplate()
+	public function renderRecipeBlockDummy()
 	{
 		$dummyData = $this->getDummyData();
 
-		$renderer = $this->getTemplateRenderer();
+		$renderer = $this->getRecipeBlockRenderer();
 
 		return $renderer($dummyData);
 	}
 
-	private function getTemplateTranslations()
+	private function getRecipeBlockTranslations()
 	{
 		return [
 			"prepTime" => __('Prep time', 'foodblogkitchen-toolkit'),
@@ -1121,9 +1119,9 @@ class FoodblogkitchenToolkit
 		];
 	}
 
-	public function renderBlock($attributes, $context)
+	public function renderRecipeBlock($attributes, $context)
 	{
-		$attributes['translations'] = $this->getTemplateTranslations();
+		$attributes['translations'] = $this->getRecipeBlockTranslations();
 
 		$attributes['postId'] = get_the_ID();
 		$attributes['ajaxUrl'] = admin_url('admin-ajax.php');
@@ -1310,7 +1308,8 @@ class FoodblogkitchenToolkit
 		$attributes['options'] = $this->getStyleOptions();
 		$attributes['svgs'] = $this->getSvgs($attributes['options']);
 
-		return $this->renderTemplate($attributes);
+		$renderer = $this->getRecipeBlockRenderer();
+		return $renderer($attributes);
 	}
 
 	private function getStyleOptions()
