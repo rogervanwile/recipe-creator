@@ -1,0 +1,21 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.foodblogkitchen-toolkit--block--jump-to-recipe {
+  display: flex;
+  align-items: center;
+
+  .foodblogkitchen-toolkit--block--jump-to-recipe--link {
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 8px 12px;
+    margin: 0 auto 24px auto;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+}

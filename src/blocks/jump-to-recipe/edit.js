@@ -1,0 +1,13 @@
+import { __ } from "@wordpress/i18n";
+import { Fragment } from "@wordpress/element";
+
+export default function Edit(props) {
+
+    return (
+        <Fragment>
+            <div className="foodblogkitchen-toolkit--block--jump-to-recipe">
+                <a href="#foodblogkitchen-toolkit--recipe" className="foodblogkitchen-toolkit--block--jump-to-recipe--link">{__("Jump to recipe", "foodblogkitchen-recipe")}</a>
+            </div>
+        </Fragment>
+    )
+}

@@ -62,6 +62,27 @@ class FoodblogkitchenToolkit
 		add_filter('plugins_api', array($this, 'fetchInfo'), 20, 3);
 		add_filter('site_transient_update_plugins', array($this, 'pushUpdate'));
 		add_action('upgrader_process_complete', array($this, 'afterUpdate'), 10, 2);
+
+		add_filter('the_content', array($this, 'handleContent'), 1);
+	}
+
+	public function handleContent($content)
+	{
+		// Check if we're inside the main loop in a single Post.
+		if (is_singular() && in_the_loop() && is_main_query()) {
+			if (strstr($content, 'wp:foodblogkitchen-recipes/block') !== false) {
+				// The $content contains the recipe block
+
+				// If there is no "jump to recipe" block inside the content
+				// and the option "foodblogkitchen_toolkit__show_jump_to_recipe"
+				// is set to true, I prepend the "jump to recipe" block to the content
+				if (get_option('foodblogkitchen_toolkit__show_jump_to_recipe', true) && strstr($content, 'wp:foodblogkitchen-recipes/jump-to-recipe') === false) {
+					$content = "<!-- wp:foodblogkitchen-recipes/jump-to-recipe /-->\n\n" . $content;
+				}
+			}
+		}
+
+		return $content;
 	}
 
 	public function fetchInfo($res, $action, $args)
@@ -348,10 +369,27 @@ class FoodblogkitchenToolkit
 			)
 		);
 
+		register_setting(
+			'foodblogkitchen_toolkit__general',
+			'foodblogkitchen_toolkit__show_jump_to_recipe',
+			array(
+				"default" => true
+			)
+		);
+
+
 		// Sections
 		add_settings_section(
 			'foodblogkitchen_toolkit__general',
 			__('General settings', 'foodblogkitchen-toolkit'),
+			function () {
+				echo '<p>' . __("Configure how the recipe block should behave on your blog posts.", 'foodblogkitchen-toolkit') . '</p>';
+			},
+			'foodblogkitchen_toolkit__general'
+		);
+		add_settings_section(
+			'foodblogkitchen_toolkit__visual',
+			__('Visual settings', 'foodblogkitchen-toolkit'),
 			function () {
 				echo '<p>' . __("Configure how the recipe block should look for your visitors.", 'foodblogkitchen-toolkit') . '</p>';
 			},
@@ -360,13 +398,27 @@ class FoodblogkitchenToolkit
 
 		// Fields
 		add_settings_field(
+			'foodblogkitchen_toolkit__show_jump_to_recipe',
+			__('Jump to recipe', 'foodblogkitchen-toolkit'),
+			function () {
+				$this->renderCheckboxInput('foodblogkitchen_toolkit__show_jump_to_recipe', true, __('Add a "Jump to recipe" button on every page with the recipe block.', 'foodblogkitchen-toolkit'));
+			},
+			'foodblogkitchen_toolkit__general',
+			'foodblogkitchen_toolkit__general',
+			array(
+				'label_for' => 'foodblogkitchen_toolkit__show_jump_to_recipe'
+			)
+		);
+
+
+		add_settings_field(
 			'foodblogkitchen_toolkit__primary_color',
 			__('Primary color', 'foodblogkitchen-toolkit'),
 			function () {
 				$this->renderColorPickerInput('foodblogkitchen_toolkit__primary_color', $this->primaryColorDefault);
 			},
 			'foodblogkitchen_toolkit__general',
-			'foodblogkitchen_toolkit__general',
+			'foodblogkitchen_toolkit__visual',
 			array(
 				'label_for' => 'foodblogkitchen_toolkit__primary_color'
 			)
@@ -378,7 +430,7 @@ class FoodblogkitchenToolkit
 				$this->renderColorPickerInput('foodblogkitchen_toolkit__secondary_color', $this->secondaryColorDefault);
 			},
 			'foodblogkitchen_toolkit__general',
-			'foodblogkitchen_toolkit__general',
+			'foodblogkitchen_toolkit__visual',
 			array(
 				'label_for' => 'foodblogkitchen_toolkit__secondary_color'
 			)
@@ -390,7 +442,7 @@ class FoodblogkitchenToolkit
 				$this->renderColorPickerInput('foodblogkitchen_toolkit__background_color', $this->backgroundColorDefault);
 			},
 			'foodblogkitchen_toolkit__general',
-			'foodblogkitchen_toolkit__general',
+			'foodblogkitchen_toolkit__visual',
 			array(
 				'label_for' => 'foodblogkitchen_toolkit__background_color'
 			)
@@ -403,7 +455,7 @@ class FoodblogkitchenToolkit
 				$this->renderCheckboxInput('foodblogkitchen_toolkit__show_border', $this->showBorderDefault, __('Show border', 'foodblogkitchen-toolkit'));
 			},
 			'foodblogkitchen_toolkit__general',
-			'foodblogkitchen_toolkit__general',
+			'foodblogkitchen_toolkit__visual',
 			array(
 				'label_for' => 'foodblogkitchen_toolkit__show_border'
 			)
@@ -415,7 +467,7 @@ class FoodblogkitchenToolkit
 				$this->renderCheckboxInput('foodblogkitchen_toolkit__show_box_shadow', $this->showBoxShadowDefault, __('Show box shadow', 'foodblogkitchen-toolkit'));
 			},
 			'foodblogkitchen_toolkit__general',
-			'foodblogkitchen_toolkit__general',
+			'foodblogkitchen_toolkit__visual',
 			array(
 				'label_for' => 'foodblogkitchen_toolkit__show_box_shadow'
 			)
@@ -427,7 +479,7 @@ class FoodblogkitchenToolkit
 				$this->renderNumberInput('foodblogkitchen_toolkit__border_radius', $this->borderRadiusDefault);
 			},
 			'foodblogkitchen_toolkit__general',
-			'foodblogkitchen_toolkit__general',
+			'foodblogkitchen_toolkit__visual',
 			array(
 				'label_for' => 'foodblogkitchen_toolkit__border_radius'
 			)
@@ -708,6 +760,19 @@ class FoodblogkitchenToolkit
 		// So I add a suffix on the default which is removed in "edit.js" and so it is possible
 		// to store the migrated data.
 		// Workaround for https://github.com/WordPress/gutenberg/issues/7342
+
+		// Jump to recipe
+
+		register_block_type('foodblogkitchen-recipes/jump-to-recipe', array(
+			'editor_script' => 'foodblogkitchen-toolkit-recipe-block-editor',
+			'editor_style'  => 'foodblogkitchen-toolkit-recipe-block-editor',
+			'script'        => 'foodblogkitchen-toolkit-recipe-block',
+			'style'         => 'foodblogkitchen-toolkit-recipe-block',
+			'attributes' => array(),
+			'render_callback' => array($this, 'renderJumpToRecipeBlock'),
+		));
+
+		// Recipe block
 
 		register_block_type('foodblogkitchen-recipes/block', array(
 			'editor_script' => 'foodblogkitchen-toolkit-recipe-block-editor',
@@ -1029,10 +1094,22 @@ class FoodblogkitchenToolkit
 		return include(plugin_dir_path(__FILE__) . '/build/recipe-block-renderer.php');
 	}
 
-	private function renderTemplate($data)
+	public function getJumpToRecipeBlockRenderer()
 	{
-		$renderer = $this->getTemplateRenderer();
-		return $renderer($data);
+		if (!file_exists(plugin_dir_path(__FILE__) . '/build/jump-to-recipe-renderer.php') || WP_DEBUG) {
+			$dir = dirname(__FILE__);
+			$template = file_get_contents($dir . '/src/blocks/jump-to-recipe/template.hbs');
+
+			$phpStr = LightnCandy::compile($template, array(
+				'flags' => LightnCandy::FLAG_HANDLEBARSJS | LightnCandy::FLAG_ERROR_EXCEPTION
+			));
+
+			// Save the compiled PHP code into a php file
+			file_put_contents(plugin_dir_path(__FILE__) . '/build/jump-to-recipe-renderer.php', '<?php ' . $phpStr . '?>');
+		}
+
+		// Get the render function from the php file
+		return include(plugin_dir_path(__FILE__) . '/build/jump-to-recipe-renderer.php');
 	}
 
 	public function getDummyData()
@@ -1309,6 +1386,15 @@ class FoodblogkitchenToolkit
 		$attributes['svgs'] = $this->getSvgs($attributes['options']);
 
 		$renderer = $this->getRecipeBlockRenderer();
+		return $renderer($attributes);
+	}
+
+	public function renderJumpToRecipeBlock($attributes, $context)
+	{
+		$renderer = $this->getJumpToRecipeBlockRenderer();
+		$attributes['translations'] = array(
+			"jumpToRecipe" => __('Jump to recipe', 'foodblogkitchen-toolkit')
+		);
 		return $renderer($attributes);
 	}
 
