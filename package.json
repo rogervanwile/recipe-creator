@@ -11,7 +11,7 @@
     "format:js": "wp-scripts format-js",
     "lint:css": "wp-scripts lint-style",
     "lint:js": "wp-scripts lint-js",
-    "start": "wp-scripts start src/index.js src/frontend.js && gulp watch",
+    "start": "wp-scripts start && gulp watch",
     "packages-update": "wp-scripts packages-update",
     "archive": "node ./create-archive.js",
     "sync:uebersee": "rsync -a ./ /Applications/MAMP/htdocs/uebersee/wp-content/plugins/foodblogkitchen-toolkit",
