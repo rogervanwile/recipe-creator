@@ -670,7 +670,7 @@ class FoodblogkitchenToolkit
 	{
 		// Jump to recipe
 
-		register_block_type('foodblogkitchen-recipes/jump-to-recipe', array(
+		register_block_type('foodblogkitchen-toolkit/jump-to-recipe', array(
 			'editor_script' => 'foodblogkitchen-toolkit-recipe-block-editor',
 			'editor_style'  => 'foodblogkitchen-toolkit-recipe-block-editor',
 			'script'        => 'foodblogkitchen-toolkit-recipe-block',
@@ -1014,7 +1014,7 @@ class FoodblogkitchenToolkit
 
 	public function getJumpToRecipeBlockRenderer()
 	{
-		if (!file_exists(plugin_dir_path(__FILE__) . '/build/jump-to-recipe-renderer.php') || WP_DEBUG) {
+		if (!file_exists(plugin_dir_path(__FILE__) . '/build/jump-to-recipe-block-renderer.php') || WP_DEBUG) {
 			$dir = dirname(__FILE__);
 			$template = file_get_contents($dir . '/src/blocks/jump-to-recipe/template.hbs');
 
@@ -1023,11 +1023,11 @@ class FoodblogkitchenToolkit
 			));
 
 			// Save the compiled PHP code into a php file
-			file_put_contents(plugin_dir_path(__FILE__) . '/build/jump-to-recipe-renderer.php', '<?php ' . $phpStr . '?>');
+			file_put_contents(plugin_dir_path(__FILE__) . '/build/jump-to-recipe-block-renderer.php', '<?php ' . $phpStr . '?>');
 		}
 
 		// Get the render function from the php file
-		return include(plugin_dir_path(__FILE__) . '/build/jump-to-recipe-renderer.php');
+		return include(plugin_dir_path(__FILE__) . '/build/jump-to-recipe-block-renderer.php');
 	}
 
 	public function getDummyData()

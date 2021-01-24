@@ -6,7 +6,7 @@ import Save from "./save";
 
 import "./style.scss";
 
-registerBlockType("foodblogkitchen-recipes/jump-to-recipe", {
+registerBlockType("foodblogkitchen-toolkit/jump-to-recipe", {
     title: __("Jump to recipe", 'foodblogkitchen-toolkit'),
     description: __(
         "Add a quick link which jumps to the recipe in the page.",
