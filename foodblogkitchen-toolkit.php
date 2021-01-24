@@ -513,7 +513,7 @@ class FoodblogkitchenToolkit
 			'foodblogkitchen_toolkit__pinterest_image_overlay__enabled',
 			__('Image overlay', 'foodblogkitchen-toolkit'),
 			function () {
-				$this->renderCheckboxInput('foodblogkitchen_toolkit__pinterest_image_overlay__enabled', false, __('Show Pinterest share icon over images', 'foodblogkitchen-toolkit'));
+				$this->renderCheckboxInput('foodblogkitchen_toolkit__pinterest_image_overlay__enabled', false, __('Show Pinterest share icon on post images. This only affects images on posts created with Gutenberg.', 'foodblogkitchen-toolkit'));
 			},
 			'foodblogkitchen_toolkit__pinterest',
 			'foodblogkitchen_toolkit__pinterest',
