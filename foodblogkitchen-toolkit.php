@@ -687,9 +687,19 @@ class FoodblogkitchenToolkit
 			'script'        => 'foodblogkitchen-toolkit-recipe-block',
 			'style'         => 'foodblogkitchen-toolkit-recipe-block',
 			'attributes' => array(
+				// deprecated
 				'ingredients' => array(
 					'type' => 'string',
 					'default' => ''
+				),
+				'ingredientsGroups' => array(
+					'type' => 'array',
+					'default' => [
+						[
+							"title" => "",
+							"list" => ""
+						]
+					]
 				),
 				'preparationSteps' => array(
 					'type' => 'string',
@@ -865,7 +875,6 @@ class FoodblogkitchenToolkit
 		$ingredientsArray = array_map(function ($item) {
 			$result = str_replace(['<li>', '</li>'], '', $item);
 			return $result;
-			// return strip_tags($item);
 		}, $ingredientsArray);
 
 		$ingredientsArray = array_map(function ($item) {
@@ -981,6 +990,13 @@ class FoodblogkitchenToolkit
 						} else {
 							return $options['inverse']();
 						}
+					},
+					'isEven' => function ($conditional, $options) {
+						if ($conditional % 2 === 0) {
+							return $options['fn']();
+						} else {
+							return $options['inverse']();
+						}
 					}
 				),
 				"partials" => array(
@@ -1026,35 +1042,38 @@ class FoodblogkitchenToolkit
 			'name' => __("Banana shake", 'foodblogkitchen-toolkit'),
 			"description" => __("You have bananas left over again and don't know what to do with them? How about a delicious shake?", 'foodblogkitchen-toolkit'),
 			'totalTime' => 5,
-			"ingredients" => array(
-				array(
-					"baseUnit" => "ml",
-					"baseAmount" => 250,
-					"amount" => 500,
-					"unit" => "ml",
-					"ingredient" => __("milk", 'foodblogkitchen-toolkit')
-				),
-				array(
-					"baseUnit" => "",
-					"baseAmount" => 0.5,
-					"amount" => 1,
-					"unit" => "",
-					"ingredient" => __("banana", 'foodblogkitchen-toolkit')
-				),
-				array(
-					"baseUnit" => "TL",
-					"baseAmount" => 0.5,
-					"amount" => 1,
-					"unit" => "TL",
-					"ingredient" => __("sugar", 'foodblogkitchen-toolkit')
-				),
-				array(
-					"baseUnit" => "",
-					"baseAmount" => 0,
-					"amount" => 0,
-					"unit" => "",
-					"ingredient" => __("cinnamon", 'foodblogkitchen-toolkit')
-				),
+			"ingredientsGroups" => array(
+				"title" => "",
+				"list" => array(
+					array(
+						"baseUnit" => "ml",
+						"baseAmount" => 250,
+						"amount" => 500,
+						"unit" => "ml",
+						"ingredient" => __("milk", 'foodblogkitchen-toolkit')
+					),
+					array(
+						"baseUnit" => "",
+						"baseAmount" => 0.5,
+						"amount" => 1,
+						"unit" => "",
+						"ingredient" => __("banana", 'foodblogkitchen-toolkit')
+					),
+					array(
+						"baseUnit" => "TL",
+						"baseAmount" => 0.5,
+						"amount" => 1,
+						"unit" => "TL",
+						"ingredient" => __("sugar", 'foodblogkitchen-toolkit')
+					),
+					array(
+						"baseUnit" => "",
+						"baseAmount" => 0,
+						"amount" => 0,
+						"unit" => "",
+						"ingredient" => __("cinnamon", 'foodblogkitchen-toolkit')
+					)
+				)
 			),
 			"preparationSteps" => '<li>' . join("</li><li>", [
 				__("Peel banana.", 'foodblogkitchen-toolkit'),
@@ -1109,7 +1128,7 @@ class FoodblogkitchenToolkit
 		$averageRating = get_post_meta(get_the_ID(), 'average_rating', true) ?: 0;
 		$ratingCount = get_post_meta(get_the_ID(), 'rating_count', true) ?: 0;
 
-		$attributes['recipeYield'] = isset($attributes['recipeYield']) ? intval($attributes['recipeYield']) : 0;
+		$attributes['recipeYield'] = isset($attributes['recipeYield']) ? intval($attributes['recipeYield']) : 1;
 
 		$attributes['prepTime'] = floatval($attributes['prepTime']);
 		$attributes['restTime'] = floatval($attributes['restTime']);
@@ -1125,33 +1144,21 @@ class FoodblogkitchenToolkit
 			$attributes['recipeYieldUnit'] = __($attributes['recipeYieldUnit'], 'foodblogkitchen-toolkit');
 		}
 
-		$attributes['ingredients'] = array_map(function ($item) use ($attributes) {
-			$baseItemsAmount = $attributes['recipeYield'];
+		// In version 1.4.0 I added the possibility to split ingredient lists
+		// So we have to migrate the old list (ingredients) to the new structure
+		// of ingredientsGroups.
 
-			if (isset($item['amount']) && $baseItemsAmount !== 0) {
-				$item['baseAmount'] = floatval($item['amount']) / $baseItemsAmount;
-			}
+		if (isset($attributes['ingredients']) && !empty($attributes['ingredients'])) {
+			$attributes['ingredientsGroups'] = [
+				[
+					"title" => "",
+					"list" => $attributes['ingredients']
+				]
+			];
+			unset($attributes["ingredients"]);
+		}
 
-			if (isset($item['unit'])) {
-				if (preg_match("/^(g|ml)$/i", $item['unit'])) {
-					$item['baseUnit'] = $item['unit'];
-				} else if (preg_match("/^(kilo|kilogramm|kg)$/i", $item['unit'])) {
-					$item['baseUnit'] = 'g';
-					if (isset($item['baseAmount'])) {
-						$item['baseAmount'] = $item['baseAmount'];
-					}
-				} else if (preg_match("/^(liter)$/i", $item['unit'])) {
-					$item['baseUnit'] = 'ml';
-					if (isset($item['baseAmount'])) {
-						$item['baseAmount'] = $item['baseAmount'] / 1000;
-					}
-				} else {
-					$item['baseUnit'] = $item['unit'];
-				}
-			}
-
-			return $item;
-		}, $this->extractIngredients($attributes['ingredients']));
+		$attributes['ingredientsGroups'] = $this->prepareIngredientsForRenderer($attributes['ingredientsGroups'], $attributes['recipeYield']);
 
 		$attributes['averageRating'] = $averageRating;
 
@@ -1246,11 +1253,7 @@ class FoodblogkitchenToolkit
 				"@type" => "NutritionInformation",
 				"calories" => $attributes['calories']
 			] : '',
-			"recipeIngredient" =>
-			isset($attributes['ingredients']) ?
-				array_map(function ($item) {
-					return trim((isset($item['amount']) ? $item['amount'] : '') . ' ' . (isset($item['unit']) ? $item['unit'] : '') . ' ' . (isset($item['ingredient']) ? strip_tags($item['ingredient']) : ''));
-				}, $attributes['ingredients']) : '',
+			"recipeIngredient" => $this->prepareIngredientsForJsonLd($attributes['ingredientsGroups']),
 			"recipeInstructions" =>
 			isset($attributes['preparationSteps']) ?
 				array_map(function ($item) {
@@ -1288,6 +1291,56 @@ class FoodblogkitchenToolkit
 
 		$renderer = $this->getRecipeBlockRenderer();
 		return $renderer($attributes);
+	}
+
+	private function prepareIngredientsForRenderer($ingredientsGroups, $recipeYield = 1)
+	{
+		return array_map(function ($group) use ($recipeYield) {
+			$ingredientsRaw = $this->extractIngredients($group['list']);
+
+			$group['items'] = array_map(function ($item) use ($recipeYield) {
+				if (isset($item['amount']) && $recipeYield !== 0) {
+					$item['baseAmount'] = floatval($item['amount']) / $recipeYield;
+				}
+
+				if (isset($item['unit'])) {
+					if (preg_match("/^(g|ml)$/i", $item['unit'])) {
+						$item['baseUnit'] = $item['unit'];
+					} else if (preg_match("/^(kilo|kilogramm|kg)$/i", $item['unit'])) {
+						$item['baseUnit'] = 'g';
+						if (isset($item['baseAmount'])) {
+							$item['baseAmount'] = $item['baseAmount'];
+						}
+					} else if (preg_match("/^(liter)$/i", $item['unit'])) {
+						$item['baseUnit'] = 'ml';
+						if (isset($item['baseAmount'])) {
+							$item['baseAmount'] = $item['baseAmount'] / 1000;
+						}
+					} else {
+						$item['baseUnit'] = $item['unit'];
+					}
+				}
+
+				return $item;
+			}, $ingredientsRaw);
+			return $group;
+		}, $ingredientsGroups);
+	}
+
+	private function prepareIngredientsForJsonLd($ingredientsGroups)
+	{
+		// In JSON LD the ingredients must be a flat array
+		$flatIngredients = [];
+
+		foreach ($ingredientsGroups as $group) {
+			if (isset($group['items']) && count($group['items']) > 0) {
+				foreach ($group['items'] as $item) {
+					$flatIngredients[] = trim((isset($item['amount']) ? $item['amount'] : '') . ' ' . (isset($item['unit']) ? $item['unit'] : '') . ' ' . (isset($item['ingredient']) ? strip_tags($item['ingredient']) : ''));
+				}
+			}
+		}
+
+		return $flatIngredients;
 	}
 
 	public function renderJumpToRecipeBlock($attributes, $context)

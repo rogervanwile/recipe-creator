@@ -213,6 +213,13 @@
     }
   }
 
+  .foodblogkitchen-toolkit--recipe-block--group-title {
+    th {
+      padding-top: 16px;
+      padding-bottom: 4px;
+    }
+  }
+
   .foodblogkitchen-toolkit--recipe-block--ingredients {
     padding: 0;
     width: 100%;
@@ -242,21 +249,21 @@
           width: 100%;
         }
       }
+    }
 
-      &:nth-child(odd) {
-        td {
-          background-color: var(--primary-light);
-          color: var(--primary-light-contrast);
+    tr.foodblogkitchen-toolkit--recipe-block--ingredients-item.foodblogkitchen-toolkit--even {
+      td {
+        background-color: var(--primary-light);
+        color: var(--primary-light-contrast);
 
-          &:first-child {
-            border-top-left-radius: 2px;
-            border-bottom-left-radius: 2px;
-          }
+        &:first-child {
+          border-top-left-radius: 2px;
+          border-bottom-left-radius: 2px;
+        }
 
-          &:last-child {
-            border-top-right-radius: 2px;
-            border-bottom-right-radius: 2px;
-          }
+        &:last-child {
+          border-top-right-radius: 2px;
+          border-bottom-right-radius: 2px;
         }
       }
     }

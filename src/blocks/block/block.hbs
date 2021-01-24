@@ -15,7 +15,8 @@
       {{#if averageRating}}
       <div class="foodblogkitchen-toolkit--recipe-block--rating foodblogkitchen-toolkit--recipe-block--rating--small">
         <ol>
-          <li class="foodblogkitchen-toolkit--recipe-block--star{{#if averageRating}} selected{{/if}}" data-rating="1">1</li>
+          <li class="foodblogkitchen-toolkit--recipe-block--star{{#if averageRating}} selected{{/if}}" data-rating="1">1
+          </li>
           <li
             class="foodblogkitchen-toolkit--recipe-block--star{{#ifMoreOrEqual averageRating 2}} selected{{else}}{{#ifMoreOrEqual averageRating 1.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
             data-rating="2">2</li>
@@ -86,7 +87,7 @@
 
   <hr />
 
-  {{#if ingredients}}
+  {{#if ingredientsGroups.0}}
   <div class="foodblogkitchen-toolkit--recipe-block--headline">
     <h3>{{translations/ingredients}}</h3>
     {{#if recipeYield}}
@@ -101,12 +102,19 @@
   </div>
   <table class="foodblogkitchen-toolkit--recipe-block--ingredients">
     <tbody>
-      {{#each ingredients}}
-      <tr>
+      {{#each ingredientsGroups}}
+      {{#if this/title}}
+      <tr class="foodblogkitchen-toolkit--recipe-block--group-title">
+        <th colspan="2">{{this.title}}</th>
+      </tr>
+      {{/if}}
+      {{#each this/items}}
+      <tr class="foodblogkitchen-toolkit--recipe-block--ingredients-item{{#isEven @index}} foodblogkitchen-toolkit--even{{/isEven}}">
         <td class="foodblogkitchen-toolkit--recipe-block--amount" data-recipe-base-amount="{{this/baseAmount}}"
           data-recipe-base-unit="{{this/baseUnit}}">{{this/amount}} {{this/unit}}</td>
         <td class="foodblogkitchen-toolkit--recipe-block--ingredient">{{{this/ingredient}}}</td>
       </tr>
+      {{/each}}
       {{/each}}
     </tbody>
   </table>
