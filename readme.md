@@ -14,12 +14,6 @@ The translations for the JS files have to be a JSON file.
 
 More Infos: https://developer.wordpress.org/block-editor/developers/internationalization/
 
-# Todos
-
-- Zahlenfelder gehen manchmal nicht richtig
-- DEFAULT-Hack ausbauen oder gucken warum es beim 2. mal kommt
-- Setup Autoupdate
-
 # Development
 
 `yarn start`
