@@ -577,73 +577,6 @@ class FoodblogkitchenToolkit
 		));
 	}
 
-	public function getRecipeFromSP()
-	{
-		global $pagenow;
-
-		if (($pagenow == 'post.php') || (get_post_type() == 'post')) {
-
-			$postId = $_GET['post'];
-
-			if ($postId) {
-				$postMeta = get_post_meta($postId);
-				return $this->extractRecipeFromMeta($postMeta);
-			}
-		}
-
-		return null;
-	}
-
-	private function extractRecipeFromMeta($meta)
-	{
-		$recipe = [];
-
-		foreach ($meta as $key => $value) {
-
-			switch ($key) {
-				case 'sp-recipe-title':
-					$recipe['name'] = $value[0];
-					break;
-				case 'sp-recipe-description':
-					$recipe['description'] = $value[0];
-					break;
-				case 'sp-recipe-servings':
-					$recipe['recipeYield'] = $value[0];
-					break;
-				case 'sp-recipe-time-prep':
-					$recipe['prepTime'] = strval(intval($value[0]));
-					break;
-				case 'sp-recipe-time':
-					$recipe['cookTime'] = strval(intval($value[0]));
-					break;
-				case 'sp-recipe-time-total':
-					$recipe['totalTime'] = strval(intval($value[0]));
-					break;
-				case 'sp-recipe-cuisine':
-					$recipe['recipeCuisine'] = $value[0];
-					break;
-				case 'sp-recipe-ingredients':
-					$recipe['ingredients'] = $this->arrayToLi(array_map('trim', explode(PHP_EOL, $value[0])));
-					break;
-				case 'sp-recipe-method':
-					$recipe['preparationSteps'] = $this->arrayToLi(array_map('trim', explode(PHP_EOL, $value[0])));
-					break;
-				case 'sp-recipe-calories':
-					$recipe['calories'] = $value[0];
-					break;
-				case 'sp-recipe-notes':
-					$recipe['notes'] = $value[0];
-					break;
-			}
-		}
-
-		return $recipe;
-	}
-
-	private function arrayToLi($array)
-	{
-		return '<li>' . implode('</li><li>', $array) . '</li>';
-	}
 
 	public function activate()
 	{
@@ -653,24 +586,6 @@ class FoodblogkitchenToolkit
 	public function deactivate()
 	{
 		flush_rewrite_rules();
-	}
-
-	private function getPropertyFromRecipe($recipe, $property, $type = 'string')
-	{
-
-		if (isset($recipe) && isset($recipe[$property])) {
-			if ($type === 'string') {
-				return $recipe[$property] .  '::STORE_DEFAULT_VALUE_HACK';
-			} else {
-				return intval($recipe[$property]) . '::STORE_DEFAULT_VALUE_NUMBER_HACK';
-			}
-		} else {
-			if ($type === 'string') {
-				return '';
-			} else {
-				return 0;
-			}
-		}
 	}
 
 	public function addRessources()
@@ -753,14 +668,6 @@ class FoodblogkitchenToolkit
 
 	public function registerBlock()
 	{
-		$recipe = $this->getRecipeFromSP();
-		// $recipe = null;
-
-		// The value of a property is not stored in the database if it is the default value
-		// So I add a suffix on the default which is removed in "edit.js" and so it is possible
-		// to store the migrated data.
-		// Workaround for https://github.com/WordPress/gutenberg/issues/7342
-
 		// Jump to recipe
 
 		register_block_type('foodblogkitchen-recipes/jump-to-recipe', array(
@@ -782,38 +689,38 @@ class FoodblogkitchenToolkit
 			'attributes' => array(
 				'ingredients' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'ingredients')
+					'default' => ''
 				),
 				'preparationSteps' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'preparationSteps')
+					'default' => ''
 				),
 				'name' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'name')
+					'default' => ''
 				),
 				'description' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'description')
+					'default' => ''
 				),
 				'difficulty' => array(
 					'type' => 'string'
 				),
 				'notes' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'notes')
+					'default' => ''
 				),
 				'prepTime' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'prepTime')
+					'default' => ''
 				),
 				'restTime' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'restTime')
+					'default' => ''
 				),
 				'cookTime' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'cookTime')
+					'default' => ''
 				),
 				'bakingTime' => array(
 					'type' => 'string',
@@ -821,7 +728,7 @@ class FoodblogkitchenToolkit
 				),
 				'totalTime' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'totalTime')
+					'default' => ''
 				),
 				'recipeYield' => array(
 					'type' => 'string',
@@ -839,58 +746,53 @@ class FoodblogkitchenToolkit
 					'type' => 'string',
 					'default' => ''
 				),
-				// DEPRECATED, löschen wenn Isas Blog durch ist 
-				'servings' => array(
-					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'recipeYield')
-				),
 				'calories' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'calories')
+					'default' => ''
 				),
 				'recipeCuisine' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'recipeCuisine')
+					'default' => ''
 				),
 				'image1_1' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'image1_1')
+					'default' => ''
 				),
 				'image1_1Id' => array(
 					'type' => 'number'
 				),
 				'image3_2' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'image3_2')
+					'default' => ''
 				),
 				'image3_2Id' => array(
 					'type' => 'number'
 				),
 				'image4_3' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'image4_3')
+					'default' => ''
 				),
 				'image4_3Id' => array(
 					'type' => 'number',
 				),
 				'image16_9' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'image16_9')
+					'default' => ''
 				),
 				'image16_9Id' => array(
 					'type' => 'number',
 				),
 				'videoUrl' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'videoUrl')
+					'default' => ''
 				),
 				'content' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'content')
+					'default' => ''
 				),
 				'className' => array(
 					'type' => 'string',
-					'default' => $this->getPropertyFromRecipe($recipe, 'className')
+					'default' => ''
 				),
 				'align' => array(
 					'type' => 'string',
@@ -1207,7 +1109,6 @@ class FoodblogkitchenToolkit
 		$averageRating = get_post_meta(get_the_ID(), 'average_rating', true) ?: 0;
 		$ratingCount = get_post_meta(get_the_ID(), 'rating_count', true) ?: 0;
 
-		$attributes['servings'] = isset($attributes['servings']) ? intval($attributes['servings']) : 0;
 		$attributes['recipeYield'] = isset($attributes['recipeYield']) ? intval($attributes['recipeYield']) : 0;
 
 		$attributes['prepTime'] = floatval($attributes['prepTime']);
@@ -1225,7 +1126,7 @@ class FoodblogkitchenToolkit
 		}
 
 		$attributes['ingredients'] = array_map(function ($item) use ($attributes) {
-			$baseItemsAmount = $attributes['servings'] ?: $attributes['recipeYield'];
+			$baseItemsAmount = $attributes['recipeYield'];
 
 			if (isset($item['amount']) && $baseItemsAmount !== 0) {
 				$item['baseAmount'] = floatval($item['amount']) / $baseItemsAmount;

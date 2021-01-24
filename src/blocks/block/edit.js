@@ -19,8 +19,6 @@ import { useDispatch } from "@wordpress/data";
 
 import "./editor.scss";
 
-var foodblogkitchenToolkitMigrationDone = false;
-
 export default function Edit(props) {
   const updateAttributes = (data) => {
     useEffect(() => {
@@ -31,59 +29,6 @@ export default function Edit(props) {
   const { editPost } = useDispatch('core/editor');
   const setMeta = function (keyAndValue) {
     editPost({ meta: keyAndValue })
-  }
-
-  // TODO: Migration, remove for live version
-  // Workaround for https://github.com/WordPress/gutenberg/issues/7342
-  if (!foodblogkitchenToolkitMigrationDone) {
-    const cleanedDefaultData = {};
-
-    Object.keys(props.attributes).forEach((key) => {
-      if (
-        typeof props.attributes[key] === "string" &&
-        props.attributes[key].indexOf("::STORE_DEFAULT_VALUE_HACK") !== -1
-      ) {
-        cleanedDefaultData[key] = props.attributes[key].replace(
-          "::STORE_DEFAULT_VALUE_HACK",
-          ""
-        );
-      } else if (
-        typeof props.attributes[key] === "string" &&
-        props.attributes[key].indexOf("::STORE_DEFAULT_VALUE_NUMBER_HACK") !==
-        -1
-      ) {
-        cleanedDefaultData[key] = parseInt(
-          props.attributes[key].replace(
-            "::STORE_DEFAULT_VALUE_NUMBER_HACK",
-            ""
-          ),
-          10
-        );
-      } else {
-        cleanedDefaultData[key] = props.attributes[key];
-      }
-    });
-
-    foodblogkitchenToolkitMigrationDone = true;
-
-    updateAttributes(cleanedDefaultData);
-  }
-
-  // TODO: Migration, remove for live version
-  if (props.attributes.servings) {
-    if (!props.attributes.recipeYield) {
-      updateAttributes({
-        recipeYield: props.attributes.servings,
-        recipeYieldUnit: "servings",
-        servings: "",
-      });
-    } else {
-      updateAttributes({ servings: "", recipeYieldUnit: "piece" });
-    }
-  }
-
-  if (props.attributes.recipeYield && !props.attributes.recipeYieldUnit) {
-    updateAttributes({ recipeYieldUnit: "piece" });
   }
 
   const ALLOWED_MEDIA_TYPES = ["image"];
