@@ -70,14 +70,15 @@ class FoodblogkitchenToolkit
 	{
 		// Check if we're inside the main loop in a single Post.
 		if (is_singular() && in_the_loop() && is_main_query()) {
-			if (strstr($content, 'wp:foodblogkitchen-recipes/block') !== false) {
-				// The $content contains the recipe block
-
-				// If there is no "jump to recipe" block inside the content
-				// and the option "foodblogkitchen_toolkit__show_jump_to_recipe"
-				// is set to true, I prepend the "jump to recipe" block to the content
-				if (get_option('foodblogkitchen_toolkit__show_jump_to_recipe', true) && strstr($content, 'wp:foodblogkitchen-recipes/jump-to-recipe') === false) {
-					$content = "<!-- wp:foodblogkitchen-recipes/jump-to-recipe /-->\n\n" . $content;
+			if (has_blocks()) {
+				// Does the contentThe $content contains the recipe block
+				if (has_block('foodblogkitchen-recipes/block')) {
+					// If there is no "jump to recipe" block inside the content
+					// and the option "foodblogkitchen_toolkit__show_jump_to_recipe"
+					// is set to true, I prepend the "jump to recipe" block to the content
+					if (get_option('foodblogkitchen_toolkit__show_jump_to_recipe', true) && has_block('foodblogkitchen-toolkit/jump-to-recipe')) {
+						$content = "<!-- wp:foodblogkitchen-toolkit/jump-to-recipe /-->\n\n" . $content;
+					}
 				}
 			}
 		}
@@ -1229,7 +1230,6 @@ class FoodblogkitchenToolkit
 					'&description=' . urlencode($description);
 			}
 		}
-
 
 		$attributes['ldJson'] = [
 			"@context" => "https://schema.org/",
