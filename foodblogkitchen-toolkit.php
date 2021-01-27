@@ -80,6 +80,41 @@ class FoodblogkitchenToolkit
 						$content = "<!-- wp:foodblogkitchen-toolkit/jump-to-recipe /-->\n\n" . $content;
 					}
 				}
+
+				if (has_block('foodblogkitchen-toolkit/faq')) {
+					// The LD-JSON for FAQ blocks must be combined into one
+					// So lets check if there are FAQ blocks on this page
+
+					$faqBlocks = [];
+					$blocks = parse_blocks($content);
+
+					foreach ($blocks as $block) {
+						if ($block['blockName'] === 'foodblogkitchen-toolkit/faq') {
+							$faqBlocks[] = $block;
+						}
+					}
+
+					if (count($faqBlocks) > 0) {
+						$lsJson = [
+							"@context" => "https://schema.org/",
+							"@type" => "FAQPage",
+							"mainEntity" => []
+						];
+
+						foreach ($faqBlocks as $block) {
+							$lsJson['mainEntity'][] = [
+								"@type" => "Question",
+								"name" => $block["attrs"]['question'],
+								"acceptedAnswer" => [
+									"@type" => "Answer",
+									"text" => $block["attrs"]['answer']
+								]
+							];
+						}
+
+						echo '<script type="application/ld+json">' . json_encode($lsJson) . '</script>';
+					}
+				}
 			}
 		}
 
@@ -812,6 +847,27 @@ class FoodblogkitchenToolkit
 			),
 			'render_callback' => array($this, 'renderRecipeBlock'),
 		));
+
+
+		// FAQ
+
+		register_block_type('foodblogkitchen-toolkit/faq', array(
+			'editor_script' => 'foodblogkitchen-toolkit-faq-block-editor',
+			'editor_style'  => 'foodblogkitchen-toolkit-faq-block-editor',
+			'script'        => 'foodblogkitchen-toolkit-faq-block',
+			'style'         => 'foodblogkitchen-toolkit-faq-block',
+			'attributes' => array(
+				'question' => array(
+					'type' => 'string',
+					'default' => ''
+				),
+				'answer' => array(
+					'type' => 'string',
+					'default' => ''
+				),
+			),
+			'render_callback' => array($this, 'renderFAQBlock'),
+		));
 	}
 
 	public function setRating()
@@ -1029,6 +1085,29 @@ class FoodblogkitchenToolkit
 
 		// Get the render function from the php file
 		return include(plugin_dir_path(__FILE__) . '/build/jump-to-recipe-block-renderer.php');
+	}
+
+	public function getFAQBlockRenderer()
+	{
+		if (!file_exists(plugin_dir_path(__FILE__) . '/build/faq-block-renderer.php') || WP_DEBUG) {
+			$dir = dirname(__FILE__);
+			$template = file_get_contents($dir . '/src/blocks/faq/template.hbs');
+
+			$phpStr = LightnCandy::compile($template, array(
+				'flags' => LightnCandy::FLAG_HANDLEBARSJS | LightnCandy::FLAG_ERROR_EXCEPTION,
+				"helpers" => [
+					'toJSON' => function ($context, $options) {
+						return json_encode($context);
+					},
+				]
+			));
+
+			// Save the compiled PHP code into a php file
+			file_put_contents(plugin_dir_path(__FILE__) . '/build/faq-block-renderer.php', '<?php ' . $phpStr . '?>');
+		}
+
+		// Get the render function from the php file
+		return include(plugin_dir_path(__FILE__) . '/build/faq-block-renderer.php');
 	}
 
 	public function getDummyData()
@@ -1349,6 +1428,12 @@ class FoodblogkitchenToolkit
 		$attributes['translations'] = array(
 			"jumpToRecipe" => __('Jump to recipe', 'foodblogkitchen-toolkit')
 		);
+		return $renderer($attributes);
+	}
+
+	public function renderFAQBlock($attributes, $context)
+	{
+		$renderer = $this->getFAQBlockRenderer();
 		return $renderer($attributes);
 	}
 
