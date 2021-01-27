@@ -26,3 +26,17 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 
 `$ ./create-archive.sh`
 `$ ./publish-latest.sh`
+
+# Testing
+
+This plugin is using https://cypress.io for integration tests.
+It is orchestrated with https://github.com/bigbite/wp-cypress.
+
+## Running tests
+
+```
+yarn install
+yarn test:start
+yarn run cypress open 
+yarn test:stop
+```
