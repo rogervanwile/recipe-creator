@@ -83,5 +83,4 @@ describe('Tests with valid license', () => {
         cy.get('.recipe-servings').contains('5');
         cy.get('.foodblogkitchen-toolkit--block').contains('2,5 onions');
     });
-
 });

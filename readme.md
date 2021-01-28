@@ -37,6 +37,6 @@ It is orchestrated with https://github.com/bigbite/wp-cypress.
 ```
 yarn install
 yarn test:start
-yarn run cypress open 
 yarn test:stop
 ```
+
