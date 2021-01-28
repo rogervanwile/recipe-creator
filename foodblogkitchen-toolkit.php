@@ -616,12 +616,16 @@ class FoodblogkitchenToolkit
 
 	public function activate()
 	{
-		flush_rewrite_rules();
 	}
 
 	public function deactivate()
 	{
-		flush_rewrite_rules();
+	}
+
+	static public function uninstall()
+	{
+		// Remove the license key
+		FoodblogkitchenToolkit::unregisterLicense();
 	}
 
 	public function addRessources()
@@ -1516,6 +1520,110 @@ class FoodblogkitchenToolkit
 		}
 		return $ret;
 	}
+
+	public static function registerLicense($licenseKey)
+	{
+
+		// API query parameters
+		$api_params = array(
+			'slm_action' => 'slm_activate',
+			'secret_key' => self::$licenseSecretKey,
+			'license_key' => $licenseKey,
+			'registered_domain' => $_SERVER['SERVER_NAME'],
+			'item_reference' => urlencode(FoodblogkitchenToolkit::$licenseProductName),
+		);
+
+		// Send query to the license manager server
+		$query = esc_url_raw(add_query_arg($api_params, FoodblogkitchenToolkit::$licenseServer));
+		$response = wp_remote_get($query, array('timeout' => 20, 'sslverify' => false));
+
+		// Check for error in the response
+		if (is_wp_error($response)) {
+			return array(
+				"status" => "error",
+				"message" => __("There was an error while activating the license. Please try again later.", 'foodblogkitchen-toolkit')
+			);
+		}
+
+		// License data.
+		$license_data = json_decode(wp_remote_retrieve_body($response));
+
+		if ($license_data->result == 'success') {
+			//Success was returned for the license activation
+			//Save the license key in the options table
+			update_option('foodblogkitchen_toolkit__license_key', $licenseKey);
+
+			return array(
+				"status" => "success",
+				"message" => __("Your license has been successfully activated. You can now use the recipe block in the editor.", 'foodblogkitchen-toolkit')
+			);
+?>
+		<?php
+		} else {
+			//Show error to the user. Probably entered incorrect license key.
+
+			return array(
+				"status" => "error",
+				"message" => __("There was an error while activating the license. Please check your input. If you can't find an error, please contact our support.", 'foodblogkitchen-toolkit')
+					. ((isset($license_data->message) && !empty($license_data->message)) ? $license_data->message : '')
+
+			);
+		}
+	}
+
+	public static function unregisterLicense()
+	{
+		$licenseKey = get_option('foodblogkitchen_toolkit__license_key', '');
+
+		if (!empty($licenseKey)) {
+
+			// API query parameters
+			$api_params = array(
+				'slm_action' => 'slm_deactivate',
+				'secret_key' => FoodblogkitchenToolkit::$licenseSecretKey,
+				'license_key' => $licenseKey,
+				'registered_domain' => $_SERVER['SERVER_NAME'],
+				'item_reference' => urlencode(FoodblogkitchenToolkit::$licenseProductName),
+			);
+
+			// Send query to the license manager server
+			$query = esc_url_raw(add_query_arg($api_params, FoodblogkitchenToolkit::$licenseServer));
+			$response = wp_remote_get($query, array('timeout' => 20, 'sslverify' => false));
+
+			// Check for error in the response
+			if (is_wp_error($response)) {
+				return array(
+					"status" => "error",
+					"message" => __("There was an error while deactivating the license. Please try again later.", 'foodblogkitchen-toolkit')
+				);
+			} else {
+				// License data.
+				$license_data = json_decode(wp_remote_retrieve_body($response));
+
+				if ($license_data->result == 'success') {
+					//Success was returned for the license activation
+					//Remove the license key from the options table.
+					delete_option('foodblogkitchen_toolkit__license_key');
+
+					return array(
+						"status" => "success",
+						"message" => __("The license has been successfully deactivated.", 'foodblogkitchen-toolkit')
+					);
+				} else {
+					if (isset($license_data->error_code) && $license_data->error_code === 80) {
+						delete_option('foodblogkitchen_toolkit__license_key');
+					}
+
+					//Show error to the user. Probably entered incorrect license key.
+
+					return array(
+						"status" => "error",
+						"message" => __("There was an error while deactivating the license.", 'foodblogkitchen-toolkit') . $license_data->message
+					);
+				}
+			}
+		}
+	}
 }
 
 if (class_exists('FoodblogkitchenToolkit')) {
@@ -1524,4 +1632,6 @@ if (class_exists('FoodblogkitchenToolkit')) {
 	register_activation_hook(__FILE__, array($foodblogkitchenToolkit, 'activate'));
 
 	register_deactivation_hook(__FILE__, array($foodblogkitchenToolkit, 'deactivate'));
+
+	register_uninstall_hook(__FILE__, 'FoodblogkitchenToolkit::uninstall');
 }

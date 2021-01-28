@@ -3,114 +3,36 @@
 
   <?php
 
-  /*** License activate button was clicked ***/
   if (isset($_REQUEST['activate_license'])) {
-    $license_key = $_REQUEST['foodblogkitchen_toolkit__license_key'];
-
-    // API query parameters
-    $api_params = array(
-      'slm_action' => 'slm_activate',
-      'secret_key' => FoodblogkitchenToolkit::$licenseSecretKey,
-      'license_key' => $license_key,
-      'registered_domain' => $_SERVER['SERVER_NAME'],
-      'item_reference' => urlencode(FoodblogkitchenToolkit::$licenseProductName),
-    );
-
-    // Send query to the license manager server
-    $query = esc_url_raw(add_query_arg($api_params, FoodblogkitchenToolkit::$licenseServer));
-    $response = wp_remote_get($query, array('timeout' => 20, 'sslverify' => false));
-
-    // Check for error in the response
-    if (is_wp_error($response)) {
-  ?>
-      <div class="error">
-        <p><?= __("There was an error while activating the license. Please try again later.", 'foodblogkitchen-toolkit'); ?></p>
-      </div>
-    <?php
-    }
-
-    // License data.
-    $license_data = json_decode(wp_remote_retrieve_body($response));
-
-    if ($license_data->result == 'success') {
-      //Success was returned for the license activation
-      //Save the license key in the options table
-      update_option('foodblogkitchen_toolkit__license_key', $license_key);
-    ?>
-      <div class="updated">
-        <p><?= __("Your license has been successfully activated. You can now use the recipe block in the editor.", 'foodblogkitchen-toolkit'); ?></p>
-      </div>
-    <?php
-    } else {
-      //Show error to the user. Probably entered incorrect license key.
-
-    ?>
-      <div class="updated">
-        <p><?= __("There was an error while activating the license. Please check your input. If you can't find an error, please contact our support.", 'foodblogkitchen-toolkit'); ?></p>
-        <?php if (isset($license_data->message) && !empty($license_data->message)) { ?>
-          <p><?= $license_data->message; ?></p>
-        <?php } ?>
-      </div>
-    <?php
-    }
+    $result = FoodblogkitchenToolkit::registerLicense($_REQUEST['foodblogkitchen_toolkit__license_key']);
   }
-  /*** End of license activation ***/
 
-  /*** License deactivate button was clicked ***/
   if (isset($_REQUEST['deactivate_license'])) {
-    $license_key = $_REQUEST['foodblogkitchen_toolkit__license_key'];
-
-    // API query parameters
-    $api_params = array(
-      'slm_action' => 'slm_deactivate',
-      'secret_key' => FoodblogkitchenToolkit::$licenseSecretKey,
-      'license_key' => $license_key,
-      'registered_domain' => $_SERVER['SERVER_NAME'],
-      'item_reference' => urlencode(FoodblogkitchenToolkit::$licenseProductName),
-    );
-
-    // Send query to the license manager server
-    $query = esc_url_raw(add_query_arg($api_params, FoodblogkitchenToolkit::$licenseServer));
-    $response = wp_remote_get($query, array('timeout' => 20, 'sslverify' => false));
-
-    // Check for error in the response
-    if (is_wp_error($response)) {
-    ?>
-      <div class="error">
-        <p><?= __("There was an error while deactivating the license. Please try again later.", 'foodblogkitchen-toolkit'); ?></p>
-      </div>
-      <?php
-    } else {
-      // License data.
-      $license_data = json_decode(wp_remote_retrieve_body($response));
-
-      if ($license_data->result == 'success') {
-        //Success was returned for the license activation
-        //Remove the license key from the options table.
-        delete_option('foodblogkitchen_toolkit__license_key');
-      ?>
-        <div class="updated">
-          <p><?= __("The license has been successfully deactivated.", 'foodblogkitchen-toolkit'); ?></p>
-        </div>
-      <?php
-      } else {
-        if (isset($license_data->error_code) && $license_data->error_code === 80) {
-          delete_option('foodblogkitchen_toolkit__license_key');
-        }
-
-        //Show error to the user. Probably entered incorrect license key.
-      ?>
-        <div class="updated">
-          <p><?= __("There was an error while deactivating the license.", 'foodblogkitchen-toolkit'); ?> <?= $license_data->message; ?></p>
-        </div>
-  <?php
-      }
-    }
+    $result = FoodblogkitchenToolkit::unregisterLicense();
   }
 
   $licenseKey = get_option('foodblogkitchen_toolkit__license_key', '');
 
+  if (isset($result) && is_array($result)) {
+    switch ($result['status']) {
+      case "error":
+      ?>
+        <div class="error">
+          <p><?= $result['message'] ?></p>
+        </div>
+      <?php
+        break;
+      default:
+      ?>
+        <div class="updated">
+          <p><?= $result['message'] ?></p>
+        </div>
+  <?php
+    }
+  }
+
   ?>
+
   <p><?= __("Please enter the license key for this product to activate it. You were given a license key when you purchased this item.", 'foodblogkitchen-toolkit'); ?></p>
   <form action="" method="post">
     <table class="form-table">
