@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Recipe Manager Pro 1.2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/foodblogkitchen-"
 "toolkit\n"
-"POT-Creation-Date: 2021-01-21T20:40:09+00:00\n"
-"PO-Revision-Date: 2021-01-21 21:40+0100\n"
+"POT-Creation-Date: 2021-01-30T21:49:23+00:00\n"
+"PO-Revision-Date: 2021-01-30 22:56+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. Plugin Name of the plugin
-#: foodblogkitchen-toolkit.php:200 foodblogkitchen-toolkit.php:201
+#: inc/foodblogkitchen-toolkit.php:248 inc/foodblogkitchen-toolkit.php:249
 msgid "Foodblog-Toolkit"
 msgstr "Foodblog-Toolkit"
 
@@ -38,77 +38,118 @@ msgstr "foodblogkitchen.de"
 msgid "https://foodblogkitchen.de/"
 msgstr "https://foodblogkitchen.de/"
 
-#: build/block-template.php:7 build/block-template.php:12
-#: foodblogkitchen-toolkit.php:943 foodblogkitchen-toolkit.php:948
+#: build/recipe-block-renderer.php:7 build/recipe-block-renderer.php:12
+#: inc/foodblogkitchen-toolkit.php:1002 inc/foodblogkitchen-toolkit.php:1007
 msgid "minutes"
 msgstr "Minuten"
 
-#: build/block-template.php:12 foodblogkitchen-toolkit.php:948
+#: build/recipe-block-renderer.php:12 inc/foodblogkitchen-toolkit.php:1007
 msgid "hours"
 msgstr "Stunden"
 
-#: foodblogkitchen-toolkit.php:213 foodblogkitchen-toolkit.php:214
+#: inc/foodblogkitchen-toolkit.php:261 inc/foodblogkitchen-toolkit.php:262
 msgid "Recipe Block"
 msgstr "Rezepte-Block"
 
-#: foodblogkitchen-toolkit.php:224 foodblogkitchen-toolkit.php:225
+#: inc/foodblogkitchen-toolkit.php:272 inc/foodblogkitchen-toolkit.php:273
+#: build/editor.js:1
+msgid "Pinterest"
+msgstr "Pinterest"
+
+#: inc/foodblogkitchen-toolkit.php:283 inc/foodblogkitchen-toolkit.php:284
 msgid "License"
 msgstr "Lizenz"
 
-#: foodblogkitchen-toolkit.php:342
+#: inc/foodblogkitchen-toolkit.php:410
 msgid "General settings"
 msgstr "Allgemeine Einstellungen"
 
-#: foodblogkitchen-toolkit.php:344
+#: inc/foodblogkitchen-toolkit.php:412
+msgid "Configure how the recipe block should behave on your blog posts."
+msgstr ""
+"Konfiguriere, wie sich der Rezept-Block in deinem Beitrag verhalten soll."
+
+#: inc/foodblogkitchen-toolkit.php:418
+msgid "Visual settings"
+msgstr "Visuelle Einstellungen"
+
+#: inc/foodblogkitchen-toolkit.php:420
 msgid "Configure how the recipe block should look for your visitors."
 msgstr "Konfiguriere, wie der Rezeptblock für deine Besucher aussehen soll."
 
-#: foodblogkitchen-toolkit.php:352
+#: inc/foodblogkitchen-toolkit.php:428 inc/foodblogkitchen-toolkit.php:1403
+#: build/editor.js:1 src/blocks/jump-to-recipe/index.js:10
+msgid "Jump to recipe"
+msgstr "Zum Rezept springen"
+
+#: inc/foodblogkitchen-toolkit.php:430
+msgid "Add a \"Jump to recipe\" button on every page with the recipe block."
+msgstr ""
+"Füge einen „Zum Rezept springen“-Button in jeden Beitrag ein, in dem sich "
+"ein Rezept-Block befindet."
+
+#: inc/foodblogkitchen-toolkit.php:442
 msgid "Primary color"
 msgstr "Hauptfarbe"
 
-#: foodblogkitchen-toolkit.php:364
+#: inc/foodblogkitchen-toolkit.php:454
 msgid "Secondary color"
 msgstr "Nebenfarbe"
 
-#: foodblogkitchen-toolkit.php:376
+#: inc/foodblogkitchen-toolkit.php:466
 msgid "Background color"
 msgstr "Hintergrundfarbe"
 
-#: foodblogkitchen-toolkit.php:389
+#: inc/foodblogkitchen-toolkit.php:479
 msgid "Border"
 msgstr "Rahmen"
 
-#: foodblogkitchen-toolkit.php:391
+#: inc/foodblogkitchen-toolkit.php:481
 msgid "Show border"
 msgstr "Rahmen anzeigen"
 
-#: foodblogkitchen-toolkit.php:401
+#: inc/foodblogkitchen-toolkit.php:491
 msgid "Box shadow"
 msgstr "Box-Schatten"
 
-#: foodblogkitchen-toolkit.php:403
+#: inc/foodblogkitchen-toolkit.php:493
 msgid "Show box shadow"
 msgstr "Box-Schatten anzeigen"
 
-#: foodblogkitchen-toolkit.php:413
+#: inc/foodblogkitchen-toolkit.php:503
 msgid "Border radius"
 msgstr "Eckradius"
 
-#: foodblogkitchen-toolkit.php:995 foodblogkitchen-toolkit.php:1069
+#: inc/foodblogkitchen-toolkit.php:532
+msgid "Configure the implementation of pinterest in your blog."
+msgstr "Konfiguriere die Einbindung von Pinterest in deinem Blog."
+
+#: inc/foodblogkitchen-toolkit.php:540
+msgid "Image overlay"
+msgstr "Bildüberlagerung"
+
+#: inc/foodblogkitchen-toolkit.php:542
+msgid ""
+"Show Pinterest share icon on post images. This only affects images on posts "
+"created with Gutenberg."
+msgstr ""
+"Zeige das Pinterest-Share-Symbol auf allen Beitragsbildern an. Das betrifft "
+"nur Bilder in Beiträgen, die mit Gutenberg erstellt wurden."
+
+#: inc/foodblogkitchen-toolkit.php:1092 inc/foodblogkitchen-toolkit.php:1169
 #: build/editor.js:1
 msgid "servings"
 msgstr "Portionen"
 
-#: foodblogkitchen-toolkit.php:996 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1093 build/editor.js:1
 msgid "simple"
 msgstr "einfach"
 
-#: foodblogkitchen-toolkit.php:999
+#: inc/foodblogkitchen-toolkit.php:1096
 msgid "Banana shake"
 msgstr "Bananen-Shake"
 
-#: foodblogkitchen-toolkit.php:1000
+#: inc/foodblogkitchen-toolkit.php:1097
 msgid ""
 "You have bananas left over again and don't know what to do with them? How "
 "about a delicious shake?"
@@ -116,107 +157,107 @@ msgstr ""
 "Du hast wieder Bananen übrig und weißt nichts damit anzufangen? Wie wäre es "
 "mit einem leckeren Shake?"
 
-#: foodblogkitchen-toolkit.php:1008
+#: inc/foodblogkitchen-toolkit.php:1107
 msgid "milk"
 msgstr "Milch"
 
-#: foodblogkitchen-toolkit.php:1015
+#: inc/foodblogkitchen-toolkit.php:1114
 msgid "banana"
 msgstr "Banane"
 
-#: foodblogkitchen-toolkit.php:1022
+#: inc/foodblogkitchen-toolkit.php:1121
 msgid "sugar"
 msgstr "Zucker"
 
-#: foodblogkitchen-toolkit.php:1029
+#: inc/foodblogkitchen-toolkit.php:1128
 msgid "cinnamon"
 msgstr "Zimt"
 
-#: foodblogkitchen-toolkit.php:1033
+#: inc/foodblogkitchen-toolkit.php:1133
 msgid "Peel banana."
 msgstr "Banane schälen."
 
-#: foodblogkitchen-toolkit.php:1034
+#: inc/foodblogkitchen-toolkit.php:1134
 msgid ""
 "Put all the ingredients in the blender and mix everything for 30 seconds."
 msgstr "Alle Zutaten in den Mixer geben und alles für 30 Sekunden mixen."
 
-#: foodblogkitchen-toolkit.php:1035
+#: inc/foodblogkitchen-toolkit.php:1135
 msgid "Pour into a glass and enjoy."
 msgstr "In ein Glas füllen und genießen."
 
-#: foodblogkitchen-toolkit.php:1039
+#: inc/foodblogkitchen-toolkit.php:1139
 msgid "The milkshake becomes particularly creamy with UHT milk."
 msgstr "Besonders cremig wird der Milchshake mit H-Milch."
 
-#: foodblogkitchen-toolkit.php:1055 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1155 build/editor.js:1
 msgid "Prep time"
 msgstr "Vorbereitungszeit"
 
-#: foodblogkitchen-toolkit.php:1056 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1156 build/editor.js:1
 msgid "Rest time"
 msgstr "Ruhezeit"
 
-#: foodblogkitchen-toolkit.php:1057 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1157 build/editor.js:1
 msgid "Cook time"
 msgstr "Kochzeit"
 
-#: foodblogkitchen-toolkit.php:1058 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1158 build/editor.js:1
 msgid "Baking time"
 msgstr "Backzeit"
 
-#: foodblogkitchen-toolkit.php:1059 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1159 build/editor.js:1
 msgid "Total time"
 msgstr "Gesamtzeit"
 
-#: foodblogkitchen-toolkit.php:1060
+#: inc/foodblogkitchen-toolkit.php:1160
 msgid "yields"
 msgstr "Stück"
 
-#: foodblogkitchen-toolkit.php:1061 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1161 build/editor.js:1
 msgid "Ingredients"
 msgstr "Zutaten"
 
-#: foodblogkitchen-toolkit.php:1062 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1162 build/editor.js:1
 msgid "Steps of preparation"
 msgstr "Zubereitung"
 
-#: foodblogkitchen-toolkit.php:1063
+#: inc/foodblogkitchen-toolkit.php:1163
 msgid "Print"
 msgstr "Drucken"
 
-#: foodblogkitchen-toolkit.php:1064
+#: inc/foodblogkitchen-toolkit.php:1164
 msgid "Pin it"
 msgstr "Pin it"
 
-#: foodblogkitchen-toolkit.php:1065
+#: inc/foodblogkitchen-toolkit.php:1165
 msgid "Your rating"
 msgstr "Deine Bewertung"
 
-#: foodblogkitchen-toolkit.php:1066
+#: inc/foodblogkitchen-toolkit.php:1166
 msgid "Average rating"
 msgstr "Durchschnittliche Bewertung"
 
-#: foodblogkitchen-toolkit.php:1067 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1167 build/editor.js:1
 msgid "Notes"
 msgstr "Notizen"
 
-#: foodblogkitchen-toolkit.php:1068
+#: inc/foodblogkitchen-toolkit.php:1168
 msgid "How do you like the recipe?"
 msgstr "Wie findest du das Rezept?"
 
-#: foodblogkitchen-toolkit.php:1070 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1170 build/editor.js:1
 msgid "Video"
 msgstr "Video"
 
-#: templates/admin-license-page.php:27
+#: inc/foodblogkitchen-toolkit.php:1514
 msgid ""
 "There was an error while activating the license. Please try again later."
 msgstr ""
 "Bei der Aktivierung der Lizenz gab es einen Fehler. Bitte probiere es später "
 "noch einmal."
 
-#: templates/admin-license-page.php:41
+#: inc/foodblogkitchen-toolkit.php:1528
 msgid ""
 "Your license has been successfully activated. You can now use the recipe "
 "block in the editor."
@@ -224,7 +265,7 @@ msgstr ""
 "Deine Lizenz wurde erfolgreich aktiviert. Du kannst den Rezept-Block im "
 "Editor nun nutzen."
 
-#: templates/admin-license-page.php:49
+#: inc/foodblogkitchen-toolkit.php:1537
 msgid ""
 "There was an error while activating the license. Please check your input. If "
 "you can't find an error, please contact our support."
@@ -233,22 +274,22 @@ msgstr ""
 "Eingabe. Wenn du keinen Fehler finden kannst, kontaktiere bitte unseren "
 "Support."
 
-#: templates/admin-license-page.php:80
+#: inc/foodblogkitchen-toolkit.php:1567
 msgid ""
 "There was an error while deactivating the license. Please try again later."
 msgstr ""
 "Bei der Deaktivierung der Lizenz gab es einen Fehler. Bitte probiere es "
 "später noch einmal."
 
-#: templates/admin-license-page.php:93
+#: inc/foodblogkitchen-toolkit.php:1580
 msgid "The license has been successfully deactivated."
 msgstr "Die Lizenz wurde erfolgreich deaktiviert."
 
-#: templates/admin-license-page.php:104
+#: inc/foodblogkitchen-toolkit.php:1591
 msgid "There was an error while deactivating the license."
 msgstr "Es gab einen Fehler beim Deaktivieren der Lizenz."
 
-#: templates/admin-license-page.php:114
+#: templates/admin-license-page.php:36
 msgid ""
 "Please enter the license key for this product to activate it. You were given "
 "a license key when you purchased this item."
@@ -256,15 +297,15 @@ msgstr ""
 "Bitte gebe den Lizenzschlüssel ein. Du hast ihn in deiner Bestellbestätigung "
 "per E-Mail erhalten."
 
-#: templates/admin-license-page.php:118
+#: templates/admin-license-page.php:40
 msgid "License Key"
 msgstr "Lizenzschlüssel"
 
-#: templates/admin-license-page.php:124
+#: templates/admin-license-page.php:46
 msgid "Deactivate"
 msgstr "Deaktivieren"
 
-#: templates/admin-license-page.php:126
+#: templates/admin-license-page.php:48
 msgid "Activate"
 msgstr "Aktivieren"
 
@@ -336,10 +377,6 @@ msgstr "Wähle eine Kategorie aus"
 #: build/editor.js:1
 msgid "piece"
 msgstr "Stück"
-
-#: build/editor.js:1
-msgid "Pinterest"
-msgstr "Pinterest"
 
 #: build/editor.js:1
 msgid "SEO"
@@ -444,8 +481,24 @@ msgid "Unit"
 msgstr "Einheit"
 
 #: build/editor.js:1
+msgid "Group name"
+msgstr "Gruppentitel"
+
+#: build/editor.js:1
+msgid "Remove Group"
+msgstr "Gruppe entfernen"
+
+#: build/editor.js:1
 msgid "Add the ingredients here..."
 msgstr "Füge hier die Zutaten ein..."
+
+#: build/editor.js:1
+msgid "Split ingredients into groups"
+msgstr "Zutaten in Gruppen aufteilen"
+
+#: build/editor.js:1
+msgid "Add additional group"
+msgstr "Zusätzliche Gruppe hinzufügen"
 
 #: build/editor.js:1
 msgid "Add the steps of preparation here..."
@@ -479,6 +532,27 @@ msgstr ""
 #: build/editor.js:1 src/blocks/block/NoValidLicense.js:11
 msgid "Go to settings"
 msgstr "Zu den Einstellungen"
+
+#: build/editor.js:1 src/blocks/jump-to-recipe/index.js:11
+msgid "Add a quick link which jumps to the recipe in the page."
+msgstr ""
+"Füge einen Quick-Link hinzu, der direkt zum Rezept auf der Seite springt."
+
+#: build/editor.js:1 src/blocks/faq/index.js:10
+msgid "FAQ"
+msgstr "FAQ"
+
+#: build/editor.js:1 src/blocks/faq/index.js:11
+msgid "Answer post related questions in a simple FAQ block."
+msgstr "Beantworte zum Beitrag passende Fragen in einem einfachen FAQ-Block."
+
+#: build/editor.js:1 src/blocks/faq/edit.js:12
+msgid "Your questions"
+msgstr "Frage"
+
+#: build/editor.js:1 src/blocks/faq/edit.js:20
+msgid "Your answer"
+msgstr "Antwort"
 
 #~ msgid "Minutes"
 #~ msgstr "Minuten"
