@@ -7,7 +7,8 @@
   "main": "build/index.js",
   "scripts": {
     "clean": "rm -rf ./build",
-    "build": "yarn clean && wp-scripts build && gulp build",
+    "build": "yarn clean && wp-scripts build && gulp build && yarn build:precompile-templates",
+    "build:precompile-templates": "php ./build-tools/precompile-templates.php",
     "format:js": "wp-scripts format-js",
     "lint:css": "wp-scripts lint-style",
     "lint:js": "wp-scripts lint-js",
