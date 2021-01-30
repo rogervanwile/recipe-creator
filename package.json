@@ -18,18 +18,19 @@
     "sync:uebersee": "rsync -a ./ /Applications/MAMP/htdocs/uebersee/wp-content/plugins/foodblogkitchen-toolkit",
     "sync:blank": "rsync -a ./ /Applications/MAMP/htdocs/kantina-delicacy-blank/wp-content/plugins/foodblogkitchen-toolkit",
     "sync": "yarn sync:uebersee && yarn sync:blank",
-    "test:start": "yarn run wp-cypress start && yarn run wp-cypress wp \"language core install de_DE\" && yarn run wp-cypress wp \"language core activate de_DE\" && yarn run cypress run",
-    "test:start:debug": "yarn run wp-cypress start && yarn run wp-cypress wp \"language core install de_DE\" && yarn run wp-cypress wp \"language core activate de_DE\" && yarn run cypress open",
+    "test:start:cli": "yarn run wp-cypress start && yarn run wp-cypress wp \"language core install de_DE\" && yarn run wp-cypress wp \"language core activate de_DE\" && yarn run cypress run",
+    "test:start": "yarn run wp-cypress start && yarn run wp-cypress wp \"language core install de_DE\" && yarn run wp-cypress wp \"language core activate de_DE\" && yarn run cypress open",
     "test:stop": "yarn run wp-cypress stop"
   },
   "devDependencies": {
+    "@bigbite/wp-cypress": "^0.8.1",
     "@wordpress/scripts": "^12.2.0",
+    "cypress": "^6.3.0",
+    "cypress-image-snapshot": "^4.0.1",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "ts-loader": "^8.0.14",
-    "typescript": "^4.1.3",
-    "@bigbite/wp-cypress": "^0.8.1",
-    "cypress": "^6.3.0"
+    "typescript": "^4.1.3"
   },
   "dependencies": {
     "@wordpress/date": "^3.12.0",

@@ -14,11 +14,19 @@
 
 const wpCypressPlugin = require('@bigbite/wp-cypress/lib/cypress-plugin');
 
+const {
+  addMatchImageSnapshotPlugin,
+} = require('cypress-image-snapshot/plugin');
+
 /**
  * @type {Cypress.PluginConfig}
  */
-module.exports = (on, config) => {
+module.exports = async (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+  // getCompareSnapshotsPlugin(on, config);
+
+  addMatchImageSnapshotPlugin(on, config);
+
   return wpCypressPlugin(on, config);
 }
