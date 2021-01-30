@@ -203,14 +203,14 @@ class FoodblogkitchenToolkit
             if (!function_exists('get_plugin_data')) {
                 require_once(ABSPATH . 'wp-admin/includes/plugin.php');
             }
-            $plugin_data = get_plugin_data(__FILE__);
-            $plugin_version = $plugin_data['Version'];
+            $plugin_data = get_plugin_data(plugin_dir_path(__FILE__) . '../foodblogkitchen-toolkit.php');
+            $currentVersion = $plugin_data['Version'];
 
             // your installed plugin version should be on the line below! You can obtain it dynamically of course 
-            if ($remote && version_compare($plugin_version, $remote->version, '<') && version_compare($remote->requires, get_bloginfo('version'), '<')) {
+            if ($remote && version_compare($currentVersion, $remote->version, '<') && version_compare($remote->requires, get_bloginfo('version'), '<')) {
                 $res = new stdClass();
                 $res->slug = 'foodblogkitchen-toolkit';
-                $res->plugin = 'foodblogkitchen-toolkit/foodblogkitchen-toolkit.php'; // it could be just foodblogkitchen-toolkit.php if your plugin doesn't have its own directory
+                $res->plugin = 'foodblogkitchen-toolkit/foodblogkitchen-toolkit.php';
                 $res->new_version = $remote->version;
                 $res->tested = $remote->tested;
                 $res->package = $remote->download_url;
@@ -1066,7 +1066,7 @@ class FoodblogkitchenToolkit
         if (!file_exists($rendererPath) || (WP_DEBUG && file_exists($templatePath))) {
             $template = file_get_contents($templatePath);
 
-            $handlebarsPartials = array_map(function($path) {
+            $handlebarsPartials = array_map(function ($path) {
                 return  file_get_contents($path);
             }, $handlebarsPartialPaths);
 
