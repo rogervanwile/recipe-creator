@@ -38,6 +38,6 @@ $foodblogkitchenToolkit = new FoodblogkitchenToolkit();
     </div>
   </div>
   <script type="text/template" id="foodblogkitchen-toolkit--style-block-template">
-    <?php echo $foodblogkitchenToolkit->getStyleBlockTemplate(); ?>
+    <?php echo FoodblogkitchenToolkit::getStyleBlockTemplate(); ?>
   </script>
 </div>
