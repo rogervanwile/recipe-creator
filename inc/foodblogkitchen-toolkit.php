@@ -955,7 +955,6 @@ class FoodblogkitchenToolkit
             plugin_dir_path(__FILE__) . '../src/blocks/block/style-block.hbs',
             plugin_dir_path(__FILE__) . '../build/recipe-block-styles-renderer.php',
             [
-
                 'encode' => function ($context, $options) {
                     return urlencode($context);
                 },
@@ -1036,8 +1035,7 @@ class FoodblogkitchenToolkit
                 }
             ],
             [
-
-                "styleBlock" => self::getStyleBlockTemplate()
+                "styleBlock" =>  plugin_dir_path(__FILE__) . '../src/blocks/block/style-block.hbs'
             ]
         );
     }
@@ -1063,10 +1061,14 @@ class FoodblogkitchenToolkit
         );
     }
 
-    private static function getRenderer($templatePath, $rendererPath, $handlebarsHelper = [], $handlebarsPartials = [])
+    private static function getRenderer($templatePath, $rendererPath, $handlebarsHelper = [], $handlebarsPartialPaths = [])
     {
-        if (!file_exists($rendererPath) || WP_DEBUG) {
+        if (!file_exists($rendererPath) || (WP_DEBUG && file_exists($templatePath))) {
             $template = file_get_contents($templatePath);
+
+            $handlebarsPartials = array_map(function($path) {
+                return  file_get_contents($path);
+            }, $handlebarsPartialPaths);
 
             $phpStr = LightnCandy::compile($template, array(
                 'flags' => LightnCandy::FLAG_HANDLEBARSJS | LightnCandy::FLAG_ERROR_EXCEPTION,
