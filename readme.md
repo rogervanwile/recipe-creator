@@ -22,9 +22,9 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 
 - Update version in `package.json`
 - Update version in `foodblogkitchen-toolkit.php`
-- Update `/updates/info.json`
+- Update `changelog.md`
 
-`$ ./build-tools/create-archive.sh`
+`$ yarn create release`
 `$ ./build-tools/publish-latest.sh`
 
 # Testing
