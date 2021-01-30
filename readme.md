@@ -24,8 +24,8 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 - Update version in `foodblogkitchen-toolkit.php`
 - Update `/updates/info.json`
 
-`$ ./create-archive.sh`
-`$ ./publish-latest.sh`
+`$ ./build-tools/create-archive.sh`
+`$ ./build-tools/publish-latest.sh`
 
 # Testing
 
