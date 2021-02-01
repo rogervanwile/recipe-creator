@@ -24,7 +24,7 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 - Update version in `foodblogkitchen-toolkit.php`
 - Update `changelog.md`
 
-`$ yarn create release`
+`$ yarn create-release`
 `$ ./build-tools/publish-latest.sh`
 
 # Testing

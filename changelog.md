@@ -1,3 +1,6 @@
+# 1.4.1 – February 1, 2020
+- Fix translation issues.
+
 # 1.4.0 – January 30, 2020
 - Add Pinterest image overlay. This can be disabled in the settings.
 - Add "Jump to recipe" block.
