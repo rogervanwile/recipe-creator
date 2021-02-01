@@ -235,9 +235,21 @@ class FoodblogkitchenToolkit
         wp_enqueue_style('wp-color-picker');
         wp_enqueue_style('iris');
 
-        wp_enqueue_script('foodblogkitchen-toolkit-settings-js',   plugins_url('../build/admin.js', __FILE__), array('jquery', 'wp-color-picker', 'iris'), '', true);
+        wp_enqueue_script(
+            'foodblogkitchen-toolkit-settings-js',
+            plugins_url('build/admin.js', dirname(__FILE__)),
+            array('jquery', 'wp-color-picker', 'iris'),
+            '',
+            true
+        );
 
-        wp_enqueue_style('foodblogkitchen-toolkit-settings-admin-css',   plugins_url('../build/admin.css', __FILE__), array(), '', 'all');
+        wp_enqueue_style(
+            'foodblogkitchen-toolkit-settings-admin-css',
+            plugins_url('build/admin.css', dirname(__FILE__)),
+            array(),
+            '',
+            'all'
+        );
 
         echo $this->renderRecipeBlockStyles();
     }
@@ -551,7 +563,7 @@ class FoodblogkitchenToolkit
 
     public function loadTranslations()
     {
-        load_plugin_textdomain('foodblogkitchen-toolkit', FALSE, basename(plugin_dir_path(__FILE__)) . 'languages/');
+        load_plugin_textdomain('foodblogkitchen-toolkit', FALSE, dirname(plugin_basename(__FILE__), 2) . '/languages');
     }
 
     public function registerMeta()
@@ -625,34 +637,34 @@ class FoodblogkitchenToolkit
         $editorAsset = require(plugin_dir_path(__FILE__) . "../build/editor.asset.php");
 
         wp_register_script(
-            'foodblogkitchen-toolkit-recipe-block-editor',
-            plugins_url('../build/editor.js', __FILE__),
+            'foodblogkitchen-toolkit-recipe-block-editor-script',
+            plugins_url('build/editor.js', dirname(__FILE__)),
             $editorAsset['dependencies'],
             $editorAsset['version']
         );
 
         wp_register_style(
-            'foodblogkitchen-toolkit-recipe-block-editor',
-            plugins_url('../build/editor.css', __FILE__),
+            'foodblogkitchen-toolkit-recipe-block-editor-style',
+            plugins_url('build/editor.css', dirname(__FILE__)),
             array(),
             $editorAsset['version']
         );
 
         wp_enqueue_style(
             'foodblogkitchen-toolkit-recipe-block',
-            plugins_url('../build/style-editor.css', __FILE__),
+            plugins_url('build/style-editor.css', dirname(__FILE__)),
             array(),
             $editorAsset['version']
         );
 
         // Add some variables for the editor script
         $license = get_option('foodblogkitchen_toolkit__license_key', '');
-        wp_localize_script('foodblogkitchen-toolkit-recipe-block-editor', 'foodblogkitchenToolkitAdditionalData', [
+        wp_localize_script('foodblogkitchen-toolkit-recipe-block-editor-script', 'foodblogkitchenToolkitAdditionalData', [
             "hasValidLicense" => !empty($license),
             "licensePage" => get_admin_url(get_current_network_id(), 'admin.php?page=foodblogkitchen_toolkit_license')
         ]);
 
-        wp_set_script_translations('foodblogkitchen-toolkit-recipe-block-editor', 'foodblogkitchen-toolkit', plugin_dir_path(__FILE__) . '../languages');
+        wp_set_script_translations('foodblogkitchen-toolkit-recipe-block-editor-script', 'foodblogkitchen-toolkit', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
 
         // frontend.js
 
@@ -660,14 +672,14 @@ class FoodblogkitchenToolkit
 
         wp_register_script(
             'foodblogkitchen-toolkit-recipe-block',
-            plugins_url('../build/frontend.js', __FILE__),
+            plugins_url('build/frontend.js', dirname(__FILE__)),
             $frontendAsset['dependencies'],
             $frontendAsset['version']
         );
 
         wp_register_style(
             'foodblogkitchen-toolkit-recipe-block',
-            plugins_url('../build/style-index.css', __FILE__),
+            plugins_url('build/style-index.css', dirname(__FILE__)),
             array(),
             $frontendAsset['version']
         );
@@ -680,14 +692,14 @@ class FoodblogkitchenToolkit
 
             wp_enqueue_script(
                 'foodblogkitchen-toolkit-pinterest-image-overlay',
-                plugins_url('../build/pinterest-image-overlay.js', __FILE__),
+                plugins_url('build/pinterest-image-overlay.js', dirname(__FILE__)),
                 $pinterestImageOverlayAsset['dependencies'],
                 $pinterestImageOverlayAsset['version'],
             );
 
             wp_enqueue_style(
                 'foodblogkitchen-toolkit-pinterest-image-overlay',
-                plugins_url('../build/pinterest-image-overlay.css', __FILE__),
+                plugins_url('build/pinterest-image-overlay.css', dirname(__FILE__)),
                 array(),
                 $pinterestImageOverlayAsset['version'],
             );
@@ -699,8 +711,8 @@ class FoodblogkitchenToolkit
         // Jump to recipe
 
         register_block_type('foodblogkitchen-toolkit/jump-to-recipe', array(
-            'editor_script' => 'foodblogkitchen-toolkit-recipe-block-editor',
-            'editor_style'  => 'foodblogkitchen-toolkit-recipe-block-editor',
+            'editor_script' => 'foodblogkitchen-toolkit-jump-to-recipe-block-editor-script',
+            'editor_style'  => 'foodblogkitchen-toolkit-jump-to-recipe-block-editor-style',
             'script'        => 'foodblogkitchen-toolkit-recipe-block',
             'style'         => 'foodblogkitchen-toolkit-recipe-block',
             'attributes' => array(),
@@ -710,8 +722,8 @@ class FoodblogkitchenToolkit
         // Recipe block
 
         register_block_type('foodblogkitchen-recipes/block', array(
-            'editor_script' => 'foodblogkitchen-toolkit-recipe-block-editor',
-            'editor_style'  => 'foodblogkitchen-toolkit-recipe-block-editor',
+            'editor_script' => 'foodblogkitchen-toolkit-recipe-block-editor-script',
+            'editor_style'  => 'foodblogkitchen-toolkit-recipe-block-editor-style',
             'script'        => 'foodblogkitchen-toolkit-recipe-block',
             'style'         => 'foodblogkitchen-toolkit-recipe-block',
             'attributes' => array(

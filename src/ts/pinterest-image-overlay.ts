@@ -1,6 +1,3 @@
-// import { __ } from "@wordpress/i18n";
-
-// import * as css from './../styles/pinterest-image-overlay.scss';
 const css = require('./../styles/pinterest-image-overlay.scss')
 
 export class PinterestImageOverlay {
@@ -21,7 +18,7 @@ export class PinterestImageOverlay {
           pinItLink.href = this.createPinterestPinItUrl(url, description);
           pinItLink.target = '_blank';
           pinItLink.classList.add('foodblogkitchen-toolkit--pinterest-image-overlay');
-          
+
           const tooltip = document.createElement('span');
           // tooltip.innerText = __('Pin it', 'foodblogkitchen-toolkit');
           tooltip.innerText = 'Pin it';
