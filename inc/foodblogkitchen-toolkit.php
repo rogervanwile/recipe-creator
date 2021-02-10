@@ -66,7 +66,7 @@ class FoodblogkitchenToolkit
                     // If there is no "jump to recipe" block inside the content
                     // and the option "foodblogkitchen_toolkit__show_jump_to_recipe"
                     // is set to true, I prepend the "jump to recipe" block to the content
-                    if (get_option('foodblogkitchen_toolkit__show_jump_to_recipe', true) && has_block('foodblogkitchen-toolkit/jump-to-recipe')) {
+                    if (get_option('foodblogkitchen_toolkit__show_jump_to_recipe', true) && !has_block('foodblogkitchen-toolkit/jump-to-recipe')) {
                         $content = "<!-- wp:foodblogkitchen-toolkit/jump-to-recipe /-->\n\n" . $content;
                     }
                 }
