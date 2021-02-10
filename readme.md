@@ -25,6 +25,9 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 - Update `changelog.md`
 
 `$ yarn create-release`
+
+- Run tests
+
 `$ ./build-tools/publish-latest.sh`
 
 # Testing
