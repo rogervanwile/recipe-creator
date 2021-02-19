@@ -109,7 +109,8 @@
       </tr>
       {{/if}}
       {{#each this/items}}
-      <tr class="foodblogkitchen-toolkit--recipe-block--ingredients-item{{#isEven @index}} foodblogkitchen-toolkit--even{{/isEven}}">
+      <tr
+        class="foodblogkitchen-toolkit--recipe-block--ingredients-item{{#isEven @index}} foodblogkitchen-toolkit--even{{/isEven}}">
         <td class="foodblogkitchen-toolkit--recipe-block--amount" data-recipe-base-amount="{{this/baseAmount}}"
           data-recipe-base-unit="{{this/baseUnit}}">{{this/amount}} {{this/unit}}</td>
         <td class="foodblogkitchen-toolkit--recipe-block--ingredient">{{{this/ingredient}}}</td>
@@ -195,6 +196,36 @@
       {{/if}}
     </ul>
   </section>
+
+  {{#ifOneOfThem instagramUsername instagramHashtag}}
+  <section class="foodblogkitchen-toolkit--recipe-block--call-to-action">
+    <div class="foodblogkitchen-toolkit--recipe-block--call-to-action--icon"></div>
+    <div class="foodblogkitchen-toolkit--recipe-block--call-to-action--text">
+      <h3>{{translations/instagramHeadline}}</h3>
+      {{#if instagramUsername}}
+      {{#if instagramHashtag}}
+      <p>
+        {{translations/instagramThenLink}} <a href="https://www.instagram.com/{{instagramUsername}}/" target="_blank"
+          rel="nofollow noopener">@{{instagramUsername}}</a> {{translations/instagramOrUseHashtag}} <a
+          href="https://www.instagram.com/explore/tags/{{instagramHashtag}}/" target="_blank"
+          rel="nofollow noopener">#{{instagramHashtag}}</a>.
+      </p>
+      {{else}}
+      <p>
+        {{translations/instagramThenLink}} <a href="https://www.instagram.com/{{instagramUsername}}/" target="_blank"
+          rel="nofollow noopener">@{{instagramUsername}}</a> {{translations/instagramOnInstagram}}.
+      </p>
+      {{/if}}
+      {{else}}
+      <p>
+        {{translations/instagramThenLink}} <a href="https://www.instagram.com/explore/tags/{{instagramHashtag}}/"
+          target="_blank" rel="nofollow noopener">#{{instagramHashtag}}</a> {{translations/instagramOnInstagram}}.
+      </p>
+      {{/if}}
+    </div>
+  </section>
+  {{/ifOneOfThem}}
+
   <script>
     var FoodblogkitchenToolkit = FoodblogkitchenToolkit || {};
     FoodblogkitchenToolkit.config = {

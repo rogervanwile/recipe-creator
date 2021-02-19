@@ -10,6 +10,7 @@ $foodblogkitchenToolkit = new FoodblogkitchenToolkit();
     <div id="col-left">
       <div class="col-wrap">
         <form method="post" action="options.php" id="foodblogkitchen-toolkit--settings-form">
+          <input type="hidden" name="foodblogkitchen_toolkit__primary_color_contrast" value="<?= esc_attr(get_option('foodblogkitchen_toolkit__primary_color_contrast')); ?>" />
           <input type="hidden" name="foodblogkitchen_toolkit__primary_color_light" value="<?= esc_attr(get_option('foodblogkitchen_toolkit__primary_color_light')); ?>" />
           <input type="hidden" name="foodblogkitchen_toolkit__primary_color_light_contrast" value="<?= esc_attr(get_option('foodblogkitchen_toolkit__primary_color_light_contrast')); ?>" />
           <input type="hidden" name="foodblogkitchen_toolkit__primary_color_dark" value="<?= esc_attr(get_option('foodblogkitchen_toolkit__primary_color_dark')); ?>" />

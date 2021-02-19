@@ -5432,12 +5432,17 @@ return /******/ (function(modules) { // webpackBootstrap
         switch (key) {
           case "foodblogkitchen_toolkit__primary_color":
             migratedData["primaryColor"] = data[key];
+            migratedData["primaryColorContrast"] = getContrastColor(data[key]);
             migratedData["primaryColorLight"] = calcColor(0.9, data[key]);
             migratedData["primaryColorLightContrast"] = getContrastColor(
               migratedData["primaryColorLight"]
             );
             migratedData["primaryColorDark"] = calcColor(-0.4, data[key]);
 
+            updateSettingsFormField(
+              "foodblogkitchen_toolkit__primary_color_contrast",
+              migratedData["primaryColorContrast"]
+            );
             updateSettingsFormField(
               "foodblogkitchen_toolkit__primary_color_light",
               migratedData["primaryColorLight"]
