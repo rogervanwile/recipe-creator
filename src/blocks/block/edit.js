@@ -718,6 +718,26 @@ export default function Edit(props) {
         )}</Button>
 
         <div className="foodblogkitchen-toolkit--recipe-block--headline">
+          <h3>{__("Utensils", 'foodblogkitchen-toolkit')}</h3>
+        </div>
+
+        <RichText
+          tagName="ul"
+          multiline="li"
+          className="foodblogkitchen-toolkit--recipe-block--utensils"
+          placeholder={__(
+            "Add the needed utensils here...",
+            'foodblogkitchen-toolkit'
+          )}
+          value={props.attributes.utensils}
+          onChange={(utensils) =>
+            props.setAttributes({ utensils })
+          }
+        />
+
+        <hr />
+
+        <div className="foodblogkitchen-toolkit--recipe-block--headline">
           <h3>{__("Steps of preparation", 'foodblogkitchen-toolkit')}</h3>
         </div>
 

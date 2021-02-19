@@ -43,6 +43,7 @@
 
   <hr />
 
+  {{#if totalTime}}
   <div class="foodblogkitchen-toolkit--recipe-block--timing-list">
     <ul>
       {{#if prepTime}}
@@ -84,6 +85,7 @@
       {{/if}}
     </ul>
   </div>
+  {{/if}}
 
   <hr />
 
@@ -119,6 +121,17 @@
       {{/each}}
     </tbody>
   </table>
+  {{/if}}
+
+  <hr />
+
+  {{#if utensils}}
+  <div class="foodblogkitchen-toolkit--recipe-block--headline">
+    <h3>{{translations/utensils}}</h3>
+  </div>
+  <ul class="foodblogkitchen-toolkit--recipe-block--utensils">
+    {{{utensils}}}
+  </ul>
   {{/if}}
 
   <hr />

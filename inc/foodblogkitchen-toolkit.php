@@ -796,6 +796,10 @@ class FoodblogkitchenToolkit
                     'type' => 'string',
                     'default' => ''
                 ),
+                'utensils' => array(
+                    'type' => 'string',
+                    'default' => ''
+                ),
                 'ingredientsGroups' => array(
                     'type' => 'array',
                     'default' => [
@@ -1245,6 +1249,7 @@ class FoodblogkitchenToolkit
             "totalTime" => __('Total time', 'foodblogkitchen-toolkit'),
             "yield" => __('yields', 'foodblogkitchen-toolkit'),
             "ingredients" => __('Ingredients', 'foodblogkitchen-toolkit'),
+            "utensils" => __('Utensils', 'foodblogkitchen-toolkit'),
             "preparationSteps" => __('Steps of preparation', 'foodblogkitchen-toolkit'),
             "print" => __('Print', 'foodblogkitchen-toolkit'),
             "pinIt" => __('Pin it', 'foodblogkitchen-toolkit'),

@@ -271,6 +271,22 @@
       }
     }
   }
+  .foodblogkitchen-toolkit--recipe-block--utensils {
+    padding: 0;
+    width: 100%;
+    margin: 0 0 1rem 0;
+    list-style: none;
+
+    li {
+      padding: 8px;
+
+      &:nth-child(odd) {
+        background-color: var(--primary-light);
+        color: var(--primary-light-contrast);
+        border-radius: 2px;
+      }
+    }
+  }
 
   .foodblogkitchen-toolkit--recipe-block--preparation-steps {
     display: block;
