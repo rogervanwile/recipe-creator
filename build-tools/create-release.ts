@@ -9,14 +9,14 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-function copyFileSync(source: string, target: string) {
+function copyFileSync(source: string, target: string, newFileName: string | null = null) {
 
     var targetFile = target;
 
     // If target is a directory, a new file with the same name will be created
     if (fs.existsSync(target)) {
         if (fs.lstatSync(target).isDirectory()) {
-            targetFile = path.join(target, path.basename(source));
+            targetFile = path.join(target, newFileName ? newFileName : path.basename(source));
         }
     }
 
@@ -92,6 +92,22 @@ rl.question("What is the new version? ", function (version: string) {
     filesToCopy.forEach(file => {
         copyFileSync(file, './foodblogkitchen-toolkit');
     });
+
+    // Duplicate the de_DE translation files for de_AT and de_CH
+    // Read all files in the translations folder and check, if it is a german file
+    fs.readdirSync('./languages').forEach((file: string) => {
+        if (file.indexOf('de_DE') !== -1) {
+            // Its a german file
+            const atFileName = file.replace('de_DE', 'de_AT');
+            const chFileName = file.replace('de_DE', 'de_CH');
+
+            copyFileSync('./languages/' + file, './foodblogkitchen-toolkit/languages/', atFileName);
+            copyFileSync('./languages/' + file, './foodblogkitchen-toolkit/languages/', chFileName);
+        }
+    })
+
+    rl.close();
+    return;
 
     // Create the Zip file
 
