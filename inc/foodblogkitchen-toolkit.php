@@ -854,7 +854,7 @@ class FoodblogkitchenToolkit
                 ),
                 'recipeYieldUnit' => array(
                     'type' => 'string',
-                    'default' => ''
+                    'default' => 'servings'
                 ),
                 'videoUrl' => array(
                     'type' => 'string',
@@ -1289,9 +1289,12 @@ class FoodblogkitchenToolkit
             $attributes['difficulty'] = __($attributes['difficulty'], 'foodblogkitchen-toolkit');
         }
 
-        if (isset($attributes['recipeYieldUnit']) && !empty($attributes['recipeYieldUnit'])) {
-            $attributes['recipeYieldUnit'] = __($attributes['recipeYieldUnit'], 'foodblogkitchen-toolkit');
+        // Handle default recipeYieldUnit
+        if (!isset($attributes['recipeYieldUnit']) || empty($attributes['recipeYieldUnit'])) {
+            $attributes['recipeYieldUnit'] = 'servings';
         }
+
+        $attributes['recipeYieldUnit'] = __($attributes['recipeYieldUnit'], 'foodblogkitchen-toolkit');
 
         // In version 1.4.0 I added the possibility to split ingredient lists
         // So we have to migrate the old list (ingredients) to the new structure
