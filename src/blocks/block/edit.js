@@ -34,26 +34,6 @@ export default function Edit(props) {
 
   const ALLOWED_MEDIA_TYPES = ["image"];
 
-  const categoryOptions = [
-    __("Breakfast", 'foodblogkitchen-toolkit'),
-    __("Bread", 'foodblogkitchen-toolkit'),
-    __("Appetizers & Snacks", 'foodblogkitchen-toolkit'),
-    __("Salads", 'foodblogkitchen-toolkit'),
-    __("Soups & Stews", 'foodblogkitchen-toolkit'),
-    __("Main Dishes", 'foodblogkitchen-toolkit'),
-    __("Side Dishes", 'foodblogkitchen-toolkit'),
-    __("Desserts", 'foodblogkitchen-toolkit'),
-    __("Drinks", 'foodblogkitchen-toolkit'),
-    __("Sweets", 'foodblogkitchen-toolkit'),
-  ].map((value) => {
-    return { label: value, value: value };
-  });
-
-  categoryOptions.unshift({
-    value: "",
-    label: __("Select a category", 'foodblogkitchen-toolkit'),
-  });
-
   const recipeYieldUnitOptions = [
     {
       value: "servings",
