@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/foodblogkitchen-"
 "toolkit\n"
 "POT-Creation-Date: 2021-02-20T15:52:46+00:00\n"
-"PO-Revision-Date: 2021-02-20 16:53+0100\n"
+"PO-Revision-Date: 2021-02-20 17:06+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -381,7 +381,7 @@ msgstr "Ergibt"
 
 #: build/editor.js:1 src/blocks/block/RecipeYieldSelector.js:36
 msgid "cm"
-msgstr "Cm"
+msgstr "cm"
 
 #: build/editor.js:1 src/blocks/block/RecipeYieldSelector.js:40
 msgid "Unit"
