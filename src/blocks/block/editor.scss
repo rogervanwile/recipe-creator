@@ -148,13 +148,19 @@
     }
   }
 
-  .foodblogkitchen-toolkit--recipe-block--ingredients {
-    margin: 24px 0 0 0;
-
+  .foodblogkitchen-toolkit--recipe-block--editor {
     h3 {
-      // TODO: Remove !important
       margin-bottom: 24px !important;
     }
+
+    .foodblogkitchen-toolkit--recipe-block--group-header {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .foodblogkitchen-toolkit--recipe-block--ingredients {
+    margin: 24px 0 0 0;
 
     ul {
       display: block;
@@ -173,11 +179,6 @@
           border-radius: 2px;
         }
       }
-    }
-
-    .foodblogkitchen-toolkit--recipe-block--group-header {
-      display: flex;
-      justify-content: space-between;
     }
   }
 

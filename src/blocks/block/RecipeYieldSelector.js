@@ -1,6 +1,5 @@
 import { __ } from "@wordpress/i18n";
 
-
 import {
     SelectControl,
     __experimentalInputControl as InputControl,

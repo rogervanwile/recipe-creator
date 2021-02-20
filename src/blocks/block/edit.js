@@ -20,13 +20,36 @@ import { useDispatch, select, dispatch } from "@wordpress/data";
 
 import "./editor.scss";
 import RecipeYieldSelector from "./RecipeYieldSelector";
+import IngredientsGroupsEditor from "./IngredientsGroupsEditor";
 
 export default function Edit(props) {
-  const updateAttributes = (data) => {
-    useEffect(() => {
-      props.setAttributes(data);
-    });
-  }
+  useEffect(() => {
+    // In version 1.4.0 I added the possibility to split ingredient lists
+    // So we have to migrate the old list (ingredients) to the new structure
+    // of ingredientsGroups.
+
+    console.log('start', props.attributes);
+
+    if (props.attributes.ingredients) {
+      props.setAttributes({
+        ingredients: null,
+        ingredientsGroups: [{
+          title: '',
+          list: props.attributes.ingredients
+        }]
+      });
+    }
+
+    if (props.attributes.preparationSteps) {
+      props.setAttributes({
+        preparationSteps: null,
+        preparationStepsGroups: [{
+          title: '',
+          list: props.attributes.preparationSteps
+        }]
+      });
+    }
+  }, []);
 
   const { editPost } = useDispatch('core/editor');
   const setMeta = function (keyAndValue) {
@@ -34,7 +57,6 @@ export default function Edit(props) {
   }
 
   const ALLOWED_MEDIA_TYPES = ["image"];
-
 
   function updateTime(settingKey, value, update = {}) {
     let prepTime = parseInt(props.attributes.prepTime, 10) || 0;
@@ -162,52 +184,6 @@ export default function Edit(props) {
     return null;
   }
 
-  // In version 1.4.0 I added the possibility to split ingredient lists
-  // So we have to migrate the old list (ingredients) to the new structure
-  // of ingredientsGroups.
-  if (props.attributes.ingredients) {
-    updateAttributes({
-      ingredients: null,
-      ingredientsGroups: [{
-        title: '',
-        list: props.attributes.ingredients
-      }]
-    });
-  }
-
-  function addIngredientsGroup() {
-    const update = [...props.attributes.ingredientsGroups];
-    update.push({
-      title: '',
-      list: ''
-    });
-    props.setAttributes({ ingredientsGroups: update });
-
-    return false;
-  }
-
-  function removeIngredientsGroup(index) {
-    if (props.attributes.ingredientsGroups[index]) {
-      if (confirm(__("Are you shure you want to delete this group. All ingredients will be deleted."))) {
-        const update = [...props.attributes.ingredientsGroups];
-        update.splice(index, 1);
-
-        if (update.length === 0) {
-          update.push({
-            title: '',
-            list: ''
-          });
-        } else if (update.length === 1) {
-          // If the length is now 1, the title must be reset to an empty string
-          update[0].title = '';
-        }
-
-        props.setAttributes({ ingredientsGroups: update });
-      }
-    }
-
-    return false;
-  }
 
   return (
     <Fragment>
@@ -610,64 +586,7 @@ export default function Edit(props) {
           <RecipeYieldSelector props={props}></RecipeYieldSelector>
         </div>
 
-        {(
-          props.attributes.ingredientsGroups.map((group, index) => {
-            return (
-              <div key={"ingredientsGroups_" + index} className="foodblogkitchen-toolkit--recipe-block--ingredients">
-                {
-                  (
-                    (index !== 0 || props.attributes.ingredientsGroups.length > 1) ?
-                      <div className="foodblogkitchen-toolkit--recipe-block--group-header">
-                        <RichText
-                          tagName="h3"
-                          value={group.title || ''}
-                          placeholder={__("Group name", 'foodblogkitchen-toolkit')}
-                          onChange={(value) => {
-                            const groupUpdate = {
-                              ...group,
-                              title: value
-                            };
-
-                            const update = [...props.attributes.ingredientsGroups];
-                            update[index] = groupUpdate;
-
-                            props.setAttributes({ ingredientsGroups: update });
-                          }}
-                        />
-                        <Button isTertiary={true} onClick={() => removeIngredientsGroup(index)}>{__("Remove Group", "foodblogkitchen-toolkit")}</Button>
-                      </div> : ''
-                  )
-                }
-                <RichText
-                  tagName="ul"
-                  multiline="li"
-                  placeholder={__(
-                    "Add the ingredients here...",
-                    'foodblogkitchen-toolkit'
-                  )}
-                  value={group.list || ''}
-                  onChange={(value) => {
-                    const groupUpdate = {
-                      ...group,
-                      list: value
-                    };
-
-                    const update = [...props.attributes.ingredientsGroups];
-                    update[index] = groupUpdate;
-
-                    props.setAttributes({ ingredientsGroups: update });
-                  }}
-                />
-              </div>
-            )
-          })
-        )}
-
-        <Button isSecondary={true} onClick={addIngredientsGroup}>{(
-          props.attributes.ingredientsGroups.length === 1 ?
-            __("Split ingredients into groups", "foodblogkitchen-toolkit") :
-            __("Add additional group", "foodblogkitchen-toolkit")
-        )}</Button>
+        <IngredientsGroupsEditor props={props}></IngredientsGroupsEditor>
 
         <div className="foodblogkitchen-toolkit--recipe-block--headline">
           <h3>{__("Utensils", 'foodblogkitchen-toolkit')}</h3>
