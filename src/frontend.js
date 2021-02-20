@@ -159,40 +159,78 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var refreshIngredients = function () {
     if (ingredientsTable) {
+      const yieldUnit = ingredientsTable.getAttribute('data-recipe-yield-unit');
+      const baseYield = ingredientsTable.getAttribute('data-recipe-yield') || 1;
+
       ingredientsTable
         .querySelectorAll("tr .foodblogkitchen-toolkit--recipe-block--amount")
         .forEach((amountElement) => {
-          const baseAmount = parseFloat(
-            amountElement.getAttribute("data-recipe-base-amount"),
-            10
-          );
-          const baseUnit = amountElement.getAttribute("data-recipe-base-unit");
+          const amount = parseFloat(amountElement.getAttribute('data-recipe-amount'), 10);
 
-          if (baseAmount) {
-            let amount = baseAmount * servings;
-            let unit = baseUnit; // TODO: Umrechnen ^^
+          if (!amount) {
+            // Item without amount
+            return;
+          }
 
-            if (amount >= 1000) {
-              switch (unit) {
-                case "g":
-                  unit = "kg";
-                  amount = amount / 1000;
-                  break;
-                case "ml":
-                  unit = "l";
-                  amount = amount / 1000;
-                  break;
+          const unit = amountElement.getAttribute('data-recipe-unit');
+
+          let baseAmount;
+          if (yieldUnit === 'springform-pan') {
+            baseAmount = amount;
+          } else {
+            baseAmount = amount / baseYield
+          }
+
+          let baseUnit;
+
+          if (unit) {
+            if (unit.match(/^(g|ml)$/i)) {
+              baseUnit = unit;
+            } else if (unit.match(/^(kilo|kilogramm|kg)$/i)) {
+              baseUnit = 'g';
+              if (baseAmount) {
+                baseAmount = baseAmount / 1000;
               }
+            } else if (unit.match(/^(liter)$/i)) {
+              baseUnit = 'ml';
+              if (baseAmount) {
+                baseAmount = baseAmount / 1000;
+              }
+            } else {
+              baseUnit = unit;
             }
+          }
 
-            let formattedAmount = amount;
-            try {
-              formattedAmount = new Intl.NumberFormat("de-DE").format(amount);
-            } catch (e) { }
+          let newAmount;
+          if (yieldUnit === 'springform-pan') {
+            const factor = (Math.pow(baseYield, 2) * Math.PI) / (Math.pow(servings, 2) * Math.PI);
+            newAmount = baseAmount / factor;
+          } else {
+            newAmount = baseAmount * servings;
+          }
 
-            if (amountElement) {
-              amountElement.innerText = formattedAmount + " " + unit;
+          let newUnit = baseUnit;
+
+          if (newAmount >= 1000) {
+            switch (newUnit) {
+              case "g":
+                newUnit = "kg";
+                newAmount = newAmount / 1000;
+                break;
+              case "ml":
+                newUnit = "l";
+                newAmount = newAmount / 1000;
+                break;
             }
+          }
+
+          let formattedAmount = newAmount;
+          try {
+            formattedAmount = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 2 }).format(newAmount);
+          } catch (e) { }
+
+          if (amountElement) {
+            amountElement.innerText = formattedAmount + (newUnit ? " " + newUnit : '');
           }
         });
     }
@@ -202,7 +240,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var hideSiblings = function (container) {
     Array.from(container.parentElement.children).forEach(child => {
-      console.log(child);
       if (child !== container) {
         child.style.display = 'none';
         hiddenElements.push(child);

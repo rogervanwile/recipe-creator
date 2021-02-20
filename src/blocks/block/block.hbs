@@ -96,13 +96,14 @@
     <div class="foodblogkitchen-toolkit--recipe-block--servings-editor">
       <button type="button" class="recipe-shrink-servings">-</button>
       <span disabled="disabled"><span class="recipe-servings">{{recipeYield}}</span>
-        {{recipeYieldUnit}}
+        {{recipeYieldUnitFormatted}}
       </span>
       <button type="button" class="recipe-increase-servings">+</button>
     </div>
     {{/if}}
   </div>
-  <table class="foodblogkitchen-toolkit--recipe-block--ingredients">
+  <table class="foodblogkitchen-toolkit--recipe-block--ingredients" data-recipe-yield="{{recipeYield}}"
+    data-recipe-yield-unit="{{recipeYieldUnit}}">
     <tbody>
       {{#each ingredientsGroups}}
       {{#if this/title}}
@@ -113,8 +114,8 @@
       {{#each this/items}}
       <tr
         class="foodblogkitchen-toolkit--recipe-block--ingredients-item{{#isEven @index}} foodblogkitchen-toolkit--even{{/isEven}}">
-        <td class="foodblogkitchen-toolkit--recipe-block--amount" data-recipe-base-amount="{{this/baseAmount}}"
-          data-recipe-base-unit="{{this/baseUnit}}">{{this/amount}} {{this/unit}}</td>
+        <td class="foodblogkitchen-toolkit--recipe-block--amount" data-recipe-amount="{{this/amount}}"
+          data-recipe-unit="{{this/unit}}">{{this/amount}} {{this/unit}}</td>
         <td class="foodblogkitchen-toolkit--recipe-block--ingredient">{{{this/ingredient}}}</td>
       </tr>
       {{/each}}

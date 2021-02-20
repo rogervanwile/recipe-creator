@@ -19,6 +19,7 @@ import ImageUpload from "./ImageUpload";
 import { useDispatch, select, dispatch } from "@wordpress/data";
 
 import "./editor.scss";
+import RecipeYieldSelector from "./RecipeYieldSelector";
 
 export default function Edit(props) {
   const updateAttributes = (data) => {
@@ -34,16 +35,6 @@ export default function Edit(props) {
 
   const ALLOWED_MEDIA_TYPES = ["image"];
 
-  const recipeYieldUnitOptions = [
-    {
-      value: "servings",
-      label: __("servings", 'foodblogkitchen-toolkit'),
-    },
-    {
-      value: "piece",
-      label: __("piece", 'foodblogkitchen-toolkit'),
-    },
-  ];
 
   function updateTime(settingKey, value, update = {}) {
     let prepTime = parseInt(props.attributes.prepTime, 10) || 0;
@@ -230,7 +221,6 @@ export default function Edit(props) {
               <MediaUpload
                 onSelect={(media) => {
                   if (media) {
-                    console.log(media);
                     setMeta({
                       foodblogkitchen_pinterest_image_id: media.id,
                       foodblogkitchen_pinterest_image_url: media.url,
@@ -617,25 +607,7 @@ export default function Edit(props) {
           <h3>{__("Ingredients", 'foodblogkitchen-toolkit')}</h3>
         </div>
         <div className="foodblogkitchen-toolkit--recipe-block--flex-container">
-          <InputControl
-            label={__("Results in", 'foodblogkitchen-toolkit')}
-            type="number"
-            min="0"
-            value={props.attributes.recipeYield}
-            placeholder="0"
-            onChange={(recipeYield) => {
-              props.setAttributes({ recipeYield });
-            }}
-          />
-
-          <SelectControl
-            label={__("Unit", 'foodblogkitchen-toolkit')}
-            value={props.attributes.recipeYieldUnit}
-            options={recipeYieldUnitOptions}
-            onChange={(recipeYieldUnit) =>
-              props.setAttributes({ recipeYieldUnit })
-            }
-          />
+          <RecipeYieldSelector props={props}></RecipeYieldSelector>
         </div>
 
         {(
@@ -748,7 +720,6 @@ export default function Edit(props) {
             onChange={(url) => {
               if (url) {
                 const iframeUrl = generateIframeUrl(url);
-                console.log('iframeUrl', iframeUrl);
                 if (iframeUrl) {
                   props.setAttributes({ videoUrl: url, videoIframeUrl: iframeUrl });
                 } else {

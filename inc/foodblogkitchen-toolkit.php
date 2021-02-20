@@ -1187,29 +1187,21 @@ class FoodblogkitchenToolkit
                 "title" => "",
                 "list" => array(
                     array(
-                        "baseUnit" => "ml",
-                        "baseAmount" => 250,
                         "amount" => 500,
                         "unit" => "ml",
                         "ingredient" => __("milk", 'foodblogkitchen-toolkit')
                     ),
                     array(
-                        "baseUnit" => "",
-                        "baseAmount" => 0.5,
                         "amount" => 1,
                         "unit" => "",
                         "ingredient" => __("banana", 'foodblogkitchen-toolkit')
                     ),
                     array(
-                        "baseUnit" => "TL",
-                        "baseAmount" => 0.5,
                         "amount" => 1,
                         "unit" => "TL",
                         "ingredient" => __("sugar", 'foodblogkitchen-toolkit')
                     ),
                     array(
-                        "baseUnit" => "",
-                        "baseAmount" => 0,
                         "amount" => 0,
                         "unit" => "",
                         "ingredient" => __("cinnamon", 'foodblogkitchen-toolkit')
@@ -1289,12 +1281,18 @@ class FoodblogkitchenToolkit
             $attributes['difficulty'] = __($attributes['difficulty'], 'foodblogkitchen-toolkit');
         }
 
-        // Handle default recipeYieldUnit
-        if (!isset($attributes['recipeYieldUnit']) || empty($attributes['recipeYieldUnit'])) {
-            $attributes['recipeYieldUnit'] = 'servings';
+        switch ($attributes['recipeYieldUnit']) {
+            case 'piece':
+                $attributes['recipeYieldUnitFormatted'] = __('piece', 'foodblogkitchen-toolkit');
+                break;
+            case 'springform-pan':
+                $attributes['recipeYieldUnitFormatted'] = __('cm springform pan', 'foodblogkitchen-toolkit');
+                break;
+            case 'servings':
+            default:
+                $attributes['recipeYieldUnitFormatted'] = __('servings', 'foodblogkitchen-toolkit');
+                break;
         }
-
-        $attributes['recipeYieldUnit'] = __($attributes['recipeYieldUnit'], 'foodblogkitchen-toolkit');
 
         // In version 1.4.0 I added the possibility to split ingredient lists
         // So we have to migrate the old list (ingredients) to the new structure
@@ -1310,7 +1308,7 @@ class FoodblogkitchenToolkit
             unset($attributes["ingredients"]);
         }
 
-        $attributes['ingredientsGroups'] = $this->prepareIngredientsForRenderer($attributes['ingredientsGroups'], $attributes['recipeYield']);
+        $attributes['ingredientsGroups'] = $this->prepareIngredientsForRenderer($attributes['ingredientsGroups']);
 
         $attributes['averageRating'] = $averageRating;
 
@@ -1448,36 +1446,10 @@ class FoodblogkitchenToolkit
         return $renderer($attributes);
     }
 
-    private function prepareIngredientsForRenderer($ingredientsGroups, $recipeYield = 1)
+    private function prepareIngredientsForRenderer($ingredientsGroups)
     {
-        return array_map(function ($group) use ($recipeYield) {
-            $ingredientsRaw = $this->extractIngredients($group['list']);
-
-            $group['items'] = array_map(function ($item) use ($recipeYield) {
-                if (isset($item['amount']) && $recipeYield !== 0) {
-                    $item['baseAmount'] = floatval($item['amount']) / $recipeYield;
-                }
-
-                if (isset($item['unit'])) {
-                    if (preg_match("/^(g|ml)$/i", $item['unit'])) {
-                        $item['baseUnit'] = $item['unit'];
-                    } else if (preg_match("/^(kilo|kilogramm|kg)$/i", $item['unit'])) {
-                        $item['baseUnit'] = 'g';
-                        if (isset($item['baseAmount'])) {
-                            $item['baseAmount'] = $item['baseAmount'];
-                        }
-                    } else if (preg_match("/^(liter)$/i", $item['unit'])) {
-                        $item['baseUnit'] = 'ml';
-                        if (isset($item['baseAmount'])) {
-                            $item['baseAmount'] = $item['baseAmount'] / 1000;
-                        }
-                    } else {
-                        $item['baseUnit'] = $item['unit'];
-                    }
-                }
-
-                return $item;
-            }, $ingredientsRaw);
+        return array_map(function ($group) {
+            $group['items'] = $this->extractIngredients($group['list']);
             return $group;
         }, $ingredientsGroups);
     }
