@@ -8,14 +8,15 @@ import {
     Button,
 } from "@wordpress/components";
 
-
 export default function IngredientsGroupsEditor({ props }) {
     function addGroup() {
-        const update = [...props.attributes.ingredientsGroups];
-        update.push({
-            title: '',
-            list: ''
-        });
+        const update = [
+            ...props.attributes.ingredientsGroups,
+            {
+                title: '',
+                list: ''
+            }
+        ];
         props.setAttributes({ ingredientsGroups: update });
 
         return false;
