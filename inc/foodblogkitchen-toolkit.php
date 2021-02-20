@@ -1184,27 +1184,29 @@ class FoodblogkitchenToolkit
             "description" => __("You have bananas left over again and don't know what to do with them? How about a delicious shake?", 'foodblogkitchen-toolkit'),
             'totalTime' => 5,
             "ingredientsGroups" => array(
-                "title" => "",
-                "list" => array(
-                    array(
-                        "amount" => 500,
-                        "unit" => "ml",
-                        "ingredient" => __("milk", 'foodblogkitchen-toolkit')
-                    ),
-                    array(
-                        "amount" => 1,
-                        "unit" => "",
-                        "ingredient" => __("banana", 'foodblogkitchen-toolkit')
-                    ),
-                    array(
-                        "amount" => 1,
-                        "unit" => "TL",
-                        "ingredient" => __("sugar", 'foodblogkitchen-toolkit')
-                    ),
-                    array(
-                        "amount" => 0,
-                        "unit" => "",
-                        "ingredient" => __("cinnamon", 'foodblogkitchen-toolkit')
+                array(
+                    "title" => "",
+                    "items" => array(
+                        array(
+                            "amount" => 500,
+                            "unit" => "ml",
+                            "ingredient" => __("milk", 'foodblogkitchen-toolkit')
+                        ),
+                        array(
+                            "amount" => 1,
+                            "unit" => "",
+                            "ingredient" => __("banana", 'foodblogkitchen-toolkit')
+                        ),
+                        array(
+                            "amount" => 1,
+                            "unit" => "TL",
+                            "ingredient" => __("sugar", 'foodblogkitchen-toolkit')
+                        ),
+                        array(
+                            "amount" => 0,
+                            "unit" => "",
+                            "ingredient" => __("cinnamon", 'foodblogkitchen-toolkit')
+                        )
                     )
                 )
             ),
