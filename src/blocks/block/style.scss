@@ -168,7 +168,8 @@
   .foodblogkitchen-toolkit--recipe-block--headline {
     display: flex;
     justify-content: space-between;
-    padding: 1rem 0;
+    padding: 0;
+    margin: 2rem 0 1rem 0;
     align-items: flex-start;
 
     flex-direction: column;
@@ -219,7 +220,8 @@
   .foodblogkitchen-toolkit--recipe-block--group-title {
     th {
       padding-top: 16px;
-      padding-bottom: 4px;
+      padding-bottom: 8px;
+      border: 0;
     }
   }
 

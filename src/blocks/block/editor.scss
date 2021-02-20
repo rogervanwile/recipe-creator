@@ -4,8 +4,16 @@
  * Replace them with your own styles or remove the file completely.
  */
 
+.wp-block {
+  .foodblogkitchen-toolkit--show-additional-settings {
+    display: block;
+    margin: 16px 0 0 auto;
+  }
+}
+
 .wp-block-foodblogkitchen-recipes-block {
   text-align: left;
+  margin-bottom: 0 !important;
 
   h3 {
     margin: 0 !important;

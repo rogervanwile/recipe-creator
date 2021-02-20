@@ -16,7 +16,7 @@ import {
 import { Fragment, useEffect } from "@wordpress/element";
 import ImageUpload from "./ImageUpload";
 
-import { useDispatch } from "@wordpress/data";
+import { useDispatch, select, dispatch } from "@wordpress/data";
 
 import "./editor.scss";
 
@@ -793,19 +793,15 @@ export default function Edit(props) {
             props.setAttributes({ notes });
           }}
         />
-
-        {/* <section>
-          <div className="foodblogkitchen-toolkit--recipe-block--headline">
-            <h3>{__("Video", 'foodblogkitchen-toolkit')}</h3>
-          </div>
-          <TextControl
-            label={__("Video-URL", 'foodblogkitchen-toolkit')}
-            value={props.attributes.videoUrl}
-            type="number"
-            onChange={(videoUrl) => props.setAttributes({ videoUrl })}
-          />
-        </section> */}
       </div>
+
+      {(
+        !select('core/edit-post').isEditorSidebarOpened() ?
+          <button type="button" className="components-button is-tertiary foodblogkitchen-toolkit--show-additional-settings" onClick={() => {
+            dispatch('core/edit-post').openGeneralSidebar('edit-post/document');
+          }}>{__("Show additional settings", "foodblogkitchen-toolkit")}</button>
+          : null
+      )}
     </Fragment >
   );
 }
