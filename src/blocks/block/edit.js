@@ -3,8 +3,6 @@ import {
   TextControl,
   PanelBody,
   PanelRow,
-  SelectControl,
-  Button,
   __experimentalInputControl as InputControl,
 } from "@wordpress/components";
 import {
@@ -20,6 +18,7 @@ import { useDispatch, select, dispatch } from "@wordpress/data";
 
 import "./editor.scss";
 import RecipeYieldSelector from "./RecipeYieldSelector";
+import PreparationStepsGroupsEditor from "./PreparationStepsGroupsEditor";
 import IngredientsGroupsEditor from "./IngredientsGroupsEditor";
 
 export default function Edit(props) {
@@ -612,19 +611,7 @@ export default function Edit(props) {
           <h3>{__("Steps of preparation", 'foodblogkitchen-toolkit')}</h3>
         </div>
 
-        <RichText
-          tagName="ol"
-          multiline="li"
-          className="foodblogkitchen-toolkit--recipe-block--preparation-steps"
-          placeholder={__(
-            "Add the steps of preparation here...",
-            'foodblogkitchen-toolkit'
-          )}
-          value={props.attributes.preparationSteps}
-          onChange={(preparationSteps) =>
-            props.setAttributes({ preparationSteps })
-          }
-        />
+        <PreparationStepsGroupsEditor props={props}></PreparationStepsGroupsEditor>
 
         <hr />
 

@@ -137,13 +137,21 @@
 
   <hr />
 
-  {{#if preparationSteps}}
+  {{#if preparationStepsGroups.0}}
   <div class="foodblogkitchen-toolkit--recipe-block--headline">
     <h3>{{translations/preparationSteps}}</h3>
   </div>
-  <ol class="foodblogkitchen-toolkit--recipe-block--preparation-steps">
-    {{{preparationSteps}}}
-  </ol>
+
+  <div class="foodblogkitchen-toolkit--recipe-block--preparation-steps">
+    {{#each preparationStepsGroups}}
+    {{#if this/title}}
+    <h4>{{this.title}}</h4>
+    {{/if}}
+    <ol>
+      {{{this/list}}}
+    </ol>
+    {{/each}}
+  </div>
   {{/if}}
 
   {{#if videoIframeUrl}}

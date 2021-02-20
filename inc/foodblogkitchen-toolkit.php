@@ -796,6 +796,11 @@ class FoodblogkitchenToolkit
                     'type' => 'string',
                     'default' => ''
                 ),
+                // deprecated
+                'preparationSteps' => array(
+                    'type' => 'string',
+                    'default' => ''
+                ),
                 'utensils' => array(
                     'type' => 'string',
                     'default' => ''
@@ -809,9 +814,14 @@ class FoodblogkitchenToolkit
                         ]
                     ]
                 ),
-                'preparationSteps' => array(
-                    'type' => 'string',
-                    'default' => ''
+                'preparationStepsGroups' => array(
+                    'type' => 'array',
+                    'default' => [
+                        [
+                            "title" => "",
+                            "list" => ""
+                        ]
+                    ]
                 ),
                 'name' => array(
                     'type' => 'string',
@@ -1176,7 +1186,8 @@ class FoodblogkitchenToolkit
         return array(
             "translations" => $this->getRecipeBlockTranslations(),
             "recipeYield" => 2,
-            "recipeYieldUnit" => __("servings", 'foodblogkitchen-toolkit'),
+            "recipeYieldUnit" => "servings",
+            "recipeYieldUnitFormatted" => __("servings", 'foodblogkitchen-toolkit'),
             "difficulty" => __('simple', 'foodblogkitchen-toolkit'),
             'prepTime' => 0,
             'cookTime' => 5,
@@ -1210,11 +1221,20 @@ class FoodblogkitchenToolkit
                     )
                 )
             ),
-            "preparationSteps" => '<li>' . join("</li><li>", [
-                __("Peel banana.", 'foodblogkitchen-toolkit'),
-                __("Put all the ingredients in the blender and mix everything for 30 seconds.", 'foodblogkitchen-toolkit'),
-                __("Pour into a glass and enjoy.", 'foodblogkitchen-toolkit'),
+            "utensils" => '<li>' . join("</li><li>", [
+                __("Knife", 'foodblogkitchen-toolkit'),
+                __("Blender", 'foodblogkitchen-toolkit'),
             ]) . '</li>',
+            "preparationStepsGroups" => array(
+                array(
+                    "title" => "",
+                    "list" => '<li>' . join("</li><li>", [
+                        __("Peel banana.", 'foodblogkitchen-toolkit'),
+                        __("Put all the ingredients in the blender and mix everything for 30 seconds.", 'foodblogkitchen-toolkit'),
+                        __("Pour into a glass and enjoy.", 'foodblogkitchen-toolkit'),
+                    ]) . '</li>'
+                )
+            ),
             "averageRating" => 4.5,
             "thumbnail" => plugins_url('../assets/banana-shake-4_3.png', __FILE__),
             "notes" => __("The milkshake becomes particularly creamy with UHT milk.", 'foodblogkitchen-toolkit'),
@@ -1308,6 +1328,20 @@ class FoodblogkitchenToolkit
                 ]
             ];
             unset($attributes["ingredients"]);
+        }
+
+        // In version 1.5.0 I added the possibility to split preparation step lists
+        // So we have to migrate the old list (preparationSteps) to the new structure
+        // of preparationStepsGroups.
+
+        if (isset($attributes['preparationSteps']) && !empty($attributes['preparationSteps'])) {
+            $attributes['preparationStepsGroups'] = [
+                [
+                    "title" => "",
+                    "list" => $attributes['preparationSteps']
+                ]
+            ];
+            unset($attributes["preparationSteps"]);
         }
 
         $attributes['ingredientsGroups'] = $this->prepareIngredientsForRenderer($attributes['ingredientsGroups']);
@@ -1405,14 +1439,7 @@ class FoodblogkitchenToolkit
                 "calories" => $attributes['calories']
             ] : '',
             "recipeIngredient" => $this->prepareIngredientsForJsonLd($attributes['ingredientsGroups']),
-            "recipeInstructions" =>
-            isset($attributes['preparationSteps']) ?
-                array_map(function ($item) {
-                    return [
-                        "@type" => "HowToStep",
-                        "text" => strip_tags($item)
-                    ];
-                }, explode('\n', str_replace('li><li', 'li>\n<li', $attributes['preparationSteps']))) : '',
+            "recipeInstructions" => $this->preparePreparationStepsForJsonLd($attributes['preparationStepsGroups']),
         ];
 
         if ($averageRating > 0 && $ratingCount > 0) {
@@ -1470,6 +1497,33 @@ class FoodblogkitchenToolkit
         }
 
         return $flatIngredients;
+    }
+
+    private function preparePreparationStepsForJsonLd($preparationStepsGroup)
+    {
+        if (!isset($preparationStepsGroup)) {
+            return '';
+        }
+
+        // In JSON LD the preparation steps groups must be a flat array
+        $flat = [];
+
+        foreach ($preparationStepsGroup as $group) {
+            if (isset($group['list'])) {
+                $itemsList = array_map(function ($item) {
+                    return [
+                        "@type" => "HowToStep",
+                        "text" => strip_tags($item)
+                    ];
+                }, explode('\n', str_replace('li><li', 'li>\n<li', $group['list'])));
+
+                foreach ($itemsList as $howToStep) {
+                    $flat[] = $howToStep;
+                }
+            }
+        }
+
+        return $flat;
     }
 
     public function renderJumpToRecipeBlock($attributes, $context)
