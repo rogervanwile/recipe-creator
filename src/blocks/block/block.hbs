@@ -1,222 +1,227 @@
 <div class="foodblogkitchen-toolkit--block{{#if align}} align{{align}}{{/if}}" id="foodblogkitchen-toolkit--recipe">
-  {{#if name}}
-  <h2>{{{name}}}</h2>
-  {{/if}}
+  <section class="foodblogkitchen-toolkit--block--inner">
+    {{#if name}}
+    <h2>{{{name}}}</h2>
+    {{/if}}
 
-  <div class="foodblogkitchen-toolkit--recipe-block--intro">
-    <div>
-      {{#if difficulty}}
-      <span class="foodblogkitchen-toolkit--recipe-block--difficulty">{{ difficulty }}</span>
-      {{/if}}
+    <div class="foodblogkitchen-toolkit--recipe-block--intro">
+      <div>
+        {{#if averageRating}}
+        <div class="foodblogkitchen-toolkit--recipe-block--rating foodblogkitchen-toolkit--recipe-block--rating--small">
+          <ol>
+            <li class="foodblogkitchen-toolkit--recipe-block--star{{#if averageRating}} selected{{/if}}"
+              data-rating="1">1
+            </li>
+            <li
+              class="foodblogkitchen-toolkit--recipe-block--star{{#ifMoreOrEqual averageRating 2}} selected{{else}}{{#ifMoreOrEqual averageRating 1.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
+              data-rating="2">2</li>
+            <li
+              class="foodblogkitchen-toolkit--recipe-block--star{{#ifMoreOrEqual averageRating 3}} selected{{else}}{{#ifMoreOrEqual averageRating 2.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
+              data-rating="3">3</li>
+            <li
+              class="foodblogkitchen-toolkit--recipe-block--star{{#ifMoreOrEqual averageRating 4}} selected{{else}}{{#ifMoreOrEqual averageRating 3.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
+              data-rating="4">4</li>
+            <li
+              class="foodblogkitchen-toolkit--recipe-block--star{{#ifMoreOrEqual averageRating 5}} selected{{else}}{{#ifMoreOrEqual averageRating 4.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
+              data-rating="5">5</li>
+          </ol>
+        </div>
+        {{/if}}
 
-      {{#if description}}
-      <p>{{ description }}</p>
-      {{/if}}
-      {{#if averageRating}}
-      <div class="foodblogkitchen-toolkit--recipe-block--rating foodblogkitchen-toolkit--recipe-block--rating--small">
-        <ol>
-          <li class="foodblogkitchen-toolkit--recipe-block--star{{#if averageRating}} selected{{/if}}" data-rating="1">1
-          </li>
-          <li
-            class="foodblogkitchen-toolkit--recipe-block--star{{#ifMoreOrEqual averageRating 2}} selected{{else}}{{#ifMoreOrEqual averageRating 1.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
-            data-rating="2">2</li>
-          <li
-            class="foodblogkitchen-toolkit--recipe-block--star{{#ifMoreOrEqual averageRating 3}} selected{{else}}{{#ifMoreOrEqual averageRating 2.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
-            data-rating="3">3</li>
-          <li
-            class="foodblogkitchen-toolkit--recipe-block--star{{#ifMoreOrEqual averageRating 4}} selected{{else}}{{#ifMoreOrEqual averageRating 3.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
-            data-rating="4">4</li>
-          <li
-            class="foodblogkitchen-toolkit--recipe-block--star{{#ifMoreOrEqual averageRating 5}} selected{{else}}{{#ifMoreOrEqual averageRating 4.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
-            data-rating="5">5</li>
-        </ol>
+        {{#if description}}
+        <p>{{ description }}</p>
+        {{/if}}
+
+        {{#if difficulty}}
+        <span class="foodblogkitchen-toolkit--recipe-block--difficulty">{{ difficulty }}</span>
+        {{/if}}
+
+      </div>
+      <div>
+        {{#if thumbnail}}
+        <div class="foodblogkitchen-toolkit--recipe-block--main-image" style="background-image: url('{{thumbnail}}');"
+          title="{{ name }}"></div>
+        {{/if}}
+      </div>
+    </div>
+
+    <hr />
+
+    {{#if totalTime}}
+    <div class="foodblogkitchen-toolkit--recipe-block--timing-list">
+      <ul>
+        {{#if prepTime}}
+        <li>
+          <header>{{translations/prepTime}}:</header>
+          <span>{{#formatDuration prepTime}}{{/formatDuration}}</span>
+        </li>
+        {{/if}}
+
+        {{#if restTime}}
+        <li>
+          <header>{{translations/restTime}}:</header>
+          <span>
+            {{#formatDuration restTime}}{{/formatDuration}}</span>
+        </li>
+        {{/if}}
+
+        {{#if cookTime}}
+        <li>
+          <header>{{translations/cookTime}}:</header>
+          <span>
+            {{#formatDuration cookTime}}{{/formatDuration}}</span>
+        </li>
+        {{/if}}
+
+        {{#if bakingTime}}
+        <li>
+          <header>{{translations/bakingTime}}:</header>
+          <span>
+            {{#formatDuration bakingTime}}{{/formatDuration}}</span>
+        </li>
+        {{/if}}
+
+        {{#if totalTime}}
+        <li>
+          <header>{{translations/totalTime}}:</header>
+          <span>{{#formatDuration totalTime}}{{/formatDuration}}</span>
+        </li>
+        {{/if}}
+      </ul>
+    </div>
+    {{/if}}
+
+    <hr />
+
+    {{#if ingredientsGroups.0}}
+    <div class="foodblogkitchen-toolkit--recipe-block--headline">
+      <h3>{{translations/ingredients}}</h3>
+      {{#if recipeYield}}
+      <div class="foodblogkitchen-toolkit--recipe-block--servings-editor">
+        <button type="button" class="recipe-shrink-servings">-</button>
+        <span disabled="disabled"><span class="recipe-servings">{{recipeYield}}</span>
+          {{recipeYieldUnitFormatted}}
+        </span>
+        <button type="button" class="recipe-increase-servings">+</button>
       </div>
       {{/if}}
     </div>
-    <div>
-      {{#if thumbnail}}
-      <div class="foodblogkitchen-toolkit--recipe-block--main-image" style="background-image: url('{{thumbnail}}');"
-        title="{{ name }}"></div>
-      {{/if}}
-    </div>
-  </div>
-
-  <hr />
-
-  {{#if totalTime}}
-  <div class="foodblogkitchen-toolkit--recipe-block--timing-list">
-    <ul>
-      {{#if prepTime}}
-      <li>
-        <header>{{translations/prepTime}}:</header>
-        <span>{{#formatDuration prepTime}}{{/formatDuration}}</span>
-      </li>
-      {{/if}}
-
-      {{#if restTime}}
-      <li>
-        <header>{{translations/restTime}}:</header>
-        <span>
-          {{#formatDuration restTime}}{{/formatDuration}}</span>
-      </li>
-      {{/if}}
-
-      {{#if cookTime}}
-      <li>
-        <header>{{translations/cookTime}}:</header>
-        <span>
-          {{#formatDuration cookTime}}{{/formatDuration}}</span>
-      </li>
-      {{/if}}
-
-      {{#if bakingTime}}
-      <li>
-        <header>{{translations/bakingTime}}:</header>
-        <span>
-          {{#formatDuration bakingTime}}{{/formatDuration}}</span>
-      </li>
-      {{/if}}
-
-      {{#if totalTime}}
-      <li>
-        <header>{{translations/totalTime}}:</header>
-        <span>{{#formatDuration totalTime}}{{/formatDuration}}</span>
-      </li>
-      {{/if}}
-    </ul>
-  </div>
-  {{/if}}
-
-  <hr />
-
-  {{#if ingredientsGroups.0}}
-  <div class="foodblogkitchen-toolkit--recipe-block--headline">
-    <h3>{{translations/ingredients}}</h3>
-    {{#if recipeYield}}
-    <div class="foodblogkitchen-toolkit--recipe-block--servings-editor">
-      <button type="button" class="recipe-shrink-servings">-</button>
-      <span disabled="disabled"><span class="recipe-servings">{{recipeYield}}</span>
-        {{recipeYieldUnitFormatted}}
-      </span>
-      <button type="button" class="recipe-increase-servings">+</button>
-    </div>
+    <table class="foodblogkitchen-toolkit--recipe-block--ingredients" data-recipe-yield="{{recipeYield}}"
+      data-recipe-yield-unit="{{recipeYieldUnit}}">
+      <tbody>
+        {{#each ingredientsGroups}}
+        {{#if this/title}}
+        <tr class="foodblogkitchen-toolkit--recipe-block--group-title">
+          <th colspan="2">{{this.title}}</th>
+        </tr>
+        {{/if}}
+        {{#each this/items}}
+        <tr
+          class="foodblogkitchen-toolkit--recipe-block--ingredients-item{{#isEven @index}} foodblogkitchen-toolkit--even{{/isEven}}">
+          <td class="foodblogkitchen-toolkit--recipe-block--amount" data-recipe-amount="{{this/amount}}"
+            data-recipe-unit="{{this/unit}}">{{this/amount}} {{this/unit}}</td>
+          <td class="foodblogkitchen-toolkit--recipe-block--ingredient">{{{this/ingredient}}}</td>
+        </tr>
+        {{/each}}
+        {{/each}}
+      </tbody>
+    </table>
     {{/if}}
-  </div>
-  <table class="foodblogkitchen-toolkit--recipe-block--ingredients" data-recipe-yield="{{recipeYield}}"
-    data-recipe-yield-unit="{{recipeYieldUnit}}">
-    <tbody>
-      {{#each ingredientsGroups}}
+
+    <hr />
+
+    {{#if utensils}}
+    <div class="foodblogkitchen-toolkit--recipe-block--headline">
+      <h3>{{translations/utensils}}</h3>
+    </div>
+    <ul class="foodblogkitchen-toolkit--recipe-block--utensils">
+      {{{utensils}}}
+    </ul>
+    {{/if}}
+
+    <hr />
+
+    {{#if preparationStepsGroups.0}}
+    <div class="foodblogkitchen-toolkit--recipe-block--headline">
+      <h3>{{translations/preparationSteps}}</h3>
+    </div>
+
+    <div class="foodblogkitchen-toolkit--recipe-block--preparation-steps">
+      {{#each preparationStepsGroups}}
       {{#if this/title}}
-      <tr class="foodblogkitchen-toolkit--recipe-block--group-title">
-        <th colspan="2">{{this.title}}</th>
-      </tr>
+      <h4>{{this.title}}</h4>
       {{/if}}
-      {{#each this/items}}
-      <tr
-        class="foodblogkitchen-toolkit--recipe-block--ingredients-item{{#isEven @index}} foodblogkitchen-toolkit--even{{/isEven}}">
-        <td class="foodblogkitchen-toolkit--recipe-block--amount" data-recipe-amount="{{this/amount}}"
-          data-recipe-unit="{{this/unit}}">{{this/amount}} {{this/unit}}</td>
-        <td class="foodblogkitchen-toolkit--recipe-block--ingredient">{{{this/ingredient}}}</td>
-      </tr>
-      {{/each}}
-      {{/each}}
-    </tbody>
-  </table>
-  {{/if}}
-
-  <hr />
-
-  {{#if utensils}}
-  <div class="foodblogkitchen-toolkit--recipe-block--headline">
-    <h3>{{translations/utensils}}</h3>
-  </div>
-  <ul class="foodblogkitchen-toolkit--recipe-block--utensils">
-    {{{utensils}}}
-  </ul>
-  {{/if}}
-
-  <hr />
-
-  {{#if preparationStepsGroups.0}}
-  <div class="foodblogkitchen-toolkit--recipe-block--headline">
-    <h3>{{translations/preparationSteps}}</h3>
-  </div>
-
-  <div class="foodblogkitchen-toolkit--recipe-block--preparation-steps">
-    {{#each preparationStepsGroups}}
-    {{#if this/title}}
-    <h4>{{this.title}}</h4>
-    {{/if}}
-    <ol>
-      {{{this/list}}}
-    </ol>
-    {{/each}}
-  </div>
-  {{/if}}
-
-  {{#if videoIframeUrl}}
-  <hr />
-
-  <section>
-    <header class="foodblogkitchen-toolkit--recipe-block--headline">
-      <h3>{{translations/video}}</h3>
-    </header>
-    <div class="foodblogkitchen-toolkit--recipe-block--video-wrapper">
-      <iframe src="{{videoIframeUrl}}" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </section>
-  {{/if}}
-
-  {{#if notes}}
-  <hr />
-
-  <section>
-    <header class="foodblogkitchen-toolkit--recipe-block--headline">
-      <h3>{{translations/notes}}</h3>
-    </header>
-    <p>{{{notes}}}</p>
-  </section>
-  {{/if}}
-
-  <section class="foodblogkitchen-toolkit--recipe-block--user-rating">
-    <hr />
-    <header class="foodblogkitchen-toolkit--recipe-block--headline">
-      <h3>{{translations/feedback}}</h3>
-    </header>
-    <div class="foodblogkitchen-toolkit--recipe-block--rating foodblogkitchen-toolkit--recipe-block--interactive"
-      data-post-id="{{postId}}" data-save-url="{{ajaxUrl}}" data-nonce="{{nonce}}">
       <ol>
-        <li class="foodblogkitchen-toolkit--recipe-block--star{{#if userRating}} selected{{/if}}" data-rating="1">1
-        </li>
-        <li
-          class="foodblogkitchen-toolkit--recipe-block--star{{#ifMoreOrEqual userRating 2}} selected{{else}}{{/ifMoreOrEqual}}"
-          data-rating="2">2</li>
-        <li
-          class="foodblogkitchen-toolkit--recipe-block--star{{#ifMoreOrEqual userRating 3}} selected{{else}}{{/ifMoreOrEqual}}"
-          data-rating="3">3</li>
-        <li
-          class="foodblogkitchen-toolkit--recipe-block--star{{#ifMoreOrEqual userRating 4}} selected{{else}}{{/ifMoreOrEqual}}"
-          data-rating="4">4</li>
-        <li
-          class="foodblogkitchen-toolkit--recipe-block--star{{#ifMoreOrEqual userRating 5}} selected{{else}}{{/ifMoreOrEqual}}"
-          data-rating="5">5</li>
+        {{{this/list}}}
       </ol>
+      {{/each}}
     </div>
-  </section>
+    {{/if}}
 
-  <section class="foodblogkitchen-toolkit--recipe-block--save-and-share">
+    {{#if videoIframeUrl}}
     <hr />
-    <ul class="foodblogkitchen-toolkit--recipe-block--share-buttons">
-      <li>
-        <button class="foodblogkitchen-toolkit--recipe-block--print-button">{{translations/print}}</button>
-      </li>
-      {{#if pinterestPinItUrl}}
-      <li>
-        <a href="{{pinterestPinItUrl}}" target="_blank"
-          class="foodblogkitchen-toolkit--recipe-block--share-on-pinterest">{{translations/pinIt}}</a>
-      </li>
-      {{/if}}
-    </ul>
+
+    <section>
+      <header class="foodblogkitchen-toolkit--recipe-block--headline">
+        <h3>{{translations/video}}</h3>
+      </header>
+      <div class="foodblogkitchen-toolkit--recipe-block--video-wrapper">
+        <iframe src="{{videoIframeUrl}}" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </section>
+    {{/if}}
+
+    {{#if notes}}
+    <hr />
+
+    <section>
+      <header class="foodblogkitchen-toolkit--recipe-block--headline">
+        <h3>{{translations/notes}}</h3>
+      </header>
+      <p>{{{notes}}}</p>
+    </section>
+    {{/if}}
+
+    <section class="foodblogkitchen-toolkit--recipe-block--user-rating">
+      <hr />
+      <header class="foodblogkitchen-toolkit--recipe-block--headline">
+        <h3>{{translations/feedback}}</h3>
+      </header>
+      <div class="foodblogkitchen-toolkit--recipe-block--rating foodblogkitchen-toolkit--recipe-block--interactive"
+        data-post-id="{{postId}}" data-save-url="{{ajaxUrl}}" data-nonce="{{nonce}}">
+        <ol>
+          <li class="foodblogkitchen-toolkit--recipe-block--star{{#if userRating}} selected{{/if}}" data-rating="1">1
+          </li>
+          <li
+            class="foodblogkitchen-toolkit--recipe-block--star{{#ifMoreOrEqual userRating 2}} selected{{else}}{{/ifMoreOrEqual}}"
+            data-rating="2">2</li>
+          <li
+            class="foodblogkitchen-toolkit--recipe-block--star{{#ifMoreOrEqual userRating 3}} selected{{else}}{{/ifMoreOrEqual}}"
+            data-rating="3">3</li>
+          <li
+            class="foodblogkitchen-toolkit--recipe-block--star{{#ifMoreOrEqual userRating 4}} selected{{else}}{{/ifMoreOrEqual}}"
+            data-rating="4">4</li>
+          <li
+            class="foodblogkitchen-toolkit--recipe-block--star{{#ifMoreOrEqual userRating 5}} selected{{else}}{{/ifMoreOrEqual}}"
+            data-rating="5">5</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="foodblogkitchen-toolkit--recipe-block--save-and-share">
+      <hr />
+      <ul class="foodblogkitchen-toolkit--recipe-block--share-buttons">
+        <li>
+          <button class="foodblogkitchen-toolkit--recipe-block--print-button">{{translations/print}}</button>
+        </li>
+        {{#if pinterestPinItUrl}}
+        <li>
+          <a href="{{pinterestPinItUrl}}" target="_blank"
+            class="foodblogkitchen-toolkit--recipe-block--share-on-pinterest">{{translations/pinIt}}</a>
+        </li>
+        {{/if}}
+      </ul>
+    </section>
   </section>
 
   {{#ifOneOfThem instagramUsername instagramHashtag}}
