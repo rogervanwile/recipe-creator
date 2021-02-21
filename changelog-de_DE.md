@@ -42,6 +42,6 @@ Damit du diese Einstellungen schneller findest, gibt es nun im Editor einen Butt
 
 Bei Blogs die als Sprache "Deutsch (Österreich)" oder "Deutsch (Schweiz)" ausgewählt haben wird nun auch die deutsche Übersetzung des Plugins benutzt.
 
-## Stabileres Layout
+## Optimiertes Standard-Layout
 
 Bei manchen Themes wurden die Abstände im Rezepte-Plugin unabsichtlich verändert. Dieses Problem sollte nun behoben sein.
