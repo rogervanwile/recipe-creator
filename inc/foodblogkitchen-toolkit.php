@@ -55,6 +55,29 @@ class FoodblogkitchenToolkit
         add_action('upgrader_process_complete', array($this, 'afterUpdate'), 10, 2);
 
         add_filter('the_content', array($this, 'handleContent'), 1);
+
+        add_action('admin_notices', array($this, 'showReleaseInfo'));
+    }
+
+    public function showReleaseInfo()
+    {
+        $currentVersion = $this->getPluginVersion();
+        $lastVersionWithHint = get_option('foodblogkitchen_toolkit__release_info_shown', '0.0.1');
+
+        if (version_compare($currentVersion, $lastVersionWithHint, '>')) {
+            update_option('foodblogkitchen_toolkit__release_info_shown', $currentVersion);
+?>
+            <div class="notice notice-info is-dismissible">
+                <p>
+                    <?php
+                    echo sprintf(
+                        __('We\'ve updated the <strong>Foodblog-Toolkit</strong>. Check out the <a href="%s">release notes</a> to see which new features you can use now.', 'foodblogkitchen-toolkit'),
+                        esc_url(get_admin_url(get_current_network_id(), 'admin.php?page=foodblogkitchen_toolkit_release_notes'))
+                    );
+                    ?></p>
+            </div>
+        <?php
+        }
     }
 
     public function handleContent($content)
@@ -203,11 +226,7 @@ class FoodblogkitchenToolkit
         if (isset($remote) && !is_wp_error($remote)) {
             $remote = json_decode($remote['body']);
 
-            if (!function_exists('get_plugin_data')) {
-                require_once(ABSPATH . 'wp-admin/includes/plugin.php');
-            }
-            $plugin_data = get_plugin_data(plugin_dir_path(__FILE__) . '../foodblogkitchen-toolkit.php');
-            $currentVersion = $plugin_data['Version'];
+            $currentVersion = $this->getPluginVersion();
 
             // your installed plugin version should be on the line below! You can obtain it dynamically of course 
             if ($remote && version_compare($currentVersion, $remote->version, '<') && version_compare($remote->requires, get_bloginfo('version'), '<')) {
@@ -222,6 +241,15 @@ class FoodblogkitchenToolkit
             }
         }
         return $transient;
+    }
+
+    private function getPluginVersion()
+    {
+        if (!function_exists('get_plugin_data')) {
+            require_once(ABSPATH . 'wp-admin/includes/plugin.php');
+        }
+        $plugin_data = get_plugin_data(plugin_dir_path(__FILE__) . '../foodblogkitchen-toolkit.php');
+        return $plugin_data['Version'];
     }
 
     public function afterUpdate($upgrader_object, $options)
@@ -282,6 +310,7 @@ class FoodblogkitchenToolkit
             }
         );
 
+
         add_submenu_page(
             'foodblogkitchen_toolkit',
             __('Pinterest', 'foodblogkitchen-toolkit'),
@@ -290,6 +319,17 @@ class FoodblogkitchenToolkit
             'foodblogkitchen_toolkit_pinterest',
             function () {
                 return require_once(plugin_dir_path(__FILE__) . '../templates/admin-pinterest-page.php');
+            }
+        );
+
+        add_submenu_page(
+            'foodblogkitchen_toolkit',
+            __('Release notes', 'foodblogkitchen-toolkit'),
+            __("Release notes", 'foodblogkitchen-toolkit'),
+            'manage_options',
+            'foodblogkitchen_toolkit_release_notes',
+            function () {
+                return require_once(plugin_dir_path(__FILE__) . '../templates/admin-release-notes-page.php');
             }
         );
 
@@ -1659,8 +1699,8 @@ class FoodblogkitchenToolkit
                 "status" => "success",
                 "message" => __("Your license has been successfully activated. You can now use the recipe block in the editor.", 'foodblogkitchen-toolkit')
             );
-?>
-		<?php
+        ?>
+<?php
         } else {
             //Show error to the user. Probably entered incorrect license key.
 

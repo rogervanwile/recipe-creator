@@ -1,3 +1,12 @@
+# 1.5.0 - February 21, 2020
+- Release notes page which informs you about new features in the plugin
+- Utensils to your recipe block
+- You can now group preparation steps in your recipe block
+- springform pans are now supported as recipe unit
+- Add Instagram CTA below your recipe
+- Hint for further settings below the recipe block
+- Improved translations for Austrian and Swiss blogs
+
 # 1.4.2 – February 10, 2020
 - Fix the "Jump to recipe" block to be only visible when the option in the settings is activated and there is no "Jump to recipe" block in the page.
 

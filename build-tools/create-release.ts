@@ -82,6 +82,8 @@ rl.question("What is the new version? ", function (version: string) {
         './screenshot-1.png',
         './screenshot-2.png',
         './readme.txt',
+        './changelog.md',
+        './changelog-de_DE.md',
         './uninstall.php'
     ];
 
@@ -105,9 +107,6 @@ rl.question("What is the new version? ", function (version: string) {
             copyFileSync('./languages/' + file, './foodblogkitchen-toolkit/languages/', chFileName);
         }
     })
-
-    rl.close();
-    return;
 
     // Create the Zip file
 
