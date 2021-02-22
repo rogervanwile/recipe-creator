@@ -411,245 +411,247 @@ export default function Edit(props) {
         </PanelBody>
       </InspectorControls>
       <div className={"foodblogkitchen-toolkit--block " + props.className}>
-        <RichText
-          tagName="h2"
-          value={props.attributes.name}
-          placeholder={__("Title of your recipe", 'foodblogkitchen-toolkit')}
-          onChange={(name) => {
-            props.setAttributes({ name });
-          }}
-        />
-        <div className="foodblogkitchen-toolkit--recipe-block--intro">
-          <div>
-            <span
-              className={
-                "foodblogkitchen-toolkit--recipe-block--difficulty" +
-                (props.attributes.difficulty !== "simple" ? " unselected" : "")
-              }
-              onClick={() => {
-                props.setAttributes({ difficulty: "simple" });
-              }}
-            >
-              {__("simple", 'foodblogkitchen-toolkit')}
-            </span>
-            <span
-              className={
-                "foodblogkitchen-toolkit--recipe-block--difficulty" +
-                (props.attributes.difficulty !== "moderate"
-                  ? " unselected"
-                  : "")
-              }
-              onClick={() => {
-                props.setAttributes({ difficulty: "moderate" });
-              }}
-            >
-              {__("moderate", 'foodblogkitchen-toolkit')}
-            </span>
-            <span
-              className={
-                "foodblogkitchen-toolkit--recipe-block--difficulty" +
-                (props.attributes.difficulty !== "challenging"
-                  ? " unselected"
-                  : "")
-              }
-              onClick={() => {
-                props.setAttributes({ difficulty: "challenging" });
-              }}
-            >
-              {__("challenging", 'foodblogkitchen-toolkit')}
-            </span>
+        <div className="foodblogkitchen-toolkit--block--inner">
+          <RichText
+            tagName="h2"
+            value={props.attributes.name}
+            placeholder={__("Title of your recipe", 'foodblogkitchen-toolkit')}
+            onChange={(name) => {
+              props.setAttributes({ name });
+            }}
+          />
+          <div className="foodblogkitchen-toolkit--recipe-block--intro">
+            <div>
+              <span
+                className={
+                  "foodblogkitchen-toolkit--recipe-block--difficulty" +
+                  (props.attributes.difficulty !== "simple" ? " unselected" : "")
+                }
+                onClick={() => {
+                  props.setAttributes({ difficulty: "simple" });
+                }}
+              >
+                {__("simple", 'foodblogkitchen-toolkit')}
+              </span>
+              <span
+                className={
+                  "foodblogkitchen-toolkit--recipe-block--difficulty" +
+                  (props.attributes.difficulty !== "moderate"
+                    ? " unselected"
+                    : "")
+                }
+                onClick={() => {
+                  props.setAttributes({ difficulty: "moderate" });
+                }}
+              >
+                {__("moderate", 'foodblogkitchen-toolkit')}
+              </span>
+              <span
+                className={
+                  "foodblogkitchen-toolkit--recipe-block--difficulty" +
+                  (props.attributes.difficulty !== "challenging"
+                    ? " unselected"
+                    : "")
+                }
+                onClick={() => {
+                  props.setAttributes({ difficulty: "challenging" });
+                }}
+              >
+                {__("challenging", 'foodblogkitchen-toolkit')}
+              </span>
 
-            <RichText
-              tagName="p"
-              value={props.attributes.description}
-              placeholder={__(
-                "Short description of your recipe",
-                'foodblogkitchen-toolkit'
-              )}
-              onChange={(description) => {
-                props.setAttributes({ description });
+              <RichText
+                tagName="p"
+                value={props.attributes.description}
+                placeholder={__(
+                  "Short description of your recipe",
+                  'foodblogkitchen-toolkit'
+                )}
+                onChange={(description) => {
+                  props.setAttributes({ description });
+                }}
+              />
+            </div>
+            <div>
+              <MediaUploadCheck>
+                <MediaUpload
+                  onSelect={(media) => {
+                    if (media) {
+                      props.setAttributes({
+                        image3_2: media.url,
+                        image3_2Id: media.id,
+                      });
+                    }
+                  }}
+                  allowedTypes={ALLOWED_MEDIA_TYPES}
+                  value={props.attributes.image3_2}
+                  render={({ open }) => (
+                    <div
+                      className={
+                        "foodblogkitchen-toolkit--recipe-block--main-image" +
+                        (props.attributes.image3_2
+                          ? ""
+                          : " foodblogkitchen-toolkit--empty")
+                      }
+                      style={{
+                        backgroundImage: props.attributes.image3_2
+                          ? "url(" + props.attributes.image3_2 + ")"
+                          : "",
+                      }}
+                      onClick={open}
+                    ></div>
+                  )}
+                />
+              </MediaUploadCheck>
+            </div>
+          </div>
+          <hr />
+          <div className="foodblogkitchen-toolkit--recipe-block--timing-list">
+            <ul>
+              <li>
+                <header>{__("Prep time", 'foodblogkitchen-toolkit')}:</header>
+                <span>
+                  <InputControl
+                    type="number"
+                    min="0"
+                    value={props.attributes.prepTime}
+                    placeholder="0"
+                    onChange={(prepTime) => {
+                      updateTime("prepTime", prepTime);
+                    }}
+                    suffix={__("Min.", 'foodblogkitchen-toolkit')}
+                  />
+                </span>
+              </li>
+              <li>
+                <header>{__("Rest time", 'foodblogkitchen-toolkit')}:</header>
+                <span>
+                  <InputControl
+                    type="number"
+                    min="0"
+                    value={props.attributes.restTime}
+                    placeholder="0"
+                    onChange={(restTime) => {
+                      updateTime("restTime", restTime);
+                    }}
+                    suffix={__("Min.", 'foodblogkitchen-toolkit')}
+                  />
+                </span>
+              </li>
+              <li>
+                <header>{__("Cook time", 'foodblogkitchen-toolkit')}:</header>
+                <span>
+                  <InputControl
+                    type="number"
+                    min="0"
+                    value={props.attributes.cookTime}
+                    placeholder="0"
+                    onChange={(cookTime) => {
+                      updateTime("cookTime", cookTime);
+                    }}
+                    suffix={__("Min.", 'foodblogkitchen-toolkit')}
+                  />
+                </span>
+              </li>
+              <li>
+                <header>{__("Baking time", 'foodblogkitchen-toolkit')}:</header>
+                <span>
+                  <InputControl
+                    type="number"
+                    min="0"
+                    value={props.attributes.bakingTime}
+                    placeholder="0"
+                    onChange={(bakingTime) => {
+                      updateTime("bakingTime", bakingTime);
+                    }}
+                    suffix={__("Min.", 'foodblogkitchen-toolkit')}
+                  />
+                </span>
+              </li>
+
+              <li>
+                <header>{__("Total time", 'foodblogkitchen-toolkit')}:</header>
+                <span>
+                  {props.attributes.totalTime || "0"}{" "}
+                  {__("Min.", 'foodblogkitchen-toolkit')}
+                </span>
+              </li>
+            </ul>
+          </div>
+          <hr />
+          <div className="foodblogkitchen-toolkit--recipe-block--headline">
+            <h3>{__("Ingredients", 'foodblogkitchen-toolkit')}</h3>
+          </div>
+          <div className="foodblogkitchen-toolkit--recipe-block--flex-container">
+            <RecipeYieldSelector props={props}></RecipeYieldSelector>
+          </div>
+
+          <IngredientsGroupsEditor props={props}></IngredientsGroupsEditor>
+
+          <div className="foodblogkitchen-toolkit--recipe-block--headline">
+            <h3>{__("Utensils", 'foodblogkitchen-toolkit')}</h3>
+          </div>
+
+          <RichText
+            tagName="ul"
+            multiline="li"
+            className="foodblogkitchen-toolkit--recipe-block--utensils"
+            placeholder={__(
+              "Add the needed utensils here...",
+              'foodblogkitchen-toolkit'
+            )}
+            value={props.attributes.utensils}
+            onChange={(utensils) =>
+              props.setAttributes({ utensils })
+            }
+          />
+
+          <hr />
+
+          <div className="foodblogkitchen-toolkit--recipe-block--headline">
+            <h3>{__("Steps of preparation", 'foodblogkitchen-toolkit')}</h3>
+          </div>
+
+          <PreparationStepsGroupsEditor props={props}></PreparationStepsGroupsEditor>
+
+          <hr />
+
+          <div className="foodblogkitchen-toolkit--recipe-block--headline">
+            <h3>{__("Video", 'foodblogkitchen-toolkit')}</h3>
+          </div>
+
+          <div className="foodblogkitchen-toolkit--recipe-block--flex-container foodblogkitchen-toolkit--recipe-block--video">
+            <TextControl
+              label={__("YouTube or Vimeo link", 'foodblogkitchen-toolkit')}
+              value={props.attributes.videoUrl}
+              onChange={(url) => {
+                if (url) {
+                  const iframeUrl = generateIframeUrl(url);
+                  if (iframeUrl) {
+                    props.setAttributes({ videoUrl: url, videoIframeUrl: iframeUrl });
+                  } else {
+                    props.setAttributes({ videoUrl: url, videoIframeUrl: null });
+                  }
+                }
               }}
             />
           </div>
-          <div>
-            <MediaUploadCheck>
-              <MediaUpload
-                onSelect={(media) => {
-                  if (media) {
-                    props.setAttributes({
-                      image3_2: media.url,
-                      image3_2Id: media.id,
-                    });
-                  }
-                }}
-                allowedTypes={ALLOWED_MEDIA_TYPES}
-                value={props.attributes.image3_2}
-                render={({ open }) => (
-                  <div
-                    className={
-                      "foodblogkitchen-toolkit--recipe-block--main-image" +
-                      (props.attributes.image3_2
-                        ? ""
-                        : " foodblogkitchen-toolkit--empty")
-                    }
-                    style={{
-                      backgroundImage: props.attributes.image3_2
-                        ? "url(" + props.attributes.image3_2 + ")"
-                        : "",
-                    }}
-                    onClick={open}
-                  ></div>
-                )}
-              />
-            </MediaUploadCheck>
+
+          <hr />
+
+          <div className="foodblogkitchen-toolkit--recipe-block--headline">
+            <h3>{__("Notes", 'foodblogkitchen-toolkit')}</h3>
           </div>
-        </div>
-        <hr />
-        <div className="foodblogkitchen-toolkit--recipe-block--timing-list">
-          <ul>
-            <li>
-              <header>{__("Prep time", 'foodblogkitchen-toolkit')}:</header>
-              <span>
-                <InputControl
-                  type="number"
-                  min="0"
-                  value={props.attributes.prepTime}
-                  placeholder="0"
-                  onChange={(prepTime) => {
-                    updateTime("prepTime", prepTime);
-                  }}
-                  suffix={__("Min.", 'foodblogkitchen-toolkit')}
-                />
-              </span>
-            </li>
-            <li>
-              <header>{__("Rest time", 'foodblogkitchen-toolkit')}:</header>
-              <span>
-                <InputControl
-                  type="number"
-                  min="0"
-                  value={props.attributes.restTime}
-                  placeholder="0"
-                  onChange={(restTime) => {
-                    updateTime("restTime", restTime);
-                  }}
-                  suffix={__("Min.", 'foodblogkitchen-toolkit')}
-                />
-              </span>
-            </li>
-            <li>
-              <header>{__("Cook time", 'foodblogkitchen-toolkit')}:</header>
-              <span>
-                <InputControl
-                  type="number"
-                  min="0"
-                  value={props.attributes.cookTime}
-                  placeholder="0"
-                  onChange={(cookTime) => {
-                    updateTime("cookTime", cookTime);
-                  }}
-                  suffix={__("Min.", 'foodblogkitchen-toolkit')}
-                />
-              </span>
-            </li>
-            <li>
-              <header>{__("Baking time", 'foodblogkitchen-toolkit')}:</header>
-              <span>
-                <InputControl
-                  type="number"
-                  min="0"
-                  value={props.attributes.bakingTime}
-                  placeholder="0"
-                  onChange={(bakingTime) => {
-                    updateTime("bakingTime", bakingTime);
-                  }}
-                  suffix={__("Min.", 'foodblogkitchen-toolkit')}
-                />
-              </span>
-            </li>
 
-            <li>
-              <header>{__("Total time", 'foodblogkitchen-toolkit')}:</header>
-              <span>
-                {props.attributes.totalTime || "0"}{" "}
-                {__("Min.", 'foodblogkitchen-toolkit')}
-              </span>
-            </li>
-          </ul>
-        </div>
-        <hr />
-        <div className="foodblogkitchen-toolkit--recipe-block--headline">
-          <h3>{__("Ingredients", 'foodblogkitchen-toolkit')}</h3>
-        </div>
-        <div className="foodblogkitchen-toolkit--recipe-block--flex-container">
-          <RecipeYieldSelector props={props}></RecipeYieldSelector>
-        </div>
-
-        <IngredientsGroupsEditor props={props}></IngredientsGroupsEditor>
-
-        <div className="foodblogkitchen-toolkit--recipe-block--headline">
-          <h3>{__("Utensils", 'foodblogkitchen-toolkit')}</h3>
-        </div>
-
-        <RichText
-          tagName="ul"
-          multiline="li"
-          className="foodblogkitchen-toolkit--recipe-block--utensils"
-          placeholder={__(
-            "Add the needed utensils here...",
-            'foodblogkitchen-toolkit'
-          )}
-          value={props.attributes.utensils}
-          onChange={(utensils) =>
-            props.setAttributes({ utensils })
-          }
-        />
-
-        <hr />
-
-        <div className="foodblogkitchen-toolkit--recipe-block--headline">
-          <h3>{__("Steps of preparation", 'foodblogkitchen-toolkit')}</h3>
-        </div>
-
-        <PreparationStepsGroupsEditor props={props}></PreparationStepsGroupsEditor>
-
-        <hr />
-
-        <div className="foodblogkitchen-toolkit--recipe-block--headline">
-          <h3>{__("Video", 'foodblogkitchen-toolkit')}</h3>
-        </div>
-
-        <div className="foodblogkitchen-toolkit--recipe-block--flex-container foodblogkitchen-toolkit--recipe-block--video">
-          <TextControl
-            label={__("YouTube or Vimeo link", 'foodblogkitchen-toolkit')}
-            value={props.attributes.videoUrl}
-            onChange={(url) => {
-              if (url) {
-                const iframeUrl = generateIframeUrl(url);
-                if (iframeUrl) {
-                  props.setAttributes({ videoUrl: url, videoIframeUrl: iframeUrl });
-                } else {
-                  props.setAttributes({ videoUrl: url, videoIframeUrl: null });
-                }
-              }
+          <RichText
+            tagName="p"
+            value={props.attributes.notes}
+            placeholder={__("Additional notes ...", 'foodblogkitchen-toolkit')}
+            onChange={(notes) => {
+              props.setAttributes({ notes });
             }}
           />
         </div>
-
-        <hr />
-
-        <div className="foodblogkitchen-toolkit--recipe-block--headline">
-          <h3>{__("Notes", 'foodblogkitchen-toolkit')}</h3>
-        </div>
-
-        <RichText
-          tagName="p"
-          value={props.attributes.notes}
-          placeholder={__("Additional notes ...", 'foodblogkitchen-toolkit')}
-          onChange={(notes) => {
-            props.setAttributes({ notes });
-          }}
-        />
       </div>
 
       {(
