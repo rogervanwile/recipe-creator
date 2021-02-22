@@ -32,6 +32,10 @@ Gebe dazu in den [Rezepte-Block-Einstellungen](##RECIPE_BLOCK_SETTINGS_LINK##) d
 
 ![Instagram CTA Beispiel](##ASSETS_PATH##/changelog/instagram-cta-de_DE.jpg)
 
+## Pinterest "Pin it"-Button optimiert
+
+Bei einigen Lazyloading-Plugins gab es Probleme beim pinnen von Bildern mit unseren "Pin it"-Button. Das ist nun behoben.
+
 ## Hinweis zu weiteren Einstellungen
 
 In den Rezept-Block-Einstellungen findest du weitere Eingabefelder für dein Rezept. Diese sind vor allem für Google und Pinterest relevant.

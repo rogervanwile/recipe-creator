@@ -1,4 +1,4 @@
-const css = require('./../styles/pinterest-image-overlay.scss')
+require('./../styles/pinterest-image-overlay.scss')
 
 export class PinterestImageOverlay {
   private imageSelectors = [
@@ -10,25 +10,29 @@ export class PinterestImageOverlay {
     this.imageSelectors.forEach(selector => {
       const images = document.querySelectorAll(selector);
       Array.from(images).forEach((image: Element) => {
-        const url = image.getAttribute('src');
+        const description = image.getAttribute('title') || image.getAttribute('alt') || '';
+        const pinItLink = document.createElement('a');
+        pinItLink.href = '#';
+        pinItLink.classList.add('foodblogkitchen-toolkit--pinterest-image-overlay');
 
-        if (url) {
-          const description = image.getAttribute('title') || image.getAttribute('alt') || '';
-          const pinItLink = document.createElement('a');
-          pinItLink.href = this.createPinterestPinItUrl(url, description);
-          pinItLink.target = '_blank';
-          pinItLink.classList.add('foodblogkitchen-toolkit--pinterest-image-overlay');
+        pinItLink.addEventListener('click', (event) => {
+          event.preventDefault();
 
-          const tooltip = document.createElement('span');
-          // tooltip.innerText = __('Pin it', 'foodblogkitchen-toolkit');
-          tooltip.innerText = 'Pin it';
-          tooltip.classList.add('foodblogkitchen-toolkit--pinterest-image-overlay--tooltip');
-          pinItLink.appendChild(tooltip);
-
-          if (image.parentNode) {
-            (<HTMLElement>image.parentNode).classList.add('foodblogkitchen-toolkit--pinterest-wrapper');
-            image.parentNode.insertBefore(pinItLink, image.nextSibling);
+          const imageUrl = image.getAttribute('src');
+          if (imageUrl) {
+            const url = this.createPinterestPinItUrl(imageUrl, description);
+            window.open(url, '_blank');
           }
+        });
+
+        const tooltip = document.createElement('span');
+        tooltip.innerText = 'Pin it';
+        tooltip.classList.add('foodblogkitchen-toolkit--pinterest-image-overlay--tooltip');
+        pinItLink.appendChild(tooltip);
+
+        if (image.parentNode) {
+          (<HTMLElement>image.parentNode).classList.add('foodblogkitchen-toolkit--pinterest-wrapper');
+          image.parentNode.insertBefore(pinItLink, image.nextSibling);
         }
       });
     });
@@ -43,5 +47,6 @@ export class PinterestImageOverlay {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const pinterestImageOverlay = new PinterestImageOverlay();
+  // TODO: URL erst beim Klick auslesen
+  new PinterestImageOverlay();
 });

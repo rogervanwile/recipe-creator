@@ -4,6 +4,7 @@
 - You can now group preparation steps in your recipe block
 - springform pans are now supported as recipe unit
 - Add Instagram CTA below your recipe
+- Optimize Pinterest "Pin it"-Button for lazy loading plugins 
 - Hint for further settings below the recipe block
 - Improved translations for Austrian and Swiss blogs
 - Improved default styles of the recipe block
