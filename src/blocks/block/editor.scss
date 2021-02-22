@@ -5,9 +5,19 @@
  */
 
 .wp-block {
+  .foodblogkitchen-toolkit--recipe-block--timing-list {
+    li header {
+      margin-bottom: 0.5em;
+    }
+  }
+
   .foodblogkitchen-toolkit--show-additional-settings {
     display: block;
     margin: 16px 0 0 auto;
+  }
+
+  hr {
+    margin: 2em 0;
   }
 }
 

@@ -588,6 +588,8 @@ export default function Edit(props) {
 
           <IngredientsGroupsEditor props={props}></IngredientsGroupsEditor>
 
+          <hr />
+
           <div className="foodblogkitchen-toolkit--recipe-block--headline">
             <h3>{__("Utensils", 'foodblogkitchen-toolkit')}</h3>
           </div>
