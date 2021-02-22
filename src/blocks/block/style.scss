@@ -334,7 +334,7 @@
         position: relative;
 
         &::before {
-          counter-incement: foodblogkitchen-toolkit-steps;
+          counter-increment: foodblogkitchen-toolkit-steps;
           content: counter(foodblogkitchen-toolkit-steps);
           text-align: center;
           font-weight: bold;
