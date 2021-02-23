@@ -16,15 +16,7 @@ function checkRecipeBockScreenshot(name) {
 
 describe('Tests the recipe block', () => {
     beforeEach(() => {
-        cy.visit('http://localhost/wp-admin/admin.php?page=foodblogkitchen_toolkit_license');
-        cy.get('#foodblogkitchen_toolkit__license_key').type('5ff5cd22687bc');
-        cy.get('[value="Activate"]').click();
-    });
-
-    afterEach(() => {
-        cy.visit('http://localhost/wp-admin/admin.php?page=foodblogkitchen_toolkit_license');
-        cy.get('[value="Deactivate"]').click();
-        cy.contains('The license has been successfully deactivated.');
+        cy.seed('ValidLicenseSeeder');
     });
 
     it.only('should be possible to enter a recipe with valid license', () => {
@@ -45,7 +37,7 @@ describe('Tests the recipe block', () => {
         cy.contains('70 Min.');
         cy.get('.foodblogkitchen-toolkit--recipe-block--flex-container input:nth-child(1)').type('4', { force: true });
         cy.get('.foodblogkitchen-toolkit--recipe-block--ingredients > ul').type('3 bananans\n2 onions', { force: true });
-        cy.get('.foodblogkitchen-toolkit--recipe-block--preparation-steps').type('Slice bananas\ntake the onions back', { force: true });
+        cy.get('.foodblogkitchen-toolkit--recipe-block--preparation-steps > ol').type('Slice bananas\ntake the onions back', { force: true });
         cy.get('.foodblogkitchen-toolkit--recipe-block--video input').type('https://www.youtube.com/watch?v=tl2tYk54gOE', { force: true });
         cy.get('[aria-label="Additional notes ..."]').type('Additional notes', { force: true });
 
@@ -100,5 +92,4 @@ describe('Tests the recipe block', () => {
 
         checkRecipeBockScreenshot('recipe-block-with-groups');
     });
-
 });

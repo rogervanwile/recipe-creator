@@ -19,8 +19,8 @@
     "sync:uebersee": "rsync -a ./ /Applications/MAMP/htdocs/uebersee/wp-content/plugins/foodblogkitchen-toolkit",
     "sync:blank": "rsync -a ./ /Applications/MAMP/htdocs/kantina-delicacy-blank/wp-content/plugins/foodblogkitchen-toolkit",
     "sync": "yarn sync:uebersee && yarn sync:blank",
-    "test:start:cli": "yarn run wp-cypress start && yarn run wp-cypress wp \"language core install de_DE\" && yarn run wp-cypress wp \"language core activate de_DE\" && yarn run cypress run",
-    "test:start": "yarn run wp-cypress start && yarn run wp-cypress wp \"language core install de_DE\" && yarn run wp-cypress wp \"language core activate de_DE\" && yarn run cypress open",
+    "test:start:cli": "yarn run wp-cypress start && yarn run cypress run",
+    "test:start": "yarn run wp-cypress start && yarn run cypress open",
     "test:stop": "yarn run wp-cypress stop"
   },
   "devDependencies": {
