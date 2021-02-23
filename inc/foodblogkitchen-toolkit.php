@@ -1572,6 +1572,7 @@ class FoodblogkitchenToolkit
         $attributes['translations'] = array(
             "jumpToRecipe" => __('Jump to recipe', 'foodblogkitchen-toolkit')
         );
+        $attributes['options'] = $this->getStyleOptions();
         return $renderer($attributes);
     }
 

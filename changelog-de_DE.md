@@ -1,4 +1,4 @@
-# 1.5.0 - 21. Februar 2020
+# Version 1.5.0 - 23. Februar 2021
 
 ## Informationen zu jedem Update
 
@@ -20,32 +20,37 @@ Neben den Zutaten kannst du ab sofort auch die Zubereitungsschritte in Gruppen a
 
 Neben "Stück" und "Portionen" kannst du nun auch "Springform" als Rezepteinheit eingeben.
 
-Damit kannst du deinen Lesern angeben für welchen Springform-Durchmesser du das Rezept geschrieben hast. Das coole daran: Die Rezeptumrechnung funktioniert auch damit perfekt. Somit kann jeder Leser das Rezept mit wenigen Klicks an seine vorhandenen Springform-Größen anpassen.
+Damit kannst du deinen Lesern angeben, für welchen Springform-Durchmesser du das Rezept geschrieben hast. Das Coole daran: Die Rezeptumrechnung funktioniert auch mit dieser Einheit perfekt. Somit kann jeder Leser das Rezept mit wenigen Klicks an seine vorhandene Springform-Größen anpassen.
 
 ![Springform Rezeptumrechnung](##ASSETS_PATH##/changelog/springform-de_DE.jpg)
 
-## Motiviere deine Leser ihre Ergebnisse zu teilen
+## Instagram-CTA
 
-Du hast nun die Möglichkeit deine Leser zu motivieren, ihre Ergebnisse deines Rezeptes auf Instagram zu teilen.
+Du kannst deine Leser nun dazu aufrufen, ihre Ergebnisse bei Instagram zu teilen. Wenn sie eines deiner Rezepte ausprobiert haben, sollen sie dich mit einem Hashtag oder einer Verlinkung darauf aufmerksam machen. 
 
-Gebe dazu in den [Rezepte-Block-Einstellungen](##RECIPE_BLOCK_SETTINGS_LINK##) deinen Instagram-Benutzernamen an sowie einen optionalen Hashtag. Unter jedem Rezept-Block wird dann automatisch ein Call-to-Action Hinweis angezeigt.
+Gebe dazu in den [Rezepte-Block-Einstellungen](##RECIPE_BLOCK_SETTINGS_LINK##) deinen Instagram-Benutzernamen an sowie optional einen Hashtag. Unter jedem Rezept-Block wird dann automatisch ein Call-to-Action-Hinweis angezeigt.
 
 ![Instagram CTA Beispiel](##ASSETS_PATH##/changelog/instagram-cta-de_DE.jpg)
 
-## Pinterest "Pin it"-Button optimiert
-
-Bei einigen Lazyloading-Plugins gab es Probleme beim pinnen von Bildern mit unseren "Pin it"-Button. Das ist nun behoben.
-
 ## Hinweis zu weiteren Einstellungen
 
-In den Rezept-Block-Einstellungen findest du weitere Eingabefelder für dein Rezept. Diese sind vor allem für Google und Pinterest relevant.
+In den Rezept-Block-Einstellungen findest du weitere Eingabefelder für dein Rezept. Damit kannst du zum Beispiel ein Bild für Pinterest oder eine Kalorienangabe hinterlegen. 
 
 Damit du diese Einstellungen schneller findest, gibt es nun im Editor einen Button unter dem Rezepte-Block, mit dem du die Einstellungen einfach öffnen kannst.
 
-## Verbesserter Übersetzungen für österreichische und schweizer Blogs
+## Verbesserter Übersetzungen für österreichische und schweizerische Blogs
 
-Bei Blogs die als Sprache "Deutsch (Österreich)" oder "Deutsch (Schweiz)" ausgewählt haben wird nun auch die deutsche Übersetzung des Plugins benutzt.
+Bei Blogs, die als Sprache "Deutsch (Österreich)" oder "Deutsch (Schweiz)" ausgewählt haben, wird nun auch die deutsche Übersetzung des Plugins benutzt.
+
+
+## Pinterest "Pin it"-Button optimiert
+
+Bei einigen Lazyloading-Plugins gab es Probleme beim Pinnen von Bildern mit unserem "Pin it"-Button. Das ist nun behoben.
 
 ## Optimiertes Standard-Layout
 
 Bei manchen Themes wurden die Abstände im Rezepte-Plugin unabsichtlich verändert. Dieses Problem sollte nun behoben sein.
+
+## "Zum Rezept springen" in Rezept-Block Farben
+
+Der "Zum Rezept springen"-Button wird nun auch in den Farben des Rezepte-Blockes angezeigt.

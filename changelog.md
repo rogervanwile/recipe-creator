@@ -8,6 +8,7 @@
 - Hint for further settings below the recipe block
 - Improved translations for Austrian and Swiss blogs
 - Improved default styles of the recipe block
+- Fix missing stylings for "jump to recipe" button
 
 # 1.4.2 – February 10, 2020
 - Fix the "Jump to recipe" block to be only visible when the option in the settings is activated and there is no "Jump to recipe" block in the page.

@@ -3,19 +3,23 @@ html {
 }
 
 .foodblogkitchen-toolkit--block--jump-to-recipe {
+  --primary: #030303;
+  --primary-contrast: #ffffff;
+
   display: flex;
   align-items: center;
 
   .foodblogkitchen-toolkit--block--jump-to-recipe--link {
     display: inline-block;
     background-color: var(--primary);
-    color: var(--white);
+    color: var(--primary-contrast);
     padding: 8px 12px;
     margin: 0 auto 24px auto;
+    text-decoration: none;
 
     &:hover,
     &:focus {
-      text-decoration: none;
+      text-decoration: underline;
     }
   }
 }
