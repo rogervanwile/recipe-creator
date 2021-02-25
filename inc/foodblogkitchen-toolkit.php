@@ -281,8 +281,6 @@ class FoodblogkitchenToolkit
             '',
             'all'
         );
-
-        echo $this->renderRecipeBlockStyles();
     }
 
     public function registerSettingsPage()
