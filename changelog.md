@@ -1,3 +1,9 @@
+# 1.5.2 - February 25, 2020
+- Remove PHP error in the admin section
+
+# 1.5.1 - February 22, 2020
+- Remove some styling issues in the recipe block
+
 # 1.5.0 - February 21, 2020
 - Release notes page which informs you about new features in the plugin
 - Utensils to your recipe block
