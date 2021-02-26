@@ -1,3 +1,6 @@
+# 1.5.3 - February 25, 2020
+- Fix broken Link in the Release Notes hint
+
 # 1.5.2 - February 25, 2020
 - Remove PHP error in the admin section
 
