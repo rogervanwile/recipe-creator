@@ -1,3 +1,7 @@
+# Version 1.5.4 - 7. März 2021
+
+Es gab ein Problem bei der Darstellung von halben Bewertungspunkten in dem Rezepte-Block. Das ist nun behoben.
+
 # Version 1.5.3 - 3. März 2021
 
 In diesem Update wurden ein paar kleine Fehler behoben. Zum einen wurde in der Neuigkeiten-Meldung ein kaputter Link benutzt. Zudem war die Farbe der Überschrift im Instagram-CTA-Bereich des Rezepte-Plugins fehlerhaft, wenn du eine dunkle Hauptfarbe hast.

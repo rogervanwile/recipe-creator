@@ -1,3 +1,6 @@
+# 1.5.4 - March 7, 2021
+- Half Star Icons are now visible in the rating
+
 # 1.5.3 - February 25, 2021
 - Fix broken Link in the Release Notes hint
 - Fix conflict potential with other plugins
