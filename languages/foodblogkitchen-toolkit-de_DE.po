@@ -5,20 +5,20 @@ msgstr ""
 "Project-Id-Version: Recipe Manager Pro 1.2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/foodblogkitchen-"
 "toolkit\n"
-"POT-Creation-Date: 2021-02-23T18:27:44+00:00\n"
-"PO-Revision-Date: 2021-02-25 19:47+0100\n"
+"POT-Creation-Date: 2022-03-04T14:20:59+00:00\n"
+"PO-Revision-Date: 2022-03-04 15:26+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
-"X-Domain: foodblogkitchen-recipes\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Domain: foodblogkitchen-recipes\n"
 
 #. Plugin Name of the plugin
-#: inc/foodblogkitchen-toolkit.php:291 inc/foodblogkitchen-toolkit.php:292
+#: inc/foodblogkitchen-toolkit.php:289 inc/foodblogkitchen-toolkit.php:290
 msgid "Foodblog-Toolkit"
 msgstr "Foodblog-Toolkit"
 
@@ -39,11 +39,11 @@ msgid "https://foodblogkitchen.de/"
 msgstr "https://foodblogkitchen.de/"
 
 #: build/recipe-block-renderer.php:7 build/recipe-block-renderer.php:12
-#: inc/foodblogkitchen-toolkit.php:1132 inc/foodblogkitchen-toolkit.php:1137
+#: inc/foodblogkitchen-toolkit.php:1130 inc/foodblogkitchen-toolkit.php:1135
 msgid "minutes"
 msgstr "Minuten"
 
-#: build/recipe-block-renderer.php:12 inc/foodblogkitchen-toolkit.php:1137
+#: build/recipe-block-renderer.php:12 inc/foodblogkitchen-toolkit.php:1135
 msgid "hours"
 msgstr "Stunden"
 
@@ -56,37 +56,36 @@ msgstr ""
 "<a href=\"%s\">Neuigkeiten</a> an, um zu sehen, welche neuen Funktionen du "
 "jetzt nutzen kannst."
 
-#: inc/foodblogkitchen-toolkit.php:304 inc/foodblogkitchen-toolkit.php:305
+#: inc/foodblogkitchen-toolkit.php:302 inc/foodblogkitchen-toolkit.php:303
 msgid "Recipe Block"
 msgstr "Rezepte-Block"
 
-#: inc/foodblogkitchen-toolkit.php:316 inc/foodblogkitchen-toolkit.php:317
-#: build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:314 inc/foodblogkitchen-toolkit.php:315
 msgid "Pinterest"
 msgstr "Pinterest"
 
-#: inc/foodblogkitchen-toolkit.php:327 inc/foodblogkitchen-toolkit.php:328
+#: inc/foodblogkitchen-toolkit.php:325 inc/foodblogkitchen-toolkit.php:326
 msgid "Release notes"
 msgstr "Neuigkeiten"
 
-#: inc/foodblogkitchen-toolkit.php:338 inc/foodblogkitchen-toolkit.php:339
+#: inc/foodblogkitchen-toolkit.php:336 inc/foodblogkitchen-toolkit.php:337
 msgid "License"
 msgstr "Lizenz"
 
-#: inc/foodblogkitchen-toolkit.php:493
+#: inc/foodblogkitchen-toolkit.php:491
 msgid "General settings"
 msgstr "Allgemeine Einstellungen"
 
-#: inc/foodblogkitchen-toolkit.php:495
+#: inc/foodblogkitchen-toolkit.php:493
 msgid "Configure how the recipe block should behave on your blog posts."
 msgstr ""
 "Konfiguriere, wie sich der Rezept-Block in deinem Beitrag verhalten soll."
 
-#: inc/foodblogkitchen-toolkit.php:501
+#: inc/foodblogkitchen-toolkit.php:499
 msgid "Instagram"
 msgstr "Instagram"
 
-#: inc/foodblogkitchen-toolkit.php:503
+#: inc/foodblogkitchen-toolkit.php:501
 msgid ""
 "Provide informations about your instagram profile and we show a call to "
 "action below your recipe."
@@ -94,74 +93,74 @@ msgstr ""
 "Gib Informationen über dein Instagram-Profil an und wir zeigen einen Hinweis "
 "unter deinem Rezept an."
 
-#: inc/foodblogkitchen-toolkit.php:509
+#: inc/foodblogkitchen-toolkit.php:507
 msgid "Visual settings"
 msgstr "Visuelle Einstellungen"
 
-#: inc/foodblogkitchen-toolkit.php:511
+#: inc/foodblogkitchen-toolkit.php:509
 msgid "Configure how the recipe block should look for your visitors."
 msgstr "Konfiguriere, wie der Rezeptblock für deine Besucher aussehen soll."
 
-#: inc/foodblogkitchen-toolkit.php:519 inc/foodblogkitchen-toolkit.php:1573
-#: build/editor.js:1 src/blocks/jump-to-recipe/index.js:10
+#: inc/foodblogkitchen-toolkit.php:517 inc/foodblogkitchen-toolkit.php:1571
+#: src/blocks/jump-to-recipe/index.js:10
 msgid "Jump to recipe"
 msgstr "Zum Rezept springen"
 
-#: inc/foodblogkitchen-toolkit.php:521
+#: inc/foodblogkitchen-toolkit.php:519
 msgid "Add a \"Jump to recipe\" button on every page with the recipe block."
 msgstr ""
 "Füge einen „Zum Rezept springen“-Button in jeden Beitrag ein, in dem sich "
 "ein Rezept-Block befindet."
 
-#: inc/foodblogkitchen-toolkit.php:532
+#: inc/foodblogkitchen-toolkit.php:530
 msgid "Your username"
 msgstr "Dein Benutzername"
 
-#: inc/foodblogkitchen-toolkit.php:545
+#: inc/foodblogkitchen-toolkit.php:543
 msgid "Hashtag"
 msgstr "Hashtag"
 
-#: inc/foodblogkitchen-toolkit.php:558
+#: inc/foodblogkitchen-toolkit.php:556
 msgid "Primary color"
 msgstr "Hauptfarbe"
 
-#: inc/foodblogkitchen-toolkit.php:570
+#: inc/foodblogkitchen-toolkit.php:568
 msgid "Secondary color"
 msgstr "Nebenfarbe"
 
-#: inc/foodblogkitchen-toolkit.php:582
+#: inc/foodblogkitchen-toolkit.php:580
 msgid "Background color"
 msgstr "Hintergrundfarbe"
 
-#: inc/foodblogkitchen-toolkit.php:595
+#: inc/foodblogkitchen-toolkit.php:593
 msgid "Border"
 msgstr "Rahmen"
 
-#: inc/foodblogkitchen-toolkit.php:597
+#: inc/foodblogkitchen-toolkit.php:595
 msgid "Show border"
 msgstr "Rahmen anzeigen"
 
-#: inc/foodblogkitchen-toolkit.php:607
+#: inc/foodblogkitchen-toolkit.php:605
 msgid "Box shadow"
 msgstr "Box-Schatten"
 
-#: inc/foodblogkitchen-toolkit.php:609
+#: inc/foodblogkitchen-toolkit.php:607
 msgid "Show box shadow"
 msgstr "Box-Schatten anzeigen"
 
-#: inc/foodblogkitchen-toolkit.php:619
+#: inc/foodblogkitchen-toolkit.php:617
 msgid "Border radius"
 msgstr "Eckradius"
 
-#: inc/foodblogkitchen-toolkit.php:648
+#: inc/foodblogkitchen-toolkit.php:646
 msgid "Configure the implementation of pinterest in your blog."
 msgstr "Konfiguriere die Einbindung von Pinterest in deinem Blog."
 
-#: inc/foodblogkitchen-toolkit.php:656
+#: inc/foodblogkitchen-toolkit.php:654
 msgid "Image overlay"
 msgstr "Bildüberlagerung"
 
-#: inc/foodblogkitchen-toolkit.php:658
+#: inc/foodblogkitchen-toolkit.php:656
 msgid ""
 "Show Pinterest share icon on post images. This only affects images on posts "
 "created with Gutenberg."
@@ -169,21 +168,21 @@ msgstr ""
 "Zeige das Pinterest-Share-Symbol auf allen Beitragsbildern an. Das betrifft "
 "nur Bilder in Beiträgen, die mit Gutenberg erstellt wurden."
 
-#: inc/foodblogkitchen-toolkit.php:1230 inc/foodblogkitchen-toolkit.php:1314
-#: inc/foodblogkitchen-toolkit.php:1355 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1228 inc/foodblogkitchen-toolkit.php:1312
+#: inc/foodblogkitchen-toolkit.php:1353
 #: src/blocks/block/RecipeYieldSelector.js:12
 msgid "servings"
 msgstr "Portionen"
 
-#: inc/foodblogkitchen-toolkit.php:1231 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1229
 msgid "simple"
 msgstr "einfach"
 
-#: inc/foodblogkitchen-toolkit.php:1234
+#: inc/foodblogkitchen-toolkit.php:1232
 msgid "Banana shake"
 msgstr "Bananen-Shake"
 
-#: inc/foodblogkitchen-toolkit.php:1235
+#: inc/foodblogkitchen-toolkit.php:1233
 msgid ""
 "You have bananas left over again and don't know what to do with them? How "
 "about a delicious shake?"
@@ -191,144 +190,144 @@ msgstr ""
 "Du hast wieder Bananen übrig und weißt nichts damit anzufangen? Wie wäre es "
 "mit einem leckeren Shake?"
 
-#: inc/foodblogkitchen-toolkit.php:1244
+#: inc/foodblogkitchen-toolkit.php:1242
 msgid "milk"
 msgstr "Milch"
 
-#: inc/foodblogkitchen-toolkit.php:1249
+#: inc/foodblogkitchen-toolkit.php:1247
 msgid "banana"
 msgstr "Banane"
 
-#: inc/foodblogkitchen-toolkit.php:1254
+#: inc/foodblogkitchen-toolkit.php:1252
 msgid "sugar"
 msgstr "Zucker"
 
-#: inc/foodblogkitchen-toolkit.php:1259
+#: inc/foodblogkitchen-toolkit.php:1257
 msgid "cinnamon"
 msgstr "Zimt"
 
-#: inc/foodblogkitchen-toolkit.php:1265
+#: inc/foodblogkitchen-toolkit.php:1263
 msgid "Knife"
 msgstr "Messer"
 
-#: inc/foodblogkitchen-toolkit.php:1266
+#: inc/foodblogkitchen-toolkit.php:1264
 msgid "Blender"
 msgstr "Mixer"
 
-#: inc/foodblogkitchen-toolkit.php:1272
+#: inc/foodblogkitchen-toolkit.php:1270
 msgid "Peel banana."
 msgstr "Banane schälen."
 
-#: inc/foodblogkitchen-toolkit.php:1273
+#: inc/foodblogkitchen-toolkit.php:1271
 msgid ""
 "Put all the ingredients in the blender and mix everything for 30 seconds."
 msgstr "Alle Zutaten in den Mixer geben und alles für 30 Sekunden mixen."
 
-#: inc/foodblogkitchen-toolkit.php:1274
+#: inc/foodblogkitchen-toolkit.php:1272
 msgid "Pour into a glass and enjoy."
 msgstr "In ein Glas füllen und genießen."
 
-#: inc/foodblogkitchen-toolkit.php:1280
+#: inc/foodblogkitchen-toolkit.php:1278
 msgid "The milkshake becomes particularly creamy with UHT milk."
 msgstr "Besonders cremig wird der Milchshake mit H-Milch."
 
-#: inc/foodblogkitchen-toolkit.php:1299 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1297
 msgid "Prep time"
 msgstr "Vorbereitungszeit"
 
-#: inc/foodblogkitchen-toolkit.php:1300 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1298
 msgid "Rest time"
 msgstr "Ruhezeit"
 
-#: inc/foodblogkitchen-toolkit.php:1301 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1299
 msgid "Cook time"
 msgstr "Kochzeit"
 
-#: inc/foodblogkitchen-toolkit.php:1302 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1300
 msgid "Baking time"
 msgstr "Backzeit"
 
-#: inc/foodblogkitchen-toolkit.php:1303 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1301
 msgid "Total time"
 msgstr "Gesamtzeit"
 
-#: inc/foodblogkitchen-toolkit.php:1304
+#: inc/foodblogkitchen-toolkit.php:1302
 msgid "yields"
 msgstr "Stück"
 
-#: inc/foodblogkitchen-toolkit.php:1305 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1303
 msgid "Ingredients"
 msgstr "Zutaten"
 
-#: inc/foodblogkitchen-toolkit.php:1306 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1304
 msgid "Utensils"
 msgstr "Utensilien"
 
-#: inc/foodblogkitchen-toolkit.php:1307 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1305
 msgid "Steps of preparation"
 msgstr "Zubereitung"
 
-#: inc/foodblogkitchen-toolkit.php:1308
+#: inc/foodblogkitchen-toolkit.php:1306
 msgid "Print"
 msgstr "Drucken"
 
-#: inc/foodblogkitchen-toolkit.php:1309
+#: inc/foodblogkitchen-toolkit.php:1307
 msgid "Pin it"
 msgstr "Pin it"
 
-#: inc/foodblogkitchen-toolkit.php:1310
+#: inc/foodblogkitchen-toolkit.php:1308
 msgid "Your rating"
 msgstr "Deine Bewertung"
 
-#: inc/foodblogkitchen-toolkit.php:1311
+#: inc/foodblogkitchen-toolkit.php:1309
 msgid "Average rating"
 msgstr "Durchschnittliche Bewertung"
 
-#: inc/foodblogkitchen-toolkit.php:1312 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1310
 msgid "Notes"
 msgstr "Notizen"
 
-#: inc/foodblogkitchen-toolkit.php:1313
+#: inc/foodblogkitchen-toolkit.php:1311
 msgid "How do you like the recipe?"
 msgstr "Wie findest du das Rezept?"
 
-#: inc/foodblogkitchen-toolkit.php:1315 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1313
 msgid "Video"
 msgstr "Video"
 
-#: inc/foodblogkitchen-toolkit.php:1316
+#: inc/foodblogkitchen-toolkit.php:1314
 msgid "You tried this recipe?"
 msgstr "Du hast das Rezept ausprobiert?"
 
-#: inc/foodblogkitchen-toolkit.php:1317
+#: inc/foodblogkitchen-toolkit.php:1315
 msgid "Then link"
 msgstr "Dann verlinke"
 
-#: inc/foodblogkitchen-toolkit.php:1318
+#: inc/foodblogkitchen-toolkit.php:1316
 msgid "on Instagram"
 msgstr "auf Instagram"
 
-#: inc/foodblogkitchen-toolkit.php:1319
+#: inc/foodblogkitchen-toolkit.php:1317
 msgid "on Instagram or use the hashtag"
 msgstr "auf Instagram oder nutze den Hashtag"
 
-#: inc/foodblogkitchen-toolkit.php:1348 build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1346
 #: src/blocks/block/RecipeYieldSelector.js:16
 msgid "piece"
 msgstr "Stück"
 
-#: inc/foodblogkitchen-toolkit.php:1351
+#: inc/foodblogkitchen-toolkit.php:1349
 msgid "cm springform pan"
 msgstr "cm Springform"
 
-#: inc/foodblogkitchen-toolkit.php:1687
+#: inc/foodblogkitchen-toolkit.php:1685
 msgid ""
 "There was an error while activating the license. Please try again later."
 msgstr ""
 "Bei der Aktivierung der Lizenz gab es einen Fehler. Bitte probiere es später "
 "noch einmal."
 
-#: inc/foodblogkitchen-toolkit.php:1701
+#: inc/foodblogkitchen-toolkit.php:1699
 msgid ""
 "Your license has been successfully activated. You can now use the recipe "
 "block in the editor."
@@ -336,7 +335,7 @@ msgstr ""
 "Deine Lizenz wurde erfolgreich aktiviert. Du kannst den Rezept-Block im "
 "Editor nun nutzen."
 
-#: inc/foodblogkitchen-toolkit.php:1710
+#: inc/foodblogkitchen-toolkit.php:1708
 msgid ""
 "There was an error while activating the license. Please check your input. If "
 "you can't find an error, please contact our support."
@@ -345,18 +344,18 @@ msgstr ""
 "Eingabe. Wenn du keinen Fehler finden kannst, kontaktiere bitte unseren "
 "Support."
 
-#: inc/foodblogkitchen-toolkit.php:1740
+#: inc/foodblogkitchen-toolkit.php:1738
 msgid ""
 "There was an error while deactivating the license. Please try again later."
 msgstr ""
 "Bei der Deaktivierung der Lizenz gab es einen Fehler. Bitte probiere es "
 "später noch einmal."
 
-#: inc/foodblogkitchen-toolkit.php:1753
+#: inc/foodblogkitchen-toolkit.php:1751
 msgid "The license has been successfully deactivated."
 msgstr "Die Lizenz wurde erfolgreich deaktiviert."
 
-#: inc/foodblogkitchen-toolkit.php:1764
+#: inc/foodblogkitchen-toolkit.php:1762
 msgid "There was an error while deactivating the license."
 msgstr "Es gab einen Fehler beim Deaktivieren der Lizenz."
 
@@ -380,189 +379,55 @@ msgstr "Deaktivieren"
 msgid "Activate"
 msgstr "Aktivieren"
 
-#: build/editor.js:1 src/blocks/block/ImageUpload.js:49
+#: src/blocks/block/ImageUpload.js:49
 msgid "Change image"
 msgstr "Bild wechseln"
 
-#: build/editor.js:1 src/blocks/block/ImageUpload.js:59
+#: src/blocks/block/ImageUpload.js:59
 msgid "Remove image"
 msgstr "Bild entfernen"
 
-#: build/editor.js:1 src/blocks/block/ImageUpload.js:64
+#: src/blocks/block/ImageUpload.js:64
 msgid "Select image"
 msgstr "Bild auswählen"
 
-#: build/editor.js:1 src/blocks/block/RecipeYieldSelector.js:20
-msgid "springform pan"
-msgstr "Springform"
-
-#: build/editor.js:1 src/blocks/block/RecipeYieldSelector.js:26
-msgid "Results in"
-msgstr "Ergibt"
-
-#: build/editor.js:1 src/blocks/block/RecipeYieldSelector.js:35
-msgid "cm"
-msgstr "cm"
-
-#: build/editor.js:1 src/blocks/block/RecipeYieldSelector.js:39
-msgid "Unit"
-msgstr "Einheit"
-
-#: build/editor.js:1 src/blocks/block/IngredientsGroupsEditor.js:60
-#: src/blocks/block/PreparationStepsGroupsEditor.js:61
-msgid "Group name"
-msgstr "Gruppentitel"
-
-#: build/editor.js:1 src/blocks/block/IngredientsGroupsEditor.js:73
-#: src/blocks/block/PreparationStepsGroupsEditor.js:74
-msgid "Remove Group"
-msgstr "Gruppe entfernen"
-
-#: build/editor.js:1 src/blocks/block/PreparationStepsGroupsEditor.js:81
-msgid "Add the steps of preparation here..."
-msgstr "Füge hier die Schritte der Zubereitung ein..."
-
-#: build/editor.js:1 src/blocks/block/PreparationStepsGroupsEditor.js:105
-msgid "Split steps into groups"
-msgstr "Schritte in Gruppen aufteilen"
-
-#: build/editor.js:1 src/blocks/block/IngredientsGroupsEditor.js:105
-#: src/blocks/block/PreparationStepsGroupsEditor.js:106
-msgid "Add additional group"
-msgstr "Zusätzliche Gruppe hinzufügen"
-
-#: build/editor.js:1 src/blocks/block/IngredientsGroupsEditor.js:80
-msgid "Add the ingredients here..."
-msgstr "Füge hier die Zutaten ein..."
-
-#: build/editor.js:1 src/blocks/block/IngredientsGroupsEditor.js:104
-msgid "Split ingredients into groups"
-msgstr "Zutaten in Gruppen aufteilen"
-
-#: build/editor.js:1 src/blocks/block/index.js:14
+#: src/blocks/block/index.js:14
 msgid "Recipe"
 msgstr "Rezept"
 
-#: build/editor.js:1 src/blocks/block/index.js:15
+#: src/blocks/block/index.js:15
 msgid "Add a recipe and optimize it easily for search engines."
 msgstr ""
 "Füge ein Rezept hinzu und optimiere es mit wenigen Klicks für Suchmaschinen."
 
-#: build/editor.js:1
-msgid "SEO"
-msgstr "SEO"
+#: src/blocks/block/IngredientsGroupsEditor.js:60
+#: src/blocks/block/PreparationStepsGroupsEditor.js:61
+msgid "Group name"
+msgstr "Gruppentitel"
 
-#: build/editor.js:1
-msgid ""
-"Google and other search engines need more information to present your recipe "
-"in the best possible way. You should provide this information as good as "
-"possible."
-msgstr ""
-"Google und andere Suchmaschinen brauchen mehr Informationen, um dein Rezept "
-"bestmöglich zu präsentieren. Du solltest diese Informationen so gut wie "
-"möglich angeben."
+#: src/blocks/block/IngredientsGroupsEditor.js:73
+#: src/blocks/block/PreparationStepsGroupsEditor.js:74
+msgid "Remove Group"
+msgstr "Gruppe entfernen"
 
-#: build/editor.js:1
-msgid "Cuisine"
-msgstr "Küche"
+#: src/blocks/block/IngredientsGroupsEditor.js:80
+msgid "Add the ingredients here..."
+msgstr "Füge hier die Zutaten ein..."
 
-#: build/editor.js:1
-msgid "e.g. \"Italian\" or \"German\""
-msgstr "z.B. „Italienisch“ oder „Deutsch“"
+#: src/blocks/block/IngredientsGroupsEditor.js:104
+msgid "Split ingredients into groups"
+msgstr "Zutaten in Gruppen aufteilen"
 
-#: build/editor.js:1
-msgid "Calories"
-msgstr "Kalorien"
+#: src/blocks/block/IngredientsGroupsEditor.js:105
+#: src/blocks/block/PreparationStepsGroupsEditor.js:106
+msgid "Add additional group"
+msgstr "Zusätzliche Gruppe hinzufügen"
 
-#: build/editor.js:1
-msgid "Picture of the finished dish"
-msgstr "Bild des fertigen Gerichtes"
-
-#: build/editor.js:1
-msgid ""
-"Depending on the usage Google uses different image formats of your recipe. "
-"You can find more information"
-msgstr ""
-"Abhängig von der Nutzung verwendet Google verschiedene Bildformate deines "
-"Rezeptes. Weitere Informationen findest du"
-
-#: build/editor.js:1
-msgid "https://foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder/"
-msgstr "https://foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder/"
-
-#: build/editor.js:1
-msgid "here"
-msgstr "hier"
-
-#: build/editor.js:1
-msgid "Previews"
-msgstr "Vorschau"
-
-#: build/editor.js:1
-msgid "Featured Snippet"
-msgstr "Featured Snippet"
-
-#: build/editor.js:1
-msgid "No reviews"
-msgstr "Keine Bewertungen"
-
-#: build/editor.js:1
-msgid "Mobile Search Result"
-msgstr "Mobiles Suchergebnis"
-
-#: build/editor.js:1
-msgid "Google displays here a text that matches the search term."
-msgstr "Google zeigt hier einen Text an, der zum Suchbegriff passt."
-
-#: build/editor.js:1
-msgid "Rating"
-msgstr "Bewertung"
-
-#: build/editor.js:1
-msgid "Preparation"
-msgstr "Vorbereitung"
-
-#: build/editor.js:1
-msgid "Title of your recipe"
-msgstr "Titel des Rezepts"
-
-#: build/editor.js:1
-msgid "moderate"
-msgstr "mittel"
-
-#: build/editor.js:1
-msgid "challenging"
-msgstr "herausfordernd"
-
-#: build/editor.js:1
-msgid "Short description of your recipe"
-msgstr "Kurze Beschreibung deines Rezeptes"
-
-#: build/editor.js:1
-msgid "Min."
-msgstr "Min."
-
-#: build/editor.js:1
-msgid "Add the needed utensils here..."
-msgstr "Füge hier die benötigten Utensilien hinzu…"
-
-#: build/editor.js:1
-msgid "YouTube or Vimeo link"
-msgstr "YouTube- oder Vimeo-Link"
-
-#: build/editor.js:1
-msgid "Additional notes ..."
-msgstr "Zusätzliche Notizen …"
-
-#: build/editor.js:1
-msgid "Show additional settings"
-msgstr "Weitere Einstellungen anzeigen"
-
-#: build/editor.js:1 src/blocks/block/NoValidLicense.js:8
+#: src/blocks/block/NoValidLicense.js:8
 msgid "You have not activated the license yet"
 msgstr "Du hast deine Lizenz noch nicht aktiviert"
 
-#: build/editor.js:1 src/blocks/block/NoValidLicense.js:9
+#: src/blocks/block/NoValidLicense.js:9
 msgid ""
 "Please enter a valid license key in the settings of the recipe plugin. You "
 "have received this key by email with your purchase."
@@ -570,35 +435,146 @@ msgstr ""
 "Bitte gebe in den Einstellungen des Rezepte-Plugins einen gültigen "
 "Lizenzschlüssel ein. Diesen hast du bei deinem Kauf per E-Mail bekommen."
 
-#: build/editor.js:1 src/blocks/block/NoValidLicense.js:10
+#: src/blocks/block/NoValidLicense.js:10
 msgid "If you can no longer find your license key, please contact us at "
 msgstr ""
 "Wenn du deinen Lizenzschlüssel nicht mehr findest, melde dich bitte unter "
 
-#: build/editor.js:1 src/blocks/block/NoValidLicense.js:11
+#: src/blocks/block/NoValidLicense.js:11
 msgid "Go to settings"
 msgstr "Zu den Einstellungen"
 
-#: build/editor.js:1 src/blocks/jump-to-recipe/index.js:11
+#: src/blocks/block/PreparationStepsGroupsEditor.js:81
+msgid "Add the steps of preparation here..."
+msgstr "Füge hier die Schritte der Zubereitung ein..."
+
+#: src/blocks/block/PreparationStepsGroupsEditor.js:105
+msgid "Split steps into groups"
+msgstr "Schritte in Gruppen aufteilen"
+
+#: src/blocks/block/RecipeYieldSelector.js:20
+msgid "springform pan"
+msgstr "Springform"
+
+#: src/blocks/block/RecipeYieldSelector.js:26
+msgid "Results in"
+msgstr "Ergibt"
+
+#: src/blocks/block/RecipeYieldSelector.js:35
+msgid "cm"
+msgstr "cm"
+
+#: src/blocks/block/RecipeYieldSelector.js:39
+msgid "Unit"
+msgstr "Einheit"
+
+#: src/blocks/faq/edit.js:12
+msgid "Your questions"
+msgstr "Frage"
+
+#: src/blocks/faq/edit.js:20
+msgid "Your answer"
+msgstr "Antwort"
+
+#: src/blocks/faq/index.js:10
+msgid "FAQ"
+msgstr "FAQ"
+
+#: src/blocks/faq/index.js:11
+msgid "Answer post related questions in a simple FAQ block."
+msgstr "Beantworte zum Beitrag passende Fragen in einem einfachen FAQ-Block."
+
+#: src/blocks/jump-to-recipe/index.js:11
 msgid "Add a quick link which jumps to the recipe in the page."
 msgstr ""
 "Füge einen Quick-Link hinzu, der direkt zum Rezept auf der Seite springt."
 
-#: build/editor.js:1 src/blocks/faq/index.js:10
-msgid "FAQ"
-msgstr "FAQ"
+#~ msgid "SEO"
+#~ msgstr "SEO"
 
-#: build/editor.js:1 src/blocks/faq/index.js:11
-msgid "Answer post related questions in a simple FAQ block."
-msgstr "Beantworte zum Beitrag passende Fragen in einem einfachen FAQ-Block."
+#~ msgid ""
+#~ "Google and other search engines need more information to present your "
+#~ "recipe in the best possible way. You should provide this information as "
+#~ "good as possible."
+#~ msgstr ""
+#~ "Google und andere Suchmaschinen brauchen mehr Informationen, um dein "
+#~ "Rezept bestmöglich zu präsentieren. Du solltest diese Informationen so "
+#~ "gut wie möglich angeben."
 
-#: build/editor.js:1 src/blocks/faq/edit.js:12
-msgid "Your questions"
-msgstr "Frage"
+#~ msgid "Cuisine"
+#~ msgstr "Küche"
 
-#: build/editor.js:1 src/blocks/faq/edit.js:20
-msgid "Your answer"
-msgstr "Antwort"
+#~ msgid "e.g. \"Italian\" or \"German\""
+#~ msgstr "z.B. „Italienisch“ oder „Deutsch“"
+
+#~ msgid "Calories"
+#~ msgstr "Kalorien"
+
+#~ msgid "Picture of the finished dish"
+#~ msgstr "Bild des fertigen Gerichtes"
+
+#~ msgid ""
+#~ "Depending on the usage Google uses different image formats of your "
+#~ "recipe. You can find more information"
+#~ msgstr ""
+#~ "Abhängig von der Nutzung verwendet Google verschiedene Bildformate deines "
+#~ "Rezeptes. Weitere Informationen findest du"
+
+#~ msgid ""
+#~ "https://foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder/"
+#~ msgstr ""
+#~ "https://foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder/"
+
+#~ msgid "here"
+#~ msgstr "hier"
+
+#~ msgid "Previews"
+#~ msgstr "Vorschau"
+
+#~ msgid "Featured Snippet"
+#~ msgstr "Featured Snippet"
+
+#~ msgid "No reviews"
+#~ msgstr "Keine Bewertungen"
+
+#~ msgid "Mobile Search Result"
+#~ msgstr "Mobiles Suchergebnis"
+
+#~ msgid "Google displays here a text that matches the search term."
+#~ msgstr "Google zeigt hier einen Text an, der zum Suchbegriff passt."
+
+#~ msgid "Rating"
+#~ msgstr "Bewertung"
+
+#~ msgid "Preparation"
+#~ msgstr "Vorbereitung"
+
+#~ msgid "Title of your recipe"
+#~ msgstr "Titel des Rezepts"
+
+#~ msgid "moderate"
+#~ msgstr "mittel"
+
+#~ msgid "challenging"
+#~ msgstr "herausfordernd"
+
+#~ msgid "Short description of your recipe"
+#~ msgstr "Kurze Beschreibung deines Rezeptes"
+
+#~ msgid "Min."
+#~ msgstr "Min."
+
+#~ msgid "Add the needed utensils here..."
+#~ msgstr "Füge hier die benötigten Utensilien hinzu…"
+
+#~ msgid "YouTube or Vimeo link"
+#~ msgstr "YouTube- oder Vimeo-Link"
+
+#~ msgid "Additional notes ..."
+#~ msgstr "Zusätzliche Notizen …"
+
+#~ msgid "Show additional settings"
+#~ msgstr "Weitere Einstellungen anzeigen"
 
 #~ msgid "Breakfast"
 #~ msgstr "Frühstück"

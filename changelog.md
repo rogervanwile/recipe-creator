@@ -1,3 +1,6 @@
+# 1.5.5 - March 3, 2022
+- The recipe image was not printed with some themes
+
 # 1.5.4 - March 7, 2021
 - Half Star Icons are now visible in the rating
 

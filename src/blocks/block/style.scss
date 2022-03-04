@@ -74,9 +74,9 @@
     .foodblogkitchen-toolkit--recipe-block--main-image {
       width: 100%;
       margin: 0 0 1em 0;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
+      background-position: center center !important;
       border-radius: calc(var(--border-radius) / 2);
       // Enforces the background image to be visible when printing
       -webkit-print-color-adjust: exact;
@@ -281,7 +281,7 @@
 
     tr.foodblogkitchen-toolkit--recipe-block--ingredients-item.foodblogkitchen-toolkit--even {
       td {
-        background-color: var(--primary-light);
+        background-color: var(--primary-light) !important;
         color: var(--primary-light-contrast);
 
         &:first-child {
@@ -306,7 +306,7 @@
       padding: 0.5em 0.75em;
 
       &:nth-child(odd) {
-        background-color: var(--primary-light);
+        background-color: var(--primary-light) !important;
         color: var(--primary-light-contrast);
         border-radius: 0.25em;
       }
@@ -344,7 +344,7 @@
           height: 1.4em;
           float: left;
           margin-right: 0.5em;
-          background-color: var(--primary-light);
+          background-color: var(--primary-light) !important;
           border-radius: 50%;
           color: var(--primary);
           position: absolute;
@@ -363,7 +363,7 @@
 
   .foodblogkitchen-toolkit--recipe-block--difficulty {
     border-radius: var(--border-radius);
-    background-color: var(--primary-light);
+    background-color: var(--primary-light) !important;
     padding: 0.25em 0.75em;
     border: 1px solid var(--primary);
     color: var(--primary);

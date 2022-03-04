@@ -1,3 +1,6 @@
+# Version 1.5.5 - 3. März 2022
+- Bei einigen Themes wurden die Bilder beim Drucken nicht mit gedruckt.
+
 # Version 1.5.4 - 7. März 2021
 
 Es gab ein Problem bei der Darstellung von halben Bewertungspunkten in dem Rezepte-Block. Das ist nun behoben.

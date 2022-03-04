@@ -20,6 +20,7 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 
 # Publish a new version
 
+- `yarn build`
 - Update version in `package.json`
 - Update version in `foodblogkitchen-toolkit.php`
 - Update `changelog.md`
