@@ -49,16 +49,6 @@ export class Rating {
       } catch (e) {
         console.error(e);
       }
-
-      // ratingElement.classList.remove(
-      //   "foodblogkitchen-toolkit--recipe-block--interactive"
-      // );
-      // const selectedStarElement = ratingElement.querySelector(
-      //   '.foodblogkitchen-toolkit--recipe-block--star[data-rating="' + savedRating + '"]'
-      // );
-      // if (selectedStarElement) {
-      //   markAsSelected(selectedStarElement);
-      // }
     }
   }
 
