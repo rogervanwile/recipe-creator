@@ -1509,6 +1509,8 @@ class FoodblogkitchenToolkit
         $attributes['instagramUsername'] = get_option('foodblogkitchen_toolkit__instagram__username', '');
         $attributes['instagramHashtag'] = get_option('foodblogkitchen_toolkit__instagram__hashtag', '');
 
+        $attributes['blog_name'] =  get_bloginfo('name');
+
         $renderer = self::getRecipeBlockRenderer();
         return $renderer($attributes);
     }

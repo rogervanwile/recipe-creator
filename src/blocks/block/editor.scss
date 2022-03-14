@@ -5,7 +5,7 @@
  */
 
 .wp-block {
-  .foodblogkitchen-toolkit--recipe-block--timing-list {
+  .foodblogkitchen-toolkit--recipe-block--timings {
     li header {
       margin-bottom: 0.5em;
     }
@@ -74,7 +74,7 @@
     border-color: inherit;
   }
 
-  .foodblogkitchen-toolkit--recipe-block--main-image {
+  .foodblogkitchen-toolkit--recipe-block--thumnail {
     &.foodblogkitchen-toolkit--empty {
       background-color: #efefef;
       position: relative;
@@ -110,7 +110,7 @@
     margin-bottom: 8px;
   }
 
-  .foodblogkitchen-toolkit--recipe-block--timing-list.foodblogkitchen-toolkit--recipe-block--timing-list {
+  .foodblogkitchen-toolkit--recipe-block--timings.foodblogkitchen-toolkit--recipe-block--timings {
     ul {
       overflow: hidden;
 

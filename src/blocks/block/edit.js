@@ -488,7 +488,7 @@ export default function Edit(props) {
                   render={({ open }) => (
                     <div
                       className={
-                        "foodblogkitchen-toolkit--recipe-block--main-image" +
+                        "foodblogkitchen-toolkit--recipe-block--thumbnail" +
                         (props.attributes.image3_2
                           ? ""
                           : " foodblogkitchen-toolkit--empty")
@@ -506,7 +506,7 @@ export default function Edit(props) {
             </div>
           </div>
           <hr />
-          <div className="foodblogkitchen-toolkit--recipe-block--timing-list">
+          <div className="foodblogkitchen-toolkit--recipe-block--timings">
             <ul>
               <li>
                 <header>{__("Prep time", 'foodblogkitchen-toolkit')}:</header>

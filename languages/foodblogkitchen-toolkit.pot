@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-03-04T14:20:59+00:00\n"
+"POT-Creation-Date: 2022-03-07T20:56:09+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: foodblogkitchen-toolkit\n"
@@ -93,7 +93,7 @@ msgid "Configure how the recipe block should look for your visitors."
 msgstr ""
 
 #: inc/foodblogkitchen-toolkit.php:517
-#: inc/foodblogkitchen-toolkit.php:1571
+#: inc/foodblogkitchen-toolkit.php:1573
 #: src/blocks/jump-to-recipe/index.js:10
 msgid "Jump to recipe"
 msgstr ""
@@ -302,27 +302,31 @@ msgstr ""
 msgid "cm springform pan"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1685
+#: inc/foodblogkitchen-toolkit.php:1512
+msgid "Found on %s"
+msgstr ""
+
+#: inc/foodblogkitchen-toolkit.php:1687
 msgid "There was an error while activating the license. Please try again later."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1699
+#: inc/foodblogkitchen-toolkit.php:1701
 msgid "Your license has been successfully activated. You can now use the recipe block in the editor."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1708
+#: inc/foodblogkitchen-toolkit.php:1710
 msgid "There was an error while activating the license. Please check your input. If you can't find an error, please contact our support."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1738
+#: inc/foodblogkitchen-toolkit.php:1740
 msgid "There was an error while deactivating the license. Please try again later."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1751
+#: inc/foodblogkitchen-toolkit.php:1753
 msgid "The license has been successfully deactivated."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1762
+#: inc/foodblogkitchen-toolkit.php:1764
 msgid "There was an error while deactivating the license."
 msgstr ""
 

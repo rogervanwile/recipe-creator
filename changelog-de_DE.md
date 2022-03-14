@@ -1,4 +1,9 @@
+# Version 1.6.0 - 14. März 2022
+
+- Wir haben das Druck-Layout von Rezepten komplett überarbeitet. Die Rezepte werden nun in einem schönen Layout auf möglichst wenig Seiten gedruckt.
+
 # Version 1.5.5 - 3. März 2022
+
 - Bei einigen Themes wurden die Bilder beim Drucken nicht mit gedruckt.
 
 # Version 1.5.4 - 7. März 2021

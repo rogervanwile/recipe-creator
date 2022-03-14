@@ -30,10 +30,10 @@ describe('Tests the recipe block', () => {
         cy.get('[aria-label="Title of your recipe"]').type('Test Headline');
         cy.get('.foodblogkitchen-toolkit--recipe-block--difficulty:first-child').click();
         cy.get('[aria-label="Short description of your recipe"]').type('Test description', { force: true });
-        cy.get('.foodblogkitchen-toolkit--recipe-block--timing-list li:nth-child(1) input').type('10', { force: true });
-        cy.get('.foodblogkitchen-toolkit--recipe-block--timing-list li:nth-child(2) input').type('15', { force: true });
-        cy.get('.foodblogkitchen-toolkit--recipe-block--timing-list li:nth-child(3) input').type('20', { force: true });
-        cy.get('.foodblogkitchen-toolkit--recipe-block--timing-list li:nth-child(4) input').type('25', { force: true });
+        cy.get('.foodblogkitchen-toolkit--recipe-block--timings li:nth-child(1) input').type('10', { force: true });
+        cy.get('.foodblogkitchen-toolkit--recipe-block--timings li:nth-child(2) input').type('15', { force: true });
+        cy.get('.foodblogkitchen-toolkit--recipe-block--timings li:nth-child(3) input').type('20', { force: true });
+        cy.get('.foodblogkitchen-toolkit--recipe-block--timings li:nth-child(4) input').type('25', { force: true });
         cy.contains('70 Min.');
         cy.get('.foodblogkitchen-toolkit--recipe-block--flex-container input:nth-child(1)').type('4', { force: true });
         cy.get('.foodblogkitchen-toolkit--recipe-block--ingredients > ul').type('3 bananans\n2 onions', { force: true });

@@ -1,0 +1,145 @@
+@media screen {
+  .foodblogkitchen-toolkit--block {
+    .foodblogkitchen-toolkit--block--inner {
+      display: grid;
+      gap: 1em 2em;
+
+      /* Default Layout */
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      grid-template-areas:
+        "title title"
+        "intro thumbnail"
+        "timings timings"
+        "ingredients ingredients"
+        "utensils utensils"
+        "preparation-steps preparation-steps"
+        "video video"
+        "notes notes"
+        "user-rating user-rating"
+        "save-and-share save-and-share"
+        "call-to-action call-to-action";
+
+      .foodblogkitchen-toolkit--recipe-block--title {
+        grid-area: title;
+      }
+
+      .foodblogkitchen-toolkit--recipe-block--intro {
+        grid-area: intro;
+      }
+
+      .foodblogkitchen-toolkit--recipe-block--thumbnail {
+        grid-area: thumbnail;
+      }
+
+      .foodblogkitchen-toolkit--recipe-block--timings {
+        grid-area: timings;
+      }
+
+      .foodblogkitchen-toolkit--recipe-block--ingredients {
+        grid-area: ingredients;
+      }
+
+      .foodblogkitchen-toolkit--recipe-block--utensils {
+        grid-area: utensils;
+      }
+
+      .foodblogkitchen-toolkit--recipe-block--preparation-steps {
+        grid-area: preparation-steps;
+      }
+
+      .foodblogkitchen-toolkit--recipe-block--video {
+        grid-area: video;
+      }
+
+      .foodblogkitchen-toolkit--recipe-block--notes {
+        grid-area: notes;
+      }
+
+      .foodblogkitchen-toolkit--recipe-block--user-rating {
+        grid-area: user-rating;
+      }
+
+      .foodblogkitchen-toolkit--recipe-block--save-and-share {
+        grid-area: save-and-share;
+      }
+
+      .foodblogkitchen-toolkit--recipe-block--call-to-action {
+        grid-area: call-to-action;
+      }
+
+      .foodblogkitchen-toolkit--recipe-block--timings,
+      .foodblogkitchen-toolkit--recipe-block--ingredients,
+      .foodblogkitchen-toolkit--recipe-block--utensils,
+      .foodblogkitchen-toolkit--recipe-block--preparation-steps,
+      .foodblogkitchen-toolkit--recipe-block--video,
+      .foodblogkitchen-toolkit--recipe-block--notes,
+      .foodblogkitchen-toolkit--recipe-block--user-rating {
+        border-bottom: 1px solid var(--primary-light);
+      }
+
+      .foodblogkitchen-toolkit--recipe-block--timings {
+        border-top: 1px solid var(--primary-light);
+      }
+
+      .foodblogkitchen-toolkit--recipe-block--timings {
+        padding: 1em 0;
+        margin: 0;
+
+        ul {
+          padding-left: 4em;
+
+          &::before {
+            content: "";
+            background-image: var(--clock-url);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 3em 3em;
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 3em;
+            height: 3em;
+            transform: translateY(-50%);
+          }
+
+          li {
+            display: inline-block;
+          }
+        }
+      }
+
+      .foodblogkitchen-toolkit--recipe-block--ingredients-table {
+        tr.foodblogkitchen-toolkit--recipe-block--ingredients-item.foodblogkitchen-toolkit--even {
+          td {
+            background-color: var(--primary-light) !important;
+            color: var(--primary-light-contrast);
+
+            &.foodblogkitchen-toolkit--recipe-block--amount {
+              padding-left: 2em;
+            }
+
+            &:first-child {
+              border-top-left-radius: 0.25em;
+              border-bottom-left-radius: 0.25em;
+            }
+
+            &:last-child {
+              border-top-right-radius: 0.25em;
+              border-bottom-right-radius: 0.25em;
+            }
+          }
+        }
+      }
+
+      .foodblogkitchen-toolkit--recipe-block--utensils-list {
+        li:nth-child(odd) {
+          background-color: var(--primary-light) !important;
+          color: var(--primary-light-contrast);
+          border-radius: 0.25em;
+        }
+      }
+    }
+  }
+}
