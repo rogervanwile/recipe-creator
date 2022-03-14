@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@bigbite/wp-cypress": "0.9.5",
+    "@types/dom-screen-wake-lock": "^1.0.0",
     "@types/filesystem": "0.0.32",
     "@types/node": "^14.14.22",
     "@types/showdown": "1.9.4",
