@@ -4,7 +4,6 @@ import { Rating } from "./rating";
 
 export class Recipe {
   constructor(private element: HTMLElement) {
-    console.log("construct", element);
     this.initRating();
     this.initCalculator();
     this.initPrinting();
