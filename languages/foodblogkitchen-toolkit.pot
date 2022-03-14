@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-03-07T20:56:09+00:00\n"
+"POT-Creation-Date: 2022-03-14T19:14:59+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: foodblogkitchen-toolkit\n"
@@ -300,10 +300,6 @@ msgstr ""
 
 #: inc/foodblogkitchen-toolkit.php:1349
 msgid "cm springform pan"
-msgstr ""
-
-#: inc/foodblogkitchen-toolkit.php:1512
-msgid "Found on %s"
 msgstr ""
 
 #: inc/foodblogkitchen-toolkit.php:1687
