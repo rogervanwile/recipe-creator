@@ -1,5 +1,9 @@
 export class Rating {
-  constructor(ratingElement: HTMLElement) {
+  private constructionDate = new Date();
+
+  private hasRated = false;
+
+  constructor(private ratingElement: HTMLElement) {
     const postId = ratingElement.getAttribute("data-post-id");
 
     if (!postId) {
@@ -19,6 +23,13 @@ export class Rating {
           starElement.addEventListener("click", (event) => {
             this.markAsSelected(starElement);
 
+            if (this.hasRated) {
+              // Only one rating is allowed
+              return;
+            }
+
+            this.hasRated = true;
+
             const rating = starElement.getAttribute("data-rating");
 
             if (!rating) {
@@ -35,31 +46,42 @@ export class Rating {
           });
         });
     } else {
-      try {
-        // Hide the user rating section if the user has already voted.
-        const ratingWrapper = ratingElement.closest<HTMLElement>(
-          ".foodblogkitchen-toolkit--recipe-block--user-rating"
-        );
-
-        if (!ratingWrapper) {
-          return;
-        }
-
-        ratingWrapper.style.display = "none";
-      } catch (e) {
-        console.error(e);
-      }
+      this.hideRating();
     }
   }
 
+  private hideRating() {
+    // Hide the user rating section if the user has already voted.
+    const ratingWrapper = this.ratingElement?.closest<HTMLElement>(
+      ".foodblogkitchen-toolkit--recipe-block--user-rating"
+    );
+
+    if (!ratingWrapper) {
+      return;
+    }
+
+    ratingWrapper.style.display = "none";
+  }
+
   private storeRatingInDatabase(postId: string, rating: string) {
+    const currentDate = new Date();
+    const diff = Math.abs(
+      this.constructionDate.getTime() - currentDate.getTime()
+    );
+
+    if (diff < 5000) {
+      // The user rated the recipe in unter 5 seconds.
+      // This rating can be ignored cause it must be a spam bot.
+      return;
+    }
+
     fetch(window.FoodblogkitchenToolkit.config.ajaxUrl, {
       method: "POST",
       body: new URLSearchParams({
         _ajax_nonce: window.FoodblogkitchenToolkit.config.nonce,
         action: "foodblogkitchen_toolkit_set_rating",
-        postId: postId,
-        rating: rating,
+        postId,
+        rating,
       }),
     })
       .then((response) => {
