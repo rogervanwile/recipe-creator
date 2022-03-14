@@ -3,7 +3,7 @@ export class WakeLock {
 
   constructor() {}
 
-  async lock() {
+  public async lock() {
     if (this.wakeLock) {
       // Allready locked
       return;
@@ -12,7 +12,7 @@ export class WakeLock {
     this.wakeLock = await navigator.wakeLock?.request("screen");
   }
 
-  async unlock() {
+  public async unlock() {
     if (!this.wakeLock) {
       // Allready unlocked
       return;

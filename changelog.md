@@ -1,5 +1,6 @@
 # 1.6.0 - March 14, 2022
 - We have completely revised the print layout of recipes. Recipes are now printed in a nice layout on as few pages as possible.
+- When the recipe is displayed on the screen of a smartphone or tablet, the screen is now no longer automatically turned off.
 
 # 1.5.5 - March 3, 2022
 - The recipe image was not printed with some themes

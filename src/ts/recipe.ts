@@ -1,12 +1,14 @@
 import { Calculator } from "./calculator";
 import { Printer } from "./printer";
 import { Rating } from "./rating";
+import { WakeLock } from "./wake-lock";
 
 export class Recipe {
   constructor(private element: HTMLElement) {
     this.initRating();
     this.initCalculator();
     this.initPrinting();
+    this.initWakeLock();
   }
 
   private initRating() {
@@ -39,5 +41,21 @@ export class Recipe {
 
       new Printer(this.element);
     });
+  }
+
+  private initWakeLock() {
+    const wakeLockInstance = new WakeLock();
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.intersectionRatio) {
+          wakeLockInstance.lock();
+        } else {
+          wakeLockInstance.unlock();
+        }
+      });
+    }, {});
+
+    observer.observe(this.element);
   }
 }
