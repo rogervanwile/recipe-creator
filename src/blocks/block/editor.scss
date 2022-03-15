@@ -34,6 +34,22 @@
       margin-bottom: 24px;
     }
   }
+
+  .square-baking-pans-x-wrapper {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    gap: 8px;
+
+    > div {
+      flex-grow: 1;
+    }
+
+    .square-baking-pans-x {
+      line-height: 30px;
+      flex-grow: 0;
+    }
+  }
 }
 
 .wp-block-foodblogkitchen-recipes-block {

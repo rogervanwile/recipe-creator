@@ -96,15 +96,29 @@
         {{#if recipeYield}}
         <div class="foodblogkitchen-toolkit--recipe-block--servings-editor">
           <button type="button" class="recipe-shrink-servings">-</button>
-          <span disabled="disabled"><span class="recipe-servings">{{recipeYield}}</span>
+          <span disabled="disabled">
+            <span class="recipe-servings">{{recipeYieldFormatted}}</span>
             {{recipeYieldUnitFormatted}}
           </span>
           <button type="button" class="recipe-increase-servings">+</button>
         </div>
+        {{else}}
+        {{#if recipeYieldWidth}}
+        {{#if recipeYieldHeight}}
+        <div class="foodblogkitchen-toolkit--recipe-block--servings-editor">
+          <span disabled="disabled">
+            <span class="recipe-servings">{{recipeYieldFormatted}}</span>
+            {{recipeYieldUnitFormatted}}
+          </span>
+        </div>
+        {{/if}}
+        {{/if}}
         {{/if}}
       </div>
-      <table class="foodblogkitchen-toolkit--recipe-block--ingredients-table" data-recipe-yield="{{recipeYield}}"
-        data-recipe-yield-unit="{{recipeYieldUnit}}">
+      <table class="foodblogkitchen-toolkit--recipe-block--ingredients-table" {{#if recipeYield}}
+        data-recipe-yield="{{recipeYield}}" {{/if}} {{#if recipeYieldWidth}}
+        data-recipe-yield-width="{{recipeYieldWidth}}" {{/if}} {{#if recipeYieldHeight}}
+        data-recipe-yield-height="{{recipeYieldHeight}}" {{/if}} data-recipe-yield-unit="{{recipeYieldUnit}}">
         <tbody>
           {{#each ingredientsGroups}}
           {{#if this/title}}
