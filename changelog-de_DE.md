@@ -2,6 +2,7 @@
 
 - Wir haben das Druck-Layout von Rezepten komplett überarbeitet. Die Rezepte werden nun in einem schönen Layout auf möglichst wenig Seiten gedruckt.
 - Wenn das Rezept auf dem Bildschirm eines Smartphones oder Tabletts angezeigt wird, wird der Bildschirm nun nicht mehr automatisch abgeschaltet.
+- Wir haben eine Spam-Bot-Erkennung gegen Fake-Bewertungen eingebaut.
 
 # Version 1.5.5 - 3. März 2022
 
