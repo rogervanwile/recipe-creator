@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Recipe Manager Pro 1.2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/foodblogkitchen-"
 "toolkit\n"
-"POT-Creation-Date: 2022-03-14T19:14:59+00:00\n"
-"PO-Revision-Date: 2022-03-14 20:15+0100\n"
+"POT-Creation-Date: 2022-03-15T17:52:36+00:00\n"
+"PO-Revision-Date: 2022-03-15 18:52+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -400,26 +400,26 @@ msgid "Add a recipe and optimize it easily for search engines."
 msgstr ""
 "Füge ein Rezept hinzu und optimiere es mit wenigen Klicks für Suchmaschinen."
 
-#: src/blocks/block/IngredientsGroupsEditor.js:60
-#: src/blocks/block/PreparationStepsGroupsEditor.js:61
+#: src/blocks/block/IngredientsGroupsEditor.js:63
+#: src/blocks/block/PreparationStepsGroupsEditor.js:64
 msgid "Group name"
 msgstr "Gruppentitel"
 
-#: src/blocks/block/IngredientsGroupsEditor.js:73
-#: src/blocks/block/PreparationStepsGroupsEditor.js:74
+#: src/blocks/block/IngredientsGroupsEditor.js:77
+#: src/blocks/block/PreparationStepsGroupsEditor.js:78
 msgid "Remove Group"
 msgstr "Gruppe entfernen"
 
-#: src/blocks/block/IngredientsGroupsEditor.js:80
+#: src/blocks/block/IngredientsGroupsEditor.js:86
 msgid "Add the ingredients here..."
 msgstr "Füge hier die Zutaten ein..."
 
-#: src/blocks/block/IngredientsGroupsEditor.js:104
+#: src/blocks/block/IngredientsGroupsEditor.js:109
 msgid "Split ingredients into groups"
 msgstr "Zutaten in Gruppen aufteilen"
 
-#: src/blocks/block/IngredientsGroupsEditor.js:105
-#: src/blocks/block/PreparationStepsGroupsEditor.js:106
+#: src/blocks/block/IngredientsGroupsEditor.js:110
+#: src/blocks/block/PreparationStepsGroupsEditor.js:111
 msgid "Add additional group"
 msgstr "Zusätzliche Gruppe hinzufügen"
 
@@ -444,11 +444,11 @@ msgstr ""
 msgid "Go to settings"
 msgstr "Zu den Einstellungen"
 
-#: src/blocks/block/PreparationStepsGroupsEditor.js:81
+#: src/blocks/block/PreparationStepsGroupsEditor.js:87
 msgid "Add the steps of preparation here..."
 msgstr "Füge hier die Schritte der Zubereitung ein..."
 
-#: src/blocks/block/PreparationStepsGroupsEditor.js:105
+#: src/blocks/block/PreparationStepsGroupsEditor.js:110
 msgid "Split steps into groups"
 msgstr "Schritte in Gruppen aufteilen"
 
