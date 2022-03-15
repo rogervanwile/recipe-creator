@@ -5,20 +5,38 @@
       gap: 1em 2em;
 
       /* Default Layout */
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       grid-template-rows: auto;
       grid-template-areas:
-        "title title"
-        "intro thumbnail"
-        "timings timings"
-        "ingredients ingredients"
-        "utensils utensils"
-        "preparation-steps preparation-steps"
-        "video video"
-        "notes notes"
-        "user-rating user-rating"
-        "save-and-share save-and-share"
-        "call-to-action call-to-action";
+        "title"
+        "thumbnail"
+        "intro"
+        "timings"
+        "ingredients"
+        "utensils"
+        "preparation-steps"
+        "video"
+        "notes"
+        "user-rating"
+        "save-and-share"
+        "call-to-action";
+
+      @media (min-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+          "title title"
+          "intro thumbnail"
+          "timings timings"
+          "ingredients ingredients"
+          "utensils utensils"
+          "preparation-steps preparation-steps"
+          "video video"
+          "notes notes"
+          "user-rating user-rating"
+          "save-and-share save-and-share"
+          "call-to-action call-to-action";
+      }
 
       .foodblogkitchen-toolkit--recipe-block--title {
         grid-area: title;
@@ -83,7 +101,7 @@
       }
 
       .foodblogkitchen-toolkit--recipe-block--timings {
-        padding: 1em 0;
+        padding: 1em 0 0 0;
         margin: 0;
 
         ul {
@@ -97,7 +115,7 @@
             background-size: 3em 3em;
             display: block;
             position: absolute;
-            top: 50%;
+            top: calc(50% - 0.5em);
             left: 0;
             width: 3em;
             height: 3em;

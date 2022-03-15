@@ -16,8 +16,23 @@
     margin: 16px 0 0 auto;
   }
 
-  hr {
-    margin: 2em 0;
+  .foodblogkitchen-toolkit--block--inner {
+    /* Editor Layout */
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "title title"
+      "intro thumbnail"
+      "timings timings"
+      "ingredients ingredients"
+      "utensils utensils"
+      "preparation-steps preparation-steps"
+      "video video"
+      "notes notes";
+
+    .components-button {
+      margin-bottom: 24px;
+    }
   }
 }
 
@@ -35,17 +50,21 @@
     color: var(--background-contrast) !important;
   }
 
-  .foodblogkitchen-toolkit--recipe-block--difficulty {
-    cursor: pointer;
-    margin-right: 4px;
+  .foodblogkitchen-toolkit--recipe-block--difficulty--selector {
+    margin-bottom: 16px;
 
-    &.unselected {
-      opacity: 0.6;
+    .foodblogkitchen-toolkit--recipe-block--difficulty {
+      cursor: pointer;
+      margin-right: 4px;
+
+      &.unselected {
+        opacity: 0.6;
+      }
     }
   }
 
   .foodblogkitchen-toolkit--recipe-block--video {
-    margin-bottom: 16px;
+    padding-bottom: 16px;
   }
 
   .components-input-control__label {
@@ -74,22 +93,32 @@
     border-color: inherit;
   }
 
-  .foodblogkitchen-toolkit--recipe-block--thumnail {
-    &.foodblogkitchen-toolkit--empty {
-      background-color: #efefef;
-      position: relative;
+  .foodblogkitchen-toolkit--recipe-block--thumbnail {
+    position: relative;
 
-      &::after {
-        content: "3:2";
-        font-size: 48px;
-        color: #cccccc;
-        line-height: 100%;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 0;
-        right: 0;
-        text-align: center;
+    .foodblogkitchen-toolkit--recipe-block--thumbnail-spacer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      cursor: pointer;
+
+      &.foodblogkitchen-toolkit--empty {
+        background-color: #efefef;
+
+        &::after {
+          content: "3:2";
+          font-size: 48px;
+          color: #cccccc;
+          line-height: 100%;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 0;
+          right: 0;
+          text-align: center;
+        }
       }
     }
   }
@@ -143,10 +172,6 @@
     padding-right: 8px;
   }
 
-  .foodblogkitchen-toolkit--recipe-block--preparation-steps.foodblogkitchen-toolkit--recipe-block--preparation-steps {
-    margin: 0 0 1rem 0;
-  }
-
   .foodblogkitchen-toolkit--recipe-block--flex-container {
     display: flex;
     margin-left: -8px;
@@ -176,7 +201,7 @@
       display: block;
       list-style: none;
       padding: 0;
-      margin: 0;
+      margin: 16px 0 24px 0;
 
       li {
         display: block;
