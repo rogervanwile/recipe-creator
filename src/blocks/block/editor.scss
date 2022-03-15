@@ -51,11 +51,12 @@
   }
 
   .foodblogkitchen-toolkit--recipe-block--difficulty--selector {
-    margin-bottom: 16px;
+    margin-bottom: 8px !important;
 
     .foodblogkitchen-toolkit--recipe-block--difficulty {
       cursor: pointer;
       margin-right: 4px;
+      margin-bottom: 8px;
 
       &.unselected {
         opacity: 0.6;

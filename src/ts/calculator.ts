@@ -12,7 +12,7 @@ export class Calculator {
     );
 
     this.ingredientsTable = recipeElement.querySelector(
-      ".foodblogkitchen-toolkit--recipe-block--ingredients"
+      ".foodblogkitchen-toolkit--recipe-block--ingredients-table"
     );
 
     if (this.servingsSelector && this.ingredientsTable) {

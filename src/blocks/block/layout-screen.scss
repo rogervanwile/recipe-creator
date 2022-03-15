@@ -21,23 +21,6 @@
         "save-and-share"
         "call-to-action";
 
-      @media (min-width: 768px) {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto;
-        grid-template-areas:
-          "title title"
-          "intro thumbnail"
-          "timings timings"
-          "ingredients ingredients"
-          "utensils utensils"
-          "preparation-steps preparation-steps"
-          "video video"
-          "notes notes"
-          "user-rating user-rating"
-          "save-and-share save-and-share"
-          "call-to-action call-to-action";
-      }
-
       .foodblogkitchen-toolkit--recipe-block--title {
         grid-area: title;
       }
@@ -157,6 +140,25 @@
           color: var(--primary-light-contrast);
           border-radius: 0.25em;
         }
+      }
+    }
+
+    @media (min-width: 768px) {
+      .foodblogkitchen-toolkit--block--inner {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+          "title title"
+          "intro thumbnail"
+          "timings timings"
+          "ingredients ingredients"
+          "utensils utensils"
+          "preparation-steps preparation-steps"
+          "video video"
+          "notes notes"
+          "user-rating user-rating"
+          "save-and-share save-and-share"
+          "call-to-action call-to-action";
       }
     }
   }
