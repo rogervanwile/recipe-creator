@@ -71,6 +71,7 @@ class FoodblogkitchenToolkit
                 <p>
                     <?php
                     echo sprintf(
+                        /* translators: %s: link to release notes */
                         __('We\'ve updated the <strong>Foodblog-Toolkit</strong>. Check out the <a href="%s">release notes</a> to see which new features you can use now.', 'foodblogkitchen-toolkit'),
                         esc_url(get_admin_url(get_current_network_id(), 'admin.php?page=foodblogkitchen_toolkit_release_notes'))
                     );
