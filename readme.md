@@ -10,7 +10,7 @@
 
 The translations for the JS files have to be a JSON file.
 
-`wp i18n make-json languages/foodblogkitchen-toolkit-de_DE.po --no-purge`
+`rm -rf languages/*.json || true && wp i18n make-json languages/foodblogkitchen-toolkit-de_DE.po --no-purge`
 
 More Infos: https://developer.wordpress.org/block-editor/developers/internationalization/
 

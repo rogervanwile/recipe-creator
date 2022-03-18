@@ -1,3 +1,5 @@
+import "./view.scss";
+
 import { Recipe } from "./recipe";
 
 document.addEventListener("DOMContentLoaded", function () {

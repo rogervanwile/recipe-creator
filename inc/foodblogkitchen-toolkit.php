@@ -32,6 +32,7 @@ class FoodblogkitchenToolkit
     {
         add_action('init', array($this, 'addRessources'));
         add_action('init', array($this, 'registerBlock'));
+        add_action('init', array($this, 'localizeScripts'));
         add_action('init', array($this, 'registerMeta'));
         add_action('init', array($this, 'loadTranslations'));
 
@@ -267,19 +268,23 @@ class FoodblogkitchenToolkit
         wp_enqueue_style('wp-color-picker');
         wp_enqueue_style('iris');
 
+        wp_enqueue_style("foodblogkitchen-recipes-block-style");
+
+        $adminAsset = require(plugin_dir_path(__FILE__) . "../build/admin.asset.php");
+
         wp_enqueue_script(
             'foodblogkitchen-toolkit-settings-js',
             plugins_url('build/admin.js', dirname(__FILE__)),
-            array('jquery', 'wp-color-picker', 'iris'),
-            '',
+            ['wp-color-picker', ...$adminAsset['dependencies']],
+            $adminAsset['version'],
             true
         );
 
         wp_enqueue_style(
-            'foodblogkitchen-toolkit-settings-admin-css',
+            'foodblogkitchen-toolkit-settings-css',
             plugins_url('build/admin.css', dirname(__FILE__)),
-            array(),
-            '',
+            $adminAsset['dependencies'],
+            $adminAsset['version'],
             'all'
         );
     }
@@ -733,60 +738,29 @@ class FoodblogkitchenToolkit
         FoodblogkitchenToolkit::unregisterLicense();
     }
 
-    public function addRessources()
+    public function localizeScripts()
     {
-        // editor.js
-
-        $editorAsset = require(plugin_dir_path(__FILE__) . "../build/editor.asset.php");
-
-        wp_register_script(
-            'foodblogkitchen-toolkit-recipe-block-editor-script',
-            plugins_url('build/editor.js', dirname(__FILE__)),
-            $editorAsset['dependencies'],
-            $editorAsset['version']
-        );
-
-        wp_register_style(
-            'foodblogkitchen-toolkit-recipe-block-editor-style',
-            plugins_url('build/editor.css', dirname(__FILE__)),
-            array(),
-            $editorAsset['version']
-        );
-
-        wp_enqueue_style(
-            'foodblogkitchen-toolkit-recipe-block',
-            plugins_url('build/style-editor.css', dirname(__FILE__)),
-            array(),
-            $editorAsset['version']
-        );
-
         // Add some variables for the editor script
         $license = get_option('foodblogkitchen_toolkit__license_key', '');
-        wp_localize_script('foodblogkitchen-toolkit-recipe-block-editor-script', 'foodblogkitchenToolkitAdditionalData', [
+
+        wp_localize_script('foodblogkitchen-recipes-block-editor-script', 'foodblogkitchenToolkitAdditionalData', [
             "hasValidLicense" => !empty($license),
             "licensePage" => get_admin_url(get_current_network_id(), 'admin.php?page=foodblogkitchen_toolkit_license')
         ]);
 
-        wp_set_script_translations('foodblogkitchen-toolkit-recipe-block-editor-script', 'foodblogkitchen-toolkit', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
+        // Add the link to the print css for the recipe block view script
 
-        // frontend.js
+        $wp_styles = wp_styles();
 
-        $frontendAsset = require(plugin_dir_path(__FILE__) . "../build/frontend.asset.php");
+        $printStyle = $wp_styles->registered['foodblogkitchen-recipes-block-style'];
 
-        wp_register_script(
-            'foodblogkitchen-toolkit-recipe-block',
-            plugins_url('build/frontend.js', dirname(__FILE__)),
-            $frontendAsset['dependencies'],
-            $frontendAsset['version']
-        );
+        wp_localize_script('foodblogkitchen-recipes-block-view-script', 'foodblogrRecipeBlockConfig', [
+            "printStyleUrl" => $printStyle->src
+        ]);
+    }
 
-        wp_register_style(
-            'foodblogkitchen-toolkit-recipe-block',
-            plugins_url('build/style-index.css', dirname(__FILE__)),
-            array(),
-            $frontendAsset['version']
-        );
-
+    public function addRessources()
+    {
         // pinterest-image-overlay.js
 
         // TODO: Include only when images are on the page
@@ -812,189 +786,19 @@ class FoodblogkitchenToolkit
     public function registerBlock()
     {
         // Jump to recipe
-
-        register_block_type('foodblogkitchen-toolkit/jump-to-recipe', array(
-            'editor_script' => 'foodblogkitchen-toolkit-jump-to-recipe-block-editor-script',
-            'editor_style'  => 'foodblogkitchen-toolkit-jump-to-recipe-block-editor-style',
-            'script'        => 'foodblogkitchen-toolkit-recipe-block',
-            'style'         => 'foodblogkitchen-toolkit-recipe-block',
-            'attributes' => array(),
+        register_block_type(realpath(__DIR__ . '/../build/blocks/jump-to-recipe'), array(
             'render_callback' => array($this, 'renderJumpToRecipeBlock'),
         ));
 
         // Recipe block
-
-        register_block_type('foodblogkitchen-recipes/block', array(
-            'editor_script' => 'foodblogkitchen-toolkit-recipe-block-editor-script',
-            'editor_style'  => 'foodblogkitchen-toolkit-recipe-block-editor-style',
-            'script'        => 'foodblogkitchen-toolkit-recipe-block',
-            'style'         => 'foodblogkitchen-toolkit-recipe-block',
-            'attributes' => array(
-                // deprecated
-                'ingredients' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                // deprecated
-                'preparationSteps' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'utensils' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'ingredientsGroups' => array(
-                    'type' => 'array',
-                    'default' => [
-                        [
-                            "title" => "",
-                            "list" => ""
-                        ]
-                    ]
-                ),
-                'preparationStepsGroups' => array(
-                    'type' => 'array',
-                    'default' => [
-                        [
-                            "title" => "",
-                            "list" => ""
-                        ]
-                    ]
-                ),
-                'name' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'description' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'difficulty' => array(
-                    'type' => 'string'
-                ),
-                'notes' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'prepTime' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'restTime' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'cookTime' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'bakingTime' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'totalTime' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'recipeYield' => array(
-                    'type' => 'string',
-                    'default' => '0'
-                ),
-                'recipeYieldWidth' => array(
-                    'type' => 'string',
-                    'default' => '0'
-                ),
-                'recipeYieldHeight' => array(
-                    'type' => 'string',
-                    'default' => '0'
-                ),
-                'recipeYieldUnit' => array(
-                    'type' => 'string',
-                    'default' => 'servings'
-                ),
-                'videoUrl' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'videoIframeUrl' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'calories' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'recipeCuisine' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'image1_1' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'image1_1Id' => array(
-                    'type' => 'number'
-                ),
-                'image3_2' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'image3_2Id' => array(
-                    'type' => 'number'
-                ),
-                'image4_3' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'image4_3Id' => array(
-                    'type' => 'number',
-                ),
-                'image16_9' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'image16_9Id' => array(
-                    'type' => 'number',
-                ),
-                'videoUrl' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'content' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'className' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'align' => array(
-                    'type' => 'string',
-                    'default' => 'center'
-                ),
-            ),
+        register_block_type(realpath(__DIR__ . '/../build/blocks/block'), array(
             'render_callback' => array($this, 'renderRecipeBlock'),
         ));
 
+        wp_set_script_translations('foodblogkitchen-recipes-block-editor-script', 'foodblogkitchen-toolkit', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
 
         // FAQ
-
-        register_block_type('foodblogkitchen-toolkit/faq', array(
-            'editor_script' => 'foodblogkitchen-toolkit-faq-block-editor',
-            'editor_style'  => 'foodblogkitchen-toolkit-faq-block-editor',
-            'script'        => 'foodblogkitchen-toolkit-faq-block',
-            'style'         => 'foodblogkitchen-toolkit-faq-block',
-            'attributes' => array(
-                'question' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-                'answer' => array(
-                    'type' => 'string',
-                    'default' => ''
-                ),
-            ),
+        register_block_type(realpath(__DIR__ . '/../build/blocks/faq'), array(
             'render_callback' => array($this, 'renderFAQBlock'),
         ));
     }
@@ -1329,6 +1133,8 @@ class FoodblogkitchenToolkit
 
     public function renderRecipeBlock($attributes, $context)
     {
+        wp_enqueue_script("foodblogkitchen-recipes-block-view-script");
+
         $attributes['translations'] = $this->getRecipeBlockTranslations();
 
         $attributes['postId'] = get_the_ID();
@@ -1342,11 +1148,11 @@ class FoodblogkitchenToolkit
         $recipeYieldWidth = isset($attributes['recipeYieldWidth']) ? intval($attributes['recipeYieldWidth']) : 0;
         $recipeYieldHeight = isset($attributes['recipeYieldHeight']) ? intval($attributes['recipeYieldHeight']) : 0;
 
-        $attributes['prepTime'] = floatval($attributes['prepTime']);
-        $attributes['restTime'] = floatval($attributes['restTime']);
-        $attributes['cookTime'] = floatval($attributes['cookTime']);
-        $attributes['bakingTime'] = floatval($attributes['bakingTime']);
-        $attributes['totalTime'] = floatval($attributes['totalTime']);
+        $attributes['prepTime'] = isset($attributes['prepTime']) ? floatval($attributes['prepTime']) : 0;
+        $attributes['restTime'] = isset($attributes['restTime']) ? floatval($attributes['restTime']) : 0;
+        $attributes['cookTime'] = isset($attributes['cookTime']) ? floatval($attributes['cookTime']) : 0;
+        $attributes['bakingTime'] = isset($attributes['bakingTime']) ? floatval($attributes['bakingTime']) : 0;
+        $attributes['totalTime'] = isset($attributes['totalTime']) ? floatval($attributes['totalTime']) : 0;
 
         if (isset($attributes['difficulty']) && !empty($attributes['difficulty'])) {
             $attributes['difficulty'] = __($attributes['difficulty'], 'foodblogkitchen-toolkit');

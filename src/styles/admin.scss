@@ -1,5 +1,3 @@
-@import "../blocks/block/style.scss";
-
 .wrap .foodblogkitchen-toolkit--block {
   max-width: 600px !important;
   margin: 0 auto !important;
@@ -8,6 +6,10 @@
 #foodblogkitchen-toolkit--settings-form {
   .submit {
     margin-top: 16px;
+  }
+
+  .iris-picker {
+    z-index: 1;
   }
 }
 

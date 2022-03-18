@@ -2,21 +2,21 @@
 # This file is distributed under the same license as the Foodblog-Toolkit plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Foodblog-Toolkit 1.6.0\n"
+"Project-Id-Version: Foodblog-Toolkit 1.5.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/foodblogkitchen-toolkit\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-03-16T06:31:14+00:00\n"
+"POT-Creation-Date: 2022-03-18T19:50:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: foodblogkitchen-toolkit\n"
 
 #. Plugin Name of the plugin
-#: inc/foodblogkitchen-toolkit.php:290
-#: inc/foodblogkitchen-toolkit.php:291
+#: inc/foodblogkitchen-toolkit.php:295
+#: inc/foodblogkitchen-toolkit.php:296
 msgid "Foodblog-Toolkit"
 msgstr ""
 
@@ -34,337 +34,335 @@ msgstr ""
 
 #: build/recipe-block-renderer.php:7
 #: build/recipe-block-renderer.php:12
-#: inc/foodblogkitchen-toolkit.php:1139
-#: inc/foodblogkitchen-toolkit.php:1144
+#: inc/foodblogkitchen-toolkit.php:943
+#: inc/foodblogkitchen-toolkit.php:948
 msgid "minutes"
 msgstr ""
 
 #: build/recipe-block-renderer.php:12
-#: inc/foodblogkitchen-toolkit.php:1144
+#: inc/foodblogkitchen-toolkit.php:948
 msgid "hours"
 msgstr ""
 
 #. translators: %s: link to release notes
-#: inc/foodblogkitchen-toolkit.php:75
+#: inc/foodblogkitchen-toolkit.php:76
 msgid "We've updated the <strong>Foodblog-Toolkit</strong>. Check out the <a href=\"%s\">release notes</a> to see which new features you can use now."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:303
-#: inc/foodblogkitchen-toolkit.php:304
+#: inc/foodblogkitchen-toolkit.php:308
+#: inc/foodblogkitchen-toolkit.php:309
 msgid "Recipe Block"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:315
-#: inc/foodblogkitchen-toolkit.php:316
-#: build/editor.js:1
-#: src/blocks/block/edit.js:196
+#: inc/foodblogkitchen-toolkit.php:320
+#: inc/foodblogkitchen-toolkit.php:321
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:195
 msgid "Pinterest"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:326
-#: inc/foodblogkitchen-toolkit.php:327
+#: inc/foodblogkitchen-toolkit.php:331
+#: inc/foodblogkitchen-toolkit.php:332
 msgid "Release notes"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:337
-#: inc/foodblogkitchen-toolkit.php:338
+#: inc/foodblogkitchen-toolkit.php:342
+#: inc/foodblogkitchen-toolkit.php:343
 msgid "License"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:492
+#: inc/foodblogkitchen-toolkit.php:497
 msgid "General settings"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:494
+#: inc/foodblogkitchen-toolkit.php:499
 msgid "Configure how the recipe block should behave on your blog posts."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:500
+#: inc/foodblogkitchen-toolkit.php:505
 msgid "Instagram"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:502
+#: inc/foodblogkitchen-toolkit.php:507
 msgid "Provide informations about your instagram profile and we show a call to action below your recipe."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:508
+#: inc/foodblogkitchen-toolkit.php:513
 msgid "Visual settings"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:510
+#: inc/foodblogkitchen-toolkit.php:515
 msgid "Configure how the recipe block should look for your visitors."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:518
-#: inc/foodblogkitchen-toolkit.php:1602
-#: build/editor.js:1
-#: src/blocks/jump-to-recipe/index.js:10
+#: inc/foodblogkitchen-toolkit.php:523
+#: inc/foodblogkitchen-toolkit.php:1408
 msgid "Jump to recipe"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:520
+#: inc/foodblogkitchen-toolkit.php:525
 msgid "Add a \"Jump to recipe\" button on every page with the recipe block."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:531
+#: inc/foodblogkitchen-toolkit.php:536
 msgid "Your username"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:544
+#: inc/foodblogkitchen-toolkit.php:549
 msgid "Hashtag"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:557
+#: inc/foodblogkitchen-toolkit.php:562
 msgid "Primary color"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:569
+#: inc/foodblogkitchen-toolkit.php:574
 msgid "Secondary color"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:581
+#: inc/foodblogkitchen-toolkit.php:586
 msgid "Background color"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:594
+#: inc/foodblogkitchen-toolkit.php:599
 msgid "Border"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:596
+#: inc/foodblogkitchen-toolkit.php:601
 msgid "Show border"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:606
+#: inc/foodblogkitchen-toolkit.php:611
 msgid "Box shadow"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:608
+#: inc/foodblogkitchen-toolkit.php:613
 msgid "Show box shadow"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:618
+#: inc/foodblogkitchen-toolkit.php:623
 msgid "Border radius"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:647
+#: inc/foodblogkitchen-toolkit.php:652
 msgid "Configure the implementation of pinterest in your blog."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:655
+#: inc/foodblogkitchen-toolkit.php:660
 msgid "Image overlay"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:657
+#: inc/foodblogkitchen-toolkit.php:662
 msgid "Show Pinterest share icon on post images. This only affects images on posts created with Gutenberg."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1237
-#: inc/foodblogkitchen-toolkit.php:1321
-#: inc/foodblogkitchen-toolkit.php:1380
-#: build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1041
+#: inc/foodblogkitchen-toolkit.php:1125
+#: inc/foodblogkitchen-toolkit.php:1186
+#: build/blocks/block/editor.js:1
 #: src/blocks/block/RecipeYieldSelector.js:12
 msgid "servings"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1238
-#: build/editor.js:1
-#: src/blocks/block/edit.js:461
+#: inc/foodblogkitchen-toolkit.php:1042
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:455
 msgid "simple"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1241
+#: inc/foodblogkitchen-toolkit.php:1045
 msgid "Banana shake"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1242
+#: inc/foodblogkitchen-toolkit.php:1046
 msgid "You have bananas left over again and don't know what to do with them? How about a delicious shake?"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1251
+#: inc/foodblogkitchen-toolkit.php:1055
 msgid "milk"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1256
+#: inc/foodblogkitchen-toolkit.php:1060
 msgid "banana"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1261
+#: inc/foodblogkitchen-toolkit.php:1065
 msgid "sugar"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1266
+#: inc/foodblogkitchen-toolkit.php:1070
 msgid "cinnamon"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1272
+#: inc/foodblogkitchen-toolkit.php:1076
 msgid "Knife"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1273
+#: inc/foodblogkitchen-toolkit.php:1077
 msgid "Blender"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1279
+#: inc/foodblogkitchen-toolkit.php:1083
 msgid "Peel banana."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1280
+#: inc/foodblogkitchen-toolkit.php:1084
 msgid "Put all the ingredients in the blender and mix everything for 30 seconds."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1281
+#: inc/foodblogkitchen-toolkit.php:1085
 msgid "Pour into a glass and enjoy."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1287
+#: inc/foodblogkitchen-toolkit.php:1091
 msgid "The milkshake becomes particularly creamy with UHT milk."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1306
-#: build/editor.js:1
-#: src/blocks/block/edit.js:542
+#: inc/foodblogkitchen-toolkit.php:1110
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:536
 msgid "Prep time"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1307
-#: build/editor.js:1
-#: src/blocks/block/edit.js:557
+#: inc/foodblogkitchen-toolkit.php:1111
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:551
 msgid "Rest time"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1308
-#: build/editor.js:1
-#: src/blocks/block/edit.js:572
+#: inc/foodblogkitchen-toolkit.php:1112
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:566
 msgid "Cook time"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1309
-#: build/editor.js:1
-#: src/blocks/block/edit.js:587
+#: inc/foodblogkitchen-toolkit.php:1113
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:581
 msgid "Baking time"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1310
-#: build/editor.js:1
-#: src/blocks/block/edit.js:603
+#: inc/foodblogkitchen-toolkit.php:1114
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:597
 msgid "Total time"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1311
+#: inc/foodblogkitchen-toolkit.php:1115
 msgid "yields"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1312
-#: build/editor.js:1
-#: src/blocks/block/edit.js:614
+#: inc/foodblogkitchen-toolkit.php:1116
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:608
 msgid "Ingredients"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1313
-#: build/editor.js:1
-#: src/blocks/block/edit.js:625
+#: inc/foodblogkitchen-toolkit.php:1117
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:619
 msgid "Utensils"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1314
-#: build/editor.js:1
-#: src/blocks/block/edit.js:643
+#: inc/foodblogkitchen-toolkit.php:1118
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:637
 msgid "Steps of preparation"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1315
+#: inc/foodblogkitchen-toolkit.php:1119
 msgid "Print"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1316
+#: inc/foodblogkitchen-toolkit.php:1120
 msgid "Pin it"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1317
+#: inc/foodblogkitchen-toolkit.php:1121
 msgid "Your rating"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1318
+#: inc/foodblogkitchen-toolkit.php:1122
 msgid "Average rating"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1319
-#: build/editor.js:1
-#: src/blocks/block/edit.js:682
+#: inc/foodblogkitchen-toolkit.php:1123
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:676
 msgid "Notes"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1320
+#: inc/foodblogkitchen-toolkit.php:1124
 msgid "How do you like the recipe?"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1322
-#: build/editor.js:1
-#: src/blocks/block/edit.js:653
+#: inc/foodblogkitchen-toolkit.php:1126
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:647
 msgid "Video"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1323
+#: inc/foodblogkitchen-toolkit.php:1127
 msgid "You tried this recipe?"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1324
+#: inc/foodblogkitchen-toolkit.php:1128
 msgid "Then link"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1325
+#: inc/foodblogkitchen-toolkit.php:1129
 msgid "on Instagram"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1326
+#: inc/foodblogkitchen-toolkit.php:1130
 msgid "on Instagram or use the hashtag"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1357
-#: build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1163
+#: build/blocks/block/editor.js:1
 #: src/blocks/block/RecipeYieldSelector.js:16
 msgid "piece"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1362
-#: build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1168
+#: build/blocks/block/editor.js:1
 #: src/blocks/block/RecipeYieldSelector.js:20
 msgid "springform pan"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1367
-#: build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1173
+#: build/blocks/block/editor.js:1
 #: src/blocks/block/RecipeYieldSelector.js:24
 msgid "square baking pan"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1374
-#: build/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1180
+#: build/blocks/block/editor.js:1
 #: src/blocks/block/RecipeYieldSelector.js:28
 msgid "baking tray"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1716
+#: inc/foodblogkitchen-toolkit.php:1522
 msgid "There was an error while activating the license. Please try again later."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1730
+#: inc/foodblogkitchen-toolkit.php:1536
 msgid "Your license has been successfully activated. You can now use the recipe block in the editor."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1739
+#: inc/foodblogkitchen-toolkit.php:1545
 msgid "There was an error while activating the license. Please check your input. If you can't find an error, please contact our support."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1769
+#: inc/foodblogkitchen-toolkit.php:1575
 msgid "There was an error while deactivating the license. Please try again later."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1782
+#: inc/foodblogkitchen-toolkit.php:1588
 msgid "The license has been successfully deactivated."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1793
+#: inc/foodblogkitchen-toolkit.php:1599
 msgid "There was an error while deactivating the license."
 msgstr ""
 
@@ -384,258 +382,269 @@ msgstr ""
 msgid "Activate"
 msgstr ""
 
-#: build/editor.js:1
+#: build/blocks/block/editor.js:1
 #: src/blocks/block/ImageUpload.js:49
 msgid "Change image"
 msgstr ""
 
-#: build/editor.js:1
+#: build/blocks/block/editor.js:1
 #: src/blocks/block/ImageUpload.js:59
 msgid "Remove image"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:223
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:222
 #: src/blocks/block/ImageUpload.js:64
 msgid "Select image"
 msgstr ""
 
-#: build/editor.js:1
+#: build/blocks/block/editor.js:1
 #: src/blocks/block/RecipeYieldSelector.js:38
 #: src/blocks/block/RecipeYieldSelector.js:63
 msgid "Results in"
 msgstr ""
 
-#: build/editor.js:1
+#: build/blocks/block/editor.js:1
 #: src/blocks/block/RecipeYieldSelector.js:46
 #: src/blocks/block/RecipeYieldSelector.js:58
 #: src/blocks/block/RecipeYieldSelector.js:77
 msgid "cm"
 msgstr ""
 
-#: build/editor.js:1
+#: build/blocks/block/editor.js:1
 #: src/blocks/block/RecipeYieldSelector.js:83
 msgid "Unit"
 msgstr ""
 
-#: build/editor.js:1
+#: build/blocks/block/editor.js:1
 #: src/blocks/block/IngredientsGroupsEditor.js:63
 #: src/blocks/block/PreparationStepsGroupsEditor.js:64
 msgid "Group name"
 msgstr ""
 
-#: build/editor.js:1
+#: build/blocks/block/editor.js:1
 #: src/blocks/block/IngredientsGroupsEditor.js:77
 #: src/blocks/block/PreparationStepsGroupsEditor.js:78
 msgid "Remove Group"
 msgstr ""
 
-#: build/editor.js:1
+#: build/blocks/block/editor.js:1
 #: src/blocks/block/PreparationStepsGroupsEditor.js:87
 msgid "Add the steps of preparation here..."
 msgstr ""
 
-#: build/editor.js:1
+#: build/blocks/block/editor.js:1
 #: src/blocks/block/PreparationStepsGroupsEditor.js:110
 msgid "Split steps into groups"
 msgstr ""
 
-#: build/editor.js:1
+#: build/blocks/block/editor.js:1
 #: src/blocks/block/IngredientsGroupsEditor.js:110
 #: src/blocks/block/PreparationStepsGroupsEditor.js:111
 msgid "Add additional group"
 msgstr ""
 
-#: build/editor.js:1
+#: build/blocks/block/editor.js:1
 #: src/blocks/block/IngredientsGroupsEditor.js:86
 msgid "Add the ingredients here..."
 msgstr ""
 
-#: build/editor.js:1
+#: build/blocks/block/editor.js:1
 #: src/blocks/block/IngredientsGroupsEditor.js:109
 msgid "Split ingredients into groups"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/index.js:14
-msgid "Recipe"
-msgstr ""
-
-#: build/editor.js:1
-#: src/blocks/block/index.js:15
-msgid "Add a recipe and optimize it easily for search engines."
-msgstr ""
-
-#: build/editor.js:1
-#: src/blocks/block/edit.js:232
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:231
 msgid "SEO"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:237
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:236
 msgid "Google and other search engines need more information to present your recipe in the best possible way. You should provide this information as good as possible."
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:245
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:244
 msgid "Cuisine"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:247
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:246
 msgid "e.g. \"Italian\" or \"German\""
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:259
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:258
 msgid "Calories"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:273
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:272
 msgid "Picture of the finished dish"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:276
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:275
 msgid "Depending on the usage Google uses different image formats of your recipe. You can find more information"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:282
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:281
 msgid "https://foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder/"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:288
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:287
 msgid "here"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:332
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:331
 msgid "Previews"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:333
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:332
 msgid "Featured Snippet"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:124
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:123
 msgid "No reviews"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:360
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:359
 msgid "Mobile Search Result"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:385
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:384
 msgid "Google displays here a text that matches the search term."
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:395
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:394
 msgid "Rating"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:414
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:413
 msgid "Preparation"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:439
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:433
 msgid "Title of your recipe"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:474
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:468
 msgid "moderate"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:487
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:481
 msgid "challenging"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:494
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:488
 msgid "Short description of your recipe"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:552
-#: src/blocks/block/edit.js:567
-#: src/blocks/block/edit.js:582
-#: src/blocks/block/edit.js:597
-#: src/blocks/block/edit.js:606
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:546
+#: src/blocks/block/edit.js:561
+#: src/blocks/block/edit.js:576
+#: src/blocks/block/edit.js:591
+#: src/blocks/block/edit.js:600
 msgid "Min."
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:632
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:626
 msgid "Add the needed utensils here..."
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:658
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:652
 msgid "YouTube or Vimeo link"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:688
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:682
 msgid "Additional notes ..."
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/edit.js:708
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/edit.js:702
 msgid "Show additional settings"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/NoValidLicense.js:8
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/NoValidLicense.js:9
 msgid "You have not activated the license yet"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/NoValidLicense.js:9
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/NoValidLicense.js:15
 msgid "Please enter a valid license key in the settings of the recipe plugin. You have received this key by email with your purchase."
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/NoValidLicense.js:10
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/NoValidLicense.js:21
 msgid "If you can no longer find your license key, please contact us at "
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/block/NoValidLicense.js:11
+#: build/blocks/block/editor.js:1
+#: src/blocks/block/NoValidLicense.js:34
 msgid "Go to settings"
 msgstr ""
 
-#: build/editor.js:1
-#: src/blocks/jump-to-recipe/index.js:11
-msgid "Add a quick link which jumps to the recipe in the page."
-msgstr ""
-
-#: build/editor.js:1
-#: src/blocks/faq/index.js:10
-msgid "FAQ"
-msgstr ""
-
-#: build/editor.js:1
-#: src/blocks/faq/index.js:11
-msgid "Answer post related questions in a simple FAQ block."
-msgstr ""
-
-#: build/editor.js:1
+#: build/blocks/faq/editor.js:1
 #: src/blocks/faq/edit.js:12
 msgid "Your questions"
 msgstr ""
 
-#: build/editor.js:1
+#: build/blocks/faq/editor.js:1
 #: src/blocks/faq/edit.js:20
 msgid "Your answer"
+msgstr ""
+
+#: build/blocks/block/block.json
+#: src/blocks/block/block.json
+msgctxt "block title"
+msgid "Recipe"
+msgstr ""
+
+#: build/blocks/block/block.json
+#: src/blocks/block/block.json
+msgctxt "block description"
+msgid "Add a recipe and optimize it easily for search engines."
+msgstr ""
+
+#: build/blocks/faq/block.json
+#: src/blocks/faq/block.json
+msgctxt "block title"
+msgid "FAQ"
+msgstr ""
+
+#: build/blocks/faq/block.json
+#: src/blocks/faq/block.json
+msgctxt "block description"
+msgid "Answer post related questions in a simple FAQ block."
+msgstr ""
+
+#: build/blocks/jump-to-recipe/block.json
+#: src/blocks/jump-to-recipe/block.json
+msgctxt "block title"
+msgid "Jump to recipe"
+msgstr ""
+
+#: build/blocks/jump-to-recipe/block.json
+#: src/blocks/jump-to-recipe/block.json
+msgctxt "block description"
+msgid "Add a quick link which jumps to the recipe in the page."
 msgstr ""

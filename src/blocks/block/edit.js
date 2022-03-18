@@ -16,7 +16,6 @@ import ImageUpload from "./ImageUpload";
 
 import { useDispatch, select, dispatch } from "@wordpress/data";
 
-import "./editor.scss";
 import RecipeYieldSelector from "./RecipeYieldSelector";
 import PreparationStepsGroupsEditor from "./PreparationStepsGroupsEditor";
 import IngredientsGroupsEditor from "./IngredientsGroupsEditor";
@@ -425,12 +424,7 @@ export default function Edit(props) {
           </PanelRow>
         </PanelBody>
       </InspectorControls>
-      <div
-        className={
-          "foodblogkitchen-toolkit--block foodblogkitchen-toolkit--recipe-block " +
-          props.className
-        }
-      >
+      <div className="foodblogkitchen-toolkit--block foodblogkitchen-toolkit--recipe-block">
         <div className="foodblogkitchen-toolkit--block--inner">
           <div className="foodblogkitchen-toolkit--recipe-block--title">
             <RichText

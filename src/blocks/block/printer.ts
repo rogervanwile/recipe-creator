@@ -58,14 +58,9 @@ export class Printer {
         console.error(error);
       });
 
-    const styleElement = document.getElementById(
-      "foodblogkitchen-toolkit-recipe-block-css"
-    );
-    const url =
-      styleElement?.getAttribute("href") ||
-      window.location.origin +
-        "/wp-content/plugins/foodblogkitchen-toolkit/build/style-editor.css?cb=" +
-        new Date().getTime();
+    const printStyleUrl = `${
+      (window as any).foodblogrRecipeBlockConfig.printStyleUrl
+    }?cb=${new Date().getTime()}`;
 
     const svgStringQrCode = await toString(window.location.href, {
       type: "svg",
@@ -79,7 +74,7 @@ export class Printer {
       `<html>
         <head>
           <meta name="viewport" content="width=device-width,initial-scale=1">
-          <link href="${url}" rel="stylesheet" />
+          <link href="${printStyleUrl}" rel="stylesheet" />
         </head>
         <body class="foodblogkitchen-toolkit--block">
           <div class="title">
