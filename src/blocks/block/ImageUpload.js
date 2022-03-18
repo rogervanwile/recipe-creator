@@ -7,7 +7,6 @@ import { MediaUpload, MediaUploadCheck } from "@wordpress/block-editor";
 import { Fragment } from "@wordpress/element";
 
 export default function ImageUpload(args) {
-
   const props = args.props;
   const key = args.keyName;
   const label = args.label;
@@ -46,7 +45,7 @@ export default function ImageUpload(args) {
             {props.attributes[key] ? (
               <Fragment>
                 <Button isSecondary="true" onClick={open}>
-                  {__("Change image", 'foodblogkitchen-toolkit')}
+                  {__("Change image", "foodblogkitchen-toolkit")}
                 </Button>
                 <Button
                   onClick={() => {
@@ -56,12 +55,12 @@ export default function ImageUpload(args) {
                     props.setAttributes(update);
                   }}
                 >
-                  {__("Remove image", 'foodblogkitchen-toolkit')}
+                  {__("Remove image", "foodblogkitchen-toolkit")}
                 </Button>
               </Fragment>
             ) : (
               <Button isSecondary="true" onClick={open}>
-                {__("Select image", 'foodblogkitchen-toolkit')}
+                {__("Select image", "foodblogkitchen-toolkit")}
               </Button>
             )}
           </Fragment>
