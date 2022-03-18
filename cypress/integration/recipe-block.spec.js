@@ -26,9 +26,9 @@ describe("Tests the recipe block", () => {
 
   it.only("should be possible to enter a recipe with valid license", () => {
     cy.visit("http://localhost/wp-admin/post-new.php");
-    cy.get(".wp-block > .components-dropdown > .components-button").click();
-    cy.get("#block-editor-inserter__search-0").click();
-    cy.get("#block-editor-inserter__search-0").type("Recipe");
+    cy.get(".block-editor-inserter > .components-button").click();
+    cy.get(".block-editor-inserter__search input[type=search]").click();
+    cy.get(".block-editor-inserter__search input[type=search]").type("Recipe");
     cy.get(".editor-block-list-item-foodblogkitchen-recipes-block").click();
 
     // Insert data into the block
@@ -77,7 +77,7 @@ describe("Tests the recipe block", () => {
     ).click();
 
     // Check the page
-    cy.get(".post-publish-panel__postpublish-buttons a").click();
+    cy.get(".post-publish-panel__postpublish-buttons a.is-primary").click();
 
     checkRecipeBockScreenshot("recipe-block");
 
@@ -104,12 +104,12 @@ describe("Tests the recipe block", () => {
     cy.go("back");
 
     cy.get(
-      ".foodblogkitchen-toolkit--recipe-block--ingredients + button"
+      ".foodblogkitchen-toolkit--recipe-block--ingredients button"
     ).click();
 
     // First group
     const firstGroup = cy.get(
-      ".foodblogkitchen-toolkit--recipe-block--flex-container + .foodblogkitchen-toolkit--recipe-block--ingredients"
+      ".foodblogkitchen-toolkit--recipe-block--flex-container + .foodblogkitchen-toolkit--recipe-block--editor"
     );
     firstGroup
       .find('[aria-label="Group name"]')
@@ -117,13 +117,13 @@ describe("Tests the recipe block", () => {
 
     // Second group
     cy.get(
-      ".foodblogkitchen-toolkit--recipe-block--flex-container + .foodblogkitchen-toolkit--recipe-block--ingredients + .foodblogkitchen-toolkit--recipe-block--ingredients"
+      ".foodblogkitchen-toolkit--recipe-block--flex-container + .foodblogkitchen-toolkit--recipe-block--editor + .foodblogkitchen-toolkit--recipe-block--editor"
     )
       .find('[aria-label="Group name"]')
       .type("Group 2", { force: true });
 
     cy.get(
-      ".foodblogkitchen-toolkit--recipe-block--flex-container + .foodblogkitchen-toolkit--recipe-block--ingredients + .foodblogkitchen-toolkit--recipe-block--ingredients"
+      ".foodblogkitchen-toolkit--recipe-block--flex-container + .foodblogkitchen-toolkit--recipe-block--editor + .foodblogkitchen-toolkit--recipe-block--editor"
     )
       .find('[aria-label="Add the ingredients here..."]')
       .type("3 Bananas\n4 Garlic", { force: true });
