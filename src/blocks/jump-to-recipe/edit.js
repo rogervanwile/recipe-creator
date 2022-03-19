@@ -9,7 +9,7 @@ export default function Edit(props) {
           href="#foodblogkitchen-toolkit--recipe"
           className="foodblogkitchen-toolkit--block--jump-to-recipe--link"
         >
-          {__("Jump to recipe", "foodblogkitchen-recipe")}
+          {__("Jump to recipe", "foodblogkitchen-toolkit")}
         </a>
       </div>
     </Fragment>
