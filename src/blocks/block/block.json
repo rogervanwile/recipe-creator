@@ -3,9 +3,9 @@
   "apiVersion": 2,
   "name": "foodblogkitchen-recipes/block",
   "title": "Recipe",
+  "description": "Add a recipe and optimize it easily for search engines.",
   "category": "formatting",
   "icon": "carrot",
-  "description": "Add a recipe and optimize it easily for search engines.",
   "textdomain": "foodblogkitchen-toolkit",
   "supports": {
     "html": false,

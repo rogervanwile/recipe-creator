@@ -11,6 +11,13 @@ import "./editor.scss";
 import metadata from "./block.json";
 
 registerBlockType(metadata, {
+  // The title and description from the block.json is not translated automatic
+  // So I have to redefine it here
+  title: __("Recipe", "foodblogkitchen-toolkit"),
+  description: __(
+    "Add a recipe and optimize it easily for search engines.",
+    "foodblogkitchen-toolkit"
+  ),
   edit: !!foodblogkitchenToolkitAdditionalData?.hasValidLicense
     ? withSelect((select) => {
         const site = select("core").getSite();

@@ -3,14 +3,13 @@
   "apiVersion": 2,
   "name": "foodblogkitchen-toolkit/jump-to-recipe",
   "title": "Jump to recipe",
+  "description": "Add a quick link which jumps to the recipe in the page.",
   "category": "formatting",
   "icon": "button",
-  "description": "Add a quick link which jumps to the recipe in the page.",
   "supports": {
     "html": false,
     "align": ["center", "wide", "full"]
   },
-
   "textdomain": "foodblogkitchen-toolkit",
   "editorScript": "file:editor.js",
   "viewScript": "file:view.js",

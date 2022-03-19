@@ -3,9 +3,9 @@
   "apiVersion": 2,
   "name": "foodblogkitchen-toolkit/faq",
   "title": "FAQ",
+  "description": "Answer post related questions in a simple FAQ block.",
   "category": "formatting",
   "icon": "format-chat",
-  "description": "Answer post related questions in a simple FAQ block.",
   "textdomain": "foodblogkitchen-toolkit",
   "supports": {
     "html": false,
