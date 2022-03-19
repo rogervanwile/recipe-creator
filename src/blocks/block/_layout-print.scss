@@ -1,10 +1,7 @@
-@import "./webfonts.scss";
+// There is a bug in chrome with does not show webfonts in the print preview
+// https://bugs.chromium.org/p/chromium/issues/detail?id=284840
 
-/* This must be outside the @media print cause otherwise the font is not loaded and the printed page has no text */
-body.foodblogkitchen-toolkit--block {
-  --headline-font-family: "Playfair Display", serif !important;
-  font-family: "Open Sans", sans-serif !important;
-}
+// @import "./webfonts.scss";
 
 @media print {
   @page {
@@ -26,6 +23,10 @@ body.foodblogkitchen-toolkit--block {
   }
 
   .foodblogkitchen-toolkit--block {
+    --headline-font-family: serif !important;
+    --text-font-family: sans-serif !important;
+
+    font-family: var(--text-font-family);
     font-size: 14px;
     line-height: 1.5;
 
@@ -122,7 +123,7 @@ body.foodblogkitchen-toolkit--block {
         padding-bottom: 0.4em;
         vertical-align: top;
 
-        font-family: "Open Sans", sans-serif !important;
+        font-family: var(--text-font-family);
         font-size: 14px;
         line-height: 1.5;
       }

@@ -44,19 +44,10 @@ export class Printer {
       ".foodblogkitchen-toolkit--recipe-block--thumbnail"
     );
 
-    Promise.all([
-      new Promise((resolve, reject) => {
-        printIframe.onload = resolve;
-      }),
-      (printIframe.contentDocument as any)?.fonts.ready,
-    ])
-      .then(() => {
-        printIframe.contentWindow?.focus();
-        printIframe.contentWindow?.print();
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    printIframe.addEventListener("load", () => {
+      printIframe.contentWindow?.focus();
+      printIframe.contentWindow?.print();
+    });
 
     const printStyleUrl = `${
       (window as any).foodblogrRecipeBlockConfig.printStyleUrl
