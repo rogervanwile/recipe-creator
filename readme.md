@@ -1,6 +1,6 @@
 # Update Translations-Template file (POT)
 
-`$ wp i18n make-pot ./ languages/foodblogkitchen-toolkit.pot`
+`yarn i18n:make-pot`
 
 - Open `foodblogkitchen-toolkit-de_DE.po` in Poedit
 - Click "Katalog" > "Aus POT-Datei aktualisieren"
@@ -10,7 +10,7 @@
 
 The translations for the JS files have to be a JSON file.
 
-`rm -rf languages/*.json || true && wp i18n make-json languages/foodblogkitchen-toolkit-de_DE.po --no-purge`
+`yarn i18n:make-json`
 
 More Infos: https://developer.wordpress.org/block-editor/developers/internationalization/
 
@@ -43,4 +43,3 @@ yarn install
 yarn test:start
 yarn test:stop
 ```
-

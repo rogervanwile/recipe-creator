@@ -1,0 +1,6 @@
+{
+  "src/blocks/jump-to-recipe/block.json": "build/blocks/jump-to-recipe/editor.js",
+  "src/blocks/jump-to-recipe/editor.js": "build/blocks/jump-to-recipe/editor.js",
+  "src/blocks/jump-to-recipe/edit.js": "build/blocks/jump-to-recipe/editor.js",
+  "src/blocks/jump-to-recipe/save.js": "build/blocks/jump-to-recipe/editor.js"
+}

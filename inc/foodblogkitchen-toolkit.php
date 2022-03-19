@@ -795,12 +795,14 @@ class FoodblogkitchenToolkit
             'render_callback' => array($this, 'renderRecipeBlock'),
         ));
 
-        wp_set_script_translations('foodblogkitchen-recipes-block-editor-script', 'foodblogkitchen-toolkit', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
-
         // FAQ
         register_block_type(realpath(__DIR__ . '/../build/blocks/faq'), array(
             'render_callback' => array($this, 'renderFAQBlock'),
         ));
+
+        wp_set_script_translations('foodblogkitchen-recipes-block-editor-script', 'foodblogkitchen-toolkit', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
+        wp_set_script_translations('foodblogkitchen-toolkit-jump-to-recipe-editor-script', 'foodblogkitchen-toolkit', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
+        wp_set_script_translations('foodblogkitchen-toolkit-faq-editor-script', 'foodblogkitchen-toolkit', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
     }
 
     public function setRating()

@@ -21,7 +21,9 @@
     "sync": "yarn sync:uebersee && yarn sync:blank",
     "test:start:cli": "yarn run wp-cypress start && yarn run cypress run",
     "test:start": "yarn run wp-cypress start && yarn run cypress open",
-    "test:stop": "yarn run wp-cypress stop"
+    "test:stop": "yarn run wp-cypress stop",
+    "i18n:make-pot": "wp i18n make-pot ./ languages/foodblogkitchen-toolkit.pot --exclude=build,node_modules",
+    "i18n:make-json": "rm -rf languages/*.json || true && wp i18n make-json languages/foodblogkitchen-toolkit-de_DE.po --no-purge --use-map=./i18n-json-map.json"
   },
   "devDependencies": {
     "@bigbite/wp-cypress": "0.9.5",
