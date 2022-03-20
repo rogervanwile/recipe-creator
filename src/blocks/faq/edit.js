@@ -1,10 +1,9 @@
 import { __ } from "@wordpress/i18n";
-import { Fragment } from "@wordpress/element";
 import { RichText } from "@wordpress/block-editor";
 
 export default function Edit(props) {
   return (
-    <Fragment>
+    <div className="wp-block">
       <RichText
         tagName="h2"
         value={props.attributes.question || ""}
@@ -21,6 +20,6 @@ export default function Edit(props) {
           props.setAttributes({ answer: value });
         }}
       />
-    </Fragment>
+    </div>
   );
 }

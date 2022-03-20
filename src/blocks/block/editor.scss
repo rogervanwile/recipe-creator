@@ -1,4 +1,7 @@
 .wp-block {
+  text-align: left;
+  margin-bottom: 0 !important;
+
   .foodblogkitchen-toolkit--recipe-block--timings {
     li header {
       margin-bottom: 0.5em;
@@ -44,9 +47,6 @@
       flex-grow: 0;
     }
   }
-
-  text-align: left;
-  margin-bottom: 0 !important;
 
   h3 {
     margin: 0 !important;

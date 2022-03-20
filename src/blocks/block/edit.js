@@ -424,7 +424,7 @@ export default function Edit(props) {
           </PanelRow>
         </PanelBody>
       </InspectorControls>
-      <div className="foodblogkitchen-toolkit--block foodblogkitchen-toolkit--recipe-block">
+      <div className="wp-block foodblogkitchen-toolkit--block foodblogkitchen-toolkit--recipe-block">
         <div className="foodblogkitchen-toolkit--block--inner">
           <div className="foodblogkitchen-toolkit--recipe-block--title">
             <RichText
