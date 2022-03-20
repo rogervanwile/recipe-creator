@@ -279,7 +279,7 @@ export default function Edit(props) {
               &nbsp;
               <a
                 href={__(
-                  "https://foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder/",
+                  "https://www.foodblogr.de/mehr-klicks-durch-optimierte-rezeptbilder",
                   "foodblogkitchen-toolkit"
                 )}
                 target="_blank"

@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Recipe Manager Pro 1.2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/foodblogkitchen-"
 "toolkit\n"
-"POT-Creation-Date: 2022-03-19T19:03:31+00:00\n"
-"PO-Revision-Date: 2022-03-19 20:04+0100\n"
+"POT-Creation-Date: 2022-03-20T08:19:00+00:00\n"
+"PO-Revision-Date: 2022-03-20 09:21+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -31,12 +31,12 @@ msgstr ""
 "Inklusive eines Rezeptblocks für den Gutenberg-Editor."
 
 #. Author of the plugin
-msgid "foodblogkitchen.de"
-msgstr "foodblogkitchen.de"
+msgid "foodblogr.de"
+msgstr "foodblogr.de"
 
 #. Author URI of the plugin
-msgid "https://foodblogkitchen.de/"
-msgstr "https://foodblogkitchen.de/"
+msgid "https://foodblogr.de/"
+msgstr "https://foodblogr.de/"
 
 #. translators: %s: link to release notes
 #: inc/foodblogkitchen-toolkit.php:76
@@ -486,8 +486,8 @@ msgstr ""
 "Rezeptes. Weitere Informationen findest du"
 
 #: build/blocks/block/editor.js:1
-msgid "https://foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder/"
-msgstr "https://foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder/"
+msgid "https://www.foodblogr.de/mehr-klicks-durch-optimierte-rezeptbilder"
+msgstr "https://www.foodblogr.de/mehr-klicks-durch-optimierte-rezeptbilder"
 
 #: build/blocks/block/editor.js:1
 msgid "here"
