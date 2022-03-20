@@ -2,6 +2,7 @@
 
 - We have completely revised the print layout of recipes. Recipes are now printed in a nice layout on as few pages as possible.
 - When the recipe is displayed on the screen of a Android smartphone or tablet, the screen is now no longer automatically turned off.
+- You can now specify baking trays and square baking pans as a unit.
 - We have built in spam bot detection against fake ratings.
 
 # 1.5.5 - March 3, 2022

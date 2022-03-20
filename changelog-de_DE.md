@@ -2,6 +2,7 @@
 
 - Wir haben das Druck-Layout von Rezepten komplett überarbeitet. Die Rezepte werden nun in einem schönen Layout auf möglichst wenig Seiten gedruckt.
 - Wenn das Rezept auf dem Bildschirm eines Android-Smartphones oder -Tabletts angezeigt wird, bleibt der Bildschirm nun angeschaltet und wird nicht merh automatisch abgeschaltet.
+- Du kannst nun Backbleche und eckige Backformen als Einheit angeben.
 - Wir haben eine Spam-Bot-Erkennung gegen Fake-Bewertungen eingebaut.
 
 # Version 1.5.5 - 3. März 2022
