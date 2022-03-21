@@ -1,9 +1,15 @@
 import { __ } from "@wordpress/i18n";
-import { RichText } from "@wordpress/block-editor";
+import {
+  useBlockProps,
+  RichText,
+  BlockControls,
+} from "@wordpress/block-editor";
 
 export default function Edit(props) {
   return (
-    <div className="wp-block">
+    <div {...useBlockProps()}>
+      <BlockControls></BlockControls>
+
       <RichText
         tagName="h2"
         value={props.attributes.question || ""}
