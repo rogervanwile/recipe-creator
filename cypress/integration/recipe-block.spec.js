@@ -103,15 +103,14 @@ describe("Tests the recipe block", () => {
     // Back to the editor
     cy.go("back");
 
-    cy.get(
-      ".foodblogkitchen-toolkit--recipe-block--ingredients button"
-    ).click();
+    cy.get(".foodblogkitchen-toolkit--recipe-block--ingredients button").click({
+      force: true,
+    });
 
     // First group
-    const firstGroup = cy.get(
+    cy.get(
       ".foodblogkitchen-toolkit--recipe-block--flex-container + .foodblogkitchen-toolkit--recipe-block--editor"
-    );
-    firstGroup
+    )
       .find('[aria-label="Group name"]')
       .type("Group 1", { force: true });
 

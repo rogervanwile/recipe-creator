@@ -1,3 +1,7 @@
+# Version 1.6.1 - 21. März 2022
+
+- Beim Rezept- und FAQ-Block fehlten die Formattierungs- und Verlinkungsoptionen. Diese sind nun wieder da.
+
 # Version 1.6.0 - 20. März 2022
 
 - Wir haben das Druck-Layout von Rezepten komplett überarbeitet. Die Rezepte werden nun in einem schönen Layout auf möglichst wenig Seiten gedruckt.

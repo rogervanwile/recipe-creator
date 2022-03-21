@@ -1,3 +1,7 @@
+# 1.6.1 - March 21, 2022
+
+- The recipe and FAQ block was missing the formatting and linking options. These are now back.
+
 # 1.6.0 - March 20, 2022
 
 - We have completely revised the print layout of recipes. Recipes are now printed in a nice layout on as few pages as possible.
