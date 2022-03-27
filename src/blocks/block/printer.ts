@@ -100,8 +100,9 @@ export class Printer {
     printIframe.contentWindow?.document.close();
 
     // Cleanup after closing the print dialog
-    printIframe.contentWindow?.addEventListener("afterprint", (event) => {
-      printIframe.parentElement?.removeChild(printIframe);
-    });
+    // => This is not working on Android devices, so there is no cleanup for now.
+    // printIframe.contentWindow?.addEventListener("afterprint", (event) => {
+    //   printIframe.parentElement?.removeChild(printIframe);
+    // });
   }
 }
