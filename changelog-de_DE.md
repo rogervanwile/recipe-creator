@@ -1,3 +1,7 @@
+# Version 1.6.2 - 27. März 2022
+
+- Es gab einen Fehler beim Drucken von Rezepten auf Android-Geräten der nun behoben ist.
+
 # Version 1.6.1 - 21. März 2022
 
 - Beim Rezept- und FAQ-Block fehlten die Formattierungs- und Verlinkungsoptionen. Diese sind nun wieder da.

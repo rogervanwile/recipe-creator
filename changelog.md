@@ -1,3 +1,7 @@
+# 1.6.2 - March 27, 2022
+
+- There was an error when printing recipes on Android devices which is now fixed.
+
 # 1.6.1 - March 21, 2022
 
 - The recipe and FAQ block was missing the formatting and linking options. These are now back.
