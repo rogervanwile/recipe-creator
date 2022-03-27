@@ -1,3 +1,7 @@
+# 1.6.3 - March 27, 2022
+
+- The spacing in the Gutenberg editor is now displayed correctly again.
+
 # 1.6.2 - March 27, 2022
 
 - There was an error when printing recipes on Android devices which is now fixed.

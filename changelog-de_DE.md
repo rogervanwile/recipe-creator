@@ -1,3 +1,7 @@
+# Version 1.6.3 - 27. März 2022
+
+- Die Abstände im Gutenberg-Editor werden nun wieder korrekt dargestellt.
+
 # Version 1.6.2 - 27. März 2022
 
 - Es gab einen Fehler beim Drucken von Rezepten auf Android-Geräten der nun behoben ist.
