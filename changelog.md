@@ -1,3 +1,7 @@
+# 1.7.0 - April 11, 2022
+
+- You can now set the size in which images are displayed in the recipe block in the plugin settings. This allows you to use the ideal size for your theme.
+
 # 1.6.4 - April 11, 2022
 
 - The display of times has now been fixed for some themes.

@@ -1,3 +1,7 @@
+# Version 1.7.0 - 11. April 2022
+
+- Du kannst nun in den Plugin-Einstellungen einstellen, in welcher Größe Bilder im Rezept-Block angezeigt werden. Damit kannst du die ideale Größe für dein Theme wählen.
+
 # Version 1.6.4 - 11. April 2022
 
 - Die Darstellung der Zeiten ist nun bei einigen Themes korrigiert wurden.
