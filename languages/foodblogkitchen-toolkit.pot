@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Foodblog-Toolkit plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Foodblog-Toolkit 1.6.0\n"
+"Project-Id-Version: Foodblog-Toolkit 1.6.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/foodblogkitchen-toolkit\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-03-20T08:26:00+00:00\n"
+"POT-Creation-Date: 2022-04-11T17:20:15+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: foodblogkitchen-toolkit\n"
@@ -30,6 +30,18 @@ msgstr ""
 
 #. Author URI of the plugin
 msgid "https://foodblogr.de/"
+msgstr ""
+
+#: build/recipe-block-renderer.php:7
+#: build/recipe-block-renderer.php:12
+#: inc/foodblogkitchen-toolkit.php:964
+#: inc/foodblogkitchen-toolkit.php:969
+msgid "minutes"
+msgstr ""
+
+#: build/recipe-block-renderer.php:12
+#: inc/foodblogkitchen-toolkit.php:969
+msgid "hours"
 msgstr ""
 
 #. translators: %s: link to release notes
@@ -58,292 +70,287 @@ msgstr ""
 msgid "License"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:497
+#: inc/foodblogkitchen-toolkit.php:504
 msgid "General settings"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:499
+#: inc/foodblogkitchen-toolkit.php:506
 msgid "Configure how the recipe block should behave on your blog posts."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:505
+#: inc/foodblogkitchen-toolkit.php:512
 msgid "Instagram"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:507
+#: inc/foodblogkitchen-toolkit.php:514
 msgid "Provide informations about your instagram profile and we show a call to action below your recipe."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:513
+#: inc/foodblogkitchen-toolkit.php:520
 msgid "Visual settings"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:515
+#: inc/foodblogkitchen-toolkit.php:522
 msgid "Configure how the recipe block should look for your visitors."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:523
-#: inc/foodblogkitchen-toolkit.php:1410
+#: inc/foodblogkitchen-toolkit.php:530
+#: inc/foodblogkitchen-toolkit.php:1429
 #: build/blocks/jump-to-recipe/editor.js:1
 msgid "Jump to recipe"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:525
+#: inc/foodblogkitchen-toolkit.php:532
 msgid "Add a \"Jump to recipe\" button on every page with the recipe block."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:536
+#: inc/foodblogkitchen-toolkit.php:543
 msgid "Your username"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:549
+#: inc/foodblogkitchen-toolkit.php:556
 msgid "Hashtag"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:562
+#: inc/foodblogkitchen-toolkit.php:569
 msgid "Primary color"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:574
+#: inc/foodblogkitchen-toolkit.php:581
 msgid "Secondary color"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:586
+#: inc/foodblogkitchen-toolkit.php:593
 msgid "Background color"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:599
+#: inc/foodblogkitchen-toolkit.php:606
 msgid "Border"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:601
+#: inc/foodblogkitchen-toolkit.php:608
 msgid "Show border"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:611
+#: inc/foodblogkitchen-toolkit.php:618
 msgid "Box shadow"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:613
+#: inc/foodblogkitchen-toolkit.php:620
 msgid "Show box shadow"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:623
+#: inc/foodblogkitchen-toolkit.php:630
 msgid "Border radius"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:652
+#: inc/foodblogkitchen-toolkit.php:642
+msgid "Image width"
+msgstr ""
+
+#: inc/foodblogkitchen-toolkit.php:671
 msgid "Configure the implementation of pinterest in your blog."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:660
+#: inc/foodblogkitchen-toolkit.php:679
 msgid "Image overlay"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:662
+#: inc/foodblogkitchen-toolkit.php:681
 msgid "Show Pinterest share icon on post images. This only affects images on posts created with Gutenberg."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:945
-#: inc/foodblogkitchen-toolkit.php:950
-msgid "minutes"
-msgstr ""
-
-#: inc/foodblogkitchen-toolkit.php:950
-msgid "hours"
-msgstr ""
-
-#: inc/foodblogkitchen-toolkit.php:1043
-#: inc/foodblogkitchen-toolkit.php:1127
-#: inc/foodblogkitchen-toolkit.php:1188
+#: inc/foodblogkitchen-toolkit.php:1062
+#: inc/foodblogkitchen-toolkit.php:1146
+#: inc/foodblogkitchen-toolkit.php:1207
 #: build/blocks/block/editor.js:1
 msgid "servings"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1044
+#: inc/foodblogkitchen-toolkit.php:1063
 #: build/blocks/block/editor.js:1
 msgid "simple"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1047
+#: inc/foodblogkitchen-toolkit.php:1066
 msgid "Banana shake"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1048
+#: inc/foodblogkitchen-toolkit.php:1067
 msgid "You have bananas left over again and don't know what to do with them? How about a delicious shake?"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1057
+#: inc/foodblogkitchen-toolkit.php:1076
 msgid "milk"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1062
+#: inc/foodblogkitchen-toolkit.php:1081
 msgid "banana"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1067
+#: inc/foodblogkitchen-toolkit.php:1086
 msgid "sugar"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1072
+#: inc/foodblogkitchen-toolkit.php:1091
 msgid "cinnamon"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1078
+#: inc/foodblogkitchen-toolkit.php:1097
 msgid "Knife"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1079
+#: inc/foodblogkitchen-toolkit.php:1098
 msgid "Blender"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1085
+#: inc/foodblogkitchen-toolkit.php:1104
 msgid "Peel banana."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1086
+#: inc/foodblogkitchen-toolkit.php:1105
 msgid "Put all the ingredients in the blender and mix everything for 30 seconds."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1087
+#: inc/foodblogkitchen-toolkit.php:1106
 msgid "Pour into a glass and enjoy."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1093
+#: inc/foodblogkitchen-toolkit.php:1112
 msgid "The milkshake becomes particularly creamy with UHT milk."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1112
+#: inc/foodblogkitchen-toolkit.php:1131
 #: build/blocks/block/editor.js:1
 msgid "Prep time"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1113
+#: inc/foodblogkitchen-toolkit.php:1132
 #: build/blocks/block/editor.js:1
 msgid "Rest time"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1114
+#: inc/foodblogkitchen-toolkit.php:1133
 #: build/blocks/block/editor.js:1
 msgid "Cook time"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1115
+#: inc/foodblogkitchen-toolkit.php:1134
 #: build/blocks/block/editor.js:1
 msgid "Baking time"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1116
+#: inc/foodblogkitchen-toolkit.php:1135
 #: build/blocks/block/editor.js:1
 msgid "Total time"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1117
+#: inc/foodblogkitchen-toolkit.php:1136
 msgid "yields"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1118
+#: inc/foodblogkitchen-toolkit.php:1137
 #: build/blocks/block/editor.js:1
 msgid "Ingredients"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1119
+#: inc/foodblogkitchen-toolkit.php:1138
 #: build/blocks/block/editor.js:1
 msgid "Utensils"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1120
+#: inc/foodblogkitchen-toolkit.php:1139
 #: build/blocks/block/editor.js:1
 msgid "Steps of preparation"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1121
+#: inc/foodblogkitchen-toolkit.php:1140
 msgid "Print"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1122
+#: inc/foodblogkitchen-toolkit.php:1141
 msgid "Pin it"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1123
+#: inc/foodblogkitchen-toolkit.php:1142
 msgid "Your rating"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1124
+#: inc/foodblogkitchen-toolkit.php:1143
 msgid "Average rating"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1125
+#: inc/foodblogkitchen-toolkit.php:1144
 #: build/blocks/block/editor.js:1
 msgid "Notes"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1126
+#: inc/foodblogkitchen-toolkit.php:1145
 msgid "How do you like the recipe?"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1128
+#: inc/foodblogkitchen-toolkit.php:1147
 #: build/blocks/block/editor.js:1
 msgid "Video"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1129
+#: inc/foodblogkitchen-toolkit.php:1148
 msgid "You tried this recipe?"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1130
+#: inc/foodblogkitchen-toolkit.php:1149
 msgid "Then link"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1131
+#: inc/foodblogkitchen-toolkit.php:1150
 msgid "on Instagram"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1132
+#: inc/foodblogkitchen-toolkit.php:1151
 msgid "on Instagram or use the hashtag"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1165
+#: inc/foodblogkitchen-toolkit.php:1184
 #: build/blocks/block/editor.js:1
 msgid "piece"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1170
+#: inc/foodblogkitchen-toolkit.php:1189
 #: build/blocks/block/editor.js:1
 msgid "springform pan"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1175
+#: inc/foodblogkitchen-toolkit.php:1194
 #: build/blocks/block/editor.js:1
 msgid "square baking pan"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1182
+#: inc/foodblogkitchen-toolkit.php:1201
 #: build/blocks/block/editor.js:1
 msgid "baking tray"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1524
+#: inc/foodblogkitchen-toolkit.php:1543
 msgid "There was an error while activating the license. Please try again later."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1538
+#: inc/foodblogkitchen-toolkit.php:1557
 msgid "Your license has been successfully activated. You can now use the recipe block in the editor."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1547
+#: inc/foodblogkitchen-toolkit.php:1566
 msgid "There was an error while activating the license. Please check your input. If you can't find an error, please contact our support."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1577
+#: inc/foodblogkitchen-toolkit.php:1596
 msgid "There was an error while deactivating the license. Please try again later."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1590
+#: inc/foodblogkitchen-toolkit.php:1609
 msgid "The license has been successfully deactivated."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1601
+#: inc/foodblogkitchen-toolkit.php:1620
 msgid "There was an error while deactivating the license."
 msgstr ""
 

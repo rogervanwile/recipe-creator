@@ -466,6 +466,13 @@ class FoodblogkitchenToolkit
                 "default" => $this->borderRadiusDefault
             )
         );
+        register_setting(
+            'foodblogkitchen_toolkit__general',
+            'foodblogkitchen_toolkit__thumbnail_size',
+            array(
+                "default" => $this->thumnailSizeDefault
+            )
+        );
 
         register_setting(
             'foodblogkitchen_toolkit__general',
@@ -628,6 +635,18 @@ class FoodblogkitchenToolkit
             'foodblogkitchen_toolkit__visual',
             array(
                 'label_for' => 'foodblogkitchen_toolkit__border_radius'
+            )
+        );
+        add_settings_field(
+            'foodblogkitchen_toolkit__thumbnail_size',
+            __('Image width', 'foodblogkitchen-toolkit'),
+            function () {
+                $this->renderNumberInput('foodblogkitchen_toolkit__thumbnail_size', $this->thumnailSizeDefault);
+            },
+            'foodblogkitchen_toolkit__general',
+            'foodblogkitchen_toolkit__visual',
+            array(
+                'label_for' => 'foodblogkitchen_toolkit__thumbnail_size'
             )
         );
     }
