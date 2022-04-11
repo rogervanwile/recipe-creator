@@ -1,3 +1,7 @@
+# Version 1.6.4 - 11. April 2022
+
+- Die Darstellung der Zeiten ist nun bei einigen Themes korrigiert wurden.
+
 # Version 1.6.3 - 27. März 2022
 
 - Die Abstände im Gutenberg-Editor werden nun wieder korrekt dargestellt.

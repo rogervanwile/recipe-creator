@@ -1,3 +1,7 @@
+# 1.6.4 - April 11, 2022
+
+- The display of times has now been fixed for some themes.
+
 # 1.6.3 - March 27, 2022
 
 - The spacing in the Gutenberg editor is now displayed correctly again.
