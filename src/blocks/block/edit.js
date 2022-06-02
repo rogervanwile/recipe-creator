@@ -102,6 +102,12 @@ export default function Edit(props) {
     }
   }
 
+  function extractTextFromHTMLString(value) {
+    var span = document.createElement("span");
+    span.innerHTML = value;
+    return span.textContent || span.innerText;
+  }
+
   function getRatingElement() {
     if (props.data.meta.rating_count) {
       return (
@@ -345,10 +351,10 @@ export default function Edit(props) {
                 ></div>
               </div>
               <div className="featured-snipped-preview--title">
-                {props.attributes.name}
+                {extractTextFromHTMLString(props.attributes.name)}
               </div>
               <div className="featured-snipped-preview--blog-title">
-                {props.data.site.title}
+                {extractTextFromHTMLString(props.data.site.title)}
               </div>
               {getRatingElement()}
               <div className="featured-snipped-preview--total-time">
@@ -368,7 +374,7 @@ export default function Edit(props) {
                   {(props.data.site.url || "").replace(/https?:\/\//, "")}
                 </span>
                 <h3 className="featured-result-preview-mobile--headline">
-                  {props.attributes.name}
+                  {extractTextFromHTMLString(props.attributes.name)}
                 </h3>
               </header>
               <div className="featured-result-preview-mobile--image-text">
