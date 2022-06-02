@@ -1,3 +1,7 @@
+# 1.7.1 - June 2, 2022
+
+- When pasting formatted content in the recipe block, the formatting is now removed too keep the markup clean and reduce formatting issues.
+
 # 1.7.0 - April 11, 2022
 
 - You can now set the size in which images are displayed in the recipe block in the plugin settings. This allows you to use the ideal size for your theme.

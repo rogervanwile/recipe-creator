@@ -1,3 +1,7 @@
+# Version 1.7.1 - 2. Juni 2022
+
+- Beim Einfügen von formatiertem Inhalt in den Rezeptblock wird die Formatierung nun entfernt, um die Auszeichnung sauber zu halten und Formatierungsprobleme zu vermeiden.
+
 # Version 1.7.0 - 11. April 2022
 
 - Du kannst nun in den Plugin-Einstellungen einstellen, in welcher Größe Bilder im Rezept-Block angezeigt werden. Damit kannst du die ideale Größe für dein Theme wählen.
