@@ -16,6 +16,8 @@ import {
 import { Fragment, useEffect } from "@wordpress/element";
 import ImageUpload from "./ImageUpload";
 
+import { extractTextFromHTMLString } from "./helper";
+
 import { useDispatch, select, dispatch } from "@wordpress/data";
 
 import RecipeYieldSelector from "./RecipeYieldSelector";
@@ -100,12 +102,6 @@ export default function Edit(props) {
     } else {
       return 0;
     }
-  }
-
-  function extractTextFromHTMLString(value) {
-    var span = document.createElement("span");
-    span.innerHTML = value;
-    return span.textContent || span.innerText;
   }
 
   function getRatingElement() {
@@ -440,6 +436,7 @@ export default function Edit(props) {
               <RichText
                 tagName="h2"
                 value={props.attributes.name}
+                __unstablePastePlainText={true}
                 placeholder={__(
                   "Title of your recipe",
                   "foodblogkitchen-toolkit"
@@ -499,6 +496,7 @@ export default function Edit(props) {
                   "Short description of your recipe",
                   "foodblogkitchen-toolkit"
                 )}
+                __unstablePastePlainText={true}
                 onChange={(description) => {
                   props.setAttributes({ description });
                 }}
@@ -642,6 +640,7 @@ export default function Edit(props) {
                   "foodblogkitchen-toolkit"
                 )}
                 value={props.attributes.utensils}
+                __unstablePastePlainText={true}
                 onChange={(utensils) => props.setAttributes({ utensils })}
               />
             </section>
@@ -697,6 +696,7 @@ export default function Edit(props) {
                   "Additional notes ...",
                   "foodblogkitchen-toolkit"
                 )}
+                __unstablePastePlainText={true}
                 onChange={(notes) => {
                   props.setAttributes({ notes });
                 }}

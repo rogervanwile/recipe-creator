@@ -1,7 +1,5 @@
 import { __ } from "@wordpress/i18n";
-
 import { RichText } from "@wordpress/block-editor";
-
 import { Button } from "@wordpress/components";
 
 export default function IngredientsGroupsEditor({ props }) {
@@ -61,6 +59,7 @@ export default function IngredientsGroupsEditor({ props }) {
                   tagName="h3"
                   value={group.title || ""}
                   placeholder={__("Group name", "foodblogkitchen-toolkit")}
+                  __unstablePastePlainText={true}
                   onChange={(value) => {
                     const groupUpdate = {
                       ...group,
@@ -88,6 +87,7 @@ export default function IngredientsGroupsEditor({ props }) {
                 "foodblogkitchen-toolkit"
               )}
               value={group.list || ""}
+              __unstablePastePlainText={true}
               onChange={(value) => {
                 const groupUpdate = {
                   ...group,
