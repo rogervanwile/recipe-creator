@@ -1,4 +1,8 @@
-# Version 1.7.2 - 2. Juni 2022
+# Version 1.8.0 - 19. Juni 2022
+
+- Du kannst die Bewertung deiner Rezepte nun anpassen.
+
+# Version 1.7.2 - 18. Juni 2022
 
 - Korrektur der Portionen-Formattierung in den JSON-LD-Daten.
 - Wir haben die Reihenfolge der SEO-Grafiken umgestellt. 16:9 Bilder werden nun am Anfang eingefügt, was unserer Erfahrung nach zu besserer Platzierung führt.

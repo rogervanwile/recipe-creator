@@ -1,3 +1,7 @@
+# 1.8.0 - June 19, 2022
+
+- You can now adjust the rating of your recipes.
+
 # 1.7.2 - June 18, 2022
 
 - Fix serving formatting in the JSON-LD data.

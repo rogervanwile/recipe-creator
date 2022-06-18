@@ -3,6 +3,7 @@ import {
   TextControl,
   PanelBody,
   PanelRow,
+  __experimentalNumberControl as NumberControl,
   __experimentalInputControl as InputControl,
 } from "@wordpress/components";
 import {
@@ -94,6 +95,47 @@ export default function Edit(props) {
 
       props.setAttributes(update);
     }
+  }
+
+  function updateRating(update) {
+    const currentRating = {
+      rating_1_votes: props.data.meta.rating_1_votes || 0,
+      rating_2_votes: props.data.meta.rating_2_votes || 0,
+      rating_3_votes: props.data.meta.rating_3_votes || 0,
+      rating_4_votes: props.data.meta.rating_4_votes || 0,
+      rating_5_votes: props.data.meta.rating_5_votes || 0,
+      rating_count: props.data.meta.rating_count,
+      average_rating: props.data.meta.average_rating,
+    };
+
+    const mergedRating = {
+      ...currentRating,
+      ...update,
+    };
+
+    const ratingCount =
+      +mergedRating.rating_1_votes +
+      +mergedRating.rating_2_votes +
+      +mergedRating.rating_3_votes +
+      +mergedRating.rating_4_votes +
+      +mergedRating.rating_5_votes;
+
+    const totalRating =
+      +mergedRating.rating_1_votes * 1 +
+      +mergedRating.rating_2_votes * 2 +
+      +mergedRating.rating_3_votes * 3 +
+      +mergedRating.rating_4_votes * 4 +
+      +mergedRating.rating_5_votes * 5;
+
+    const averageRating = Math.round((totalRating / ratingCount) * 10) / 10;
+
+    const finalRating = {
+      ...mergedRating,
+      rating_count: ratingCount,
+      average_rating: averageRating,
+    };
+
+    setMeta(finalRating);
   }
 
   function getRatedStarsWidth(averageRating) {
@@ -424,6 +466,80 @@ export default function Edit(props) {
                 </div> */}
               </div>
             </section>
+          </PanelRow>
+        </PanelBody>
+
+        <PanelBody
+          title={__("Rating", "foodblogkitchen-toolkit")}
+          className="foodblogkitchen-toolkit--sidebar"
+        >
+          <PanelRow>
+            <p>
+              <strong>{__("Attention:", "foodblogkitchen-toolkit")}</strong>{" "}
+              {__(
+                "Adjusting the ratings can have an impact on your Google ranking. Be careful with this function.",
+                "foodblogkitchen-toolkit"
+              )}
+            </p>
+          </PanelRow>
+          <PanelRow>
+            <NumberControl
+              label={__("1 star", "foodblogkitchen-toolkit")}
+              min="0"
+              value={props.data.meta.rating_1_votes || 0}
+              onChange={(rating_1_votes) => {
+                updateRating({ rating_1_votes });
+              }}
+            />
+          </PanelRow>
+          <PanelRow>
+            <NumberControl
+              label={__("2 stars", "foodblogkitchen-toolkit")}
+              min="0"
+              value={props.data.meta.rating_2_votes || 0}
+              onChange={(rating_2_votes) => {
+                updateRating({ rating_2_votes });
+              }}
+            />
+          </PanelRow>
+          <PanelRow>
+            <NumberControl
+              label={__("3 stars", "foodblogkitchen-toolkit")}
+              min="0"
+              value={props.data.meta.rating_3_votes || 0}
+              onChange={(rating_3_votes) => {
+                updateRating({ rating_3_votes });
+              }}
+            />
+          </PanelRow>
+          <PanelRow>
+            <NumberControl
+              label={__("4 stars", "foodblogkitchen-toolkit")}
+              min="0"
+              value={props.data.meta.rating_4_votes || 0}
+              onChange={(rating_4_votes) => {
+                updateRating({ rating_4_votes });
+              }}
+            />
+          </PanelRow>
+          <PanelRow>
+            <NumberControl
+              label={__("5 stars", "foodblogkitchen-toolkit")}
+              min="0"
+              value={props.data.meta.rating_5_votes || 0}
+              onChange={(rating_5_votes) => {
+                updateRating({ rating_5_votes });
+              }}
+            />
+          </PanelRow>
+          <PanelRow>
+            <p>
+              <strong>
+                {__("Rating", "foodblogkitchen-toolkit")}:{" "}
+                {props.data.meta.average_rating} ({props.data.meta.rating_count}
+                ){" "}
+              </strong>
+            </p>
           </PanelRow>
         </PanelBody>
       </InspectorControls>

@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Foodblog-Toolkit plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Foodblog-Toolkit 1.7.1\n"
+"Project-Id-Version: Foodblog-Toolkit 1.7.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/foodblogkitchen-toolkit\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-06-18T13:10:40+00:00\n"
+"POT-Creation-Date: 2022-06-18T20:43:26+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: foodblogkitchen-toolkit\n"
@@ -95,7 +95,7 @@ msgid "Configure how the recipe block should look for your visitors."
 msgstr ""
 
 #: inc/foodblogkitchen-toolkit.php:530
-#: inc/foodblogkitchen-toolkit.php:1487
+#: inc/foodblogkitchen-toolkit.php:1474
 #: build/blocks/jump-to-recipe/editor.js:1
 msgid "Jump to recipe"
 msgstr ""
@@ -162,7 +162,7 @@ msgstr ""
 
 #: inc/foodblogkitchen-toolkit.php:1062
 #: inc/foodblogkitchen-toolkit.php:1146
-#: inc/foodblogkitchen-toolkit.php:1405
+#: inc/foodblogkitchen-toolkit.php:1392
 #: build/blocks/block/editor.js:1
 msgid "servings"
 msgstr ""
@@ -310,69 +310,60 @@ msgstr ""
 msgid "on Instagram or use the hashtag"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1372
+#: inc/foodblogkitchen-toolkit.php:1371
 #: build/blocks/block/editor.js:1
 msgid "piece"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1374
+#: inc/foodblogkitchen-toolkit.php:1373
 msgid "pieces"
 msgstr ""
 
+#: inc/foodblogkitchen-toolkit.php:1376
 #: inc/foodblogkitchen-toolkit.php:1378
-#: inc/foodblogkitchen-toolkit.php:1384
 #: build/blocks/block/editor.js:1
 msgid "springform pan"
 msgstr ""
 
 #: inc/foodblogkitchen-toolkit.php:1380
-#: inc/foodblogkitchen-toolkit.php:1386
-msgid "springform pans"
-msgstr ""
-
-#: inc/foodblogkitchen-toolkit.php:1390
 #: build/blocks/block/editor.js:1
 msgid "square baking pan"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1392
-msgid "square baking pans"
-msgstr ""
-
-#: inc/foodblogkitchen-toolkit.php:1396
+#: inc/foodblogkitchen-toolkit.php:1383
 #: build/blocks/block/editor.js:1
 msgid "baking tray"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1398
+#: inc/foodblogkitchen-toolkit.php:1385
 msgid "baking trays"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1403
+#: inc/foodblogkitchen-toolkit.php:1390
 msgid "serving"
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1601
+#: inc/foodblogkitchen-toolkit.php:1588
 msgid "There was an error while activating the license. Please try again later."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1615
+#: inc/foodblogkitchen-toolkit.php:1602
 msgid "Your license has been successfully activated. You can now use the recipe block in the editor."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1624
+#: inc/foodblogkitchen-toolkit.php:1611
 msgid "There was an error while activating the license. Please check your input. If you can't find an error, please contact our support."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1654
+#: inc/foodblogkitchen-toolkit.php:1641
 msgid "There was an error while deactivating the license. Please try again later."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1667
+#: inc/foodblogkitchen-toolkit.php:1654
 msgid "The license has been successfully deactivated."
 msgstr ""
 
-#: inc/foodblogkitchen-toolkit.php:1678
+#: inc/foodblogkitchen-toolkit.php:1665
 msgid "There was an error while deactivating the license."
 msgstr ""
 
@@ -514,6 +505,34 @@ msgstr ""
 
 #: build/blocks/block/editor.js:1
 msgid "Preparation"
+msgstr ""
+
+#: build/blocks/block/editor.js:1
+msgid "Attention:"
+msgstr ""
+
+#: build/blocks/block/editor.js:1
+msgid "Adjusting the ratings can have an impact on your Google ranking. Be careful with this function."
+msgstr ""
+
+#: build/blocks/block/editor.js:1
+msgid "1 star"
+msgstr ""
+
+#: build/blocks/block/editor.js:1
+msgid "2 stars"
+msgstr ""
+
+#: build/blocks/block/editor.js:1
+msgid "3 stars"
+msgstr ""
+
+#: build/blocks/block/editor.js:1
+msgid "4 stars"
+msgstr ""
+
+#: build/blocks/block/editor.js:1
+msgid "5 stars"
 msgstr ""
 
 #: build/blocks/block/editor.js:1
