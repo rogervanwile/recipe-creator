@@ -1,3 +1,8 @@
+# 1.7.2 - June 18, 2022
+
+- Fix serving formatting in the JSON-LD data.
+- We have changed the order of SEO graphics. 16:9 images are now inserted at the beginning, which in our experience leads to better placement.
+
 # 1.7.1 - June 2, 2022
 
 - When pasting formatted content in the recipe block, the formatting is now removed too keep the markup clean and reduce formatting issues.

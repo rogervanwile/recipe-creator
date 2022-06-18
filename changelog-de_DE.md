@@ -1,3 +1,8 @@
+# Version 1.7.2 - 2. Juni 2022
+
+- Korrektur der Portionen-Formattierung in den JSON-LD-Daten.
+- Wir haben die Reihenfolge der SEO-Grafiken umgestellt. 16:9 Bilder werden nun am Anfang eingefügt, was unserer Erfahrung nach zu besserer Platzierung führt.
+
 # Version 1.7.1 - 2. Juni 2022
 
 - Beim Einfügen von formatiertem Inhalt in den Rezeptblock wird die Formatierung nun entfernt, um die Auszeichnung sauber zu halten und Formatierungsprobleme zu vermeiden.

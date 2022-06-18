@@ -296,18 +296,18 @@ export default function Edit(props) {
           <PanelRow>
             <ImageUpload
               props={props}
-              keyName="image3_2"
-              label="3:2"
-              className="3-2"
+              keyName="image16_9"
+              label="16:9"
+              className="16-9"
             ></ImageUpload>
           </PanelRow>
           <hr />
           <PanelRow>
             <ImageUpload
               props={props}
-              keyName="image1_1"
-              label="1:1"
-              className="1-1"
+              keyName="image3_2"
+              label="3:2"
+              className="3-2"
             ></ImageUpload>
           </PanelRow>
           <hr />
@@ -323,12 +323,11 @@ export default function Edit(props) {
           <PanelRow>
             <ImageUpload
               props={props}
-              keyName="image16_9"
-              label="16:9"
-              className="16-9"
+              keyName="image1_1"
+              label="1:1"
+              className="1-1"
             ></ImageUpload>
           </PanelRow>
-
           <hr />
 
           <PanelRow>

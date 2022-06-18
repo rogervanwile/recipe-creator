@@ -1273,8 +1273,8 @@ class FoodblogkitchenToolkit
 
         $images = [];
 
-        if (isset($attributes['image1_1']) && !empty($attributes['image1_1'])) {
-            $images[] = $attributes['image1_1'];
+        if (isset($attributes['image16_9']) && !empty($attributes['image16_9'])) {
+            $images[] = $attributes['image16_9'];
         }
         if (isset($attributes['image3_2']) && !empty($attributes['image3_2'])) {
             $images[] = $attributes['image3_2'];
@@ -1282,10 +1282,9 @@ class FoodblogkitchenToolkit
         if (isset($attributes['image4_3']) && !empty($attributes['image4_3'])) {
             $images[] = $attributes['image4_3'];
         }
-        if (isset($attributes['image16_9']) && !empty($attributes['image16_9'])) {
-            $images[] = $attributes['image16_9'];
+        if (isset($attributes['image1_1']) && !empty($attributes['image1_1'])) {
+            $images[] = $attributes['image1_1'];
         }
-
         $description = isset($attributes['description']) ? $attributes['description'] : '';
 
         // Process the pinterest image
