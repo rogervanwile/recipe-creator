@@ -2,10 +2,10 @@
 
 /**
  * Plugin Name:     Foodblog-Toolkit
- * Author URI:      https://foodblogr.de/
+ * Author URI:      https://www.foodblogr.com/
  * Description:     Toolkit for your Foodblog to optimize your blog for search engines. Including a Recipe block for the Gutenberg editor.
  * Version:         1.7.1
- * Author:          foodblogr.de
+ * Author:          foodblogr.com
  * Text Domain:     foodblogkitchen-toolkit
  * Domain Path:     /languages
  */
