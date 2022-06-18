@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Recipe Manager Pro 1.2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/foodblogkitchen-"
 "toolkit\n"
-"POT-Creation-Date: 2022-04-11T17:20:15+00:00\n"
-"PO-Revision-Date: 2022-04-11 19:21+0200\n"
+"POT-Creation-Date: 2022-06-18T13:10:40+00:00\n"
+"PO-Revision-Date: 2022-06-18 15:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1\n"
 "X-Domain: foodblogkitchen-recipes\n"
 
 #. Plugin Name of the plugin
@@ -31,12 +31,12 @@ msgstr ""
 "Inklusive eines Rezeptblocks für den Gutenberg-Editor."
 
 #. Author of the plugin
-msgid "foodblogr.de"
-msgstr "foodblogr.de"
+msgid "foodblogr.com"
+msgstr "foodblogr.com"
 
 #. Author URI of the plugin
-msgid "https://foodblogr.de/"
-msgstr "https://foodblogr.de/"
+msgid "https://www.foodblogr.com/"
+msgstr "https://www.foodblogr.com/"
 
 #: build/recipe-block-renderer.php:7 build/recipe-block-renderer.php:12
 #: inc/foodblogkitchen-toolkit.php:964 inc/foodblogkitchen-toolkit.php:969
@@ -103,7 +103,7 @@ msgstr "Visuelle Einstellungen"
 msgid "Configure how the recipe block should look for your visitors."
 msgstr "Konfiguriere, wie der Rezeptblock für deine Besucher aussehen soll."
 
-#: inc/foodblogkitchen-toolkit.php:530 inc/foodblogkitchen-toolkit.php:1429
+#: inc/foodblogkitchen-toolkit.php:530 inc/foodblogkitchen-toolkit.php:1487
 #: build/blocks/jump-to-recipe/editor.js:1
 msgid "Jump to recipe"
 msgstr "Zum Rezept springen"
@@ -175,7 +175,7 @@ msgstr ""
 "nur Bilder in Beiträgen, die mit Gutenberg erstellt wurden."
 
 #: inc/foodblogkitchen-toolkit.php:1062 inc/foodblogkitchen-toolkit.php:1146
-#: inc/foodblogkitchen-toolkit.php:1207 build/blocks/block/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1405 build/blocks/block/editor.js:1
 msgid "servings"
 msgstr "Portionen"
 
@@ -316,30 +316,51 @@ msgstr "auf Instagram"
 msgid "on Instagram or use the hashtag"
 msgstr "auf Instagram oder nutze den Hashtag"
 
-#: inc/foodblogkitchen-toolkit.php:1184 build/blocks/block/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1372 build/blocks/block/editor.js:1
 msgid "piece"
 msgstr "Stück"
 
-#: inc/foodblogkitchen-toolkit.php:1189 build/blocks/block/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1374
+msgid "pieces"
+msgstr "Stücke"
+
+#: inc/foodblogkitchen-toolkit.php:1378 inc/foodblogkitchen-toolkit.php:1384
+#: build/blocks/block/editor.js:1
 msgid "springform pan"
 msgstr "Springform"
 
-#: inc/foodblogkitchen-toolkit.php:1194 build/blocks/block/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1380 inc/foodblogkitchen-toolkit.php:1386
+msgid "springform pans"
+msgstr "Springformen"
+
+#: inc/foodblogkitchen-toolkit.php:1390 build/blocks/block/editor.js:1
 msgid "square baking pan"
 msgstr "Backform (eckig)"
 
-#: inc/foodblogkitchen-toolkit.php:1201 build/blocks/block/editor.js:1
+#: inc/foodblogkitchen-toolkit.php:1392
+msgid "square baking pans"
+msgstr "Backformen (eckig)"
+
+#: inc/foodblogkitchen-toolkit.php:1396 build/blocks/block/editor.js:1
 msgid "baking tray"
 msgstr "Backblech"
 
-#: inc/foodblogkitchen-toolkit.php:1543
+#: inc/foodblogkitchen-toolkit.php:1398
+msgid "baking trays"
+msgstr "Backbleche"
+
+#: inc/foodblogkitchen-toolkit.php:1403
+msgid "serving"
+msgstr "Portion"
+
+#: inc/foodblogkitchen-toolkit.php:1601
 msgid ""
 "There was an error while activating the license. Please try again later."
 msgstr ""
 "Bei der Aktivierung der Lizenz gab es einen Fehler. Bitte probiere es später "
 "noch einmal."
 
-#: inc/foodblogkitchen-toolkit.php:1557
+#: inc/foodblogkitchen-toolkit.php:1615
 msgid ""
 "Your license has been successfully activated. You can now use the recipe "
 "block in the editor."
@@ -347,7 +368,7 @@ msgstr ""
 "Deine Lizenz wurde erfolgreich aktiviert. Du kannst den Rezept-Block im "
 "Editor nun nutzen."
 
-#: inc/foodblogkitchen-toolkit.php:1566
+#: inc/foodblogkitchen-toolkit.php:1624
 msgid ""
 "There was an error while activating the license. Please check your input. If "
 "you can't find an error, please contact our support."
@@ -356,18 +377,18 @@ msgstr ""
 "Eingabe. Wenn du keinen Fehler finden kannst, kontaktiere bitte unseren "
 "Support."
 
-#: inc/foodblogkitchen-toolkit.php:1596
+#: inc/foodblogkitchen-toolkit.php:1654
 msgid ""
 "There was an error while deactivating the license. Please try again later."
 msgstr ""
 "Bei der Deaktivierung der Lizenz gab es einen Fehler. Bitte probiere es "
 "später noch einmal."
 
-#: inc/foodblogkitchen-toolkit.php:1609
+#: inc/foodblogkitchen-toolkit.php:1667
 msgid "The license has been successfully deactivated."
 msgstr "Die Lizenz wurde erfolgreich deaktiviert."
 
-#: inc/foodblogkitchen-toolkit.php:1620
+#: inc/foodblogkitchen-toolkit.php:1678
 msgid "There was an error while deactivating the license."
 msgstr "Es gab einen Fehler beim Deaktivieren der Lizenz."
 

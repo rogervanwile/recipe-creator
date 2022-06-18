@@ -1179,34 +1179,27 @@ class FoodblogkitchenToolkit
             $attributes['difficulty'] = __($attributes['difficulty'], 'foodblogkitchen-toolkit');
         }
 
+        $attributes['recipeYieldUnitFormatted'] = $this->getRecipeYieldUnitFormatted($attributes['recipeYieldUnit'], $recipeYield ?: 1);
+        $attributes['recipeYieldFormatted'] = $this->getRecipeYieldFormatted($attributes['recipeYieldUnit'], $recipeYield, $recipeYieldWidth, $recipeYieldHeight);
+
         switch ($attributes['recipeYieldUnit']) {
             case 'piece':
-                $attributes['recipeYieldUnitFormatted'] = __('piece', 'foodblogkitchen-toolkit');
                 $attributes['recipeYield'] = $recipeYield;
-                $attributes['recipeYieldFormatted'] = $recipeYield;
                 break;
             case 'springform-pan':
-                $attributes['recipeYieldUnitFormatted'] = __('springform pan', 'foodblogkitchen-toolkit');
                 $attributes['recipeYield'] = $recipeYield;
-                $attributes['recipeYieldFormatted'] = $recipeYield . ' cm';
                 break;
             case 'square-baking-pan':
-                $attributes['recipeYieldUnitFormatted'] = __('square baking pan', 'foodblogkitchen-toolkit');
                 $attributes['recipeYield'] = null;
                 $attributes['recipeYieldWidth'] = $recipeYieldWidth;
                 $attributes['recipeYieldHeight'] = $recipeYieldHeight;
-                $attributes['recipeYieldFormatted'] = $recipeYieldWidth . ' x ' . $recipeYieldHeight . ' cm';
                 break;
             case 'baking-tray':
-                $attributes['recipeYieldUnitFormatted'] = __('baking tray', 'foodblogkitchen-toolkit');
                 $attributes['recipeYield'] = $recipeYield;
-                $attributes['recipeYieldFormatted'] = $recipeYield;
                 break;
             case 'servings':
             default:
-                $attributes['recipeYieldUnitFormatted'] = __('servings', 'foodblogkitchen-toolkit');
                 $attributes['recipeYield'] = $recipeYield;
-                $attributes['recipeYieldFormatted'] = $recipeYield;
                 break;
         }
 
@@ -1326,7 +1319,7 @@ class FoodblogkitchenToolkit
             "cookTime" => $this->getCooktimeForSchema($attributes),
             "totalTime" => isset($attributes['totalTime']) ? $this->toIso8601Duration(intval($attributes['totalTime']) * 60) : '',
             "keywords" => $keywordsString,
-            "recipeYield" => isset($attributes['recipeYield']) ? $attributes['recipeYield'] . (isset($attributes['recipeYieldUnit']) ? ' ' . $attributes['recipeYieldUnit'] : '') : '',
+            "recipeYield" => isset($attributes['recipeYield']) ? $attributes['recipeYield'] . (isset($attributes['recipeYieldUnit']) ? ' ' . $this->getRecipeYieldUnitFormatted($attributes['recipeYieldUnit'], $recipeYield ?: 1) : '') : '',
             "recipeCategory" => $category,
             "nutrition" => (isset($attributes['calories']) && !empty($attributes['calories'])) ? [
                 "@type" => "NutritionInformation",
@@ -1369,6 +1362,59 @@ class FoodblogkitchenToolkit
 
         $renderer = self::getRecipeBlockRenderer();
         return $renderer($attributes);
+    }
+
+    private function getRecipeYieldUnitFormatted($unit, $amount)
+    {
+        switch ($unit) {
+            case 'piece':
+                if ($amount === 1) {
+                    return __('piece', 'foodblogkitchen-toolkit');
+                } else {
+                    return __('pieces', 'foodblogkitchen-toolkit');
+                }
+            case 'springform-pan':
+                return  __('springform pan', 'foodblogkitchen-toolkit');
+            case 'springform-pan':
+                return __('springform pan', 'foodblogkitchen-toolkit');
+            case 'square-baking-pan':
+                return __('square baking pan', 'foodblogkitchen-toolkit');
+            case 'baking-tray':
+                if ($amount === 1) {
+                    return __('baking tray', 'foodblogkitchen-toolkit');
+                } else {
+                    return __('baking trays', 'foodblogkitchen-toolkit');
+                }
+            case 'servings':
+            default:
+                if ($amount === 1) {
+                    return __('serving', 'foodblogkitchen-toolkit');
+                } else {
+                    return __('servings', 'foodblogkitchen-toolkit');
+                }
+        }
+    }
+
+    private function getRecipeYieldFormatted($unit, $recipeYield, $recipeYieldWidth, $recipeYieldHeight)
+    {
+        switch ($unit) {
+            case 'piece':
+                return $recipeYield;
+                break;
+            case 'springform-pan':
+                return $recipeYield . ' cm';
+                break;
+            case 'square-baking-pan':
+                return $recipeYieldWidth . ' x ' . $recipeYieldHeight . ' cm';
+                break;
+            case 'baking-tray':
+                return $recipeYield;
+                break;
+            case 'servings':
+            default:
+                return $recipeYield;
+                break;
+        }
     }
 
     private function prepareIngredientsForRenderer($ingredientsGroups)
