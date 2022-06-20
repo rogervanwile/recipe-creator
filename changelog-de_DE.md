@@ -1,6 +1,6 @@
-# Version 1.8.0 - 19. Juni 2022
+# Version 1.8.0 - 20. Juni 2022
 
-- Du kannst die Bewertung deiner Rezepte nun anpassen.
+- Du kannst die Bewertungen deiner Rezepte nun anpassen.
 
 # Version 1.7.2 - 18. Juni 2022
 
