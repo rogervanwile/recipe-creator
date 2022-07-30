@@ -1,6 +1,7 @@
 # 1.8.0 - June 19, 2022
 
 - You can now adjust the ratings of your recipes.
+- We fixed some small issues when printing a recipe.
 
 # 1.7.2 - June 18, 2022
 
