@@ -71,24 +71,24 @@ export class Printer {
           <div class="title">
             <div class="left">
               <div class="topline">${topline}</div>
-              ${titleContainer?.outerHTML}
+              ${titleContainer?.outerHTML || ''}
             </div>
             <div class="right">
-              ${svgStringQrCode}
-              <p class="qr-hint"><small>Link zum Rezept</small></p>
+            ${svgStringQrCode || ''}
+            <p class="qr-hint"><small>Link zum Rezept</small></p>
             </div>
           </div>
           <header>
-            ${introContainer?.outerHTML}
-            ${timingListContainer?.outerHTML}
+            ${introContainer?.outerHTML || ''}
+            ${timingListContainer?.outerHTML || ''}
           </header>
-          ${imageContainer?.outerHTML}
+          ${imageContainer?.outerHTML || ''}
           <aside>
-            ${ingredientsContainer?.outerHTML}
+            ${ingredientsContainer?.outerHTML || ''}
           </aside>
           <main>
-            ${preparationStepsContainer?.outerHTML}
-            ${notesContainer?.outerHTML}
+            ${preparationStepsContainer?.outerHTML || ''}
+            ${notesContainer?.outerHTML || ''}
           </main>
           <footer>
             <div class="footer-inner">
