@@ -1,4 +1,4 @@
-# Copyright (C) 2022 foodblogr.com
+# Copyright (C) 2022 foodblogkitchen.de
 # This file is distributed under the same license as the Foodblog-Toolkit plugin.
 msgid ""
 msgstr ""
@@ -25,11 +25,11 @@ msgid "Toolkit for your Foodblog to optimize your blog for search engines. Inclu
 msgstr ""
 
 #. Author of the plugin
-msgid "foodblogr.com"
+msgid "foodblogkitchen.de"
 msgstr ""
 
 #. Author URI of the plugin
-msgid "https://www.foodblogr.com/"
+msgid "https://www.foodblogkitchen.de/"
 msgstr ""
 
 #: build/recipe-block-renderer.php:7
@@ -472,7 +472,7 @@ msgid "Depending on the usage Google uses different image formats of your recipe
 msgstr ""
 
 #: build/blocks/block/editor.js:1
-msgid "https://www.foodblogr.de/mehr-klicks-durch-optimierte-rezeptbilder"
+msgid "https://www.foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder"
 msgstr ""
 
 #: build/blocks/block/editor.js:1

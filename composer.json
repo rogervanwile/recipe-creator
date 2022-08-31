@@ -1,13 +1,13 @@
 {
-    "name": "oliverwagner/foodblogkitchen-toolkit",
-    "authors": [
-        {
-            "name": "Oliver Wagner",
-            "email": "oliver@foodblogr.de"
-        }
-    ],
-    "require": {
-        "zordius/lightncandy": "1.2.6",
-        "erusev/parsedown": "^1.7"
+  "name": "oliverwagner/foodblogkitchen-toolkit",
+  "authors": [
+    {
+      "name": "Oliver Wagner",
+      "email": "oliver@foodblogkitchen.de"
     }
+  ],
+  "require": {
+    "zordius/lightncandy": "1.2.6",
+    "erusev/parsedown": "^1.7"
+  }
 }

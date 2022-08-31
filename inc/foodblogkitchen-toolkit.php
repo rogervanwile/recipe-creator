@@ -175,8 +175,8 @@ class FoodblogkitchenToolkit
             $res->version = $remote->version;
             $res->tested = $remote->tested;
             $res->requires = $remote->requires;
-            $res->author = '<a href="https://www.foodblogr.com">foodblogr.com</a>';
-            $res->author_profile = 'https://www.foodblogr.com';
+            $res->author = '<a href="https://www.foodblogkitchen.de">foodblogkitchen.de</a>';
+            $res->author_profile = 'https://www.foodblogkitchen.de';
             $res->download_link = $remote->download_url;
             $res->trunk = $remote->download_url;
             $res->requires_php = $remote->requires_php;

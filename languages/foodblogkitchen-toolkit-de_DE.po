@@ -31,12 +31,12 @@ msgstr ""
 "Inklusive eines Rezeptblocks für den Gutenberg-Editor."
 
 #. Author of the plugin
-msgid "foodblogr.com"
-msgstr "foodblogr.com"
+msgid "foodblogkitchen.de"
+msgstr "foodblogkitchen.de"
 
 #. Author URI of the plugin
-msgid "https://www.foodblogr.com/"
-msgstr "https://www.foodblogr.com/"
+msgid "https://www.foodblogkitchen.de/"
+msgstr "https://www.foodblogkitchen.de/"
 
 #: build/recipe-block-renderer.php:7 build/recipe-block-renderer.php:12
 #: inc/foodblogkitchen-toolkit.php:964 inc/foodblogkitchen-toolkit.php:969
@@ -504,8 +504,8 @@ msgstr ""
 "Rezeptes. Weitere Informationen findest du"
 
 #: build/blocks/block/editor.js:1
-msgid "https://www.foodblogr.de/mehr-klicks-durch-optimierte-rezeptbilder"
-msgstr "https://www.foodblogr.de/mehr-klicks-durch-optimierte-rezeptbilder"
+msgid "https://www.foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder"
+msgstr "https://www.foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder"
 
 #: build/blocks/block/editor.js:1
 msgid "here"

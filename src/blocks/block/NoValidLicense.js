@@ -22,8 +22,8 @@ export default function NoValidLicense() {
           "If you can no longer find your license key, please contact us at ",
           "foodblogkitchen-toolkit"
         )}
-        <a href="mailto:support@foodblogr.de">
-          support@foodblogr.de
+        <a href="mailto:support@foodblogkitchen.de">
+          support@foodblogkitchen.de
         </a>
         .
       </div>
