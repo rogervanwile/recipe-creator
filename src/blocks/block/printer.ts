@@ -50,7 +50,7 @@ export class Printer {
     });
 
     const printStyleUrl = `${
-      (window as any).foodblogrRecipeBlockConfig.printStyleUrl
+      (window as any).foodblogkitchenRecipeBlockConfig.printStyleUrl
     }?cb=${new Date().getTime()}`;
 
     const svgStringQrCode = await toString(window.location.href, {

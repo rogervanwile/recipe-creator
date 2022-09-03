@@ -773,7 +773,7 @@ class FoodblogkitchenToolkit
 
         $printStyle = $wp_styles->registered['foodblogkitchen-recipes-block-style'];
 
-        wp_localize_script('foodblogkitchen-recipes-block-view-script', 'foodblogrRecipeBlockConfig', [
+        wp_localize_script('foodblogkitchen-recipes-block-view-script', 'foodblogkitchenRecipeBlockConfig', [
             "printStyleUrl" => $printStyle->src
         ]);
     }

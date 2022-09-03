@@ -1,7 +1,0 @@
-{
-  "wp": {
-    "version": ["5.9.2"],
-    "plugins": ["./"],
-    "locale": "de_DE"
-  }
-}

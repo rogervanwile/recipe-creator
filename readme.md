@@ -24,10 +24,15 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 - Update version in `package.json`
 - Update version in `foodblogkitchen-toolkit.php`
 - Update `changelog.md`
+- Update latest wp version in `build-tools/create-release.ts`
 
 `$ npm run create-release`
 
 - Run tests
+
+`$ npm run test:start`
+
+- Publish (or copy via FTP)
 
 `$ ./build-tools/publish-latest.sh`
 

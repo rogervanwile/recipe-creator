@@ -1,3 +1,7 @@
+# 1.8.1 - September 03, 2022
+
+- Updates for Wordpress 6.0.2
+
 # 1.8.0 - June 19, 2022
 
 - You can now adjust the ratings of your recipes.

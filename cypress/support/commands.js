@@ -27,6 +27,6 @@
 // const compareSnapshotCommand = require('cypress-image-diff-js/dist/command')
 // compareSnapshotCommand()
 
-import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command';
+// import { addMatchImageSnapshotCommand } from '@simonsmith/cypress-image-snapshot/command';
 
-addMatchImageSnapshotCommand();
+// addMatchImageSnapshotCommand();

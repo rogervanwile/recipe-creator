@@ -1,3 +1,7 @@
+# Version 1.8.1 - 3. September 2022
+
+- Updates für Wordpress 6.0.2
+
 # Version 1.8.0 - 30. Juli 2022
 
 - Du kannst die Bewertungen deiner Rezepte nun anpassen.

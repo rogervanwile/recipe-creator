@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Recipe Manager Pro 1.2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/foodblogkitchen-"
 "toolkit\n"
-"POT-Creation-Date: 2022-06-18T20:43:26+00:00\n"
-"PO-Revision-Date: 2022-06-18 22:43+0200\n"
+"POT-Creation-Date: 2022-09-03T09:49:52+00:00\n"
+"PO-Revision-Date: 2022-09-03 11:51+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.1.1\n"
 "X-Domain: foodblogkitchen-recipes\n"
 
 #. Plugin Name of the plugin
@@ -35,17 +35,8 @@ msgid "foodblogkitchen.de"
 msgstr "foodblogkitchen.de"
 
 #. Author URI of the plugin
-msgid "https://www.foodblogkitchen.de/"
-msgstr "https://www.foodblogkitchen.de/"
-
-#: build/recipe-block-renderer.php:7 build/recipe-block-renderer.php:12
-#: inc/foodblogkitchen-toolkit.php:964 inc/foodblogkitchen-toolkit.php:969
-msgid "minutes"
-msgstr "Minuten"
-
-#: build/recipe-block-renderer.php:12 inc/foodblogkitchen-toolkit.php:969
-msgid "hours"
-msgstr "Stunden"
+msgid "https://foodblogkitchen.de/"
+msgstr "https://foodblogkitchen.de/"
 
 #. translators: %s: link to release notes
 #: inc/foodblogkitchen-toolkit.php:76
@@ -173,6 +164,14 @@ msgid ""
 msgstr ""
 "Zeige das Pinterest-Share-Symbol auf allen Beitragsbildern an. Das betrifft "
 "nur Bilder in Beiträgen, die mit Gutenberg erstellt wurden."
+
+#: inc/foodblogkitchen-toolkit.php:964 inc/foodblogkitchen-toolkit.php:969
+msgid "minutes"
+msgstr "Minuten"
+
+#: inc/foodblogkitchen-toolkit.php:969
+msgid "hours"
+msgstr "Stunden"
 
 #: inc/foodblogkitchen-toolkit.php:1062 inc/foodblogkitchen-toolkit.php:1146
 #: inc/foodblogkitchen-toolkit.php:1392 build/blocks/block/editor.js:1
@@ -504,8 +503,10 @@ msgstr ""
 "Rezeptes. Weitere Informationen findest du"
 
 #: build/blocks/block/editor.js:1
-msgid "https://www.foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder"
-msgstr "https://www.foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder"
+msgid ""
+"https://www.foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder"
+msgstr ""
+"https://www.foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder"
 
 #: build/blocks/block/editor.js:1
 msgid "here"
