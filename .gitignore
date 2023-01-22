@@ -29,3 +29,4 @@ vendor/composer
 vendor
 
 build/
+.DS_Store
