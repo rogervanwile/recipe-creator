@@ -1,3 +1,7 @@
+# 1.8.2 - January 22, 2023
+
+- Include precompiled block renderer to support server with write lock.
+
 # 1.8.1 - September 03, 2022
 
 - Updates for Wordpress 6.0.2

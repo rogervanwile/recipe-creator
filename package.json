@@ -1,6 +1,6 @@
 {
   "name": "foodblogkitchen-toolkit",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "description": "Manage recipes and optimize them automatically for Google Featured Snippets.",
   "author": "Oliver Wagner",
   "license": "GPL-2.0-or-later",
@@ -8,7 +8,7 @@
   "scripts": {
     "create-release": "npm run build && npx ts-node ./build-tools/create-release.ts",
     "clean": "rm -rf ./build",
-    "build": "npm run clean && wp-scripts build",
+    "build": "npm run clean && wp-scripts build && npm run build:precompile-templates",
     "build:precompile-templates": "php ./build-tools/precompile-templates.php",
     "format:js": "wp-scripts format-js",
     "lint:css": "wp-scripts lint-style",
