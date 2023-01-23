@@ -5,7 +5,7 @@ const path = require("path");
 module.exports = {
   ...defaultConfig,
   entry: {
-    ...defaultConfig.entry,
+    ...defaultConfig.entry(),
     "pinterest-image-overlay": path.resolve(
       process.cwd(),
       "src/ts/pinterest-image-overlay.ts"
