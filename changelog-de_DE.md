@@ -1,3 +1,7 @@
+# Version 1.8.2 - 5. Februar 2023
+
+- Server, auf denen keine Dateien geschrieben werden dürfen, werden nun unterstützt.
+
 # Version 1.8.1 - 3. September 2022
 
 - Updates für Wordpress 6.0.2

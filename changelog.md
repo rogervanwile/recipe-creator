@@ -1,3 +1,7 @@
+# 1.8.2 - February 05, 2023
+
+- Servers where files are not allowed to be written are now supported.
+
 # 1.8.1 - September 03, 2022
 
 - Updates for Wordpress 6.0.2

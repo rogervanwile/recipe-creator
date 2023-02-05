@@ -16,6 +16,14 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 
 # Development
 
+## First run
+
+`brew install composer`
+`brew install node@16`
+
+`composer install`
+`npm install`
+
 `npm run start`
 
 # Publish a new version
@@ -23,8 +31,8 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 - `npm run build`
 - Update version in `package.json`
 - Update version in `foodblogkitchen-toolkit.php`
-- Update `changelog.md`
-- Update latest wp version in `build-tools/create-release.ts`
+- Update `changelog.md` and `changelod-de_DE.md`
+- Update latest wp version ("tested") in `build-tools/create-release.ts`
 
 `$ npm run create-release`
 
