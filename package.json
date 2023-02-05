@@ -7,9 +7,9 @@
   "main": "build/index.js",
   "scripts": {
     "create-release": "npm run build && npx ts-node ./build-tools/create-release.ts",
-    "clean": "rm -rf ./build",
-    "build": "npm run clean && wp-scripts build",
-    "build:precompile-templates": "php ./build-tools/precompile-templates.php",
+    "prebuild": "rm -rf ./build",
+    "build": "wp-scripts build",
+    "postbuild": "php ./build-tools/precompile-templates.php",
     "format:js": "wp-scripts format-js",
     "lint:css": "wp-scripts lint-style",
     "lint:js": "wp-scripts lint-js",
@@ -33,7 +33,7 @@
     "node-sass": "7.0.1"
   },
   "devDependencies": {
-    "@bigbite/wp-cypress": "0.11.0",
+    "@bigbite/wp-cypress": "0.11.1",
     "@simonsmith/cypress-image-snapshot": "^5.0.4",
     "@types/color": "^3.0.3",
     "@types/dom-screen-wake-lock": "^1.0.0",
@@ -44,7 +44,7 @@
     "@types/showdown": "2.0.0",
     "@wordpress/scripts": "24.6.0",
     "caniuse-lite": "1.0.30001447",
-    "cypress": "10.7.0",
+    "cypress": "12.5.1",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "handlebars-loader": "1.7.3",
