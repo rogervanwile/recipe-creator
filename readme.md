@@ -31,7 +31,7 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 - `npm run build`
 - Update version in `package.json`
 - Update version in `foodblogkitchen-toolkit.php`
-- Update `changelog.md`
+- Update `changelog.md` and `changelod-de_DE.md`
 - Update latest wp version ("tested") in `build-tools/create-release.ts`
 
 `$ npm run create-release`

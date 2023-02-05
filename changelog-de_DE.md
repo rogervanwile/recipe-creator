@@ -1,6 +1,6 @@
-# 1.8.2 - January 22, 2023
+# Version 1.8.2 - 5. Februar 2023
 
-- Einbindung eines vorkompilierten Block-Renderers zur Unterstützung von Servern mit Schreibsperre.
+- Server, auf denen keine Dateien geschrieben werden dürfen, werden nun unterstützt.
 
 # Version 1.8.1 - 3. September 2022
 

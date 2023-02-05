@@ -1,6 +1,6 @@
-# 1.8.2 - January 22, 2023
+# 1.8.2 - February 05, 2023
 
-- Include precompiled block renderer to support server with write lock.
+- Servers where files are not allowed to be written are now supported.
 
 # 1.8.1 - September 03, 2022
 
