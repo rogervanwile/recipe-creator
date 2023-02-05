@@ -42,6 +42,8 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 
 - Publish (or copy via FTP)
 
+(You need sshpass): `brew install hudochenkov/sshpass/sshpass`
+
 `$ ./build-tools/publish-latest.sh`
 
 # Testing

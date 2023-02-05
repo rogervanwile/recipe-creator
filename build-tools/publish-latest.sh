@@ -2,7 +2,9 @@
 echo Version
 read version
 
+source .env
+
 # Upload to the server
-scp ./updates/archives/$version.zip u102897981@access850832273.webspace-data.io:updates/foodblogkitchen-toolkit/archives/
-scp ./updates/archives/latest.zip u102897981@access850832273.webspace-data.io:updates/foodblogkitchen-toolkit/archives/
-scp ./updates/info.json u102897981@access850832273.webspace-data.io:updates/foodblogkitchen-toolkit/
+sshpass -p $FTP_PASSWORD scp ./updates/archives/$version.zip $FTP_USER@$FTP_SERVER:updates/foodblogkitchen-toolkit/archives/
+sshpass -p $FTP_PASSWORD scp ./updates/archives/latest.zip $FTP_USER@$FTP_SERVER:updates/foodblogkitchen-toolkit/archives/
+sshpass -p $FTP_PASSWORD scp ./updates/info.json $FTP_USER@$FTP_SERVER:updates/foodblogkitchen-toolkit/
