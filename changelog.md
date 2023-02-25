@@ -1,3 +1,7 @@
+# 1.8.2 - February 25, 2023
+
+- If a large font size is set on smartphones, texts are now no longer cut off.
+
 # 1.8.2 - February 05, 2023
 
 - Servers where files are not allowed to be written are now supported.

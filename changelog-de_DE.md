@@ -1,3 +1,7 @@
+# Version 1.8.3 - 25. Februar 2023
+
+- Wenn auf Smartphones eine große Schriftgröße eingestellt ist, werden Texte nun nicht mehr abgeschnitten.
+
 # Version 1.8.2 - 5. Februar 2023
 
 - Server, auf denen keine Dateien geschrieben werden dürfen, werden nun unterstützt.
