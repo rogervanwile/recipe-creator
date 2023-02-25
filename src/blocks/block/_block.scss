@@ -472,8 +472,9 @@
   .foodblogkitchen-toolkit--recipe-block--call-to-action {
     background-color: var(--primary);
     color: var(--primary-contrast);
-    padding: 2em;
+    padding: 1.5em 1em;
     display: flex;
+    gap: 1em;
     margin-left: -1em;
     margin-right: -1em;
     margin-bottom: -1em;
@@ -485,8 +486,12 @@
       background-image: var(--instagram-url);
       background-size: 3em 3em;
       background-position: center center;
-      margin-right: 1em;
       flex-shrink: 0;
+    }
+
+    .foodblogkitchen-toolkit--recipe-block--call-to-action--text {
+      width: 0;
+      min-width: calc(100% - 4em);
     }
 
     h3 {
