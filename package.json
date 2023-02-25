@@ -34,7 +34,6 @@
   },
   "devDependencies": {
     "@bigbite/wp-cypress": "0.11.1",
-    "@simonsmith/cypress-image-snapshot": "^5.0.4",
     "@types/color": "^3.0.3",
     "@types/dom-screen-wake-lock": "^1.0.0",
     "@types/filesystem": "0.0.32",
