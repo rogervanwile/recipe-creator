@@ -1,3 +1,7 @@
+# 1.8.5 - March 8, 2023
+
+- Display of breaks in the description of recipes corrected.
+
 # 1.8.4 - March 7, 2023
 
 - For large quantities, ingredients are now calculated correctly when using the portion calculator.
