@@ -1,3 +1,7 @@
+# Version 1.8.5 - 8. März 2023
+
+- Darstellung von Umbrüchen in der Beschreibung der Rezepte korrigiert.
+
 # Version 1.8.4 - 7. März 2023
 
 - Bei großen Mengen werden die Zutaten nun bei der Benutzung des Portionen-Rechner korrekt berechnet.
