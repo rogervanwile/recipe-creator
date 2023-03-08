@@ -1,4 +1,8 @@
-# 1.8.2 - February 25, 2023
+# 1.8.4 - March 7, 2023
+
+- For large quantities, ingredients are now calculated correctly when using the portion calculator.
+
+# 1.8.3 - February 25, 2023
 
 - If a large font size is set on smartphones, texts are now no longer cut off.
 

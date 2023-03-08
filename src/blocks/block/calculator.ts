@@ -28,9 +28,8 @@ export class Calculator {
     this.increaseButton = this.servingsSelector!.querySelector(
       ".recipe-increase-servings"
     );
-    this.servingsDisplay = this.servingsSelector!.querySelector(
-      ".recipe-servings"
-    );
+    this.servingsDisplay =
+      this.servingsSelector!.querySelector(".recipe-servings");
 
     if (this.servingsDisplay) {
       this.servings = parseInt(this.servingsDisplay.innerHTML.trim(), 10);
@@ -76,6 +75,8 @@ export class Calculator {
   }
 
   private refreshIngredients() {
+    debugger;
+
     if (this.ingredientsTable) {
       const yieldUnit = this.ingredientsTable.getAttribute(
         "data-recipe-yield-unit"
@@ -116,12 +117,12 @@ export class Calculator {
             } else if (unit.match(/^(kilo|kilogramm|kg)$/i)) {
               baseUnit = "g";
               if (baseAmount) {
-                baseAmount = baseAmount / 1000;
+                baseAmount = baseAmount * 1000;
               }
             } else if (unit.match(/^(liter)$/i)) {
               baseUnit = "ml";
               if (baseAmount) {
-                baseAmount = baseAmount / 1000;
+                baseAmount = baseAmount * 1000;
               }
             } else {
               baseUnit = unit;
