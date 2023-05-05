@@ -1271,6 +1271,14 @@ class FoodblogkitchenToolkit
             }
         }
 
+        if (
+            (!isset($attributes['thumbnail']) || $attributes['thumbnail'] === '') &&
+            has_post_thumbnail(get_the_ID())
+        ) {
+            $postThumbnail = get_the_post_thumbnail_url(get_the_ID(), 'foodblogkitchen-toolkit--thumbnail');
+            $attributes['thumbnail'] = $postThumbnail;
+        }
+
         $images = [];
 
         if (isset($attributes['image16_9']) && !empty($attributes['image16_9'])) {
@@ -1285,6 +1293,10 @@ class FoodblogkitchenToolkit
         if (isset($attributes['image1_1']) && !empty($attributes['image1_1'])) {
             $images[] = $attributes['image1_1'];
         }
+        if (isset($attributes['thumbnail']) && !empty($attributes['thumbnail'])) {
+            $images[] = $attributes['thumbnail'];
+        }
+
         $description = isset($attributes['description']) ? $attributes['description'] : '';
 
         // Process the pinterest image
