@@ -1,3 +1,7 @@
+# Version 1.8.6 - 5. Mai 2023
+
+- Wenn im Rezept kein Bild eingefügt wurde, wird nun das Beitragsbild als Fallback genutzt.
+
 # Version 1.8.5 - 8. März 2023
 
 - Darstellung von Umbrüchen in der Beschreibung der Rezepte korrigiert.

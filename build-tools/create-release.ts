@@ -157,7 +157,7 @@ rl.question("What is the new version? ", function (version: string) {
     version: version,
     download_url: `https://updates.foodblogkitchen.de/foodblogkitchen-toolkit/archives/${version}.zip`,
     requires: "5.8.0",
-    tested: "6.1.1",
+    tested: "6.2.0",
     requires_php: "7.4",
     last_updated: currentTime,
     sections: {

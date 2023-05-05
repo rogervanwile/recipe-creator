@@ -1,3 +1,7 @@
+# 1.8.6 - Mai 5, 2023
+
+- If no image is inserted in the recipe, the post image is now used as a fallback.
+
 # 1.8.5 - March 8, 2023
 
 - Display of breaks in the description of recipes corrected.
