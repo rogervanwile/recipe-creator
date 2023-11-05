@@ -247,17 +247,17 @@ export default function Edit(props) {
                 onSelect={(media) => {
                   if (media) {
                     setMeta({
-                      foodblogkitchen_pinterest_image_id: media.id,
-                      foodblogkitchen_pinterest_image_url: media.url,
+                      recipe_plugin_for_wp_image_id: media.id,
+                      recipe_plugin_for_wp_image_url: media.url,
                     });
                   }
                 }}
                 allowedTypes={ALLOWED_MEDIA_TYPES}
-                value={props.data.meta.foodblogkitchen_pinterest_image_url}
+                value={props.data.meta.recipe_plugin_for_wp_image_url}
                 render={({ open }) => (
                   <Fragment>
                     <img
-                      src={props.data.meta.foodblogkitchen_pinterest_image_url}
+                      src={props.data.meta.recipe_plugin_for_wp_image_url}
                       onClick={open}
                     />
                     <button

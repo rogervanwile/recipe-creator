@@ -18,7 +18,7 @@ registerBlockType(metadata, {
     "Add a recipe and optimize it easily for search engines.",
     "recipe-plugin-for-wp"
   ),
-  edit: !!foodblogkitchenToolkitAdditionalData?.hasValidLicense
+  edit: !!recipePluginForWPAdditionalData?.hasValidLicense
     ? withSelect((select) => {
         const site = select("core").getSite();
 

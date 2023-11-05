@@ -1,5 +1,5 @@
 <?php
-$foodblogkitchenToolkit = new RecipePluginForWP();
+$recipePluginForWP = new RecipePluginForWP();
 ?>
 
 <div class="wrap">
@@ -28,13 +28,13 @@ $foodblogkitchenToolkit = new RecipePluginForWP();
     <div id="col-right">
       <div class="col-wrap">
         <?php
-        echo $foodblogkitchenToolkit->renderRecipeBlockDummy();
+        echo $recipePluginForWP->renderRecipeBlockDummy();
         ?>
       </div>
     </div>
     <div id="recipe-plugin-for-wp--style-container">
       <?php
-      echo $foodblogkitchenToolkit->renderRecipeBlockStyles();
+      echo $recipePluginForWP->renderRecipeBlockStyles();
       ?>
     </div>
   </div>

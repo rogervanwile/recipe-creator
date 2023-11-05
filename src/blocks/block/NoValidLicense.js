@@ -28,7 +28,7 @@ export default function NoValidLicense() {
         .
       </div>
       <a
-        href={foodblogkitchenToolkitAdditionalData?.licensePage}
+        href={recipePluginForWPAdditionalData?.licensePage}
         className="components-button is-primary"
       >
         {__("Go to settings", "recipe-plugin-for-wp")}

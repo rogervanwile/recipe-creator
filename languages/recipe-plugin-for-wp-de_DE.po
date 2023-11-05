@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4.1\n"
-"X-Domain: foodblogkitchen-recipes\n"
+"X-Domain: recipe-plugin-for-wp\n"
 
 #. Plugin Name of the plugin
 #: inc/recipe-plugin-for-wp.php:257 inc/recipe-plugin-for-wp.php:258

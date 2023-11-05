@@ -50,7 +50,7 @@ describe("Tests the recipe block", () => {
     cy.get(".block-editor-inserter > .components-button").click();
     cy.get(".block-editor-inserter__search input[type=search]").click();
     cy.get(".block-editor-inserter__search input[type=search]").type("Recipe");
-    cy.get(".editor-block-list-item-foodblogkitchen-recipes-block").click();
+    cy.get(".editor-block-list-item-recipe-plugin-for-wp-block").click();
 
     // Insert data into the block
     cy.get('[aria-label="Title of your recipe"]').type("Test Headline");

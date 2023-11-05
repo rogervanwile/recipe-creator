@@ -87,7 +87,7 @@ class RecipePluginForWP
         if (is_singular() && in_the_loop() && is_main_query()) {
             if (has_blocks()) {
                 // Does the contentThe $content contains the recipe block
-                if (has_block('foodblogkitchen-recipes/block')) {
+                if (has_block('recipe-plugin-for-wp/block')) {
                     // If there is no "jump to recipe" block inside the content
                     // and the option "recipe_plugin_for_wp__show_jump_to_recipe"
                     // is set to true, I prepend the "jump to recipe" block to the content
@@ -230,7 +230,7 @@ class RecipePluginForWP
         wp_enqueue_style('wp-color-picker');
         wp_enqueue_style('iris');
 
-        wp_enqueue_style("foodblogkitchen-recipes-block-style");
+        wp_enqueue_style("recipe-plugin-for-wp-block-style");
 
         $adminAsset = require(plugin_dir_path(__FILE__) . "../build/admin.asset.php");
 
@@ -645,12 +645,12 @@ class RecipePluginForWP
 
     public function registerMeta()
     {
-        register_meta('post', 'foodblogkitchen_pinterest_image_id', array(
+        register_meta('post', 'recipe_plugin_for_wp_image_id', array(
             'show_in_rest' => true,
             'type' => 'number',
             'single' => true,
         ));
-        register_meta('post', 'foodblogkitchen_pinterest_image_url', array(
+        register_meta('post', 'recipe_plugin_for_wp_image_url', array(
             'show_in_rest' => true,
             'type' => 'string',
             'single' => true,
@@ -712,7 +712,7 @@ class RecipePluginForWP
         // Add some variables for the editor script
         $license = get_option('recipe_plugin_for_wp__license_key', '');
 
-        wp_localize_script('foodblogkitchen-recipes-block-editor-script', 'foodblogkitchenToolkitAdditionalData', [
+        wp_localize_script('recipe-plugin-for-wp-block-editor-script', 'recipePluginForWPAdditionalData', [
             "hasValidLicense" => !empty($license),
             "licensePage" => get_admin_url(get_current_network_id(), 'admin.php?page=recipe_plugin_for_wp_license')
         ]);
@@ -721,9 +721,9 @@ class RecipePluginForWP
 
         $wp_styles = wp_styles();
 
-        $printStyle = $wp_styles->registered['foodblogkitchen-recipes-block-style'];
+        $printStyle = $wp_styles->registered['recipe-plugin-for-wp-block-style'];
 
-        wp_localize_script('foodblogkitchen-recipes-block-view-script', 'foodblogkitchenRecipeBlockConfig', [
+        wp_localize_script('recipe-plugin-for-wp-block-view-script', 'recipePluginForWPConfig', [
             "printStyleUrl" => $printStyle->src
         ]);
     }
@@ -740,7 +740,7 @@ class RecipePluginForWP
             'render_callback' => array($this, 'renderRecipeBlock'),
         ));
 
-        wp_set_script_translations('foodblogkitchen-recipes-block-editor-script', 'recipe-plugin-for-wp', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
+        wp_set_script_translations('recipe-plugin-for-wp-block-editor-script', 'recipe-plugin-for-wp', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
         wp_set_script_translations('recipe-plugin-for-wp-jump-to-recipe-editor-script', 'recipe-plugin-for-wp', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
     }
 
@@ -1061,7 +1061,7 @@ class RecipePluginForWP
 
     public function renderRecipeBlock($attributes, $context)
     {
-        wp_enqueue_script("foodblogkitchen-recipes-block-view-script");
+        wp_enqueue_script("recipe-plugin-for-wp-block-view-script");
 
         $attributes['translations'] = $this->getRecipeBlockTranslations();
 
@@ -1208,7 +1208,7 @@ class RecipePluginForWP
 
         // Process the pinterest image
 
-        $pinterestImageId = get_post_meta(get_the_ID(), 'foodblogkitchen_pinterest_image_id', true) ?: null;
+        $pinterestImageId = get_post_meta(get_the_ID(), 'recipe_plugin_for_wp_image_id', true) ?: null;
         $currentUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
         if ($pinterestImageId !== null) {

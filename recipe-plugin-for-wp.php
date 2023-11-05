@@ -17,11 +17,11 @@ if (!defined('ABSPATH')) {
 require __DIR__ . '/inc/recipe-plugin-for-wp.php';
 
 if (class_exists('RecipePluginForWP')) {
-	$foodblogkitchenToolkit = new RecipePluginForWP();
+	$recipePluginForWP = new RecipePluginForWP();
 
-	register_activation_hook(__FILE__, array($foodblogkitchenToolkit, 'activate'));
+	register_activation_hook(__FILE__, array($recipePluginForWP, 'activate'));
 
-	register_deactivation_hook(__FILE__, array($foodblogkitchenToolkit, 'deactivate'));
+	register_deactivation_hook(__FILE__, array($recipePluginForWP, 'deactivate'));
 
 	register_uninstall_hook(__FILE__, 'RecipePluginForWP::uninstall');
 }

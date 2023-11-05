@@ -1,7 +1,7 @@
 <?php
 $Parsedown = new Parsedown();
 ?>
-<div class="wrap foodblogkitchen--release-notes">
+<div class="wrap recipe-plugin-for-wp--release-notes">
   <h1><?php echo get_admin_page_title(); ?></h1>
   <?php
   $userLocale = get_user_locale();
