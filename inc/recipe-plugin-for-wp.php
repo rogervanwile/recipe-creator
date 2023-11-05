@@ -30,7 +30,6 @@ class RecipePluginForWP
 
     function __construct()
     {
-        add_action('init', array($this, 'addRessources'));
         add_action('init', array($this, 'registerBlock'));
         add_action('init', array($this, 'localizeScripts'));
         add_action('init', array($this, 'registerMeta'));
@@ -776,30 +775,6 @@ class RecipePluginForWP
         wp_localize_script('foodblogkitchen-recipes-block-view-script', 'foodblogkitchenRecipeBlockConfig', [
             "printStyleUrl" => $printStyle->src
         ]);
-    }
-
-    public function addRessources()
-    {
-        // pinterest-image-overlay.js
-
-        // TODO: Include only when images are on the page
-        if (get_option('foodblogkitchen_toolkit__pinterest_image_overlay__enabled', false)) {
-            $pinterestImageOverlayAsset = require(plugin_dir_path(__FILE__) . "../build/pinterest-image-overlay.asset.php");
-
-            wp_enqueue_script(
-                'recipe-plugin-for-wp-pinterest-image-overlay',
-                plugins_url('build/pinterest-image-overlay.js', dirname(__FILE__)),
-                $pinterestImageOverlayAsset['dependencies'],
-                $pinterestImageOverlayAsset['version'],
-            );
-
-            wp_enqueue_style(
-                'recipe-plugin-for-wp-pinterest-image-overlay',
-                plugins_url('build/pinterest-image-overlay.css', dirname(__FILE__)),
-                array(),
-                $pinterestImageOverlayAsset['version'],
-            );
-        }
     }
 
     public function registerBlock()
