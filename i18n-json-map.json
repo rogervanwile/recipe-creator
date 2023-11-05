@@ -3,8 +3,5 @@
   "build/blocks/jump-to-recipe/editor.js": "build/blocks/jump-to-recipe/editor.js",
 
   "build/blocks/block/block.json": "build/blocks/block/editor.js",
-  "build/blocks/block/editor.js": "build/blocks/block/editor.js",
-
-  "build/blocks/faq/block.json": "build/blocks/faq/editor.js",
-  "build/blocks/faq/editor.js": "build/blocks/faq/editor.js"
+  "build/blocks/block/editor.js": "build/blocks/block/editor.js"
 }

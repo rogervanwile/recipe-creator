@@ -95,43 +95,6 @@ class RecipePluginForWP
                         $content = "<!-- wp:recipe-plugin-for-wp/jump-to-recipe /-->\n\n" . $content;
                     }
                 }
-
-                if (has_block('recipe-plugin-for-wp/faq')) {
-                    // The LD-JSON for FAQ blocks must be combined into one
-                    // So lets check if there are FAQ blocks on this page
-
-                    $faqBlocks = [];
-                    $blocks = parse_blocks($content);
-
-                    foreach ($blocks as $block) {
-                        if ($block['blockName'] === 'recipe-plugin-for-wp/faq') {
-                            $faqBlocks[] = $block;
-                        }
-                    }
-
-                    if (count($faqBlocks) > 0) {
-                        $lsJson = [
-                            "@context" => "https://schema.org/",
-                            "@type" => "FAQPage",
-                            "mainEntity" => []
-                        ];
-
-                        foreach ($faqBlocks as $block) {
-                            if (isset($block['attrs']['question']) && isset($block['attrs']['answer'])) {
-                                $lsJson['mainEntity'][] = [
-                                    "@type" => "Question",
-                                    "name" => $block["attrs"]['question'],
-                                    "acceptedAnswer" => [
-                                        "@type" => "Answer",
-                                        "text" => $block["attrs"]['answer']
-                                    ]
-                                ];
-                            }
-                        }
-
-                        echo '<script type="application/ld+json">' . json_encode($lsJson) . '</script>';
-                    }
-                }
             }
         }
 
@@ -310,18 +273,6 @@ class RecipePluginForWP
             'foodblogkitchen_toolkit',
             function () {
                 return require_once(plugin_dir_path(__FILE__) . '../templates/admin-index-page.php');
-            }
-        );
-
-
-        add_submenu_page(
-            'foodblogkitchen_toolkit',
-            __('Pinterest', 'recipe-plugin-for-wp'),
-            __("Pinterest", 'recipe-plugin-for-wp'),
-            'manage_options',
-            'foodblogkitchen_toolkit_pinterest',
-            function () {
-                return require_once(plugin_dir_path(__FILE__) . '../templates/admin-pinterest-page.php');
             }
         );
 
@@ -789,14 +740,8 @@ class RecipePluginForWP
             'render_callback' => array($this, 'renderRecipeBlock'),
         ));
 
-        // FAQ
-        register_block_type(realpath(__DIR__ . '/../build/blocks/faq'), array(
-            'render_callback' => array($this, 'renderFAQBlock'),
-        ));
-
         wp_set_script_translations('foodblogkitchen-recipes-block-editor-script', 'recipe-plugin-for-wp', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
         wp_set_script_translations('recipe-plugin-for-wp-jump-to-recipe-editor-script', 'recipe-plugin-for-wp', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
-        wp_set_script_translations('recipe-plugin-for-wp-faq-editor-script', 'recipe-plugin-for-wp', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
     }
 
     public function setRating()
@@ -989,19 +934,6 @@ class RecipePluginForWP
         return self::getRenderer(
             plugin_dir_path(__FILE__) . '../src/blocks/jump-to-recipe/template.hbs',
             plugin_dir_path(__FILE__) . '../build/jump-to-recipe-block-renderer.php',
-        );
-    }
-
-    public static function getFAQBlockRenderer()
-    {
-        return self::getRenderer(
-            plugin_dir_path(__FILE__) . '../src/blocks/faq/template.hbs',
-            plugin_dir_path(__FILE__) . '../build/faq-block-renderer.php',
-            [
-                'toJSON' => function ($context, $options) {
-                    return json_encode($context);
-                }
-            ]
         );
     }
 
@@ -1461,12 +1393,6 @@ class RecipePluginForWP
             "jumpToRecipe" => __('Jump to recipe', 'recipe-plugin-for-wp')
         );
         $attributes['options'] = $this->getStyleOptions();
-        return $renderer($attributes);
-    }
-
-    public function renderFAQBlock($attributes, $context)
-    {
-        $renderer = self::getFAQBlockRenderer();
         return $renderer($attributes);
     }
 

@@ -18,4 +18,3 @@ function plugin_dir_path($file)
 RecipePluginForWP::getRecipeBlockRenderer();
 RecipePluginForWP::getRecipeBlockStylesRenderer();
 RecipePluginForWP::getJumpToRecipeBlockRenderer();
-RecipePluginForWP::getFAQBlockRenderer();
