@@ -41,12 +41,12 @@ class RecipePluginForWP
 
         add_action('admin_enqueue_scripts', array($this, 'enqueueAdminJs'));
 
-        add_image_size('recipe-plugin-for-wp--thumbnail', get_option('foodblogkitchen_toolkit__thumbnail_size', $this->thumnailSizeDefault));
+        add_image_size('recipe-plugin-for-wp--thumbnail', get_option('recipe_plugin_for_wp__thumbnail_size', $this->thumnailSizeDefault));
         add_image_size('recipe-plugin-for-wp--pinterest', 1000, 0, false);
 
         // Frontend-AJAX-Actions
-        add_action('wp_ajax_foodblogkitchen_toolkit_set_rating', array($this, 'setRating'));
-        add_action('wp_ajax_nopriv_foodblogkitchen_toolkit_set_rating', array($this, 'setRating'));
+        add_action('wp_ajax_recipe_plugin_for_wp_set_rating', array($this, 'setRating'));
+        add_action('wp_ajax_nopriv_recipe_plugin_for_wp_set_rating', array($this, 'setRating'));
 
         // Enable Auto-Update
         // https://rudrastyh.com/wordpress/self-hosted-plugin-update.html
@@ -62,10 +62,10 @@ class RecipePluginForWP
     public function showReleaseInfo()
     {
         $currentVersion = $this->getPluginVersion();
-        $lastVersionWithHint = get_option('foodblogkitchen_toolkit__release_info_shown', '0.0.1');
+        $lastVersionWithHint = get_option('recipe_plugin_for_wp__release_info_shown', '0.0.1');
 
         if (version_compare($currentVersion, $lastVersionWithHint, '>')) {
-            update_option('foodblogkitchen_toolkit__release_info_shown', $currentVersion);
+            update_option('recipe_plugin_for_wp__release_info_shown', $currentVersion);
 ?>
             <div class="notice notice-info is-dismissible">
                 <p>
@@ -73,7 +73,7 @@ class RecipePluginForWP
                     echo sprintf(
                         /* translators: %s: link to release notes */
                         __('We\'ve updated the <strong>Recipe Plugin for WP</strong>. Check out the <a href="%s">release notes</a> to see which new features you can use now.', 'recipe-plugin-for-wp'),
-                        esc_url(get_admin_url(get_current_network_id(), 'admin.php?page=foodblogkitchen_toolkit_release_notes'))
+                        esc_url(get_admin_url(get_current_network_id(), 'admin.php?page=recipe_plugin_for_wp_release_notes'))
                     );
                     ?></p>
             </div>
@@ -89,9 +89,9 @@ class RecipePluginForWP
                 // Does the contentThe $content contains the recipe block
                 if (has_block('foodblogkitchen-recipes/block')) {
                     // If there is no "jump to recipe" block inside the content
-                    // and the option "foodblogkitchen_toolkit__show_jump_to_recipe"
+                    // and the option "recipe_plugin_for_wp__show_jump_to_recipe"
                     // is set to true, I prepend the "jump to recipe" block to the content
-                    if (get_option('foodblogkitchen_toolkit__show_jump_to_recipe', true) && !has_block('recipe-plugin-for-wp/jump-to-recipe')) {
+                    if (get_option('recipe_plugin_for_wp__show_jump_to_recipe', true) && !has_block('recipe-plugin-for-wp/jump-to-recipe')) {
                         $content = "<!-- wp:recipe-plugin-for-wp/jump-to-recipe /-->\n\n" . $content;
                     }
                 }
@@ -114,7 +114,7 @@ class RecipePluginForWP
         }
 
         // trying to get from cache first
-        if (false == $remote = get_transient('foodblogkitchen_toolkit_update')) {
+        if (false == $remote = get_transient('recipe_plugin_for_wp_update')) {
             // info.json is the file with the actual plugin information on your server
             $remote = wp_remote_get('https://updates.howtofoodblog.com/recipe-plugin-for-wp/info.json', array(
                 'timeout' => 10,
@@ -124,7 +124,7 @@ class RecipePluginForWP
             ));
 
             if (!is_wp_error($remote) && isset($remote['response']['code']) && $remote['response']['code'] == 200 && !empty($remote['body'])) {
-                set_transient('foodblogkitchen_toolkit_update', $remote, 43200); // 12 hours cache
+                set_transient('recipe_plugin_for_wp_update', $remote, 43200); // 12 hours cache
             }
         }
 
@@ -172,7 +172,7 @@ class RecipePluginForWP
         }
 
         // trying to get from cache first, to disable cache comment 10,20,21,22,24
-        if (false == $remote = get_transient('foodblogkitchen_toolkit_upgrade')) {
+        if (false == $remote = get_transient('recipe_plugin_for_wp_upgrade')) {
 
             // info.json is the file with the actual plugin information on your server
             $remote = wp_remote_get('https://updates.howtofoodblog.com/recipe-plugin-for-wp/info.json', array(
@@ -183,7 +183,7 @@ class RecipePluginForWP
             ));
 
             if (!is_wp_error($remote) && isset($remote['response']['code']) && $remote['response']['code'] == 200 && !empty($remote['body'])) {
-                set_transient('foodblogkitchen_toolkit_upgrade', $remote, 43200); // 12 hours cache
+                set_transient('recipe_plugin_for_wp_upgrade', $remote, 43200); // 12 hours cache
             }
         }
 
@@ -220,7 +220,7 @@ class RecipePluginForWP
     {
         if ($options['action'] == 'update' && $options['type'] === 'plugin') {
             // just clean the cache when new plugin version is installed
-            delete_transient('foodblogkitchen_toolkit_upgrade');
+            delete_transient('recipe_plugin_for_wp_upgrade');
         }
     }
 
@@ -257,7 +257,7 @@ class RecipePluginForWP
             __('Recipe Plugin for WP', 'recipe-plugin-for-wp'),
             __('Recipe Plugin for WP', 'recipe-plugin-for-wp'),
             'manage_options',
-            'foodblogkitchen_toolkit',
+            'recipe_plugin_for_wp',
             function () {
                 return require_once(plugin_dir_path(__FILE__) . '../templates/admin-index-page.php');
             },
@@ -266,33 +266,33 @@ class RecipePluginForWP
         );
 
         add_submenu_page(
-            'foodblogkitchen_toolkit',
+            'recipe_plugin_for_wp',
             __('Recipe Block', 'recipe-plugin-for-wp'),
             __("Recipe Block", 'recipe-plugin-for-wp'),
             'manage_options',
-            'foodblogkitchen_toolkit',
+            'recipe_plugin_for_wp',
             function () {
                 return require_once(plugin_dir_path(__FILE__) . '../templates/admin-index-page.php');
             }
         );
 
         add_submenu_page(
-            'foodblogkitchen_toolkit',
+            'recipe_plugin_for_wp',
             __('Release notes', 'recipe-plugin-for-wp'),
             __("Release notes", 'recipe-plugin-for-wp'),
             'manage_options',
-            'foodblogkitchen_toolkit_release_notes',
+            'recipe_plugin_for_wp_release_notes',
             function () {
                 return require_once(plugin_dir_path(__FILE__) . '../templates/admin-release-notes-page.php');
             }
         );
 
         add_submenu_page(
-            'foodblogkitchen_toolkit',
+            'recipe_plugin_for_wp',
             __('License', 'recipe-plugin-for-wp'),
             __("License", 'recipe-plugin-for-wp'),
             'manage_options',
-            'foodblogkitchen_toolkit_license',
+            'recipe_plugin_for_wp_license',
             function () {
                 return require_once(plugin_dir_path(__FILE__) . '../templates/admin-license-page.php');
             }
@@ -333,116 +333,116 @@ class RecipePluginForWP
     {
         // Settings
         register_setting(
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__primary_color',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__primary_color',
             array(
                 "default" => $this->primaryColorDefault
             )
         );
         register_setting(
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__primary_color_contrast',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__primary_color_contrast',
             array(
                 "default" => $this->primaryColorContrastDefault
             )
         );
         register_setting(
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__primary_color_light',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__primary_color_light',
             array(
                 "default" => $this->primaryColorLightDefault
             )
         );
         register_setting(
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__primary_color_light_contrast',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__primary_color_light_contrast',
             array(
                 "default" => $this->primaryColorLightContrastDefault
             )
         );
         register_setting(
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__primary_color_dark',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__primary_color_dark',
             array(
                 "default" => $this->primaryColorDarkDefault
             )
         );
         register_setting(
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__secondary_color',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__secondary_color',
             array(
                 "default" => $this->secondaryColorDefault
             )
         );
         register_setting(
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__secondary_color_contrast',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__secondary_color_contrast',
             array(
                 "default" => $this->secondaryColorContrastDefault
             )
         );
         register_setting(
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__background_color',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__background_color',
             array(
                 "default" => $this->backgroundColorDefault
             )
         );
         register_setting(
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__background_color_contrast',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__background_color_contrast',
             array(
                 "default" => $this->backgroundColorContrastDefault
             )
         );
         register_setting(
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__show_box_shadow',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__show_box_shadow',
             array(
                 "default" => $this->showBoxShadowDefault
             )
         );
         register_setting(
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__show_border',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__show_border',
             array(
                 "default" => $this->showBorderDefault
             )
         );
         register_setting(
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__border_radius',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__border_radius',
             array(
                 "default" => $this->borderRadiusDefault
             )
         );
         register_setting(
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__thumbnail_size',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__thumbnail_size',
             array(
                 "default" => $this->thumnailSizeDefault
             )
         );
 
         register_setting(
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__show_jump_to_recipe',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__show_jump_to_recipe',
             array(
                 "default" => true
             )
         );
 
         register_setting(
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__instagram__username',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__instagram__username',
             array(
                 "default" => ''
             )
         );
 
         register_setting(
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__instagram__hashtag',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__instagram__hashtag',
             array(
                 "default" => ''
             )
@@ -450,153 +450,153 @@ class RecipePluginForWP
 
         // Sections
         add_settings_section(
-            'foodblogkitchen_toolkit__general',
+            'recipe_plugin_for_wp__general',
             __('General settings', 'recipe-plugin-for-wp'),
             function () {
                 echo '<p>' . __("Configure how the recipe block should behave on your blog posts.", 'recipe-plugin-for-wp') . '</p>';
             },
-            'foodblogkitchen_toolkit__general'
+            'recipe_plugin_for_wp__general'
         );
         add_settings_section(
-            'foodblogkitchen_toolkit__instagram',
+            'recipe_plugin_for_wp__instagram',
             __('Instagram', 'recipe-plugin-for-wp'),
             function () {
                 echo '<p>' . __("Provide informations about your instagram profile and we show a call to action below your recipe.", 'recipe-plugin-for-wp') . '</p>';
             },
-            'foodblogkitchen_toolkit__general'
+            'recipe_plugin_for_wp__general'
         );
         add_settings_section(
-            'foodblogkitchen_toolkit__visual',
+            'recipe_plugin_for_wp__visual',
             __('Visual settings', 'recipe-plugin-for-wp'),
             function () {
                 echo '<p>' . __("Configure how the recipe block should look for your visitors.", 'recipe-plugin-for-wp') . '</p>';
             },
-            'foodblogkitchen_toolkit__general'
+            'recipe_plugin_for_wp__general'
         );
 
         // Fields
         add_settings_field(
-            'foodblogkitchen_toolkit__show_jump_to_recipe',
+            'recipe_plugin_for_wp__show_jump_to_recipe',
             __('Jump to recipe', 'recipe-plugin-for-wp'),
             function () {
-                $this->renderCheckboxInput('foodblogkitchen_toolkit__show_jump_to_recipe', true, __('Add a "Jump to recipe" button on every page with the recipe block.', 'recipe-plugin-for-wp'));
+                $this->renderCheckboxInput('recipe_plugin_for_wp__show_jump_to_recipe', true, __('Add a "Jump to recipe" button on every page with the recipe block.', 'recipe-plugin-for-wp'));
             },
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__general',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__general',
             array(
-                'label_for' => 'foodblogkitchen_toolkit__show_jump_to_recipe'
+                'label_for' => 'recipe_plugin_for_wp__show_jump_to_recipe'
             )
         );
 
         add_settings_field(
-            'foodblogkitchen_toolkit__instagram__username',
+            'recipe_plugin_for_wp__instagram__username',
             __('Your username', 'recipe-plugin-for-wp'),
             function () {
-                $this->renderTextInput('foodblogkitchen_toolkit__instagram__username', '');
+                $this->renderTextInput('recipe_plugin_for_wp__instagram__username', '');
             },
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__instagram',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__instagram',
             array(
-                'label_for' => 'foodblogkitchen_toolkit__instagram__username'
+                'label_for' => 'recipe_plugin_for_wp__instagram__username'
             )
         );
 
         add_settings_field(
-            'foodblogkitchen_toolkit__instagram__hashtag',
+            'recipe_plugin_for_wp__instagram__hashtag',
             __('Hashtag', 'recipe-plugin-for-wp'),
             function () {
-                $this->renderTextInput('foodblogkitchen_toolkit__instagram__hashtag', '');
+                $this->renderTextInput('recipe_plugin_for_wp__instagram__hashtag', '');
             },
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__instagram',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__instagram',
             array(
-                'label_for' => 'foodblogkitchen_toolkit__instagram__hashtag'
+                'label_for' => 'recipe_plugin_for_wp__instagram__hashtag'
             )
         );
 
         add_settings_field(
-            'foodblogkitchen_toolkit__primary_color',
+            'recipe_plugin_for_wp__primary_color',
             __('Primary color', 'recipe-plugin-for-wp'),
             function () {
-                $this->renderColorPickerInput('foodblogkitchen_toolkit__primary_color', $this->primaryColorDefault);
+                $this->renderColorPickerInput('recipe_plugin_for_wp__primary_color', $this->primaryColorDefault);
             },
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__visual',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__visual',
             array(
-                'label_for' => 'foodblogkitchen_toolkit__primary_color'
+                'label_for' => 'recipe_plugin_for_wp__primary_color'
             )
         );
         add_settings_field(
-            'foodblogkitchen_toolkit__secondary_color',
+            'recipe_plugin_for_wp__secondary_color',
             __('Secondary color', 'recipe-plugin-for-wp'),
             function () {
-                $this->renderColorPickerInput('foodblogkitchen_toolkit__secondary_color', $this->secondaryColorDefault);
+                $this->renderColorPickerInput('recipe_plugin_for_wp__secondary_color', $this->secondaryColorDefault);
             },
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__visual',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__visual',
             array(
-                'label_for' => 'foodblogkitchen_toolkit__secondary_color'
+                'label_for' => 'recipe_plugin_for_wp__secondary_color'
             )
         );
         add_settings_field(
-            'foodblogkitchen_toolkit__background_color',
+            'recipe_plugin_for_wp__background_color',
             __('Background color', 'recipe-plugin-for-wp'),
             function () {
-                $this->renderColorPickerInput('foodblogkitchen_toolkit__background_color', $this->backgroundColorDefault);
+                $this->renderColorPickerInput('recipe_plugin_for_wp__background_color', $this->backgroundColorDefault);
             },
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__visual',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__visual',
             array(
-                'label_for' => 'foodblogkitchen_toolkit__background_color'
+                'label_for' => 'recipe_plugin_for_wp__background_color'
             )
         );
 
         add_settings_field(
-            'foodblogkitchen_toolkit__show_border',
+            'recipe_plugin_for_wp__show_border',
             __('Border', 'recipe-plugin-for-wp'),
             function () {
-                $this->renderCheckboxInput('foodblogkitchen_toolkit__show_border', $this->showBorderDefault, __('Show border', 'recipe-plugin-for-wp'));
+                $this->renderCheckboxInput('recipe_plugin_for_wp__show_border', $this->showBorderDefault, __('Show border', 'recipe-plugin-for-wp'));
             },
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__visual',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__visual',
             array(
-                'label_for' => 'foodblogkitchen_toolkit__show_border'
+                'label_for' => 'recipe_plugin_for_wp__show_border'
             )
         );
         add_settings_field(
-            'foodblogkitchen_toolkit__show_box_shadow',
+            'recipe_plugin_for_wp__show_box_shadow',
             __('Box shadow', 'recipe-plugin-for-wp'),
             function () {
-                $this->renderCheckboxInput('foodblogkitchen_toolkit__show_box_shadow', $this->showBoxShadowDefault, __('Show box shadow', 'recipe-plugin-for-wp'));
+                $this->renderCheckboxInput('recipe_plugin_for_wp__show_box_shadow', $this->showBoxShadowDefault, __('Show box shadow', 'recipe-plugin-for-wp'));
             },
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__visual',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__visual',
             array(
-                'label_for' => 'foodblogkitchen_toolkit__show_box_shadow'
+                'label_for' => 'recipe_plugin_for_wp__show_box_shadow'
             )
         );
         add_settings_field(
-            'foodblogkitchen_toolkit__border_radius',
+            'recipe_plugin_for_wp__border_radius',
             __('Border radius', 'recipe-plugin-for-wp'),
             function () {
-                $this->renderNumberInput('foodblogkitchen_toolkit__border_radius', $this->borderRadiusDefault);
+                $this->renderNumberInput('recipe_plugin_for_wp__border_radius', $this->borderRadiusDefault);
             },
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__visual',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__visual',
             array(
-                'label_for' => 'foodblogkitchen_toolkit__border_radius'
+                'label_for' => 'recipe_plugin_for_wp__border_radius'
             )
         );
         add_settings_field(
-            'foodblogkitchen_toolkit__thumbnail_size',
+            'recipe_plugin_for_wp__thumbnail_size',
             __('Image width', 'recipe-plugin-for-wp'),
             function () {
-                $this->renderNumberInput('foodblogkitchen_toolkit__thumbnail_size', $this->thumnailSizeDefault);
+                $this->renderNumberInput('recipe_plugin_for_wp__thumbnail_size', $this->thumnailSizeDefault);
             },
-            'foodblogkitchen_toolkit__general',
-            'foodblogkitchen_toolkit__visual',
+            'recipe_plugin_for_wp__general',
+            'recipe_plugin_for_wp__visual',
             array(
-                'label_for' => 'foodblogkitchen_toolkit__thumbnail_size'
+                'label_for' => 'recipe_plugin_for_wp__thumbnail_size'
             )
         );
     }
@@ -605,8 +605,8 @@ class RecipePluginForWP
     {
         // Settings
         register_setting(
-            'foodblogkitchen_toolkit__pinterest',
-            'foodblogkitchen_toolkit__pinterest_image_overlay__enabled',
+            'recipe_plugin_for_wp__pinterest',
+            'recipe_plugin_for_wp__pinterest_image_overlay__enabled',
             array(
                 "default" => false
             )
@@ -614,26 +614,26 @@ class RecipePluginForWP
 
         // Sections
         add_settings_section(
-            'foodblogkitchen_toolkit__pinterest',
+            'recipe_plugin_for_wp__pinterest',
             '',
             // __('General settings', 'recipe-plugin-for-wp'),
             function () {
                 echo '<p>' . __("Configure the implementation of pinterest in your blog.", 'recipe-plugin-for-wp') . '</p>';
             },
-            'foodblogkitchen_toolkit__pinterest'
+            'recipe_plugin_for_wp__pinterest'
         );
 
         // Fields
         add_settings_field(
-            'foodblogkitchen_toolkit__pinterest_image_overlay__enabled',
+            'recipe_plugin_for_wp__pinterest_image_overlay__enabled',
             __('Image overlay', 'recipe-plugin-for-wp'),
             function () {
-                $this->renderCheckboxInput('foodblogkitchen_toolkit__pinterest_image_overlay__enabled', false, __('Show Pinterest share icon on post images. This only affects images on posts created with Gutenberg.', 'recipe-plugin-for-wp'));
+                $this->renderCheckboxInput('recipe_plugin_for_wp__pinterest_image_overlay__enabled', false, __('Show Pinterest share icon on post images. This only affects images on posts created with Gutenberg.', 'recipe-plugin-for-wp'));
             },
-            'foodblogkitchen_toolkit__pinterest',
-            'foodblogkitchen_toolkit__pinterest',
+            'recipe_plugin_for_wp__pinterest',
+            'recipe_plugin_for_wp__pinterest',
             array(
-                'label_for' => 'foodblogkitchen_toolkit__pinterest_image_overlay__enabled'
+                'label_for' => 'recipe_plugin_for_wp__pinterest_image_overlay__enabled'
             )
         );
     }
@@ -710,11 +710,11 @@ class RecipePluginForWP
     public function localizeScripts()
     {
         // Add some variables for the editor script
-        $license = get_option('foodblogkitchen_toolkit__license_key', '');
+        $license = get_option('recipe_plugin_for_wp__license_key', '');
 
         wp_localize_script('foodblogkitchen-recipes-block-editor-script', 'foodblogkitchenToolkitAdditionalData', [
             "hasValidLicense" => !empty($license),
-            "licensePage" => get_admin_url(get_current_network_id(), 'admin.php?page=foodblogkitchen_toolkit_license')
+            "licensePage" => get_admin_url(get_current_network_id(), 'admin.php?page=recipe_plugin_for_wp_license')
         ]);
 
         // Add the link to the print css for the recipe block view script
@@ -1017,8 +1017,8 @@ class RecipePluginForWP
             "averageRating" => 4.5,
             "thumbnail" => plugins_url('../assets/banana-shake-4_3.png', __FILE__),
             "notes" => __("The milkshake becomes particularly creamy with UHT milk.", 'recipe-plugin-for-wp'),
-            "instagramUsername" => get_option('foodblogkitchen_toolkit__instagram__username', ''),
-            "instagramHashtag" => get_option('foodblogkitchen_toolkit__instagram__hashtag', '')
+            "instagramUsername" => get_option('recipe_plugin_for_wp__instagram__username', ''),
+            "instagramHashtag" => get_option('recipe_plugin_for_wp__instagram__hashtag', '')
 
         );
     }
@@ -1273,8 +1273,8 @@ class RecipePluginForWP
         $attributes['svgs'] = $this->getSvgs($attributes['options']);
 
         // Instagram-CTA
-        $attributes['instagramUsername'] = get_option('foodblogkitchen_toolkit__instagram__username', '');
-        $attributes['instagramHashtag'] = get_option('foodblogkitchen_toolkit__instagram__hashtag', '');
+        $attributes['instagramUsername'] = get_option('recipe_plugin_for_wp__instagram__username', '');
+        $attributes['instagramHashtag'] = get_option('recipe_plugin_for_wp__instagram__hashtag', '');
 
         $attributes['blog_name'] =  get_bloginfo('name');
 
@@ -1399,18 +1399,18 @@ class RecipePluginForWP
     private function getStyleOptions()
     {
         return array(
-            "primaryColor" => get_option('foodblogkitchen_toolkit__primary_color', $this->primaryColorDefault),
-            "primaryColorContrast" => get_option('foodblogkitchen_toolkit__primary_color_contrast', $this->primaryColorContrastDefault),
-            "primaryColorLight" => get_option('foodblogkitchen_toolkit__primary_color_light', $this->primaryColorLightDefault),
-            "primaryColorLightContrast" => get_option('foodblogkitchen_toolkit__primary_color_light_contrast', $this->primaryColorLightContrastDefault),
-            "primaryColorDark" => get_option('foodblogkitchen_toolkit__primary_color_dark', $this->primaryColorDarkDefault),
-            "secondaryColor" => get_option('foodblogkitchen_toolkit__secondary_color', $this->secondaryColorDefault),
-            "secondaryColorContrast" => get_option('foodblogkitchen_toolkit__secondary_color_contrast', $this->secondaryColorContrastDefault),
-            "backgroundColor" => get_option('foodblogkitchen_toolkit__background_color', $this->backgroundColorDefault),
-            "backgroundColorContrast" => get_option('foodblogkitchen_toolkit__background_color_contrast', $this->backgroundColorContrastDefault),
-            "showBorder" => get_option('foodblogkitchen_toolkit__show_border', $this->showBorderDefault),
-            "showBoxShadow" => get_option('foodblogkitchen_toolkit__show_box_shadow', $this->showBoxShadowDefault),
-            "borderRadius" => get_option('foodblogkitchen_toolkit__border_radius', $this->borderRadiusDefault),
+            "primaryColor" => get_option('recipe_plugin_for_wp__primary_color', $this->primaryColorDefault),
+            "primaryColorContrast" => get_option('recipe_plugin_for_wp__primary_color_contrast', $this->primaryColorContrastDefault),
+            "primaryColorLight" => get_option('recipe_plugin_for_wp__primary_color_light', $this->primaryColorLightDefault),
+            "primaryColorLightContrast" => get_option('recipe_plugin_for_wp__primary_color_light_contrast', $this->primaryColorLightContrastDefault),
+            "primaryColorDark" => get_option('recipe_plugin_for_wp__primary_color_dark', $this->primaryColorDarkDefault),
+            "secondaryColor" => get_option('recipe_plugin_for_wp__secondary_color', $this->secondaryColorDefault),
+            "secondaryColorContrast" => get_option('recipe_plugin_for_wp__secondary_color_contrast', $this->secondaryColorContrastDefault),
+            "backgroundColor" => get_option('recipe_plugin_for_wp__background_color', $this->backgroundColorDefault),
+            "backgroundColorContrast" => get_option('recipe_plugin_for_wp__background_color_contrast', $this->backgroundColorContrastDefault),
+            "showBorder" => get_option('recipe_plugin_for_wp__show_border', $this->showBorderDefault),
+            "showBoxShadow" => get_option('recipe_plugin_for_wp__show_box_shadow', $this->showBoxShadowDefault),
+            "borderRadius" => get_option('recipe_plugin_for_wp__border_radius', $this->borderRadiusDefault),
         );
     }
 
@@ -1508,7 +1508,7 @@ class RecipePluginForWP
         if ($license_data->result == 'success') {
             //Success was returned for the license activation
             //Save the license key in the options table
-            update_option('foodblogkitchen_toolkit__license_key', $licenseKey);
+            update_option('recipe_plugin_for_wp__license_key', $licenseKey);
 
             return array(
                 "status" => "success",
@@ -1530,7 +1530,7 @@ class RecipePluginForWP
 
     public static function unregisterLicense()
     {
-        $licenseKey = get_option('foodblogkitchen_toolkit__license_key', '');
+        $licenseKey = get_option('recipe_plugin_for_wp__license_key', '');
 
         if (!empty($licenseKey)) {
 
@@ -1560,7 +1560,7 @@ class RecipePluginForWP
                 if ($license_data->result == 'success') {
                     //Success was returned for the license activation
                     //Remove the license key from the options table.
-                    delete_option('foodblogkitchen_toolkit__license_key');
+                    delete_option('recipe_plugin_for_wp__license_key');
 
                     return array(
                         "status" => "success",
@@ -1568,7 +1568,7 @@ class RecipePluginForWP
                     );
                 } else {
                     if (isset($license_data->error_code) && $license_data->error_code === 80) {
-                        delete_option('foodblogkitchen_toolkit__license_key');
+                        delete_option('recipe_plugin_for_wp__license_key');
                     }
 
                     //Show error to the user. Probably entered incorrect license key.

@@ -4,14 +4,14 @@
   <?php
 
   if (isset($_REQUEST['activate_license'])) {
-    $result = RecipePluginForWP::registerLicense($_REQUEST['foodblogkitchen_toolkit__license_key']);
+    $result = RecipePluginForWP::registerLicense($_REQUEST['recipe_plugin_for_wp__license_key']);
   }
 
   if (isset($_REQUEST['deactivate_license'])) {
     $result = RecipePluginForWP::unregisterLicense();
   }
 
-  $licenseKey = get_option('foodblogkitchen_toolkit__license_key', '');
+  $licenseKey = get_option('recipe_plugin_for_wp__license_key', '');
 
   if (isset($result) && is_array($result)) {
     switch ($result['status']) {
@@ -37,8 +37,8 @@
   <form action="" method="post">
     <table class="form-table">
       <tr>
-        <th style="width:100px;"><label for="foodblogkitchen_toolkit__license_key"><?= __("License Key", 'recipe-plugin-for-wp'); ?></label></th>
-        <td><input class="regular-text" type="text" id="foodblogkitchen_toolkit__license_key" name="foodblogkitchen_toolkit__license_key" value="<?php echo $licenseKey; ?>"></td>
+        <th style="width:100px;"><label for="recipe_plugin_for_wp__license_key"><?= __("License Key", 'recipe-plugin-for-wp'); ?></label></th>
+        <td><input class="regular-text" type="text" id="recipe_plugin_for_wp__license_key" name="recipe_plugin_for_wp__license_key" value="<?php echo $licenseKey; ?>"></td>
       </tr>
     </table>
     <p class="submit">

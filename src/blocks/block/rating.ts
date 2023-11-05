@@ -79,7 +79,7 @@ export class Rating {
       method: "POST",
       body: new URLSearchParams({
         _ajax_nonce: window.RecipePluginForWP.config.nonce,
-        action: "foodblogkitchen_toolkit_set_rating",
+        action: "recipe_plugin_for_wp_set_rating",
         postId,
         rating,
       }),

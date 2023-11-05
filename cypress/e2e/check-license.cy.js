@@ -10,10 +10,10 @@ describe("Check if license is required", () => {
 
   it("should be possible to activate/deactivate a valid license", () => {
     cy.visit(
-      "http://localhost/wp-admin/admin.php?page=foodblogkitchen_toolkit_license"
+      "http://localhost/wp-admin/admin.php?page=recipe_plugin_for_wp_license"
     );
-    cy.get("#foodblogkitchen_toolkit__license_key").should("have.value", "");
-    cy.get("#foodblogkitchen_toolkit__license_key").type("5ff5cd22687bc");
+    cy.get("#recipe_plugin_for_wp__license_key").should("have.value", "");
+    cy.get("#recipe_plugin_for_wp__license_key").type("5ff5cd22687bc");
     cy.get('[value="Activate"]').click();
     cy.contains("Your license has been successfully activated.");
     cy.get('[value="Deactivate"]').click();
