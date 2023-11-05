@@ -5,6 +5,6 @@ read version
 source .env
 
 # Upload to the server
-sshpass -p $FTP_PASSWORD scp ./updates/archives/$version.zip $FTP_USER@$FTP_SERVER:updates/foodblogkitchen-toolkit/archives/
-sshpass -p $FTP_PASSWORD scp ./updates/archives/latest.zip $FTP_USER@$FTP_SERVER:updates/foodblogkitchen-toolkit/archives/
-sshpass -p $FTP_PASSWORD scp ./updates/info.json $FTP_USER@$FTP_SERVER:updates/foodblogkitchen-toolkit/
+sshpass -p $FTP_PASSWORD scp ./updates/archives/$version.zip $FTP_USER@$FTP_SERVER:updates/recipe-plugin-for-wp/archives/
+sshpass -p $FTP_PASSWORD scp ./updates/archives/latest.zip $FTP_USER@$FTP_SERVER:updates/recipe-plugin-for-wp/archives/
+sshpass -p $FTP_PASSWORD scp ./updates/info.json $FTP_USER@$FTP_SERVER:updates/recipe-plugin-for-wp/

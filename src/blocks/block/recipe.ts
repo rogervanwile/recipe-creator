@@ -13,7 +13,7 @@ export class Recipe {
 
   private initRating() {
     const ratingElements = this.element.querySelectorAll<HTMLElement>(
-      ".foodblogkitchen-toolkit--recipe-block--rating.foodblogkitchen-toolkit--recipe-block--interactive"
+      ".recipe-plugin-for-wp--recipe-block--rating.recipe-plugin-for-wp--recipe-block--interactive"
     );
 
     if (ratingElements) {
@@ -29,7 +29,7 @@ export class Recipe {
 
   private initPrinting() {
     const printButton = this.element.querySelector(
-      ".foodblogkitchen-toolkit--recipe-block--print-button"
+      ".recipe-plugin-for-wp--recipe-block--print-button"
     );
 
     if (!printButton) {

@@ -15,7 +15,7 @@ export class PinterestImageOverlay {
         const pinItLink = document.createElement("a");
         pinItLink.href = "#";
         pinItLink.classList.add(
-          "foodblogkitchen-toolkit--pinterest-image-overlay"
+          "recipe-plugin-for-wp--pinterest-image-overlay"
         );
 
         pinItLink.addEventListener("click", (event) => {
@@ -31,13 +31,13 @@ export class PinterestImageOverlay {
         const tooltip = document.createElement("span");
         tooltip.innerText = "Pin it";
         tooltip.classList.add(
-          "foodblogkitchen-toolkit--pinterest-image-overlay--tooltip"
+          "recipe-plugin-for-wp--pinterest-image-overlay--tooltip"
         );
         pinItLink.appendChild(tooltip);
 
         if (image.parentNode) {
           (<HTMLElement>image.parentNode).classList.add(
-            "foodblogkitchen-toolkit--pinterest-wrapper"
+            "recipe-plugin-for-wp--pinterest-wrapper"
           );
           image.parentNode.insertBefore(pinItLink, image.nextSibling);
         }

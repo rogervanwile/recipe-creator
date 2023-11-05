@@ -51,14 +51,14 @@ export default function IngredientsGroupsEditor({ props }) {
         return (
           <div
             key={"ingredientsGroups_" + index}
-            className="foodblogkitchen-toolkit--recipe-block--editor"
+            className="recipe-plugin-for-wp--recipe-block--editor"
           >
             {index !== 0 || props.attributes.ingredientsGroups.length > 1 ? (
-              <div className="foodblogkitchen-toolkit--recipe-block--group-header">
+              <div className="recipe-plugin-for-wp--recipe-block--group-header">
                 <RichText
                   tagName="h3"
                   value={group.title || ""}
-                  placeholder={__("Group name", "foodblogkitchen-toolkit")}
+                  placeholder={__("Group name", "recipe-plugin-for-wp")}
                   __unstablePastePlainText={true}
                   onChange={(value) => {
                     const groupUpdate = {
@@ -73,7 +73,7 @@ export default function IngredientsGroupsEditor({ props }) {
                   }}
                 />
                 <Button isTertiary={true} onClick={() => removeGroup(index)}>
-                  {__("Remove Group", "foodblogkitchen-toolkit")}
+                  {__("Remove Group", "recipe-plugin-for-wp")}
                 </Button>
               </div>
             ) : (
@@ -84,7 +84,7 @@ export default function IngredientsGroupsEditor({ props }) {
               multiline="li"
               placeholder={__(
                 "Add the ingredients here...",
-                "foodblogkitchen-toolkit"
+                "recipe-plugin-for-wp"
               )}
               value={group.list || ""}
               __unstablePastePlainText={true}
@@ -106,8 +106,8 @@ export default function IngredientsGroupsEditor({ props }) {
 
       <Button isSecondary={true} onClick={addGroup}>
         {props.attributes.ingredientsGroups.length === 1
-          ? __("Split ingredients into groups", "foodblogkitchen-toolkit")
-          : __("Add additional group", "foodblogkitchen-toolkit")}
+          ? __("Split ingredients into groups", "recipe-plugin-for-wp")
+          : __("Add additional group", "recipe-plugin-for-wp")}
       </Button>
     </>
   );

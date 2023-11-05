@@ -3,7 +3,7 @@
 define("ABSPATH", "let-me-in");
 define("WP_DEBUG", true);
 
-require __DIR__ . '/../inc/foodblogkitchen-toolkit.php';
+require __DIR__ . '/../inc/recipe-plugin-for-wp.php';
 
 /**
  * Precompile handlebars templates
@@ -15,7 +15,7 @@ function plugin_dir_path($file)
     return dirname($file) . '/';
 }
 
-FoodblogkitchenToolkit::getRecipeBlockRenderer();
-FoodblogkitchenToolkit::getRecipeBlockStylesRenderer();
-FoodblogkitchenToolkit::getJumpToRecipeBlockRenderer();
-FoodblogkitchenToolkit::getFAQBlockRenderer();
+RecipePluginForWP::getRecipeBlockRenderer();
+RecipePluginForWP::getRecipeBlockStylesRenderer();
+RecipePluginForWP::getJumpToRecipeBlockRenderer();
+RecipePluginForWP::getFAQBlockRenderer();

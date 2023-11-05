@@ -63,8 +63,8 @@ rl.on("close", function () {
 rl.question("What is the new version? ", function (version: string) {
   // Remove existing release folder to start clean
 
-  if (fs.existsSync("./foodblogkitchen-toolkit/")) {
-    fs.rmdirSync("./foodblogkitchen-toolkit/", {
+  if (fs.existsSync("./recipe-plugin-for-wp/")) {
+    fs.rmdirSync("./recipe-plugin-for-wp/", {
       force: true,
       recursive: true,
     });
@@ -83,7 +83,7 @@ rl.question("What is the new version? ", function (version: string) {
   ];
 
   const filesToCopy: string[] = [
-    "./foodblogkitchen-toolkit.php",
+    "./recipe-plugin-for-wp.php",
     "./index.php",
     "./screenshot-1.png",
     "./screenshot-2.png",
@@ -94,11 +94,11 @@ rl.question("What is the new version? ", function (version: string) {
   ];
 
   foldersToCopy.forEach((folder) => {
-    copyFolderRecursiveSync(folder, "./foodblogkitchen-toolkit");
+    copyFolderRecursiveSync(folder, "./recipe-plugin-for-wp");
   });
 
   filesToCopy.forEach((file) => {
-    copyFileSync(file, "./foodblogkitchen-toolkit");
+    copyFileSync(file, "./recipe-plugin-for-wp");
   });
 
   // Duplicate the de_DE translation files for de_AT and de_CH
@@ -111,12 +111,12 @@ rl.question("What is the new version? ", function (version: string) {
 
       copyFileSync(
         "./languages/" + file,
-        "./foodblogkitchen-toolkit/languages/",
+        "./recipe-plugin-for-wp/languages/",
         atFileName
       );
       copyFileSync(
         "./languages/" + file,
-        "./foodblogkitchen-toolkit/languages/",
+        "./recipe-plugin-for-wp/languages/",
         chFileName
       );
     }
@@ -125,7 +125,7 @@ rl.question("What is the new version? ", function (version: string) {
   // Create the Zip file
 
   child_process.execSync(
-    `zip -r ./updates/archives/${version}.zip ./foodblogkitchen-toolkit`
+    `zip -r ./updates/archives/${version}.zip ./recipe-plugin-for-wp`
   );
 
   // Copy the zip as latest
@@ -135,7 +135,7 @@ rl.question("What is the new version? ", function (version: string) {
   );
 
   // Remove the temporary release folder
-  fs.rmdirSync("./foodblogkitchen-toolkit/", {
+  fs.rmdirSync("./recipe-plugin-for-wp/", {
     force: true,
     recursive: true,
   });
@@ -155,7 +155,7 @@ rl.question("What is the new version? ", function (version: string) {
 
   const infoJson = {
     version: version,
-    download_url: `https://updates.foodblogkitchen.de/foodblogkitchen-toolkit/archives/${version}.zip`,
+    download_url: `https://updates.howtofoodblog.com/recipe-plugin-for-wp/archives/${version}.zip`,
     requires: "5.8.0",
     tested: "6.2.0",
     requires_php: "7.4",

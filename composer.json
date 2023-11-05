@@ -1,9 +1,9 @@
 {
-  "name": "oliverwagner/foodblogkitchen-toolkit",
+  "name": "oliverwagner/recipe-plugin-for-wp",
   "authors": [
     {
       "name": "Oliver Wagner",
-      "email": "oliver@foodblogkitchen.de"
+      "email": "oliver@howtofoodblog.com"
     }
   ],
   "require": {

@@ -1,12 +1,12 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
-  "name": "foodblogkitchen-toolkit/faq",
+  "name": "recipe-plugin-for-wp/faq",
   "title": "FAQ",
   "description": "Answer post related questions in a simple FAQ block.",
   "category": "formatting",
   "icon": "format-chat",
-  "textdomain": "foodblogkitchen-toolkit",
+  "textdomain": "recipe-plugin-for-wp",
   "supports": {
     "html": false,
     "align": ["center", "wide", "full"]

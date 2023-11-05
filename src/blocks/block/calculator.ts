@@ -8,11 +8,11 @@ export class Calculator {
 
   constructor(recipeElement: HTMLElement) {
     this.servingsSelector = recipeElement.querySelector(
-      ".foodblogkitchen-toolkit--recipe-block--servings-editor"
+      ".recipe-plugin-for-wp--recipe-block--servings-editor"
     );
 
     this.ingredientsTable = recipeElement.querySelector(
-      ".foodblogkitchen-toolkit--recipe-block--ingredients-table"
+      ".recipe-plugin-for-wp--recipe-block--ingredients-table"
     );
 
     if (this.servingsSelector && this.ingredientsTable) {
@@ -88,7 +88,7 @@ export class Calculator {
 
       this.ingredientsTable
         .querySelectorAll<HTMLElement>(
-          "tr .foodblogkitchen-toolkit--recipe-block--amount"
+          "tr .recipe-plugin-for-wp--recipe-block--amount"
         )
         .forEach((amountElement) => {
           const amount = parseFloat(

@@ -1,6 +1,6 @@
 <?php
 
-class FoodblogkitchenToolkitMigrationSPRecipes
+class RecipePluginForWPMigrationSPRecipes
 {
 
     public function getRecipeFromSP()
@@ -90,10 +90,10 @@ class FoodblogkitchenToolkitMigrationSPRecipes
     }
 
     // register_block_type('foodblogkitchen-recipes/block', array(
-    //     'editor_script' => 'foodblogkitchen-toolkit-recipe-block-editor',
-    //     'editor_style'  => 'foodblogkitchen-toolkit-recipe-block-editor',
-    //     'script'        => 'foodblogkitchen-toolkit-recipe-block',
-    //     'style'         => 'foodblogkitchen-toolkit-recipe-block',
+    //     'editor_script' => 'recipe-plugin-for-wp-recipe-block-editor',
+    //     'editor_style'  => 'recipe-plugin-for-wp-recipe-block-editor',
+    //     'script'        => 'recipe-plugin-for-wp-recipe-block',
+    //     'style'         => 'recipe-plugin-for-wp-recipe-block',
     //     'attributes' => array(
     //         'ingredients' => array(
     //             'type' => 'string',

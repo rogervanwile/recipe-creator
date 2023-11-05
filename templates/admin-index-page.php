@@ -1,5 +1,5 @@
 <?php
-$foodblogkitchenToolkit = new FoodblogkitchenToolkit();
+$foodblogkitchenToolkit = new RecipePluginForWP();
 ?>
 
 <div class="wrap">
@@ -9,7 +9,7 @@ $foodblogkitchenToolkit = new FoodblogkitchenToolkit();
   <div id="col-container" class="wp-clearfix">
     <div id="col-left">
       <div class="col-wrap">
-        <form method="post" action="options.php" id="foodblogkitchen-toolkit--settings-form">
+        <form method="post" action="options.php" id="recipe-plugin-for-wp--settings-form">
           <input type="hidden" name="foodblogkitchen_toolkit__primary_color_contrast" value="<?= esc_attr(get_option('foodblogkitchen_toolkit__primary_color_contrast')); ?>" />
           <input type="hidden" name="foodblogkitchen_toolkit__primary_color_light" value="<?= esc_attr(get_option('foodblogkitchen_toolkit__primary_color_light')); ?>" />
           <input type="hidden" name="foodblogkitchen_toolkit__primary_color_light_contrast" value="<?= esc_attr(get_option('foodblogkitchen_toolkit__primary_color_light_contrast')); ?>" />
@@ -32,13 +32,13 @@ $foodblogkitchenToolkit = new FoodblogkitchenToolkit();
         ?>
       </div>
     </div>
-    <div id="foodblogkitchen-toolkit--style-container">
+    <div id="recipe-plugin-for-wp--style-container">
       <?php
       echo $foodblogkitchenToolkit->renderRecipeBlockStyles();
       ?>
     </div>
   </div>
-  <script type="text/template" id="foodblogkitchen-toolkit--style-block-template">
-    <?php echo FoodblogkitchenToolkit::getStyleBlockTemplate(); ?>
+  <script type="text/template" id="recipe-plugin-for-wp--style-block-template">
+    <?php echo RecipePluginForWP::getStyleBlockTemplate(); ?>
   </script>
 </div>

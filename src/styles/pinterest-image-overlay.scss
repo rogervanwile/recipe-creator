@@ -1,8 +1,8 @@
-.foodblogkitchen-toolkit--pinterest-wrapper {
+.recipe-plugin-for-wp--pinterest-wrapper {
     position: relative;
 }
 
-.foodblogkitchen-toolkit--pinterest-image-overlay {
+.recipe-plugin-for-wp--pinterest-image-overlay {
     position: absolute !important;
     top: 8px !important;
     left: 8px !important;
@@ -15,7 +15,7 @@
     background-repeat: no-repeat !important;
     cursor: pointer !important;
 
-    .foodblogkitchen-toolkit--pinterest-image-overlay--tooltip {
+    .recipe-plugin-for-wp--pinterest-image-overlay--tooltip {
         position: absolute;
         left: 36px;
         top: 50%;
@@ -31,7 +31,7 @@
         display: none;
     }
 
-    &:hover .foodblogkitchen-toolkit--pinterest-image-overlay--tooltip {
+    &:hover .recipe-plugin-for-wp--pinterest-image-overlay--tooltip {
         display: block;
     }
 }

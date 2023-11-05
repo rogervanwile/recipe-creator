@@ -4,12 +4,12 @@ import { Fragment } from "@wordpress/element";
 export default function Edit(props) {
   return (
     <Fragment>
-      <div className="wp-block foodblogkitchen-toolkit--block--jump-to-recipe">
+      <div className="wp-block recipe-plugin-for-wp--block--jump-to-recipe">
         <a
-          href="#foodblogkitchen-toolkit--recipe"
-          className="foodblogkitchen-toolkit--block--jump-to-recipe--link"
+          href="#recipe-plugin-for-wp--recipe"
+          className="recipe-plugin-for-wp--block--jump-to-recipe--link"
         >
-          {__("Jump to recipe", "foodblogkitchen-toolkit")}
+          {__("Jump to recipe", "recipe-plugin-for-wp")}
         </a>
       </div>
     </Fragment>

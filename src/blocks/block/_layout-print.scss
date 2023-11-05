@@ -22,7 +22,7 @@
     color: #000000 !important;
   }
 
-  .foodblogkitchen-toolkit--block {
+  .recipe-plugin-for-wp--block {
     --headline-font-family: serif !important;
     --text-font-family: sans-serif !important;
 
@@ -84,7 +84,7 @@
       grid-area: header-right;
     }
 
-    .foodblogkitchen-toolkit--recipe-block--thumbnail {
+    .recipe-plugin-for-wp--recipe-block--thumbnail {
       grid-area: header-left;
     }
 
@@ -100,8 +100,8 @@
       grid-area: main;
     }
 
-    .foodblogkitchen-toolkit--recipe-block--servings-editor {
-      .foodblogkitchen-toolkit--recipe-block--headline {
+    .recipe-plugin-for-wp--recipe-block--servings-editor {
+      .recipe-plugin-for-wp--recipe-block--headline {
         flex-direction: column;
         align-items: start;
       }
@@ -111,13 +111,13 @@
       }
     }
 
-    .foodblogkitchen-toolkit--recipe-block--timings {
+    .recipe-plugin-for-wp--recipe-block--timings {
       ul li {
         display: block;
       }
     }
 
-    .foodblogkitchen-toolkit--recipe-block--ingredients-table {
+    .recipe-plugin-for-wp--recipe-block--ingredients-table {
       tr td {
         padding-top: 0.4em;
         padding-bottom: 0.4em;
@@ -129,35 +129,35 @@
       }
     }
 
-    .foodblogkitchen-toolkit--recipe-block--utensils-list li {
+    .recipe-plugin-for-wp--recipe-block--utensils-list li {
       padding-left: 0;
       margin-bottom: 0;
     }
 
-    .foodblogkitchen-toolkit--recipe-block--copyright {
+    .recipe-plugin-for-wp--recipe-block--copyright {
       opacity: 0.8;
       margin-bottom: 12px;
       display: block;
     }
 
-    .foodblogkitchen-toolkit--recipe-block--rating,
-    .foodblogkitchen-toolkit--recipe-block--video,
+    .recipe-plugin-for-wp--recipe-block--rating,
+    .recipe-plugin-for-wp--recipe-block--video,
     .recipe-shrink-servings,
     .recipe-increase-servings,
-    .foodblogkitchen-toolkit--recipe-block--save-and-share,
-    .foodblogkitchen-toolkit--recipe-block--user-rating,
-    .foodblogkitchen-toolkit--recipe-block--difficulty {
+    .recipe-plugin-for-wp--recipe-block--save-and-share,
+    .recipe-plugin-for-wp--recipe-block--user-rating,
+    .recipe-plugin-for-wp--recipe-block--difficulty {
       display: none !important;
     }
 
-    .foodblogkitchen-toolkit--recipe-block--servings-editor > span {
+    .recipe-plugin-for-wp--recipe-block--servings-editor > span {
       background-color: transparent;
     }
 
-    .foodblogkitchen-toolkit--recipe-block--call-to-action {
+    .recipe-plugin-for-wp--recipe-block--call-to-action {
       background-color: transparent !important;
 
-      .foodblogkitchen-toolkit--recipe-block--call-to-action--icon {
+      .recipe-plugin-for-wp--recipe-block--call-to-action--icon {
         // TODO: Find a way to change the icon color
         display: none;
       }

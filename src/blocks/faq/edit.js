@@ -13,7 +13,7 @@ export default function Edit(props) {
       <RichText
         tagName="h2"
         value={props.attributes.question || ""}
-        placeholder={__("Your questions", "foodblogkitchen-toolkit")}
+        placeholder={__("Your questions", "recipe-plugin-for-wp")}
         onChange={(value) => {
           props.setAttributes({ question: value });
         }}
@@ -21,7 +21,7 @@ export default function Edit(props) {
       <RichText
         tagName="p"
         value={props.attributes.answer || ""}
-        placeholder={__("Your answer", "foodblogkitchen-toolkit")}
+        placeholder={__("Your answer", "recipe-plugin-for-wp")}
         onChange={(value) => {
           props.setAttributes({ answer: value });
         }}

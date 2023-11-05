@@ -1,3 +1,3 @@
 interface Window {
-  FoodblogkitchenToolkit: any;
+  RecipePluginForWP: any;
 }

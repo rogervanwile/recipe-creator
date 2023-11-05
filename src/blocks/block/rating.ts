@@ -11,13 +11,13 @@ export class Rating {
     }
 
     const savedRating = window.localStorage.getItem(
-      "foodblogkitchen-toolkit::" + postId
+      "recipe-plugin-for-wp::" + postId
     );
 
     if (!savedRating) {
       ratingElement
         .querySelectorAll<HTMLElement>(
-          ".foodblogkitchen-toolkit--recipe-block--star"
+          ".recipe-plugin-for-wp--recipe-block--star"
         )
         .forEach((starElement) => {
           starElement.addEventListener("click", (event) => {
@@ -38,7 +38,7 @@ export class Rating {
 
             // To show the users vote and prevent multiple votes
             window.localStorage.setItem(
-              "foodblogkitchen-toolkit::" + postId,
+              "recipe-plugin-for-wp::" + postId,
               rating
             );
 
@@ -53,7 +53,7 @@ export class Rating {
   private hideRating() {
     // Hide the user rating section if the user has already voted.
     const ratingWrapper = this.ratingElement?.closest<HTMLElement>(
-      ".foodblogkitchen-toolkit--recipe-block--user-rating"
+      ".recipe-plugin-for-wp--recipe-block--user-rating"
     );
 
     if (!ratingWrapper) {
@@ -75,10 +75,10 @@ export class Rating {
       return;
     }
 
-    fetch(window.FoodblogkitchenToolkit.config.ajaxUrl, {
+    fetch(window.RecipePluginForWP.config.ajaxUrl, {
       method: "POST",
       body: new URLSearchParams({
-        _ajax_nonce: window.FoodblogkitchenToolkit.config.nonce,
+        _ajax_nonce: window.RecipePluginForWP.config.nonce,
         action: "foodblogkitchen_toolkit_set_rating",
         postId,
         rating,
@@ -98,7 +98,7 @@ export class Rating {
             const averageVotingElement = document.querySelector(
               '[data-post-id="' +
                 postId +
-                '"] .foodblogkitchen-toolkit--recipe-block--average-voting'
+                '"] .recipe-plugin-for-wp--recipe-block--average-voting'
             );
 
             if (averageVotingElement) {

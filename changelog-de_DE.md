@@ -1,3 +1,7 @@
+# Version 2.0.0 - tbd
+
+- Wir haben das Plugin von "Foodblog-Toolkit" in "Recipe Plugin for WP" umgenannt. Damit wollen wir noch mehr Foodbloggern die Möglichkeit geben, unser Plugin zu finden und zu benutzen.
+
 # Version 1.8.6 - 5. Mai 2023
 
 - Wenn im Rezept kein Bild eingefügt wurde, wird nun das Beitragsbild als Fallback genutzt.

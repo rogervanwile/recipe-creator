@@ -2,9 +2,9 @@
 
 `npm run i18n:make-pot`
 
-- Open `foodblogkitchen-toolkit-de_DE.po` in Poedit
+- Open `recipe-plugin-for-wp-de_DE.po` in Poedit
 - Click "Katalog" > "Aus POT-Datei aktualisieren"
-- Select the `foodblogkitchen-toolkit.pot`
+- Select the `recipe-plugin-for-wp.pot`
 - Update the translations
 - Save the file and click "Datei" > "MO-Datei erstellen"
 
@@ -30,7 +30,7 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 
 - `npm run build`
 - Update version in `package.json`
-- Update version in `foodblogkitchen-toolkit.php`
+- Update version in `recipe-plugin-for-wp.php`
 - Update `changelog.md` and `changelod-de_DE.md`
 - Update latest wp version ("tested") in `build-tools/create-release.ts`
 

@@ -16,13 +16,13 @@ class AdminSettings {
     this.initOtherPicker();
 
     this.settingsForm = document.getElementById(
-      "foodblogkitchen-toolkit--settings-form"
+      "recipe-plugin-for-wp--settings-form"
     ) as HTMLFormElement;
   }
 
   private initColorPicker() {
     const colorPickers = document.querySelectorAll(
-      ".foodblogkitchen-toolkit--color-picker"
+      ".recipe-plugin-for-wp--color-picker"
     );
     colorPickers.forEach((colorPicker) => {
       var defaultValue = colorPicker.getAttribute("data-default-value") || null;
@@ -41,7 +41,7 @@ class AdminSettings {
 
   private initOtherPicker() {
     const adminForm = document.querySelector<HTMLElement>(
-      ".foodblogkitchen-toolkit--settings-form "
+      ".recipe-plugin-for-wp--settings-form "
     );
 
     if (!adminForm) {
@@ -142,7 +142,7 @@ class AdminSettings {
 
     if (!this.styleContainer) {
       this.styleContainer = document.getElementById(
-        "foodblogkitchen-toolkit--style-container"
+        "recipe-plugin-for-wp--style-container"
       );
     }
 

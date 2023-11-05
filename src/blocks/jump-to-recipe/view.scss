@@ -2,14 +2,14 @@ html {
   scroll-behavior: smooth;
 }
 
-.foodblogkitchen-toolkit--block--jump-to-recipe {
+.recipe-plugin-for-wp--block--jump-to-recipe {
   --primary: #030303;
   --primary-contrast: #ffffff;
 
   display: flex;
   align-items: center;
 
-  .foodblogkitchen-toolkit--block--jump-to-recipe--link {
+  .recipe-plugin-for-wp--block--jump-to-recipe--link {
     display: inline-block;
     background-color: var(--primary);
     color: var(--primary-contrast);

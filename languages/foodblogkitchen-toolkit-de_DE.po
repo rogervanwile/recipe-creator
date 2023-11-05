@@ -18,9 +18,9 @@ msgstr ""
 "X-Domain: foodblogkitchen-recipes\n"
 
 #. Plugin Name of the plugin
-#: inc/foodblogkitchen-toolkit.php:295 inc/foodblogkitchen-toolkit.php:296
-msgid "Foodblog-Toolkit"
-msgstr "Foodblog-Toolkit"
+#: inc/recipe-plugin-for-wp.php:295 inc/recipe-plugin-for-wp.php:296
+msgid "Recipe Plugin for WP"
+msgstr "Recipe Plugin for WP"
 
 #. Description of the plugin
 msgid ""
@@ -31,54 +31,54 @@ msgstr ""
 "Inklusive eines Rezeptblocks für den Gutenberg-Editor."
 
 #. Author of the plugin
-msgid "foodblogkitchen.de"
-msgstr "foodblogkitchen.de"
+msgid "howtofoodblog.com"
+msgstr "howtofoodblog.com"
 
 #. Author URI of the plugin
-msgid "https://foodblogkitchen.de/"
-msgstr "https://foodblogkitchen.de/"
+msgid "https://howtofoodblog.com/"
+msgstr "https://howtofoodblog.com/"
 
 #. translators: %s: link to release notes
-#: inc/foodblogkitchen-toolkit.php:76
+#: inc/recipe-plugin-for-wp.php:76
 msgid ""
-"We've updated the <strong>Foodblog-Toolkit</strong>. Check out the <a href="
+"We've updated the <strong>Recipe Plugin for WP</strong>. Check out the <a href="
 "\"%s\">release notes</a> to see which new features you can use now."
 msgstr ""
-"Wir haben das <strong>Foodblog-Toolkit</strong> aktualisiert. Schau dir die "
+"Wir haben das <strong>Recipe Plugin for WP</strong> aktualisiert. Schau dir die "
 "<a href=\"%s\">Neuigkeiten</a> an, um zu sehen, welche neuen Funktionen du "
 "jetzt nutzen kannst."
 
-#: inc/foodblogkitchen-toolkit.php:308 inc/foodblogkitchen-toolkit.php:309
+#: inc/recipe-plugin-for-wp.php:308 inc/recipe-plugin-for-wp.php:309
 msgid "Recipe Block"
 msgstr "Rezepte-Block"
 
-#: inc/foodblogkitchen-toolkit.php:320 inc/foodblogkitchen-toolkit.php:321
+#: inc/recipe-plugin-for-wp.php:320 inc/recipe-plugin-for-wp.php:321
 #: build/blocks/block/editor.js:1
 msgid "Pinterest"
 msgstr "Pinterest"
 
-#: inc/foodblogkitchen-toolkit.php:331 inc/foodblogkitchen-toolkit.php:332
+#: inc/recipe-plugin-for-wp.php:331 inc/recipe-plugin-for-wp.php:332
 msgid "Release notes"
 msgstr "Neuigkeiten"
 
-#: inc/foodblogkitchen-toolkit.php:342 inc/foodblogkitchen-toolkit.php:343
+#: inc/recipe-plugin-for-wp.php:342 inc/recipe-plugin-for-wp.php:343
 msgid "License"
 msgstr "Lizenz"
 
-#: inc/foodblogkitchen-toolkit.php:504
+#: inc/recipe-plugin-for-wp.php:504
 msgid "General settings"
 msgstr "Allgemeine Einstellungen"
 
-#: inc/foodblogkitchen-toolkit.php:506
+#: inc/recipe-plugin-for-wp.php:506
 msgid "Configure how the recipe block should behave on your blog posts."
 msgstr ""
 "Konfiguriere, wie sich der Rezept-Block in deinem Beitrag verhalten soll."
 
-#: inc/foodblogkitchen-toolkit.php:512
+#: inc/recipe-plugin-for-wp.php:512
 msgid "Instagram"
 msgstr "Instagram"
 
-#: inc/foodblogkitchen-toolkit.php:514
+#: inc/recipe-plugin-for-wp.php:514
 msgid ""
 "Provide informations about your instagram profile and we show a call to "
 "action below your recipe."
@@ -86,78 +86,78 @@ msgstr ""
 "Gib Informationen über dein Instagram-Profil an und wir zeigen einen Hinweis "
 "unter deinem Rezept an."
 
-#: inc/foodblogkitchen-toolkit.php:520
+#: inc/recipe-plugin-for-wp.php:520
 msgid "Visual settings"
 msgstr "Visuelle Einstellungen"
 
-#: inc/foodblogkitchen-toolkit.php:522
+#: inc/recipe-plugin-for-wp.php:522
 msgid "Configure how the recipe block should look for your visitors."
 msgstr "Konfiguriere, wie der Rezeptblock für deine Besucher aussehen soll."
 
-#: inc/foodblogkitchen-toolkit.php:530 inc/foodblogkitchen-toolkit.php:1474
+#: inc/recipe-plugin-for-wp.php:530 inc/recipe-plugin-for-wp.php:1474
 #: build/blocks/jump-to-recipe/editor.js:1
 msgid "Jump to recipe"
 msgstr "Zum Rezept springen"
 
-#: inc/foodblogkitchen-toolkit.php:532
+#: inc/recipe-plugin-for-wp.php:532
 msgid "Add a \"Jump to recipe\" button on every page with the recipe block."
 msgstr ""
 "Füge einen „Zum Rezept springen“-Button in jeden Beitrag ein, in dem sich "
 "ein Rezept-Block befindet."
 
-#: inc/foodblogkitchen-toolkit.php:543
+#: inc/recipe-plugin-for-wp.php:543
 msgid "Your username"
 msgstr "Dein Benutzername"
 
-#: inc/foodblogkitchen-toolkit.php:556
+#: inc/recipe-plugin-for-wp.php:556
 msgid "Hashtag"
 msgstr "Hashtag"
 
-#: inc/foodblogkitchen-toolkit.php:569
+#: inc/recipe-plugin-for-wp.php:569
 msgid "Primary color"
 msgstr "Hauptfarbe"
 
-#: inc/foodblogkitchen-toolkit.php:581
+#: inc/recipe-plugin-for-wp.php:581
 msgid "Secondary color"
 msgstr "Nebenfarbe"
 
-#: inc/foodblogkitchen-toolkit.php:593
+#: inc/recipe-plugin-for-wp.php:593
 msgid "Background color"
 msgstr "Hintergrundfarbe"
 
-#: inc/foodblogkitchen-toolkit.php:606
+#: inc/recipe-plugin-for-wp.php:606
 msgid "Border"
 msgstr "Rahmen"
 
-#: inc/foodblogkitchen-toolkit.php:608
+#: inc/recipe-plugin-for-wp.php:608
 msgid "Show border"
 msgstr "Rahmen anzeigen"
 
-#: inc/foodblogkitchen-toolkit.php:618
+#: inc/recipe-plugin-for-wp.php:618
 msgid "Box shadow"
 msgstr "Box-Schatten"
 
-#: inc/foodblogkitchen-toolkit.php:620
+#: inc/recipe-plugin-for-wp.php:620
 msgid "Show box shadow"
 msgstr "Box-Schatten anzeigen"
 
-#: inc/foodblogkitchen-toolkit.php:630
+#: inc/recipe-plugin-for-wp.php:630
 msgid "Border radius"
 msgstr "Eckradius"
 
-#: inc/foodblogkitchen-toolkit.php:642
+#: inc/recipe-plugin-for-wp.php:642
 msgid "Image width"
 msgstr "Bildbreite"
 
-#: inc/foodblogkitchen-toolkit.php:671
+#: inc/recipe-plugin-for-wp.php:671
 msgid "Configure the implementation of pinterest in your blog."
 msgstr "Konfiguriere die Einbindung von Pinterest in deinem Blog."
 
-#: inc/foodblogkitchen-toolkit.php:679
+#: inc/recipe-plugin-for-wp.php:679
 msgid "Image overlay"
 msgstr "Bildüberlagerung"
 
-#: inc/foodblogkitchen-toolkit.php:681
+#: inc/recipe-plugin-for-wp.php:681
 msgid ""
 "Show Pinterest share icon on post images. This only affects images on posts "
 "created with Gutenberg."
@@ -165,28 +165,28 @@ msgstr ""
 "Zeige das Pinterest-Share-Symbol auf allen Beitragsbildern an. Das betrifft "
 "nur Bilder in Beiträgen, die mit Gutenberg erstellt wurden."
 
-#: inc/foodblogkitchen-toolkit.php:964 inc/foodblogkitchen-toolkit.php:969
+#: inc/recipe-plugin-for-wp.php:964 inc/recipe-plugin-for-wp.php:969
 msgid "minutes"
 msgstr "Minuten"
 
-#: inc/foodblogkitchen-toolkit.php:969
+#: inc/recipe-plugin-for-wp.php:969
 msgid "hours"
 msgstr "Stunden"
 
-#: inc/foodblogkitchen-toolkit.php:1062 inc/foodblogkitchen-toolkit.php:1146
-#: inc/foodblogkitchen-toolkit.php:1392 build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1062 inc/recipe-plugin-for-wp.php:1146
+#: inc/recipe-plugin-for-wp.php:1392 build/blocks/block/editor.js:1
 msgid "servings"
 msgstr "Portionen"
 
-#: inc/foodblogkitchen-toolkit.php:1063 build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1063 build/blocks/block/editor.js:1
 msgid "simple"
 msgstr "einfach"
 
-#: inc/foodblogkitchen-toolkit.php:1066
+#: inc/recipe-plugin-for-wp.php:1066
 msgid "Banana shake"
 msgstr "Bananen-Shake"
 
-#: inc/foodblogkitchen-toolkit.php:1067
+#: inc/recipe-plugin-for-wp.php:1067
 msgid ""
 "You have bananas left over again and don't know what to do with them? How "
 "about a delicious shake?"
@@ -194,164 +194,164 @@ msgstr ""
 "Du hast wieder Bananen übrig und weißt nichts damit anzufangen? Wie wäre es "
 "mit einem leckeren Shake?"
 
-#: inc/foodblogkitchen-toolkit.php:1076
+#: inc/recipe-plugin-for-wp.php:1076
 msgid "milk"
 msgstr "Milch"
 
-#: inc/foodblogkitchen-toolkit.php:1081
+#: inc/recipe-plugin-for-wp.php:1081
 msgid "banana"
 msgstr "Banane"
 
-#: inc/foodblogkitchen-toolkit.php:1086
+#: inc/recipe-plugin-for-wp.php:1086
 msgid "sugar"
 msgstr "Zucker"
 
-#: inc/foodblogkitchen-toolkit.php:1091
+#: inc/recipe-plugin-for-wp.php:1091
 msgid "cinnamon"
 msgstr "Zimt"
 
-#: inc/foodblogkitchen-toolkit.php:1097
+#: inc/recipe-plugin-for-wp.php:1097
 msgid "Knife"
 msgstr "Messer"
 
-#: inc/foodblogkitchen-toolkit.php:1098
+#: inc/recipe-plugin-for-wp.php:1098
 msgid "Blender"
 msgstr "Mixer"
 
-#: inc/foodblogkitchen-toolkit.php:1104
+#: inc/recipe-plugin-for-wp.php:1104
 msgid "Peel banana."
 msgstr "Banane schälen."
 
-#: inc/foodblogkitchen-toolkit.php:1105
+#: inc/recipe-plugin-for-wp.php:1105
 msgid ""
 "Put all the ingredients in the blender and mix everything for 30 seconds."
 msgstr "Alle Zutaten in den Mixer geben und alles für 30 Sekunden mixen."
 
-#: inc/foodblogkitchen-toolkit.php:1106
+#: inc/recipe-plugin-for-wp.php:1106
 msgid "Pour into a glass and enjoy."
 msgstr "In ein Glas füllen und genießen."
 
-#: inc/foodblogkitchen-toolkit.php:1112
+#: inc/recipe-plugin-for-wp.php:1112
 msgid "The milkshake becomes particularly creamy with UHT milk."
 msgstr "Besonders cremig wird der Milchshake mit H-Milch."
 
-#: inc/foodblogkitchen-toolkit.php:1131 build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1131 build/blocks/block/editor.js:1
 msgid "Prep time"
 msgstr "Vorbereitungszeit"
 
-#: inc/foodblogkitchen-toolkit.php:1132 build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1132 build/blocks/block/editor.js:1
 msgid "Rest time"
 msgstr "Ruhezeit"
 
-#: inc/foodblogkitchen-toolkit.php:1133 build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1133 build/blocks/block/editor.js:1
 msgid "Cook time"
 msgstr "Kochzeit"
 
-#: inc/foodblogkitchen-toolkit.php:1134 build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1134 build/blocks/block/editor.js:1
 msgid "Baking time"
 msgstr "Backzeit"
 
-#: inc/foodblogkitchen-toolkit.php:1135 build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1135 build/blocks/block/editor.js:1
 msgid "Total time"
 msgstr "Gesamtzeit"
 
-#: inc/foodblogkitchen-toolkit.php:1136
+#: inc/recipe-plugin-for-wp.php:1136
 msgid "yields"
 msgstr "Stück"
 
-#: inc/foodblogkitchen-toolkit.php:1137 build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1137 build/blocks/block/editor.js:1
 msgid "Ingredients"
 msgstr "Zutaten"
 
-#: inc/foodblogkitchen-toolkit.php:1138 build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1138 build/blocks/block/editor.js:1
 msgid "Utensils"
 msgstr "Utensilien"
 
-#: inc/foodblogkitchen-toolkit.php:1139 build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1139 build/blocks/block/editor.js:1
 msgid "Steps of preparation"
 msgstr "Zubereitung"
 
-#: inc/foodblogkitchen-toolkit.php:1140
+#: inc/recipe-plugin-for-wp.php:1140
 msgid "Print"
 msgstr "Drucken"
 
-#: inc/foodblogkitchen-toolkit.php:1141
+#: inc/recipe-plugin-for-wp.php:1141
 msgid "Pin it"
 msgstr "Pin it"
 
-#: inc/foodblogkitchen-toolkit.php:1142
+#: inc/recipe-plugin-for-wp.php:1142
 msgid "Your rating"
 msgstr "Deine Bewertung"
 
-#: inc/foodblogkitchen-toolkit.php:1143
+#: inc/recipe-plugin-for-wp.php:1143
 msgid "Average rating"
 msgstr "Durchschnittliche Bewertung"
 
-#: inc/foodblogkitchen-toolkit.php:1144 build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1144 build/blocks/block/editor.js:1
 msgid "Notes"
 msgstr "Notizen"
 
-#: inc/foodblogkitchen-toolkit.php:1145
+#: inc/recipe-plugin-for-wp.php:1145
 msgid "How do you like the recipe?"
 msgstr "Wie findest du das Rezept?"
 
-#: inc/foodblogkitchen-toolkit.php:1147 build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1147 build/blocks/block/editor.js:1
 msgid "Video"
 msgstr "Video"
 
-#: inc/foodblogkitchen-toolkit.php:1148
+#: inc/recipe-plugin-for-wp.php:1148
 msgid "You tried this recipe?"
 msgstr "Du hast das Rezept ausprobiert?"
 
-#: inc/foodblogkitchen-toolkit.php:1149
+#: inc/recipe-plugin-for-wp.php:1149
 msgid "Then link"
 msgstr "Dann verlinke"
 
-#: inc/foodblogkitchen-toolkit.php:1150
+#: inc/recipe-plugin-for-wp.php:1150
 msgid "on Instagram"
 msgstr "auf Instagram"
 
-#: inc/foodblogkitchen-toolkit.php:1151
+#: inc/recipe-plugin-for-wp.php:1151
 msgid "on Instagram or use the hashtag"
 msgstr "auf Instagram oder nutze den Hashtag"
 
-#: inc/foodblogkitchen-toolkit.php:1371 build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1371 build/blocks/block/editor.js:1
 msgid "piece"
 msgstr "Stück"
 
-#: inc/foodblogkitchen-toolkit.php:1373
+#: inc/recipe-plugin-for-wp.php:1373
 msgid "pieces"
 msgstr "Stücke"
 
-#: inc/foodblogkitchen-toolkit.php:1376 inc/foodblogkitchen-toolkit.php:1378
+#: inc/recipe-plugin-for-wp.php:1376 inc/recipe-plugin-for-wp.php:1378
 #: build/blocks/block/editor.js:1
 msgid "springform pan"
 msgstr "Springform"
 
-#: inc/foodblogkitchen-toolkit.php:1380 build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1380 build/blocks/block/editor.js:1
 msgid "square baking pan"
 msgstr "Backform (eckig)"
 
-#: inc/foodblogkitchen-toolkit.php:1383 build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1383 build/blocks/block/editor.js:1
 msgid "baking tray"
 msgstr "Backblech"
 
-#: inc/foodblogkitchen-toolkit.php:1385
+#: inc/recipe-plugin-for-wp.php:1385
 msgid "baking trays"
 msgstr "Backbleche"
 
-#: inc/foodblogkitchen-toolkit.php:1390
+#: inc/recipe-plugin-for-wp.php:1390
 msgid "serving"
 msgstr "Portion"
 
-#: inc/foodblogkitchen-toolkit.php:1588
+#: inc/recipe-plugin-for-wp.php:1588
 msgid ""
 "There was an error while activating the license. Please try again later."
 msgstr ""
 "Bei der Aktivierung der Lizenz gab es einen Fehler. Bitte probiere es später "
 "noch einmal."
 
-#: inc/foodblogkitchen-toolkit.php:1602
+#: inc/recipe-plugin-for-wp.php:1602
 msgid ""
 "Your license has been successfully activated. You can now use the recipe "
 "block in the editor."
@@ -359,7 +359,7 @@ msgstr ""
 "Deine Lizenz wurde erfolgreich aktiviert. Du kannst den Rezept-Block im "
 "Editor nun nutzen."
 
-#: inc/foodblogkitchen-toolkit.php:1611
+#: inc/recipe-plugin-for-wp.php:1611
 msgid ""
 "There was an error while activating the license. Please check your input. If "
 "you can't find an error, please contact our support."
@@ -368,18 +368,18 @@ msgstr ""
 "Eingabe. Wenn du keinen Fehler finden kannst, kontaktiere bitte unseren "
 "Support."
 
-#: inc/foodblogkitchen-toolkit.php:1641
+#: inc/recipe-plugin-for-wp.php:1641
 msgid ""
 "There was an error while deactivating the license. Please try again later."
 msgstr ""
 "Bei der Deaktivierung der Lizenz gab es einen Fehler. Bitte probiere es "
 "später noch einmal."
 
-#: inc/foodblogkitchen-toolkit.php:1654
+#: inc/recipe-plugin-for-wp.php:1654
 msgid "The license has been successfully deactivated."
 msgstr "Die Lizenz wurde erfolgreich deaktiviert."
 
-#: inc/foodblogkitchen-toolkit.php:1665
+#: inc/recipe-plugin-for-wp.php:1665
 msgid "There was an error while deactivating the license."
 msgstr "Es gab einen Fehler beim Deaktivieren der Lizenz."
 
@@ -504,9 +504,9 @@ msgstr ""
 
 #: build/blocks/block/editor.js:1
 msgid ""
-"https://www.foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder"
+"https://www.howtofoodblog.com/mehr-klicks-durch-optimierte-rezeptbilder"
 msgstr ""
-"https://www.foodblogkitchen.de/mehr-klicks-durch-optimierte-rezeptbilder"
+"https://www.howtofoodblog.com/mehr-klicks-durch-optimierte-rezeptbilder"
 
 #: build/blocks/block/editor.js:1
 msgid "here"
@@ -726,9 +726,9 @@ msgstr ""
 #~ msgstr "Minuten"
 
 #, fuzzy
-#~| msgid "foodblogkitchen.de"
-#~ msgid "foodblogkitchen-toolkit"
-#~ msgstr "foodblogkitchen.de"
+#~| msgid "howtofoodblog.com"
+#~ msgid "recipe-plugin-for-wp"
+#~ msgstr "howtofoodblog.com"
 
 #~ msgid "Share on Pinterest"
 #~ msgstr "Auf Pinterest teilen"

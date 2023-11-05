@@ -9,23 +9,23 @@ export default function RecipeYieldSelector({ props }) {
   const recipeYieldUnitOptions = [
     {
       value: "servings",
-      label: __("servings", "foodblogkitchen-toolkit"),
+      label: __("servings", "recipe-plugin-for-wp"),
     },
     {
       value: "piece",
-      label: __("piece", "foodblogkitchen-toolkit"),
+      label: __("piece", "recipe-plugin-for-wp"),
     },
     {
       value: "springform-pan",
-      label: __("springform pan", "foodblogkitchen-toolkit"),
+      label: __("springform pan", "recipe-plugin-for-wp"),
     },
     {
       value: "square-baking-pan",
-      label: __("square baking pan", "foodblogkitchen-toolkit"),
+      label: __("square baking pan", "recipe-plugin-for-wp"),
     },
     {
       value: "baking-tray",
-      label: __("baking tray", "foodblogkitchen-toolkit"),
+      label: __("baking tray", "recipe-plugin-for-wp"),
     },
   ];
 
@@ -35,7 +35,7 @@ export default function RecipeYieldSelector({ props }) {
       -1 ? (
         <div className="square-baking-pans-x-wrapper">
           <InputControl
-            label={__("Results in", "foodblogkitchen-toolkit")}
+            label={__("Results in", "recipe-plugin-for-wp")}
             type="number"
             min="0"
             value={props.attributes.recipeYieldWidth}
@@ -43,7 +43,7 @@ export default function RecipeYieldSelector({ props }) {
             onChange={(recipeYieldWidth) => {
               props.setAttributes({ recipeYield: 0, recipeYieldWidth });
             }}
-            suffix={__("cm", "foodblogkitchen-toolkit")}
+            suffix={__("cm", "recipe-plugin-for-wp")}
           />
           <span className="square-baking-pans-x">x</span>
           <InputControl
@@ -55,12 +55,12 @@ export default function RecipeYieldSelector({ props }) {
             onChange={(recipeYieldHeight) => {
               props.setAttributes({ recipeYield: 0, recipeYieldHeight });
             }}
-            suffix={__("cm", "foodblogkitchen-toolkit")}
+            suffix={__("cm", "recipe-plugin-for-wp")}
           />
         </div>
       ) : (
         <InputControl
-          label={__("Results in", "foodblogkitchen-toolkit")}
+          label={__("Results in", "recipe-plugin-for-wp")}
           type="number"
           min="0"
           value={props.attributes.recipeYield}
@@ -74,13 +74,13 @@ export default function RecipeYieldSelector({ props }) {
           }}
           suffix={
             props.attributes.recipeYieldUnit === "springform-pan"
-              ? __("cm", "foodblogkitchen-toolkit")
+              ? __("cm", "recipe-plugin-for-wp")
               : ""
           }
         />
       )}
       <SelectControl
-        label={__("Unit", "foodblogkitchen-toolkit")}
+        label={__("Unit", "recipe-plugin-for-wp")}
         value={props.attributes.recipeYieldUnit}
         options={recipeYieldUnitOptions}
         onChange={(recipeYieldUnit) => props.setAttributes({ recipeYieldUnit })}

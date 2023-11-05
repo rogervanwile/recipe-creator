@@ -6,7 +6,7 @@
   "description": "Add a recipe and optimize it easily for search engines.",
   "category": "formatting",
   "icon": "carrot",
-  "textdomain": "foodblogkitchen-toolkit",
+  "textdomain": "recipe-plugin-for-wp",
   "supports": {
     "html": false,
     "align": ["center", "wide", "full"]

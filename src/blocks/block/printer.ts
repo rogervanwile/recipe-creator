@@ -23,25 +23,25 @@ export class Printer {
     });
 
     const titleContainer = recipeContainerClone.querySelector(
-      ".foodblogkitchen-toolkit--recipe-block--title"
+      ".recipe-plugin-for-wp--recipe-block--title"
     );
     const introContainer = recipeContainerClone.querySelector(
-      ".foodblogkitchen-toolkit--recipe-block--intro"
+      ".recipe-plugin-for-wp--recipe-block--intro"
     );
     const timingListContainer = recipeContainerClone.querySelector(
-      ".foodblogkitchen-toolkit--recipe-block--timings"
+      ".recipe-plugin-for-wp--recipe-block--timings"
     );
     const ingredientsContainer = recipeContainerClone.querySelector(
-      ".foodblogkitchen-toolkit--recipe-block--ingredients"
+      ".recipe-plugin-for-wp--recipe-block--ingredients"
     );
     const preparationStepsContainer = recipeContainerClone.querySelector(
-      ".foodblogkitchen-toolkit--recipe-block--preparation-steps"
+      ".recipe-plugin-for-wp--recipe-block--preparation-steps"
     );
     const notesContainer = recipeContainerClone.querySelector(
-      ".foodblogkitchen-toolkit--recipe-block--notes"
+      ".recipe-plugin-for-wp--recipe-block--notes"
     );
     const imageContainer = recipeContainerClone.querySelector(
-      ".foodblogkitchen-toolkit--recipe-block--thumbnail"
+      ".recipe-plugin-for-wp--recipe-block--thumbnail"
     );
 
     printIframe.addEventListener("load", () => {
@@ -59,7 +59,7 @@ export class Printer {
     });
 
     const topline =
-      window.FoodblogkitchenToolkit.config.blogName || location.hostname;
+      window.RecipePluginForWP.config.blogName || location.hostname;
 
     printIframe.contentWindow?.document.write(
       `<html>
@@ -67,7 +67,7 @@ export class Printer {
           <meta name="viewport" content="width=device-width,initial-scale=1">
           <link href="${printStyleUrl}" rel="stylesheet" />
         </head>
-        <body class="foodblogkitchen-toolkit--block">
+        <body class="recipe-plugin-for-wp--block">
           <div class="title">
             <div class="left">
               <div class="topline">${topline}</div>

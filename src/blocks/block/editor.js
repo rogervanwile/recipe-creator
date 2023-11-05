@@ -13,10 +13,10 @@ import metadata from "./block.json";
 registerBlockType(metadata, {
   // The title and description from the block.json is not translated automatic
   // So I have to redefine it here
-  title: __("Recipe", "foodblogkitchen-toolkit"),
+  title: __("Recipe", "recipe-plugin-for-wp"),
   description: __(
     "Add a recipe and optimize it easily for search engines.",
-    "foodblogkitchen-toolkit"
+    "recipe-plugin-for-wp"
   ),
   edit: !!foodblogkitchenToolkitAdditionalData?.hasValidLicense
     ? withSelect((select) => {

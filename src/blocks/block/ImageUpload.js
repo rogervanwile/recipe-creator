@@ -45,7 +45,7 @@ export default function ImageUpload(args) {
             {props.attributes[key] ? (
               <Fragment>
                 <Button isSecondary="true" onClick={open}>
-                  {__("Change image", "foodblogkitchen-toolkit")}
+                  {__("Change image", "recipe-plugin-for-wp")}
                 </Button>
                 <Button
                   onClick={() => {
@@ -55,12 +55,12 @@ export default function ImageUpload(args) {
                     props.setAttributes(update);
                   }}
                 >
-                  {__("Remove image", "foodblogkitchen-toolkit")}
+                  {__("Remove image", "recipe-plugin-for-wp")}
                 </Button>
               </Fragment>
             ) : (
               <Button isSecondary="true" onClick={open}>
-                {__("Select image", "foodblogkitchen-toolkit")}
+                {__("Select image", "recipe-plugin-for-wp")}
               </Button>
             )}
           </Fragment>
