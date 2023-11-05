@@ -3,7 +3,7 @@
 /**
  * Plugin Name:     Recipe Plugin for WP
  * Author URI:      https://howtofoodblog.com/
- * Description:     The easy to use recipe plugin for WordPress' Gutenberg editor. Easily create recipes and optimze them for Google & Co.
+ * Description:     The easy to use recipe plugin for WordPress' Gutenberg editor. Easily create recipes and optimize them for Google & Co.
  * Version:         2.0.0
  * Author:          howtofoodblog.com
  * Text Domain:     recipe-plugin-for-wp
