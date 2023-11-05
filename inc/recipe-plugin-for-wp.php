@@ -12,7 +12,7 @@ class RecipePluginForWP
 {
     private $primaryColorDefault = '#e27a7a';
     private $primaryColorContrastDefault = '#ffffff';
-    private $primaryColorLightDefault = '#f7e9e9';
+    private $primaryColorLightDefault = 'f7e9e9';
     private $primaryColorLightContrastDefault = '#000000';
     private $primaryColorDarkDefault = '#d55a5a';
     private $secondaryColorDefault = '#efefef';
@@ -30,13 +30,12 @@ class RecipePluginForWP
 
     function __construct()
     {
-        add_action('init', array($this, 'registerBlock'));
+        add_action('init', array($this, 'registerBlocks'));
         add_action('init', array($this, 'localizeScripts'));
         add_action('init', array($this, 'registerMeta'));
         add_action('init', array($this, 'loadTranslations'));
 
         add_action('admin_init', array($this, 'registerRecipeBlockSettings'));
-        add_action('admin_init', array($this, 'registerPinterestSettings'));
         add_action('admin_menu', array($this, 'registerSettingsPage'));
 
         add_action('admin_enqueue_scripts', array($this, 'enqueueAdminJs'));
@@ -87,7 +86,7 @@ class RecipePluginForWP
         if (is_singular() && in_the_loop() && is_main_query()) {
             if (has_blocks()) {
                 // Does the contentThe $content contains the recipe block
-                if (has_block('recipe-plugin-for-wp/block')) {
+                if (has_block('recipe-plugin-for-wp/recipe')) {
                     // If there is no "jump to recipe" block inside the content
                     // and the option "recipe_plugin_for_wp__show_jump_to_recipe"
                     // is set to true, I prepend the "jump to recipe" block to the content
@@ -230,7 +229,7 @@ class RecipePluginForWP
         wp_enqueue_style('wp-color-picker');
         wp_enqueue_style('iris');
 
-        wp_enqueue_style("recipe-plugin-for-wp-block-style");
+        wp_enqueue_style("recipe-plugin-for-wp-recipe-style");
 
         $adminAsset = require(plugin_dir_path(__FILE__) . "../build/admin.asset.php");
 
@@ -321,12 +320,6 @@ class RecipePluginForWP
     {
         $value = esc_attr(get_option($name, $defaultValue));
         echo '<label><input type="checkbox" name="' . $name . '" value="1" ' . (isset($value) && $value === '1' ? 'checked="checked"' : '') . ' /> ' . $text . '</label>';
-    }
-
-    private function renderHiddenInput($name, $defaultValue)
-    {
-        $value = esc_attr(get_option($name, $defaultValue));
-        echo '<input type="hidden" name="' . $name . '" value="' . $value . '" />';
     }
 
     public function registerRecipeBlockSettings()
@@ -601,43 +594,6 @@ class RecipePluginForWP
         );
     }
 
-    public function registerPinterestSettings()
-    {
-        // Settings
-        register_setting(
-            'recipe_plugin_for_wp__pinterest',
-            'recipe_plugin_for_wp__pinterest_image_overlay__enabled',
-            array(
-                "default" => false
-            )
-        );
-
-        // Sections
-        add_settings_section(
-            'recipe_plugin_for_wp__pinterest',
-            '',
-            // __('General settings', 'recipe-plugin-for-wp'),
-            function () {
-                echo '<p>' . __("Configure the implementation of pinterest in your blog.", 'recipe-plugin-for-wp') . '</p>';
-            },
-            'recipe_plugin_for_wp__pinterest'
-        );
-
-        // Fields
-        add_settings_field(
-            'recipe_plugin_for_wp__pinterest_image_overlay__enabled',
-            __('Image overlay', 'recipe-plugin-for-wp'),
-            function () {
-                $this->renderCheckboxInput('recipe_plugin_for_wp__pinterest_image_overlay__enabled', false, __('Show Pinterest share icon on post images. This only affects images on posts created with Gutenberg.', 'recipe-plugin-for-wp'));
-            },
-            'recipe_plugin_for_wp__pinterest',
-            'recipe_plugin_for_wp__pinterest',
-            array(
-                'label_for' => 'recipe_plugin_for_wp__pinterest_image_overlay__enabled'
-            )
-        );
-    }
-
     public function loadTranslations()
     {
         load_plugin_textdomain('recipe-plugin-for-wp', FALSE, dirname(plugin_basename(__FILE__), 2) . '/languages');
@@ -712,7 +668,7 @@ class RecipePluginForWP
         // Add some variables for the editor script
         $license = get_option('recipe_plugin_for_wp__license_key', '');
 
-        wp_localize_script('recipe-plugin-for-wp-block-editor-script', 'recipePluginForWPAdditionalData', [
+        wp_localize_script('recipe-plugin-for-wp-recipe-editor-script', 'recipePluginForWPAdditionalData', [
             "hasValidLicense" => !empty($license),
             "licensePage" => get_admin_url(get_current_network_id(), 'admin.php?page=recipe_plugin_for_wp_license')
         ]);
@@ -721,14 +677,14 @@ class RecipePluginForWP
 
         $wp_styles = wp_styles();
 
-        $printStyle = $wp_styles->registered['recipe-plugin-for-wp-block-style'];
+        $printStyle = $wp_styles->registered['recipe-plugin-for-wp-recipe-style'];
 
-        wp_localize_script('recipe-plugin-for-wp-block-view-script', 'recipePluginForWPConfig', [
+        wp_localize_script('recipe-plugin-for-wp-recipe-view-script', 'recipePluginForWPConfig', [
             "printStyleUrl" => $printStyle->src
         ]);
     }
 
-    public function registerBlock()
+    public function registerBlocks()
     {
         // Jump to recipe
         register_block_type(realpath(__DIR__ . '/../build/blocks/jump-to-recipe'), array(
@@ -736,11 +692,11 @@ class RecipePluginForWP
         ));
 
         // Recipe block
-        register_block_type(realpath(__DIR__ . '/../build/blocks/block'), array(
+        register_block_type(realpath(__DIR__ . '/../build/blocks/recipe'), array(
             'render_callback' => array($this, 'renderRecipeBlock'),
         ));
 
-        wp_set_script_translations('recipe-plugin-for-wp-block-editor-script', 'recipe-plugin-for-wp', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
+        wp_set_script_translations('recipe-plugin-for-wp-recipe-editor-script', 'recipe-plugin-for-wp', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
         wp_set_script_translations('recipe-plugin-for-wp-jump-to-recipe-editor-script', 'recipe-plugin-for-wp', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
     }
 
@@ -828,13 +784,13 @@ class RecipePluginForWP
 
     public static function getStyleBlockTemplate()
     {
-        return file_get_contents(plugin_dir_path(__FILE__) . '../src/blocks/block/style-block.hbs');
+        return file_get_contents(plugin_dir_path(__FILE__) . '../src/blocks/recipe/style-block.hbs');
     }
 
     public static function getRecipeBlockStylesRenderer()
     {
         return self::getRenderer(
-            plugin_dir_path(__FILE__) . '../src/blocks/block/style-block.hbs',
+            plugin_dir_path(__FILE__) . '../src/blocks/recipe/style-block.hbs',
             plugin_dir_path(__FILE__) . '../build/recipe-block-styles-renderer.php',
             [
                 'encode' => function ($context, $options) {
@@ -873,7 +829,7 @@ class RecipePluginForWP
     public static function getRecipeBlockRenderer()
     {
         return self::getRenderer(
-            plugin_dir_path(__FILE__) . '../src/blocks/block/block.hbs',
+            plugin_dir_path(__FILE__) . '../src/blocks/recipe/block.hbs',
             plugin_dir_path(__FILE__) . '../build/recipe-block-renderer.php',
             [
                 'formatDuration' => function ($context, $options) {
@@ -924,7 +880,7 @@ class RecipePluginForWP
                 }
             ],
             [
-                "styleBlock" =>  plugin_dir_path(__FILE__) . '../src/blocks/block/style-block.hbs'
+                "styleBlock" =>  plugin_dir_path(__FILE__) . '../src/blocks/recipe/style-block.hbs'
             ]
         );
     }
@@ -1061,7 +1017,7 @@ class RecipePluginForWP
 
     public function renderRecipeBlock($attributes, $context)
     {
-        wp_enqueue_script("recipe-plugin-for-wp-block-view-script");
+        wp_enqueue_script("recipe-plugin-for-wp--recipe-view-script");
 
         $attributes['translations'] = $this->getRecipeBlockTranslations();
 

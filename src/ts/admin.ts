@@ -1,6 +1,6 @@
 import Color from "color";
 
-const styleBlockTemplate = require("../blocks/block/style-block.hbs");
+const styleBlockTemplate = require("../blocks/recipe/style-block.hbs");
 
 import "../styles/admin.scss";
 

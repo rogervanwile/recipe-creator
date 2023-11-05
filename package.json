@@ -42,7 +42,6 @@
     "@types/qrcode": "^1.4.2",
     "@types/showdown": "2.0.0",
     "@wordpress/scripts": "24.6.0",
-    "caniuse-lite": "1.0.30001447",
     "cypress": "12.5.1",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",

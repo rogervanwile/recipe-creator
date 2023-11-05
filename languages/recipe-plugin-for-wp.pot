@@ -9,14 +9,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-11-05T15:23:31+00:00\n"
+"POT-Creation-Date: 2023-11-05T16:51:55+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: recipe-plugin-for-wp\n"
 
 #. Plugin Name of the plugin
+#: inc/recipe-plugin-for-wp.php:256
 #: inc/recipe-plugin-for-wp.php:257
-#: inc/recipe-plugin-for-wp.php:258
 msgid "Recipe Plugin for WP"
 msgstr ""
 
@@ -34,330 +34,318 @@ msgstr ""
 
 #: build/recipe-block-renderer.php:7
 #: build/recipe-block-renderer.php:12
-#: inc/recipe-plugin-for-wp.php:884
-#: inc/recipe-plugin-for-wp.php:889
+#: inc/recipe-plugin-for-wp.php:840
+#: inc/recipe-plugin-for-wp.php:845
 msgid "minutes"
 msgstr ""
 
 #: build/recipe-block-renderer.php:12
-#: inc/recipe-plugin-for-wp.php:889
+#: inc/recipe-plugin-for-wp.php:845
 msgid "hours"
 msgstr ""
 
 #. translators: %s: link to release notes
-#: inc/recipe-plugin-for-wp.php:75
+#: inc/recipe-plugin-for-wp.php:74
 msgid "We've updated the <strong>Recipe Plugin for WP</strong>. Check out the <a href=\"%s\">release notes</a> to see which new features you can use now."
 msgstr ""
 
+#: inc/recipe-plugin-for-wp.php:269
 #: inc/recipe-plugin-for-wp.php:270
-#: inc/recipe-plugin-for-wp.php:271
 msgid "Recipe Block"
 msgstr ""
 
+#: inc/recipe-plugin-for-wp.php:280
 #: inc/recipe-plugin-for-wp.php:281
-#: inc/recipe-plugin-for-wp.php:282
 msgid "Release notes"
 msgstr ""
 
+#: inc/recipe-plugin-for-wp.php:291
 #: inc/recipe-plugin-for-wp.php:292
-#: inc/recipe-plugin-for-wp.php:293
 msgid "License"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:454
+#: inc/recipe-plugin-for-wp.php:447
 msgid "General settings"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:456
+#: inc/recipe-plugin-for-wp.php:449
 msgid "Configure how the recipe block should behave on your blog posts."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:462
+#: inc/recipe-plugin-for-wp.php:455
 msgid "Instagram"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:464
+#: inc/recipe-plugin-for-wp.php:457
 msgid "Provide informations about your instagram profile and we show a call to action below your recipe."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:470
+#: inc/recipe-plugin-for-wp.php:463
 msgid "Visual settings"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:472
+#: inc/recipe-plugin-for-wp.php:465
 msgid "Configure how the recipe block should look for your visitors."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:480
-#: inc/recipe-plugin-for-wp.php:1393
+#: inc/recipe-plugin-for-wp.php:473
+#: inc/recipe-plugin-for-wp.php:1349
 #: build/blocks/jump-to-recipe/editor.js:1
 msgid "Jump to recipe"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:482
+#: inc/recipe-plugin-for-wp.php:475
 msgid "Add a \"Jump to recipe\" button on every page with the recipe block."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:493
+#: inc/recipe-plugin-for-wp.php:486
 msgid "Your username"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:506
+#: inc/recipe-plugin-for-wp.php:499
 msgid "Hashtag"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:519
+#: inc/recipe-plugin-for-wp.php:512
 msgid "Primary color"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:531
+#: inc/recipe-plugin-for-wp.php:524
 msgid "Secondary color"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:543
+#: inc/recipe-plugin-for-wp.php:536
 msgid "Background color"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:556
+#: inc/recipe-plugin-for-wp.php:549
 msgid "Border"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:558
+#: inc/recipe-plugin-for-wp.php:551
 msgid "Show border"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:568
+#: inc/recipe-plugin-for-wp.php:561
 msgid "Box shadow"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:570
+#: inc/recipe-plugin-for-wp.php:563
 msgid "Show box shadow"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:580
+#: inc/recipe-plugin-for-wp.php:573
 msgid "Border radius"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:592
+#: inc/recipe-plugin-for-wp.php:585
 msgid "Image width"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:621
-msgid "Configure the implementation of pinterest in your blog."
-msgstr ""
-
-#: inc/recipe-plugin-for-wp.php:629
-msgid "Image overlay"
-msgstr ""
-
-#: inc/recipe-plugin-for-wp.php:631
-msgid "Show Pinterest share icon on post images. This only affects images on posts created with Gutenberg."
-msgstr ""
-
-#: inc/recipe-plugin-for-wp.php:969
-#: inc/recipe-plugin-for-wp.php:1053
-#: inc/recipe-plugin-for-wp.php:1311
-#: build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:925
+#: inc/recipe-plugin-for-wp.php:1009
+#: inc/recipe-plugin-for-wp.php:1267
+#: build/blocks/recipe/editor.js:1
 msgid "servings"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:970
-#: build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:926
+#: build/blocks/recipe/editor.js:1
 msgid "simple"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:973
+#: inc/recipe-plugin-for-wp.php:929
 msgid "Banana shake"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:974
+#: inc/recipe-plugin-for-wp.php:930
 msgid "You have bananas left over again and don't know what to do with them? How about a delicious shake?"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:983
+#: inc/recipe-plugin-for-wp.php:939
 msgid "milk"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:988
+#: inc/recipe-plugin-for-wp.php:944
 msgid "banana"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:993
+#: inc/recipe-plugin-for-wp.php:949
 msgid "sugar"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:998
+#: inc/recipe-plugin-for-wp.php:954
 msgid "cinnamon"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1004
+#: inc/recipe-plugin-for-wp.php:960
 msgid "Knife"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1005
+#: inc/recipe-plugin-for-wp.php:961
 msgid "Blender"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1011
+#: inc/recipe-plugin-for-wp.php:967
 msgid "Peel banana."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1012
+#: inc/recipe-plugin-for-wp.php:968
 msgid "Put all the ingredients in the blender and mix everything for 30 seconds."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1013
+#: inc/recipe-plugin-for-wp.php:969
 msgid "Pour into a glass and enjoy."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1019
+#: inc/recipe-plugin-for-wp.php:975
 msgid "The milkshake becomes particularly creamy with UHT milk."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1038
-#: build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:994
+#: build/blocks/recipe/editor.js:1
 msgid "Prep time"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1039
-#: build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:995
+#: build/blocks/recipe/editor.js:1
 msgid "Rest time"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1040
-#: build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:996
+#: build/blocks/recipe/editor.js:1
 msgid "Cook time"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1041
-#: build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:997
+#: build/blocks/recipe/editor.js:1
 msgid "Baking time"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1042
-#: build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:998
+#: build/blocks/recipe/editor.js:1
 msgid "Total time"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1043
+#: inc/recipe-plugin-for-wp.php:999
 msgid "yields"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1044
-#: build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1000
+#: build/blocks/recipe/editor.js:1
 msgid "Ingredients"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1045
-#: build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1001
+#: build/blocks/recipe/editor.js:1
 msgid "Utensils"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1046
-#: build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1002
+#: build/blocks/recipe/editor.js:1
 msgid "Steps of preparation"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1047
+#: inc/recipe-plugin-for-wp.php:1003
 msgid "Print"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1048
+#: inc/recipe-plugin-for-wp.php:1004
 msgid "Pin it"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1049
+#: inc/recipe-plugin-for-wp.php:1005
 msgid "Your rating"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1050
+#: inc/recipe-plugin-for-wp.php:1006
 msgid "Average rating"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1051
-#: build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1007
+#: build/blocks/recipe/editor.js:1
 msgid "Notes"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1052
+#: inc/recipe-plugin-for-wp.php:1008
 msgid "How do you like the recipe?"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1054
-#: build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1010
+#: build/blocks/recipe/editor.js:1
 msgid "Video"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1055
+#: inc/recipe-plugin-for-wp.php:1011
 msgid "You tried this recipe?"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1056
+#: inc/recipe-plugin-for-wp.php:1012
 msgid "Then link"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1057
+#: inc/recipe-plugin-for-wp.php:1013
 msgid "on Instagram"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1058
+#: inc/recipe-plugin-for-wp.php:1014
 msgid "on Instagram or use the hashtag"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1290
-#: build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1246
+#: build/blocks/recipe/editor.js:1
 msgid "piece"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1292
+#: inc/recipe-plugin-for-wp.php:1248
 msgid "pieces"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1295
-#: inc/recipe-plugin-for-wp.php:1297
-#: build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1251
+#: inc/recipe-plugin-for-wp.php:1253
+#: build/blocks/recipe/editor.js:1
 msgid "springform pan"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1299
-#: build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1255
+#: build/blocks/recipe/editor.js:1
 msgid "square baking pan"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1302
-#: build/blocks/block/editor.js:1
+#: inc/recipe-plugin-for-wp.php:1258
+#: build/blocks/recipe/editor.js:1
 msgid "baking tray"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1304
+#: inc/recipe-plugin-for-wp.php:1260
 msgid "baking trays"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1309
+#: inc/recipe-plugin-for-wp.php:1265
 msgid "serving"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1501
+#: inc/recipe-plugin-for-wp.php:1457
 msgid "There was an error while activating the license. Please try again later."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1515
+#: inc/recipe-plugin-for-wp.php:1471
 msgid "Your license has been successfully activated. You can now use the recipe block in the editor."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1524
+#: inc/recipe-plugin-for-wp.php:1480
 msgid "There was an error while activating the license. Please check your input. If you can't find an error, please contact our support."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1554
+#: inc/recipe-plugin-for-wp.php:1510
 msgid "There was an error while deactivating the license. Please try again later."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1567
+#: inc/recipe-plugin-for-wp.php:1523
 msgid "The license has been successfully deactivated."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1578
+#: inc/recipe-plugin-for-wp.php:1534
 msgid "There was an error while deactivating the license."
 msgstr ""
 
@@ -377,222 +365,212 @@ msgstr ""
 msgid "Activate"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Change image"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Remove image"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Select image"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Results in"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "cm"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Unit"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Group name"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Remove Group"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Add the steps of preparation here..."
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Split steps into groups"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Add additional group"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Add the ingredients here..."
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Split ingredients into groups"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Recipe"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Add a recipe and optimize it easily for search engines."
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Pinterest"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "SEO"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Google and other search engines need more information to present your recipe in the best possible way. You should provide this information as good as possible."
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Cuisine"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "e.g. \"Italian\" or \"German\""
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Calories"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Picture of the finished dish"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Depending on the usage Google uses different image formats of your recipe. You can find more information"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "https://www.howtofoodblog.com/mehr-klicks-durch-optimierte-rezeptbilder"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "here"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Previews"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Featured Snippet"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "No reviews"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Mobile Search Result"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Google displays here a text that matches the search term."
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Rating"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Preparation"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Attention:"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Adjusting the ratings can have an impact on your Google ranking. Be careful with this function."
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "1 star"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "2 stars"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "3 stars"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "4 stars"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "5 stars"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Title of your recipe"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "moderate"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "challenging"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Short description of your recipe"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Min."
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Add the needed utensils here..."
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "YouTube or Vimeo link"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Additional notes ..."
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Show additional settings"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "You have not activated the license yet"
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Please enter a valid license key in the settings of the recipe plugin. You have received this key by email with your purchase."
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "If you can no longer find your license key, please contact us at "
 msgstr ""
 
-#: build/blocks/block/editor.js:1
+#: build/blocks/recipe/editor.js:1
 msgid "Go to settings"
-msgstr ""
-
-#: build/blocks/block/block.json
-msgctxt "block title"
-msgid "Recipe"
-msgstr ""
-
-#: build/blocks/block/block.json
-msgctxt "block description"
-msgid "Add a recipe and optimize it easily for search engines."
 msgstr ""
 
 #: build/blocks/jump-to-recipe/block.json
@@ -603,4 +581,14 @@ msgstr ""
 #: build/blocks/jump-to-recipe/block.json
 msgctxt "block description"
 msgid "Add a quick link which jumps to the recipe in the page."
+msgstr ""
+
+#: build/blocks/recipe/block.json
+msgctxt "block title"
+msgid "Recipe"
+msgstr ""
+
+#: build/blocks/recipe/block.json
+msgctxt "block description"
+msgid "Add a recipe and optimize it easily for search engines."
 msgstr ""

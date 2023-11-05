@@ -2,6 +2,6 @@
   "build/blocks/jump-to-recipe/block.json": "build/blocks/jump-to-recipe/editor.js",
   "build/blocks/jump-to-recipe/editor.js": "build/blocks/jump-to-recipe/editor.js",
 
-  "build/blocks/block/block.json": "build/blocks/block/editor.js",
-  "build/blocks/block/editor.js": "build/blocks/block/editor.js"
+  "build/blocks/recipe/block.json": "build/blocks/recipe/editor.js",
+  "build/blocks/recipe/editor.js": "build/blocks/recipe/editor.js"
 }

@@ -89,7 +89,7 @@ class RecipePluginForWPMigrationSPRecipes
         }
     }
 
-    // register_block_type('recipe-plugin-for-wp/block', array(
+    // register_block_type('recipe-plugin-for-wp/recipe', array(
     //     'editor_script' => 'recipe-plugin-for-wp-recipe-block-editor',
     //     'editor_style'  => 'recipe-plugin-for-wp-recipe-block-editor',
     //     'script'        => 'recipe-plugin-for-wp-recipe-block',
