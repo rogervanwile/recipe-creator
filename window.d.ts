@@ -1,3 +1,3 @@
 interface Window {
-  RecipePluginForWP: any;
+  recipePluginForWPConfig: any;
 }

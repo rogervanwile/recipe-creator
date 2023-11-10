@@ -88,11 +88,20 @@ class RecipePluginForWP
                     if (get_option('recipe_plugin_for_wp__show_jump_to_recipe', true) && !has_block('recipe-plugin-for-wp/jump-to-recipe')) {
                         $content = "<!-- wp:recipe-plugin-for-wp/jump-to-recipe /-->\n\n" . $content;
                     }
+
+                    $this->addRecipeBlockConfig();
                 }
             }
         }
 
         return $content;
+    }
+
+    private function addRecipeBlockConfig() {
+        wp_localize_script('recipe-plugin-for-wp-recipe-view-script', 'recipePluginForWPConfig', [
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+            'nonce' =>  wp_create_nonce('recipe-plugin-for-wp')
+        ]);
     }
 
     public function fetchInfo($res, $action, $args)
@@ -988,8 +997,6 @@ class RecipePluginForWP
         $attributes['translations'] = $this->getRecipeBlockTranslations();
 
         $attributes['postId'] = get_the_ID();
-        $attributes['ajaxUrl'] = admin_url('admin-ajax.php');
-        $attributes['nonce'] =  wp_create_nonce('recipe-plugin-for-wp');
 
         $averageRating = get_post_meta(get_the_ID(), 'average_rating', true) ?: 0;
         $ratingCount = get_post_meta(get_the_ID(), 'rating_count', true) ?: 0;

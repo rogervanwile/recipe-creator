@@ -75,10 +75,10 @@ export class Rating {
       return;
     }
 
-    fetch(window.RecipePluginForWP.config.ajaxUrl, {
+    fetch(window.recipePluginForWPConfig.ajaxUrl, {
       method: "POST",
       body: new URLSearchParams({
-        _ajax_nonce: window.RecipePluginForWP.config.nonce,
+        _ajax_nonce: window.recipePluginForWPConfig.nonce,
         action: "recipe_plugin_for_wp_set_rating",
         postId,
         rating,
