@@ -16,7 +16,6 @@
     "start": "wp-scripts start",
     "packages-update": "wp-scripts packages-update",
     "archive": "node ./create-archive.js",
-    "sync": "npm run sync:uebersee && npm run sync:blank",
     "test:start:cli": "wp-cypress start && cypress run",
     "test:start": "wp-cypress start && cypress open",
     "test:stop": "wp-cypress stop",
