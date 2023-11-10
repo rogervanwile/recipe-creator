@@ -1,4 +1,4 @@
-# 2.0.0 - tbd
+# 2.0.0 - November 11, 2023
 
 - We have renamed the plugin from "Foodblog-Toolkit" to "Recipe Plugin for WP". We want to give even more food bloggers the opportunity to find and use our plugin.
 
