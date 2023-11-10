@@ -95,12 +95,10 @@
         <h3>{{translations/ingredients}}</h3>
         {{#if recipeYield}}
         <div class="recipe-plugin-for-wp--recipe-block--servings-editor">
-          <button type="button" class="recipe-shrink-servings">-</button>
           <span disabled="disabled">
             <span class="recipe-servings">{{recipeYieldFormatted}}</span>
             {{recipeYieldUnitFormatted}}
           </span>
-          <button type="button" class="recipe-increase-servings">+</button>
         </div>
         {{else}}
         {{#if recipeYieldWidth}}
@@ -216,9 +214,6 @@
 
     <section class="recipe-plugin-for-wp--recipe-block--save-and-share">
       <ul class="recipe-plugin-for-wp--recipe-block--share-buttons">
-        <li>
-          <button class="recipe-plugin-for-wp--recipe-block--print-button">{{translations/print}}</button>
-        </li>
         {{#if pinterestPinItUrl}}
         <li>
           <a href="{{pinterestPinItUrl}}" target="_blank"

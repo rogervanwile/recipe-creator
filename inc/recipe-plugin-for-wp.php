@@ -24,14 +24,9 @@ class RecipePluginForWP
     private $borderRadiusDefault = 8;
     private $thumnailSizeDefault = 330;
 
-    public static $licenseServer = 'https://howtofoodblog.com';
-    public static $licenseSecretKey = '5ff5c39a7148a7.10623378';
-    public static $licenseProductName = 'Recipe Plugin for WP';
-
     function __construct()
     {
         add_action('init', array($this, 'registerBlocks'));
-        add_action('init', array($this, 'localizeScripts'));
         add_action('init', array($this, 'registerMeta'));
         add_action('init', array($this, 'loadTranslations'));
 
@@ -272,7 +267,8 @@ class RecipePluginForWP
             'recipe_plugin_for_wp',
             function () {
                 return require_once(plugin_dir_path(__FILE__) . '../templates/admin-index-page.php');
-            }
+            },
+            10
         );
 
         add_submenu_page(
@@ -283,19 +279,11 @@ class RecipePluginForWP
             'recipe_plugin_for_wp_release_notes',
             function () {
                 return require_once(plugin_dir_path(__FILE__) . '../templates/admin-release-notes-page.php');
-            }
+            },
+            20
         );
 
-        add_submenu_page(
-            'recipe_plugin_for_wp',
-            __('License', 'recipe-plugin-for-wp'),
-            __("License", 'recipe-plugin-for-wp'),
-            'manage_options',
-            'recipe_plugin_for_wp_license',
-            function () {
-                return require_once(plugin_dir_path(__FILE__) . '../templates/admin-license-page.php');
-            }
-        );
+        do_action('wp_recipe_pro__register_page');
     }
 
     private function renderColorPickerInput($name, $defaultValue)
@@ -659,30 +647,8 @@ class RecipePluginForWP
 
     static public function uninstall()
     {
-        // Remove the license key
-        RecipePluginForWP::unregisterLicense();
     }
 
-    public function localizeScripts()
-    {
-        // Add some variables for the editor script
-        $license = get_option('recipe_plugin_for_wp__license_key', '');
-
-        wp_localize_script('recipe-plugin-for-wp-recipe-editor-script', 'recipePluginForWPAdditionalData', [
-            "hasValidLicense" => !empty($license),
-            "licensePage" => get_admin_url(get_current_network_id(), 'admin.php?page=recipe_plugin_for_wp_license')
-        ]);
-
-        // Add the link to the print css for the recipe block view script
-
-        $wp_styles = wp_styles();
-
-        $printStyle = $wp_styles->registered['recipe-plugin-for-wp-recipe-style'];
-
-        wp_localize_script('recipe-plugin-for-wp-recipe-view-script', 'recipePluginForWPConfig', [
-            "printStyleUrl" => $printStyle->src
-        ]);
-    }
 
     public function registerBlocks()
     {
@@ -1232,8 +1198,6 @@ class RecipePluginForWP
         $attributes['instagramUsername'] = get_option('recipe_plugin_for_wp__instagram__username', '');
         $attributes['instagramHashtag'] = get_option('recipe_plugin_for_wp__instagram__hashtag', '');
 
-        $attributes['blog_name'] =  get_bloginfo('name');
-
         $renderer = self::getRecipeBlockRenderer();
         return $renderer($attributes);
     }
@@ -1432,109 +1396,5 @@ class RecipePluginForWP
                 $ret .= $str[$i];
         }
         return $ret;
-    }
-
-    public static function registerLicense($licenseKey)
-    {
-
-        // API query parameters
-        $api_params = array(
-            'slm_action' => 'slm_activate',
-            'secret_key' => self::$licenseSecretKey,
-            'license_key' => $licenseKey,
-            'registered_domain' => $_SERVER['SERVER_NAME'],
-            'item_reference' => urlencode(RecipePluginForWP::$licenseProductName),
-        );
-
-        // Send query to the license manager server
-        $query = esc_url_raw(add_query_arg($api_params, RecipePluginForWP::$licenseServer));
-        $response = wp_remote_get($query, array('timeout' => 20, 'sslverify' => false));
-
-        // Check for error in the response
-        if (is_wp_error($response)) {
-            return array(
-                "status" => "error",
-                "message" => __("There was an error while activating the license. Please try again later.", 'recipe-plugin-for-wp')
-            );
-        }
-
-        // License data.
-        $license_data = json_decode(wp_remote_retrieve_body($response));
-
-        if ($license_data->result == 'success') {
-            //Success was returned for the license activation
-            //Save the license key in the options table
-            update_option('recipe_plugin_for_wp__license_key', $licenseKey);
-
-            return array(
-                "status" => "success",
-                "message" => __("Your license has been successfully activated. You can now use the recipe block in the editor.", 'recipe-plugin-for-wp')
-            );
-        ?>
-<?php
-        } else {
-            //Show error to the user. Probably entered incorrect license key.
-
-            return array(
-                "status" => "error",
-                "message" => __("There was an error while activating the license. Please check your input. If you can't find an error, please contact our support.", 'recipe-plugin-for-wp')
-                    . ((isset($license_data->message) && !empty($license_data->message)) ? $license_data->message : '')
-
-            );
-        }
-    }
-
-    public static function unregisterLicense()
-    {
-        $licenseKey = get_option('recipe_plugin_for_wp__license_key', '');
-
-        if (!empty($licenseKey)) {
-
-            // API query parameters
-            $api_params = array(
-                'slm_action' => 'slm_deactivate',
-                'secret_key' => RecipePluginForWP::$licenseSecretKey,
-                'license_key' => $licenseKey,
-                'registered_domain' => $_SERVER['SERVER_NAME'],
-                'item_reference' => urlencode(RecipePluginForWP::$licenseProductName),
-            );
-
-            // Send query to the license manager server
-            $query = esc_url_raw(add_query_arg($api_params, RecipePluginForWP::$licenseServer));
-            $response = wp_remote_get($query, array('timeout' => 20, 'sslverify' => false));
-
-            // Check for error in the response
-            if (is_wp_error($response)) {
-                return array(
-                    "status" => "error",
-                    "message" => __("There was an error while deactivating the license. Please try again later.", 'recipe-plugin-for-wp')
-                );
-            } else {
-                // License data.
-                $license_data = json_decode(wp_remote_retrieve_body($response));
-
-                if ($license_data->result == 'success') {
-                    //Success was returned for the license activation
-                    //Remove the license key from the options table.
-                    delete_option('recipe_plugin_for_wp__license_key');
-
-                    return array(
-                        "status" => "success",
-                        "message" => __("The license has been successfully deactivated.", 'recipe-plugin-for-wp')
-                    );
-                } else {
-                    if (isset($license_data->error_code) && $license_data->error_code === 80) {
-                        delete_option('recipe_plugin_for_wp__license_key');
-                    }
-
-                    //Show error to the user. Probably entered incorrect license key.
-
-                    return array(
-                        "status" => "error",
-                        "message" => __("There was an error while deactivating the license.", 'recipe-plugin-for-wp') . $license_data->message
-                    );
-                }
-            }
-        }
     }
 }

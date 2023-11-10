@@ -1,14 +1,14 @@
-import { Calculator } from "./calculator";
-import { Printer } from "./printer";
 import { Rating } from "./rating";
 import { WakeLock } from "./wake-lock";
 
 export class Recipe {
   constructor(private element: HTMLElement) {
     this.initRating();
-    this.initCalculator();
-    this.initPrinting();
     this.initWakeLock();
+
+    this.element.dispatchEvent(
+      new CustomEvent("recipe-plugin-for-wp:recipe-ready", { bubbles: true })
+    );
   }
 
   private initRating() {
@@ -21,26 +21,6 @@ export class Recipe {
         new Rating(ratingElement);
       });
     }
-  }
-
-  private initCalculator() {
-    new Calculator(this.element);
-  }
-
-  private initPrinting() {
-    const printButton = this.element.querySelector(
-      ".recipe-plugin-for-wp--recipe-block--print-button"
-    );
-
-    if (!printButton) {
-      return;
-    }
-
-    printButton.addEventListener("click", (event) => {
-      event.preventDefault();
-
-      new Printer(this.element);
-    });
   }
 
   private initWakeLock() {
