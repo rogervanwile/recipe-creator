@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Recipe Manager Pro 1.2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recipe-master\n"
-"POT-Creation-Date: 2023-11-11T15:40:04+00:00\n"
-"PO-Revision-Date: 2023-11-11 16:41+0100\n"
+"POT-Creation-Date: 2023-11-11T16:32:18+00:00\n"
+"PO-Revision-Date: 2023-11-11 17:32+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -17,6 +17,7 @@ msgstr ""
 "X-Domain: recipe-master\n"
 
 #. Plugin Name of the plugin
+#: inc/recipe-master.php:260 inc/recipe-master.php:261
 msgid "Recipe Master"
 msgstr "Rezepte-Manager"
 
@@ -49,16 +50,12 @@ msgstr "Stunden"
 #. translators: %s: link to release notes
 #: inc/recipe-master.php:69
 msgid ""
-"We've updated the <strong>Recipe Plugin for WP</strong>. Check out the <a "
+"We've updated the <strong>Recipe Master</strong> plugin. Check out the <a "
 "href=\"%s\">release notes</a> to see which new features you can use now."
 msgstr ""
-"Wir haben das <strong>Recipe Plugin for WP</strong> aktualisiert. Schau dir "
+"Wir haben das <strong>Recipe Master</strong>-Plugin aktualisiert. Schau dir "
 "die <a href=\"%s\">Neuigkeiten</a> an, um zu sehen, welche neuen Funktionen "
 "du jetzt nutzen kannst."
-
-#: inc/recipe-master.php:260 inc/recipe-master.php:261
-msgid "Recipe Plugin for WP"
-msgstr "Rezepte Plugin für WP"
 
 #: inc/recipe-master.php:273 inc/recipe-master.php:274
 msgid "Recipe Block"
@@ -552,6 +549,9 @@ msgctxt "block description"
 msgid "Add a recipe and optimize it easily for search engines."
 msgstr ""
 "Füge ein Rezept hinzu und optimiere es mit wenigen Klicks für Suchmaschinen."
+
+#~ msgid "Recipe Plugin for WP"
+#~ msgstr "Rezepte Plugin für WP"
 
 #~ msgid "License"
 #~ msgstr "Lizenz"

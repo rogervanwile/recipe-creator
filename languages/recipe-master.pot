@@ -9,12 +9,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-11-11T15:40:04+00:00\n"
+"POT-Creation-Date: 2023-11-11T16:32:18+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: recipe-master\n"
 
 #. Plugin Name of the plugin
+#: inc/recipe-master.php:260
+#: inc/recipe-master.php:261
 msgid "Recipe Master"
 msgstr ""
 
@@ -44,12 +46,7 @@ msgstr ""
 
 #. translators: %s: link to release notes
 #: inc/recipe-master.php:69
-msgid "We've updated the <strong>Recipe Plugin for WP</strong>. Check out the <a href=\"%s\">release notes</a> to see which new features you can use now."
-msgstr ""
-
-#: inc/recipe-master.php:260
-#: inc/recipe-master.php:261
-msgid "Recipe Plugin for WP"
+msgid "We've updated the <strong>Recipe Master</strong> plugin. Check out the <a href=\"%s\">release notes</a> to see which new features you can use now."
 msgstr ""
 
 #: inc/recipe-master.php:273

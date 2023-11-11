@@ -66,7 +66,7 @@ class RecipeMaster
                     <?php
                     echo sprintf(
                         /* translators: %s: link to release notes */
-                        __('We\'ve updated the <strong>Recipe Plugin for WP</strong>. Check out the <a href="%s">release notes</a> to see which new features you can use now.', 'recipe-master'),
+                        __('We\'ve updated the <strong>Recipe Master</strong> plugin. Check out the <a href="%s">release notes</a> to see which new features you can use now.', 'recipe-master'),
                         esc_url(get_admin_url(get_current_network_id(), 'admin.php?page=recipe_plugin_for_wp_release_notes'))
                     );
                     ?></p>
@@ -257,8 +257,8 @@ class RecipeMaster
     public function registerSettingsPage()
     {
         add_menu_page(
-            __('Recipe Plugin for WP', 'recipe-master'),
-            __('Recipe Plugin for WP', 'recipe-master'),
+            __('Recipe Master', 'recipe-master'),
+            __('Recipe Master', 'recipe-master'),
             'manage_options',
             'recipe_plugin_for_wp',
             function () {
