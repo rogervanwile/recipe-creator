@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Recipe Manager Pro 1.2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recipe-master\n"
 "POT-Creation-Date: 2023-11-11T16:32:18+00:00\n"
-"PO-Revision-Date: 2023-11-11 17:32+0100\n"
+"PO-Revision-Date: 2023-11-11 17:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. Plugin Name of the plugin
 #: inc/recipe-master.php:260 inc/recipe-master.php:261
 msgid "Recipe Master"
-msgstr "Rezepte-Manager"
+msgstr "Rezepte-Master"
 
 #. Description of the plugin
 msgid ""
@@ -53,7 +53,7 @@ msgid ""
 "We've updated the <strong>Recipe Master</strong> plugin. Check out the <a "
 "href=\"%s\">release notes</a> to see which new features you can use now."
 msgstr ""
-"Wir haben das <strong>Recipe Master</strong>-Plugin aktualisiert. Schau dir "
+"Wir haben das <strong>Rezepte-Master</strong>-Plugin aktualisiert. Schau dir "
 "die <a href=\"%s\">Neuigkeiten</a> an, um zu sehen, welche neuen Funktionen "
 "du jetzt nutzen kannst."
 
