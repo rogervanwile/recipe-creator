@@ -1,27 +1,25 @@
 # Copyright (C) 2023 howtofoodblog.com
-# This file is distributed under the same license as the Recipe Plugin for WP plugin.
+# This file is distributed under the same license as the Recipe Master plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Recipe Plugin for WP 2.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recipe-plugin-for-wp\n"
+"Project-Id-Version: Recipe Master 2.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recipe-master\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-11-05T16:51:55+00:00\n"
+"POT-Creation-Date: 2023-11-11T15:40:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
-"X-Domain: recipe-plugin-for-wp\n"
+"X-Domain: recipe-master\n"
 
 #. Plugin Name of the plugin
-#: inc/recipe-plugin-for-wp.php:256
-#: inc/recipe-plugin-for-wp.php:257
-msgid "Recipe Plugin for WP"
+msgid "Recipe Master"
 msgstr ""
 
 #. Description of the plugin
-msgid "The easy to use recipe plugin for WordPress' Gutenberg editor. Easily create recipes and optimize them for Google & Co."
+msgid "The easy to use recipe plugin for WordPress' Gutenberg editor. Easily create recipes and optimize them for Google & Co automatically."
 msgstr ""
 
 #. Author of the plugin
@@ -34,335 +32,295 @@ msgstr ""
 
 #: build/recipe-block-renderer.php:7
 #: build/recipe-block-renderer.php:12
-#: inc/recipe-plugin-for-wp.php:840
-#: inc/recipe-plugin-for-wp.php:845
+#: inc/recipe-master.php:815
+#: inc/recipe-master.php:820
 msgid "minutes"
 msgstr ""
 
 #: build/recipe-block-renderer.php:12
-#: inc/recipe-plugin-for-wp.php:845
+#: inc/recipe-master.php:820
 msgid "hours"
 msgstr ""
 
 #. translators: %s: link to release notes
-#: inc/recipe-plugin-for-wp.php:74
+#: inc/recipe-master.php:69
 msgid "We've updated the <strong>Recipe Plugin for WP</strong>. Check out the <a href=\"%s\">release notes</a> to see which new features you can use now."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:269
-#: inc/recipe-plugin-for-wp.php:270
+#: inc/recipe-master.php:260
+#: inc/recipe-master.php:261
+msgid "Recipe Plugin for WP"
+msgstr ""
+
+#: inc/recipe-master.php:273
+#: inc/recipe-master.php:274
 msgid "Recipe Block"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:280
-#: inc/recipe-plugin-for-wp.php:281
+#: inc/recipe-master.php:285
+#: inc/recipe-master.php:286
 msgid "Release notes"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:291
-#: inc/recipe-plugin-for-wp.php:292
-msgid "License"
-msgstr ""
-
-#: inc/recipe-plugin-for-wp.php:447
+#: inc/recipe-master.php:444
 msgid "General settings"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:449
+#: inc/recipe-master.php:446
 msgid "Configure how the recipe block should behave on your blog posts."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:455
+#: inc/recipe-master.php:452
 msgid "Instagram"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:457
+#: inc/recipe-master.php:454
 msgid "Provide informations about your instagram profile and we show a call to action below your recipe."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:463
+#: inc/recipe-master.php:460
 msgid "Visual settings"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:465
+#: inc/recipe-master.php:462
 msgid "Configure how the recipe block should look for your visitors."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:473
-#: inc/recipe-plugin-for-wp.php:1349
+#: inc/recipe-master.php:470
+#: inc/recipe-master.php:1320
 #: build/blocks/jump-to-recipe/editor.js:1
 msgid "Jump to recipe"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:475
+#: inc/recipe-master.php:472
 msgid "Add a \"Jump to recipe\" button on every page with the recipe block."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:486
+#: inc/recipe-master.php:483
 msgid "Your username"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:499
+#: inc/recipe-master.php:496
 msgid "Hashtag"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:512
+#: inc/recipe-master.php:509
 msgid "Primary color"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:524
+#: inc/recipe-master.php:521
 msgid "Secondary color"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:536
+#: inc/recipe-master.php:533
 msgid "Background color"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:549
+#: inc/recipe-master.php:546
 msgid "Border"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:551
+#: inc/recipe-master.php:548
 msgid "Show border"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:561
+#: inc/recipe-master.php:558
 msgid "Box shadow"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:563
+#: inc/recipe-master.php:560
 msgid "Show box shadow"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:573
+#: inc/recipe-master.php:570
 msgid "Border radius"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:585
+#: inc/recipe-master.php:582
 msgid "Image width"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:925
-#: inc/recipe-plugin-for-wp.php:1009
-#: inc/recipe-plugin-for-wp.php:1267
+#: inc/recipe-master.php:900
+#: inc/recipe-master.php:984
+#: inc/recipe-master.php:1238
 #: build/blocks/recipe/editor.js:1
 msgid "servings"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:926
+#: inc/recipe-master.php:901
 #: build/blocks/recipe/editor.js:1
 msgid "simple"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:929
+#: inc/recipe-master.php:904
 msgid "Banana shake"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:930
+#: inc/recipe-master.php:905
 msgid "You have bananas left over again and don't know what to do with them? How about a delicious shake?"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:939
+#: inc/recipe-master.php:914
 msgid "milk"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:944
+#: inc/recipe-master.php:919
 msgid "banana"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:949
+#: inc/recipe-master.php:924
 msgid "sugar"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:954
+#: inc/recipe-master.php:929
 msgid "cinnamon"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:960
+#: inc/recipe-master.php:935
 msgid "Knife"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:961
+#: inc/recipe-master.php:936
 msgid "Blender"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:967
+#: inc/recipe-master.php:942
 msgid "Peel banana."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:968
+#: inc/recipe-master.php:943
 msgid "Put all the ingredients in the blender and mix everything for 30 seconds."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:969
+#: inc/recipe-master.php:944
 msgid "Pour into a glass and enjoy."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:975
+#: inc/recipe-master.php:950
 msgid "The milkshake becomes particularly creamy with UHT milk."
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:994
+#: inc/recipe-master.php:969
 #: build/blocks/recipe/editor.js:1
 msgid "Prep time"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:995
+#: inc/recipe-master.php:970
 #: build/blocks/recipe/editor.js:1
 msgid "Rest time"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:996
+#: inc/recipe-master.php:971
 #: build/blocks/recipe/editor.js:1
 msgid "Cook time"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:997
+#: inc/recipe-master.php:972
 #: build/blocks/recipe/editor.js:1
 msgid "Baking time"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:998
+#: inc/recipe-master.php:973
 #: build/blocks/recipe/editor.js:1
 msgid "Total time"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:999
+#: inc/recipe-master.php:974
 msgid "yields"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1000
+#: inc/recipe-master.php:975
 #: build/blocks/recipe/editor.js:1
 msgid "Ingredients"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1001
+#: inc/recipe-master.php:976
 #: build/blocks/recipe/editor.js:1
 msgid "Utensils"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1002
+#: inc/recipe-master.php:977
 #: build/blocks/recipe/editor.js:1
 msgid "Steps of preparation"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1003
+#: inc/recipe-master.php:978
 msgid "Print"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1004
+#: inc/recipe-master.php:979
 msgid "Pin it"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1005
+#: inc/recipe-master.php:980
 msgid "Your rating"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1006
+#: inc/recipe-master.php:981
 msgid "Average rating"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1007
+#: inc/recipe-master.php:982
 #: build/blocks/recipe/editor.js:1
 msgid "Notes"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1008
+#: inc/recipe-master.php:983
 msgid "How do you like the recipe?"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1010
+#: inc/recipe-master.php:985
 #: build/blocks/recipe/editor.js:1
 msgid "Video"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1011
+#: inc/recipe-master.php:986
 msgid "You tried this recipe?"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1012
+#: inc/recipe-master.php:987
 msgid "Then link"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1013
+#: inc/recipe-master.php:988
 msgid "on Instagram"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1014
+#: inc/recipe-master.php:989
 msgid "on Instagram or use the hashtag"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1246
+#: inc/recipe-master.php:1217
 #: build/blocks/recipe/editor.js:1
 msgid "piece"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1248
+#: inc/recipe-master.php:1219
 msgid "pieces"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1251
-#: inc/recipe-plugin-for-wp.php:1253
+#: inc/recipe-master.php:1222
+#: inc/recipe-master.php:1224
 #: build/blocks/recipe/editor.js:1
 msgid "springform pan"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1255
+#: inc/recipe-master.php:1226
 #: build/blocks/recipe/editor.js:1
 msgid "square baking pan"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1258
+#: inc/recipe-master.php:1229
 #: build/blocks/recipe/editor.js:1
 msgid "baking tray"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1260
+#: inc/recipe-master.php:1231
 msgid "baking trays"
 msgstr ""
 
-#: inc/recipe-plugin-for-wp.php:1265
+#: inc/recipe-master.php:1236
 msgid "serving"
-msgstr ""
-
-#: inc/recipe-plugin-for-wp.php:1457
-msgid "There was an error while activating the license. Please try again later."
-msgstr ""
-
-#: inc/recipe-plugin-for-wp.php:1471
-msgid "Your license has been successfully activated. You can now use the recipe block in the editor."
-msgstr ""
-
-#: inc/recipe-plugin-for-wp.php:1480
-msgid "There was an error while activating the license. Please check your input. If you can't find an error, please contact our support."
-msgstr ""
-
-#: inc/recipe-plugin-for-wp.php:1510
-msgid "There was an error while deactivating the license. Please try again later."
-msgstr ""
-
-#: inc/recipe-plugin-for-wp.php:1523
-msgid "The license has been successfully deactivated."
-msgstr ""
-
-#: inc/recipe-plugin-for-wp.php:1534
-msgid "There was an error while deactivating the license."
-msgstr ""
-
-#: templates/admin-license-page.php:36
-msgid "Please enter the license key for this product to activate it. You were given a license key when you purchased this item."
-msgstr ""
-
-#: templates/admin-license-page.php:40
-msgid "License Key"
-msgstr ""
-
-#: templates/admin-license-page.php:46
-msgid "Deactivate"
-msgstr ""
-
-#: templates/admin-license-page.php:48
-msgid "Activate"
 msgstr ""
 
 #: build/blocks/recipe/editor.js:1
@@ -555,22 +513,6 @@ msgstr ""
 
 #: build/blocks/recipe/editor.js:1
 msgid "Show additional settings"
-msgstr ""
-
-#: build/blocks/recipe/editor.js:1
-msgid "You have not activated the license yet"
-msgstr ""
-
-#: build/blocks/recipe/editor.js:1
-msgid "Please enter a valid license key in the settings of the recipe plugin. You have received this key by email with your purchase."
-msgstr ""
-
-#: build/blocks/recipe/editor.js:1
-msgid "If you can no longer find your license key, please contact us at "
-msgstr ""
-
-#: build/blocks/recipe/editor.js:1
-msgid "Go to settings"
 msgstr ""
 
 #: build/blocks/jump-to-recipe/block.json

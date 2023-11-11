@@ -8,7 +8,7 @@ require __DIR__ . "/../vendor/autoload.php";
 
 use LightnCandy\LightnCandy;
 
-class RecipePluginForWP
+class RecipeMaster
 {
     private $primaryColorDefault = '#e27a7a';
     private $primaryColorContrastDefault = '#ffffff';
@@ -35,8 +35,8 @@ class RecipePluginForWP
 
         add_action('admin_enqueue_scripts', array($this, 'enqueueAdminJs'));
 
-        add_image_size('recipe-plugin-for-wp--thumbnail', get_option('recipe_plugin_for_wp__thumbnail_size', $this->thumnailSizeDefault));
-        add_image_size('recipe-plugin-for-wp--pinterest', 1000, 0, false);
+        add_image_size('recipe-master--thumbnail', get_option('recipe_plugin_for_wp__thumbnail_size', $this->thumnailSizeDefault));
+        add_image_size('recipe-master--pinterest', 1000, 0, false);
 
         // Frontend-AJAX-Actions
         add_action('wp_ajax_recipe_plugin_for_wp_set_rating', array($this, 'setRating'));
@@ -66,7 +66,7 @@ class RecipePluginForWP
                     <?php
                     echo sprintf(
                         /* translators: %s: link to release notes */
-                        __('We\'ve updated the <strong>Recipe Plugin for WP</strong>. Check out the <a href="%s">release notes</a> to see which new features you can use now.', 'recipe-plugin-for-wp'),
+                        __('We\'ve updated the <strong>Recipe Plugin for WP</strong>. Check out the <a href="%s">release notes</a> to see which new features you can use now.', 'recipe-master'),
                         esc_url(get_admin_url(get_current_network_id(), 'admin.php?page=recipe_plugin_for_wp_release_notes'))
                     );
                     ?></p>
@@ -81,12 +81,12 @@ class RecipePluginForWP
         if (is_singular() && in_the_loop() && is_main_query()) {
             if (has_blocks()) {
                 // Does the contentThe $content contains the recipe block
-                if (has_block('recipe-plugin-for-wp/recipe')) {
+                if (has_block('recipe-master/recipe')) {
                     // If there is no "jump to recipe" block inside the content
                     // and the option "recipe_plugin_for_wp__show_jump_to_recipe"
                     // is set to true, I prepend the "jump to recipe" block to the content
-                    if (get_option('recipe_plugin_for_wp__show_jump_to_recipe', true) && !has_block('recipe-plugin-for-wp/jump-to-recipe')) {
-                        $content = "<!-- wp:recipe-plugin-for-wp/jump-to-recipe /-->\n\n" . $content;
+                    if (get_option('recipe_plugin_for_wp__show_jump_to_recipe', true) && !has_block('recipe-master/jump-to-recipe')) {
+                        $content = "<!-- wp:recipe-master/jump-to-recipe /-->\n\n" . $content;
                     }
 
                     $this->addRecipeBlockConfig();
@@ -98,9 +98,9 @@ class RecipePluginForWP
     }
 
     private function addRecipeBlockConfig() {
-        wp_localize_script('recipe-plugin-for-wp-recipe-view-script', 'recipePluginForWPConfig', [
+        wp_localize_script('recipe-master-recipe-view-script', 'recipePluginForWPConfig', [
             'ajaxUrl' => admin_url('admin-ajax.php'),
-            'nonce' =>  wp_create_nonce('recipe-plugin-for-wp')
+            'nonce' =>  wp_create_nonce('recipe-master')
         ]);
     }
 
@@ -112,14 +112,14 @@ class RecipePluginForWP
         }
 
         // do nothing if it is not our plugin
-        if ('recipe-plugin-for-wp' !== $args->slug) {
+        if ('recipe-master' !== $args->slug) {
             return false;
         }
 
         // trying to get from cache first
         if (false == $remote = get_transient('recipe_plugin_for_wp_update')) {
             // info.json is the file with the actual plugin information on your server
-            $remote = wp_remote_get('https://updates.howtofoodblog.com/recipe-plugin-for-wp/info.json', array(
+            $remote = wp_remote_get('https://updates.howtofoodblog.com/recipe-master/info.json', array(
                 'timeout' => 10,
                 'headers' => array(
                     'Accept' => 'application/json'
@@ -136,7 +136,7 @@ class RecipePluginForWP
             $res = new stdClass();
 
             $res->name = $remote->name;
-            $res->slug = 'recipe-plugin-for-wp';
+            $res->slug = 'recipe-master';
             $res->version = $remote->version;
             $res->tested = $remote->tested;
             $res->requires = $remote->requires;
@@ -178,7 +178,7 @@ class RecipePluginForWP
         if (false == $remote = get_transient('recipe_plugin_for_wp_upgrade')) {
 
             // info.json is the file with the actual plugin information on your server
-            $remote = wp_remote_get('https://updates.howtofoodblog.com/recipe-plugin-for-wp/info.json', array(
+            $remote = wp_remote_get('https://updates.howtofoodblog.com/recipe-master/info.json', array(
                 'timeout' => 10,
                 'headers' => array(
                     'Accept' => 'application/json'
@@ -198,8 +198,8 @@ class RecipePluginForWP
             // your installed plugin version should be on the line below! You can obtain it dynamically of course 
             if ($remote && version_compare($currentVersion, $remote->version, '<') && version_compare($remote->requires, get_bloginfo('version'), '<')) {
                 $res = new stdClass();
-                $res->slug = 'recipe-plugin-for-wp';
-                $res->plugin = 'recipe-plugin-for-wp/recipe-plugin-for-wp.php';
+                $res->slug = 'recipe-master';
+                $res->plugin = 'recipe-master/recipe-master.php';
                 $res->new_version = $remote->version;
                 $res->tested = $remote->tested;
                 $res->package = $remote->download_url;
@@ -215,7 +215,7 @@ class RecipePluginForWP
         if (!function_exists('get_plugin_data')) {
             require_once(ABSPATH . 'wp-admin/includes/plugin.php');
         }
-        $plugin_data = get_plugin_data(plugin_dir_path(__FILE__) . '../recipe-plugin-for-wp.php');
+        $plugin_data = get_plugin_data(plugin_dir_path(__FILE__) . '../recipe-master.php');
         return $plugin_data['Version'];
     }
 
@@ -233,12 +233,12 @@ class RecipePluginForWP
         wp_enqueue_style('wp-color-picker');
         wp_enqueue_style('iris');
 
-        wp_enqueue_style("recipe-plugin-for-wp-recipe-style");
+        wp_enqueue_style("recipe-master-recipe-style");
 
         $adminAsset = require(plugin_dir_path(__FILE__) . "../build/admin.asset.php");
 
         wp_enqueue_script(
-            'recipe-plugin-for-wp-settings-js',
+            'recipe-master-settings-js',
             plugins_url('build/admin.js', dirname(__FILE__)),
             ['wp-color-picker', ...$adminAsset['dependencies']],
             $adminAsset['version'],
@@ -246,7 +246,7 @@ class RecipePluginForWP
         );
 
         wp_enqueue_style(
-            'recipe-plugin-for-wp-settings-css',
+            'recipe-master-settings-css',
             plugins_url('build/admin.css', dirname(__FILE__)),
             $adminAsset['dependencies'],
             $adminAsset['version'],
@@ -257,8 +257,8 @@ class RecipePluginForWP
     public function registerSettingsPage()
     {
         add_menu_page(
-            __('Recipe Plugin for WP', 'recipe-plugin-for-wp'),
-            __('Recipe Plugin for WP', 'recipe-plugin-for-wp'),
+            __('Recipe Plugin for WP', 'recipe-master'),
+            __('Recipe Plugin for WP', 'recipe-master'),
             'manage_options',
             'recipe_plugin_for_wp',
             function () {
@@ -270,8 +270,8 @@ class RecipePluginForWP
 
         add_submenu_page(
             'recipe_plugin_for_wp',
-            __('Recipe Block', 'recipe-plugin-for-wp'),
-            __("Recipe Block", 'recipe-plugin-for-wp'),
+            __('Recipe Block', 'recipe-master'),
+            __("Recipe Block", 'recipe-master'),
             'manage_options',
             'recipe_plugin_for_wp',
             function () {
@@ -282,8 +282,8 @@ class RecipePluginForWP
 
         add_submenu_page(
             'recipe_plugin_for_wp',
-            __('Release notes', 'recipe-plugin-for-wp'),
-            __("Release notes", 'recipe-plugin-for-wp'),
+            __('Release notes', 'recipe-master'),
+            __("Release notes", 'recipe-master'),
             'manage_options',
             'recipe_plugin_for_wp_release_notes',
             function () {
@@ -298,7 +298,7 @@ class RecipePluginForWP
     private function renderColorPickerInput($name, $defaultValue)
     {
         $value = esc_attr(get_option($name, $defaultValue));
-        echo '<input type="text" class="recipe-plugin-for-wp--color-picker" name="' . $name . '" value="' . $value . '" data-default-value="' .  $defaultValue . '" />';
+        echo '<input type="text" class="recipe-master--color-picker" name="' . $name . '" value="' . $value . '" data-default-value="' .  $defaultValue . '" />';
     }
 
     private function renderNumberInput($name, $defaultValue)
@@ -441,25 +441,25 @@ class RecipePluginForWP
         // Sections
         add_settings_section(
             'recipe_plugin_for_wp__general',
-            __('General settings', 'recipe-plugin-for-wp'),
+            __('General settings', 'recipe-master'),
             function () {
-                echo '<p>' . __("Configure how the recipe block should behave on your blog posts.", 'recipe-plugin-for-wp') . '</p>';
+                echo '<p>' . __("Configure how the recipe block should behave on your blog posts.", 'recipe-master') . '</p>';
             },
             'recipe_plugin_for_wp__general'
         );
         add_settings_section(
             'recipe_plugin_for_wp__instagram',
-            __('Instagram', 'recipe-plugin-for-wp'),
+            __('Instagram', 'recipe-master'),
             function () {
-                echo '<p>' . __("Provide informations about your instagram profile and we show a call to action below your recipe.", 'recipe-plugin-for-wp') . '</p>';
+                echo '<p>' . __("Provide informations about your instagram profile and we show a call to action below your recipe.", 'recipe-master') . '</p>';
             },
             'recipe_plugin_for_wp__general'
         );
         add_settings_section(
             'recipe_plugin_for_wp__visual',
-            __('Visual settings', 'recipe-plugin-for-wp'),
+            __('Visual settings', 'recipe-master'),
             function () {
-                echo '<p>' . __("Configure how the recipe block should look for your visitors.", 'recipe-plugin-for-wp') . '</p>';
+                echo '<p>' . __("Configure how the recipe block should look for your visitors.", 'recipe-master') . '</p>';
             },
             'recipe_plugin_for_wp__general'
         );
@@ -467,9 +467,9 @@ class RecipePluginForWP
         // Fields
         add_settings_field(
             'recipe_plugin_for_wp__show_jump_to_recipe',
-            __('Jump to recipe', 'recipe-plugin-for-wp'),
+            __('Jump to recipe', 'recipe-master'),
             function () {
-                $this->renderCheckboxInput('recipe_plugin_for_wp__show_jump_to_recipe', true, __('Add a "Jump to recipe" button on every page with the recipe block.', 'recipe-plugin-for-wp'));
+                $this->renderCheckboxInput('recipe_plugin_for_wp__show_jump_to_recipe', true, __('Add a "Jump to recipe" button on every page with the recipe block.', 'recipe-master'));
             },
             'recipe_plugin_for_wp__general',
             'recipe_plugin_for_wp__general',
@@ -480,7 +480,7 @@ class RecipePluginForWP
 
         add_settings_field(
             'recipe_plugin_for_wp__instagram__username',
-            __('Your username', 'recipe-plugin-for-wp'),
+            __('Your username', 'recipe-master'),
             function () {
                 $this->renderTextInput('recipe_plugin_for_wp__instagram__username', '');
             },
@@ -493,7 +493,7 @@ class RecipePluginForWP
 
         add_settings_field(
             'recipe_plugin_for_wp__instagram__hashtag',
-            __('Hashtag', 'recipe-plugin-for-wp'),
+            __('Hashtag', 'recipe-master'),
             function () {
                 $this->renderTextInput('recipe_plugin_for_wp__instagram__hashtag', '');
             },
@@ -506,7 +506,7 @@ class RecipePluginForWP
 
         add_settings_field(
             'recipe_plugin_for_wp__primary_color',
-            __('Primary color', 'recipe-plugin-for-wp'),
+            __('Primary color', 'recipe-master'),
             function () {
                 $this->renderColorPickerInput('recipe_plugin_for_wp__primary_color', $this->primaryColorDefault);
             },
@@ -518,7 +518,7 @@ class RecipePluginForWP
         );
         add_settings_field(
             'recipe_plugin_for_wp__secondary_color',
-            __('Secondary color', 'recipe-plugin-for-wp'),
+            __('Secondary color', 'recipe-master'),
             function () {
                 $this->renderColorPickerInput('recipe_plugin_for_wp__secondary_color', $this->secondaryColorDefault);
             },
@@ -530,7 +530,7 @@ class RecipePluginForWP
         );
         add_settings_field(
             'recipe_plugin_for_wp__background_color',
-            __('Background color', 'recipe-plugin-for-wp'),
+            __('Background color', 'recipe-master'),
             function () {
                 $this->renderColorPickerInput('recipe_plugin_for_wp__background_color', $this->backgroundColorDefault);
             },
@@ -543,9 +543,9 @@ class RecipePluginForWP
 
         add_settings_field(
             'recipe_plugin_for_wp__show_border',
-            __('Border', 'recipe-plugin-for-wp'),
+            __('Border', 'recipe-master'),
             function () {
-                $this->renderCheckboxInput('recipe_plugin_for_wp__show_border', $this->showBorderDefault, __('Show border', 'recipe-plugin-for-wp'));
+                $this->renderCheckboxInput('recipe_plugin_for_wp__show_border', $this->showBorderDefault, __('Show border', 'recipe-master'));
             },
             'recipe_plugin_for_wp__general',
             'recipe_plugin_for_wp__visual',
@@ -555,9 +555,9 @@ class RecipePluginForWP
         );
         add_settings_field(
             'recipe_plugin_for_wp__show_box_shadow',
-            __('Box shadow', 'recipe-plugin-for-wp'),
+            __('Box shadow', 'recipe-master'),
             function () {
-                $this->renderCheckboxInput('recipe_plugin_for_wp__show_box_shadow', $this->showBoxShadowDefault, __('Show box shadow', 'recipe-plugin-for-wp'));
+                $this->renderCheckboxInput('recipe_plugin_for_wp__show_box_shadow', $this->showBoxShadowDefault, __('Show box shadow', 'recipe-master'));
             },
             'recipe_plugin_for_wp__general',
             'recipe_plugin_for_wp__visual',
@@ -567,7 +567,7 @@ class RecipePluginForWP
         );
         add_settings_field(
             'recipe_plugin_for_wp__border_radius',
-            __('Border radius', 'recipe-plugin-for-wp'),
+            __('Border radius', 'recipe-master'),
             function () {
                 $this->renderNumberInput('recipe_plugin_for_wp__border_radius', $this->borderRadiusDefault);
             },
@@ -579,7 +579,7 @@ class RecipePluginForWP
         );
         add_settings_field(
             'recipe_plugin_for_wp__thumbnail_size',
-            __('Image width', 'recipe-plugin-for-wp'),
+            __('Image width', 'recipe-master'),
             function () {
                 $this->renderNumberInput('recipe_plugin_for_wp__thumbnail_size', $this->thumnailSizeDefault);
             },
@@ -593,7 +593,7 @@ class RecipePluginForWP
 
     public function loadTranslations()
     {
-        load_plugin_textdomain('recipe-plugin-for-wp', FALSE, dirname(plugin_basename(__FILE__), 2) . '/languages');
+        load_plugin_textdomain('recipe-master', FALSE, dirname(plugin_basename(__FILE__), 2) . '/languages');
     }
 
     public function registerMeta()
@@ -671,13 +671,13 @@ class RecipePluginForWP
             'render_callback' => array($this, 'renderRecipeBlock'),
         ));
 
-        wp_set_script_translations('recipe-plugin-for-wp-recipe-editor-script', 'recipe-plugin-for-wp', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
-        wp_set_script_translations('recipe-plugin-for-wp-jump-to-recipe-editor-script', 'recipe-plugin-for-wp', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
+        wp_set_script_translations('recipe-master-recipe-editor-script', 'recipe-master', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
+        wp_set_script_translations('recipe-master-jump-to-recipe-editor-script', 'recipe-master', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
     }
 
     public function setRating()
     {
-        if (!check_ajax_referer('recipe-plugin-for-wp')) {
+        if (!check_ajax_referer('recipe-master')) {
             wp_send_json_error();
             wp_die();
         } else {
@@ -812,12 +812,12 @@ class RecipePluginForWP
                         $minutes = intval($context);
 
                         if ($minutes < 60) {
-                            return $minutes . ' ' . __('minutes', 'recipe-plugin-for-wp');
+                            return $minutes . ' ' . __('minutes', 'recipe-master');
                         } else {
                             $hours = floor($minutes / 60);
                             $rest = $minutes % 60;
 
-                            return $hours . ' ' . __('hours', 'recipe-plugin-for-wp') . ($rest > 0 ? ' ' . $rest . ' ' . __('minutes', 'recipe-plugin-for-wp') : '');
+                            return $hours . ' ' . __('hours', 'recipe-master') . ($rest > 0 ? ' ' . $rest . ' ' . __('minutes', 'recipe-master') : '');
                         }
                     }
 
@@ -897,12 +897,12 @@ class RecipePluginForWP
             "translations" => $this->getRecipeBlockTranslations(),
             "recipeYield" => 2,
             "recipeYieldUnit" => "servings",
-            "recipeYieldUnitFormatted" => __("servings", 'recipe-plugin-for-wp'),
-            "difficulty" => __('simple', 'recipe-plugin-for-wp'),
+            "recipeYieldUnitFormatted" => __("servings", 'recipe-master'),
+            "difficulty" => __('simple', 'recipe-master'),
             'prepTime' => 0,
             'cookTime' => 5,
-            'name' => __("Banana shake", 'recipe-plugin-for-wp'),
-            "description" => __("You have bananas left over again and don't know what to do with them? How about a delicious shake?", 'recipe-plugin-for-wp'),
+            'name' => __("Banana shake", 'recipe-master'),
+            "description" => __("You have bananas left over again and don't know what to do with them? How about a delicious shake?", 'recipe-master'),
             'totalTime' => 5,
             "ingredientsGroups" => array(
                 array(
@@ -911,43 +911,43 @@ class RecipePluginForWP
                         array(
                             "amount" => 500,
                             "unit" => "ml",
-                            "ingredient" => __("milk", 'recipe-plugin-for-wp')
+                            "ingredient" => __("milk", 'recipe-master')
                         ),
                         array(
                             "amount" => 1,
                             "unit" => "",
-                            "ingredient" => __("banana", 'recipe-plugin-for-wp')
+                            "ingredient" => __("banana", 'recipe-master')
                         ),
                         array(
                             "amount" => 1,
                             "unit" => "TL",
-                            "ingredient" => __("sugar", 'recipe-plugin-for-wp')
+                            "ingredient" => __("sugar", 'recipe-master')
                         ),
                         array(
                             "amount" => 0,
                             "unit" => "",
-                            "ingredient" => __("cinnamon", 'recipe-plugin-for-wp')
+                            "ingredient" => __("cinnamon", 'recipe-master')
                         )
                     )
                 )
             ),
             "utensils" => '<li>' . join("</li><li>", [
-                __("Knife", 'recipe-plugin-for-wp'),
-                __("Blender", 'recipe-plugin-for-wp'),
+                __("Knife", 'recipe-master'),
+                __("Blender", 'recipe-master'),
             ]) . '</li>',
             "preparationStepsGroups" => array(
                 array(
                     "title" => "",
                     "list" => '<li>' . join("</li><li>", [
-                        __("Peel banana.", 'recipe-plugin-for-wp'),
-                        __("Put all the ingredients in the blender and mix everything for 30 seconds.", 'recipe-plugin-for-wp'),
-                        __("Pour into a glass and enjoy.", 'recipe-plugin-for-wp'),
+                        __("Peel banana.", 'recipe-master'),
+                        __("Put all the ingredients in the blender and mix everything for 30 seconds.", 'recipe-master'),
+                        __("Pour into a glass and enjoy.", 'recipe-master'),
                     ]) . '</li>'
                 )
             ),
             "averageRating" => 4.5,
             "thumbnail" => plugins_url('../assets/banana-shake-4_3.png', __FILE__),
-            "notes" => __("The milkshake becomes particularly creamy with UHT milk.", 'recipe-plugin-for-wp'),
+            "notes" => __("The milkshake becomes particularly creamy with UHT milk.", 'recipe-master'),
             "instagramUsername" => get_option('recipe_plugin_for_wp__instagram__username', ''),
             "instagramHashtag" => get_option('recipe_plugin_for_wp__instagram__hashtag', '')
 
@@ -966,33 +966,33 @@ class RecipePluginForWP
     private function getRecipeBlockTranslations()
     {
         return [
-            "prepTime" => __('Prep time', 'recipe-plugin-for-wp'),
-            "restTime" => __('Rest time', 'recipe-plugin-for-wp'),
-            "cookTime" => __('Cook time', 'recipe-plugin-for-wp'),
-            "bakingTime" => __('Baking time', 'recipe-plugin-for-wp'),
-            "totalTime" => __('Total time', 'recipe-plugin-for-wp'),
-            "yield" => __('yields', 'recipe-plugin-for-wp'),
-            "ingredients" => __('Ingredients', 'recipe-plugin-for-wp'),
-            "utensils" => __('Utensils', 'recipe-plugin-for-wp'),
-            "preparationSteps" => __('Steps of preparation', 'recipe-plugin-for-wp'),
-            "print" => __('Print', 'recipe-plugin-for-wp'),
-            "pinIt" => __('Pin it', 'recipe-plugin-for-wp'),
-            "yourRating" => __('Your rating', 'recipe-plugin-for-wp'),
-            "averageRating" => __('Average rating', 'recipe-plugin-for-wp'),
-            "notes" => __('Notes', 'recipe-plugin-for-wp'),
-            "feedback" => __('How do you like the recipe?', 'recipe-plugin-for-wp'),
-            "servings" => __('servings', 'recipe-plugin-for-wp'),
-            "video" => __('Video', 'recipe-plugin-for-wp'),
-            "instagramHeadline" => __('You tried this recipe?', 'recipe-plugin-for-wp'),
-            "instagramThenLink" => __('Then link', 'recipe-plugin-for-wp'),
-            "instagramOnInstagram" => __('on Instagram', 'recipe-plugin-for-wp'),
-            "instagramOrUseHashtag" => __('on Instagram or use the hashtag', 'recipe-plugin-for-wp'),
+            "prepTime" => __('Prep time', 'recipe-master'),
+            "restTime" => __('Rest time', 'recipe-master'),
+            "cookTime" => __('Cook time', 'recipe-master'),
+            "bakingTime" => __('Baking time', 'recipe-master'),
+            "totalTime" => __('Total time', 'recipe-master'),
+            "yield" => __('yields', 'recipe-master'),
+            "ingredients" => __('Ingredients', 'recipe-master'),
+            "utensils" => __('Utensils', 'recipe-master'),
+            "preparationSteps" => __('Steps of preparation', 'recipe-master'),
+            "print" => __('Print', 'recipe-master'),
+            "pinIt" => __('Pin it', 'recipe-master'),
+            "yourRating" => __('Your rating', 'recipe-master'),
+            "averageRating" => __('Average rating', 'recipe-master'),
+            "notes" => __('Notes', 'recipe-master'),
+            "feedback" => __('How do you like the recipe?', 'recipe-master'),
+            "servings" => __('servings', 'recipe-master'),
+            "video" => __('Video', 'recipe-master'),
+            "instagramHeadline" => __('You tried this recipe?', 'recipe-master'),
+            "instagramThenLink" => __('Then link', 'recipe-master'),
+            "instagramOnInstagram" => __('on Instagram', 'recipe-master'),
+            "instagramOrUseHashtag" => __('on Instagram or use the hashtag', 'recipe-master'),
         ];
     }
 
     public function renderRecipeBlock($attributes, $context)
     {
-        wp_enqueue_script("recipe-plugin-for-wp--recipe-view-script");
+        wp_enqueue_script("recipe-master--recipe-view-script");
 
         $attributes['translations'] = $this->getRecipeBlockTranslations();
 
@@ -1012,7 +1012,7 @@ class RecipePluginForWP
         $attributes['totalTime'] = isset($attributes['totalTime']) ? floatval($attributes['totalTime']) : 0;
 
         if (isset($attributes['difficulty']) && !empty($attributes['difficulty'])) {
-            $attributes['difficulty'] = __($attributes['difficulty'], 'recipe-plugin-for-wp');
+            $attributes['difficulty'] = __($attributes['difficulty'], 'recipe-master');
         }
 
         $attributes['recipeYieldUnitFormatted'] = $this->getRecipeYieldUnitFormatted($attributes['recipeYieldUnit'], $recipeYield ?: 1);
@@ -1094,7 +1094,7 @@ class RecipePluginForWP
 
         foreach ($thumbnailImageCandidates as $imageCandidate) {
             if (isset($attributes[$imageCandidate . 'Id'])) {
-                $image = wp_get_attachment_image_src($attributes[$imageCandidate . 'Id'], 'recipe-plugin-for-wp--thumbnail');
+                $image = wp_get_attachment_image_src($attributes[$imageCandidate . 'Id'], 'recipe-master--thumbnail');
 
                 if ($image) {
                     $attributes['thumbnail'] = $image[0];
@@ -1111,7 +1111,7 @@ class RecipePluginForWP
             (!isset($attributes['thumbnail']) || $attributes['thumbnail'] === '') &&
             has_post_thumbnail(get_the_ID())
         ) {
-            $postThumbnail = get_the_post_thumbnail_url(get_the_ID(), 'recipe-plugin-for-wp--thumbnail');
+            $postThumbnail = get_the_post_thumbnail_url(get_the_ID(), 'recipe-master--thumbnail');
             $attributes['thumbnail'] = $postThumbnail;
         }
 
@@ -1141,7 +1141,7 @@ class RecipePluginForWP
         $currentUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
         if ($pinterestImageId !== null) {
-            $pinterestImageUrl = wp_get_attachment_image_src($pinterestImageId, 'recipe-plugin-for-wp--pinterest');
+            $pinterestImageUrl = wp_get_attachment_image_src($pinterestImageId, 'recipe-master--pinterest');
             if ($pinterestImageUrl) {
                 $attributes['pinterestPinItUrl'] = 'https://www.pinterest.com/pin/create/button/' .
                     '?url=' . urlencode($currentUrl) .
@@ -1214,28 +1214,28 @@ class RecipePluginForWP
         switch ($unit) {
             case 'piece':
                 if ($amount === 1) {
-                    return __('piece', 'recipe-plugin-for-wp');
+                    return __('piece', 'recipe-master');
                 } else {
-                    return __('pieces', 'recipe-plugin-for-wp');
+                    return __('pieces', 'recipe-master');
                 }
             case 'springform-pan':
-                return  __('springform pan', 'recipe-plugin-for-wp');
+                return  __('springform pan', 'recipe-master');
             case 'springform-pan':
-                return __('springform pan', 'recipe-plugin-for-wp');
+                return __('springform pan', 'recipe-master');
             case 'square-baking-pan':
-                return __('square baking pan', 'recipe-plugin-for-wp');
+                return __('square baking pan', 'recipe-master');
             case 'baking-tray':
                 if ($amount === 1) {
-                    return __('baking tray', 'recipe-plugin-for-wp');
+                    return __('baking tray', 'recipe-master');
                 } else {
-                    return __('baking trays', 'recipe-plugin-for-wp');
+                    return __('baking trays', 'recipe-master');
                 }
             case 'servings':
             default:
                 if ($amount === 1) {
-                    return __('serving', 'recipe-plugin-for-wp');
+                    return __('serving', 'recipe-master');
                 } else {
-                    return __('servings', 'recipe-plugin-for-wp');
+                    return __('servings', 'recipe-master');
                 }
         }
     }
@@ -1317,7 +1317,7 @@ class RecipePluginForWP
     {
         $renderer = self::getJumpToRecipeBlockRenderer();
         $attributes['translations'] = array(
-            "jumpToRecipe" => __('Jump to recipe', 'recipe-plugin-for-wp')
+            "jumpToRecipe" => __('Jump to recipe', 'recipe-master')
         );
         $attributes['options'] = $this->getStyleOptions();
         return $renderer($attributes);

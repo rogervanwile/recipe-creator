@@ -1,30 +1,30 @@
-<div class="recipe-plugin-for-wp--block recipe-plugin-for-wp--recipe-block {{#if align}} align{{align}}{{/if}}"
-  id="recipe-plugin-for-wp--recipe">
-  <section class="recipe-plugin-for-wp--block--inner">
+<div class="recipe-master--block recipe-master--recipe-block {{#if align}} align{{align}}{{/if}}"
+  id="recipe-master--recipe">
+  <section class="recipe-master--block--inner">
 
-    <div class="recipe-plugin-for-wp--recipe-block--title">
+    <div class="recipe-master--recipe-block--title">
       {{#if name}}
       <h2>{{{name}}}</h2>
       {{/if}}
     </div>
 
-    <div class="recipe-plugin-for-wp--recipe-block--intro">
+    <div class="recipe-master--recipe-block--intro">
       {{#if averageRating}}
-      <div class="recipe-plugin-for-wp--recipe-block--rating recipe-plugin-for-wp--recipe-block--rating--small">
+      <div class="recipe-master--recipe-block--rating recipe-master--recipe-block--rating--small">
         <ol>
-          <li class="recipe-plugin-for-wp--recipe-block--star{{#if averageRating}} selected{{/if}}" data-rating="1">1
+          <li class="recipe-master--recipe-block--star{{#if averageRating}} selected{{/if}}" data-rating="1">1
           </li>
           <li
-            class="recipe-plugin-for-wp--recipe-block--star{{#ifMoreOrEqual averageRating 2}} selected{{else}}{{#ifMoreOrEqual averageRating 1.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
+            class="recipe-master--recipe-block--star{{#ifMoreOrEqual averageRating 2}} selected{{else}}{{#ifMoreOrEqual averageRating 1.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
             data-rating="2">2</li>
           <li
-            class="recipe-plugin-for-wp--recipe-block--star{{#ifMoreOrEqual averageRating 3}} selected{{else}}{{#ifMoreOrEqual averageRating 2.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
+            class="recipe-master--recipe-block--star{{#ifMoreOrEqual averageRating 3}} selected{{else}}{{#ifMoreOrEqual averageRating 2.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
             data-rating="3">3</li>
           <li
-            class="recipe-plugin-for-wp--recipe-block--star{{#ifMoreOrEqual averageRating 4}} selected{{else}}{{#ifMoreOrEqual averageRating 3.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
+            class="recipe-master--recipe-block--star{{#ifMoreOrEqual averageRating 4}} selected{{else}}{{#ifMoreOrEqual averageRating 3.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
             data-rating="4">4</li>
           <li
-            class="recipe-plugin-for-wp--recipe-block--star{{#ifMoreOrEqual averageRating 5}} selected{{else}}{{#ifMoreOrEqual averageRating 4.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
+            class="recipe-master--recipe-block--star{{#ifMoreOrEqual averageRating 5}} selected{{else}}{{#ifMoreOrEqual averageRating 4.5}} half-selected{{/ifMoreOrEqual}}{{/ifMoreOrEqual}}"
             data-rating="5">5</li>
         </ol>
       </div>
@@ -35,18 +35,18 @@
       {{/if}}
 
       {{#if difficulty}}
-      <span class="recipe-plugin-for-wp--recipe-block--difficulty">{{ difficulty }}</span>
+      <span class="recipe-master--recipe-block--difficulty">{{ difficulty }}</span>
       {{/if}}
 
     </div>
 
     {{#if thumbnail}}
-    <div class="recipe-plugin-for-wp--recipe-block--thumbnail"
+    <div class="recipe-master--recipe-block--thumbnail"
       style="background-image: url('{{thumbnail}}') !important;" title="{{ name }}"></div>
     {{/if}}
 
     {{#if totalTime}}
-    <section class="recipe-plugin-for-wp--recipe-block--timings">
+    <section class="recipe-master--recipe-block--timings">
       <ul>
         {{#if prepTime}}
         <li>
@@ -90,11 +90,11 @@
     {{/if}}
 
     {{#if ingredientsGroups.0}}
-    <section class="recipe-plugin-for-wp--recipe-block--ingredients">
-      <div class="recipe-plugin-for-wp--recipe-block--headline">
+    <section class="recipe-master--recipe-block--ingredients">
+      <div class="recipe-master--recipe-block--headline">
         <h3>{{translations/ingredients}}</h3>
         {{#if recipeYield}}
-        <div class="recipe-plugin-for-wp--recipe-block--servings-editor">
+        <div class="recipe-master--recipe-block--servings-editor">
           <span disabled="disabled">
             <span class="recipe-servings">{{recipeYieldFormatted}}</span>
             {{recipeYieldUnitFormatted}}
@@ -103,7 +103,7 @@
         {{else}}
         {{#if recipeYieldWidth}}
         {{#if recipeYieldHeight}}
-        <div class="recipe-plugin-for-wp--recipe-block--servings-editor">
+        <div class="recipe-master--recipe-block--servings-editor">
           <span disabled="disabled">
             <span class="recipe-servings">{{recipeYieldFormatted}}</span>
             {{recipeYieldUnitFormatted}}
@@ -113,23 +113,23 @@
         {{/if}}
         {{/if}}
       </div>
-      <table class="recipe-plugin-for-wp--recipe-block--ingredients-table" {{#if recipeYield}}
+      <table class="recipe-master--recipe-block--ingredients-table" {{#if recipeYield}}
         data-recipe-yield="{{recipeYield}}" {{/if}} {{#if recipeYieldWidth}}
         data-recipe-yield-width="{{recipeYieldWidth}}" {{/if}} {{#if recipeYieldHeight}}
         data-recipe-yield-height="{{recipeYieldHeight}}" {{/if}} data-recipe-yield-unit="{{recipeYieldUnit}}">
         <tbody>
           {{#each ingredientsGroups}}
           {{#if this/title}}
-          <tr class="recipe-plugin-for-wp--recipe-block--group-title">
+          <tr class="recipe-master--recipe-block--group-title">
             <th colspan="2">{{this.title}}</th>
           </tr>
           {{/if}}
           {{#each this/items}}
           <tr
-            class="recipe-plugin-for-wp--recipe-block--ingredients-item{{#isEven @index}} recipe-plugin-for-wp--even{{/isEven}}">
-            <td class="recipe-plugin-for-wp--recipe-block--amount" data-recipe-amount="{{this/amount}}"
+            class="recipe-master--recipe-block--ingredients-item{{#isEven @index}} recipe-master--even{{/isEven}}">
+            <td class="recipe-master--recipe-block--amount" data-recipe-amount="{{this/amount}}"
               data-recipe-unit="{{this/unit}}">{{this/amount}} {{this/unit}}</td>
-            <td class="recipe-plugin-for-wp--recipe-block--ingredient">{{{this/ingredient}}}</td>
+            <td class="recipe-master--recipe-block--ingredient">{{{this/ingredient}}}</td>
           </tr>
           {{/each}}
           {{/each}}
@@ -140,19 +140,19 @@
 
 
     {{#if utensils}}
-    <section class="recipe-plugin-for-wp--recipe-block--utensils">
-      <div class="recipe-plugin-for-wp--recipe-block--headline">
+    <section class="recipe-master--recipe-block--utensils">
+      <div class="recipe-master--recipe-block--headline">
         <h3>{{translations/utensils}}</h3>
       </div>
-      <ul class="recipe-plugin-for-wp--recipe-block--utensils-list">
+      <ul class="recipe-master--recipe-block--utensils-list">
         {{{utensils}}}
       </ul>
     </section>
     {{/if}}
 
     {{#if preparationStepsGroups.0}}
-    <div class="recipe-plugin-for-wp--recipe-block--preparation-steps">
-      <div class="recipe-plugin-for-wp--recipe-block--headline">
+    <div class="recipe-master--recipe-block--preparation-steps">
+      <div class="recipe-master--recipe-block--headline">
         <h3>{{translations/preparationSteps}}</h3>
       </div>
 
@@ -168,65 +168,65 @@
     {{/if}}
 
     {{#if videoIframeUrl}}
-    <section class="recipe-plugin-for-wp--recipe-block--video">
-      <header class="recipe-plugin-for-wp--recipe-block--headline">
+    <section class="recipe-master--recipe-block--video">
+      <header class="recipe-master--recipe-block--headline">
         <h3>{{translations/video}}</h3>
       </header>
-      <div class="recipe-plugin-for-wp--recipe-block--video-wrapper">
+      <div class="recipe-master--recipe-block--video-wrapper">
         <iframe src="{{videoIframeUrl}}" frameborder="0" allowfullscreen></iframe>
       </div>
     </section>
     {{/if}}
 
     {{#if notes}}
-    <section class="recipe-plugin-for-wp--recipe-block--notes">
-      <header class="recipe-plugin-for-wp--recipe-block--headline">
+    <section class="recipe-master--recipe-block--notes">
+      <header class="recipe-master--recipe-block--headline">
         <h3>{{translations/notes}}</h3>
       </header>
       <p>{{{notes}}}</p>
     </section>
     {{/if}}
 
-    <section class="recipe-plugin-for-wp--recipe-block--user-rating">
-      <header class="recipe-plugin-for-wp--recipe-block--headline">
+    <section class="recipe-master--recipe-block--user-rating">
+      <header class="recipe-master--recipe-block--headline">
         <h3>{{translations/feedback}}</h3>
       </header>
-      <div class="recipe-plugin-for-wp--recipe-block--rating recipe-plugin-for-wp--recipe-block--interactive"
+      <div class="recipe-master--recipe-block--rating recipe-master--recipe-block--interactive"
         data-post-id="{{postId}}" data-save-url="{{ajaxUrl}}" data-nonce="{{nonce}}">
         <ol>
-          <li class="recipe-plugin-for-wp--recipe-block--star{{#if userRating}} selected{{/if}}" data-rating="1">1
+          <li class="recipe-master--recipe-block--star{{#if userRating}} selected{{/if}}" data-rating="1">1
           </li>
           <li
-            class="recipe-plugin-for-wp--recipe-block--star{{#ifMoreOrEqual userRating 2}} selected{{else}}{{/ifMoreOrEqual}}"
+            class="recipe-master--recipe-block--star{{#ifMoreOrEqual userRating 2}} selected{{else}}{{/ifMoreOrEqual}}"
             data-rating="2">2</li>
           <li
-            class="recipe-plugin-for-wp--recipe-block--star{{#ifMoreOrEqual userRating 3}} selected{{else}}{{/ifMoreOrEqual}}"
+            class="recipe-master--recipe-block--star{{#ifMoreOrEqual userRating 3}} selected{{else}}{{/ifMoreOrEqual}}"
             data-rating="3">3</li>
           <li
-            class="recipe-plugin-for-wp--recipe-block--star{{#ifMoreOrEqual userRating 4}} selected{{else}}{{/ifMoreOrEqual}}"
+            class="recipe-master--recipe-block--star{{#ifMoreOrEqual userRating 4}} selected{{else}}{{/ifMoreOrEqual}}"
             data-rating="4">4</li>
           <li
-            class="recipe-plugin-for-wp--recipe-block--star{{#ifMoreOrEqual userRating 5}} selected{{else}}{{/ifMoreOrEqual}}"
+            class="recipe-master--recipe-block--star{{#ifMoreOrEqual userRating 5}} selected{{else}}{{/ifMoreOrEqual}}"
             data-rating="5">5</li>
         </ol>
       </div>
     </section>
 
-    <section class="recipe-plugin-for-wp--recipe-block--save-and-share">
-      <ul class="recipe-plugin-for-wp--recipe-block--share-buttons">
+    <section class="recipe-master--recipe-block--save-and-share">
+      <ul class="recipe-master--recipe-block--share-buttons">
         {{#if pinterestPinItUrl}}
         <li>
           <a href="{{pinterestPinItUrl}}" target="_blank"
-            class="recipe-plugin-for-wp--recipe-block--share-on-pinterest">{{translations/pinIt}}</a>
+            class="recipe-master--recipe-block--share-on-pinterest">{{translations/pinIt}}</a>
         </li>
         {{/if}}
       </ul>
     </section>
 
     {{#ifOneOfThem instagramUsername instagramHashtag}}
-    <section class="recipe-plugin-for-wp--recipe-block--call-to-action">
-      <div class="recipe-plugin-for-wp--recipe-block--call-to-action--icon"></div>
-      <div class="recipe-plugin-for-wp--recipe-block--call-to-action--text">
+    <section class="recipe-master--recipe-block--call-to-action">
+      <div class="recipe-master--recipe-block--call-to-action--icon"></div>
+      <div class="recipe-master--recipe-block--call-to-action--text">
         <h3>{{translations/instagramHeadline}}</h3>
         {{#if instagramUsername}}
         {{#if instagramHashtag}}

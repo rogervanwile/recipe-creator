@@ -7,13 +7,13 @@ export class Recipe {
     this.initWakeLock();
 
     this.element.dispatchEvent(
-      new CustomEvent("recipe-plugin-for-wp:recipe-ready", { bubbles: true })
+      new CustomEvent("recipe-master:recipe-ready", { bubbles: true })
     );
   }
 
   private initRating() {
     const ratingElements = this.element.querySelectorAll<HTMLElement>(
-      ".recipe-plugin-for-wp--recipe-block--rating.recipe-plugin-for-wp--recipe-block--interactive"
+      ".recipe-master--recipe-block--rating.recipe-master--recipe-block--interactive"
     );
 
     if (ratingElements) {

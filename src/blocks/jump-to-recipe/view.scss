@@ -2,14 +2,14 @@ html {
   scroll-behavior: smooth;
 }
 
-.recipe-plugin-for-wp--block--jump-to-recipe {
+.recipe-master--block--jump-to-recipe {
   --primary: #030303;
   --primary-contrast: #ffffff;
 
   display: flex;
   align-items: center;
 
-  .recipe-plugin-for-wp--block--jump-to-recipe--link {
+  .recipe-master--block--jump-to-recipe--link {
     display: inline-block;
     background-color: var(--primary);
     color: var(--primary-contrast);

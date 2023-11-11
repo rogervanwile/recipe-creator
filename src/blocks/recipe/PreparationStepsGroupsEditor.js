@@ -51,15 +51,15 @@ export default function PreparationStepsGroupsEditor({ props }) {
         return (
           <div
             key={"preparationStepsGroups_" + index}
-            className="recipe-plugin-for-wp--recipe-block--editor"
+            className="recipe-master--recipe-block--editor"
           >
             {index !== 0 ||
             props.attributes.preparationStepsGroups.length > 1 ? (
-              <div className="recipe-plugin-for-wp--recipe-block--group-header">
+              <div className="recipe-master--recipe-block--group-header">
                 <RichText
                   tagName="h3"
                   value={group.title || ""}
-                  placeholder={__("Group name", "recipe-plugin-for-wp")}
+                  placeholder={__("Group name", "recipe-master")}
                   __unstablePastePlainText={true}
                   onChange={(value) => {
                     const groupUpdate = {
@@ -74,7 +74,7 @@ export default function PreparationStepsGroupsEditor({ props }) {
                   }}
                 />
                 <Button isTertiary={true} onClick={() => removeGroup(index)}>
-                  {__("Remove Group", "recipe-plugin-for-wp")}
+                  {__("Remove Group", "recipe-master")}
                 </Button>
               </div>
             ) : (
@@ -85,7 +85,7 @@ export default function PreparationStepsGroupsEditor({ props }) {
               multiline="li"
               placeholder={__(
                 "Add the steps of preparation here...",
-                "recipe-plugin-for-wp"
+                "recipe-master"
               )}
               value={group.list || ""}
               __unstablePastePlainText={true}
@@ -107,8 +107,8 @@ export default function PreparationStepsGroupsEditor({ props }) {
 
       <Button isSecondary={true} onClick={addGroup}>
         {props.attributes.preparationStepsGroups.length === 1
-          ? __("Split steps into groups", "recipe-plugin-for-wp")
-          : __("Add additional group", "recipe-plugin-for-wp")}
+          ? __("Split steps into groups", "recipe-master")
+          : __("Add additional group", "recipe-master")}
       </Button>
     </>
   );

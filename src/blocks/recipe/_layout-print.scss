@@ -22,7 +22,7 @@
     color: #000000 !important;
   }
 
-  .recipe-plugin-for-wp--block {
+  .recipe-master--block {
     --headline-font-family: serif !important;
     --text-font-family: sans-serif !important;
 
@@ -84,7 +84,7 @@
       grid-area: header-right;
     }
 
-    .recipe-plugin-for-wp--recipe-block--thumbnail {
+    .recipe-master--recipe-block--thumbnail {
       grid-area: header-left;
     }
 
@@ -100,8 +100,8 @@
       grid-area: main;
     }
 
-    .recipe-plugin-for-wp--recipe-block--servings-editor {
-      .recipe-plugin-for-wp--recipe-block--headline {
+    .recipe-master--recipe-block--servings-editor {
+      .recipe-master--recipe-block--headline {
         flex-direction: column;
         align-items: start;
       }
@@ -111,13 +111,13 @@
       }
     }
 
-    .recipe-plugin-for-wp--recipe-block--timings {
+    .recipe-master--recipe-block--timings {
       ul li {
         display: block;
       }
     }
 
-    .recipe-plugin-for-wp--recipe-block--ingredients-table {
+    .recipe-master--recipe-block--ingredients-table {
       tr td {
         padding-top: 0.4em;
         padding-bottom: 0.4em;
@@ -129,35 +129,35 @@
       }
     }
 
-    .recipe-plugin-for-wp--recipe-block--utensils-list li {
+    .recipe-master--recipe-block--utensils-list li {
       padding-left: 0;
       margin-bottom: 0;
     }
 
-    .recipe-plugin-for-wp--recipe-block--copyright {
+    .recipe-master--recipe-block--copyright {
       opacity: 0.8;
       margin-bottom: 12px;
       display: block;
     }
 
-    .recipe-plugin-for-wp--recipe-block--rating,
-    .recipe-plugin-for-wp--recipe-block--video,
+    .recipe-master--recipe-block--rating,
+    .recipe-master--recipe-block--video,
     .recipe-shrink-servings,
     .recipe-increase-servings,
-    .recipe-plugin-for-wp--recipe-block--save-and-share,
-    .recipe-plugin-for-wp--recipe-block--user-rating,
-    .recipe-plugin-for-wp--recipe-block--difficulty {
+    .recipe-master--recipe-block--save-and-share,
+    .recipe-master--recipe-block--user-rating,
+    .recipe-master--recipe-block--difficulty {
       display: none !important;
     }
 
-    .recipe-plugin-for-wp--recipe-block--servings-editor > span {
+    .recipe-master--recipe-block--servings-editor > span {
       background-color: transparent;
     }
 
-    .recipe-plugin-for-wp--recipe-block--call-to-action {
+    .recipe-master--recipe-block--call-to-action {
       background-color: transparent !important;
 
-      .recipe-plugin-for-wp--recipe-block--call-to-action--icon {
+      .recipe-master--recipe-block--call-to-action--icon {
         // TODO: Find a way to change the icon color
         display: none;
       }

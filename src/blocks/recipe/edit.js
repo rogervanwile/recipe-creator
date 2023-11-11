@@ -166,7 +166,7 @@ export default function Edit(props) {
     } else {
       return (
         <div className="featured-snipped-preview--rating">
-          {__("No reviews", "recipe-plugin-for-wp")}
+          {__("No reviews", "recipe-master")}
         </div>
       );
     }
@@ -238,8 +238,8 @@ export default function Edit(props) {
     <Fragment>
       <InspectorControls>
         <PanelBody
-          title={__("Pinterest", "recipe-plugin-for-wp")}
-          className="recipe-plugin-for-wp--sidebar"
+          title={__("Pinterest", "recipe-master")}
+          className="recipe-master--sidebar"
         >
           <PanelRow>
             <MediaUploadCheck>
@@ -265,7 +265,7 @@ export default function Edit(props) {
                       className="components-button is-secondary"
                       onClick={open}
                     >
-                      {__("Select image", "recipe-plugin-for-wp")}
+                      {__("Select image", "recipe-master")}
                     </button>
                   </Fragment>
                 )}
@@ -274,24 +274,24 @@ export default function Edit(props) {
           </PanelRow>
         </PanelBody>
         <PanelBody
-          title={__("SEO", "recipe-plugin-for-wp")}
-          className="recipe-plugin-for-wp--sidebar"
+          title={__("SEO", "recipe-master")}
+          className="recipe-master--sidebar"
         >
           <PanelRow>
             <p>
               {__(
                 "Google and other search engines need more information to present your recipe in the best possible way. You should provide this information as good as possible.",
-                "recipe-plugin-for-wp"
+                "recipe-master"
               )}
             </p>
           </PanelRow>
           <PanelRow>
             <TextControl
-              label={__("Cuisine", "recipe-plugin-for-wp")}
+              label={__("Cuisine", "recipe-master")}
               value={props.attributes.recipeCuisine}
               placeholder={__(
                 'e.g. "Italian" or "German"',
-                "recipe-plugin-for-wp"
+                "recipe-master"
               )}
               onChange={(recipeCuisine) => {
                 props.setAttributes({ recipeCuisine });
@@ -301,7 +301,7 @@ export default function Edit(props) {
           <PanelRow>
             <TextControl
               type="number"
-              label={__("Calories", "recipe-plugin-for-wp")}
+              label={__("Calories", "recipe-master")}
               value={props.attributes.calories}
               description={__("Calories per serving or piece")}
               suffix="kcal"
@@ -315,22 +315,22 @@ export default function Edit(props) {
 
           <PanelRow>
             <h4>
-              {__("Picture of the finished dish", "recipe-plugin-for-wp")}
+              {__("Picture of the finished dish", "recipe-master")}
             </h4>
             <p>
               {__(
                 "Depending on the usage Google uses different image formats of your recipe. You can find more information",
-                "recipe-plugin-for-wp"
+                "recipe-master"
               )}
               &nbsp;
               <a
                 href={__(
                   "https://www.howtofoodblog.com/mehr-klicks-durch-optimierte-rezeptbilder",
-                  "recipe-plugin-for-wp"
+                  "recipe-master"
                 )}
                 target="_blank"
               >
-                {__("here", "recipe-plugin-for-wp")}
+                {__("here", "recipe-master")}
               </a>
               .
             </p>
@@ -373,8 +373,8 @@ export default function Edit(props) {
           <hr />
 
           <PanelRow>
-            <h3>{__("Previews", "recipe-plugin-for-wp")}</h3>
-            <h4>{__("Featured Snippet", "recipe-plugin-for-wp")}</h4>
+            <h3>{__("Previews", "recipe-master")}</h3>
+            <h4>{__("Featured Snippet", "recipe-master")}</h4>
           </PanelRow>
 
           <PanelRow>
@@ -401,7 +401,7 @@ export default function Edit(props) {
           </PanelRow>
 
           <PanelRow>
-            <h4>{__("Mobile Search Result", "recipe-plugin-for-wp")}</h4>
+            <h4>{__("Mobile Search Result", "recipe-master")}</h4>
           </PanelRow>
 
           <PanelRow>
@@ -428,7 +428,7 @@ export default function Edit(props) {
                     </span> */}
                     {__(
                       "Google displays here a text that matches the search term.",
-                      "recipe-plugin-for-wp"
+                      "recipe-master"
                     )}
                   </div>
                 </div>
@@ -436,7 +436,7 @@ export default function Edit(props) {
 
               <div className="featured-result-preview-mobile--footer">
                 <div className="featured-result-preview-mobile--rating-col">
-                  <header>{__("Rating", "recipe-plugin-for-wp")}</header>
+                  <header>{__("Rating", "recipe-master")}</header>
                   <p>
                     <span>{props.data.meta.average_rating}</span>
                     <span className="featured-snipped-preview--stars">
@@ -455,14 +455,14 @@ export default function Edit(props) {
 
                 <div className="featured-result-preview-mobile--time-col">
                   <header>
-                    {__("Preparation", "recipe-plugin-for-wp")}
+                    {__("Preparation", "recipe-master")}
                   </header>
                   <p>{props.attributes.totalTime} Min.</p>
                 </div>
 
                 {/* <div className="featured-result-preview-mobile--calories-col">
-                  <header>{__("Calories", 'recipe-plugin-for-wp')}</header>
-                  <p>{__("Calories", 'recipe-plugin-for-wp')}: 99</p>
+                  <header>{__("Calories", 'recipe-master')}</header>
+                  <p>{__("Calories", 'recipe-master')}: 99</p>
                 </div> */}
               </div>
             </section>
@@ -470,21 +470,21 @@ export default function Edit(props) {
         </PanelBody>
 
         <PanelBody
-          title={__("Rating", "recipe-plugin-for-wp")}
-          className="recipe-plugin-for-wp--sidebar"
+          title={__("Rating", "recipe-master")}
+          className="recipe-master--sidebar"
         >
           <PanelRow>
             <p>
-              <strong>{__("Attention:", "recipe-plugin-for-wp")}</strong>{" "}
+              <strong>{__("Attention:", "recipe-master")}</strong>{" "}
               {__(
                 "Adjusting the ratings can have an impact on your Google ranking. Be careful with this function.",
-                "recipe-plugin-for-wp"
+                "recipe-master"
               )}
             </p>
           </PanelRow>
           <PanelRow>
             <NumberControl
-              label={__("1 star", "recipe-plugin-for-wp")}
+              label={__("1 star", "recipe-master")}
               min="0"
               value={props.data.meta.rating_1_votes || 0}
               onChange={(rating_1_votes) => {
@@ -494,7 +494,7 @@ export default function Edit(props) {
           </PanelRow>
           <PanelRow>
             <NumberControl
-              label={__("2 stars", "recipe-plugin-for-wp")}
+              label={__("2 stars", "recipe-master")}
               min="0"
               value={props.data.meta.rating_2_votes || 0}
               onChange={(rating_2_votes) => {
@@ -504,7 +504,7 @@ export default function Edit(props) {
           </PanelRow>
           <PanelRow>
             <NumberControl
-              label={__("3 stars", "recipe-plugin-for-wp")}
+              label={__("3 stars", "recipe-master")}
               min="0"
               value={props.data.meta.rating_3_votes || 0}
               onChange={(rating_3_votes) => {
@@ -514,7 +514,7 @@ export default function Edit(props) {
           </PanelRow>
           <PanelRow>
             <NumberControl
-              label={__("4 stars", "recipe-plugin-for-wp")}
+              label={__("4 stars", "recipe-master")}
               min="0"
               value={props.data.meta.rating_4_votes || 0}
               onChange={(rating_4_votes) => {
@@ -524,7 +524,7 @@ export default function Edit(props) {
           </PanelRow>
           <PanelRow>
             <NumberControl
-              label={__("5 stars", "recipe-plugin-for-wp")}
+              label={__("5 stars", "recipe-master")}
               min="0"
               value={props.data.meta.rating_5_votes || 0}
               onChange={(rating_5_votes) => {
@@ -535,7 +535,7 @@ export default function Edit(props) {
           <PanelRow>
             <p>
               <strong>
-                {__("Rating", "recipe-plugin-for-wp")}:{" "}
+                {__("Rating", "recipe-master")}:{" "}
                 {props.data.meta.average_rating} ({props.data.meta.rating_count}
                 ){" "}
               </strong>
@@ -544,28 +544,28 @@ export default function Edit(props) {
         </PanelBody>
       </InspectorControls>
       <div {...useBlockProps()}>
-        <div className="wp-block recipe-plugin-for-wp--block recipe-plugin-for-wp--recipe-block">
+        <div className="wp-block recipe-master--block recipe-master--recipe-block">
           <BlockControls></BlockControls>
-          <div className="recipe-plugin-for-wp--block--inner">
-            <div className="recipe-plugin-for-wp--recipe-block--title">
+          <div className="recipe-master--block--inner">
+            <div className="recipe-master--recipe-block--title">
               <RichText
                 tagName="h2"
                 value={props.attributes.name}
                 __unstablePastePlainText={true}
                 placeholder={__(
                   "Title of your recipe",
-                  "recipe-plugin-for-wp"
+                  "recipe-master"
                 )}
                 onChange={(name) => {
                   props.setAttributes({ name });
                 }}
               />
             </div>
-            <div className="recipe-plugin-for-wp--recipe-block--intro">
-              <div className="recipe-plugin-for-wp--recipe-block--difficulty--selector">
+            <div className="recipe-master--recipe-block--intro">
+              <div className="recipe-master--recipe-block--difficulty--selector">
                 <span
                   className={
-                    "recipe-plugin-for-wp--recipe-block--difficulty" +
+                    "recipe-master--recipe-block--difficulty" +
                     (props.attributes.difficulty !== "simple"
                       ? " unselected"
                       : "")
@@ -574,11 +574,11 @@ export default function Edit(props) {
                     props.setAttributes({ difficulty: "simple" });
                   }}
                 >
-                  {__("simple", "recipe-plugin-for-wp")}
+                  {__("simple", "recipe-master")}
                 </span>
                 <span
                   className={
-                    "recipe-plugin-for-wp--recipe-block--difficulty" +
+                    "recipe-master--recipe-block--difficulty" +
                     (props.attributes.difficulty !== "moderate"
                       ? " unselected"
                       : "")
@@ -587,11 +587,11 @@ export default function Edit(props) {
                     props.setAttributes({ difficulty: "moderate" });
                   }}
                 >
-                  {__("moderate", "recipe-plugin-for-wp")}
+                  {__("moderate", "recipe-master")}
                 </span>
                 <span
                   className={
-                    "recipe-plugin-for-wp--recipe-block--difficulty" +
+                    "recipe-master--recipe-block--difficulty" +
                     (props.attributes.difficulty !== "challenging"
                       ? " unselected"
                       : "")
@@ -600,7 +600,7 @@ export default function Edit(props) {
                     props.setAttributes({ difficulty: "challenging" });
                   }}
                 >
-                  {__("challenging", "recipe-plugin-for-wp")}
+                  {__("challenging", "recipe-master")}
                 </span>
               </div>
 
@@ -609,7 +609,7 @@ export default function Edit(props) {
                 value={props.attributes.description}
                 placeholder={__(
                   "Short description of your recipe",
-                  "recipe-plugin-for-wp"
+                  "recipe-master"
                 )}
                 __unstablePastePlainText={true}
                 onChange={(description) => {
@@ -619,7 +619,7 @@ export default function Edit(props) {
             </div>
 
             <div
-              className="recipe-plugin-for-wp--recipe-block--thumbnail"
+              className="recipe-master--recipe-block--thumbnail"
               style={{
                 backgroundImage: props.attributes.image3_2
                   ? "url(" + props.attributes.image3_2 + ")"
@@ -641,10 +641,10 @@ export default function Edit(props) {
                   render={({ open }) => (
                     <div
                       className={
-                        "recipe-plugin-for-wp--recipe-block--thumbnail-spacer" +
+                        "recipe-master--recipe-block--thumbnail-spacer" +
                         (props.attributes.image3_2
                           ? ""
-                          : " recipe-plugin-for-wp--empty")
+                          : " recipe-master--empty")
                       }
                       onClick={open}
                     ></div>
@@ -653,10 +653,10 @@ export default function Edit(props) {
               </MediaUploadCheck>
             </div>
 
-            <div className="recipe-plugin-for-wp--recipe-block--timings">
+            <div className="recipe-master--recipe-block--timings">
               <ul>
                 <li>
-                  <header>{__("Prep time", "recipe-plugin-for-wp")}:</header>
+                  <header>{__("Prep time", "recipe-master")}:</header>
                   <span>
                     <InputControl
                       type="number"
@@ -666,12 +666,12 @@ export default function Edit(props) {
                       onChange={(prepTime) => {
                         updateTime("prepTime", prepTime);
                       }}
-                      suffix={__("Min.", "recipe-plugin-for-wp")}
+                      suffix={__("Min.", "recipe-master")}
                     />
                   </span>
                 </li>
                 <li>
-                  <header>{__("Rest time", "recipe-plugin-for-wp")}:</header>
+                  <header>{__("Rest time", "recipe-master")}:</header>
                   <span>
                     <InputControl
                       type="number"
@@ -681,12 +681,12 @@ export default function Edit(props) {
                       onChange={(restTime) => {
                         updateTime("restTime", restTime);
                       }}
-                      suffix={__("Min.", "recipe-plugin-for-wp")}
+                      suffix={__("Min.", "recipe-master")}
                     />
                   </span>
                 </li>
                 <li>
-                  <header>{__("Cook time", "recipe-plugin-for-wp")}:</header>
+                  <header>{__("Cook time", "recipe-master")}:</header>
                   <span>
                     <InputControl
                       type="number"
@@ -696,13 +696,13 @@ export default function Edit(props) {
                       onChange={(cookTime) => {
                         updateTime("cookTime", cookTime);
                       }}
-                      suffix={__("Min.", "recipe-plugin-for-wp")}
+                      suffix={__("Min.", "recipe-master")}
                     />
                   </span>
                 </li>
                 <li>
                   <header>
-                    {__("Baking time", "recipe-plugin-for-wp")}:
+                    {__("Baking time", "recipe-master")}:
                   </header>
                   <span>
                     <InputControl
@@ -713,46 +713,46 @@ export default function Edit(props) {
                       onChange={(bakingTime) => {
                         updateTime("bakingTime", bakingTime);
                       }}
-                      suffix={__("Min.", "recipe-plugin-for-wp")}
+                      suffix={__("Min.", "recipe-master")}
                     />
                   </span>
                 </li>
 
                 <li>
                   <header>
-                    {__("Total time", "recipe-plugin-for-wp")}:
+                    {__("Total time", "recipe-master")}:
                   </header>
                   <span>
                     {props.attributes.totalTime || "0"}{" "}
-                    {__("Min.", "recipe-plugin-for-wp")}
+                    {__("Min.", "recipe-master")}
                   </span>
                 </li>
               </ul>
             </div>
 
-            <section className="recipe-plugin-for-wp--recipe-block--ingredients">
-              <div className="recipe-plugin-for-wp--recipe-block--headline">
-                <h3>{__("Ingredients", "recipe-plugin-for-wp")}</h3>
+            <section className="recipe-master--recipe-block--ingredients">
+              <div className="recipe-master--recipe-block--headline">
+                <h3>{__("Ingredients", "recipe-master")}</h3>
               </div>
-              <div className="recipe-plugin-for-wp--recipe-block--flex-container">
+              <div className="recipe-master--recipe-block--flex-container">
                 <RecipeYieldSelector props={props}></RecipeYieldSelector>
               </div>
 
               <IngredientsGroupsEditor props={props}></IngredientsGroupsEditor>
             </section>
 
-            <section className="recipe-plugin-for-wp--recipe-block--utensils">
-              <div className="recipe-plugin-for-wp--recipe-block--headline">
-                <h3>{__("Utensils", "recipe-plugin-for-wp")}</h3>
+            <section className="recipe-master--recipe-block--utensils">
+              <div className="recipe-master--recipe-block--headline">
+                <h3>{__("Utensils", "recipe-master")}</h3>
               </div>
 
               <RichText
                 tagName="ul"
                 multiline="li"
-                className="recipe-plugin-for-wp--recipe-block--utensils-list"
+                className="recipe-master--recipe-block--utensils-list"
                 placeholder={__(
                   "Add the needed utensils here...",
-                  "recipe-plugin-for-wp"
+                  "recipe-master"
                 )}
                 value={props.attributes.utensils}
                 __unstablePastePlainText={true}
@@ -760,9 +760,9 @@ export default function Edit(props) {
               />
             </section>
 
-            <div className="recipe-plugin-for-wp--recipe-block--preparation-steps">
-              <div className="recipe-plugin-for-wp--recipe-block--headline">
-                <h3>{__("Steps of preparation", "recipe-plugin-for-wp")}</h3>
+            <div className="recipe-master--recipe-block--preparation-steps">
+              <div className="recipe-master--recipe-block--headline">
+                <h3>{__("Steps of preparation", "recipe-master")}</h3>
               </div>
 
               <PreparationStepsGroupsEditor
@@ -770,14 +770,14 @@ export default function Edit(props) {
               ></PreparationStepsGroupsEditor>
             </div>
 
-            <section className="recipe-plugin-for-wp--recipe-block--video">
-              <div className="recipe-plugin-for-wp--recipe-block--headline">
-                <h3>{__("Video", "recipe-plugin-for-wp")}</h3>
+            <section className="recipe-master--recipe-block--video">
+              <div className="recipe-master--recipe-block--headline">
+                <h3>{__("Video", "recipe-master")}</h3>
               </div>
 
-              <div className="recipe-plugin-for-wp--recipe-block--flex-container">
+              <div className="recipe-master--recipe-block--flex-container">
                 <TextControl
-                  label={__("YouTube or Vimeo link", "recipe-plugin-for-wp")}
+                  label={__("YouTube or Vimeo link", "recipe-master")}
                   value={props.attributes.videoUrl}
                   onChange={(url) => {
                     if (url) {
@@ -799,9 +799,9 @@ export default function Edit(props) {
               </div>
             </section>
 
-            <section className="recipe-plugin-for-wp--recipe-block--notes">
-              <div className="recipe-plugin-for-wp--recipe-block--headline">
-                <h3>{__("Notes", "recipe-plugin-for-wp")}</h3>
+            <section className="recipe-master--recipe-block--notes">
+              <div className="recipe-master--recipe-block--headline">
+                <h3>{__("Notes", "recipe-master")}</h3>
               </div>
 
               <RichText
@@ -809,7 +809,7 @@ export default function Edit(props) {
                 value={props.attributes.notes}
                 placeholder={__(
                   "Additional notes ...",
-                  "recipe-plugin-for-wp"
+                  "recipe-master"
                 )}
                 __unstablePastePlainText={true}
                 onChange={(notes) => {
@@ -824,12 +824,12 @@ export default function Edit(props) {
       {!select("core/edit-post").isEditorSidebarOpened() ? (
         <button
           type="button"
-          className="components-button is-tertiary recipe-plugin-for-wp--show-additional-settings"
+          className="components-button is-tertiary recipe-master--show-additional-settings"
           onClick={() => {
             dispatch("core/edit-post").openGeneralSidebar("edit-post/document");
           }}
         >
-          {__("Show additional settings", "recipe-plugin-for-wp")}
+          {__("Show additional settings", "recipe-master")}
         </button>
       ) : null}
     </Fragment>

@@ -16,13 +16,13 @@ class AdminSettings {
     this.initOtherPicker();
 
     this.settingsForm = document.getElementById(
-      "recipe-plugin-for-wp--settings-form"
+      "recipe-master--settings-form"
     ) as HTMLFormElement;
   }
 
   private initColorPicker() {
     const colorPickers = document.querySelectorAll(
-      ".recipe-plugin-for-wp--color-picker"
+      ".recipe-master--color-picker"
     );
     colorPickers.forEach((colorPicker) => {
       var defaultValue = colorPicker.getAttribute("data-default-value") || null;
@@ -41,7 +41,7 @@ class AdminSettings {
 
   private initOtherPicker() {
     const adminForm = document.querySelector<HTMLElement>(
-      ".recipe-plugin-for-wp--settings-form "
+      ".recipe-master--settings-form "
     );
 
     if (!adminForm) {
@@ -142,7 +142,7 @@ class AdminSettings {
 
     if (!this.styleContainer) {
       this.styleContainer = document.getElementById(
-        "recipe-plugin-for-wp--style-container"
+        "recipe-master--style-container"
       );
     }
 

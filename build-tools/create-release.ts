@@ -63,8 +63,8 @@ rl.on("close", function () {
 rl.question("What is the new version? ", function (version: string) {
   // Remove existing release folder to start clean
 
-  if (fs.existsSync("./recipe-plugin-for-wp/")) {
-    fs.rmdirSync("./recipe-plugin-for-wp/", {
+  if (fs.existsSync("./recipe-master/")) {
+    fs.rmdirSync("./recipe-master/", {
       force: true,
       recursive: true,
     });
@@ -83,7 +83,7 @@ rl.question("What is the new version? ", function (version: string) {
   ];
 
   const filesToCopy: string[] = [
-    "./recipe-plugin-for-wp.php",
+    "./recipe-master.php",
     "./index.php",
     "./screenshot-1.png",
     "./screenshot-2.png",
@@ -94,11 +94,11 @@ rl.question("What is the new version? ", function (version: string) {
   ];
 
   foldersToCopy.forEach((folder) => {
-    copyFolderRecursiveSync(folder, "./recipe-plugin-for-wp");
+    copyFolderRecursiveSync(folder, "./recipe-master");
   });
 
   filesToCopy.forEach((file) => {
-    copyFileSync(file, "./recipe-plugin-for-wp");
+    copyFileSync(file, "./recipe-master");
   });
 
   // Duplicate the de_DE translation files for de_AT and de_CH
@@ -111,12 +111,12 @@ rl.question("What is the new version? ", function (version: string) {
 
       copyFileSync(
         "./languages/" + file,
-        "./recipe-plugin-for-wp/languages/",
+        "./recipe-master/languages/",
         atFileName
       );
       copyFileSync(
         "./languages/" + file,
-        "./recipe-plugin-for-wp/languages/",
+        "./recipe-master/languages/",
         chFileName
       );
     }
@@ -125,7 +125,7 @@ rl.question("What is the new version? ", function (version: string) {
   // Create the Zip file
 
   child_process.execSync(
-    `zip -r ./updates/archives/${version}.zip ./recipe-plugin-for-wp`
+    `zip -r ./updates/archives/${version}.zip ./recipe-master`
   );
 
   // Copy the zip as latest
@@ -135,7 +135,7 @@ rl.question("What is the new version? ", function (version: string) {
   );
 
   // Remove the temporary release folder
-  fs.rmdirSync("./recipe-plugin-for-wp/", {
+  fs.rmdirSync("./recipe-master/", {
     force: true,
     recursive: true,
   });
@@ -155,7 +155,7 @@ rl.question("What is the new version? ", function (version: string) {
 
   const infoJson = {
     version: version,
-    download_url: `https://updates.howtofoodblog.com/recipe-plugin-for-wp/archives/${version}.zip`,
+    download_url: `https://updates.howtofoodblog.com/recipe-master/archives/${version}.zip`,
     requires: "5.8.0",
     tested: "6.2.0",
     requires_php: "7.4",

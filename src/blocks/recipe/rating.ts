@@ -11,13 +11,13 @@ export class Rating {
     }
 
     const savedRating = window.localStorage.getItem(
-      "recipe-plugin-for-wp::" + postId
+      "recipe-master::" + postId
     );
 
     if (!savedRating) {
       ratingElement
         .querySelectorAll<HTMLElement>(
-          ".recipe-plugin-for-wp--recipe-block--star"
+          ".recipe-master--recipe-block--star"
         )
         .forEach((starElement) => {
           starElement.addEventListener("click", (event) => {
@@ -38,7 +38,7 @@ export class Rating {
 
             // To show the users vote and prevent multiple votes
             window.localStorage.setItem(
-              "recipe-plugin-for-wp::" + postId,
+              "recipe-master::" + postId,
               rating
             );
 
@@ -53,7 +53,7 @@ export class Rating {
   private hideRating() {
     // Hide the user rating section if the user has already voted.
     const ratingWrapper = this.ratingElement?.closest<HTMLElement>(
-      ".recipe-plugin-for-wp--recipe-block--user-rating"
+      ".recipe-master--recipe-block--user-rating"
     );
 
     if (!ratingWrapper) {
@@ -98,7 +98,7 @@ export class Rating {
             const averageVotingElement = document.querySelector(
               '[data-post-id="' +
                 postId +
-                '"] .recipe-plugin-for-wp--recipe-block--average-voting'
+                '"] .recipe-master--recipe-block--average-voting'
             );
 
             if (averageVotingElement) {
