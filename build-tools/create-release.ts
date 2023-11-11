@@ -157,7 +157,7 @@ rl.question("What is the new version? ", function (version: string) {
     version: version,
     download_url: `https://updates.howtofoodblog.com/recipe-master/archives/${version}.zip`,
     requires: "5.8.0",
-    tested: "6.2.0",
+    tested: "6.4.1",
     requires_php: "7.4",
     last_updated: currentTime,
     sections: {
