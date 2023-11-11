@@ -49,15 +49,15 @@ msgstr "Stunden"
 #. translators: %s: link to release notes
 #: inc/recipe-master.php:69
 msgid ""
-"We've updated the <strong>Recipe Plugin for WP</strong>. Check out the <a "
+"We've updated the <strong>Recipe Master</strong>. Check out the <a "
 "href=\"%s\">release notes</a> to see which new features you can use now."
 msgstr ""
-"Wir haben das <strong>Recipe Plugin for WP</strong> aktualisiert. Schau dir "
+"Wir haben das <strong>Recipe Master</strong> aktualisiert. Schau dir "
 "die <a href=\"%s\">Neuigkeiten</a> an, um zu sehen, welche neuen Funktionen "
 "du jetzt nutzen kannst."
 
 #: inc/recipe-master.php:260 inc/recipe-master.php:261
-msgid "Recipe Plugin for WP"
+msgid "Recipe Master"
 msgstr "Rezepte Plugin für WP"
 
 #: inc/recipe-master.php:273 inc/recipe-master.php:274
