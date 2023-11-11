@@ -1,6 +1,6 @@
 # Version 2.0.0 - 11. November 2023
 
-- Wir haben das Plugin von "Foodblog-Toolkit" in "Recipe Master" umgenannt. Damit wollen wir noch mehr Foodbloggern die Möglichkeit geben, unser Plugin zu finden und zu benutzen.
+- Wir haben das Plugin von "Foodblog-Toolkit" in "Recipe Plugin for WP" umgenannt. Damit wollen wir noch mehr Foodbloggern die Möglichkeit geben, unser Plugin zu finden und zu benutzen.
 
 # Version 1.8.6 - 5. Mai 2023
 

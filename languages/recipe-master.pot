@@ -44,12 +44,12 @@ msgstr ""
 
 #. translators: %s: link to release notes
 #: inc/recipe-master.php:69
-msgid "We've updated the <strong>Recipe Master</strong>. Check out the <a href=\"%s\">release notes</a> to see which new features you can use now."
+msgid "We've updated the <strong>Recipe Plugin for WP</strong>. Check out the <a href=\"%s\">release notes</a> to see which new features you can use now."
 msgstr ""
 
 #: inc/recipe-master.php:260
 #: inc/recipe-master.php:261
-msgid "Recipe Master"
+msgid "Recipe Plugin for WP"
 msgstr ""
 
 #: inc/recipe-master.php:273
