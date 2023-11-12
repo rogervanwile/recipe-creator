@@ -11,13 +11,13 @@ export class Rating {
     }
 
     const savedRating = window.localStorage.getItem(
-      "recipe-master::" + postId
+      "recipe-guru::" + postId
     );
 
     if (!savedRating) {
       ratingElement
         .querySelectorAll<HTMLElement>(
-          ".recipe-master--recipe-block--star"
+          ".recipe-guru--recipe-block--star"
         )
         .forEach((starElement) => {
           starElement.addEventListener("click", (event) => {
@@ -38,7 +38,7 @@ export class Rating {
 
             // To show the users vote and prevent multiple votes
             window.localStorage.setItem(
-              "recipe-master::" + postId,
+              "recipe-guru::" + postId,
               rating
             );
 
@@ -53,7 +53,7 @@ export class Rating {
   private hideRating() {
     // Hide the user rating section if the user has already voted.
     const ratingWrapper = this.ratingElement?.closest<HTMLElement>(
-      ".recipe-master--recipe-block--user-rating"
+      ".recipe-guru--recipe-block--user-rating"
     );
 
     if (!ratingWrapper) {
@@ -75,10 +75,10 @@ export class Rating {
       return;
     }
 
-    fetch(window.recipePluginForWPConfig.ajaxUrl, {
+    fetch(window.recipeGuruConfig.ajaxUrl, {
       method: "POST",
       body: new URLSearchParams({
-        _ajax_nonce: window.recipePluginForWPConfig.nonce,
+        _ajax_nonce: window.recipeGuruConfig.nonce,
         action: "recipe_plugin_for_wp_set_rating",
         postId,
         rating,
@@ -98,7 +98,7 @@ export class Rating {
             const averageVotingElement = document.querySelector(
               '[data-post-id="' +
                 postId +
-                '"] .recipe-master--recipe-block--average-voting'
+                '"] .recipe-guru--recipe-block--average-voting'
             );
 
             if (averageVotingElement) {

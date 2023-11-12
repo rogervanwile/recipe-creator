@@ -12,10 +12,10 @@ import metadata from "./block.json";
 registerBlockType(metadata, {
   // The title and description from the block.json is not translated automatic
   // So I have to redefine it here
-  title: __("Recipe", "recipe-master"),
+  title: __("Recipe", "recipe-guru"),
   description: __(
     "Add a recipe and optimize it easily for search engines.",
-    "recipe-master"
+    "recipe-guru"
   ),
   edit: withSelect((select) => {
     const site = select("core").getSite();

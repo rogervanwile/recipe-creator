@@ -1,5 +1,5 @@
 <?php
-$recipePluginForWP = new RecipeMaster();
+$recipeGuru = new RecipeGuru();
 ?>
 
 <div class="wrap">
@@ -9,7 +9,7 @@ $recipePluginForWP = new RecipeMaster();
   <div id="col-container" class="wp-clearfix">
     <div id="col-left">
       <div class="col-wrap">
-        <form method="post" action="options.php" id="recipe-master--settings-form">
+        <form method="post" action="options.php" id="recipe-guru--settings-form">
           <input type="hidden" name="recipe_plugin_for_wp__primary_color_contrast" value="<?= esc_attr(get_option('recipe_plugin_for_wp__primary_color_contrast')); ?>" />
           <input type="hidden" name="recipe_plugin_for_wp__primary_color_light" value="<?= esc_attr(get_option('recipe_plugin_for_wp__primary_color_light')); ?>" />
           <input type="hidden" name="recipe_plugin_for_wp__primary_color_light_contrast" value="<?= esc_attr(get_option('recipe_plugin_for_wp__primary_color_light_contrast')); ?>" />
@@ -28,17 +28,17 @@ $recipePluginForWP = new RecipeMaster();
     <div id="col-right">
       <div class="col-wrap">
         <?php
-        echo $recipePluginForWP->renderRecipeBlockDummy();
+        echo $recipeGuru->renderRecipeBlockDummy();
         ?>
       </div>
     </div>
-    <div id="recipe-master--style-container">
+    <div id="recipe-guru--style-container">
       <?php
-      echo $recipePluginForWP->renderRecipeBlockStyles();
+      echo $recipeGuru->renderRecipeBlockStyles();
       ?>
     </div>
   </div>
-  <script type="text/template" id="recipe-master--style-block-template">
-    <?php echo RecipeMaster::getStyleBlockTemplate(); ?>
+  <script type="text/template" id="recipe-guru--style-block-template">
+    <?php echo RecipeGuru::getStyleBlockTemplate(); ?>
   </script>
 </div>

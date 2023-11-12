@@ -1,6 +1,6 @@
 <?php
 
-class RecipeMasterMigrationSPRecipes
+class RecipeGuruMigrationSPRecipes
 {
 
     public function getRecipeFromSP()
@@ -89,11 +89,11 @@ class RecipeMasterMigrationSPRecipes
         }
     }
 
-    // register_block_type('recipe-master/recipe', array(
-    //     'editor_script' => 'recipe-master-recipe-block-editor',
-    //     'editor_style'  => 'recipe-master-recipe-block-editor',
-    //     'script'        => 'recipe-master-recipe-block',
-    //     'style'         => 'recipe-master-recipe-block',
+    // register_block_type('recipe-guru/recipe', array(
+    //     'editor_script' => 'recipe-guru-recipe-block-editor',
+    //     'editor_style'  => 'recipe-guru-recipe-block-editor',
+    //     'script'        => 'recipe-guru-recipe-block',
+    //     'style'         => 'recipe-guru-recipe-block',
     //     'attributes' => array(
     //         'ingredients' => array(
     //             'type' => 'string',

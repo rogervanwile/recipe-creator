@@ -4,7 +4,7 @@ describe("Check if license is required", () => {
     cy.get(".block-editor-inserter > .components-button").click();
     cy.get(".block-editor-inserter__search input[type=search]").click();
     cy.get(".block-editor-inserter__search input[type=search]").type("Recipe");
-    cy.get(".editor-block-list-item-recipe-master--recipe").click();
+    cy.get(".editor-block-list-item-recipe-guru--recipe").click();
     cy.contains("You have not activated the license yet");
   });
 

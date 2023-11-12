@@ -8,7 +8,7 @@ require __DIR__ . "/../vendor/autoload.php";
 
 use LightnCandy\LightnCandy;
 
-class RecipeMaster
+class RecipeGuru
 {
     private $primaryColorDefault = '#e27a7a';
     private $primaryColorContrastDefault = '#ffffff';
@@ -35,8 +35,8 @@ class RecipeMaster
 
         add_action('admin_enqueue_scripts', array($this, 'enqueueAdminJs'));
 
-        add_image_size('recipe-master--thumbnail', get_option('recipe_plugin_for_wp__thumbnail_size', $this->thumnailSizeDefault));
-        add_image_size('recipe-master--pinterest', 1000, 0, false);
+        add_image_size('recipe-guru--thumbnail', get_option('recipe_plugin_for_wp__thumbnail_size', $this->thumnailSizeDefault));
+        add_image_size('recipe-guru--pinterest', 1000, 0, false);
 
         // Frontend-AJAX-Actions
         add_action('wp_ajax_recipe_plugin_for_wp_set_rating', array($this, 'setRating'));
@@ -66,7 +66,7 @@ class RecipeMaster
                     <?php
                     echo sprintf(
                         /* translators: %s: link to release notes */
-                        __('We\'ve updated the <strong>Recipe Master</strong> plugin. Check out the <a href="%s">release notes</a> to see which new features you can use now.', 'recipe-master'),
+                        __('We\'ve updated the <strong>Recipe Guru</strong> plugin. Check out the <a href="%s">release notes</a> to see which new features you can use now.', 'recipe-guru'),
                         esc_url(get_admin_url(get_current_network_id(), 'admin.php?page=recipe_plugin_for_wp_release_notes'))
                     );
                     ?></p>
@@ -81,12 +81,12 @@ class RecipeMaster
         if (is_singular() && in_the_loop() && is_main_query()) {
             if (has_blocks()) {
                 // Does the contentThe $content contains the recipe block
-                if (has_block('recipe-master/recipe')) {
+                if (has_block('recipe-guru/recipe')) {
                     // If there is no "jump to recipe" block inside the content
                     // and the option "recipe_plugin_for_wp__show_jump_to_recipe"
                     // is set to true, I prepend the "jump to recipe" block to the content
-                    if (get_option('recipe_plugin_for_wp__show_jump_to_recipe', true) && !has_block('recipe-master/jump-to-recipe')) {
-                        $content = "<!-- wp:recipe-master/jump-to-recipe /-->\n\n" . $content;
+                    if (get_option('recipe_plugin_for_wp__show_jump_to_recipe', true) && !has_block('recipe-guru/jump-to-recipe')) {
+                        $content = "<!-- wp:recipe-guru/jump-to-recipe /-->\n\n" . $content;
                     }
 
                     $this->addRecipeBlockConfig();
@@ -98,9 +98,9 @@ class RecipeMaster
     }
 
     private function addRecipeBlockConfig() {
-        wp_localize_script('recipe-master-recipe-view-script', 'recipePluginForWPConfig', [
+        wp_localize_script('recipe-guru-recipe-view-script', 'recipeGuruConfig', [
             'ajaxUrl' => admin_url('admin-ajax.php'),
-            'nonce' =>  wp_create_nonce('recipe-master')
+            'nonce' =>  wp_create_nonce('recipe-guru')
         ]);
     }
 
@@ -112,14 +112,14 @@ class RecipeMaster
         }
 
         // do nothing if it is not our plugin
-        if ('recipe-master' !== $args->slug) {
+        if ('recipe-guru' !== $args->slug) {
             return false;
         }
 
         // trying to get from cache first
         if (false == $remote = get_transient('recipe_plugin_for_wp_update')) {
             // info.json is the file with the actual plugin information on your server
-            $remote = wp_remote_get('https://updates.howtofoodblog.com/recipe-master/info.json', array(
+            $remote = wp_remote_get('https://updates.howtofoodblog.com/recipe-guru/info.json', array(
                 'timeout' => 10,
                 'headers' => array(
                     'Accept' => 'application/json'
@@ -136,7 +136,7 @@ class RecipeMaster
             $res = new stdClass();
 
             $res->name = $remote->name;
-            $res->slug = 'recipe-master';
+            $res->slug = 'recipe-guru';
             $res->version = $remote->version;
             $res->tested = $remote->tested;
             $res->requires = $remote->requires;
@@ -178,7 +178,7 @@ class RecipeMaster
         if (false == $remote = get_transient('recipe_plugin_for_wp_upgrade')) {
 
             // info.json is the file with the actual plugin information on your server
-            $remote = wp_remote_get('https://updates.howtofoodblog.com/recipe-master/info.json', array(
+            $remote = wp_remote_get('https://updates.howtofoodblog.com/recipe-guru/info.json', array(
                 'timeout' => 10,
                 'headers' => array(
                     'Accept' => 'application/json'
@@ -198,8 +198,8 @@ class RecipeMaster
             // your installed plugin version should be on the line below! You can obtain it dynamically of course 
             if ($remote && version_compare($currentVersion, $remote->version, '<') && version_compare($remote->requires, get_bloginfo('version'), '<')) {
                 $res = new stdClass();
-                $res->slug = 'recipe-master';
-                $res->plugin = 'recipe-master/recipe-master.php';
+                $res->slug = 'recipe-guru';
+                $res->plugin = 'recipe-guru/recipe-guru.php';
                 $res->new_version = $remote->version;
                 $res->tested = $remote->tested;
                 $res->package = $remote->download_url;
@@ -215,7 +215,7 @@ class RecipeMaster
         if (!function_exists('get_plugin_data')) {
             require_once(ABSPATH . 'wp-admin/includes/plugin.php');
         }
-        $plugin_data = get_plugin_data(plugin_dir_path(__FILE__) . '../recipe-master.php');
+        $plugin_data = get_plugin_data(plugin_dir_path(__FILE__) . '../recipe-guru.php');
         return $plugin_data['Version'];
     }
 
@@ -233,12 +233,12 @@ class RecipeMaster
         wp_enqueue_style('wp-color-picker');
         wp_enqueue_style('iris');
 
-        wp_enqueue_style("recipe-master-recipe-style");
+        wp_enqueue_style("recipe-guru-recipe-style");
 
         $adminAsset = require(plugin_dir_path(__FILE__) . "../build/admin.asset.php");
 
         wp_enqueue_script(
-            'recipe-master-settings-js',
+            'recipe-guru-settings-js',
             plugins_url('build/admin.js', dirname(__FILE__)),
             ['wp-color-picker', ...$adminAsset['dependencies']],
             $adminAsset['version'],
@@ -246,7 +246,7 @@ class RecipeMaster
         );
 
         wp_enqueue_style(
-            'recipe-master-settings-css',
+            'recipe-guru-settings-css',
             plugins_url('build/admin.css', dirname(__FILE__)),
             $adminAsset['dependencies'],
             $adminAsset['version'],
@@ -257,8 +257,8 @@ class RecipeMaster
     public function registerSettingsPage()
     {
         add_menu_page(
-            __('Recipe Master', 'recipe-master'),
-            __('Recipe Master', 'recipe-master'),
+            __('Recipe Guru', 'recipe-guru'),
+            __('Recipe Guru', 'recipe-guru'),
             'manage_options',
             'recipe_plugin_for_wp',
             function () {
@@ -270,8 +270,8 @@ class RecipeMaster
 
         add_submenu_page(
             'recipe_plugin_for_wp',
-            __('Recipe Block', 'recipe-master'),
-            __("Recipe Block", 'recipe-master'),
+            __('Recipe Block', 'recipe-guru'),
+            __("Recipe Block", 'recipe-guru'),
             'manage_options',
             'recipe_plugin_for_wp',
             function () {
@@ -282,8 +282,8 @@ class RecipeMaster
 
         add_submenu_page(
             'recipe_plugin_for_wp',
-            __('Release notes', 'recipe-master'),
-            __("Release notes", 'recipe-master'),
+            __('Release notes', 'recipe-guru'),
+            __("Release notes", 'recipe-guru'),
             'manage_options',
             'recipe_plugin_for_wp_release_notes',
             function () {
@@ -298,7 +298,7 @@ class RecipeMaster
     private function renderColorPickerInput($name, $defaultValue)
     {
         $value = esc_attr(get_option($name, $defaultValue));
-        echo '<input type="text" class="recipe-master--color-picker" name="' . $name . '" value="' . $value . '" data-default-value="' .  $defaultValue . '" />';
+        echo '<input type="text" class="recipe-guru--color-picker" name="' . $name . '" value="' . $value . '" data-default-value="' .  $defaultValue . '" />';
     }
 
     private function renderNumberInput($name, $defaultValue)
@@ -441,25 +441,25 @@ class RecipeMaster
         // Sections
         add_settings_section(
             'recipe_plugin_for_wp__general',
-            __('General settings', 'recipe-master'),
+            __('General settings', 'recipe-guru'),
             function () {
-                echo '<p>' . __("Configure how the recipe block should behave on your blog posts.", 'recipe-master') . '</p>';
+                echo '<p>' . __("Configure how the recipe block should behave on your blog posts.", 'recipe-guru') . '</p>';
             },
             'recipe_plugin_for_wp__general'
         );
         add_settings_section(
             'recipe_plugin_for_wp__instagram',
-            __('Instagram', 'recipe-master'),
+            __('Instagram', 'recipe-guru'),
             function () {
-                echo '<p>' . __("Provide informations about your instagram profile and we show a call to action below your recipe.", 'recipe-master') . '</p>';
+                echo '<p>' . __("Provide informations about your instagram profile and we show a call to action below your recipe.", 'recipe-guru') . '</p>';
             },
             'recipe_plugin_for_wp__general'
         );
         add_settings_section(
             'recipe_plugin_for_wp__visual',
-            __('Visual settings', 'recipe-master'),
+            __('Visual settings', 'recipe-guru'),
             function () {
-                echo '<p>' . __("Configure how the recipe block should look for your visitors.", 'recipe-master') . '</p>';
+                echo '<p>' . __("Configure how the recipe block should look for your visitors.", 'recipe-guru') . '</p>';
             },
             'recipe_plugin_for_wp__general'
         );
@@ -467,9 +467,9 @@ class RecipeMaster
         // Fields
         add_settings_field(
             'recipe_plugin_for_wp__show_jump_to_recipe',
-            __('Jump to recipe', 'recipe-master'),
+            __('Jump to recipe', 'recipe-guru'),
             function () {
-                $this->renderCheckboxInput('recipe_plugin_for_wp__show_jump_to_recipe', true, __('Add a "Jump to recipe" button on every page with the recipe block.', 'recipe-master'));
+                $this->renderCheckboxInput('recipe_plugin_for_wp__show_jump_to_recipe', true, __('Add a "Jump to recipe" button on every page with the recipe block.', 'recipe-guru'));
             },
             'recipe_plugin_for_wp__general',
             'recipe_plugin_for_wp__general',
@@ -480,7 +480,7 @@ class RecipeMaster
 
         add_settings_field(
             'recipe_plugin_for_wp__instagram__username',
-            __('Your username', 'recipe-master'),
+            __('Your username', 'recipe-guru'),
             function () {
                 $this->renderTextInput('recipe_plugin_for_wp__instagram__username', '');
             },
@@ -493,7 +493,7 @@ class RecipeMaster
 
         add_settings_field(
             'recipe_plugin_for_wp__instagram__hashtag',
-            __('Hashtag', 'recipe-master'),
+            __('Hashtag', 'recipe-guru'),
             function () {
                 $this->renderTextInput('recipe_plugin_for_wp__instagram__hashtag', '');
             },
@@ -506,7 +506,7 @@ class RecipeMaster
 
         add_settings_field(
             'recipe_plugin_for_wp__primary_color',
-            __('Primary color', 'recipe-master'),
+            __('Primary color', 'recipe-guru'),
             function () {
                 $this->renderColorPickerInput('recipe_plugin_for_wp__primary_color', $this->primaryColorDefault);
             },
@@ -518,7 +518,7 @@ class RecipeMaster
         );
         add_settings_field(
             'recipe_plugin_for_wp__secondary_color',
-            __('Secondary color', 'recipe-master'),
+            __('Secondary color', 'recipe-guru'),
             function () {
                 $this->renderColorPickerInput('recipe_plugin_for_wp__secondary_color', $this->secondaryColorDefault);
             },
@@ -530,7 +530,7 @@ class RecipeMaster
         );
         add_settings_field(
             'recipe_plugin_for_wp__background_color',
-            __('Background color', 'recipe-master'),
+            __('Background color', 'recipe-guru'),
             function () {
                 $this->renderColorPickerInput('recipe_plugin_for_wp__background_color', $this->backgroundColorDefault);
             },
@@ -543,9 +543,9 @@ class RecipeMaster
 
         add_settings_field(
             'recipe_plugin_for_wp__show_border',
-            __('Border', 'recipe-master'),
+            __('Border', 'recipe-guru'),
             function () {
-                $this->renderCheckboxInput('recipe_plugin_for_wp__show_border', $this->showBorderDefault, __('Show border', 'recipe-master'));
+                $this->renderCheckboxInput('recipe_plugin_for_wp__show_border', $this->showBorderDefault, __('Show border', 'recipe-guru'));
             },
             'recipe_plugin_for_wp__general',
             'recipe_plugin_for_wp__visual',
@@ -555,9 +555,9 @@ class RecipeMaster
         );
         add_settings_field(
             'recipe_plugin_for_wp__show_box_shadow',
-            __('Box shadow', 'recipe-master'),
+            __('Box shadow', 'recipe-guru'),
             function () {
-                $this->renderCheckboxInput('recipe_plugin_for_wp__show_box_shadow', $this->showBoxShadowDefault, __('Show box shadow', 'recipe-master'));
+                $this->renderCheckboxInput('recipe_plugin_for_wp__show_box_shadow', $this->showBoxShadowDefault, __('Show box shadow', 'recipe-guru'));
             },
             'recipe_plugin_for_wp__general',
             'recipe_plugin_for_wp__visual',
@@ -567,7 +567,7 @@ class RecipeMaster
         );
         add_settings_field(
             'recipe_plugin_for_wp__border_radius',
-            __('Border radius', 'recipe-master'),
+            __('Border radius', 'recipe-guru'),
             function () {
                 $this->renderNumberInput('recipe_plugin_for_wp__border_radius', $this->borderRadiusDefault);
             },
@@ -579,7 +579,7 @@ class RecipeMaster
         );
         add_settings_field(
             'recipe_plugin_for_wp__thumbnail_size',
-            __('Image width', 'recipe-master'),
+            __('Image width', 'recipe-guru'),
             function () {
                 $this->renderNumberInput('recipe_plugin_for_wp__thumbnail_size', $this->thumnailSizeDefault);
             },
@@ -593,7 +593,7 @@ class RecipeMaster
 
     public function loadTranslations()
     {
-        load_plugin_textdomain('recipe-master', FALSE, dirname(plugin_basename(__FILE__), 2) . '/languages');
+        load_plugin_textdomain('recipe-guru', FALSE, dirname(plugin_basename(__FILE__), 2) . '/languages');
     }
 
     public function registerMeta()
@@ -671,13 +671,13 @@ class RecipeMaster
             'render_callback' => array($this, 'renderRecipeBlock'),
         ));
 
-        wp_set_script_translations('recipe-master-recipe-editor-script', 'recipe-master', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
-        wp_set_script_translations('recipe-master-jump-to-recipe-editor-script', 'recipe-master', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
+        wp_set_script_translations('recipe-guru-recipe-editor-script', 'recipe-guru', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
+        wp_set_script_translations('recipe-guru-jump-to-recipe-editor-script', 'recipe-guru', dirname(plugin_dir_path(__FILE__), 1) . '/languages/');
     }
 
     public function setRating()
     {
-        if (!check_ajax_referer('recipe-master')) {
+        if (!check_ajax_referer('recipe-guru')) {
             wp_send_json_error();
             wp_die();
         } else {
@@ -812,12 +812,12 @@ class RecipeMaster
                         $minutes = intval($context);
 
                         if ($minutes < 60) {
-                            return $minutes . ' ' . __('minutes', 'recipe-master');
+                            return $minutes . ' ' . __('minutes', 'recipe-guru');
                         } else {
                             $hours = floor($minutes / 60);
                             $rest = $minutes % 60;
 
-                            return $hours . ' ' . __('hours', 'recipe-master') . ($rest > 0 ? ' ' . $rest . ' ' . __('minutes', 'recipe-master') : '');
+                            return $hours . ' ' . __('hours', 'recipe-guru') . ($rest > 0 ? ' ' . $rest . ' ' . __('minutes', 'recipe-guru') : '');
                         }
                     }
 
@@ -897,12 +897,12 @@ class RecipeMaster
             "translations" => $this->getRecipeBlockTranslations(),
             "recipeYield" => 2,
             "recipeYieldUnit" => "servings",
-            "recipeYieldUnitFormatted" => __("servings", 'recipe-master'),
-            "difficulty" => __('simple', 'recipe-master'),
+            "recipeYieldUnitFormatted" => __("servings", 'recipe-guru'),
+            "difficulty" => __('simple', 'recipe-guru'),
             'prepTime' => 0,
             'cookTime' => 5,
-            'name' => __("Banana shake", 'recipe-master'),
-            "description" => __("You have bananas left over again and don't know what to do with them? How about a delicious shake?", 'recipe-master'),
+            'name' => __("Banana shake", 'recipe-guru'),
+            "description" => __("You have bananas left over again and don't know what to do with them? How about a delicious shake?", 'recipe-guru'),
             'totalTime' => 5,
             "ingredientsGroups" => array(
                 array(
@@ -911,43 +911,43 @@ class RecipeMaster
                         array(
                             "amount" => 500,
                             "unit" => "ml",
-                            "ingredient" => __("milk", 'recipe-master')
+                            "ingredient" => __("milk", 'recipe-guru')
                         ),
                         array(
                             "amount" => 1,
                             "unit" => "",
-                            "ingredient" => __("banana", 'recipe-master')
+                            "ingredient" => __("banana", 'recipe-guru')
                         ),
                         array(
                             "amount" => 1,
                             "unit" => "TL",
-                            "ingredient" => __("sugar", 'recipe-master')
+                            "ingredient" => __("sugar", 'recipe-guru')
                         ),
                         array(
                             "amount" => 0,
                             "unit" => "",
-                            "ingredient" => __("cinnamon", 'recipe-master')
+                            "ingredient" => __("cinnamon", 'recipe-guru')
                         )
                     )
                 )
             ),
             "utensils" => '<li>' . join("</li><li>", [
-                __("Knife", 'recipe-master'),
-                __("Blender", 'recipe-master'),
+                __("Knife", 'recipe-guru'),
+                __("Blender", 'recipe-guru'),
             ]) . '</li>',
             "preparationStepsGroups" => array(
                 array(
                     "title" => "",
                     "list" => '<li>' . join("</li><li>", [
-                        __("Peel banana.", 'recipe-master'),
-                        __("Put all the ingredients in the blender and mix everything for 30 seconds.", 'recipe-master'),
-                        __("Pour into a glass and enjoy.", 'recipe-master'),
+                        __("Peel banana.", 'recipe-guru'),
+                        __("Put all the ingredients in the blender and mix everything for 30 seconds.", 'recipe-guru'),
+                        __("Pour into a glass and enjoy.", 'recipe-guru'),
                     ]) . '</li>'
                 )
             ),
             "averageRating" => 4.5,
             "thumbnail" => plugins_url('../assets/banana-shake-4_3.png', __FILE__),
-            "notes" => __("The milkshake becomes particularly creamy with UHT milk.", 'recipe-master'),
+            "notes" => __("The milkshake becomes particularly creamy with UHT milk.", 'recipe-guru'),
             "instagramUsername" => get_option('recipe_plugin_for_wp__instagram__username', ''),
             "instagramHashtag" => get_option('recipe_plugin_for_wp__instagram__hashtag', '')
 
@@ -966,33 +966,33 @@ class RecipeMaster
     private function getRecipeBlockTranslations()
     {
         return [
-            "prepTime" => __('Prep time', 'recipe-master'),
-            "restTime" => __('Rest time', 'recipe-master'),
-            "cookTime" => __('Cook time', 'recipe-master'),
-            "bakingTime" => __('Baking time', 'recipe-master'),
-            "totalTime" => __('Total time', 'recipe-master'),
-            "yield" => __('yields', 'recipe-master'),
-            "ingredients" => __('Ingredients', 'recipe-master'),
-            "utensils" => __('Utensils', 'recipe-master'),
-            "preparationSteps" => __('Steps of preparation', 'recipe-master'),
-            "print" => __('Print', 'recipe-master'),
-            "pinIt" => __('Pin it', 'recipe-master'),
-            "yourRating" => __('Your rating', 'recipe-master'),
-            "averageRating" => __('Average rating', 'recipe-master'),
-            "notes" => __('Notes', 'recipe-master'),
-            "feedback" => __('How do you like the recipe?', 'recipe-master'),
-            "servings" => __('servings', 'recipe-master'),
-            "video" => __('Video', 'recipe-master'),
-            "instagramHeadline" => __('You tried this recipe?', 'recipe-master'),
-            "instagramThenLink" => __('Then link', 'recipe-master'),
-            "instagramOnInstagram" => __('on Instagram', 'recipe-master'),
-            "instagramOrUseHashtag" => __('on Instagram or use the hashtag', 'recipe-master'),
+            "prepTime" => __('Prep time', 'recipe-guru'),
+            "restTime" => __('Rest time', 'recipe-guru'),
+            "cookTime" => __('Cook time', 'recipe-guru'),
+            "bakingTime" => __('Baking time', 'recipe-guru'),
+            "totalTime" => __('Total time', 'recipe-guru'),
+            "yield" => __('yields', 'recipe-guru'),
+            "ingredients" => __('Ingredients', 'recipe-guru'),
+            "utensils" => __('Utensils', 'recipe-guru'),
+            "preparationSteps" => __('Steps of preparation', 'recipe-guru'),
+            "print" => __('Print', 'recipe-guru'),
+            "pinIt" => __('Pin it', 'recipe-guru'),
+            "yourRating" => __('Your rating', 'recipe-guru'),
+            "averageRating" => __('Average rating', 'recipe-guru'),
+            "notes" => __('Notes', 'recipe-guru'),
+            "feedback" => __('How do you like the recipe?', 'recipe-guru'),
+            "servings" => __('servings', 'recipe-guru'),
+            "video" => __('Video', 'recipe-guru'),
+            "instagramHeadline" => __('You tried this recipe?', 'recipe-guru'),
+            "instagramThenLink" => __('Then link', 'recipe-guru'),
+            "instagramOnInstagram" => __('on Instagram', 'recipe-guru'),
+            "instagramOrUseHashtag" => __('on Instagram or use the hashtag', 'recipe-guru'),
         ];
     }
 
     public function renderRecipeBlock($attributes, $context)
     {
-        wp_enqueue_script("recipe-master--recipe-view-script");
+        wp_enqueue_script("recipe-guru--recipe-view-script");
 
         $attributes['translations'] = $this->getRecipeBlockTranslations();
 
@@ -1012,7 +1012,7 @@ class RecipeMaster
         $attributes['totalTime'] = isset($attributes['totalTime']) ? floatval($attributes['totalTime']) : 0;
 
         if (isset($attributes['difficulty']) && !empty($attributes['difficulty'])) {
-            $attributes['difficulty'] = __($attributes['difficulty'], 'recipe-master');
+            $attributes['difficulty'] = __($attributes['difficulty'], 'recipe-guru');
         }
 
         $attributes['recipeYieldUnitFormatted'] = $this->getRecipeYieldUnitFormatted($attributes['recipeYieldUnit'], $recipeYield ?: 1);
@@ -1094,7 +1094,7 @@ class RecipeMaster
 
         foreach ($thumbnailImageCandidates as $imageCandidate) {
             if (isset($attributes[$imageCandidate . 'Id'])) {
-                $image = wp_get_attachment_image_src($attributes[$imageCandidate . 'Id'], 'recipe-master--thumbnail');
+                $image = wp_get_attachment_image_src($attributes[$imageCandidate . 'Id'], 'recipe-guru--thumbnail');
 
                 if ($image) {
                     $attributes['thumbnail'] = $image[0];
@@ -1111,7 +1111,7 @@ class RecipeMaster
             (!isset($attributes['thumbnail']) || $attributes['thumbnail'] === '') &&
             has_post_thumbnail(get_the_ID())
         ) {
-            $postThumbnail = get_the_post_thumbnail_url(get_the_ID(), 'recipe-master--thumbnail');
+            $postThumbnail = get_the_post_thumbnail_url(get_the_ID(), 'recipe-guru--thumbnail');
             $attributes['thumbnail'] = $postThumbnail;
         }
 
@@ -1141,7 +1141,7 @@ class RecipeMaster
         $currentUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
         if ($pinterestImageId !== null) {
-            $pinterestImageUrl = wp_get_attachment_image_src($pinterestImageId, 'recipe-master--pinterest');
+            $pinterestImageUrl = wp_get_attachment_image_src($pinterestImageId, 'recipe-guru--pinterest');
             if ($pinterestImageUrl) {
                 $attributes['pinterestPinItUrl'] = 'https://www.pinterest.com/pin/create/button/' .
                     '?url=' . urlencode($currentUrl) .
@@ -1214,28 +1214,28 @@ class RecipeMaster
         switch ($unit) {
             case 'piece':
                 if ($amount === 1) {
-                    return __('piece', 'recipe-master');
+                    return __('piece', 'recipe-guru');
                 } else {
-                    return __('pieces', 'recipe-master');
+                    return __('pieces', 'recipe-guru');
                 }
             case 'springform-pan':
-                return  __('springform pan', 'recipe-master');
+                return  __('springform pan', 'recipe-guru');
             case 'springform-pan':
-                return __('springform pan', 'recipe-master');
+                return __('springform pan', 'recipe-guru');
             case 'square-baking-pan':
-                return __('square baking pan', 'recipe-master');
+                return __('square baking pan', 'recipe-guru');
             case 'baking-tray':
                 if ($amount === 1) {
-                    return __('baking tray', 'recipe-master');
+                    return __('baking tray', 'recipe-guru');
                 } else {
-                    return __('baking trays', 'recipe-master');
+                    return __('baking trays', 'recipe-guru');
                 }
             case 'servings':
             default:
                 if ($amount === 1) {
-                    return __('serving', 'recipe-master');
+                    return __('serving', 'recipe-guru');
                 } else {
-                    return __('servings', 'recipe-master');
+                    return __('servings', 'recipe-guru');
                 }
         }
     }
@@ -1317,7 +1317,7 @@ class RecipeMaster
     {
         $renderer = self::getJumpToRecipeBlockRenderer();
         $attributes['translations'] = array(
-            "jumpToRecipe" => __('Jump to recipe', 'recipe-master')
+            "jumpToRecipe" => __('Jump to recipe', 'recipe-guru')
         );
         $attributes['options'] = $this->getStyleOptions();
         return $renderer($attributes);

@@ -3,9 +3,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Recipe Manager Pro 1.2.1\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recipe-master\n"
-"POT-Creation-Date: 2023-11-11T16:32:18+00:00\n"
-"PO-Revision-Date: 2023-11-11 17:36+0100\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recipe-guru\n"
+"POT-Creation-Date: 2023-11-12T14:33:30+00:00\n"
+"PO-Revision-Date: 2023-11-12 15:34+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -14,12 +14,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4.1\n"
-"X-Domain: recipe-master\n"
+"X-Domain: recipe-guru\n"
 
 #. Plugin Name of the plugin
-#: inc/recipe-master.php:260 inc/recipe-master.php:261
-msgid "Recipe Master"
-msgstr "Rezepte-Master"
+#: inc/recipe-guru.php:260 inc/recipe-guru.php:261
+msgid "Recipe Guru"
+msgstr "Rezept-Guru"
 
 #. Description of the plugin
 msgid ""
@@ -39,46 +39,46 @@ msgid "https://howtofoodblog.com/"
 msgstr "https://howtofoodblog.com/"
 
 #: build/recipe-block-renderer.php:7 build/recipe-block-renderer.php:12
-#: inc/recipe-master.php:815 inc/recipe-master.php:820
+#: inc/recipe-guru.php:815 inc/recipe-guru.php:820
 msgid "minutes"
 msgstr "Minuten"
 
-#: build/recipe-block-renderer.php:12 inc/recipe-master.php:820
+#: build/recipe-block-renderer.php:12 inc/recipe-guru.php:820
 msgid "hours"
 msgstr "Stunden"
 
 #. translators: %s: link to release notes
-#: inc/recipe-master.php:69
+#: inc/recipe-guru.php:69
 msgid ""
-"We've updated the <strong>Recipe Master</strong> plugin. Check out the <a "
+"We've updated the <strong>Recipe Guru</strong> plugin. Check out the <a "
 "href=\"%s\">release notes</a> to see which new features you can use now."
 msgstr ""
-"Wir haben das <strong>Rezepte-Master</strong>-Plugin aktualisiert. Schau dir "
+"Wir haben das <strong>Rezepte-Guru</strong>-Plugin aktualisiert. Schau dir "
 "die <a href=\"%s\">Neuigkeiten</a> an, um zu sehen, welche neuen Funktionen "
 "du jetzt nutzen kannst."
 
-#: inc/recipe-master.php:273 inc/recipe-master.php:274
+#: inc/recipe-guru.php:273 inc/recipe-guru.php:274
 msgid "Recipe Block"
 msgstr "Rezepte-Block"
 
-#: inc/recipe-master.php:285 inc/recipe-master.php:286
+#: inc/recipe-guru.php:285 inc/recipe-guru.php:286
 msgid "Release notes"
 msgstr "Neuigkeiten"
 
-#: inc/recipe-master.php:444
+#: inc/recipe-guru.php:444
 msgid "General settings"
 msgstr "Allgemeine Einstellungen"
 
-#: inc/recipe-master.php:446
+#: inc/recipe-guru.php:446
 msgid "Configure how the recipe block should behave on your blog posts."
 msgstr ""
 "Konfiguriere, wie sich der Rezept-Block in deinem Beitrag verhalten soll."
 
-#: inc/recipe-master.php:452
+#: inc/recipe-guru.php:452
 msgid "Instagram"
 msgstr "Instagram"
 
-#: inc/recipe-master.php:454
+#: inc/recipe-guru.php:454
 msgid ""
 "Provide informations about your instagram profile and we show a call to "
 "action below your recipe."
@@ -86,83 +86,83 @@ msgstr ""
 "Gib Informationen über dein Instagram-Profil an und wir zeigen einen Hinweis "
 "unter deinem Rezept an."
 
-#: inc/recipe-master.php:460
+#: inc/recipe-guru.php:460
 msgid "Visual settings"
 msgstr "Visuelle Einstellungen"
 
-#: inc/recipe-master.php:462
+#: inc/recipe-guru.php:462
 msgid "Configure how the recipe block should look for your visitors."
 msgstr "Konfiguriere, wie der Rezeptblock für deine Besucher aussehen soll."
 
-#: inc/recipe-master.php:470 inc/recipe-master.php:1320
+#: inc/recipe-guru.php:470 inc/recipe-guru.php:1320
 #: build/blocks/jump-to-recipe/editor.js:1
 msgid "Jump to recipe"
 msgstr "Zum Rezept springen"
 
-#: inc/recipe-master.php:472
+#: inc/recipe-guru.php:472
 msgid "Add a \"Jump to recipe\" button on every page with the recipe block."
 msgstr ""
 "Füge einen „Zum Rezept springen“-Button in jeden Beitrag ein, in dem sich "
 "ein Rezept-Block befindet."
 
-#: inc/recipe-master.php:483
+#: inc/recipe-guru.php:483
 msgid "Your username"
 msgstr "Dein Benutzername"
 
-#: inc/recipe-master.php:496
+#: inc/recipe-guru.php:496
 msgid "Hashtag"
 msgstr "Hashtag"
 
-#: inc/recipe-master.php:509
+#: inc/recipe-guru.php:509
 msgid "Primary color"
 msgstr "Hauptfarbe"
 
-#: inc/recipe-master.php:521
+#: inc/recipe-guru.php:521
 msgid "Secondary color"
 msgstr "Nebenfarbe"
 
-#: inc/recipe-master.php:533
+#: inc/recipe-guru.php:533
 msgid "Background color"
 msgstr "Hintergrundfarbe"
 
-#: inc/recipe-master.php:546
+#: inc/recipe-guru.php:546
 msgid "Border"
 msgstr "Rahmen"
 
-#: inc/recipe-master.php:548
+#: inc/recipe-guru.php:548
 msgid "Show border"
 msgstr "Rahmen anzeigen"
 
-#: inc/recipe-master.php:558
+#: inc/recipe-guru.php:558
 msgid "Box shadow"
 msgstr "Box-Schatten"
 
-#: inc/recipe-master.php:560
+#: inc/recipe-guru.php:560
 msgid "Show box shadow"
 msgstr "Box-Schatten anzeigen"
 
-#: inc/recipe-master.php:570
+#: inc/recipe-guru.php:570
 msgid "Border radius"
 msgstr "Eckradius"
 
-#: inc/recipe-master.php:582
+#: inc/recipe-guru.php:582
 msgid "Image width"
 msgstr "Bildbreite"
 
-#: inc/recipe-master.php:900 inc/recipe-master.php:984
-#: inc/recipe-master.php:1238 build/blocks/recipe/editor.js:1
+#: inc/recipe-guru.php:900 inc/recipe-guru.php:984 inc/recipe-guru.php:1238
+#: build/blocks/recipe/editor.js:1
 msgid "servings"
 msgstr "Portionen"
 
-#: inc/recipe-master.php:901 build/blocks/recipe/editor.js:1
+#: inc/recipe-guru.php:901 build/blocks/recipe/editor.js:1
 msgid "simple"
 msgstr "einfach"
 
-#: inc/recipe-master.php:904
+#: inc/recipe-guru.php:904
 msgid "Banana shake"
 msgstr "Bananen-Shake"
 
-#: inc/recipe-master.php:905
+#: inc/recipe-guru.php:905
 msgid ""
 "You have bananas left over again and don't know what to do with them? How "
 "about a delicious shake?"
@@ -170,153 +170,153 @@ msgstr ""
 "Du hast wieder Bananen übrig und weißt nichts damit anzufangen? Wie wäre es "
 "mit einem leckeren Shake?"
 
-#: inc/recipe-master.php:914
+#: inc/recipe-guru.php:914
 msgid "milk"
 msgstr "Milch"
 
-#: inc/recipe-master.php:919
+#: inc/recipe-guru.php:919
 msgid "banana"
 msgstr "Banane"
 
-#: inc/recipe-master.php:924
+#: inc/recipe-guru.php:924
 msgid "sugar"
 msgstr "Zucker"
 
-#: inc/recipe-master.php:929
+#: inc/recipe-guru.php:929
 msgid "cinnamon"
 msgstr "Zimt"
 
-#: inc/recipe-master.php:935
+#: inc/recipe-guru.php:935
 msgid "Knife"
 msgstr "Messer"
 
-#: inc/recipe-master.php:936
+#: inc/recipe-guru.php:936
 msgid "Blender"
 msgstr "Mixer"
 
-#: inc/recipe-master.php:942
+#: inc/recipe-guru.php:942
 msgid "Peel banana."
 msgstr "Banane schälen."
 
-#: inc/recipe-master.php:943
+#: inc/recipe-guru.php:943
 msgid ""
 "Put all the ingredients in the blender and mix everything for 30 seconds."
 msgstr "Alle Zutaten in den Mixer geben und alles für 30 Sekunden mixen."
 
-#: inc/recipe-master.php:944
+#: inc/recipe-guru.php:944
 msgid "Pour into a glass and enjoy."
 msgstr "In ein Glas füllen und genießen."
 
-#: inc/recipe-master.php:950
+#: inc/recipe-guru.php:950
 msgid "The milkshake becomes particularly creamy with UHT milk."
 msgstr "Besonders cremig wird der Milchshake mit H-Milch."
 
-#: inc/recipe-master.php:969 build/blocks/recipe/editor.js:1
+#: inc/recipe-guru.php:969 build/blocks/recipe/editor.js:1
 msgid "Prep time"
 msgstr "Vorbereitungszeit"
 
-#: inc/recipe-master.php:970 build/blocks/recipe/editor.js:1
+#: inc/recipe-guru.php:970 build/blocks/recipe/editor.js:1
 msgid "Rest time"
 msgstr "Ruhezeit"
 
-#: inc/recipe-master.php:971 build/blocks/recipe/editor.js:1
+#: inc/recipe-guru.php:971 build/blocks/recipe/editor.js:1
 msgid "Cook time"
 msgstr "Kochzeit"
 
-#: inc/recipe-master.php:972 build/blocks/recipe/editor.js:1
+#: inc/recipe-guru.php:972 build/blocks/recipe/editor.js:1
 msgid "Baking time"
 msgstr "Backzeit"
 
-#: inc/recipe-master.php:973 build/blocks/recipe/editor.js:1
+#: inc/recipe-guru.php:973 build/blocks/recipe/editor.js:1
 msgid "Total time"
 msgstr "Gesamtzeit"
 
-#: inc/recipe-master.php:974
+#: inc/recipe-guru.php:974
 msgid "yields"
 msgstr "Stück"
 
-#: inc/recipe-master.php:975 build/blocks/recipe/editor.js:1
+#: inc/recipe-guru.php:975 build/blocks/recipe/editor.js:1
 msgid "Ingredients"
 msgstr "Zutaten"
 
-#: inc/recipe-master.php:976 build/blocks/recipe/editor.js:1
+#: inc/recipe-guru.php:976 build/blocks/recipe/editor.js:1
 msgid "Utensils"
 msgstr "Utensilien"
 
-#: inc/recipe-master.php:977 build/blocks/recipe/editor.js:1
+#: inc/recipe-guru.php:977 build/blocks/recipe/editor.js:1
 msgid "Steps of preparation"
 msgstr "Zubereitung"
 
-#: inc/recipe-master.php:978
+#: inc/recipe-guru.php:978
 msgid "Print"
 msgstr "Drucken"
 
-#: inc/recipe-master.php:979
+#: inc/recipe-guru.php:979
 msgid "Pin it"
 msgstr "Pin it"
 
-#: inc/recipe-master.php:980
+#: inc/recipe-guru.php:980
 msgid "Your rating"
 msgstr "Deine Bewertung"
 
-#: inc/recipe-master.php:981
+#: inc/recipe-guru.php:981
 msgid "Average rating"
 msgstr "Durchschnittliche Bewertung"
 
-#: inc/recipe-master.php:982 build/blocks/recipe/editor.js:1
+#: inc/recipe-guru.php:982 build/blocks/recipe/editor.js:1
 msgid "Notes"
 msgstr "Notizen"
 
-#: inc/recipe-master.php:983
+#: inc/recipe-guru.php:983
 msgid "How do you like the recipe?"
 msgstr "Wie findest du das Rezept?"
 
-#: inc/recipe-master.php:985 build/blocks/recipe/editor.js:1
+#: inc/recipe-guru.php:985 build/blocks/recipe/editor.js:1
 msgid "Video"
 msgstr "Video"
 
-#: inc/recipe-master.php:986
+#: inc/recipe-guru.php:986
 msgid "You tried this recipe?"
 msgstr "Du hast das Rezept ausprobiert?"
 
-#: inc/recipe-master.php:987
+#: inc/recipe-guru.php:987
 msgid "Then link"
 msgstr "Dann verlinke"
 
-#: inc/recipe-master.php:988
+#: inc/recipe-guru.php:988
 msgid "on Instagram"
 msgstr "auf Instagram"
 
-#: inc/recipe-master.php:989
+#: inc/recipe-guru.php:989
 msgid "on Instagram or use the hashtag"
 msgstr "auf Instagram oder nutze den Hashtag"
 
-#: inc/recipe-master.php:1217 build/blocks/recipe/editor.js:1
+#: inc/recipe-guru.php:1217 build/blocks/recipe/editor.js:1
 msgid "piece"
 msgstr "Stück"
 
-#: inc/recipe-master.php:1219
+#: inc/recipe-guru.php:1219
 msgid "pieces"
 msgstr "Stücke"
 
-#: inc/recipe-master.php:1222 inc/recipe-master.php:1224
+#: inc/recipe-guru.php:1222 inc/recipe-guru.php:1224
 #: build/blocks/recipe/editor.js:1
 msgid "springform pan"
 msgstr "Springform"
 
-#: inc/recipe-master.php:1226 build/blocks/recipe/editor.js:1
+#: inc/recipe-guru.php:1226 build/blocks/recipe/editor.js:1
 msgid "square baking pan"
 msgstr "Backform (eckig)"
 
-#: inc/recipe-master.php:1229 build/blocks/recipe/editor.js:1
+#: inc/recipe-guru.php:1229 build/blocks/recipe/editor.js:1
 msgid "baking tray"
 msgstr "Backblech"
 
-#: inc/recipe-master.php:1231
+#: inc/recipe-guru.php:1231
 msgid "baking trays"
 msgstr "Backbleche"
 
-#: inc/recipe-master.php:1236
+#: inc/recipe-guru.php:1236
 msgid "serving"
 msgstr "Portion"
 
@@ -549,6 +549,9 @@ msgctxt "block description"
 msgid "Add a recipe and optimize it easily for search engines."
 msgstr ""
 "Füge ein Rezept hinzu und optimiere es mit wenigen Klicks für Suchmaschinen."
+
+#~ msgid "Recipe Master"
+#~ msgstr "Rezepte-Master"
 
 #~ msgid "Recipe Plugin for WP"
 #~ msgstr "Rezepte Plugin für WP"

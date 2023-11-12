@@ -1,12 +1,12 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
-  "name": "recipe-master/recipe",
+  "name": "recipe-guru/recipe",
   "title": "Recipe",
   "description": "Add a recipe and optimize it easily for search engines.",
   "category": "formatting",
   "icon": "carrot",
-  "textdomain": "recipe-master",
+  "textdomain": "recipe-guru",
   "supports": {
     "html": false,
     "align": ["center", "wide", "full"]

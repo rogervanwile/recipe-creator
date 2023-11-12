@@ -51,15 +51,15 @@ export default function PreparationStepsGroupsEditor({ props }) {
         return (
           <div
             key={"preparationStepsGroups_" + index}
-            className="recipe-master--recipe-block--editor"
+            className="recipe-guru--recipe-block--editor"
           >
             {index !== 0 ||
             props.attributes.preparationStepsGroups.length > 1 ? (
-              <div className="recipe-master--recipe-block--group-header">
+              <div className="recipe-guru--recipe-block--group-header">
                 <RichText
                   tagName="h3"
                   value={group.title || ""}
-                  placeholder={__("Group name", "recipe-master")}
+                  placeholder={__("Group name", "recipe-guru")}
                   __unstablePastePlainText={true}
                   onChange={(value) => {
                     const groupUpdate = {
@@ -74,7 +74,7 @@ export default function PreparationStepsGroupsEditor({ props }) {
                   }}
                 />
                 <Button isTertiary={true} onClick={() => removeGroup(index)}>
-                  {__("Remove Group", "recipe-master")}
+                  {__("Remove Group", "recipe-guru")}
                 </Button>
               </div>
             ) : (
@@ -85,7 +85,7 @@ export default function PreparationStepsGroupsEditor({ props }) {
               multiline="li"
               placeholder={__(
                 "Add the steps of preparation here...",
-                "recipe-master"
+                "recipe-guru"
               )}
               value={group.list || ""}
               __unstablePastePlainText={true}
@@ -107,8 +107,8 @@ export default function PreparationStepsGroupsEditor({ props }) {
 
       <Button isSecondary={true} onClick={addGroup}>
         {props.attributes.preparationStepsGroups.length === 1
-          ? __("Split steps into groups", "recipe-master")
-          : __("Add additional group", "recipe-master")}
+          ? __("Split steps into groups", "recipe-guru")
+          : __("Add additional group", "recipe-guru")}
       </Button>
     </>
   );

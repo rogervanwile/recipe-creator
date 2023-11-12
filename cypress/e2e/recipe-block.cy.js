@@ -9,14 +9,14 @@ function checkRecipeBockScreenshot(name) {
   cy.get("body").invoke("css", "height", "initial");
 
   // Hide the video, it causes diffs in the screenshot
-  cy.get(".recipe-master--recipe-block--video-wrapper").invoke(
+  cy.get(".recipe-guru--recipe-block--video-wrapper").invoke(
     "css",
     "display",
     "none"
   );
 
   // Take a screenshot and check if it looks like exected
-  // cy.get(".recipe-master--block").matchImageSnapshot(name);
+  // cy.get(".recipe-guru--block").matchImageSnapshot(name);
 }
 
 describe("Tests the recipe block", () => {
@@ -50,42 +50,42 @@ describe("Tests the recipe block", () => {
     cy.get(".block-editor-inserter > .components-button").click();
     cy.get(".block-editor-inserter__search input[type=search]").click();
     cy.get(".block-editor-inserter__search input[type=search]").type("Recipe");
-    cy.get(".editor-block-list-item-recipe-master--recipe").click();
+    cy.get(".editor-block-list-item-recipe-guru--recipe").click();
 
     // Insert data into the block
     cy.get('[aria-label="Title of your recipe"]').type("Test Headline");
     cy.get(
-      ".recipe-master--recipe-block--difficulty:first-child"
+      ".recipe-guru--recipe-block--difficulty:first-child"
     ).click();
     cy.get('[aria-label="Short description of your recipe"]').type(
       "Test description",
       { force: true }
     );
     cy.get(
-      ".recipe-master--recipe-block--timings li:nth-child(1) input"
+      ".recipe-guru--recipe-block--timings li:nth-child(1) input"
     ).type("10", { force: true });
     cy.get(
-      ".recipe-master--recipe-block--timings li:nth-child(2) input"
+      ".recipe-guru--recipe-block--timings li:nth-child(2) input"
     ).type("15", { force: true });
     cy.get(
-      ".recipe-master--recipe-block--timings li:nth-child(3) input"
+      ".recipe-guru--recipe-block--timings li:nth-child(3) input"
     ).type("20", { force: true });
     cy.get(
-      ".recipe-master--recipe-block--timings li:nth-child(4) input"
+      ".recipe-guru--recipe-block--timings li:nth-child(4) input"
     ).type("25", { force: true });
     cy.contains("70 Min.");
     cy.get(
-      ".recipe-master--recipe-block--flex-container input:nth-child(1)"
+      ".recipe-guru--recipe-block--flex-container input:nth-child(1)"
     )
       .clear()
       .type("4", { force: true });
     cy.get(
-      ".recipe-master--recipe-block--ingredients .recipe-master--recipe-block--editor ul"
+      ".recipe-guru--recipe-block--ingredients .recipe-guru--recipe-block--editor ul"
     ).type("3 bananans\n2 onions", { force: true });
     cy.get(
-      ".recipe-master--recipe-block--preparation-steps .recipe-master--recipe-block--editor ol"
+      ".recipe-guru--recipe-block--preparation-steps .recipe-guru--recipe-block--editor ol"
     ).type("Slice bananas\ntake the onions back", { force: true });
-    cy.get(".recipe-master--recipe-block--video input").type(
+    cy.get(".recipe-guru--recipe-block--video input").type(
       "https://www.youtube.com/watch?v=tl2tYk54gOE",
       { force: true }
     );
@@ -104,48 +104,48 @@ describe("Tests the recipe block", () => {
 
     checkRecipeBockScreenshot("recipe-block");
 
-    // cy.get('.recipe-master--block').scrollIntoView();
-    // cy.get('.recipe-master--block').contains('Test Headline')
-    // cy.get('.recipe-master--block').contains('10 minutes')
-    // cy.get('.recipe-master--block').contains('15 minutes')
-    // cy.get('.recipe-master--block').contains('25 minutes')
-    // cy.get('.recipe-master--block').contains('1 hours 10 minutes')
-    // cy.get('.recipe-master--block').contains('3 bananans')
-    // cy.get('.recipe-master--block').contains('2 onions')
-    // cy.get('.recipe-master--block').contains('Slice bananas')
-    // cy.get('.recipe-master--block').contains('take the onions back')
-    // cy.get('.recipe-master--block').contains('Additional notes')
-    // cy.get('.recipe-master--block').contains('Print');
+    // cy.get('.recipe-guru--block').scrollIntoView();
+    // cy.get('.recipe-guru--block').contains('Test Headline')
+    // cy.get('.recipe-guru--block').contains('10 minutes')
+    // cy.get('.recipe-guru--block').contains('15 minutes')
+    // cy.get('.recipe-guru--block').contains('25 minutes')
+    // cy.get('.recipe-guru--block').contains('1 hours 10 minutes')
+    // cy.get('.recipe-guru--block').contains('3 bananans')
+    // cy.get('.recipe-guru--block').contains('2 onions')
+    // cy.get('.recipe-guru--block').contains('Slice bananas')
+    // cy.get('.recipe-guru--block').contains('take the onions back')
+    // cy.get('.recipe-guru--block').contains('Additional notes')
+    // cy.get('.recipe-guru--block').contains('Print');
 
     // Check if the calculator works
     cy.get(".recipe-servings").scrollIntoView().contains("4");
     cy.get(".recipe-increase-servings").click({ force: true });
     cy.get(".recipe-servings").contains("5");
-    cy.get(".recipe-master--recipe-block").contains("2,5 onions");
+    cy.get(".recipe-guru--recipe-block").contains("2,5 onions");
 
     // Back to the editor
     cy.go("back");
 
-    cy.get(".recipe-master--recipe-block--ingredients button").click({
+    cy.get(".recipe-guru--recipe-block--ingredients button").click({
       force: true,
     });
 
     // First group
     cy.get(
-      ".recipe-master--recipe-block--flex-container + .recipe-master--recipe-block--editor"
+      ".recipe-guru--recipe-block--flex-container + .recipe-guru--recipe-block--editor"
     )
       .find('[aria-label="Group name"]')
       .type("Group 1", { force: true });
 
     // Second group
     cy.get(
-      ".recipe-master--recipe-block--flex-container + .recipe-master--recipe-block--editor + .recipe-master--recipe-block--editor"
+      ".recipe-guru--recipe-block--flex-container + .recipe-guru--recipe-block--editor + .recipe-guru--recipe-block--editor"
     )
       .find('[aria-label="Group name"]')
       .type("Group 2", { force: true });
 
     cy.get(
-      ".recipe-master--recipe-block--flex-container + .recipe-master--recipe-block--editor + .recipe-master--recipe-block--editor"
+      ".recipe-guru--recipe-block--flex-container + .recipe-guru--recipe-block--editor + .recipe-guru--recipe-block--editor"
     )
       .find('[aria-label="Add the ingredients here..."]')
       .type("3 Bananas\n4 Garlic", { force: true });

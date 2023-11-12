@@ -1,3 +1,3 @@
 interface Window {
-  recipePluginForWPConfig: any;
+  recipeGuruConfig: any;
 }

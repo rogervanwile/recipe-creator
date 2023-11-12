@@ -1,6 +1,6 @@
 @media screen {
-  .recipe-master--block {
-    .recipe-master--block--inner {
+  .recipe-guru--block {
+    .recipe-guru--block--inner {
       display: grid;
       gap: 1em 2em;
 
@@ -21,69 +21,69 @@
         "save-and-share"
         "call-to-action";
 
-      .recipe-master--recipe-block--title {
+      .recipe-guru--recipe-block--title {
         grid-area: title;
       }
 
-      .recipe-master--recipe-block--intro {
+      .recipe-guru--recipe-block--intro {
         grid-area: intro;
       }
 
-      .recipe-master--recipe-block--thumbnail {
+      .recipe-guru--recipe-block--thumbnail {
         grid-area: thumbnail;
       }
 
-      .recipe-master--recipe-block--timings {
+      .recipe-guru--recipe-block--timings {
         grid-area: timings;
       }
 
-      .recipe-master--recipe-block--ingredients {
+      .recipe-guru--recipe-block--ingredients {
         grid-area: ingredients;
       }
 
-      .recipe-master--recipe-block--utensils {
+      .recipe-guru--recipe-block--utensils {
         grid-area: utensils;
       }
 
-      .recipe-master--recipe-block--preparation-steps {
+      .recipe-guru--recipe-block--preparation-steps {
         grid-area: preparation-steps;
       }
 
-      .recipe-master--recipe-block--video {
+      .recipe-guru--recipe-block--video {
         grid-area: video;
       }
 
-      .recipe-master--recipe-block--notes {
+      .recipe-guru--recipe-block--notes {
         grid-area: notes;
       }
 
-      .recipe-master--recipe-block--user-rating {
+      .recipe-guru--recipe-block--user-rating {
         grid-area: user-rating;
       }
 
-      .recipe-master--recipe-block--save-and-share {
+      .recipe-guru--recipe-block--save-and-share {
         grid-area: save-and-share;
       }
 
-      .recipe-master--recipe-block--call-to-action {
+      .recipe-guru--recipe-block--call-to-action {
         grid-area: call-to-action;
       }
 
-      .recipe-master--recipe-block--timings,
-      .recipe-master--recipe-block--ingredients,
-      .recipe-master--recipe-block--utensils,
-      .recipe-master--recipe-block--preparation-steps,
-      .recipe-master--recipe-block--video,
-      .recipe-master--recipe-block--notes,
-      .recipe-master--recipe-block--user-rating {
+      .recipe-guru--recipe-block--timings,
+      .recipe-guru--recipe-block--ingredients,
+      .recipe-guru--recipe-block--utensils,
+      .recipe-guru--recipe-block--preparation-steps,
+      .recipe-guru--recipe-block--video,
+      .recipe-guru--recipe-block--notes,
+      .recipe-guru--recipe-block--user-rating {
         border-bottom: 1px solid var(--primary-light);
       }
 
-      .recipe-master--recipe-block--timings {
+      .recipe-guru--recipe-block--timings {
         border-top: 1px solid var(--primary-light);
       }
 
-      .recipe-master--recipe-block--timings {
+      .recipe-guru--recipe-block--timings {
         padding: 1em 0 0 0;
         margin: 0;
 
@@ -111,13 +111,13 @@
         }
       }
 
-      .recipe-master--recipe-block--ingredients-table {
-        tr.recipe-master--recipe-block--ingredients-item.recipe-master--even {
+      .recipe-guru--recipe-block--ingredients-table {
+        tr.recipe-guru--recipe-block--ingredients-item.recipe-guru--even {
           td {
             background-color: var(--primary-light) !important;
             color: var(--primary-light-contrast);
 
-            &.recipe-master--recipe-block--amount {
+            &.recipe-guru--recipe-block--amount {
               padding-left: 2em;
             }
 
@@ -134,7 +134,7 @@
         }
       }
 
-      .recipe-master--recipe-block--utensils-list {
+      .recipe-guru--recipe-block--utensils-list {
         li:nth-child(odd) {
           background-color: var(--primary-light) !important;
           color: var(--primary-light-contrast);
@@ -144,7 +144,7 @@
     }
 
     @media (min-width: 768px) {
-      .recipe-master--block--inner {
+      .recipe-guru--block--inner {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
         grid-template-areas:
