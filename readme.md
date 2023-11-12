@@ -31,8 +31,10 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 - `npm run build`
 - Update version in `package.json`
 - Update version in `recipe-master.php`
+- Update version in `readme.txt` (Stable tag)
 - Update `changelog.md` and `changelod-de_DE.md`
 - Update latest wp version ("tested") in `build-tools/create-release.ts`
+- Update latest wp version ("Tested up to") in `readme.txt`
 
 `$ npm run create-release`
 
