@@ -1,6 +1,6 @@
 # 2.0.0 - November 11, 2023
 
-- We have renamed the plugin from "Foodblog-Toolkit" to "Recipe Guru". We want to give even more food bloggers the opportunity to find and use our plugin.
+- We have renamed the plugin from "Foodblog-Toolkit" to "Recipe Creator". We want to give even more food bloggers the opportunity to find and use our plugin.
 
 # 1.8.6 - Mai 5, 2023
 

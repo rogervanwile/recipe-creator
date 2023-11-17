@@ -9,23 +9,23 @@ export default function RecipeYieldSelector({ props }) {
   const recipeYieldUnitOptions = [
     {
       value: "servings",
-      label: __("servings", "recipe-guru"),
+      label: __("servings", "recipe-creator"),
     },
     {
       value: "piece",
-      label: __("piece", "recipe-guru"),
+      label: __("piece", "recipe-creator"),
     },
     {
       value: "springform-pan",
-      label: __("springform pan", "recipe-guru"),
+      label: __("springform pan", "recipe-creator"),
     },
     {
       value: "square-baking-pan",
-      label: __("square baking pan", "recipe-guru"),
+      label: __("square baking pan", "recipe-creator"),
     },
     {
       value: "baking-tray",
-      label: __("baking tray", "recipe-guru"),
+      label: __("baking tray", "recipe-creator"),
     },
   ];
 
@@ -35,7 +35,7 @@ export default function RecipeYieldSelector({ props }) {
       -1 ? (
         <div className="square-baking-pans-x-wrapper">
           <InputControl
-            label={__("Results in", "recipe-guru")}
+            label={__("Results in", "recipe-creator")}
             type="number"
             min="0"
             value={props.attributes.recipeYieldWidth}
@@ -43,7 +43,7 @@ export default function RecipeYieldSelector({ props }) {
             onChange={(recipeYieldWidth) => {
               props.setAttributes({ recipeYield: 0, recipeYieldWidth });
             }}
-            suffix={__("cm", "recipe-guru")}
+            suffix={__("cm", "recipe-creator")}
           />
           <span className="square-baking-pans-x">x</span>
           <InputControl
@@ -55,12 +55,12 @@ export default function RecipeYieldSelector({ props }) {
             onChange={(recipeYieldHeight) => {
               props.setAttributes({ recipeYield: 0, recipeYieldHeight });
             }}
-            suffix={__("cm", "recipe-guru")}
+            suffix={__("cm", "recipe-creator")}
           />
         </div>
       ) : (
         <InputControl
-          label={__("Results in", "recipe-guru")}
+          label={__("Results in", "recipe-creator")}
           type="number"
           min="0"
           value={props.attributes.recipeYield}
@@ -74,13 +74,13 @@ export default function RecipeYieldSelector({ props }) {
           }}
           suffix={
             props.attributes.recipeYieldUnit === "springform-pan"
-              ? __("cm", "recipe-guru")
+              ? __("cm", "recipe-creator")
               : ""
           }
         />
       )}
       <SelectControl
-        label={__("Unit", "recipe-guru")}
+        label={__("Unit", "recipe-creator")}
         value={props.attributes.recipeYieldUnit}
         options={recipeYieldUnitOptions}
         onChange={(recipeYieldUnit) => props.setAttributes({ recipeYieldUnit })}

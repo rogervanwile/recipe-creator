@@ -45,7 +45,7 @@ export default function ImageUpload(args) {
             {props.attributes[key] ? (
               <Fragment>
                 <Button isSecondary="true" onClick={open}>
-                  {__("Change image", "recipe-guru")}
+                  {__("Change image", "recipe-creator")}
                 </Button>
                 <Button
                   onClick={() => {
@@ -55,12 +55,12 @@ export default function ImageUpload(args) {
                     props.setAttributes(update);
                   }}
                 >
-                  {__("Remove image", "recipe-guru")}
+                  {__("Remove image", "recipe-creator")}
                 </Button>
               </Fragment>
             ) : (
               <Button isSecondary="true" onClick={open}>
-                {__("Select image", "recipe-guru")}
+                {__("Select image", "recipe-creator")}
               </Button>
             )}
           </Fragment>

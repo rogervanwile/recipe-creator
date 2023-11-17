@@ -16,13 +16,13 @@ class AdminSettings {
     this.initOtherPicker();
 
     this.settingsForm = document.getElementById(
-      "recipe-guru--settings-form"
+      "recipe-creator--settings-form"
     ) as HTMLFormElement;
   }
 
   private initColorPicker() {
     const colorPickers = document.querySelectorAll(
-      ".recipe-guru--color-picker"
+      ".recipe-creator--color-picker"
     );
     colorPickers.forEach((colorPicker) => {
       var defaultValue = colorPicker.getAttribute("data-default-value") || null;
@@ -41,7 +41,7 @@ class AdminSettings {
 
   private initOtherPicker() {
     const adminForm = document.querySelector<HTMLElement>(
-      ".recipe-guru--settings-form "
+      ".recipe-creator--settings-form "
     );
 
     if (!adminForm) {
@@ -142,7 +142,7 @@ class AdminSettings {
 
     if (!this.styleContainer) {
       this.styleContainer = document.getElementById(
-        "recipe-guru--style-container"
+        "recipe-creator--style-container"
       );
     }
 

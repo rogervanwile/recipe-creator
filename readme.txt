@@ -13,7 +13,7 @@ Create recipes and optimize them easily for search engines.
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/recipe-guru` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/recipe-creator` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
 
 == Screenshots ==

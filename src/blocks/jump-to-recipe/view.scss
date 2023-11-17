@@ -2,14 +2,14 @@ html {
   scroll-behavior: smooth;
 }
 
-.recipe-guru--block--jump-to-recipe {
+.recipe-creator--block--jump-to-recipe {
   --primary: #030303;
   --primary-contrast: #ffffff;
 
   display: flex;
   align-items: center;
 
-  .recipe-guru--block--jump-to-recipe--link {
+  .recipe-creator--block--jump-to-recipe--link {
     display: inline-block;
     background-color: var(--primary);
     color: var(--primary-contrast);

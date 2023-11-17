@@ -1,6 +1,6 @@
 @media screen {
-  .recipe-guru--block {
-    .recipe-guru--block--inner {
+  .recipe-creator--block {
+    .recipe-creator--block--inner {
       display: grid;
       gap: 1em 2em;
 
@@ -21,69 +21,69 @@
         "save-and-share"
         "call-to-action";
 
-      .recipe-guru--recipe-block--title {
+      .recipe-creator--recipe-block--title {
         grid-area: title;
       }
 
-      .recipe-guru--recipe-block--intro {
+      .recipe-creator--recipe-block--intro {
         grid-area: intro;
       }
 
-      .recipe-guru--recipe-block--thumbnail {
+      .recipe-creator--recipe-block--thumbnail {
         grid-area: thumbnail;
       }
 
-      .recipe-guru--recipe-block--timings {
+      .recipe-creator--recipe-block--timings {
         grid-area: timings;
       }
 
-      .recipe-guru--recipe-block--ingredients {
+      .recipe-creator--recipe-block--ingredients {
         grid-area: ingredients;
       }
 
-      .recipe-guru--recipe-block--utensils {
+      .recipe-creator--recipe-block--utensils {
         grid-area: utensils;
       }
 
-      .recipe-guru--recipe-block--preparation-steps {
+      .recipe-creator--recipe-block--preparation-steps {
         grid-area: preparation-steps;
       }
 
-      .recipe-guru--recipe-block--video {
+      .recipe-creator--recipe-block--video {
         grid-area: video;
       }
 
-      .recipe-guru--recipe-block--notes {
+      .recipe-creator--recipe-block--notes {
         grid-area: notes;
       }
 
-      .recipe-guru--recipe-block--user-rating {
+      .recipe-creator--recipe-block--user-rating {
         grid-area: user-rating;
       }
 
-      .recipe-guru--recipe-block--save-and-share {
+      .recipe-creator--recipe-block--save-and-share {
         grid-area: save-and-share;
       }
 
-      .recipe-guru--recipe-block--call-to-action {
+      .recipe-creator--recipe-block--call-to-action {
         grid-area: call-to-action;
       }
 
-      .recipe-guru--recipe-block--timings,
-      .recipe-guru--recipe-block--ingredients,
-      .recipe-guru--recipe-block--utensils,
-      .recipe-guru--recipe-block--preparation-steps,
-      .recipe-guru--recipe-block--video,
-      .recipe-guru--recipe-block--notes,
-      .recipe-guru--recipe-block--user-rating {
+      .recipe-creator--recipe-block--timings,
+      .recipe-creator--recipe-block--ingredients,
+      .recipe-creator--recipe-block--utensils,
+      .recipe-creator--recipe-block--preparation-steps,
+      .recipe-creator--recipe-block--video,
+      .recipe-creator--recipe-block--notes,
+      .recipe-creator--recipe-block--user-rating {
         border-bottom: 1px solid var(--primary-light);
       }
 
-      .recipe-guru--recipe-block--timings {
+      .recipe-creator--recipe-block--timings {
         border-top: 1px solid var(--primary-light);
       }
 
-      .recipe-guru--recipe-block--timings {
+      .recipe-creator--recipe-block--timings {
         padding: 1em 0 0 0;
         margin: 0;
 
@@ -111,13 +111,13 @@
         }
       }
 
-      .recipe-guru--recipe-block--ingredients-table {
-        tr.recipe-guru--recipe-block--ingredients-item.recipe-guru--even {
+      .recipe-creator--recipe-block--ingredients-table {
+        tr.recipe-creator--recipe-block--ingredients-item.recipe-creator--even {
           td {
             background-color: var(--primary-light) !important;
             color: var(--primary-light-contrast);
 
-            &.recipe-guru--recipe-block--amount {
+            &.recipe-creator--recipe-block--amount {
               padding-left: 2em;
             }
 
@@ -134,7 +134,7 @@
         }
       }
 
-      .recipe-guru--recipe-block--utensils-list {
+      .recipe-creator--recipe-block--utensils-list {
         li:nth-child(odd) {
           background-color: var(--primary-light) !important;
           color: var(--primary-light-contrast);
@@ -144,7 +144,7 @@
     }
 
     @media (min-width: 768px) {
-      .recipe-guru--block--inner {
+      .recipe-creator--block--inner {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
         grid-template-areas:

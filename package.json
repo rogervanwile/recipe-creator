@@ -1,5 +1,5 @@
 {
-  "name": "recipe-guru",
+  "name": "recipe-creator",
   "version": "1.8.6",
   "description": "Manage recipes and optimize them automatically for Google Featured Snippets.",
   "author": "Oliver Wagner",
@@ -19,8 +19,8 @@
     "test:start:cli": "wp-cypress start && cypress run",
     "test:start": "wp-cypress start && cypress open",
     "test:stop": "wp-cypress stop",
-    "i18n:make-pot": "wp i18n make-pot ./ languages/recipe-guru.pot --exclude=src,node_modules",
-    "i18n:make-json": "rm -rf languages/*.json || true && wp i18n make-json languages/recipe-guru-de_DE.po --no-purge --use-map=./i18n-json-map.json"
+    "i18n:make-pot": "wp i18n make-pot ./ languages/recipe-creator.pot --exclude=src,node_modules",
+    "i18n:make-json": "rm -rf languages/*.json || true && wp i18n make-json languages/recipe-creator-de_DE.po --no-purge --use-map=./i18n-json-map.json"
   },
   "dependencies": {
     "@wordpress/date": "4.16.0",

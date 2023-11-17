@@ -7,13 +7,13 @@ export class Recipe {
     this.initWakeLock();
 
     this.element.dispatchEvent(
-      new CustomEvent("recipe-guru:recipe-ready", { bubbles: true })
+      new CustomEvent("recipe-creator:recipe-ready", { bubbles: true })
     );
   }
 
   private initRating() {
     const ratingElements = this.element.querySelectorAll<HTMLElement>(
-      ".recipe-guru--recipe-block--rating.recipe-guru--recipe-block--interactive"
+      ".recipe-creator--recipe-block--rating.recipe-creator--recipe-block--interactive"
     );
 
     if (ratingElements) {

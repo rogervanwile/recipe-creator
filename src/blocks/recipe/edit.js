@@ -166,7 +166,7 @@ export default function Edit(props) {
     } else {
       return (
         <div className="featured-snipped-preview--rating">
-          {__("No reviews", "recipe-guru")}
+          {__("No reviews", "recipe-creator")}
         </div>
       );
     }
@@ -238,8 +238,8 @@ export default function Edit(props) {
     <Fragment>
       <InspectorControls>
         <PanelBody
-          title={__("Pinterest", "recipe-guru")}
-          className="recipe-guru--sidebar"
+          title={__("Pinterest", "recipe-creator")}
+          className="recipe-creator--sidebar"
         >
           <PanelRow>
             <MediaUploadCheck>
@@ -265,7 +265,7 @@ export default function Edit(props) {
                       className="components-button is-secondary"
                       onClick={open}
                     >
-                      {__("Select image", "recipe-guru")}
+                      {__("Select image", "recipe-creator")}
                     </button>
                   </Fragment>
                 )}
@@ -274,24 +274,24 @@ export default function Edit(props) {
           </PanelRow>
         </PanelBody>
         <PanelBody
-          title={__("SEO", "recipe-guru")}
-          className="recipe-guru--sidebar"
+          title={__("SEO", "recipe-creator")}
+          className="recipe-creator--sidebar"
         >
           <PanelRow>
             <p>
               {__(
                 "Google and other search engines need more information to present your recipe in the best possible way. You should provide this information as good as possible.",
-                "recipe-guru"
+                "recipe-creator"
               )}
             </p>
           </PanelRow>
           <PanelRow>
             <TextControl
-              label={__("Cuisine", "recipe-guru")}
+              label={__("Cuisine", "recipe-creator")}
               value={props.attributes.recipeCuisine}
               placeholder={__(
                 'e.g. "Italian" or "German"',
-                "recipe-guru"
+                "recipe-creator"
               )}
               onChange={(recipeCuisine) => {
                 props.setAttributes({ recipeCuisine });
@@ -301,7 +301,7 @@ export default function Edit(props) {
           <PanelRow>
             <TextControl
               type="number"
-              label={__("Calories", "recipe-guru")}
+              label={__("Calories", "recipe-creator")}
               value={props.attributes.calories}
               description={__("Calories per serving or piece")}
               suffix="kcal"
@@ -315,22 +315,22 @@ export default function Edit(props) {
 
           <PanelRow>
             <h4>
-              {__("Picture of the finished dish", "recipe-guru")}
+              {__("Picture of the finished dish", "recipe-creator")}
             </h4>
             <p>
               {__(
                 "Depending on the usage Google uses different image formats of your recipe. You can find more information",
-                "recipe-guru"
+                "recipe-creator"
               )}
               &nbsp;
               <a
                 href={__(
                   "https://www.howtofoodblog.com/mehr-klicks-durch-optimierte-rezeptbilder",
-                  "recipe-guru"
+                  "recipe-creator"
                 )}
                 target="_blank"
               >
-                {__("here", "recipe-guru")}
+                {__("here", "recipe-creator")}
               </a>
               .
             </p>
@@ -373,8 +373,8 @@ export default function Edit(props) {
           <hr />
 
           <PanelRow>
-            <h3>{__("Previews", "recipe-guru")}</h3>
-            <h4>{__("Featured Snippet", "recipe-guru")}</h4>
+            <h3>{__("Previews", "recipe-creator")}</h3>
+            <h4>{__("Featured Snippet", "recipe-creator")}</h4>
           </PanelRow>
 
           <PanelRow>
@@ -401,7 +401,7 @@ export default function Edit(props) {
           </PanelRow>
 
           <PanelRow>
-            <h4>{__("Mobile Search Result", "recipe-guru")}</h4>
+            <h4>{__("Mobile Search Result", "recipe-creator")}</h4>
           </PanelRow>
 
           <PanelRow>
@@ -428,7 +428,7 @@ export default function Edit(props) {
                     </span> */}
                     {__(
                       "Google displays here a text that matches the search term.",
-                      "recipe-guru"
+                      "recipe-creator"
                     )}
                   </div>
                 </div>
@@ -436,7 +436,7 @@ export default function Edit(props) {
 
               <div className="featured-result-preview-mobile--footer">
                 <div className="featured-result-preview-mobile--rating-col">
-                  <header>{__("Rating", "recipe-guru")}</header>
+                  <header>{__("Rating", "recipe-creator")}</header>
                   <p>
                     <span>{props.data.meta.average_rating}</span>
                     <span className="featured-snipped-preview--stars">
@@ -455,14 +455,14 @@ export default function Edit(props) {
 
                 <div className="featured-result-preview-mobile--time-col">
                   <header>
-                    {__("Preparation", "recipe-guru")}
+                    {__("Preparation", "recipe-creator")}
                   </header>
                   <p>{props.attributes.totalTime} Min.</p>
                 </div>
 
                 {/* <div className="featured-result-preview-mobile--calories-col">
-                  <header>{__("Calories", 'recipe-guru')}</header>
-                  <p>{__("Calories", 'recipe-guru')}: 99</p>
+                  <header>{__("Calories", 'recipe-creator')}</header>
+                  <p>{__("Calories", 'recipe-creator')}: 99</p>
                 </div> */}
               </div>
             </section>
@@ -470,21 +470,21 @@ export default function Edit(props) {
         </PanelBody>
 
         <PanelBody
-          title={__("Rating", "recipe-guru")}
-          className="recipe-guru--sidebar"
+          title={__("Rating", "recipe-creator")}
+          className="recipe-creator--sidebar"
         >
           <PanelRow>
             <p>
-              <strong>{__("Attention:", "recipe-guru")}</strong>{" "}
+              <strong>{__("Attention:", "recipe-creator")}</strong>{" "}
               {__(
                 "Adjusting the ratings can have an impact on your Google ranking. Be careful with this function.",
-                "recipe-guru"
+                "recipe-creator"
               )}
             </p>
           </PanelRow>
           <PanelRow>
             <NumberControl
-              label={__("1 star", "recipe-guru")}
+              label={__("1 star", "recipe-creator")}
               min="0"
               value={props.data.meta.rating_1_votes || 0}
               onChange={(rating_1_votes) => {
@@ -494,7 +494,7 @@ export default function Edit(props) {
           </PanelRow>
           <PanelRow>
             <NumberControl
-              label={__("2 stars", "recipe-guru")}
+              label={__("2 stars", "recipe-creator")}
               min="0"
               value={props.data.meta.rating_2_votes || 0}
               onChange={(rating_2_votes) => {
@@ -504,7 +504,7 @@ export default function Edit(props) {
           </PanelRow>
           <PanelRow>
             <NumberControl
-              label={__("3 stars", "recipe-guru")}
+              label={__("3 stars", "recipe-creator")}
               min="0"
               value={props.data.meta.rating_3_votes || 0}
               onChange={(rating_3_votes) => {
@@ -514,7 +514,7 @@ export default function Edit(props) {
           </PanelRow>
           <PanelRow>
             <NumberControl
-              label={__("4 stars", "recipe-guru")}
+              label={__("4 stars", "recipe-creator")}
               min="0"
               value={props.data.meta.rating_4_votes || 0}
               onChange={(rating_4_votes) => {
@@ -524,7 +524,7 @@ export default function Edit(props) {
           </PanelRow>
           <PanelRow>
             <NumberControl
-              label={__("5 stars", "recipe-guru")}
+              label={__("5 stars", "recipe-creator")}
               min="0"
               value={props.data.meta.rating_5_votes || 0}
               onChange={(rating_5_votes) => {
@@ -535,7 +535,7 @@ export default function Edit(props) {
           <PanelRow>
             <p>
               <strong>
-                {__("Rating", "recipe-guru")}:{" "}
+                {__("Rating", "recipe-creator")}:{" "}
                 {props.data.meta.average_rating} ({props.data.meta.rating_count}
                 ){" "}
               </strong>
@@ -544,28 +544,28 @@ export default function Edit(props) {
         </PanelBody>
       </InspectorControls>
       <div {...useBlockProps()}>
-        <div className="wp-block recipe-guru--block recipe-guru--recipe-block">
+        <div className="wp-block recipe-creator--block recipe-creator--recipe-block">
           <BlockControls></BlockControls>
-          <div className="recipe-guru--block--inner">
-            <div className="recipe-guru--recipe-block--title">
+          <div className="recipe-creator--block--inner">
+            <div className="recipe-creator--recipe-block--title">
               <RichText
                 tagName="h2"
                 value={props.attributes.name}
                 __unstablePastePlainText={true}
                 placeholder={__(
                   "Title of your recipe",
-                  "recipe-guru"
+                  "recipe-creator"
                 )}
                 onChange={(name) => {
                   props.setAttributes({ name });
                 }}
               />
             </div>
-            <div className="recipe-guru--recipe-block--intro">
-              <div className="recipe-guru--recipe-block--difficulty--selector">
+            <div className="recipe-creator--recipe-block--intro">
+              <div className="recipe-creator--recipe-block--difficulty--selector">
                 <span
                   className={
-                    "recipe-guru--recipe-block--difficulty" +
+                    "recipe-creator--recipe-block--difficulty" +
                     (props.attributes.difficulty !== "simple"
                       ? " unselected"
                       : "")
@@ -574,11 +574,11 @@ export default function Edit(props) {
                     props.setAttributes({ difficulty: "simple" });
                   }}
                 >
-                  {__("simple", "recipe-guru")}
+                  {__("simple", "recipe-creator")}
                 </span>
                 <span
                   className={
-                    "recipe-guru--recipe-block--difficulty" +
+                    "recipe-creator--recipe-block--difficulty" +
                     (props.attributes.difficulty !== "moderate"
                       ? " unselected"
                       : "")
@@ -587,11 +587,11 @@ export default function Edit(props) {
                     props.setAttributes({ difficulty: "moderate" });
                   }}
                 >
-                  {__("moderate", "recipe-guru")}
+                  {__("moderate", "recipe-creator")}
                 </span>
                 <span
                   className={
-                    "recipe-guru--recipe-block--difficulty" +
+                    "recipe-creator--recipe-block--difficulty" +
                     (props.attributes.difficulty !== "challenging"
                       ? " unselected"
                       : "")
@@ -600,7 +600,7 @@ export default function Edit(props) {
                     props.setAttributes({ difficulty: "challenging" });
                   }}
                 >
-                  {__("challenging", "recipe-guru")}
+                  {__("challenging", "recipe-creator")}
                 </span>
               </div>
 
@@ -609,7 +609,7 @@ export default function Edit(props) {
                 value={props.attributes.description}
                 placeholder={__(
                   "Short description of your recipe",
-                  "recipe-guru"
+                  "recipe-creator"
                 )}
                 __unstablePastePlainText={true}
                 onChange={(description) => {
@@ -619,7 +619,7 @@ export default function Edit(props) {
             </div>
 
             <div
-              className="recipe-guru--recipe-block--thumbnail"
+              className="recipe-creator--recipe-block--thumbnail"
               style={{
                 backgroundImage: props.attributes.image3_2
                   ? "url(" + props.attributes.image3_2 + ")"
@@ -641,10 +641,10 @@ export default function Edit(props) {
                   render={({ open }) => (
                     <div
                       className={
-                        "recipe-guru--recipe-block--thumbnail-spacer" +
+                        "recipe-creator--recipe-block--thumbnail-spacer" +
                         (props.attributes.image3_2
                           ? ""
-                          : " recipe-guru--empty")
+                          : " recipe-creator--empty")
                       }
                       onClick={open}
                     ></div>
@@ -653,10 +653,10 @@ export default function Edit(props) {
               </MediaUploadCheck>
             </div>
 
-            <div className="recipe-guru--recipe-block--timings">
+            <div className="recipe-creator--recipe-block--timings">
               <ul>
                 <li>
-                  <header>{__("Prep time", "recipe-guru")}:</header>
+                  <header>{__("Prep time", "recipe-creator")}:</header>
                   <span>
                     <InputControl
                       type="number"
@@ -666,12 +666,12 @@ export default function Edit(props) {
                       onChange={(prepTime) => {
                         updateTime("prepTime", prepTime);
                       }}
-                      suffix={__("Min.", "recipe-guru")}
+                      suffix={__("Min.", "recipe-creator")}
                     />
                   </span>
                 </li>
                 <li>
-                  <header>{__("Rest time", "recipe-guru")}:</header>
+                  <header>{__("Rest time", "recipe-creator")}:</header>
                   <span>
                     <InputControl
                       type="number"
@@ -681,12 +681,12 @@ export default function Edit(props) {
                       onChange={(restTime) => {
                         updateTime("restTime", restTime);
                       }}
-                      suffix={__("Min.", "recipe-guru")}
+                      suffix={__("Min.", "recipe-creator")}
                     />
                   </span>
                 </li>
                 <li>
-                  <header>{__("Cook time", "recipe-guru")}:</header>
+                  <header>{__("Cook time", "recipe-creator")}:</header>
                   <span>
                     <InputControl
                       type="number"
@@ -696,13 +696,13 @@ export default function Edit(props) {
                       onChange={(cookTime) => {
                         updateTime("cookTime", cookTime);
                       }}
-                      suffix={__("Min.", "recipe-guru")}
+                      suffix={__("Min.", "recipe-creator")}
                     />
                   </span>
                 </li>
                 <li>
                   <header>
-                    {__("Baking time", "recipe-guru")}:
+                    {__("Baking time", "recipe-creator")}:
                   </header>
                   <span>
                     <InputControl
@@ -713,46 +713,46 @@ export default function Edit(props) {
                       onChange={(bakingTime) => {
                         updateTime("bakingTime", bakingTime);
                       }}
-                      suffix={__("Min.", "recipe-guru")}
+                      suffix={__("Min.", "recipe-creator")}
                     />
                   </span>
                 </li>
 
                 <li>
                   <header>
-                    {__("Total time", "recipe-guru")}:
+                    {__("Total time", "recipe-creator")}:
                   </header>
                   <span>
                     {props.attributes.totalTime || "0"}{" "}
-                    {__("Min.", "recipe-guru")}
+                    {__("Min.", "recipe-creator")}
                   </span>
                 </li>
               </ul>
             </div>
 
-            <section className="recipe-guru--recipe-block--ingredients">
-              <div className="recipe-guru--recipe-block--headline">
-                <h3>{__("Ingredients", "recipe-guru")}</h3>
+            <section className="recipe-creator--recipe-block--ingredients">
+              <div className="recipe-creator--recipe-block--headline">
+                <h3>{__("Ingredients", "recipe-creator")}</h3>
               </div>
-              <div className="recipe-guru--recipe-block--flex-container">
+              <div className="recipe-creator--recipe-block--flex-container">
                 <RecipeYieldSelector props={props}></RecipeYieldSelector>
               </div>
 
               <IngredientsGroupsEditor props={props}></IngredientsGroupsEditor>
             </section>
 
-            <section className="recipe-guru--recipe-block--utensils">
-              <div className="recipe-guru--recipe-block--headline">
-                <h3>{__("Utensils", "recipe-guru")}</h3>
+            <section className="recipe-creator--recipe-block--utensils">
+              <div className="recipe-creator--recipe-block--headline">
+                <h3>{__("Utensils", "recipe-creator")}</h3>
               </div>
 
               <RichText
                 tagName="ul"
                 multiline="li"
-                className="recipe-guru--recipe-block--utensils-list"
+                className="recipe-creator--recipe-block--utensils-list"
                 placeholder={__(
                   "Add the needed utensils here...",
-                  "recipe-guru"
+                  "recipe-creator"
                 )}
                 value={props.attributes.utensils}
                 __unstablePastePlainText={true}
@@ -760,9 +760,9 @@ export default function Edit(props) {
               />
             </section>
 
-            <div className="recipe-guru--recipe-block--preparation-steps">
-              <div className="recipe-guru--recipe-block--headline">
-                <h3>{__("Steps of preparation", "recipe-guru")}</h3>
+            <div className="recipe-creator--recipe-block--preparation-steps">
+              <div className="recipe-creator--recipe-block--headline">
+                <h3>{__("Steps of preparation", "recipe-creator")}</h3>
               </div>
 
               <PreparationStepsGroupsEditor
@@ -770,14 +770,14 @@ export default function Edit(props) {
               ></PreparationStepsGroupsEditor>
             </div>
 
-            <section className="recipe-guru--recipe-block--video">
-              <div className="recipe-guru--recipe-block--headline">
-                <h3>{__("Video", "recipe-guru")}</h3>
+            <section className="recipe-creator--recipe-block--video">
+              <div className="recipe-creator--recipe-block--headline">
+                <h3>{__("Video", "recipe-creator")}</h3>
               </div>
 
-              <div className="recipe-guru--recipe-block--flex-container">
+              <div className="recipe-creator--recipe-block--flex-container">
                 <TextControl
-                  label={__("YouTube or Vimeo link", "recipe-guru")}
+                  label={__("YouTube or Vimeo link", "recipe-creator")}
                   value={props.attributes.videoUrl}
                   onChange={(url) => {
                     if (url) {
@@ -799,9 +799,9 @@ export default function Edit(props) {
               </div>
             </section>
 
-            <section className="recipe-guru--recipe-block--notes">
-              <div className="recipe-guru--recipe-block--headline">
-                <h3>{__("Notes", "recipe-guru")}</h3>
+            <section className="recipe-creator--recipe-block--notes">
+              <div className="recipe-creator--recipe-block--headline">
+                <h3>{__("Notes", "recipe-creator")}</h3>
               </div>
 
               <RichText
@@ -809,7 +809,7 @@ export default function Edit(props) {
                 value={props.attributes.notes}
                 placeholder={__(
                   "Additional notes ...",
-                  "recipe-guru"
+                  "recipe-creator"
                 )}
                 __unstablePastePlainText={true}
                 onChange={(notes) => {
@@ -824,12 +824,12 @@ export default function Edit(props) {
       {!select("core/edit-post").isEditorSidebarOpened() ? (
         <button
           type="button"
-          className="components-button is-tertiary recipe-guru--show-additional-settings"
+          className="components-button is-tertiary recipe-creator--show-additional-settings"
           onClick={() => {
             dispatch("core/edit-post").openGeneralSidebar("edit-post/document");
           }}
         >
-          {__("Show additional settings", "recipe-guru")}
+          {__("Show additional settings", "recipe-creator")}
         </button>
       ) : null}
     </Fragment>

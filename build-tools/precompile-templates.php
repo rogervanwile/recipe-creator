@@ -3,7 +3,7 @@
 define("ABSPATH", "let-me-in");
 define("WP_DEBUG", true);
 
-require __DIR__ . '/../inc/recipe-guru.php';
+require __DIR__ . '/../inc/recipe-creator.php';
 
 /**
  * Precompile handlebars templates
@@ -15,6 +15,6 @@ function plugin_dir_path($file)
     return dirname($file) . '/';
 }
 
-RecipeGuru::getRecipeBlockRenderer();
-RecipeGuru::getRecipeBlockStylesRenderer();
-RecipeGuru::getJumpToRecipeBlockRenderer();
+RecipeCreator::getRecipeBlockRenderer();
+RecipeCreator::getRecipeBlockStylesRenderer();
+RecipeCreator::getJumpToRecipeBlockRenderer();

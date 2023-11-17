@@ -2,9 +2,9 @@
 
 `npm run i18n:make-pot`
 
-- Open `recipe-guru-de_DE.po` in Poedit
+- Open `recipe-creator-de_DE.po` in Poedit
 - Click "Katalog" > "Aus POT-Datei aktualisieren"
-- Select the `recipe-guru.pot`
+- Select the `recipe-creator.pot`
 - Update the translations
 - Save the file and click "Datei" > "MO-Datei erstellen"
 
@@ -30,7 +30,7 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 
 - `npm run build`
 - Update version in `package.json`
-- Update version in `recipe-guru.php`
+- Update version in `recipe-creator.php`
 - Update version in `readme.txt` (Stable tag)
 - Update `changelog.md` and `changelod-de_DE.md`
 - Update latest wp version ("tested") in `build-tools/create-release.ts`

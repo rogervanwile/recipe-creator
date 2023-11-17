@@ -1,3 +1,3 @@
 interface Window {
-  recipeGuruConfig: any;
+  recipeCreatorConfig: any;
 }

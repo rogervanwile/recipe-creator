@@ -22,7 +22,7 @@
     color: #000000 !important;
   }
 
-  .recipe-guru--block {
+  .recipe-creator--block {
     --headline-font-family: serif !important;
     --text-font-family: sans-serif !important;
 
@@ -84,7 +84,7 @@
       grid-area: header-right;
     }
 
-    .recipe-guru--recipe-block--thumbnail {
+    .recipe-creator--recipe-block--thumbnail {
       grid-area: header-left;
     }
 
@@ -100,8 +100,8 @@
       grid-area: main;
     }
 
-    .recipe-guru--recipe-block--servings-editor {
-      .recipe-guru--recipe-block--headline {
+    .recipe-creator--recipe-block--servings-editor {
+      .recipe-creator--recipe-block--headline {
         flex-direction: column;
         align-items: start;
       }
@@ -111,13 +111,13 @@
       }
     }
 
-    .recipe-guru--recipe-block--timings {
+    .recipe-creator--recipe-block--timings {
       ul li {
         display: block;
       }
     }
 
-    .recipe-guru--recipe-block--ingredients-table {
+    .recipe-creator--recipe-block--ingredients-table {
       tr td {
         padding-top: 0.4em;
         padding-bottom: 0.4em;
@@ -129,35 +129,35 @@
       }
     }
 
-    .recipe-guru--recipe-block--utensils-list li {
+    .recipe-creator--recipe-block--utensils-list li {
       padding-left: 0;
       margin-bottom: 0;
     }
 
-    .recipe-guru--recipe-block--copyright {
+    .recipe-creator--recipe-block--copyright {
       opacity: 0.8;
       margin-bottom: 12px;
       display: block;
     }
 
-    .recipe-guru--recipe-block--rating,
-    .recipe-guru--recipe-block--video,
+    .recipe-creator--recipe-block--rating,
+    .recipe-creator--recipe-block--video,
     .recipe-shrink-servings,
     .recipe-increase-servings,
-    .recipe-guru--recipe-block--save-and-share,
-    .recipe-guru--recipe-block--user-rating,
-    .recipe-guru--recipe-block--difficulty {
+    .recipe-creator--recipe-block--save-and-share,
+    .recipe-creator--recipe-block--user-rating,
+    .recipe-creator--recipe-block--difficulty {
       display: none !important;
     }
 
-    .recipe-guru--recipe-block--servings-editor > span {
+    .recipe-creator--recipe-block--servings-editor > span {
       background-color: transparent;
     }
 
-    .recipe-guru--recipe-block--call-to-action {
+    .recipe-creator--recipe-block--call-to-action {
       background-color: transparent !important;
 
-      .recipe-guru--recipe-block--call-to-action--icon {
+      .recipe-creator--recipe-block--call-to-action--icon {
         // TODO: Find a way to change the icon color
         display: none;
       }
