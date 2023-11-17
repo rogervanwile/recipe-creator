@@ -1,0 +1,533 @@
+# Copyright (C) 2023 howtofoodblog.com
+# This file is distributed under the same license as the Recipe Creator plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Recipe Creator 2.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recipe-creator\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2023-11-17T21:21:16+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.7.1\n"
+"X-Domain: recipe-creator\n"
+
+#. Plugin Name of the plugin
+#: inc/recipe-creator.php:260
+#: inc/recipe-creator.php:261
+msgid "Recipe Creator"
+msgstr ""
+
+#. Description of the plugin
+msgid "The easy to use recipe plugin for WordPress' Gutenberg editor. Easily create recipes and optimize them for Google & Co automatically."
+msgstr ""
+
+#. Author of the plugin
+msgid "howtofoodblog.com"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://howtofoodblog.com/"
+msgstr ""
+
+#: build/recipe-block-renderer.php:7
+#: build/recipe-block-renderer.php:12
+#: inc/recipe-creator.php:815
+#: inc/recipe-creator.php:820
+msgid "minutes"
+msgstr ""
+
+#: build/recipe-block-renderer.php:12
+#: inc/recipe-creator.php:820
+msgid "hours"
+msgstr ""
+
+#. translators: %s: link to release notes
+#: inc/recipe-creator.php:69
+msgid "We've updated the <strong>Recipe Creator</strong> plugin. Check out the <a href=\"%s\">release notes</a> to see which new features you can use now."
+msgstr ""
+
+#: inc/recipe-creator.php:273
+#: inc/recipe-creator.php:274
+msgid "Recipe Block"
+msgstr ""
+
+#: inc/recipe-creator.php:285
+#: inc/recipe-creator.php:286
+msgid "Release notes"
+msgstr ""
+
+#: inc/recipe-creator.php:444
+msgid "General settings"
+msgstr ""
+
+#: inc/recipe-creator.php:446
+msgid "Configure how the recipe block should behave on your blog posts."
+msgstr ""
+
+#: inc/recipe-creator.php:452
+msgid "Instagram"
+msgstr ""
+
+#: inc/recipe-creator.php:454
+msgid "Provide informations about your instagram profile and we show a call to action below your recipe."
+msgstr ""
+
+#: inc/recipe-creator.php:460
+msgid "Visual settings"
+msgstr ""
+
+#: inc/recipe-creator.php:462
+msgid "Configure how the recipe block should look for your visitors."
+msgstr ""
+
+#: inc/recipe-creator.php:470
+#: inc/recipe-creator.php:1320
+#: build/blocks/jump-to-recipe/editor.js:1
+msgid "Jump to recipe"
+msgstr ""
+
+#: inc/recipe-creator.php:472
+msgid "Add a \"Jump to recipe\" button on every page with the recipe block."
+msgstr ""
+
+#: inc/recipe-creator.php:483
+msgid "Your username"
+msgstr ""
+
+#: inc/recipe-creator.php:496
+msgid "Hashtag"
+msgstr ""
+
+#: inc/recipe-creator.php:509
+msgid "Primary color"
+msgstr ""
+
+#: inc/recipe-creator.php:521
+msgid "Secondary color"
+msgstr ""
+
+#: inc/recipe-creator.php:533
+msgid "Background color"
+msgstr ""
+
+#: inc/recipe-creator.php:546
+msgid "Border"
+msgstr ""
+
+#: inc/recipe-creator.php:548
+msgid "Show border"
+msgstr ""
+
+#: inc/recipe-creator.php:558
+msgid "Box shadow"
+msgstr ""
+
+#: inc/recipe-creator.php:560
+msgid "Show box shadow"
+msgstr ""
+
+#: inc/recipe-creator.php:570
+msgid "Border radius"
+msgstr ""
+
+#: inc/recipe-creator.php:582
+msgid "Image width"
+msgstr ""
+
+#: inc/recipe-creator.php:900
+#: inc/recipe-creator.php:984
+#: inc/recipe-creator.php:1238
+#: build/blocks/recipe/editor.js:1
+msgid "servings"
+msgstr ""
+
+#: inc/recipe-creator.php:901
+#: build/blocks/recipe/editor.js:1
+msgid "simple"
+msgstr ""
+
+#: inc/recipe-creator.php:904
+msgid "Banana shake"
+msgstr ""
+
+#: inc/recipe-creator.php:905
+msgid "You have bananas left over again and don't know what to do with them? How about a delicious shake?"
+msgstr ""
+
+#: inc/recipe-creator.php:914
+msgid "milk"
+msgstr ""
+
+#: inc/recipe-creator.php:919
+msgid "banana"
+msgstr ""
+
+#: inc/recipe-creator.php:924
+msgid "sugar"
+msgstr ""
+
+#: inc/recipe-creator.php:929
+msgid "cinnamon"
+msgstr ""
+
+#: inc/recipe-creator.php:935
+msgid "Knife"
+msgstr ""
+
+#: inc/recipe-creator.php:936
+msgid "Blender"
+msgstr ""
+
+#: inc/recipe-creator.php:942
+msgid "Peel banana."
+msgstr ""
+
+#: inc/recipe-creator.php:943
+msgid "Put all the ingredients in the blender and mix everything for 30 seconds."
+msgstr ""
+
+#: inc/recipe-creator.php:944
+msgid "Pour into a glass and enjoy."
+msgstr ""
+
+#: inc/recipe-creator.php:950
+msgid "The milkshake becomes particularly creamy with UHT milk."
+msgstr ""
+
+#: inc/recipe-creator.php:969
+#: build/blocks/recipe/editor.js:1
+msgid "Prep time"
+msgstr ""
+
+#: inc/recipe-creator.php:970
+#: build/blocks/recipe/editor.js:1
+msgid "Rest time"
+msgstr ""
+
+#: inc/recipe-creator.php:971
+#: build/blocks/recipe/editor.js:1
+msgid "Cook time"
+msgstr ""
+
+#: inc/recipe-creator.php:972
+#: build/blocks/recipe/editor.js:1
+msgid "Baking time"
+msgstr ""
+
+#: inc/recipe-creator.php:973
+#: build/blocks/recipe/editor.js:1
+msgid "Total time"
+msgstr ""
+
+#: inc/recipe-creator.php:974
+msgid "yields"
+msgstr ""
+
+#: inc/recipe-creator.php:975
+#: build/blocks/recipe/editor.js:1
+msgid "Ingredients"
+msgstr ""
+
+#: inc/recipe-creator.php:976
+#: build/blocks/recipe/editor.js:1
+msgid "Utensils"
+msgstr ""
+
+#: inc/recipe-creator.php:977
+#: build/blocks/recipe/editor.js:1
+msgid "Steps of preparation"
+msgstr ""
+
+#: inc/recipe-creator.php:978
+msgid "Print"
+msgstr ""
+
+#: inc/recipe-creator.php:979
+msgid "Pin it"
+msgstr ""
+
+#: inc/recipe-creator.php:980
+msgid "Your rating"
+msgstr ""
+
+#: inc/recipe-creator.php:981
+msgid "Average rating"
+msgstr ""
+
+#: inc/recipe-creator.php:982
+#: build/blocks/recipe/editor.js:1
+msgid "Notes"
+msgstr ""
+
+#: inc/recipe-creator.php:983
+msgid "How do you like the recipe?"
+msgstr ""
+
+#: inc/recipe-creator.php:985
+#: build/blocks/recipe/editor.js:1
+msgid "Video"
+msgstr ""
+
+#: inc/recipe-creator.php:986
+msgid "You tried this recipe?"
+msgstr ""
+
+#: inc/recipe-creator.php:987
+msgid "Then link"
+msgstr ""
+
+#: inc/recipe-creator.php:988
+msgid "on Instagram"
+msgstr ""
+
+#: inc/recipe-creator.php:989
+msgid "on Instagram or use the hashtag"
+msgstr ""
+
+#: inc/recipe-creator.php:1217
+#: build/blocks/recipe/editor.js:1
+msgid "piece"
+msgstr ""
+
+#: inc/recipe-creator.php:1219
+msgid "pieces"
+msgstr ""
+
+#: inc/recipe-creator.php:1222
+#: inc/recipe-creator.php:1224
+#: build/blocks/recipe/editor.js:1
+msgid "springform pan"
+msgstr ""
+
+#: inc/recipe-creator.php:1226
+#: build/blocks/recipe/editor.js:1
+msgid "square baking pan"
+msgstr ""
+
+#: inc/recipe-creator.php:1229
+#: build/blocks/recipe/editor.js:1
+msgid "baking tray"
+msgstr ""
+
+#: inc/recipe-creator.php:1231
+msgid "baking trays"
+msgstr ""
+
+#: inc/recipe-creator.php:1236
+msgid "serving"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Change image"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Remove image"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Select image"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Results in"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "cm"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Unit"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Group name"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Remove Group"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Add the steps of preparation here..."
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Split steps into groups"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Add additional group"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Add the ingredients here..."
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Split ingredients into groups"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Recipe"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Add a recipe and optimize it easily for search engines."
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Pinterest"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "SEO"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Google and other search engines need more information to present your recipe in the best possible way. You should provide this information as good as possible."
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Cuisine"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "e.g. \"Italian\" or \"German\""
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Calories"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Picture of the finished dish"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Depending on the usage Google uses different image formats of your recipe. You can find more information"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "https://www.howtofoodblog.com/mehr-klicks-durch-optimierte-rezeptbilder"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "here"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Previews"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Featured Snippet"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "No reviews"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Mobile Search Result"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Google displays here a text that matches the search term."
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Rating"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Preparation"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Attention:"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Adjusting the ratings can have an impact on your Google ranking. Be careful with this function."
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "1 star"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "2 stars"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "3 stars"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "4 stars"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "5 stars"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Title of your recipe"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "moderate"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "challenging"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Short description of your recipe"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Min."
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Add the needed utensils here..."
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "YouTube or Vimeo link"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Additional notes ..."
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Show additional settings"
+msgstr ""
+
+#: build/blocks/jump-to-recipe/block.json
+msgctxt "block title"
+msgid "Jump to recipe"
+msgstr ""
+
+#: build/blocks/jump-to-recipe/block.json
+msgctxt "block description"
+msgid "Add a quick link which jumps to the recipe in the page."
+msgstr ""
+
+#: build/blocks/recipe/block.json
+msgctxt "block title"
+msgid "Recipe"
+msgstr ""
+
+#: build/blocks/recipe/block.json
+msgctxt "block description"
+msgid "Add a recipe and optimize it easily for search engines."
+msgstr ""

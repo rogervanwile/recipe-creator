@@ -1,6 +1,6 @@
 import Color from "color";
 
-const styleBlockTemplate = require("../blocks/block/style-block.hbs");
+const styleBlockTemplate = require("../blocks/recipe/style-block.hbs");
 
 import "../styles/admin.scss";
 
@@ -16,13 +16,13 @@ class AdminSettings {
     this.initOtherPicker();
 
     this.settingsForm = document.getElementById(
-      "recipe-plugin-for-wp--settings-form"
+      "recipe-creator--settings-form"
     ) as HTMLFormElement;
   }
 
   private initColorPicker() {
     const colorPickers = document.querySelectorAll(
-      ".recipe-plugin-for-wp--color-picker"
+      ".recipe-creator--color-picker"
     );
     colorPickers.forEach((colorPicker) => {
       var defaultValue = colorPicker.getAttribute("data-default-value") || null;
@@ -41,7 +41,7 @@ class AdminSettings {
 
   private initOtherPicker() {
     const adminForm = document.querySelector<HTMLElement>(
-      ".recipe-plugin-for-wp--settings-form "
+      ".recipe-creator--settings-form "
     );
 
     if (!adminForm) {
@@ -70,7 +70,7 @@ class AdminSettings {
 
     Object.keys(data).map((key) => {
       switch (key) {
-        case "foodblogkitchen_toolkit__primary_color":
+        case "recipe_plugin_for_wp__primary_color":
           migratedData["primaryColor"] = data[key];
           migratedData["primaryColorContrast"] = this.getContrastColor(
             data[key]
@@ -82,57 +82,57 @@ class AdminSettings {
           migratedData["primaryColorDark"] = this.darkenColor(data[key]);
 
           this.updateSettingsFormField(
-            "foodblogkitchen_toolkit__primary_color_contrast",
+            "recipe_plugin_for_wp__primary_color_contrast",
             migratedData["primaryColorContrast"]
           );
           this.updateSettingsFormField(
-            "foodblogkitchen_toolkit__primary_color_light",
+            "recipe_plugin_for_wp__primary_color_light",
             migratedData["primaryColorLight"]
           );
           this.updateSettingsFormField(
-            "foodblogkitchen_toolkit__primary_color_light_contrast",
+            "recipe_plugin_for_wp__primary_color_light_contrast",
             migratedData["primaryColorLightContrast"]
           );
           this.updateSettingsFormField(
-            "foodblogkitchen_toolkit__primary_color_dark",
+            "recipe_plugin_for_wp__primary_color_dark",
             migratedData["primaryColorDark"]
           );
           break;
-        case "foodblogkitchen_toolkit__secondary_color":
+        case "recipe_plugin_for_wp__secondary_color":
           migratedData["secondaryColor"] = data[key];
           migratedData["secondaryColorContrast"] = this.getContrastColor(
             data[key]
           );
 
           this.updateSettingsFormField(
-            "foodblogkitchen_toolkit__secondary_color_contrast",
+            "recipe_plugin_for_wp__secondary_color_contrast",
             migratedData["secondaryColorContrast"]
           );
           break;
-        case "foodblogkitchen_toolkit__background_color":
+        case "recipe_plugin_for_wp__background_color":
           migratedData["backgroundColor"] = data[key];
           migratedData["backgroundColorContrast"] = this.getContrastColor(
             data[key]
           );
 
           this.updateSettingsFormField(
-            "foodblogkitchen_toolkit__background_color_contrast",
+            "recipe_plugin_for_wp__background_color_contrast",
             migratedData["backgroundColorContrast"]
           );
           break;
-        case "foodblogkitchen_toolkit__show_border":
+        case "recipe_plugin_for_wp__show_border":
           migratedData["showBorder"] = data[key];
           break;
-        case "foodblogkitchen_toolkit__show_box_shadow":
+        case "recipe_plugin_for_wp__show_box_shadow":
           migratedData["showBoxShadow"] = data[key];
           break;
-        case "foodblogkitchen_toolkit__border_radius":
+        case "recipe_plugin_for_wp__border_radius":
           migratedData["borderRadius"] = data[key];
           break;
-        // case "foodblogkitchen_toolkit__primary_color_light":
+        // case "recipe_plugin_for_wp__primary_color_light":
         //   migratedData["primaryColorLight"] = data[key];
         //   break;
-        // case "foodblogkitchen_toolkit__primary_color_dark":
+        // case "recipe_plugin_for_wp__primary_color_dark":
         //   migratedData["primaryColorDark"] = data[key];
         //   break;
       }
@@ -142,7 +142,7 @@ class AdminSettings {
 
     if (!this.styleContainer) {
       this.styleContainer = document.getElementById(
-        "recipe-plugin-for-wp--style-container"
+        "recipe-creator--style-container"
       );
     }
 

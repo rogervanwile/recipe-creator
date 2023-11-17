@@ -1,7 +1,7 @@
 <?php
 $Parsedown = new Parsedown();
 ?>
-<div class="wrap foodblogkitchen--release-notes">
+<div class="wrap recipe-creator--release-notes">
   <h1><?php echo get_admin_page_title(); ?></h1>
   <?php
   $userLocale = get_user_locale();
@@ -17,7 +17,7 @@ $Parsedown = new Parsedown();
     '##RECIPE_BLOCK_SETTINGS_LINK##',
     '##ASSETS_PATH##'
   ], [
-    get_admin_url(get_current_network_id(), 'admin.php?page=foodblogkitchen_toolkit'),
+    get_admin_url(get_current_network_id(), 'admin.php?page=recipe_plugin_for_wp'),
     plugin_dir_url(__FILE__) . '../assets'
   ], $changelog);
 

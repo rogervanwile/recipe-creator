@@ -3,7 +3,7 @@
 define("ABSPATH", "let-me-in");
 define("WP_DEBUG", true);
 
-require __DIR__ . '/../inc/recipe-plugin-for-wp.php';
+require __DIR__ . '/../inc/recipe-creator.php';
 
 /**
  * Precompile handlebars templates
@@ -15,7 +15,6 @@ function plugin_dir_path($file)
     return dirname($file) . '/';
 }
 
-RecipePluginForWP::getRecipeBlockRenderer();
-RecipePluginForWP::getRecipeBlockStylesRenderer();
-RecipePluginForWP::getJumpToRecipeBlockRenderer();
-RecipePluginForWP::getFAQBlockRenderer();
+RecipeCreator::getRecipeBlockRenderer();
+RecipeCreator::getRecipeBlockStylesRenderer();
+RecipeCreator::getJumpToRecipeBlockRenderer();

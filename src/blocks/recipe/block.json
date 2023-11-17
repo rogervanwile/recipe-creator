@@ -1,0 +1,157 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "recipe-creator/recipe",
+  "title": "Recipe",
+  "description": "Add a recipe and optimize it easily for search engines.",
+  "category": "formatting",
+  "icon": "carrot",
+  "textdomain": "recipe-creator",
+  "supports": {
+    "html": false,
+    "align": ["center", "wide", "full"]
+  },
+  "attributes": {
+    "ingredients": {
+      "type": "string",
+      "default": ""
+    },
+    "preparationSteps": {
+      "type": "string",
+      "default": ""
+    },
+    "utensils": {
+      "type": "string",
+      "default": ""
+    },
+    "ingredientsGroups": {
+      "type": "array",
+      "default": [
+        {
+          "title": "",
+          "list": ""
+        }
+      ]
+    },
+    "preparationStepsGroups": {
+      "type": "array",
+      "default": [
+        {
+          "title": "",
+          "list": ""
+        }
+      ]
+    },
+    "name": {
+      "type": "string",
+      "default": ""
+    },
+    "description": {
+      "type": "string",
+      "default": ""
+    },
+    "difficulty": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string",
+      "default": ""
+    },
+    "prepTime": {
+      "type": "string",
+      "default": ""
+    },
+    "restTime": {
+      "type": "string",
+      "default": ""
+    },
+    "cookTime": {
+      "type": "string",
+      "default": ""
+    },
+    "bakingTime": {
+      "type": "string",
+      "default": ""
+    },
+    "totalTime": {
+      "type": "string",
+      "default": ""
+    },
+    "recipeYield": {
+      "type": "string",
+      "default": "0"
+    },
+    "recipeYieldWidth": {
+      "type": "string",
+      "default": "0"
+    },
+    "recipeYieldHeight": {
+      "type": "string",
+      "default": "0"
+    },
+    "recipeYieldUnit": {
+      "type": "string",
+      "default": "servings"
+    },
+    "videoIframeUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "calories": {
+      "type": "string",
+      "default": ""
+    },
+    "recipeCuisine": {
+      "type": "string",
+      "default": ""
+    },
+    "image1_1": {
+      "type": "string",
+      "default": ""
+    },
+    "image1_1Id": {
+      "type": "number"
+    },
+    "image3_2": {
+      "type": "string",
+      "default": ""
+    },
+    "image3_2Id": {
+      "type": "number"
+    },
+    "image4_3": {
+      "type": "string",
+      "default": ""
+    },
+    "image4_3Id": {
+      "type": "number"
+    },
+    "image16_9": {
+      "type": "string",
+      "default": ""
+    },
+    "image16_9Id": {
+      "type": "number"
+    },
+    "videoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "content": {
+      "type": "string",
+      "default": ""
+    },
+    "className": {
+      "type": "string",
+      "default": ""
+    },
+    "align": {
+      "type": "string",
+      "default": "center"
+    }
+  },
+  "editorScript": "file:editor.js",
+  "editorStyle": "file:editor.css",
+  "viewScript": "file:view.js",
+  "style": "file:view.css"
+}

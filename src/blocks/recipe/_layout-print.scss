@@ -1,0 +1,171 @@
+// There is a bug in chrome with does not show webfonts in the print preview
+// https://bugs.chromium.org/p/chromium/issues/detail?id=284840
+
+// @import "./webfonts.scss";
+
+@media print {
+  @page {
+    size: A4;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important; /* Chrome, Safari, Edge */
+    color-adjust: exact !important; /*Firefox*/
+  }
+
+  h3 {
+    font-weight: bold;
+  }
+
+  a {
+    text-decoration: none !important;
+    color: #000000 !important;
+  }
+
+  .recipe-creator--block {
+    --headline-font-family: serif !important;
+    --text-font-family: sans-serif !important;
+
+    font-family: var(--text-font-family);
+    font-size: 14px;
+    line-height: 1.5;
+
+    border: none !important;
+    border-radius: 0;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    margin-bottom: 0;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "title title title title title title"
+      "header-left header-left header-left header-right header-right header-right"
+      "aside aside main main main main";
+    gap: 0.5cm 1cm;
+
+    > .title {
+      grid-area: title;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding-bottom: 0.5cm;
+      // border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+      .right {
+        text-align: center;
+
+        > * {
+          text-align: center;
+        }
+      }
+
+      svg {
+        display: block;
+        min-width: 2.5cm;
+        width: 2.5cm;
+        height: 2.5cm;
+        page-break-before: auto;
+        page-break-after: auto;
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 1mm;
+      }
+
+      .qr-hint {
+        opacity: 0.8;
+      }
+    }
+
+    > header {
+      grid-area: header-right;
+    }
+
+    .recipe-creator--recipe-block--thumbnail {
+      grid-area: header-left;
+    }
+
+    > aside {
+      grid-area: aside;
+
+      > * {
+        page-break-inside: avoid;
+      }
+    }
+
+    > main {
+      grid-area: main;
+    }
+
+    .recipe-creator--recipe-block--servings-editor {
+      .recipe-creator--recipe-block--headline {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      > span {
+        padding: 0;
+      }
+    }
+
+    .recipe-creator--recipe-block--timings {
+      ul li {
+        display: block;
+      }
+    }
+
+    .recipe-creator--recipe-block--ingredients-table {
+      tr td {
+        padding-top: 0.4em;
+        padding-bottom: 0.4em;
+        vertical-align: top;
+
+        font-family: var(--text-font-family);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+    }
+
+    .recipe-creator--recipe-block--utensils-list li {
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+
+    .recipe-creator--recipe-block--copyright {
+      opacity: 0.8;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .recipe-creator--recipe-block--rating,
+    .recipe-creator--recipe-block--video,
+    .recipe-shrink-servings,
+    .recipe-increase-servings,
+    .recipe-creator--recipe-block--save-and-share,
+    .recipe-creator--recipe-block--user-rating,
+    .recipe-creator--recipe-block--difficulty {
+      display: none !important;
+    }
+
+    .recipe-creator--recipe-block--servings-editor > span {
+      background-color: transparent;
+    }
+
+    .recipe-creator--recipe-block--call-to-action {
+      background-color: transparent !important;
+
+      .recipe-creator--recipe-block--call-to-action--icon {
+        // TODO: Find a way to change the icon color
+        display: none;
+      }
+
+      &,
+      * {
+        color: black !important;
+      }
+    }
+  }
+}

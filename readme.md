@@ -2,9 +2,9 @@
 
 `npm run i18n:make-pot`
 
-- Open `recipe-plugin-for-wp-de_DE.po` in Poedit
+- Open `recipe-creator-de_DE.po` in Poedit
 - Click "Katalog" > "Aus POT-Datei aktualisieren"
-- Select the `recipe-plugin-for-wp.pot`
+- Select the `recipe-creator.pot`
 - Update the translations
 - Save the file and click "Datei" > "MO-Datei erstellen"
 
@@ -30,9 +30,11 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 
 - `npm run build`
 - Update version in `package.json`
-- Update version in `recipe-plugin-for-wp.php`
+- Update version in `recipe-creator.php`
+- Update version in `readme.txt` (Stable tag)
 - Update `changelog.md` and `changelod-de_DE.md`
 - Update latest wp version ("tested") in `build-tools/create-release.ts`
+- Update latest wp version ("Tested up to") in `readme.txt`
 
 `$ npm run create-release`
 

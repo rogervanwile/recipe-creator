@@ -1,6 +1,6 @@
 <?php
 
-class RecipePluginForWPMigrationSPRecipes
+class RecipeCreatorMigrationSPRecipes
 {
 
     public function getRecipeFromSP()
@@ -89,11 +89,11 @@ class RecipePluginForWPMigrationSPRecipes
         }
     }
 
-    // register_block_type('foodblogkitchen-recipes/block', array(
-    //     'editor_script' => 'recipe-plugin-for-wp-recipe-block-editor',
-    //     'editor_style'  => 'recipe-plugin-for-wp-recipe-block-editor',
-    //     'script'        => 'recipe-plugin-for-wp-recipe-block',
-    //     'style'         => 'recipe-plugin-for-wp-recipe-block',
+    // register_block_type('recipe-creator/recipe', array(
+    //     'editor_script' => 'recipe-creator-recipe-block-editor',
+    //     'editor_style'  => 'recipe-creator-recipe-block-editor',
+    //     'script'        => 'recipe-creator-recipe-block',
+    //     'style'         => 'recipe-creator-recipe-block',
     //     'attributes' => array(
     //         'ingredients' => array(
     //             'type' => 'string',

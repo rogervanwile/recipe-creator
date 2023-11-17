@@ -1,5 +1,5 @@
 {
-  "name": "recipe-plugin-for-wp",
+  "name": "recipe-creator",
   "version": "1.8.6",
   "description": "Manage recipes and optimize them automatically for Google Featured Snippets.",
   "author": "Oliver Wagner",
@@ -16,12 +16,11 @@
     "start": "wp-scripts start",
     "packages-update": "wp-scripts packages-update",
     "archive": "node ./create-archive.js",
-    "sync": "npm run sync:uebersee && npm run sync:blank",
     "test:start:cli": "wp-cypress start && cypress run",
     "test:start": "wp-cypress start && cypress open",
     "test:stop": "wp-cypress stop",
-    "i18n:make-pot": "wp i18n make-pot ./ languages/recipe-plugin-for-wp.pot --exclude=src,node_modules",
-    "i18n:make-json": "rm -rf languages/*.json || true && wp i18n make-json languages/recipe-plugin-for-wp-de_DE.po --no-purge --use-map=./i18n-json-map.json"
+    "i18n:make-pot": "wp i18n make-pot ./ languages/recipe-creator.pot --exclude=src,node_modules",
+    "i18n:make-json": "rm -rf languages/*.json || true && wp i18n make-json languages/recipe-creator-de_DE.po --no-purge --use-map=./i18n-json-map.json"
   },
   "dependencies": {
     "@wordpress/date": "4.16.0",
@@ -42,7 +41,6 @@
     "@types/qrcode": "^1.4.2",
     "@types/showdown": "2.0.0",
     "@wordpress/scripts": "24.6.0",
-    "caniuse-lite": "1.0.30001447",
     "cypress": "12.5.1",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",

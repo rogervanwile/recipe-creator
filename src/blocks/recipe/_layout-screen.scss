@@ -1,0 +1,165 @@
+@media screen {
+  .recipe-creator--block {
+    .recipe-creator--block--inner {
+      display: grid;
+      gap: 1em 2em;
+
+      /* Default Layout */
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      grid-template-areas:
+        "title"
+        "thumbnail"
+        "intro"
+        "timings"
+        "ingredients"
+        "utensils"
+        "preparation-steps"
+        "video"
+        "notes"
+        "user-rating"
+        "save-and-share"
+        "call-to-action";
+
+      .recipe-creator--recipe-block--title {
+        grid-area: title;
+      }
+
+      .recipe-creator--recipe-block--intro {
+        grid-area: intro;
+      }
+
+      .recipe-creator--recipe-block--thumbnail {
+        grid-area: thumbnail;
+      }
+
+      .recipe-creator--recipe-block--timings {
+        grid-area: timings;
+      }
+
+      .recipe-creator--recipe-block--ingredients {
+        grid-area: ingredients;
+      }
+
+      .recipe-creator--recipe-block--utensils {
+        grid-area: utensils;
+      }
+
+      .recipe-creator--recipe-block--preparation-steps {
+        grid-area: preparation-steps;
+      }
+
+      .recipe-creator--recipe-block--video {
+        grid-area: video;
+      }
+
+      .recipe-creator--recipe-block--notes {
+        grid-area: notes;
+      }
+
+      .recipe-creator--recipe-block--user-rating {
+        grid-area: user-rating;
+      }
+
+      .recipe-creator--recipe-block--save-and-share {
+        grid-area: save-and-share;
+      }
+
+      .recipe-creator--recipe-block--call-to-action {
+        grid-area: call-to-action;
+      }
+
+      .recipe-creator--recipe-block--timings,
+      .recipe-creator--recipe-block--ingredients,
+      .recipe-creator--recipe-block--utensils,
+      .recipe-creator--recipe-block--preparation-steps,
+      .recipe-creator--recipe-block--video,
+      .recipe-creator--recipe-block--notes,
+      .recipe-creator--recipe-block--user-rating {
+        border-bottom: 1px solid var(--primary-light);
+      }
+
+      .recipe-creator--recipe-block--timings {
+        border-top: 1px solid var(--primary-light);
+      }
+
+      .recipe-creator--recipe-block--timings {
+        padding: 1em 0 0 0;
+        margin: 0;
+
+        ul {
+          padding-left: 4em !important;
+
+          &::before {
+            content: "";
+            background-image: var(--clock-url);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 3em 3em;
+            display: block;
+            position: absolute;
+            top: calc(50% - 0.5em);
+            left: 0;
+            width: 3em;
+            height: 3em;
+            transform: translateY(-50%);
+          }
+
+          li {
+            display: inline-block;
+          }
+        }
+      }
+
+      .recipe-creator--recipe-block--ingredients-table {
+        tr.recipe-creator--recipe-block--ingredients-item.recipe-creator--even {
+          td {
+            background-color: var(--primary-light) !important;
+            color: var(--primary-light-contrast);
+
+            &.recipe-creator--recipe-block--amount {
+              padding-left: 2em;
+            }
+
+            &:first-child {
+              border-top-left-radius: 0.25em;
+              border-bottom-left-radius: 0.25em;
+            }
+
+            &:last-child {
+              border-top-right-radius: 0.25em;
+              border-bottom-right-radius: 0.25em;
+            }
+          }
+        }
+      }
+
+      .recipe-creator--recipe-block--utensils-list {
+        li:nth-child(odd) {
+          background-color: var(--primary-light) !important;
+          color: var(--primary-light-contrast);
+          border-radius: 0.25em;
+        }
+      }
+    }
+
+    @media (min-width: 768px) {
+      .recipe-creator--block--inner {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+          "title title"
+          "intro thumbnail"
+          "timings timings"
+          "ingredients ingredients"
+          "utensils utensils"
+          "preparation-steps preparation-steps"
+          "video video"
+          "notes notes"
+          "user-rating user-rating"
+          "save-and-share save-and-share"
+          "call-to-action call-to-action";
+      }
+    }
+  }
+}
