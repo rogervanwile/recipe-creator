@@ -1,9 +1,6 @@
 import { __ } from "@wordpress/i18n";
 
-import {
-  SelectControl,
-  __experimentalInputControl as InputControl,
-} from "@wordpress/components";
+import { SelectControl, __experimentalInputControl as InputControl } from "@wordpress/components";
 
 export default function RecipeYieldSelector({ props }) {
   const recipeYieldUnitOptions = [
@@ -31,8 +28,7 @@ export default function RecipeYieldSelector({ props }) {
 
   return (
     <>
-      {["square-baking-pan"].indexOf(props.attributes.recipeYieldUnit) !==
-      -1 ? (
+      {["square-baking-pan"].indexOf(props.attributes.recipeYieldUnit) !== -1 ? (
         <div className="square-baking-pans-x-wrapper">
           <InputControl
             label={__("Results in", "recipe-creator")}
@@ -72,11 +68,7 @@ export default function RecipeYieldSelector({ props }) {
               recipeYieldHeight: 0,
             });
           }}
-          suffix={
-            props.attributes.recipeYieldUnit === "springform-pan"
-              ? __("cm", "recipe-creator")
-              : ""
-          }
+          suffix={props.attributes.recipeYieldUnit === "springform-pan" ? __("cm", "recipe-creator") : ""}
         />
       )}
       <SelectControl

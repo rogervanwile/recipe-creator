@@ -15,15 +15,11 @@ class AdminSettings {
     this.initColorPicker();
     this.initOtherPicker();
 
-    this.settingsForm = document.getElementById(
-      "recipe-creator--settings-form"
-    ) as HTMLFormElement;
+    this.settingsForm = document.getElementById("recipe-creator--settings-form") as HTMLFormElement;
   }
 
   private initColorPicker() {
-    const colorPickers = document.querySelectorAll(
-      ".recipe-creator--color-picker"
-    );
+    const colorPickers = document.querySelectorAll(".recipe-creator--color-picker");
     colorPickers.forEach((colorPicker) => {
       var defaultValue = colorPicker.getAttribute("data-default-value") || null;
 
@@ -40,17 +36,13 @@ class AdminSettings {
   }
 
   private initOtherPicker() {
-    const adminForm = document.querySelector<HTMLElement>(
-      ".recipe-creator--settings-form "
-    );
+    const adminForm = document.querySelector<HTMLElement>(".recipe-creator--settings-form ");
 
     if (!adminForm) {
       return;
     }
 
-    const inputs = adminForm.querySelectorAll<HTMLInputElement>(
-      'input[type="number"],input[type="checkbox"]'
-    );
+    const inputs = adminForm.querySelectorAll<HTMLInputElement>('input[type="number"],input[type="checkbox"]');
 
     inputs.forEach((input) => {
       input.addEventListener("change", () => {
@@ -72,52 +64,38 @@ class AdminSettings {
       switch (key) {
         case "recipe_plugin_for_wp__primary_color":
           migratedData["primaryColor"] = data[key];
-          migratedData["primaryColorContrast"] = this.getContrastColor(
-            data[key]
-          );
+          migratedData["primaryColorContrast"] = this.getContrastColor(data[key]);
           migratedData["primaryColorLight"] = this.lightenColor(data[key]);
-          migratedData["primaryColorLightContrast"] = this.getContrastColor(
-            migratedData["primaryColorLight"]
-          );
+          migratedData["primaryColorLightContrast"] = this.getContrastColor(migratedData["primaryColorLight"]);
           migratedData["primaryColorDark"] = this.darkenColor(data[key]);
 
           this.updateSettingsFormField(
             "recipe_plugin_for_wp__primary_color_contrast",
-            migratedData["primaryColorContrast"]
+            migratedData["primaryColorContrast"],
           );
-          this.updateSettingsFormField(
-            "recipe_plugin_for_wp__primary_color_light",
-            migratedData["primaryColorLight"]
-          );
+          this.updateSettingsFormField("recipe_plugin_for_wp__primary_color_light", migratedData["primaryColorLight"]);
           this.updateSettingsFormField(
             "recipe_plugin_for_wp__primary_color_light_contrast",
-            migratedData["primaryColorLightContrast"]
+            migratedData["primaryColorLightContrast"],
           );
-          this.updateSettingsFormField(
-            "recipe_plugin_for_wp__primary_color_dark",
-            migratedData["primaryColorDark"]
-          );
+          this.updateSettingsFormField("recipe_plugin_for_wp__primary_color_dark", migratedData["primaryColorDark"]);
           break;
         case "recipe_plugin_for_wp__secondary_color":
           migratedData["secondaryColor"] = data[key];
-          migratedData["secondaryColorContrast"] = this.getContrastColor(
-            data[key]
-          );
+          migratedData["secondaryColorContrast"] = this.getContrastColor(data[key]);
 
           this.updateSettingsFormField(
             "recipe_plugin_for_wp__secondary_color_contrast",
-            migratedData["secondaryColorContrast"]
+            migratedData["secondaryColorContrast"],
           );
           break;
         case "recipe_plugin_for_wp__background_color":
           migratedData["backgroundColor"] = data[key];
-          migratedData["backgroundColorContrast"] = this.getContrastColor(
-            data[key]
-          );
+          migratedData["backgroundColorContrast"] = this.getContrastColor(data[key]);
 
           this.updateSettingsFormField(
             "recipe_plugin_for_wp__background_color_contrast",
-            migratedData["backgroundColorContrast"]
+            migratedData["backgroundColorContrast"],
           );
           break;
         case "recipe_plugin_for_wp__show_border":
@@ -141,9 +119,7 @@ class AdminSettings {
     var finalHtml = this.styleBlockTemplate({ options: migratedData });
 
     if (!this.styleContainer) {
-      this.styleContainer = document.getElementById(
-        "recipe-creator--style-container"
-      );
+      this.styleContainer = document.getElementById("recipe-creator--style-container");
     }
 
     if (!this.styleContainer) {
@@ -180,9 +156,7 @@ class AdminSettings {
       return;
     }
 
-    var input = this.settingsForm.querySelector<HTMLInputElement>(
-      '[name="' + name + '"]'
-    );
+    var input = this.settingsForm.querySelector<HTMLInputElement>('[name="' + name + '"]');
 
     if (!input) {
       return;
@@ -208,9 +182,7 @@ class AdminSettings {
     // When a checkbox is disabled, it is not part of the FormData
     // So lets process the checkboxes before
 
-    const checkboxes = this.settingsForm.querySelectorAll<HTMLInputElement>(
-      'input[type="checkbox"]'
-    );
+    const checkboxes = this.settingsForm.querySelectorAll<HTMLInputElement>('input[type="checkbox"]');
 
     checkboxes.forEach((checkbox) => {
       const name = checkbox.getAttribute("name");

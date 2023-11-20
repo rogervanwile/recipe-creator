@@ -10,41 +10,32 @@ export class Rating {
       return;
     }
 
-    const savedRating = window.localStorage.getItem(
-      "recipe-creator::" + postId
-    );
+    const savedRating = window.localStorage.getItem("recipe-creator::" + postId);
 
     if (!savedRating) {
-      ratingElement
-        .querySelectorAll<HTMLElement>(
-          ".recipe-creator--recipe-block--star"
-        )
-        .forEach((starElement) => {
-          starElement.addEventListener("click", (event) => {
-            this.markAsSelected(starElement);
+      ratingElement.querySelectorAll<HTMLElement>(".recipe-creator--recipe-block--star").forEach((starElement) => {
+        starElement.addEventListener("click", (event) => {
+          this.markAsSelected(starElement);
 
-            if (this.hasRated) {
-              // Only one rating is allowed
-              return;
-            }
+          if (this.hasRated) {
+            // Only one rating is allowed
+            return;
+          }
 
-            this.hasRated = true;
+          this.hasRated = true;
 
-            const rating = starElement.getAttribute("data-rating");
+          const rating = starElement.getAttribute("data-rating");
 
-            if (!rating) {
-              return;
-            }
+          if (!rating) {
+            return;
+          }
 
-            // To show the users vote and prevent multiple votes
-            window.localStorage.setItem(
-              "recipe-creator::" + postId,
-              rating
-            );
+          // To show the users vote and prevent multiple votes
+          window.localStorage.setItem("recipe-creator::" + postId, rating);
 
-            this.storeRatingInDatabase(postId, rating);
-          });
+          this.storeRatingInDatabase(postId, rating);
         });
+      });
     } else {
       this.hideRating();
     }
@@ -52,9 +43,7 @@ export class Rating {
 
   private hideRating() {
     // Hide the user rating section if the user has already voted.
-    const ratingWrapper = this.ratingElement?.closest<HTMLElement>(
-      ".recipe-creator--recipe-block--user-rating"
-    );
+    const ratingWrapper = this.ratingElement?.closest<HTMLElement>(".recipe-creator--recipe-block--user-rating");
 
     if (!ratingWrapper) {
       return;
@@ -65,9 +54,7 @@ export class Rating {
 
   private storeRatingInDatabase(postId: string, rating: string) {
     const currentDate = new Date();
-    const diff = Math.abs(
-      this.constructionDate.getTime() - currentDate.getTime()
-    );
+    const diff = Math.abs(this.constructionDate.getTime() - currentDate.getTime());
 
     if (diff < 5000) {
       // The user rated the recipe in unter 5 seconds.
@@ -90,15 +77,9 @@ export class Rating {
         }
 
         response.json().then((responseData) => {
-          if (
-            responseData &&
-            responseData.data &&
-            responseData.data.averageRating
-          ) {
+          if (responseData && responseData.data && responseData.data.averageRating) {
             const averageVotingElement = document.querySelector(
-              '[data-post-id="' +
-                postId +
-                '"] .recipe-creator--recipe-block--average-voting'
+              '[data-post-id="' + postId + '"] .recipe-creator--recipe-block--average-voting',
             );
 
             if (averageVotingElement) {

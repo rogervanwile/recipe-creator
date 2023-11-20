@@ -3,17 +3,11 @@ function checkRecipeBockScreenshot(name) {
   cy.get("#wpadminbar").invoke("attr", "style", "display: none");
 
   // Add some CSS to reduce stitching errors
-  cy.get("html")
-    .invoke("css", "height", "initial")
-    .invoke("css", "scroll-behavior", "auto");
+  cy.get("html").invoke("css", "height", "initial").invoke("css", "scroll-behavior", "auto");
   cy.get("body").invoke("css", "height", "initial");
 
   // Hide the video, it causes diffs in the screenshot
-  cy.get(".recipe-creator--recipe-block--video-wrapper").invoke(
-    "css",
-    "display",
-    "none"
-  );
+  cy.get(".recipe-creator--recipe-block--video-wrapper").invoke("css", "display", "none");
 
   // Take a screenshot and check if it looks like exected
   // cy.get(".recipe-creator--block").matchImageSnapshot(name);
@@ -24,9 +18,7 @@ describe("Tests the recipe block", () => {
     // Not working:
     // cy.seed("ValidLicenseSeeder");
 
-    cy.visit(
-      "http://localhost/wp-admin/admin.php?page=recipe_plugin_for_wp_license"
-    );
+    cy.visit("http://localhost/wp-admin/admin.php?page=recipe_plugin_for_wp_license");
     cy.get("#recipe_plugin_for_wp__license_key").should("have.value", "");
     cy.get("#recipe_plugin_for_wp__license_key").type("5ff5cd22687bc");
     cy.get('[value="Activate"]').click();
@@ -37,9 +29,7 @@ describe("Tests the recipe block", () => {
     // Not working:
     // cy.seedClean("ValidLicenseSeeder");
 
-    cy.visit(
-      "http://localhost/wp-admin/admin.php?page=recipe_plugin_for_wp_license"
-    );
+    cy.visit("http://localhost/wp-admin/admin.php?page=recipe_plugin_for_wp_license");
 
     cy.get('[value="Deactivate"]').click();
     cy.contains("The license has been successfully deactivated.");
@@ -54,50 +44,32 @@ describe("Tests the recipe block", () => {
 
     // Insert data into the block
     cy.get('[aria-label="Title of your recipe"]').type("Test Headline");
-    cy.get(
-      ".recipe-creator--recipe-block--difficulty:first-child"
-    ).click();
-    cy.get('[aria-label="Short description of your recipe"]').type(
-      "Test description",
-      { force: true }
-    );
-    cy.get(
-      ".recipe-creator--recipe-block--timings li:nth-child(1) input"
-    ).type("10", { force: true });
-    cy.get(
-      ".recipe-creator--recipe-block--timings li:nth-child(2) input"
-    ).type("15", { force: true });
-    cy.get(
-      ".recipe-creator--recipe-block--timings li:nth-child(3) input"
-    ).type("20", { force: true });
-    cy.get(
-      ".recipe-creator--recipe-block--timings li:nth-child(4) input"
-    ).type("25", { force: true });
+    cy.get(".recipe-creator--recipe-block--difficulty:first-child").click();
+    cy.get('[aria-label="Short description of your recipe"]').type("Test description", { force: true });
+    cy.get(".recipe-creator--recipe-block--timings li:nth-child(1) input").type("10", { force: true });
+    cy.get(".recipe-creator--recipe-block--timings li:nth-child(2) input").type("15", { force: true });
+    cy.get(".recipe-creator--recipe-block--timings li:nth-child(3) input").type("20", { force: true });
+    cy.get(".recipe-creator--recipe-block--timings li:nth-child(4) input").type("25", { force: true });
     cy.contains("70 Min.");
-    cy.get(
-      ".recipe-creator--recipe-block--flex-container input:nth-child(1)"
-    )
-      .clear()
-      .type("4", { force: true });
-    cy.get(
-      ".recipe-creator--recipe-block--ingredients .recipe-creator--recipe-block--editor ul"
-    ).type("3 bananans\n2 onions", { force: true });
-    cy.get(
-      ".recipe-creator--recipe-block--preparation-steps .recipe-creator--recipe-block--editor ol"
-    ).type("Slice bananas\ntake the onions back", { force: true });
-    cy.get(".recipe-creator--recipe-block--video input").type(
-      "https://www.youtube.com/watch?v=tl2tYk54gOE",
-      { force: true }
+    cy.get(".recipe-creator--recipe-block--flex-container input:nth-child(1)").clear().type("4", { force: true });
+    cy.get(".recipe-creator--recipe-block--ingredients .recipe-creator--recipe-block--editor ul").type(
+      "3 bananans\n2 onions",
+      { force: true },
     );
+    cy.get(".recipe-creator--recipe-block--preparation-steps .recipe-creator--recipe-block--editor ol").type(
+      "Slice bananas\ntake the onions back",
+      { force: true },
+    );
+    cy.get(".recipe-creator--recipe-block--video input").type("https://www.youtube.com/watch?v=tl2tYk54gOE", {
+      force: true,
+    });
     cy.get('[aria-label="Additional notes ..."]').type("Additional notes", {
       force: true,
     });
 
     // Save the Page
     cy.get(".editor-post-publish-button__button").click();
-    cy.get(
-      ".editor-post-publish-button.editor-post-publish-button__button"
-    ).click();
+    cy.get(".editor-post-publish-button.editor-post-publish-button__button").click();
 
     // Check the page
     cy.get(".post-publish-panel__postpublish-buttons a.is-primary").click();
@@ -131,21 +103,19 @@ describe("Tests the recipe block", () => {
     });
 
     // First group
-    cy.get(
-      ".recipe-creator--recipe-block--flex-container + .recipe-creator--recipe-block--editor"
-    )
+    cy.get(".recipe-creator--recipe-block--flex-container + .recipe-creator--recipe-block--editor")
       .find('[aria-label="Group name"]')
       .type("Group 1", { force: true });
 
     // Second group
     cy.get(
-      ".recipe-creator--recipe-block--flex-container + .recipe-creator--recipe-block--editor + .recipe-creator--recipe-block--editor"
+      ".recipe-creator--recipe-block--flex-container + .recipe-creator--recipe-block--editor + .recipe-creator--recipe-block--editor",
     )
       .find('[aria-label="Group name"]')
       .type("Group 2", { force: true });
 
     cy.get(
-      ".recipe-creator--recipe-block--flex-container + .recipe-creator--recipe-block--editor + .recipe-creator--recipe-block--editor"
+      ".recipe-creator--recipe-block--flex-container + .recipe-creator--recipe-block--editor + .recipe-creator--recipe-block--editor",
     )
       .find('[aria-label="Add the ingredients here..."]')
       .type("3 Bananas\n4 Garlic", { force: true });

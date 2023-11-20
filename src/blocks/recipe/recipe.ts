@@ -6,14 +6,12 @@ export class Recipe {
     this.initRating();
     this.initWakeLock();
 
-    this.element.dispatchEvent(
-      new CustomEvent("recipe-creator:recipe-ready", { bubbles: true })
-    );
+    this.element.dispatchEvent(new CustomEvent("recipe-creator:recipe-ready", { bubbles: true }));
   }
 
   private initRating() {
     const ratingElements = this.element.querySelectorAll<HTMLElement>(
-      ".recipe-creator--recipe-block--rating.recipe-creator--recipe-block--interactive"
+      ".recipe-creator--recipe-block--rating.recipe-creator--recipe-block--interactive",
     );
 
     if (ratingElements) {

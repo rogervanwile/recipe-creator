@@ -2,14 +2,12 @@
 
 class RecipeCreatorMigrationSPRecipes
 {
-
     public function getRecipeFromSP()
     {
         global $pagenow;
 
-        if (($pagenow == 'post.php') || (get_post_type() == 'post')) {
-
-            $postId = $_GET['post'];
+        if ($pagenow == "post.php" || get_post_type() == "post") {
+            $postId = $_GET["post"];
 
             if ($postId) {
                 $postMeta = get_post_meta($postId);
@@ -25,40 +23,39 @@ class RecipeCreatorMigrationSPRecipes
         $recipe = [];
 
         foreach ($meta as $key => $value) {
-
             switch ($key) {
-                case 'sp-recipe-title':
-                    $recipe['name'] = $value[0];
+                case "sp-recipe-title":
+                    $recipe["name"] = $value[0];
                     break;
-                case 'sp-recipe-description':
-                    $recipe['description'] = $value[0];
+                case "sp-recipe-description":
+                    $recipe["description"] = $value[0];
                     break;
-                case 'sp-recipe-servings':
-                    $recipe['recipeYield'] = $value[0];
+                case "sp-recipe-servings":
+                    $recipe["recipeYield"] = $value[0];
                     break;
-                case 'sp-recipe-time-prep':
-                    $recipe['prepTime'] = strval(intval($value[0]));
+                case "sp-recipe-time-prep":
+                    $recipe["prepTime"] = strval(intval($value[0]));
                     break;
-                case 'sp-recipe-time':
-                    $recipe['cookTime'] = strval(intval($value[0]));
+                case "sp-recipe-time":
+                    $recipe["cookTime"] = strval(intval($value[0]));
                     break;
-                case 'sp-recipe-time-total':
-                    $recipe['totalTime'] = strval(intval($value[0]));
+                case "sp-recipe-time-total":
+                    $recipe["totalTime"] = strval(intval($value[0]));
                     break;
-                case 'sp-recipe-cuisine':
-                    $recipe['recipeCuisine'] = $value[0];
+                case "sp-recipe-cuisine":
+                    $recipe["recipeCuisine"] = $value[0];
                     break;
-                case 'sp-recipe-ingredients':
-                    $recipe['ingredients'] = $this->arrayToLi(array_map('trim', explode(PHP_EOL, $value[0])));
+                case "sp-recipe-ingredients":
+                    $recipe["ingredients"] = $this->arrayToLi(array_map("trim", explode(PHP_EOL, $value[0])));
                     break;
-                case 'sp-recipe-method':
-                    $recipe['preparationSteps'] = $this->arrayToLi(array_map('trim', explode(PHP_EOL, $value[0])));
+                case "sp-recipe-method":
+                    $recipe["preparationSteps"] = $this->arrayToLi(array_map("trim", explode(PHP_EOL, $value[0])));
                     break;
-                case 'sp-recipe-calories':
-                    $recipe['calories'] = $value[0];
+                case "sp-recipe-calories":
+                    $recipe["calories"] = $value[0];
                     break;
-                case 'sp-recipe-notes':
-                    $recipe['notes'] = $value[0];
+                case "sp-recipe-notes":
+                    $recipe["notes"] = $value[0];
                     break;
             }
         }
@@ -68,21 +65,20 @@ class RecipeCreatorMigrationSPRecipes
 
     private function arrayToLi($array)
     {
-        return '<li>' . implode('</li><li>', $array) . '</li>';
+        return "<li>" . implode("</li><li>", $array) . "</li>";
     }
 
-    private function getPropertyFromRecipe($recipe, $property, $type = 'string')
+    private function getPropertyFromRecipe($recipe, $property, $type = "string")
     {
-
         if (isset($recipe) && isset($recipe[$property])) {
-            if ($type === 'string') {
-                return $recipe[$property] .  '::STORE_DEFAULT_VALUE_HACK';
+            if ($type === "string") {
+                return $recipe[$property] . "::STORE_DEFAULT_VALUE_HACK";
             } else {
-                return intval($recipe[$property]) . '::STORE_DEFAULT_VALUE_NUMBER_HACK';
+                return intval($recipe[$property]) . "::STORE_DEFAULT_VALUE_NUMBER_HACK";
             }
         } else {
-            if ($type === 'string') {
-                return '';
+            if ($type === "string") {
+                return "";
             } else {
                 return 0;
             }
@@ -163,7 +159,7 @@ class RecipeCreatorMigrationSPRecipes
     //             'type' => 'string',
     //             'default' => ''
     //         ),
-    //         // DEPRECATED, löschen wenn Isas Blog durch ist 
+    //         // DEPRECATED, löschen wenn Isas Blog durch ist
     //         'servings' => array(
     //             'type' => 'string',
     //             'default' => $this->getPropertyFromRecipe($recipe, 'recipeYield')

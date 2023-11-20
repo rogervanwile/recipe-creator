@@ -3,7 +3,7 @@
 define("ABSPATH", "let-me-in");
 define("WP_DEBUG", true);
 
-require __DIR__ . '/../inc/recipe-creator.php';
+require __DIR__ . "/../inc/recipe-creator.php";
 
 /**
  * Precompile handlebars templates
@@ -12,7 +12,7 @@ require __DIR__ . '/../inc/recipe-creator.php';
 // plugin_dir_path is a wordpress method which is used in the renderer
 function plugin_dir_path($file)
 {
-    return dirname($file) . '/';
+    return dirname($file) . "/";
 }
 
 RecipeCreator::getRecipeBlockRenderer();

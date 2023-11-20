@@ -18,13 +18,7 @@ export default function IngredientsGroupsEditor({ props }) {
 
   function removeGroup(index) {
     if (props.attributes.ingredientsGroups[index]) {
-      if (
-        confirm(
-          __(
-            "Are you shure you want to delete this group. All ingredients will be deleted."
-          )
-        )
-      ) {
+      if (confirm(__("Are you shure you want to delete this group. All ingredients will be deleted."))) {
         const update = [...props.attributes.ingredientsGroups];
         update.splice(index, 1);
 
@@ -49,10 +43,7 @@ export default function IngredientsGroupsEditor({ props }) {
     <>
       {props.attributes.ingredientsGroups.map((group, index) => {
         return (
-          <div
-            key={"ingredientsGroups_" + index}
-            className="recipe-creator--recipe-block--editor"
-          >
+          <div key={"ingredientsGroups_" + index} className="recipe-creator--recipe-block--editor">
             {index !== 0 || props.attributes.ingredientsGroups.length > 1 ? (
               <div className="recipe-creator--recipe-block--group-header">
                 <RichText
@@ -82,10 +73,7 @@ export default function IngredientsGroupsEditor({ props }) {
             <RichText
               tagName="ul"
               multiline="li"
-              placeholder={__(
-                "Add the ingredients here...",
-                "recipe-creator"
-              )}
+              placeholder={__("Add the ingredients here...", "recipe-creator")}
               value={group.list || ""}
               __unstablePastePlainText={true}
               onChange={(value) => {

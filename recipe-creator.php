@@ -10,18 +10,18 @@
  * Domain Path:     /languages
  */
 
-if (!defined('ABSPATH')) {
-	die;
+if (!defined("ABSPATH")) {
+    die();
 }
 
-require __DIR__ . '/inc/recipe-creator.php';
+require __DIR__ . "/inc/recipe-creator.php";
 
-if (class_exists('RecipeCreator')) {
-	$recipeCreator = new RecipeCreator();
+if (class_exists("RecipeCreator")) {
+    $recipeCreator = new RecipeCreator();
 
-	register_activation_hook(__FILE__, array($recipeCreator, 'activate'));
+    register_activation_hook(__FILE__, [$recipeCreator, "activate"]);
 
-	register_deactivation_hook(__FILE__, array($recipeCreator, 'deactivate'));
+    register_deactivation_hook(__FILE__, [$recipeCreator, "deactivate"]);
 
-	register_uninstall_hook(__FILE__, 'RecipeCreator::uninstall');
+    register_uninstall_hook(__FILE__, "RecipeCreator::uninstall");
 }

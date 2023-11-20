@@ -378,7 +378,9 @@
     &--title {
       padding-top: 16px;
       display: -webkit-box;
-      font: 16px arial, sans-serif;
+      font:
+        16px arial,
+        sans-serif;
       line-height: 20px;
       height: 56px;
       overflow: hidden;
@@ -390,7 +392,9 @@
     &--blog-title {
       display: flex;
       margin: 3px 0 5px 0;
-      font: 12px arial, sans-serif;
+      font:
+        12px arial,
+        sans-serif;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -400,11 +404,15 @@
 
     &--rating {
       color: #757575;
-      font: 12px arial, sans-serif;
+      font:
+        12px arial,
+        sans-serif;
     }
     &--total-time {
       color: #70757a;
-      font: 12px arial, sans-serif;
+      font:
+        12px arial,
+        sans-serif;
     }
   }
 

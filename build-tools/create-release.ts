@@ -9,20 +9,13 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-function copyFileSync(
-  source: string,
-  target: string,
-  newFileName: string | null = null
-) {
+function copyFileSync(source: string, target: string, newFileName: string | null = null) {
   var targetFile = target;
 
   // If target is a directory, a new file with the same name will be created
   if (fs.existsSync(target)) {
     if (fs.lstatSync(target).isDirectory()) {
-      targetFile = path.join(
-        target,
-        newFileName ? newFileName : path.basename(source)
-      );
+      targetFile = path.join(target, newFileName ? newFileName : path.basename(source));
     }
   }
 
@@ -109,30 +102,18 @@ rl.question("What is the new version? ", function (version: string) {
       const atFileName = file.replace("de_DE", "de_AT");
       const chFileName = file.replace("de_DE", "de_CH");
 
-      copyFileSync(
-        "./languages/" + file,
-        "./recipe-creator/languages/",
-        atFileName
-      );
-      copyFileSync(
-        "./languages/" + file,
-        "./recipe-creator/languages/",
-        chFileName
-      );
+      copyFileSync("./languages/" + file, "./recipe-creator/languages/", atFileName);
+      copyFileSync("./languages/" + file, "./recipe-creator/languages/", chFileName);
     }
   });
 
   // Create the Zip file
 
-  child_process.execSync(
-    `zip -r ./updates/archives/${version}.zip ./recipe-creator`
-  );
+  child_process.execSync(`zip -r ./updates/archives/${version}.zip ./recipe-creator`);
 
   // Copy the zip as latest
 
-  child_process.execSync(
-    `yes | cp ./updates/archives/${version}.zip ./updates/archives/latest.zip`
-  );
+  child_process.execSync(`yes | cp ./updates/archives/${version}.zip ./updates/archives/latest.zip`);
 
   // Remove the temporary release folder
   fs.rmdirSync("./recipe-creator/", {
@@ -142,10 +123,7 @@ rl.question("What is the new version? ", function (version: string) {
 
   // Update the info.json
 
-  const currentTime = new Date()
-    .toISOString()
-    .replace(/T/, " ")
-    .replace(/\..+/, "");
+  const currentTime = new Date().toISOString().replace(/T/, " ").replace(/\..+/, "");
   const converter = new showdown.Converter();
   converter.setOption("noHeaderId", true);
   converter.setOption("headerLevelStart", 3);

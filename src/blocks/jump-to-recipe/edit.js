@@ -5,10 +5,7 @@ export default function Edit(props) {
   return (
     <Fragment>
       <div className="wp-block recipe-creator--block--jump-to-recipe">
-        <a
-          href="#recipe-creator--recipe"
-          className="recipe-creator--block--jump-to-recipe--link"
-        >
+        <a href="#recipe-creator--recipe" className="recipe-creator--block--jump-to-recipe--link">
           {__("Jump to recipe", "recipe-creator")}
         </a>
       </div>

@@ -14,10 +14,7 @@ gulp.task("copy-js", function () {
 });
 
 gulp.task("sass:admin", function () {
-  return gulp
-    .src("./src/styles/admin.scss")
-    .pipe(sass().on("error", sass.logError))
-    .pipe(gulp.dest("./build"));
+  return gulp.src("./src/styles/admin.scss").pipe(sass().on("error", sass.logError)).pipe(gulp.dest("./build"));
 });
 
 gulp.task("sass:watch", function () {

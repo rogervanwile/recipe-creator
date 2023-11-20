@@ -155,8 +155,7 @@ export default function Edit(props) {
             <span
               className="featured-snipped-preview--stars--rated"
               style={{
-                width:
-                  getRatedStarsWidth(props.data.meta.average_rating) + "px",
+                width: getRatedStarsWidth(props.data.meta.average_rating) + "px",
               }}
             ></span>
           </span>
@@ -164,19 +163,13 @@ export default function Edit(props) {
         </div>
       );
     } else {
-      return (
-        <div className="featured-snipped-preview--rating">
-          {__("No reviews", "recipe-creator")}
-        </div>
-      );
+      return <div className="featured-snipped-preview--rating">{__("No reviews", "recipe-creator")}</div>;
     }
   }
 
   function getYoutubeId(url) {
     if (url) {
-      const match = url.match(
-        /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
-      );
+      const match = url.match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/);
 
       if (match && match[2].length === 11) {
         return match[2];
@@ -196,9 +189,7 @@ export default function Edit(props) {
 
   function getVimeoId(url) {
     if (url) {
-      const match = url.match(
-        /(?:vimeo)\.com.*(?:videos|video|channels|)\/([\d]+)/i
-      );
+      const match = url.match(/(?:vimeo)\.com.*(?:videos|video|channels|)\/([\d]+)/i);
 
       if (match && match[1]) {
         return match[1];
@@ -237,10 +228,7 @@ export default function Edit(props) {
   return (
     <Fragment>
       <InspectorControls>
-        <PanelBody
-          title={__("Pinterest", "recipe-creator")}
-          className="recipe-creator--sidebar"
-        >
+        <PanelBody title={__("Pinterest", "recipe-creator")} className="recipe-creator--sidebar">
           <PanelRow>
             <MediaUploadCheck>
               <MediaUpload
@@ -256,15 +244,8 @@ export default function Edit(props) {
                 value={props.data.meta.recipe_plugin_for_wp_image_url}
                 render={({ open }) => (
                   <Fragment>
-                    <img
-                      src={props.data.meta.recipe_plugin_for_wp_image_url}
-                      onClick={open}
-                    />
-                    <button
-                      type="button"
-                      className="components-button is-secondary"
-                      onClick={open}
-                    >
+                    <img src={props.data.meta.recipe_plugin_for_wp_image_url} onClick={open} />
+                    <button type="button" className="components-button is-secondary" onClick={open}>
                       {__("Select image", "recipe-creator")}
                     </button>
                   </Fragment>
@@ -273,15 +254,12 @@ export default function Edit(props) {
             </MediaUploadCheck>
           </PanelRow>
         </PanelBody>
-        <PanelBody
-          title={__("SEO", "recipe-creator")}
-          className="recipe-creator--sidebar"
-        >
+        <PanelBody title={__("SEO", "recipe-creator")} className="recipe-creator--sidebar">
           <PanelRow>
             <p>
               {__(
                 "Google and other search engines need more information to present your recipe in the best possible way. You should provide this information as good as possible.",
-                "recipe-creator"
+                "recipe-creator",
               )}
             </p>
           </PanelRow>
@@ -289,10 +267,7 @@ export default function Edit(props) {
             <TextControl
               label={__("Cuisine", "recipe-creator")}
               value={props.attributes.recipeCuisine}
-              placeholder={__(
-                'e.g. "Italian" or "German"',
-                "recipe-creator"
-              )}
+              placeholder={__('e.g. "Italian" or "German"', "recipe-creator")}
               onChange={(recipeCuisine) => {
                 props.setAttributes({ recipeCuisine });
               }}
@@ -314,20 +289,15 @@ export default function Edit(props) {
           <hr />
 
           <PanelRow>
-            <h4>
-              {__("Picture of the finished dish", "recipe-creator")}
-            </h4>
+            <h4>{__("Picture of the finished dish", "recipe-creator")}</h4>
             <p>
               {__(
                 "Depending on the usage Google uses different image formats of your recipe. You can find more information",
-                "recipe-creator"
+                "recipe-creator",
               )}
               &nbsp;
               <a
-                href={__(
-                  "https://www.howtofoodblog.com/mehr-klicks-durch-optimierte-rezeptbilder",
-                  "recipe-creator"
-                )}
+                href={__("https://www.howtofoodblog.com/mehr-klicks-durch-optimierte-rezeptbilder", "recipe-creator")}
                 target="_blank"
               >
                 {__("here", "recipe-creator")}
@@ -336,39 +306,19 @@ export default function Edit(props) {
             </p>
           </PanelRow>
           <PanelRow>
-            <ImageUpload
-              props={props}
-              keyName="image16_9"
-              label="16:9"
-              className="16-9"
-            ></ImageUpload>
+            <ImageUpload props={props} keyName="image16_9" label="16:9" className="16-9"></ImageUpload>
           </PanelRow>
           <hr />
           <PanelRow>
-            <ImageUpload
-              props={props}
-              keyName="image3_2"
-              label="3:2"
-              className="3-2"
-            ></ImageUpload>
+            <ImageUpload props={props} keyName="image3_2" label="3:2" className="3-2"></ImageUpload>
           </PanelRow>
           <hr />
           <PanelRow>
-            <ImageUpload
-              props={props}
-              keyName="image4_3"
-              label="4:3"
-              className="4-3"
-            ></ImageUpload>
+            <ImageUpload props={props} keyName="image4_3" label="4:3" className="4-3"></ImageUpload>
           </PanelRow>
           <hr />
           <PanelRow>
-            <ImageUpload
-              props={props}
-              keyName="image1_1"
-              label="1:1"
-              className="1-1"
-            ></ImageUpload>
+            <ImageUpload props={props} keyName="image1_1" label="1:1" className="1-1"></ImageUpload>
           </PanelRow>
           <hr />
 
@@ -387,16 +337,12 @@ export default function Edit(props) {
                   }}
                 ></div>
               </div>
-              <div className="featured-snipped-preview--title">
-                {extractTextFromHTMLString(props.attributes.name)}
-              </div>
+              <div className="featured-snipped-preview--title">{extractTextFromHTMLString(props.attributes.name)}</div>
               <div className="featured-snipped-preview--blog-title">
                 {extractTextFromHTMLString(props.data.site.title)}
               </div>
               {getRatingElement()}
-              <div className="featured-snipped-preview--total-time">
-                {props.attributes.totalTime} Min.
-              </div>
+              <div className="featured-snipped-preview--total-time">{props.attributes.totalTime} Min.</div>
             </section>
           </PanelRow>
 
@@ -426,10 +372,7 @@ export default function Edit(props) {
                     {/* <span className="featured-result-preview-mobile--date">
                       {props.data.publishDate} —
                     </span> */}
-                    {__(
-                      "Google displays here a text that matches the search term.",
-                      "recipe-creator"
-                    )}
+                    {__("Google displays here a text that matches the search term.", "recipe-creator")}
                   </div>
                 </div>
               </div>
@@ -443,9 +386,7 @@ export default function Edit(props) {
                       <span
                         className="featured-snipped-preview--stars--rated"
                         style={{
-                          width:
-                            getRatedStarsWidth(props.data.meta.average_rating) +
-                            "px",
+                          width: getRatedStarsWidth(props.data.meta.average_rating) + "px",
                         }}
                       ></span>
                     </span>
@@ -454,9 +395,7 @@ export default function Edit(props) {
                 </div>
 
                 <div className="featured-result-preview-mobile--time-col">
-                  <header>
-                    {__("Preparation", "recipe-creator")}
-                  </header>
+                  <header>{__("Preparation", "recipe-creator")}</header>
                   <p>{props.attributes.totalTime} Min.</p>
                 </div>
 
@@ -469,16 +408,13 @@ export default function Edit(props) {
           </PanelRow>
         </PanelBody>
 
-        <PanelBody
-          title={__("Rating", "recipe-creator")}
-          className="recipe-creator--sidebar"
-        >
+        <PanelBody title={__("Rating", "recipe-creator")} className="recipe-creator--sidebar">
           <PanelRow>
             <p>
               <strong>{__("Attention:", "recipe-creator")}</strong>{" "}
               {__(
                 "Adjusting the ratings can have an impact on your Google ranking. Be careful with this function.",
-                "recipe-creator"
+                "recipe-creator",
               )}
             </p>
           </PanelRow>
@@ -535,9 +471,7 @@ export default function Edit(props) {
           <PanelRow>
             <p>
               <strong>
-                {__("Rating", "recipe-creator")}:{" "}
-                {props.data.meta.average_rating} ({props.data.meta.rating_count}
-                ){" "}
+                {__("Rating", "recipe-creator")}: {props.data.meta.average_rating} ({props.data.meta.rating_count}){" "}
               </strong>
             </p>
           </PanelRow>
@@ -552,10 +486,7 @@ export default function Edit(props) {
                 tagName="h2"
                 value={props.attributes.name}
                 __unstablePastePlainText={true}
-                placeholder={__(
-                  "Title of your recipe",
-                  "recipe-creator"
-                )}
+                placeholder={__("Title of your recipe", "recipe-creator")}
                 onChange={(name) => {
                   props.setAttributes({ name });
                 }}
@@ -566,9 +497,7 @@ export default function Edit(props) {
                 <span
                   className={
                     "recipe-creator--recipe-block--difficulty" +
-                    (props.attributes.difficulty !== "simple"
-                      ? " unselected"
-                      : "")
+                    (props.attributes.difficulty !== "simple" ? " unselected" : "")
                   }
                   onClick={() => {
                     props.setAttributes({ difficulty: "simple" });
@@ -579,9 +508,7 @@ export default function Edit(props) {
                 <span
                   className={
                     "recipe-creator--recipe-block--difficulty" +
-                    (props.attributes.difficulty !== "moderate"
-                      ? " unselected"
-                      : "")
+                    (props.attributes.difficulty !== "moderate" ? " unselected" : "")
                   }
                   onClick={() => {
                     props.setAttributes({ difficulty: "moderate" });
@@ -592,9 +519,7 @@ export default function Edit(props) {
                 <span
                   className={
                     "recipe-creator--recipe-block--difficulty" +
-                    (props.attributes.difficulty !== "challenging"
-                      ? " unselected"
-                      : "")
+                    (props.attributes.difficulty !== "challenging" ? " unselected" : "")
                   }
                   onClick={() => {
                     props.setAttributes({ difficulty: "challenging" });
@@ -607,10 +532,7 @@ export default function Edit(props) {
               <RichText
                 tagName="p"
                 value={props.attributes.description}
-                placeholder={__(
-                  "Short description of your recipe",
-                  "recipe-creator"
-                )}
+                placeholder={__("Short description of your recipe", "recipe-creator")}
                 __unstablePastePlainText={true}
                 onChange={(description) => {
                   props.setAttributes({ description });
@@ -621,9 +543,7 @@ export default function Edit(props) {
             <div
               className="recipe-creator--recipe-block--thumbnail"
               style={{
-                backgroundImage: props.attributes.image3_2
-                  ? "url(" + props.attributes.image3_2 + ")"
-                  : "",
+                backgroundImage: props.attributes.image3_2 ? "url(" + props.attributes.image3_2 + ")" : "",
               }}
             >
               <MediaUploadCheck>
@@ -642,9 +562,7 @@ export default function Edit(props) {
                     <div
                       className={
                         "recipe-creator--recipe-block--thumbnail-spacer" +
-                        (props.attributes.image3_2
-                          ? ""
-                          : " recipe-creator--empty")
+                        (props.attributes.image3_2 ? "" : " recipe-creator--empty")
                       }
                       onClick={open}
                     ></div>
@@ -701,9 +619,7 @@ export default function Edit(props) {
                   </span>
                 </li>
                 <li>
-                  <header>
-                    {__("Baking time", "recipe-creator")}:
-                  </header>
+                  <header>{__("Baking time", "recipe-creator")}:</header>
                   <span>
                     <InputControl
                       type="number"
@@ -719,12 +635,9 @@ export default function Edit(props) {
                 </li>
 
                 <li>
-                  <header>
-                    {__("Total time", "recipe-creator")}:
-                  </header>
+                  <header>{__("Total time", "recipe-creator")}:</header>
                   <span>
-                    {props.attributes.totalTime || "0"}{" "}
-                    {__("Min.", "recipe-creator")}
+                    {props.attributes.totalTime || "0"} {__("Min.", "recipe-creator")}
                   </span>
                 </li>
               </ul>
@@ -750,10 +663,7 @@ export default function Edit(props) {
                 tagName="ul"
                 multiline="li"
                 className="recipe-creator--recipe-block--utensils-list"
-                placeholder={__(
-                  "Add the needed utensils here...",
-                  "recipe-creator"
-                )}
+                placeholder={__("Add the needed utensils here...", "recipe-creator")}
                 value={props.attributes.utensils}
                 __unstablePastePlainText={true}
                 onChange={(utensils) => props.setAttributes({ utensils })}
@@ -765,9 +675,7 @@ export default function Edit(props) {
                 <h3>{__("Steps of preparation", "recipe-creator")}</h3>
               </div>
 
-              <PreparationStepsGroupsEditor
-                props={props}
-              ></PreparationStepsGroupsEditor>
+              <PreparationStepsGroupsEditor props={props}></PreparationStepsGroupsEditor>
             </div>
 
             <section className="recipe-creator--recipe-block--video">
@@ -807,10 +715,7 @@ export default function Edit(props) {
               <RichText
                 tagName="p"
                 value={props.attributes.notes}
-                placeholder={__(
-                  "Additional notes ...",
-                  "recipe-creator"
-                )}
+                placeholder={__("Additional notes ...", "recipe-creator")}
                 __unstablePastePlainText={true}
                 onChange={(notes) => {
                   props.setAttributes({ notes });

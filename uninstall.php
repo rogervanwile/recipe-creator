@@ -4,8 +4,8 @@
  * Trigger this file on plugin uninstall
  */
 
-if (!defined('WP_UNINSTALL_PLUGIN')) {
-  die;
+if (!defined("WP_UNINSTALL_PLUGIN")) {
+    die();
 }
 
 // TODO: Remove all meta data related to the plugin

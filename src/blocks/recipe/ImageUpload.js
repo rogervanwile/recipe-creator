@@ -36,11 +36,7 @@ export default function ImageUpload(args) {
               }}
               onClick={open}
             >
-              {!props.attributes[key] ? (
-                <span className="aspect-ratio">{label}</span>
-              ) : (
-                ""
-              )}
+              {!props.attributes[key] ? <span className="aspect-ratio">{label}</span> : ""}
             </div>
             {props.attributes[key] ? (
               <Fragment>

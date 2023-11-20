@@ -13,17 +13,11 @@ registerBlockType(metadata, {
   // The title and description from the block.json is not translated automatic
   // So I have to redefine it here
   title: __("Recipe", "recipe-creator"),
-  description: __(
-    "Add a recipe and optimize it easily for search engines.",
-    "recipe-creator"
-  ),
+  description: __("Add a recipe and optimize it easily for search engines.", "recipe-creator"),
   edit: withSelect((select) => {
     const site = select("core").getSite();
 
-    const publishDate = format(
-      "d.m.Y",
-      wp.data.select("core/editor").getEditedPostAttribute("date")
-    );
+    const publishDate = format("d.m.Y", wp.data.select("core/editor").getEditedPostAttribute("date"));
 
     return {
       data: {
