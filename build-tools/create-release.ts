@@ -132,6 +132,7 @@ rl.question("What is the new version? ", function (version: string) {
   const changelogHtml = converter.makeHtml(changelogMarkdown);
 
   const infoJson = {
+    name: "Recipe Creator",
     version: version,
     download_url: `https://updates.howtofoodblog.com/recipe-creator/archives/${version}.zip`,
     requires: "5.8.0",

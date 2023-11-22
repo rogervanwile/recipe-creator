@@ -117,12 +117,12 @@ class RecipeCreator
     {
         // do nothing if this is not about getting plugin information
         if ("plugin_information" !== $action) {
-            return false;
+            return $res;
         }
 
         // do nothing if it is not our plugin
         if ("recipe-creator" !== $args->slug) {
-            return false;
+            return $res;
         }
 
         // trying to get from cache first
@@ -184,7 +184,7 @@ class RecipeCreator
             return $res;
         }
 
-        return false;
+        return $res;
     }
 
     public function pushUpdate($transient)
