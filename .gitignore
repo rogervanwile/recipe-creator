@@ -29,4 +29,5 @@ vendor/composer
 vendor
 
 build/
+updates/
 .DS_Store
