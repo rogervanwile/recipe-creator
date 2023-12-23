@@ -2,10 +2,10 @@
 
 /**
  * Plugin Name:     Recipe Creator
- * Author URI:      https://howtofoodblog.com/
+ * Author URI:      https://recipe-creator.de/
  * Description:     The easy to use recipe plugin for WordPress' Gutenberg editor. Easily create recipes and optimize them for Google & Co automatically.
  * Version:         2.0.0
- * Author:          howtofoodblog.com
+ * Author:          recipe-creator.de
  * Text Domain:     recipe-creator
  * Domain Path:     /languages
  */

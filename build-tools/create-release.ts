@@ -134,7 +134,7 @@ rl.question("What is the new version? ", function (version: string) {
   const infoJson = {
     name: "Recipe Creator",
     version: version,
-    download_url: `https://updates.howtofoodblog.com/recipe-creator/archives/${version}.zip`,
+    download_url: `https://updates.recipe-creator.de/recipe-creator/archives/${version}.zip`,
     requires: "5.8.0",
     tested: "6.4.1",
     requires_php: "7.4",

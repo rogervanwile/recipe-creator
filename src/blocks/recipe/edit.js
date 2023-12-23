@@ -297,7 +297,7 @@ export default function Edit(props) {
               )}
               &nbsp;
               <a
-                href={__("https://www.howtofoodblog.com/mehr-klicks-durch-optimierte-rezeptbilder", "recipe-creator")}
+                href={__("https://www.recipe-creator.de/mehr-klicks-durch-optimierte-rezeptbilder", "recipe-creator")}
                 target="_blank"
               >
                 {__("here", "recipe-creator")}

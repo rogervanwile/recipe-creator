@@ -128,7 +128,7 @@ class RecipeCreator
         // trying to get from cache first
         if (false == ($remote = get_transient("recipe_plugin_for_wp_update"))) {
             // info.json is the file with the actual plugin information on your server
-            $remote = wp_remote_get("https://updates.howtofoodblog.com/recipe-creator/info.json", [
+            $remote = wp_remote_get("https://updates.recipe-creator.de/recipe-creator/info.json", [
                 "timeout" => 10,
                 "headers" => [
                     "Accept" => "application/json",
@@ -159,8 +159,8 @@ class RecipeCreator
             $res->version = $remote->version;
             $res->tested = $remote->tested;
             $res->requires = $remote->requires;
-            $res->author = '<a href="https://www.howtofoodblog.com">howtofoodblog.com</a>';
-            $res->author_profile = "https://www.howtofoodblog.com";
+            $res->author = '<a href="https://www.recipe-creator.de">recipe-creator.de</a>';
+            $res->author_profile = "https://www.recipe-creator.de";
             $res->download_link = $remote->download_url;
             $res->trunk = $remote->download_url;
             $res->requires_php = $remote->requires_php;
@@ -196,7 +196,7 @@ class RecipeCreator
         // trying to get from cache first, to disable cache comment 10,20,21,22,24
         if (false == ($remote = get_transient("recipe_plugin_for_wp_upgrade"))) {
             // info.json is the file with the actual plugin information on your server
-            $remote = wp_remote_get("https://updates.howtofoodblog.com/recipe-creator/info.json", [
+            $remote = wp_remote_get("https://updates.recipe-creator.de/recipe-creator/info.json", [
                 "timeout" => 10,
                 "headers" => [
                     "Accept" => "application/json",
