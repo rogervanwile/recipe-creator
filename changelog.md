@@ -2,6 +2,10 @@
 
 - We have renamed the plugin from "Foodblog-Toolkit" to "Recipe Creator". We want to give even more food bloggers the opportunity to find and use our plugin.
 
+# 1.8.7 - December 31, 2023
+
+- Added support for fraction information for ingredients
+
 # 1.8.6 - Mai 5, 2023
 
 - If no image is inserted in the recipe, the post image is now used as a fallback.

@@ -748,12 +748,13 @@ class RecipeCreator
         }, $ingredientsArray);
 
         $ingredientsArray = array_map(function ($item) {
-            preg_match('/^ *([0-9,.\/]*)? *(gramm|milliliter|kg|g|ml|tl|el|l)? (.*)$/i', $item, $matches);
+            preg_match('/^ *([0-9,.\/-]*)? *(gramm|milliliter|kg|g|ml|tl|el|l)? (.*)$/i', $item, $matches);
             if (count($matches) >= 3) {
                 return [
-                    "amount" => str_replace(",", ".", $matches[1]),
+                    "amount" => $this->getAmount($matches[1]),
                     "unit" => $matches[2],
                     "ingredient" => $matches[3],
+                    "format" => $this->getFormat($matches[1])
                 ];
             } else {
                 return [
@@ -763,6 +764,18 @@ class RecipeCreator
         }, $ingredientsArray);
 
         return $ingredientsArray;
+    }
+
+    private function getFormat($rawAmount) {
+        if (str_contains($rawAmount, '/')) {
+            return 'fraction';
+        }
+
+        return 'decimal';
+    }
+
+    private function getAmount($rawAmount) {
+        return str_replace(',', '.', $rawAmount);
     }
 
     public static function getStyleBlockTemplate()

@@ -127,7 +127,10 @@
           {{#each this/items}}
           <tr
             class="recipe-creator--recipe-block--ingredients-item{{#isEven @index}} recipe-creator--even{{/isEven}}">
-            <td class="recipe-creator--recipe-block--amount" data-recipe-amount="{{this/amount}}"
+            <td
+              class="recipe-creator--recipe-block--amount"
+              data-recipe-amount="{{this/amount}}"
+              data-recipe-format="{{this/format}}"
               data-recipe-unit="{{this/unit}}">{{this/amount}} {{this/unit}}</td>
             <td class="recipe-creator--recipe-block--ingredient">{{{this/ingredient}}}</td>
           </tr>
