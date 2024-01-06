@@ -12,7 +12,7 @@ class RecipeCreator
 {
     private $primaryColorDefault = "#e27a7a";
     private $primaryColorContrastDefault = "#ffffff";
-    private $primaryColorLightDefault = "f7e9e9";
+    private $primaryColorLightDefault = "#f7e9e9";
     private $primaryColorLightContrastDefault = "#000000";
     private $primaryColorDarkDefault = "#d55a5a";
     private $secondaryColorDefault = "#efefef";

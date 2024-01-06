@@ -1,4 +1,4 @@
-.wp-block-recipe-creator--recipe {
+.wp-block-recipe-creator-recipe {
   text-align: left;
   margin-bottom: 0 !important;
 
@@ -146,6 +146,12 @@
 
   .components-base-control .components-base-control__help {
     margin-bottom: 8px;
+  }
+
+  .recipe-creator--recipe-block--utensils {
+    ul {
+      padding-left: 0;
+    }
   }
 
   .recipe-creator--recipe-block--timings.recipe-creator--recipe-block--timings {
