@@ -54,6 +54,55 @@ class RecipeCreator
         add_filter("the_content", [$this, "handleContent"], 1);
 
         add_action("admin_notices", [$this, "showReleaseInfo"]);
+
+        add_action('manage_posts_columns', [$this, "registerPostColumns"]);
+        add_action('manage_posts_custom_column', [$this, "renderPostColumn"], 10, 2);
+        add_filter('manage_edit-post_sortable_columns', [$this, "registerSortableColumns"]);
+    }
+
+    public function registerPostColumns(array $columns): array
+    {
+        $columns['recipe-creator_average_rating'] = __('Average rating', 'recipe-creator');
+        $columns['recipe-creator_rating_count'] = __('Ratings', 'recipe-creator');
+        return $columns;
+    }
+
+    public function renderPostColumn(string $column_id, int $post_id)
+    {
+        $post_type = get_post_type();
+        if ($post_type != 'post') {
+            return;
+        }
+
+        if ($column_id !== 'recipe-creator_average_rating' &&  $column_id !== 'recipe-creator_rating_count') {
+            return;
+        }
+
+        switch ($column_id) {
+            case 'recipe-creator_average_rating':
+                $averageRating = get_post_meta($post_id, 'average_rating', true);
+                if (isset($averageRating) && $averageRating !== '') {
+                    echo '<span class="recipe-creator--rating">' . esc_html($averageRating) . '&nbsp;<span class="dashicons dashicons-star-filled"></span></span>';
+                } else {
+                    echo '-';
+                }
+                break;
+            case 'recipe-creator_rating_count':
+                $ratingCount = get_post_meta($post_id, 'rating_count', true);
+                if (isset($ratingCount) && $ratingCount !== '') {
+                    echo esc_html(get_post_meta($post_id, 'rating_count', true));
+                } else {
+                    echo '-';
+                }
+                break;
+        }
+    }
+
+    public function registerSortableColumns($columns)
+    {
+        $columns['recipe-creator_average_rating'] = __('Average rating', 'recipe-creator');
+        $columns['recipe-creator_rating_count'] = __('Rating count', 'recipe-creator');
+        return $columns;
     }
 
     public function showReleaseInfo()
@@ -76,7 +125,7 @@ class RecipeCreator
                         )
                     ); ?></p>
             </div>
-        <?php
+<?php
         }
     }
 
@@ -766,7 +815,8 @@ class RecipeCreator
         return $ingredientsArray;
     }
 
-    private function getFormat($rawAmount) {
+    private function getFormat($rawAmount)
+    {
         if (str_contains($rawAmount, '/')) {
             return 'fraction';
         }
@@ -774,7 +824,8 @@ class RecipeCreator
         return 'decimal';
     }
 
-    private function getAmount($rawAmount) {
+    private function getAmount($rawAmount)
+    {
         return str_replace(',', '.', $rawAmount);
     }
 
@@ -974,12 +1025,12 @@ class RecipeCreator
                 ],
             ],
             "utensils" =>
-                "<li>" . join("</li><li>", [__("Knife", "recipe-creator"), __("Blender", "recipe-creator")]) . "</li>",
+            "<li>" . join("</li><li>", [__("Knife", "recipe-creator"), __("Blender", "recipe-creator")]) . "</li>",
             "preparationStepsGroups" => [
                 [
                     "title" => "",
                     "list" =>
-                        "<li>" .
+                    "<li>" .
                         join("</li><li>", [
                             __("Peel banana.", "recipe-creator"),
                             __(
@@ -1231,18 +1282,18 @@ class RecipeCreator
             "keywords" => $keywordsString,
             "recipeYield" => isset($attributes["recipeYield"])
                 ? $attributes["recipeYield"] .
-                    (isset($attributes["recipeYieldUnit"])
-                        ? " " . $this->getRecipeYieldUnitFormatted($attributes["recipeYieldUnit"], $recipeYield ?: 1)
-                        : "")
+                (isset($attributes["recipeYieldUnit"])
+                    ? " " . $this->getRecipeYieldUnitFormatted($attributes["recipeYieldUnit"], $recipeYield ?: 1)
+                    : "")
                 : "",
             "recipeCategory" => $category,
             "nutrition" =>
-                isset($attributes["calories"]) && !empty($attributes["calories"])
-                    ? [
-                        "@type" => "NutritionInformation",
-                        "calories" => $attributes["calories"],
-                    ]
-                    : "",
+            isset($attributes["calories"]) && !empty($attributes["calories"])
+                ? [
+                    "@type" => "NutritionInformation",
+                    "calories" => $attributes["calories"],
+                ]
+                : "",
             "recipeIngredient" => $this->prepareIngredientsForJsonLd($attributes["ingredientsGroups"]),
             "recipeInstructions" => $this->preparePreparationStepsForJsonLd($attributes["preparationStepsGroups"]),
         ];
