@@ -101,7 +101,7 @@ class RecipeCreator
     public function registerSortableColumns($columns)
     {
         $columns['recipe-creator_average_rating'] = __('Average rating', 'recipe-creator');
-        $columns['recipe-creator_rating_count'] = __('Rating count', 'recipe-creator');
+        $columns['recipe-creator_rating_count'] = __('Ratings', 'recipe-creator');
         return $columns;
     }
 
