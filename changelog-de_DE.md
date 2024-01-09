@@ -2,6 +2,10 @@
 
 - Wir haben das Plugin von "Foodblog-Toolkit" in "Rezepte-Master" umgenannt. Damit wollen wir noch mehr Foodbloggern die Möglichkeit geben, unser Plugin zu finden und zu benutzen.
 
+# Version 1.8.8 - 7. Januar 2023
+
+- Du kannst in der Beitragsübersicht nun die Bewertungen der Rezepte sehen und danach sortieren. In den Einstellungen kannst du diese Spalten ein- und ausblenden.
+
 # Version 1.8.7 - 31. Dezember 2023
 
 - Unterstützung für Bruch-Angaben bei Zutaten hinzugefügt.

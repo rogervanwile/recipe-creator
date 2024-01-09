@@ -58,6 +58,7 @@ class RecipeCreator
         add_action('manage_posts_columns', [$this, "registerPostColumns"]);
         add_action('manage_posts_custom_column', [$this, "renderPostColumn"], 10, 2);
         add_filter('manage_edit-post_sortable_columns', [$this, "registerSortableColumns"]);
+        add_action('pre_get_posts', [$this, 'handlePostSorting']);
     }
 
     public function registerPostColumns(array $columns): array
@@ -100,9 +101,30 @@ class RecipeCreator
 
     public function registerSortableColumns($columns)
     {
-        $columns['recipe-creator_average_rating'] = __('Average rating', 'recipe-creator');
-        $columns['recipe-creator_rating_count'] = __('Ratings', 'recipe-creator');
+        $columns['recipe-creator_average_rating'] = 'average_rating';
+        $columns['recipe-creator_rating_count']  = 'rating_count';
         return $columns;
+    }
+
+    public function handlePostSorting($query)
+    {
+        if (!is_admin() || !$query->is_main_query()) {
+            return;
+        }
+
+        if ($query->get('post_type') !== 'post') {
+            return;
+        }
+
+        $orderby = $query->get('orderby');
+
+        if ($orderby === 'average_rating') {
+            $query->set('meta_key', 'average_rating');
+            $query->set('orderby', 'meta_value_num');
+        } else if ($orderby === 'rating_count') {
+            $query->set('meta_key', 'rating_count');
+            $query->set('orderby', 'meta_value_num');
+        }
     }
 
     public function showReleaseInfo()

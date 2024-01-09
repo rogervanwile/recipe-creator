@@ -2,6 +2,10 @@
 
 - We have renamed the plugin from "Foodblog-Toolkit" to "Recipe Creator". We want to give even more food bloggers the opportunity to find and use our plugin.
 
+# 1.8.8 - January 7, 2024
+
+- You can now see the ratings of the recipes in the post overview. You can show and hide these columns in the settings.
+
 # 1.8.7 - December 31, 2023
 
 - Added support for fraction information for ingredients
