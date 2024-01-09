@@ -15,7 +15,7 @@ $Parsedown = new Parsedown(); ?>
   $changelog = str_replace(
       ["##RECIPE_BLOCK_SETTINGS_LINK##", "##ASSETS_PATH##"],
       [
-          get_admin_url(get_current_network_id(), "admin.php?page=recipe_plugin_for_wp"),
+          get_admin_url(get_current_network_id(), "admin.php?page=recipe_creator"),
           plugin_dir_url(__FILE__) . "../assets",
       ],
       $changelog

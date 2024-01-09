@@ -66,7 +66,7 @@ export class Rating {
       method: "POST",
       body: new URLSearchParams({
         _ajax_nonce: window.recipeCreatorConfig.nonce,
-        action: "recipe_plugin_for_wp_set_rating",
+        action: "recipe_creator_set_rating",
         postId,
         rating,
       }),

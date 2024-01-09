@@ -6,6 +6,6 @@ class ValidLicenseSeeder extends Seeder
 {
     public function run()
     {
-        update_option("recipe_plugin_for_wp__license_key", "I_AM_A_VALID_LICENSE");
+        update_option("recipe_creator__license_key", "I_AM_A_VALID_LICENSE");
     }
 }

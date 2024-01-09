@@ -37,13 +37,13 @@ class RecipeCreator
 
         add_image_size(
             "recipe-creator--thumbnail",
-            get_option("recipe_plugin_for_wp__thumbnail_size", $this->thumnailSizeDefault)
+            get_option("recipe_creator__thumbnail_size", $this->thumnailSizeDefault)
         );
         add_image_size("recipe-creator--pinterest", 1000, 0, false);
 
         // Frontend-AJAX-Actions
-        add_action("wp_ajax_recipe_plugin_for_wp_set_rating", [$this, "setRating"]);
-        add_action("wp_ajax_nopriv_recipe_plugin_for_wp_set_rating", [$this, "setRating"]);
+        add_action("wp_ajax_recipe_creator_set_rating", [$this, "setRating"]);
+        add_action("wp_ajax_nopriv_recipe_creator_set_rating", [$this, "setRating"]);
 
         // Enable Auto-Update
         // https://rudrastyh.com/wordpress/self-hosted-plugin-update.html
@@ -130,10 +130,10 @@ class RecipeCreator
     public function showReleaseInfo()
     {
         $currentVersion = $this->getPluginVersion();
-        $lastVersionWithHint = get_option("recipe_plugin_for_wp__release_info_shown", "0.0.1");
+        $lastVersionWithHint = get_option("recipe_creator__release_info_shown", "0.0.1");
 
         if (version_compare($currentVersion, $lastVersionWithHint, ">")) {
-            update_option("recipe_plugin_for_wp__release_info_shown", $currentVersion); ?>
+            update_option("recipe_creator__release_info_shown", $currentVersion); ?>
             <div class="notice notice-info is-dismissible">
                 <p>
                     <?php echo sprintf(
@@ -143,7 +143,7 @@ class RecipeCreator
                             "recipe-creator"
                         ),
                         esc_url(
-                            get_admin_url(get_current_network_id(), "admin.php?page=recipe_plugin_for_wp_release_notes")
+                            get_admin_url(get_current_network_id(), "admin.php?page=recipe_creator_release_notes")
                         )
                     ); ?></p>
             </div>
@@ -159,10 +159,10 @@ class RecipeCreator
                 // Does the contentThe $content contains the recipe block
                 if (has_block("recipe-creator/recipe")) {
                     // If there is no "jump to recipe" block inside the content
-                    // and the option "recipe_plugin_for_wp__show_jump_to_recipe"
+                    // and the option "recipe_creator__show_jump_to_recipe"
                     // is set to true, I prepend the "jump to recipe" block to the content
                     if (
-                        get_option("recipe_plugin_for_wp__show_jump_to_recipe", true) &&
+                        get_option("recipe_creator__show_jump_to_recipe", true) &&
                         !has_block("recipe-creator/jump-to-recipe")
                     ) {
                         $content = "<!-- wp:recipe-creator/jump-to-recipe /-->\n\n" . $content;
@@ -197,7 +197,7 @@ class RecipeCreator
         }
 
         // trying to get from cache first
-        if (false == ($remote = get_transient("recipe_plugin_for_wp_update"))) {
+        if (false == ($remote = get_transient("recipe_creator_update"))) {
             // info.json is the file with the actual plugin information on your server
             $remote = wp_remote_get("https://updates.recipe-creator.de/recipe-creator/info.json", [
                 "timeout" => 10,
@@ -212,7 +212,7 @@ class RecipeCreator
                 $remote["response"]["code"] == 200 &&
                 !empty($remote["body"])
             ) {
-                set_transient("recipe_plugin_for_wp_update", $remote, 43200); // 12 hours cache
+                set_transient("recipe_creator_update", $remote, 43200); // 12 hours cache
             }
         }
 
@@ -265,7 +265,7 @@ class RecipeCreator
         }
 
         // trying to get from cache first, to disable cache comment 10,20,21,22,24
-        if (false == ($remote = get_transient("recipe_plugin_for_wp_upgrade"))) {
+        if (false == ($remote = get_transient("recipe_creator_upgrade"))) {
             // info.json is the file with the actual plugin information on your server
             $remote = wp_remote_get("https://updates.recipe-creator.de/recipe-creator/info.json", [
                 "timeout" => 10,
@@ -280,7 +280,7 @@ class RecipeCreator
                 $remote["response"]["code"] == 200 &&
                 !empty($remote["body"])
             ) {
-                set_transient("recipe_plugin_for_wp_upgrade", $remote, 43200); // 12 hours cache
+                set_transient("recipe_creator_upgrade", $remote, 43200); // 12 hours cache
             }
         }
 
@@ -321,7 +321,7 @@ class RecipeCreator
     {
         if ($options["action"] == "update" && $options["type"] === "plugin") {
             // just clean the cache when new plugin version is installed
-            delete_transient("recipe_plugin_for_wp_upgrade");
+            delete_transient("recipe_creator_upgrade");
         }
     }
 
@@ -358,7 +358,7 @@ class RecipeCreator
             __("Recipe Creator", "recipe-creator"),
             __("Recipe Creator", "recipe-creator"),
             "manage_options",
-            "recipe_plugin_for_wp",
+            "recipe_creator",
             function () {
                 return require_once plugin_dir_path(__FILE__) . "../templates/admin-index-page.php";
             },
@@ -367,11 +367,11 @@ class RecipeCreator
         );
 
         add_submenu_page(
-            "recipe_plugin_for_wp",
+            "recipe_creator",
             __("Recipe Block", "recipe-creator"),
             __("Recipe Block", "recipe-creator"),
             "manage_options",
-            "recipe_plugin_for_wp",
+            "recipe_creator",
             function () {
                 return require_once plugin_dir_path(__FILE__) . "../templates/admin-index-page.php";
             },
@@ -379,11 +379,11 @@ class RecipeCreator
         );
 
         add_submenu_page(
-            "recipe_plugin_for_wp",
+            "recipe_creator",
             __("Release notes", "recipe-creator"),
             __("Release notes", "recipe-creator"),
             "manage_options",
-            "recipe_plugin_for_wp_release_notes",
+            "recipe_creator_release_notes",
             function () {
                 return require_once plugin_dir_path(__FILE__) . "../templates/admin-release-notes-page.php";
             },
@@ -432,71 +432,71 @@ class RecipeCreator
     public function registerRecipeBlockSettings()
     {
         // Settings
-        register_setting("recipe_plugin_for_wp__general", "recipe_plugin_for_wp__primary_color", [
+        register_setting("recipe_creator__general", "recipe_creator__primary_color", [
             "default" => $this->primaryColorDefault,
         ]);
-        register_setting("recipe_plugin_for_wp__general", "recipe_plugin_for_wp__primary_color_contrast", [
+        register_setting("recipe_creator__general", "recipe_creator__primary_color_contrast", [
             "default" => $this->primaryColorContrastDefault,
         ]);
-        register_setting("recipe_plugin_for_wp__general", "recipe_plugin_for_wp__primary_color_light", [
+        register_setting("recipe_creator__general", "recipe_creator__primary_color_light", [
             "default" => $this->primaryColorLightDefault,
         ]);
-        register_setting("recipe_plugin_for_wp__general", "recipe_plugin_for_wp__primary_color_light_contrast", [
+        register_setting("recipe_creator__general", "recipe_creator__primary_color_light_contrast", [
             "default" => $this->primaryColorLightContrastDefault,
         ]);
-        register_setting("recipe_plugin_for_wp__general", "recipe_plugin_for_wp__primary_color_dark", [
+        register_setting("recipe_creator__general", "recipe_creator__primary_color_dark", [
             "default" => $this->primaryColorDarkDefault,
         ]);
-        register_setting("recipe_plugin_for_wp__general", "recipe_plugin_for_wp__secondary_color", [
+        register_setting("recipe_creator__general", "recipe_creator__secondary_color", [
             "default" => $this->secondaryColorDefault,
         ]);
-        register_setting("recipe_plugin_for_wp__general", "recipe_plugin_for_wp__secondary_color_contrast", [
+        register_setting("recipe_creator__general", "recipe_creator__secondary_color_contrast", [
             "default" => $this->secondaryColorContrastDefault,
         ]);
-        register_setting("recipe_plugin_for_wp__general", "recipe_plugin_for_wp__background_color", [
+        register_setting("recipe_creator__general", "recipe_creator__background_color", [
             "default" => $this->backgroundColorDefault,
         ]);
-        register_setting("recipe_plugin_for_wp__general", "recipe_plugin_for_wp__background_color_contrast", [
+        register_setting("recipe_creator__general", "recipe_creator__background_color_contrast", [
             "default" => $this->backgroundColorContrastDefault,
         ]);
-        register_setting("recipe_plugin_for_wp__general", "recipe_plugin_for_wp__show_box_shadow", [
+        register_setting("recipe_creator__general", "recipe_creator__show_box_shadow", [
             "default" => $this->showBoxShadowDefault,
         ]);
-        register_setting("recipe_plugin_for_wp__general", "recipe_plugin_for_wp__show_border", [
+        register_setting("recipe_creator__general", "recipe_creator__show_border", [
             "default" => $this->showBorderDefault,
         ]);
-        register_setting("recipe_plugin_for_wp__general", "recipe_plugin_for_wp__border_radius", [
+        register_setting("recipe_creator__general", "recipe_creator__border_radius", [
             "default" => $this->borderRadiusDefault,
         ]);
-        register_setting("recipe_plugin_for_wp__general", "recipe_plugin_for_wp__thumbnail_size", [
+        register_setting("recipe_creator__general", "recipe_creator__thumbnail_size", [
             "default" => $this->thumnailSizeDefault,
         ]);
 
-        register_setting("recipe_plugin_for_wp__general", "recipe_plugin_for_wp__show_jump_to_recipe", [
+        register_setting("recipe_creator__general", "recipe_creator__show_jump_to_recipe", [
             "default" => true,
         ]);
 
-        register_setting("recipe_plugin_for_wp__general", "recipe_plugin_for_wp__instagram__username", [
+        register_setting("recipe_creator__general", "recipe_creator__instagram__username", [
             "default" => "",
         ]);
 
-        register_setting("recipe_plugin_for_wp__general", "recipe_plugin_for_wp__instagram__hashtag", [
+        register_setting("recipe_creator__general", "recipe_creator__instagram__hashtag", [
             "default" => "",
         ]);
 
         // Sections
         add_settings_section(
-            "recipe_plugin_for_wp__general",
+            "recipe_creator__general",
             __("General settings", "recipe-creator"),
             function () {
                 echo "<p>" .
                     __("Configure how the recipe block should behave on your blog posts.", "recipe-creator") .
                     "</p>";
             },
-            "recipe_plugin_for_wp__general"
+            "recipe_creator__general"
         );
         add_settings_section(
-            "recipe_plugin_for_wp__instagram",
+            "recipe_creator__instagram",
             __("Instagram", "recipe-creator"),
             function () {
                 echo "<p>" .
@@ -506,154 +506,154 @@ class RecipeCreator
                     ) .
                     "</p>";
             },
-            "recipe_plugin_for_wp__general"
+            "recipe_creator__general"
         );
         add_settings_section(
-            "recipe_plugin_for_wp__visual",
+            "recipe_creator__visual",
             __("Visual settings", "recipe-creator"),
             function () {
                 echo "<p>" .
                     __("Configure how the recipe block should look for your visitors.", "recipe-creator") .
                     "</p>";
             },
-            "recipe_plugin_for_wp__general"
+            "recipe_creator__general"
         );
 
         // Fields
         add_settings_field(
-            "recipe_plugin_for_wp__show_jump_to_recipe",
+            "recipe_creator__show_jump_to_recipe",
             __("Jump to recipe", "recipe-creator"),
             function () {
                 $this->renderCheckboxInput(
-                    "recipe_plugin_for_wp__show_jump_to_recipe",
+                    "recipe_creator__show_jump_to_recipe",
                     true,
                     __('Add a "Jump to recipe" button on every page with the recipe block.', "recipe-creator")
                 );
             },
-            "recipe_plugin_for_wp__general",
-            "recipe_plugin_for_wp__general",
+            "recipe_creator__general",
+            "recipe_creator__general",
             [
-                "label_for" => "recipe_plugin_for_wp__show_jump_to_recipe",
+                "label_for" => "recipe_creator__show_jump_to_recipe",
             ]
         );
 
         add_settings_field(
-            "recipe_plugin_for_wp__instagram__username",
+            "recipe_creator__instagram__username",
             __("Your username", "recipe-creator"),
             function () {
-                $this->renderTextInput("recipe_plugin_for_wp__instagram__username", "");
+                $this->renderTextInput("recipe_creator__instagram__username", "");
             },
-            "recipe_plugin_for_wp__general",
-            "recipe_plugin_for_wp__instagram",
+            "recipe_creator__general",
+            "recipe_creator__instagram",
             [
-                "label_for" => "recipe_plugin_for_wp__instagram__username",
+                "label_for" => "recipe_creator__instagram__username",
             ]
         );
 
         add_settings_field(
-            "recipe_plugin_for_wp__instagram__hashtag",
+            "recipe_creator__instagram__hashtag",
             __("Hashtag", "recipe-creator"),
             function () {
-                $this->renderTextInput("recipe_plugin_for_wp__instagram__hashtag", "");
+                $this->renderTextInput("recipe_creator__instagram__hashtag", "");
             },
-            "recipe_plugin_for_wp__general",
-            "recipe_plugin_for_wp__instagram",
+            "recipe_creator__general",
+            "recipe_creator__instagram",
             [
-                "label_for" => "recipe_plugin_for_wp__instagram__hashtag",
+                "label_for" => "recipe_creator__instagram__hashtag",
             ]
         );
 
         add_settings_field(
-            "recipe_plugin_for_wp__primary_color",
+            "recipe_creator__primary_color",
             __("Primary color", "recipe-creator"),
             function () {
-                $this->renderColorPickerInput("recipe_plugin_for_wp__primary_color", $this->primaryColorDefault);
+                $this->renderColorPickerInput("recipe_creator__primary_color", $this->primaryColorDefault);
             },
-            "recipe_plugin_for_wp__general",
-            "recipe_plugin_for_wp__visual",
+            "recipe_creator__general",
+            "recipe_creator__visual",
             [
-                "label_for" => "recipe_plugin_for_wp__primary_color",
+                "label_for" => "recipe_creator__primary_color",
             ]
         );
         add_settings_field(
-            "recipe_plugin_for_wp__secondary_color",
+            "recipe_creator__secondary_color",
             __("Secondary color", "recipe-creator"),
             function () {
-                $this->renderColorPickerInput("recipe_plugin_for_wp__secondary_color", $this->secondaryColorDefault);
+                $this->renderColorPickerInput("recipe_creator__secondary_color", $this->secondaryColorDefault);
             },
-            "recipe_plugin_for_wp__general",
-            "recipe_plugin_for_wp__visual",
+            "recipe_creator__general",
+            "recipe_creator__visual",
             [
-                "label_for" => "recipe_plugin_for_wp__secondary_color",
+                "label_for" => "recipe_creator__secondary_color",
             ]
         );
         add_settings_field(
-            "recipe_plugin_for_wp__background_color",
+            "recipe_creator__background_color",
             __("Background color", "recipe-creator"),
             function () {
-                $this->renderColorPickerInput("recipe_plugin_for_wp__background_color", $this->backgroundColorDefault);
+                $this->renderColorPickerInput("recipe_creator__background_color", $this->backgroundColorDefault);
             },
-            "recipe_plugin_for_wp__general",
-            "recipe_plugin_for_wp__visual",
+            "recipe_creator__general",
+            "recipe_creator__visual",
             [
-                "label_for" => "recipe_plugin_for_wp__background_color",
+                "label_for" => "recipe_creator__background_color",
             ]
         );
 
         add_settings_field(
-            "recipe_plugin_for_wp__show_border",
+            "recipe_creator__show_border",
             __("Border", "recipe-creator"),
             function () {
                 $this->renderCheckboxInput(
-                    "recipe_plugin_for_wp__show_border",
+                    "recipe_creator__show_border",
                     $this->showBorderDefault,
                     __("Show border", "recipe-creator")
                 );
             },
-            "recipe_plugin_for_wp__general",
-            "recipe_plugin_for_wp__visual",
+            "recipe_creator__general",
+            "recipe_creator__visual",
             [
-                "label_for" => "recipe_plugin_for_wp__show_border",
+                "label_for" => "recipe_creator__show_border",
             ]
         );
         add_settings_field(
-            "recipe_plugin_for_wp__show_box_shadow",
+            "recipe_creator__show_box_shadow",
             __("Box shadow", "recipe-creator"),
             function () {
                 $this->renderCheckboxInput(
-                    "recipe_plugin_for_wp__show_box_shadow",
+                    "recipe_creator__show_box_shadow",
                     $this->showBoxShadowDefault,
                     __("Show box shadow", "recipe-creator")
                 );
             },
-            "recipe_plugin_for_wp__general",
-            "recipe_plugin_for_wp__visual",
+            "recipe_creator__general",
+            "recipe_creator__visual",
             [
-                "label_for" => "recipe_plugin_for_wp__show_box_shadow",
+                "label_for" => "recipe_creator__show_box_shadow",
             ]
         );
         add_settings_field(
-            "recipe_plugin_for_wp__border_radius",
+            "recipe_creator__border_radius",
             __("Border radius", "recipe-creator"),
             function () {
-                $this->renderNumberInput("recipe_plugin_for_wp__border_radius", $this->borderRadiusDefault);
+                $this->renderNumberInput("recipe_creator__border_radius", $this->borderRadiusDefault);
             },
-            "recipe_plugin_for_wp__general",
-            "recipe_plugin_for_wp__visual",
+            "recipe_creator__general",
+            "recipe_creator__visual",
             [
-                "label_for" => "recipe_plugin_for_wp__border_radius",
+                "label_for" => "recipe_creator__border_radius",
             ]
         );
         add_settings_field(
-            "recipe_plugin_for_wp__thumbnail_size",
+            "recipe_creator__thumbnail_size",
             __("Image width", "recipe-creator"),
             function () {
-                $this->renderNumberInput("recipe_plugin_for_wp__thumbnail_size", $this->thumnailSizeDefault);
+                $this->renderNumberInput("recipe_creator__thumbnail_size", $this->thumnailSizeDefault);
             },
-            "recipe_plugin_for_wp__general",
-            "recipe_plugin_for_wp__visual",
+            "recipe_creator__general",
+            "recipe_creator__visual",
             [
-                "label_for" => "recipe_plugin_for_wp__thumbnail_size",
+                "label_for" => "recipe_creator__thumbnail_size",
             ]
         );
     }
@@ -665,12 +665,12 @@ class RecipeCreator
 
     public function registerMeta()
     {
-        register_meta("post", "recipe_plugin_for_wp_image_id", [
+        register_meta("post", "recipe_creator_image_id", [
             "show_in_rest" => true,
             "type" => "number",
             "single" => true,
         ]);
-        register_meta("post", "recipe_plugin_for_wp_image_url", [
+        register_meta("post", "recipe_creator_image_url", [
             "show_in_rest" => true,
             "type" => "string",
             "single" => true,
@@ -1067,8 +1067,8 @@ class RecipeCreator
             "averageRating" => 4.5,
             "thumbnail" => plugins_url("../assets/banana-shake-4_3.png", __FILE__),
             "notes" => __("The milkshake becomes particularly creamy with UHT milk.", "recipe-creator"),
-            "instagramUsername" => get_option("recipe_plugin_for_wp__instagram__username", ""),
-            "instagramHashtag" => get_option("recipe_plugin_for_wp__instagram__hashtag", ""),
+            "instagramUsername" => get_option("recipe_creator__instagram__username", ""),
+            "instagramHashtag" => get_option("recipe_creator__instagram__hashtag", ""),
         ];
     }
 
@@ -1263,7 +1263,7 @@ class RecipeCreator
 
         // Process the pinterest image
 
-        $pinterestImageId = get_post_meta(get_the_ID(), "recipe_plugin_for_wp_image_id", true) ?: null;
+        $pinterestImageId = get_post_meta(get_the_ID(), "recipe_creator_image_id", true) ?: null;
         $currentUrl =
             (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on" ? "https" : "http") .
             "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -1346,8 +1346,8 @@ class RecipeCreator
         $attributes["svgs"] = $this->getSvgs($attributes["options"]);
 
         // Instagram-CTA
-        $attributes["instagramUsername"] = get_option("recipe_plugin_for_wp__instagram__username", "");
-        $attributes["instagramHashtag"] = get_option("recipe_plugin_for_wp__instagram__hashtag", "");
+        $attributes["instagramUsername"] = get_option("recipe_creator__instagram__username", "");
+        $attributes["instagramHashtag"] = get_option("recipe_creator__instagram__hashtag", "");
 
         $renderer = self::getRecipeBlockRenderer();
         return $renderer($attributes);
@@ -1476,36 +1476,36 @@ class RecipeCreator
     private function getStyleOptions()
     {
         return [
-            "primaryColor" => get_option("recipe_plugin_for_wp__primary_color", $this->primaryColorDefault),
+            "primaryColor" => get_option("recipe_creator__primary_color", $this->primaryColorDefault),
             "primaryColorContrast" => get_option(
-                "recipe_plugin_for_wp__primary_color_contrast",
+                "recipe_creator__primary_color_contrast",
                 $this->primaryColorContrastDefault
             ),
             "primaryColorLight" => get_option(
-                "recipe_plugin_for_wp__primary_color_light",
+                "recipe_creator__primary_color_light",
                 $this->primaryColorLightDefault
             ),
             "primaryColorLightContrast" => get_option(
-                "recipe_plugin_for_wp__primary_color_light_contrast",
+                "recipe_creator__primary_color_light_contrast",
                 $this->primaryColorLightContrastDefault
             ),
             "primaryColorDark" => get_option(
-                "recipe_plugin_for_wp__primary_color_dark",
+                "recipe_creator__primary_color_dark",
                 $this->primaryColorDarkDefault
             ),
-            "secondaryColor" => get_option("recipe_plugin_for_wp__secondary_color", $this->secondaryColorDefault),
+            "secondaryColor" => get_option("recipe_creator__secondary_color", $this->secondaryColorDefault),
             "secondaryColorContrast" => get_option(
-                "recipe_plugin_for_wp__secondary_color_contrast",
+                "recipe_creator__secondary_color_contrast",
                 $this->secondaryColorContrastDefault
             ),
-            "backgroundColor" => get_option("recipe_plugin_for_wp__background_color", $this->backgroundColorDefault),
+            "backgroundColor" => get_option("recipe_creator__background_color", $this->backgroundColorDefault),
             "backgroundColorContrast" => get_option(
-                "recipe_plugin_for_wp__background_color_contrast",
+                "recipe_creator__background_color_contrast",
                 $this->backgroundColorContrastDefault
             ),
-            "showBorder" => get_option("recipe_plugin_for_wp__show_border", $this->showBorderDefault),
-            "showBoxShadow" => get_option("recipe_plugin_for_wp__show_box_shadow", $this->showBoxShadowDefault),
-            "borderRadius" => get_option("recipe_plugin_for_wp__border_radius", $this->borderRadiusDefault),
+            "showBorder" => get_option("recipe_creator__show_border", $this->showBorderDefault),
+            "showBoxShadow" => get_option("recipe_creator__show_box_shadow", $this->showBoxShadowDefault),
+            "borderRadius" => get_option("recipe_creator__border_radius", $this->borderRadiusDefault),
         ];
     }
 

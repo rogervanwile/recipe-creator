@@ -235,16 +235,16 @@ export default function Edit(props) {
                 onSelect={(media) => {
                   if (media) {
                     setMeta({
-                      recipe_plugin_for_wp_image_id: media.id,
-                      recipe_plugin_for_wp_image_url: media.url,
+                      recipe_creator_image_id: media.id,
+                      recipe_creator_image_url: media.url,
                     });
                   }
                 }}
                 allowedTypes={ALLOWED_MEDIA_TYPES}
-                value={props.data.meta.recipe_plugin_for_wp_image_url}
+                value={props.data.meta.recipe_creator_image_url}
                 render={({ open }) => (
                   <Fragment>
-                    <img src={props.data.meta.recipe_plugin_for_wp_image_url} onClick={open} />
+                    <img src={props.data.meta.recipe_creator_image_url} onClick={open} />
                     <button type="button" className="components-button is-secondary" onClick={open}>
                       {__("Select image", "recipe-creator")}
                     </button>
