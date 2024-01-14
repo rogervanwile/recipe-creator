@@ -390,6 +390,18 @@ class RecipeCreator
             20
         );
 
+        add_submenu_page(
+            "recipe_creator",
+            __("Migrations", "recipe-creator"),
+            __("Migrations", "recipe-creator"),
+            "manage_options",
+            "recipe_creator_migrations",
+            function () {
+                return require_once plugin_dir_path(__FILE__) . "../templates/admin-migrations-page.php";
+            },
+            20
+        );
+
         do_action("wp_recipe_pro__register_page");
     }
 

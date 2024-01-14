@@ -15,6 +15,7 @@ if (!defined("ABSPATH")) {
 }
 
 require __DIR__ . "/inc/recipe-creator.php";
+require __DIR__ . "/inc/foodblogkitchen-migration.php";
 
 if (class_exists("RecipeCreator")) {
     $recipeCreator = new RecipeCreator();
