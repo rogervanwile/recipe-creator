@@ -24,8 +24,12 @@ class RecipeCreator
     private $borderRadiusDefault = 8;
     private $thumnailSizeDefault = 330;
 
+    public $foodblogkitchenMigrations;
+
     function __construct()
     {
+        $this->foodblogkitchenMigrations = new FoodblogkitchenMigration();
+        
         add_action("init", [$this, "registerBlocks"]);
         add_action("init", [$this, "registerMeta"]);
         add_action("init", [$this, "loadTranslations"]);

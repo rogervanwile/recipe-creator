@@ -41,6 +41,45 @@ class FoodblogkitchenMigration
         'foodblogkitchen_toolkit__license_key' => 'recipe_creator_pro__license_key',
     ];
 
+
+    function __construct()
+    {
+        add_action("admin_init", [$this, "checkObsoleteBlocks"]);
+    }
+
+    // TODO
+    public function checkObsoleteBlocks()
+    {
+        $postTypes = $this->getPostTypes();
+
+        $counter = 2;
+
+        foreach ($postTypes as $postType) {
+            $faqBlocks =  $this->getPostsWithBlockName($postType, 'foodblogkitchen-recipes/faq');
+            $counter += count($faqBlocks);
+        }
+
+
+        if ($counter > 0) {
+?>
+            <div class="notice notice-info is-dismissible">
+                <p>
+                    <?php echo sprintf(
+                        __(
+                            'Du hast noch %s  Artikel der/die den FAQ-Block vom Foodblog-Toolkit nutzen. Dieses wird vom Recipe Creator nicht mehr unterstützt. Bitte installiere zusätzlich das Plugin <a href="%s">xxx</a>.',
+                            "recipe-creator"
+                        ),
+                        $counter,
+                        esc_url(
+                            get_admin_url(get_current_network_id(), "plugin-install.php?s=recipe_creator_faq_block&tab=search&type=term")
+                        )
+                    ); ?></p>
+            </div>
+<?php
+        }
+    }
+
+
     public function getPage()
     {
         if (isset($_GET['migrate']) && $_GET['migrate'] === 'true') {
@@ -229,7 +268,6 @@ class FoodblogkitchenMigration
     {
         foreach ($this->settingsToMigrate as $oldSettingName => $newSettingName) {
             $this->migrateOption($oldSettingName, $newSettingName);
-
         }
     }
 
@@ -237,14 +275,13 @@ class FoodblogkitchenMigration
     {
         foreach ($this->optionsToMigrate as $oldOptionName => $newOptionName) {
             $this->migrateOption($oldOptionName, $newOptionName);
-
         }
     }
 
-    private function migrateOption($oldOptionName, $newOptionName) {
+    private function migrateOption($oldOptionName, $newOptionName)
+    {
         $value = get_option($oldOptionName);
         update_option($newOptionName, $value);
         echo '<p>Migrate ' . $oldOptionName . ' to  ' . $newOptionName . '.</p>';
-
     }
 }
