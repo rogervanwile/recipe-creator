@@ -224,13 +224,10 @@ class FoodblogkitchenMigration
 
             foreach ($posts as $post) {
                 $content = $post->post_content;
-                $updated_content = str_replace($oldBlockName, $newBlockName, $content);
+                $post->post_content = str_replace($oldBlockName, $newBlockName, $content);
 
                 // Update the post with the new content
-                wp_update_post(array(
-                    'ID' => $post->ID,
-                    'post_content' => $updated_content,
-                ));
+                wp_update_post($post);
 
                 $counter++;
             }
