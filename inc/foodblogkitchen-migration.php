@@ -44,41 +44,73 @@ class FoodblogkitchenMigration
 
     function __construct()
     {
-        add_action("admin_init", [$this, "checkObsoleteBlocks"]);
+        // TODO: Mit transienten nur 1 mal am Tag
+        add_action("admin_init", [$this, "checkForObsoleteFaqBlock"]);
+        add_action("admin_init", [$this, "uninstallObsoletePlugins"]);
     }
 
-    // TODO
-    public function checkObsoleteBlocks()
+    public function checkForObsoleteFaqBlock()
     {
-        $postTypes = $this->getPostTypes();
 
-        $counter = 2;
-
-        foreach ($postTypes as $postType) {
-            $faqBlocks =  $this->getPostsWithBlockName($postType, 'foodblogkitchen-recipes/faq');
-            $counter += count($faqBlocks);
-        }
+        $postIds = $this->getPostIdsWithBlock('foodblogkitchen-recipes/faq');
 
 
-        if ($counter > 0) {
+        if (count($postIds) > 0) {
 ?>
-            <div class="notice notice-info is-dismissible">
+            <div class="notice notice-warning is-dismissible">
                 <p>
                     <?php echo sprintf(
                         __(
-                            'Du hast noch %s  Artikel der/die den FAQ-Block vom Foodblog-Toolkit nutzen. Dieses wird vom Recipe Creator nicht mehr unterstützt. Bitte installiere zusätzlich das Plugin <a href="%s">xxx</a>.',
+                            'The following articles still use the FAQ block from the Foodblog-Toolkit, which is removed. Please replace these with another FAQ block, for example <a href="%s" target="_blank">%s</a>: ',
                             "recipe-creator"
                         ),
-                        $counter,
                         esc_url(
-                            get_admin_url(get_current_network_id(), "plugin-install.php?s=recipe_creator_faq_block&tab=search&type=term")
-                        )
+                            get_admin_url(get_current_network_id(), "plugin-install.php?s=faq-block&tab=search&type=term")
+                        ),
+                        __("FAQ Block von Jordy Meow", "recipe-creator")
                     ); ?></p>
+                <ul style="list-style: disc; margin-left: 1em;">
+                    <?php foreach ($postIds as $pageId) { ?>
+                        <li><a href="<? echo get_edit_post_link($pageId); ?>"><?= get_the_title($pageId); ?></a></li>
+                    <?php } ?>
+                </ul>
             </div>
 <?php
         }
     }
 
+    private function getPostIdsWithBlock($blockName)
+    {
+        $postIds = [];
+
+        $postTypes = $this->getPostTypes();
+        foreach ($postTypes as $postType) {
+            $posts =  $this->getPostsWithBlockName($postType, $blockName);
+            foreach ($posts as $post) {
+                array_push($postIds, $post->ID);
+            }
+        }
+
+        return $postIds;
+    }
+
+    private function hasPostsWithBlock($plugin)
+    {
+        $posts = $this->getPostIdsWithBlock($plugin);
+        return count($posts) > 0 ? true : false;
+    }
+
+    public function uninstallObsoletePlugins()
+    {
+        if (
+            is_plugin_active('foodblogkitchen-toolkit/foodblogkitchen-toolkit.php') &&
+            !$this->hasPostsWithBlock('foodblogkitchen-recipes/faq') &&
+            !$this->hasPostsWithBlock('foodblogkitchen-recipes/block')
+        ) {
+            deactivate_plugins('foodblogkitchen-toolkit/foodblogkitchen-toolkit.php');
+            uninstall_plugin('foodblogkitchen-toolkit/foodblogkitchen-toolkit.php');
+        }
+    }
 
     public function getPage()
     {
