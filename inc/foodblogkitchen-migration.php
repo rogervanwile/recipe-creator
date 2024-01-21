@@ -341,7 +341,7 @@ class FoodblogkitchenMigration
             $content = $post->post_content;
             $post->post_content = str_replace($oldBlockName, $newBlockName, $content);
 
-            wp_update_post($post);
+            wp_update_post($post, true, false);
         }
 
         add_action('save_post', [$this, "deleteTransientsOnPostSave"]);
