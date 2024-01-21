@@ -68,9 +68,13 @@ class FoodblogkitchenMigration
         }
 
         if (
-            (int)get_transient('recipe_creator__migration_pending_recipe_blocks') > 0 ||
-            get_option('recipe_creator__metadata_migrated', false) === false ||
-            get_option('recipe_creator__settings_migrated', false) === false
+            (!isset($_GET['page']) || $_GET['page'] !== 'recipe_creator_migrations') &&
+            (
+
+                (int)get_transient('recipe_creator__migration_pending_recipe_blocks') > 0 ||
+                get_option('recipe_creator__metadata_migrated', false) === false ||
+                get_option('recipe_creator__settings_migrated', false) === false
+            )
         ) {
             add_action('admin_notices', [$this, 'showPendingMigrationHint']);
         }
@@ -93,7 +97,6 @@ class FoodblogkitchenMigration
 
             update_option('recipe_creator__migration_done', true);
         }
-
     }
 
     public function registerMigrationPage()
