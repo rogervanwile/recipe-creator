@@ -17,16 +17,17 @@ class RatingMonitor
 
     public function checkRatings()
     {
-        if (!get_transient('recipe_creator__low_rated_posts')) {
+        if (get_transient('recipe_creator__low_rated_posts') === false) {
             $posts = $this->getPostsWithLowRatings();
-            
             set_transient('recipe_creator__low_rated_posts', count($posts), 24 * HOUR_IN_SECONDS);
         }
 
         $amountOfPostsWithLowRatedRecipes = get_transient('recipe_creator__low_rated_posts');
 
         if ($amountOfPostsWithLowRatedRecipes) {
-            $this->showWarning($amountOfPostsWithLowRatedRecipes);
+            if (!isset($_GET['orderby']) || $_GET['orderby'] !== 'average_rating') {
+                add_action('admin_notices', [$this, 'showWarning']);
+            }
         }
     }
 
@@ -54,11 +55,9 @@ class RatingMonitor
         return  get_posts($args);
     }
 
-    private function showWarning($amountOfAffectedRecipes)
+    public function showWarning()
     {
-        if (isset($_GET['orderby']) && $_GET['orderby'] === 'average_rating') {
-            return;
-        }
+        $amountOfAffectedRecipes = get_transient('recipe_creator__low_rated_posts');
 ?>
         <div class="notice notice-info is-dismissible">
             <p>
