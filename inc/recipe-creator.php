@@ -29,7 +29,6 @@ class RecipeCreator
     function __construct()
     {
         $this->foodblogkitchenMigrations = new FoodblogkitchenMigration();
-        new RatingMonitor();
         
         add_action("init", [$this, "registerBlocks"]);
         add_action("init", [$this, "registerMeta"]);
