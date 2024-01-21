@@ -44,6 +44,7 @@ class FoodblogkitchenMigration
     function __construct()
     {
         add_action("admin_init", [$this, "checkMigrationState"]);
+        add_action("recipe_creator__pages_registered", [$this, "registerMigrationPage"]);
     }
 
     public function checkMigrationState()
@@ -66,23 +67,48 @@ class FoodblogkitchenMigration
             add_action('admin_notices', [$this, 'showPendingFaqBlocksWarning']);
         }
 
-        if ((int)get_transient('recipe_creator__migration_pending_recipe_blocks') > 0) {
-            add_action('admin_notices', [$this, 'showPendingRecipeBlocksWarning']);
+        if (
+            (int)get_transient('recipe_creator__migration_pending_recipe_blocks') > 0 ||
+            get_option('recipe_creator__metadata_migrated', false) === false ||
+            get_option('recipe_creator__settings_migrated', false) === false
+        ) {
+            add_action('admin_notices', [$this, 'showPendingMigrationHint']);
         }
 
-        if ((int)get_transient('recipe_creator__migration_pending_faq_blocks') > 0 || (int)get_transient('recipe_creator__migration_pending_recipe_blocks') > 0) {
+        if (
+            (int)get_transient('recipe_creator__migration_pending_faq_blocks') > 0 ||
+            (int)get_transient('recipe_creator__migration_pending_recipe_blocks') > 0
+        ) {
             add_action('save_post', [$this, "deleteTransientsOnPostSave"]);
         }
 
         if (
             is_plugin_active('foodblogkitchen-toolkit/foodblogkitchen-toolkit.php') &&
             (int)get_transient('recipe_creator__migration_pending_faq_blocks') === 0 &&
-            (int)get_transient('recipe_creator__migration_pending_recipe_blocks') === 0
+            (int)get_transient('recipe_creator__migration_pending_recipe_blocks') === 0 &&
+            get_option('recipe_creator__metadata_migrated', false) === true ||
+            get_option('recipe_creator__settings_migrated', false) === true
         ) {
             $this->uninstallFoodblogToolkit();
 
             update_option('recipe_creator__migration_done', true);
         }
+
+    }
+
+    public function registerMigrationPage()
+    {
+        add_submenu_page(
+            "recipe_creator",
+            __("Migrations", "recipe-creator"),
+            __("Migrations", "recipe-creator"),
+            "manage_options",
+            "recipe_creator_migrations",
+            function () {
+                return require_once plugin_dir_path(__FILE__) . "../templates/admin-migrations-page.php";
+            },
+            100
+        );
     }
 
     public function deleteTransientsOnPostSave($post_id)
@@ -127,14 +153,14 @@ class FoodblogkitchenMigration
         }
     }
 
-    public function showPendingRecipeBlocksWarning()
+    public function showPendingMigrationHint()
     {
         ?>
         <div class="notice notice-warning is-dismissible">
             <p><?php
                 echo sprintf(
                     __(
-                        'You updated from the Foodblog-Toolkit to the Recipe Creator. This means that some blocks have to be migrated automatically. <a href="%s">Start migration</a>',
+                        'You updated from the Foodblog-Toolkit to the Recipe Creator. This means that some blocks and settings have to be migrated automatically. <a href="%s">Start migration</a>',
                         "recipe-creator"
                     ),
                     esc_url($this->getStartMigrationUrl())
@@ -329,6 +355,8 @@ class FoodblogkitchenMigration
         foreach ($this->metadataToMigrate as $oldMetadata => $newMetadata) {
             $this->migrateMetadata($oldMetadata, $newMetadata);
         }
+
+        update_option('recipe_creator__metadata_migrated', true);
     }
 
     private function migrateMetadata($oldMetadata, $newMetadata)
@@ -354,6 +382,8 @@ class FoodblogkitchenMigration
         foreach ($this->settingsToMigrate as $oldSettingName => $newSettingName) {
             $this->migrateOption($oldSettingName, $newSettingName);
         }
+
+        update_option('recipe_creator__settings_migrated', true);
     }
 
     private function migrateOptions()
