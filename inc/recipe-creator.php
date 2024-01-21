@@ -395,7 +395,7 @@ class RecipeCreator
             20
         );
 
-        do_action("wp_recipe_pro__register_page");
+        do_action("recipe_creator__pages_registered");
     }
 
     private function renderColorPickerInput($name, $defaultValue)
