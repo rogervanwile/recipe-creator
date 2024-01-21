@@ -8,7 +8,7 @@ require __DIR__ . "/../vendor/autoload.php";
 
 class FoodblogkitchenMigration
 {
-    private $chunkSize = 10;
+    private $chunkSize = 1;
 
     private $settingsToMigrate = [
         'foodblogkitchen_toolkit__primary_color' => 'recipe_creator__primary_color',
@@ -78,7 +78,7 @@ class FoodblogkitchenMigration
     public function chunkMigrateRecipeBlocks()
     {
         $migratedPosts = $this->migrateBlock('foodblogkitchen-recipes/block', 'recipe-creator/recipe', $this->chunkSize);
-
+        
         return [
             "migratedPosts" => $migratedPosts,
         ];
@@ -301,7 +301,8 @@ class FoodblogkitchenMigration
             'post_type' => $this->getPostTypes(),
             'posts_per_page' => $chunkSize,
             's' => $blockName,
-            'post_status' => 'any', 'search_columns' => array('post_content')
+            'post_status' => 'any',
+            'search_columns' => array('post_content')
         );
 
         return  get_posts($args);
@@ -332,6 +333,8 @@ class FoodblogkitchenMigration
 
     private function migrateBlock($oldBlockName, $newBlockName, $chunkSize)
     {
+        remove_action('save_post', [$this, "deleteTransientsOnPostSave"]);
+
         $posts = $this->getPostsWithBlockName($oldBlockName, $chunkSize);
 
         foreach ($posts as $post) {
@@ -341,11 +344,14 @@ class FoodblogkitchenMigration
             wp_update_post($post);
         }
 
+        add_action('save_post', [$this, "deleteTransientsOnPostSave"]);
+
         return count($posts);
     }
 
     private function migrateMetadata($oldMetadata, $newMetadata, $chunkSize)
     {
+        remove_action('save_post', [$this, "deleteTransientsOnPostSave"]);
 
         $posts = $this->getPostsWithMetadata($oldMetadata, $chunkSize);
 
@@ -354,6 +360,8 @@ class FoodblogkitchenMigration
             update_post_meta($post->ID, $newMetadata, $oldValue);
             delete_post_meta($post->ID, $oldMetadata);
         }
+
+        add_action('save_post', [$this, "deleteTransientsOnPostSave"]);
 
         return count($posts);
     }
