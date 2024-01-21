@@ -56,6 +56,9 @@ class RatingMonitor
 
     private function showWarning($amountOfAffectedRecipes)
     {
+        if (isset($_GET['orderby']) && $_GET['orderby'] === 'average_rating') {
+            return;
+        }
 ?>
         <div class="notice notice-info is-dismissible">
             <p>
