@@ -8,15 +8,7 @@ require __DIR__ . "/../vendor/autoload.php";
 
 class FoodblogkitchenMigration
 {
-    private $blocksToMigrate = [
-        "foodblogkitchen-recipes/block" => "recipe-creator/recipe",
-        "foodblogkitchen-recipes/jump-to-recipe" => "recipe-creator/jump-to-recipe"
-    ];
-
-    private $metadataToMigrate = [
-        'foodblogkitchen_pinterest_image_id' => 'recipe_creator_image_id',
-        'foodblogkitchen_pinterest_image_url' => 'recipe_creator_image_url',
-    ];
+    private $chunkSize = 10;
 
     private $settingsToMigrate = [
         'foodblogkitchen_toolkit__primary_color' => 'recipe_creator__primary_color',
@@ -45,6 +37,78 @@ class FoodblogkitchenMigration
     {
         add_action("admin_init", [$this, "checkMigrationState"]);
         add_action("recipe_creator__pages_registered", [$this, "registerMigrationPage"]);
+        add_action('rest_api_init', [$this, "registerMigrationApi"]);
+    }
+
+    public function registerMigrationApi()
+    {
+        register_rest_route('recipe-creator/v1', '/migrate-recipe-blocks/', [
+            'methods'   => 'POST',
+            'callback'  => [$this, 'chunkMigrateRecipeBlocks'],
+            'permission_callback'   => function () {
+                return current_user_can('edit_posts') && current_user_can('deactivate_plugins');
+            }
+        ]);
+
+        register_rest_route('recipe-creator/v1', '/migrate-jump-to-recipe-blocks/', [
+            'methods'   => 'POST',
+            'callback'  => [$this, 'chunkMigrateJumpToRecipeBlocks'],
+            'permission_callback'   => function () {
+                return current_user_can('edit_posts') && current_user_can('deactivate_plugins');
+            }
+        ]);
+
+        register_rest_route('recipe-creator/v1', '/migrate-metadata-pinterest-image-id/', [
+            'methods'   => 'POST',
+            'callback'  => [$this, 'chunkMigrateMetadataPinterestImageId'],
+            'permission_callback'   => function () {
+                return current_user_can('edit_posts') && current_user_can('deactivate_plugins');
+            }
+        ]);
+
+        register_rest_route('recipe-creator/v1', '/migrate-metadata-pinterest-image-url/', [
+            'methods'   => 'POST',
+            'callback'  => [$this, 'chunkMigrateMetadataPinterestImageUrl'],
+            'permission_callback'   => function () {
+                return current_user_can('edit_posts') && current_user_can('deactivate_plugins');
+            }
+        ]);
+    }
+
+    public function chunkMigrateRecipeBlocks()
+    {
+        $migratedPosts = $this->migrateBlock('foodblogkitchen-recipes/block', 'recipe-creator/recipe', $this->chunkSize);
+
+        return [
+            "migratedPosts" => $migratedPosts,
+        ];
+    }
+
+    public function chunkMigrateJumpToRecipeBlocks()
+    {
+        $migratedPosts = $this->migrateBlock('foodblogkitchen-recipes/jump-to-recipe', 'recipe-creator/jump-to-recipe', $this->chunkSize);
+
+        return [
+            "migratedPosts" => $migratedPosts,
+        ];
+    }
+
+    public function chunkMigrateMetadataPinterestImageId()
+    {
+        $migratedPosts = $this->migrateMetadata('foodblogkitchen_pinterest_image_id', 'recipe_creator_image_id', $this->chunkSize);
+
+        return [
+            "migratedPosts" => $migratedPosts,
+        ];
+    }
+
+    public function chunkMigrateMetadataPinterestImageUrl()
+    {
+        $migratedPosts = $this->migrateMetadata('foodblogkitchen_pinterest_image_url', 'recipe_creator_image_url', $this->chunkSize);
+
+        return [
+            "migratedPosts" => $migratedPosts,
+        ];
     }
 
     public function checkMigrationState()
@@ -63,6 +127,21 @@ class FoodblogkitchenMigration
             set_transient('recipe_creator__migration_pending_recipe_blocks', count($postIds), 24 * HOUR_IN_SECONDS);
         }
 
+        if (get_transient('recipe_creator__migration_pending_jump_to_recipe_blocks') === false) {
+            $postIds = $this->getPostIdsWithBlock('foodblogkitchen-recipes/jump-to-recipe');
+            set_transient('recipe_creator__migration_pending_jump_to_recipe_blocks', count($postIds), 24 * HOUR_IN_SECONDS);
+        }
+
+        if (get_transient('recipe_creator__migration_pending_pinterest_image_id_posts') === false) {
+            $postIds = $this->getPostIdsWithMetadata('foodblogkitchen_pinterest_image_id');
+            set_transient('recipe_creator__migration_pending_pinterest_image_id_posts', count($postIds), 24 * HOUR_IN_SECONDS);
+        }
+
+        if (get_transient('recipe_creator__migration_pending_pinterest_image_url_posts') === false) {
+            $postIds = $this->getPostIdsWithMetadata('foodblogkitchen_pinterest_image_url');
+            set_transient('recipe_creator__migration_pending_pinterest_image_url_posts', count($postIds), 24 * HOUR_IN_SECONDS);
+        }
+
         if ((int)get_transient('recipe_creator__migration_pending_faq_blocks') > 0) {
             add_action('admin_notices', [$this, 'showPendingFaqBlocksWarning']);
         }
@@ -72,8 +151,9 @@ class FoodblogkitchenMigration
             (
 
                 (int)get_transient('recipe_creator__migration_pending_recipe_blocks') > 0 ||
-                get_option('recipe_creator__metadata_migrated', false) === false ||
-                get_option('recipe_creator__settings_migrated', false) === false
+                (int)get_transient('recipe_creator__migration_pending_jump_to_recipe_blocks') > 0 ||
+                (int)get_transient('recipe_creator__migration_pending_pinterest_image_url_posts') > 0 ||
+                (int)get_transient('recipe_creator__migration_pending_pinterest_image_id_posts') > 0
             )
         ) {
             add_action('admin_notices', [$this, 'showPendingMigrationHint']);
@@ -90,8 +170,9 @@ class FoodblogkitchenMigration
             is_plugin_active('foodblogkitchen-toolkit/foodblogkitchen-toolkit.php') &&
             (int)get_transient('recipe_creator__migration_pending_faq_blocks') === 0 &&
             (int)get_transient('recipe_creator__migration_pending_recipe_blocks') === 0 &&
-            get_option('recipe_creator__metadata_migrated', false) === true ||
-            get_option('recipe_creator__settings_migrated', false) === true
+            (int)get_transient('recipe_creator__migration_pending_pinterest_image_url_posts') === 0 &&
+            (int)get_transient('recipe_creator__migration_pending_pinterest_image_id_posts') === 0 &&
+            get_option('recipe_creator__options_migrated', false) === true
         ) {
             $this->uninstallFoodblogToolkit();
 
@@ -163,22 +244,36 @@ class FoodblogkitchenMigration
             <p><?php
                 echo sprintf(
                     __(
-                        'You updated from the Foodblog-Toolkit to the Recipe Creator. This means that some blocks and settings have to be migrated automatically. <a href="%s">Start migration</a>',
-                        "recipe-creator"
+                        'You updated from the Foodblog-Toolkit to the Recipe Creator. This means that some blocks and settings have to be migrated automatically. <a href="%s">Go to migration page</a>',
                     ),
-                    esc_url($this->getStartMigrationUrl())
+                    esc_url($this->getMigrationPageUrl())
                 ); ?></p>
         </div>
 <?php
     }
 
-    private function getPostIdsWithBlock($blockName)
+    public function getPostIdsWithBlock($blockName, $chunkSize = -1)
     {
         $postIds = [];
 
         $postTypes = $this->getPostTypes();
         foreach ($postTypes as $postType) {
-            $posts =  $this->getPostsWithBlockName($postType, $blockName);
+            $posts =  $this->getPostsWithBlockName($postType, $blockName, $chunkSize);
+            foreach ($posts as $post) {
+                array_push($postIds, $post->ID);
+            }
+        }
+
+        return $postIds;
+    }
+
+    public function getPostIdsWithMetadata($metadata, $chunkSize = -1)
+    {
+        $postIds = [];
+
+        $postTypes = $this->getPostTypes();
+        foreach ($postTypes as $postType) {
+            $posts =  $this->getPostsWithMetadata($postType, $metadata, $chunkSize);
             foreach ($posts as $post) {
                 array_push($postIds, $post->ID);
             }
@@ -193,108 +288,24 @@ class FoodblogkitchenMigration
         uninstall_plugin('foodblogkitchen-toolkit/foodblogkitchen-toolkit.php');
     }
 
-    public function getPage()
+    public function activate()
     {
-        if (isset($_GET['migrate']) && $_GET['migrate'] === 'true') {
-            $this->runMigration();
-        } else {
-            $this->showMigrationCandidates();
-        }
-    }
-
-    private function showMigrationCandidates()
-    {
-        $this->getAffectedBlocksList();
-        $this->getAffectedMetadata();
-        $this->getAffectedSettings();
-        $this->getAffectedOptions();
-        $this->renderSubmitButton();
-    }
-
-    private function runMigration()
-    {
-        $this->migrateBlocks();
-        $this->migrateMetadatas();
         $this->migrateSettings();
         $this->migrateOptions();
+
+        update_option('recipe_creator__options_migrated', true);
     }
 
-    private function renderSubmitButton()
+    private function getMigrationPageUrl()
     {
-        $url = $this->getStartMigrationUrl();
-        echo '<a href="' . $url . '" class="button button-primary">Migrate now</a>';
+        return get_admin_url(get_current_network_id(), "admin.php?page=recipe_creator_migrations");
     }
 
-    private function getStartMigrationUrl()
-    {
-        return add_query_arg('migrate', 'true', admin_url('admin.php?page=recipe_creator_migrations'));
-    }
-
-    private function getAffectedBlocksList()
-    {
-        $postTypes = $this->getPostTypes();
-
-        echo '<h2>Blocks to migrate</h2>';
-        echo '<ul>';
-
-        foreach ($postTypes as $postType) {
-            foreach ($this->blocksToMigrate as $oldBlockName => $newBlockName) {
-                $affectedPosts = $this->getPostsWithBlockName($postType, $oldBlockName);
-                echo '<li>' . count($affectedPosts) . ' outdated ' . $oldBlockName . ' blocks in ' . $postType . '</li>';
-            }
-        }
-
-        echo '</ul>';
-    }
-
-    private function getAffectedMetadata()
-    {
-        $postTypes = $this->getPostTypes();
-
-        echo '<h2>Metadata to migrate</h2>';
-        echo '<ul>';
-
-        foreach ($postTypes as $postType) {
-            foreach ($this->metadataToMigrate as $oldMetadata => $newMetadata) {
-                $affectedPosts = $this->getPostsWithMetadata($postType, $oldMetadata);
-                echo '<li>' . count($affectedPosts) . ' outdated ' . $oldMetadata . ' metadata in ' . $postType . '</li>';
-            }
-        }
-
-        echo '</ul>';
-    }
-
-    private function getAffectedSettings()
-    {
-        echo '<h2>Settings to migrate</h2>';
-        echo '<ul>';
-
-        foreach ($this->settingsToMigrate as $oldSettingName => $newSettingName) {
-            $oldSettingValue = get_option($oldSettingName);
-            echo '<li>Migrate ' . $oldSettingName . ' to  ' . $newSettingName . ': ' . $oldSettingValue . '</li>';
-        }
-
-        echo '</ul>';
-    }
-
-    private function getAffectedOptions()
-    {
-        echo '<h2>Options to migrate</h2>';
-        echo '<ul>';
-
-        foreach ($this->optionsToMigrate as $oldOptionName => $newOptionName) {
-            $oldValue = get_option($oldOptionName);
-            echo '<li>Migrate ' . $oldOptionName . ' to  ' . $newOptionName . ': ' . $oldValue . '</li>';
-        }
-
-        echo '</ul>';
-    }
-
-    private function getPostsWithBlockName($postType, $blockName)
+    private function getPostsWithBlockName($postType, $blockName, $chunkSize)
     {
         $args = array(
             'post_type' => $postType,
-            'posts_per_page' => -1,
+            'posts_per_page' => $chunkSize,
             's' => $blockName,
             'post_status' => 'any'
         );
@@ -302,11 +313,11 @@ class FoodblogkitchenMigration
         return  get_posts($args);
     }
 
-    private function getPostsWithMetadata($postType, $metadata)
+    private function getPostsWithMetadata($postType, $metadata, $chunkSize = -1)
     {
         $args = array(
             'post_type' => $postType,
-            'posts_per_page' => -1,
+            'posts_per_page' => $chunkSize,
             'meta_query' => array(
                 array(
                     'key' => $metadata,
@@ -325,20 +336,13 @@ class FoodblogkitchenMigration
         return get_post_types(array('public' => true));
     }
 
-    private function migrateBlocks()
-    {
-        foreach ($this->blocksToMigrate as $oldBlockName => $newBlockName) {
-            $this->migrateBlock($oldBlockName, $newBlockName);
-        }
-    }
-
-    private function migrateBlock($oldBlockName, $newBlockName)
+    private function migrateBlock($oldBlockName, $newBlockName, $chunkSize)
     {
         $postTypes = $this->getPostTypes();
         $counter = 0;
 
         foreach ($postTypes as $postType) {
-            $posts = $this->getPostsWithBlockName($postType, $oldBlockName);
+            $posts = $this->getPostsWithBlockName($postType, $oldBlockName, $chunkSize);
 
             foreach ($posts as $post) {
                 $content = $post->post_content;
@@ -350,34 +354,26 @@ class FoodblogkitchenMigration
             }
         }
 
-        echo '<p>Migrated ' . $counter . ' posts from ' . $oldBlockName . ' to ' . $newBlockName . '</p>';
+        return $counter;
     }
 
-    private function migrateMetadatas()
-    {
-        foreach ($this->metadataToMigrate as $oldMetadata => $newMetadata) {
-            $this->migrateMetadata($oldMetadata, $newMetadata);
-        }
-
-        update_option('recipe_creator__metadata_migrated', true);
-    }
-
-    private function migrateMetadata($oldMetadata, $newMetadata)
+    private function migrateMetadata($oldMetadata, $newMetadata, $chunkSize)
     {
         $postTypes = $this->getPostTypes();
         $counter = 0;
 
         foreach ($postTypes as $postType) {
-            $posts = $this->getPostsWithMetadata($postType, $oldMetadata);
+            $posts = $this->getPostsWithMetadata($postType, $oldMetadata, $chunkSize);
 
             foreach ($posts as $post) {
-                $oldValue = get_post_meta($post->id, $oldMetadata);
-                update_post_meta($post->id, $newMetadata, $oldValue);
+                $oldValue = get_post_meta($post->ID, $oldMetadata);
+                update_post_meta($post->ID, $newMetadata, $oldValue);
+                delete_post_meta($post->ID, $oldMetadata);
                 $counter++;
             }
         }
 
-        echo '<p>Migrated ' . $counter . ' posts metadata (' . $oldMetadata . ')</p>';
+        return $counter;
     }
 
     private function migrateSettings()
@@ -385,8 +381,6 @@ class FoodblogkitchenMigration
         foreach ($this->settingsToMigrate as $oldSettingName => $newSettingName) {
             $this->migrateOption($oldSettingName, $newSettingName);
         }
-
-        update_option('recipe_creator__settings_migrated', true);
     }
 
     private function migrateOptions()
@@ -398,8 +392,9 @@ class FoodblogkitchenMigration
 
     private function migrateOption($oldOptionName, $newOptionName)
     {
-        $value = get_option($oldOptionName);
-        update_option($newOptionName, $value);
-        echo '<p>Migrate ' . $oldOptionName . ' to  ' . $newOptionName . '.</p>';
+        $value = get_option($oldOptionName, 'NOT_SET');
+        if ($value !== 'NOT_SET') {
+            update_option($newOptionName, $value);
+        }
     }
 }
