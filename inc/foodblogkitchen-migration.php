@@ -256,12 +256,9 @@ class FoodblogkitchenMigration
     {
         $postIds = [];
 
-        $postTypes = $this->getPostTypes();
-        foreach ($postTypes as $postType) {
-            $posts =  $this->getPostsWithBlockName($postType, $blockName, $chunkSize);
-            foreach ($posts as $post) {
-                array_push($postIds, $post->ID);
-            }
+        $posts =  $this->getPostsWithBlockName($blockName, $chunkSize);
+        foreach ($posts as $post) {
+            array_push($postIds, $post->ID);
         }
 
         return $postIds;
@@ -271,12 +268,9 @@ class FoodblogkitchenMigration
     {
         $postIds = [];
 
-        $postTypes = $this->getPostTypes();
-        foreach ($postTypes as $postType) {
-            $posts =  $this->getPostsWithMetadata($postType, $metadata, $chunkSize);
-            foreach ($posts as $post) {
-                array_push($postIds, $post->ID);
-            }
+        $posts =  $this->getPostsWithMetadata($metadata, $chunkSize);
+        foreach ($posts as $post) {
+            array_push($postIds, $post->ID);
         }
 
         return $postIds;
@@ -301,22 +295,22 @@ class FoodblogkitchenMigration
         return get_admin_url(get_current_network_id(), "admin.php?page=recipe_creator_migrations");
     }
 
-    private function getPostsWithBlockName($postType, $blockName, $chunkSize)
+    private function getPostsWithBlockName($blockName, $chunkSize)
     {
         $args = array(
-            'post_type' => $postType,
+            'post_type' => $this->getPostTypes(),
             'posts_per_page' => $chunkSize,
             's' => $blockName,
-            'post_status' => 'any'
+            'post_status' => 'any', 'search_columns' => array('post_content')
         );
 
         return  get_posts($args);
     }
 
-    private function getPostsWithMetadata($postType, $metadata, $chunkSize = -1)
+    private function getPostsWithMetadata($metadata, $chunkSize = -1)
     {
         $args = array(
-            'post_type' => $postType,
+            'post_type' => $this->getPostTypes(),
             'posts_per_page' => $chunkSize,
             'meta_query' => array(
                 array(
@@ -331,49 +325,37 @@ class FoodblogkitchenMigration
     }
 
 
-    private function getPostTypes()
+    public function getPostTypes()
     {
-        return get_post_types(array('public' => true));
+        return ['post', 'page'];
     }
 
     private function migrateBlock($oldBlockName, $newBlockName, $chunkSize)
     {
-        $postTypes = $this->getPostTypes();
-        $counter = 0;
+        $posts = $this->getPostsWithBlockName($oldBlockName, $chunkSize);
 
-        foreach ($postTypes as $postType) {
-            $posts = $this->getPostsWithBlockName($postType, $oldBlockName, $chunkSize);
+        foreach ($posts as $post) {
+            $content = $post->post_content;
+            $post->post_content = str_replace($oldBlockName, $newBlockName, $content);
 
-            foreach ($posts as $post) {
-                $content = $post->post_content;
-                $post->post_content = str_replace($oldBlockName, $newBlockName, $content);
-
-                wp_update_post($post);
-
-                $counter++;
-            }
+            wp_update_post($post);
         }
 
-        return $counter;
+        return count($posts);
     }
 
     private function migrateMetadata($oldMetadata, $newMetadata, $chunkSize)
     {
-        $postTypes = $this->getPostTypes();
-        $counter = 0;
 
-        foreach ($postTypes as $postType) {
-            $posts = $this->getPostsWithMetadata($postType, $oldMetadata, $chunkSize);
+        $posts = $this->getPostsWithMetadata($oldMetadata, $chunkSize);
 
-            foreach ($posts as $post) {
-                $oldValue = get_post_meta($post->ID, $oldMetadata);
-                update_post_meta($post->ID, $newMetadata, $oldValue);
-                delete_post_meta($post->ID, $oldMetadata);
-                $counter++;
-            }
+        foreach ($posts as $post) {
+            $oldValue = get_post_meta($post->ID, $oldMetadata);
+            update_post_meta($post->ID, $newMetadata, $oldValue);
+            delete_post_meta($post->ID, $oldMetadata);
         }
 
-        return $counter;
+        return count($posts);
     }
 
     private function migrateSettings()
