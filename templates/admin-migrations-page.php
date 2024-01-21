@@ -2,7 +2,7 @@
     <h1><?php echo get_admin_page_title(); ?></h1>
 
     <div class="notice notice-success" style="display: none">
-        <p>All migrations have been successfully completed. You can now deactivate and uninstall the Foodblog Toolkit.</p>
+        <p>All migrations have been successfully completed. You can now deactivate and uninstall the Foodblog-Toolkit.</p>
     </div>
 
     <div>
