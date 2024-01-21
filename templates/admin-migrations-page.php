@@ -36,11 +36,6 @@
 
     <script>
         (() => {
-            var urls = [
-                "<?= rest_url("recipe-creator/v1/migrate-blocks") ?>",
-                "<?= rest_url("recipe-creator/v1/migrate-metadata") ?>"
-            ];
-
             var button = document.querySelector('#recipe-creator--start-migration-button');
             var migratedPosts = 0;
 
