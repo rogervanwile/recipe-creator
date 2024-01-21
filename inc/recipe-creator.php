@@ -49,12 +49,6 @@ class RecipeCreator
         add_action("wp_ajax_recipe_creator_set_rating", [$this, "setRating"]);
         add_action("wp_ajax_nopriv_recipe_creator_set_rating", [$this, "setRating"]);
 
-        // Enable Auto-Update
-        // https://rudrastyh.com/wordpress/self-hosted-plugin-update.html
-        add_filter("plugins_api", [$this, "fetchInfo"], 20, 3);
-        add_filter("site_transient_update_plugins", [$this, "pushUpdate"]);
-        add_action("upgrader_process_complete", [$this, "afterUpdate"], 10, 2);
-
         add_filter("the_content", [$this, "handleContent"], 1);
 
         add_action("admin_notices", [$this, "showReleaseInfo"]);
@@ -188,130 +182,6 @@ class RecipeCreator
         ]);
     }
 
-    public function fetchInfo($res, $action, $args)
-    {
-        // do nothing if this is not about getting plugin information
-        if ("plugin_information" !== $action) {
-            return $res;
-        }
-
-        // do nothing if it is not our plugin
-        if ("recipe-creator" !== $args->slug) {
-            return $res;
-        }
-
-        // trying to get from cache first
-        if (false == ($remote = get_transient("recipe_creator_update"))) {
-            // info.json is the file with the actual plugin information on your server
-            $remote = wp_remote_get("https://updates.recipe-creator.de/recipe-creator/info.json", [
-                "timeout" => 10,
-                "headers" => [
-                    "Accept" => "application/json",
-                ],
-            ]);
-
-            if (
-                !is_wp_error($remote) &&
-                isset($remote["response"]["code"]) &&
-                $remote["response"]["code"] == 200 &&
-                !empty($remote["body"])
-            ) {
-                set_transient("recipe_creator_update", $remote, 43200); // 12 hours cache
-            }
-        }
-
-        if (
-            !is_wp_error($remote) &&
-            isset($remote["response"]["code"]) &&
-            $remote["response"]["code"] == 200 &&
-            !empty($remote["body"])
-        ) {
-            $remote = json_decode($remote["body"]);
-            $res = new stdClass();
-
-            $res->name = $remote->name;
-            $res->slug = "recipe-creator";
-            $res->version = $remote->version;
-            $res->tested = $remote->tested;
-            $res->requires = $remote->requires;
-            $res->author = '<a href="https://www.recipe-creator.de">recipe-creator.de</a>';
-            $res->author_profile = "https://www.recipe-creator.de";
-            $res->download_link = $remote->download_url;
-            $res->trunk = $remote->download_url;
-            $res->requires_php = $remote->requires_php;
-            $res->last_updated = $remote->last_updated;
-            $res->sections = [
-                "description" => $remote->sections->description,
-                "installation" => $remote->sections->installation,
-                "changelog" => $remote->sections->changelog,
-                // you can add your custom sections (tabs) here
-            ];
-
-            // in case you want the screenshots tab, use the following HTML format for its content:
-            // <ol><li><a href="IMG_URL" target="_blank"><img src="IMG_URL" alt="CAPTION" /></a><p>CAPTION</p></li></ol>
-            if (!empty($remote->screenshots)) {
-                $res["screenshots"] = $remote->screenshots;
-            }
-
-            if (!empty($remote->banners)) {
-                $res["banners"] = $remote->banners;
-            }
-            return $res;
-        }
-
-        return $res;
-    }
-
-    public function pushUpdate($transient)
-    {
-        if (empty($transient->checked)) {
-            return $transient;
-        }
-
-        // trying to get from cache first, to disable cache comment 10,20,21,22,24
-        if (false == ($remote = get_transient("recipe_creator_upgrade"))) {
-            // info.json is the file with the actual plugin information on your server
-            $remote = wp_remote_get("https://updates.recipe-creator.de/recipe-creator/info.json", [
-                "timeout" => 10,
-                "headers" => [
-                    "Accept" => "application/json",
-                ],
-            ]);
-
-            if (
-                !is_wp_error($remote) &&
-                isset($remote["response"]["code"]) &&
-                $remote["response"]["code"] == 200 &&
-                !empty($remote["body"])
-            ) {
-                set_transient("recipe_creator_upgrade", $remote, 43200); // 12 hours cache
-            }
-        }
-
-        if (isset($remote) && !is_wp_error($remote)) {
-            $remote = json_decode($remote["body"]);
-
-            $currentVersion = $this->getPluginVersion();
-
-            // your installed plugin version should be on the line below! You can obtain it dynamically of course
-            if (
-                $remote &&
-                version_compare($currentVersion, $remote->version, "<") &&
-                version_compare($remote->requires, get_bloginfo("version"), "<")
-            ) {
-                $res = new stdClass();
-                $res->slug = "recipe-creator";
-                $res->plugin = "recipe-creator/recipe-creator.php";
-                $res->new_version = $remote->version;
-                $res->tested = $remote->tested;
-                $res->package = $remote->download_url;
-                $transient->response[$res->plugin] = $res;
-                //$transient->checked[$res->plugin] = $remote->version;
-            }
-        }
-        return $transient;
-    }
-
     private function getPluginVersion()
     {
         if (!function_exists("get_plugin_data")) {
@@ -319,14 +189,6 @@ class RecipeCreator
         }
         $plugin_data = get_plugin_data(plugin_dir_path(__FILE__) . "../recipe-creator.php");
         return $plugin_data["Version"];
-    }
-
-    public function afterUpdate($upgrader_object, $options)
-    {
-        if ($options["action"] == "update" && $options["type"] === "plugin") {
-            // just clean the cache when new plugin version is installed
-            delete_transient("recipe_creator_upgrade");
-        }
     }
 
     public function enqueueAdminJs()
@@ -718,6 +580,7 @@ class RecipeCreator
 
     public function activate()
     {
+        $this->foodblogkitchenMigrations->activate();
     }
 
     public function deactivate()
