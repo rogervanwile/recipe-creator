@@ -45,7 +45,4 @@ $recipeCreator = new RecipeCreator(); ?>
       <?php echo $recipeCreator->renderRecipeBlockStyles(); ?>
     </div>
   </div>
-  <script type="text/template" id="recipe-creator--style-block-template">
-    <?php echo RecipeCreator::getStyleBlockTemplate(); ?>
-  </script>
 </div>

@@ -26,6 +26,12 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 
 `npm run start`
 
+## Changes in Handlebar-Templates
+
+If you change the handlebar templates, you must recompile them for usage in the plugin. Just run:
+
+`npm run build`
+
 # Publish a new version
 
 - `npm run build`

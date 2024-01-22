@@ -6,7 +6,6 @@ if (!defined("ABSPATH")) {
 
 require __DIR__ . "/../vendor/autoload.php";
 
-use LightnCandy\LightnCandy;
 
 class RecipeCreator
 {
@@ -713,25 +712,9 @@ class RecipeCreator
         return str_replace(',', '.', $rawAmount);
     }
 
-    public static function getStyleBlockTemplate()
-    {
-        return file_get_contents(plugin_dir_path(__FILE__) . "../src/blocks/recipe/style-block.hbs");
-    }
-
     public static function getRecipeBlockStylesRenderer()
     {
-        return self::getRenderer(
-            plugin_dir_path(__FILE__) . "../src/blocks/recipe/style-block.hbs",
-            plugin_dir_path(__FILE__) . "../build/recipe-block-styles-renderer.php",
-            [
-                "encode" => function ($context, $options) {
-                    return urlencode($context);
-                },
-                "shade" => function ($color, $shade, $options) {
-                    return self::shadeColor($color, $shade);
-                },
-            ]
-        );
+        return include plugin_dir_path(__FILE__) . "../build/recipe-block-styles-renderer.php";
     }
 
     public function renderRecipeBlockStyles()
@@ -740,129 +723,21 @@ class RecipeCreator
         $svgs = $this->getSvgs($options);
 
         $renderer = self::getRecipeBlockStylesRenderer();
+
         return $renderer([
             "options" => $options,
             "svgs" => $svgs,
         ]);
     }
 
-    private static function shadeColor($color, $shade)
-    {
-        $num = base_convert(substr($color, 1), 16, 10);
-        $amt = round(2.55 * $shade);
-        $r = ($num >> 16) + $amt;
-        $b = (($num >> 8) & 0x00ff) + $amt;
-        $g = ($num & 0x0000ff) + $amt;
-
-        return "#" .
-            substr(
-                base_convert(
-                    0x1000000 +
-                        ($r < 255 ? ($r < 1 ? 0 : $r) : 255) * 0x10000 +
-                        ($b < 255 ? ($b < 1 ? 0 : $b) : 255) * 0x100 +
-                        ($g < 255 ? ($g < 1 ? 0 : $g) : 255),
-                    10,
-                    16
-                ),
-                1
-            );
-    }
-
     public static function getRecipeBlockRenderer()
     {
-        return self::getRenderer(
-            plugin_dir_path(__FILE__) . "../src/blocks/recipe/block.hbs",
-            plugin_dir_path(__FILE__) . "../build/recipe-block-renderer.php",
-            [
-                "formatDuration" => function ($context, $options) {
-                    if (isset($context) && $context !== "") {
-                        $minutes = intval($context);
-
-                        if ($minutes < 60) {
-                            return $minutes . " " . __("minutes", "recipe-creator");
-                        } else {
-                            $hours = floor($minutes / 60);
-                            $rest = $minutes % 60;
-
-                            return $hours .
-                                " " .
-                                __("hours", "recipe-creator") .
-                                ($rest > 0 ? " " . $rest . " " . __("minutes", "recipe-creator") : "");
-                        }
-                    }
-
-                    return "";
-                },
-                "toJSON" => function ($context, $options) {
-                    return json_encode($context);
-                },
-                "ifOneOfThem" => function ($arg1, $arg2, $options) {
-                    if ((isset($arg1) && !empty($arg1)) || (isset($arg2) && !empty($arg2))) {
-                        return $options["fn"]();
-                    } else {
-                        return $options["inverse"]();
-                    }
-                },
-                "encode" => function ($context, $options) {
-                    return urlencode($context);
-                },
-                "shade" => function ($color, $shade, $options) {
-                    return self::shadeColor($color, $shade);
-                },
-                "ifMoreOrEqual" => function ($arg1, $arg2, $options) {
-                    if ($arg1 >= $arg2) {
-                        return $options["fn"]();
-                    } else {
-                        return $options["inverse"]();
-                    }
-                },
-                "isEven" => function ($conditional, $options) {
-                    if ($conditional % 2 === 0) {
-                        return $options["fn"]();
-                    } else {
-                        return $options["inverse"]();
-                    }
-                },
-            ],
-            [
-                "styleBlock" => plugin_dir_path(__FILE__) . "../src/blocks/recipe/style-block.hbs",
-            ]
-        );
+        return include plugin_dir_path(__FILE__) . "../build/recipe-block-renderer.php";
     }
 
     public static function getJumpToRecipeBlockRenderer()
     {
-        return self::getRenderer(
-            plugin_dir_path(__FILE__) . "../src/blocks/jump-to-recipe/template.hbs",
-            plugin_dir_path(__FILE__) . "../build/jump-to-recipe-block-renderer.php"
-        );
-    }
-
-    private static function getRenderer(
-        $templatePath,
-        $rendererPath,
-        $handlebarsHelper = [],
-        $handlebarsPartialPaths = []
-    ) {
-        if (!file_exists($rendererPath) || (WP_DEBUG && file_exists($templatePath))) {
-            $template = file_get_contents($templatePath);
-
-            $handlebarsPartials = array_map(function ($path) {
-                return file_get_contents($path);
-            }, $handlebarsPartialPaths);
-
-            $phpStr = LightnCandy::compile($template, [
-                "flags" => LightnCandy::FLAG_HANDLEBARSJS | LightnCandy::FLAG_ERROR_EXCEPTION,
-                "helpers" => $handlebarsHelper,
-                "partials" => $handlebarsPartials,
-            ]);
-
-            // Save the compiled PHP code into a php file
-            file_put_contents($rendererPath, "<?php " . $phpStr . "?>");
-        }
-
-        // Get the render function from the php file
-        return include $rendererPath;
+        return include plugin_dir_path(__FILE__) . "../build/jump-to-recipe-block-renderer.php"; 
     }
 
     public function getDummyData()
