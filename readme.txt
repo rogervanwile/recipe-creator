@@ -11,6 +11,11 @@ License URI:       https://www.gnu.org/licenses/gpl-3.0
 
 Create recipes and optimize them easily for search engines.
 
+Use our Gutenberg recipe block to easy blog recipes. You can even add a Pinterest image, to every recipe, which creates a "Pin on Pinterest" button and shares this image.
+
+In that case, your users will be redirected to https://www.pinterest.com.
+See there data pricacy policy to inform your users: https://help.pinterest.com/de/article/your-privacy-and-data-settings
+
 == Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins/recipe-creator` directory, or install the plugin through the WordPress plugins screen directly.
