@@ -856,7 +856,17 @@ class RecipeCreator
         $attributes["totalTime"] = isset($attributes["totalTime"]) ? floatval($attributes["totalTime"]) : 0;
 
         if (isset($attributes["difficulty"]) && !empty($attributes["difficulty"])) {
-            $attributes["difficulty"] = __($attributes["difficulty"], "recipe-creator");
+            switch ($attributes["difficulty"]) {
+                case 'simple';
+                    $attributes["difficulty"] = __('simple', "recipe-creator");
+                    break;
+                case 'moderate';
+                    $attributes["difficulty"] = __('moderate', "recipe-creator");
+                    break;
+                case 'challenging';
+                    $attributes["difficulty"] = __('challenging', "recipe-creator");
+                    break;
+            }
         }
 
         $attributes["recipeYieldUnitFormatted"] = $this->getRecipeYieldUnitFormatted(
