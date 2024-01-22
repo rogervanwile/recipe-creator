@@ -1003,20 +1003,18 @@ class RecipeCreator
             $pinterestImageId = (int)$attributes['pinterestImageId'];
 
             if ($pinterestImageId !== null) {
-                $currentUrl =
-                    (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on" ? "https" : "http") .
-                    "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
                 $pinterestImageUrl = wp_get_attachment_image_src($pinterestImageId, "recipe-creator--pinterest");
                 if ($pinterestImageUrl) {
-                    $attributes["pinterestPinItUrl"] =
+                    $attributes["pinterestPinItUrl"] = esc_url(
                         "https://www.pinterest.com/pin/create/button/" .
-                        "?url=" .
-                        urlencode($currentUrl) .
-                        "&media=" .
-                        urlencode($pinterestImageUrl[0]) .
-                        "&description=" .
-                        urlencode($description);
+                            "?url=" .
+                            urlencode(get_permalink()) .
+                            "&media=" .
+                            urlencode($pinterestImageUrl[0]) .
+                            "&description=" .
+                            urlencode($description)
+                    );
                 }
             }
         }
