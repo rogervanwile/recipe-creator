@@ -3,6 +3,8 @@
 define("ABSPATH", "let-me-in");
 define("WP_DEBUG", true);
 
+require __DIR__ . "/../vendor/autoload.php";
+
 use LightnCandy\LightnCandy;
 
 /**

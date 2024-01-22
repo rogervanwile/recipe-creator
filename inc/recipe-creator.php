@@ -6,7 +6,6 @@ if (!defined("ABSPATH")) {
 
 require __DIR__ . "/../vendor/autoload.php";
 
-
 class RecipeCreator
 {
     private $primaryColorDefault = "#e27a7a";
