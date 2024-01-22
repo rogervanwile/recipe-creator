@@ -8,6 +8,8 @@
  * Author:          recipe-creator.de
  * Text Domain:     recipe-creator
  * Domain Path:     /languages
+ * License:         GPLv3
+ * License URI:     https://www.gnu.org/licenses/gpl-3.0
  */
 
 if (!defined("ABSPATH")) {
