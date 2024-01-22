@@ -133,6 +133,13 @@
     "image16_9Id": {
       "type": "number"
     },
+    "pinterestImageId": {
+      "type": "number"
+    },
+    "pinterestImageUrl": {
+      "type": "string",
+      "default": ""
+    },
     "videoUrl": {
       "type": "string",
       "default": ""
