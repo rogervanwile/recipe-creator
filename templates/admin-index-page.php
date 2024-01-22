@@ -1,4 +1,8 @@
 <?php
+if (!defined('ABSPATH')) {
+  die();
+}
+
 $recipeCreator = new RecipeCreator(); ?>
 
 <div class="wrap">

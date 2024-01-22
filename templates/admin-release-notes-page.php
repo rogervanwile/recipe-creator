@@ -1,4 +1,8 @@
 <?php
+if (!defined('ABSPATH')) {
+    die();
+}
+
 $Parsedown = new Parsedown(); ?>
 <div class="wrap recipe-creator--release-notes">
   <h1><?php echo get_admin_page_title(); ?></h1>
