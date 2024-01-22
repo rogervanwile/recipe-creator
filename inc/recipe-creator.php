@@ -525,16 +525,6 @@ class RecipeCreator
 
     public function registerMeta()
     {
-        register_meta("post", "recipe_creator_image_id", [
-            "show_in_rest" => true,
-            "type" => "number",
-            "single" => true,
-        ]);
-        register_meta("post", "recipe_creator_image_url", [
-            "show_in_rest" => true,
-            "type" => "string",
-            "single" => true,
-        ]);
         register_meta("post", "rating_1_votes", [
             "show_in_rest" => true,
             "type" => "number",
@@ -736,7 +726,7 @@ class RecipeCreator
 
     public static function getJumpToRecipeBlockRenderer()
     {
-        return include plugin_dir_path(__FILE__) . "../build/jump-to-recipe-block-renderer.php"; 
+        return include plugin_dir_path(__FILE__) . "../build/jump-to-recipe-block-renderer.php";
     }
 
     public function getDummyData()
@@ -999,22 +989,25 @@ class RecipeCreator
 
         // Process the pinterest image
 
-        $pinterestImageId = get_post_meta(get_the_ID(), "recipe_creator_image_id", true) ?: null;
-        $currentUrl =
-            (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on" ? "https" : "http") .
-            "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        if (isset($attributes['pinterestImageId']) && !empty($attributes["pinterestImageId"])) {
+            $pinterestImageId = (int)$attributes['pinterestImageId'];
 
-        if ($pinterestImageId !== null) {
-            $pinterestImageUrl = wp_get_attachment_image_src($pinterestImageId, "recipe-creator--pinterest");
-            if ($pinterestImageUrl) {
-                $attributes["pinterestPinItUrl"] =
-                    "https://www.pinterest.com/pin/create/button/" .
-                    "?url=" .
-                    urlencode($currentUrl) .
-                    "&media=" .
-                    urlencode($pinterestImageUrl[0]) .
-                    "&description=" .
-                    urlencode($description);
+            if ($pinterestImageId !== null) {
+                $currentUrl =
+                    (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on" ? "https" : "http") .
+                    "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+                $pinterestImageUrl = wp_get_attachment_image_src($pinterestImageId, "recipe-creator--pinterest");
+                if ($pinterestImageUrl) {
+                    $attributes["pinterestPinItUrl"] =
+                        "https://www.pinterest.com/pin/create/button/" .
+                        "?url=" .
+                        urlencode($currentUrl) .
+                        "&media=" .
+                        urlencode($pinterestImageUrl[0]) .
+                        "&description=" .
+                        urlencode($description);
+                }
             }
         }
 

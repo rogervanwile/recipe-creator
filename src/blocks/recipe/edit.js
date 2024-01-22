@@ -234,17 +234,14 @@ export default function Edit(props) {
               <MediaUpload
                 onSelect={(media) => {
                   if (media) {
-                    setMeta({
-                      recipe_creator_image_id: media.id,
-                      recipe_creator_image_url: media.url,
-                    });
+                    props.setAttributes({ pinterestImageId: media.id, pinterestImageUrl: media.url });
                   }
                 }}
                 allowedTypes={ALLOWED_MEDIA_TYPES}
-                value={props.data.meta.recipe_creator_image_url}
+                value={props.attributes.pinterestImageUrl}
                 render={({ open }) => (
                   <Fragment>
-                    <img src={props.data.meta.recipe_creator_image_url} onClick={open} />
+                    <img src={props.attributes.pinterestImageUrl} onClick={open} />
                     <button type="button" className="components-button is-secondary" onClick={open}>
                       {__("Select image", "recipe-creator")}
                     </button>
