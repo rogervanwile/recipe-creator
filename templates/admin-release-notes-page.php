@@ -5,26 +5,26 @@ if (!defined('ABSPATH')) {
 
 $Parsedown = new Parsedown(); ?>
 <div class="wrap recipe-creator--release-notes">
-  <h1><?php echo get_admin_page_title(); ?></h1>
-  <?php
-  $userLocale = get_user_locale();
+    <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+    <?php
+    $userLocale = get_user_locale();
 
-  if (in_array($userLocale, ["de_DE", "de_AT", "de_CH"])) {
-      $changelog = file_get_contents(plugin_dir_path(__FILE__) . "../changelog-de_DE.md");
-  } else {
-      $changelog = file_get_contents(plugin_dir_path(__FILE__) . "../changelog.md");
-  }
+    if (in_array($userLocale, ["de_DE", "de_AT", "de_CH"])) {
+        $changelog = file_get_contents(plugin_dir_path(__FILE__) . "../changelog-de_DE.md");
+    } else {
+        $changelog = file_get_contents(plugin_dir_path(__FILE__) . "../changelog.md");
+    }
 
-  // Replace some Placeholder in the markdown file
-  $changelog = str_replace(
-      ["##RECIPE_BLOCK_SETTINGS_LINK##", "##ASSETS_PATH##"],
-      [
-          get_admin_url(get_current_network_id(), "admin.php?page=recipe_creator"),
-          plugin_dir_url(__FILE__) . "../assets",
-      ],
-      $changelog
-  );
+    // Replace some Placeholder in the markdown file
+    $changelog = str_replace(
+        ["##RECIPE_BLOCK_SETTINGS_LINK##", "##ASSETS_PATH##"],
+        [
+            get_admin_url(get_current_network_id(), "admin.php?page=recipe_creator"),
+            plugin_dir_url(__FILE__) . "../assets",
+        ],
+        $changelog
+    );
 
-  echo $Parsedown->text($changelog);
-  ?>
+    echo esc_html($Parsedown->text($changelog));
+    ?>
 </div>

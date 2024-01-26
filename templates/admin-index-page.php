@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
 $recipeCreator = new RecipeCreator(); ?>
 
 <div class="wrap">
-  <h1><?php echo get_admin_page_title(); ?></h1>
+  <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
   <?php settings_errors(); ?>
 
   <div id="col-container" class="wp-clearfix">
@@ -42,11 +42,11 @@ $recipeCreator = new RecipeCreator(); ?>
     </div>
     <div id="col-right">
       <div class="col-wrap">
-        <?php echo $recipeCreator->renderRecipeBlockDummy(); ?>
+        <?php echo esc_html($recipeCreator->renderRecipeBlockDummy()); ?>
       </div>
     </div>
     <div id="recipe-creator--style-container">
-      <?php echo $recipeCreator->renderRecipeBlockStyles(); ?>
+      <?php echo esc_html($recipeCreator->renderRecipeBlockStyles()); ?>
     </div>
   </div>
 </div>
