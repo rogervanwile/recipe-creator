@@ -16,6 +16,10 @@ Use our Gutenberg recipe block to easy blog recipes. You can even add a Pinteres
 In that case, your users will be redirected to https://www.pinterest.com.
 See there data pricacy policy to inform your users: https://help.pinterest.com/de/article/your-privacy-and-data-settings
 
+With an optional call-to-action, you can ask your visitors to tag you on Instagram when they have cooked your recipe. This includes a link to your Instagram profile.
+
+Clicking on it takes the user to Instagram. Take a look at their privacy policy (https://privacycenter.instagram.com/policy) and inform your user about this in your privacy policy, if needed.
+
 == Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins/recipe-creator` directory, or install the plugin through the WordPress plugins screen directly.
