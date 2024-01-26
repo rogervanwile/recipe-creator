@@ -112,7 +112,7 @@
       }
 
       .recipe-creator--recipe-block--ingredients-table {
-        tr.recipe-creator--recipe-block--ingredients-item.recipe-creator--even {
+        tr.recipe-creator--recipe-block--ingredients-item:nth-child(even) {
           td {
             background-color: var(--primary-light) !important;
             color: var(--primary-light-contrast);

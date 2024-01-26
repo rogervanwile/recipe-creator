@@ -701,32 +701,9 @@ class RecipeCreator
         return str_replace(',', '.', $rawAmount);
     }
 
-    public static function getRecipeBlockStylesRenderer()
-    {
-        return include plugin_dir_path(__FILE__) . "../build/recipe-block-styles-renderer.php";
-    }
-
     public function renderRecipeBlockStyles()
     {
-        $options = $this->getStyleOptions();
-        $svgs = $this->getSvgs($options);
-
-        $renderer = self::getRecipeBlockStylesRenderer();
-
-        return $renderer([
-            "options" => $options,
-            "svgs" => $svgs,
-        ]);
-    }
-
-    public static function getRecipeBlockRenderer()
-    {
-        return include plugin_dir_path(__FILE__) . "../build/recipe-block-renderer.php";
-    }
-
-    public static function getJumpToRecipeBlockRenderer()
-    {
-        return include plugin_dir_path(__FILE__) . "../build/jump-to-recipe-block-renderer.php";
+        include(__DIR__ . '/../partials/style-block.php');
     }
 
     public function getDummyData()
@@ -737,7 +714,7 @@ class RecipeCreator
             "recipeYieldUnit" => "servings",
             "recipeYieldUnitFormatted" => __("servings", "recipe-creator"),
             "difficulty" => __("simple", "recipe-creator"),
-            "prepTime" => 0,
+            "prepTime" => 5,
             "cookTime" => 5,
             "name" => __("Banana shake", "recipe-creator"),
             "description" => __(
@@ -800,11 +777,8 @@ class RecipeCreator
 
     public function renderRecipeBlockDummy()
     {
-        $dummyData = $this->getDummyData();
-
-        $renderer = self::getRecipeBlockRenderer();
-
-        return $renderer($dummyData);
+        $attributes = $this->getDummyData();
+        include(__DIR__ . '/../partials/recipe-block.php');
     }
 
     private function getRecipeBlockTranslations()
@@ -838,9 +812,9 @@ class RecipeCreator
     {
         wp_enqueue_script("recipe-creator--recipe-view-script");
 
-        $attributes["translations"] = $this->getRecipeBlockTranslations();
+        // $attributes["translations"] = $this->getRecipeBlockTranslations();
 
-        $attributes["postId"] = get_the_ID();
+        // $attributes["postId"] = get_the_ID();
 
         $averageRating = get_post_meta(get_the_ID(), "average_rating", true) ?: 0;
         $ratingCount = get_post_meta(get_the_ID(), "rating_count", true) ?: 0;
@@ -901,33 +875,32 @@ class RecipeCreator
                 break;
         }
 
-        // In version 1.4.0 I added the possibility to split ingredient lists
-        // So we have to migrate the old list (ingredients) to the new structure
-        // of ingredientsGroups.
+        // // In version 1.4.0 I added the possibility to split ingredient lists
+        // // So we have to migrate the old list (ingredients) to the new structure
+        // // of ingredientsGroups.
 
-        if (isset($attributes["ingredients"]) && !empty($attributes["ingredients"])) {
-            $attributes["ingredientsGroups"] = [
-                [
-                    "title" => "",
-                    "list" => $attributes["ingredients"],
-                ],
-            ];
-            unset($attributes["ingredients"]);
-        }
+        // if (isset($attributes["ingredients"]) && !empty($attributes["ingredients"])) {
+        //     $attributes["ingredientsGroups"] = [
+        //         [
+        //             "title" => "",
+        //             "list" => $attributes["ingredients"],
+        //         ],
+        //     ];
+        //     unset($attributes["ingredients"]);
+        // }
 
-        // In version 1.5.0 I added the possibility to split preparation step lists
-        // So we have to migrate the old list (preparationSteps) to the new structure
-        // of preparationStepsGroups.
-
-        if (isset($attributes["preparationSteps"]) && !empty($attributes["preparationSteps"])) {
-            $attributes["preparationStepsGroups"] = [
-                [
-                    "title" => "",
-                    "list" => $attributes["preparationSteps"],
-                ],
-            ];
-            unset($attributes["preparationSteps"]);
-        }
+        // // In version 1.5.0 I added the possibility to split preparation step lists
+        // // So we have to migrate the old list (preparationSteps) to the new structure
+        // // of preparationStepsGroups.
+        // if (isset($attributes["preparationSteps"]) && !empty($attributes["preparationSteps"])) {
+        //     $attributes["preparationStepsGroups"] = [
+        //         [
+        //             "title" => "",
+        //             "list" => $attributes["preparationSteps"],
+        //         ],
+        //     ];
+        //     unset($attributes["preparationSteps"]);
+        // }
 
         $attributes["ingredientsGroups"] = $this->prepareIngredientsForRenderer($attributes["ingredientsGroups"]);
 
@@ -995,15 +968,13 @@ class RecipeCreator
             $images[] = $attributes["thumbnail"];
         }
 
-        $description = isset($attributes["description"]) ? $attributes["description"] : "";
+        $description = !empty($attributes["description"]) ? $attributes["description"] : "";
 
         // Process the pinterest image
 
         if (isset($attributes['pinterestImageId']) && !empty($attributes["pinterestImageId"])) {
             $pinterestImageId = (int)$attributes['pinterestImageId'];
-
             if ($pinterestImageId !== null) {
-
                 $pinterestImageUrl = wp_get_attachment_image_src($pinterestImageId, "recipe-creator--pinterest");
                 if ($pinterestImageUrl) {
                     $attributes["pinterestPinItUrl"] = esc_url(
@@ -1080,14 +1051,13 @@ class RecipeCreator
         $attributes["ldJson"] = array_filter($attributes["ldJson"]);
 
         $attributes["options"] = $this->getStyleOptions();
-        $attributes["svgs"] = $this->getSvgs($attributes["options"]);
+        // $attributes["svgs"] = $this->getSvgs($attributes["options"]);
 
         // Instagram-CTA
         $attributes["instagramUsername"] = get_option("recipe_creator__instagram__username", "");
         $attributes["instagramHashtag"] = get_option("recipe_creator__instagram__hashtag", "");
 
-        $renderer = self::getRecipeBlockRenderer();
-        return $renderer($attributes);
+        include(__DIR__ . '/../partials/recipe-block.php');
     }
 
     private function getRecipeYieldUnitFormatted($unit, $amount)
@@ -1200,14 +1170,9 @@ class RecipeCreator
         return $flat;
     }
 
-    public function renderJumpToRecipeBlock($attributes, $context)
+    public function renderJumpToRecipeBlock()
     {
-        $renderer = self::getJumpToRecipeBlockRenderer();
-        $attributes["translations"] = [
-            "jumpToRecipe" => __("Jump to recipe", "recipe-creator"),
-        ];
-        $attributes["options"] = $this->getStyleOptions();
-        return $renderer($attributes);
+        include(__DIR__ . '/../partials/jump-to-recipe-block.php');
     }
 
     private function getStyleOptions()
@@ -1269,46 +1234,66 @@ class RecipeCreator
         return $this->toIso8601Duration(($cookTime + $bakingTime) * 60);
     }
 
-    private function getSvgs($colors)
+    public function getStyledSvg($type)
     {
-        return [
-            "clock" => $this->base64EncodeImage(
-                '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="' .
-                    $colors["backgroundColorContrast"] .
-                    '" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="9" /><polyline points="12 7 12 12 15 15" /></svg>'
-            ),
-            "star" => $this->base64EncodeImage(
-                '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="' .
-                    $colors["primaryColor"] .
-                    '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>'
-            ),
-            "starFilled" => $this->base64EncodeImage(
-                '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="' .
-                    $colors["primaryColor"] .
-                    '" stroke="' .
-                    $colors["primaryColor"] .
-                    '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>'
-            ),
-            "starHalfFilled" => $this->base64EncodeImage(
-                '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="url(#half_grad)" stroke="' .
-                    $colors["primaryColor"] .
-                    '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="half_grad"><stop offset="50%" stop-color="' .
-                    $colors["primaryColor"] .
-                    '"/><stop offset="50%" stop-color="transparent" stop-opacity="1" /></linearGradient></defs><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>'
-            ),
-            "starHighlighted" => $this->base64EncodeImage(
-                '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="' .
-                    $colors["primaryColorDark"] .
-                    '" stroke="' .
-                    $colors["primaryColorDark"] .
-                    '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>'
-            ),
-            "instagram" => $this->base64EncodeImage(
-                '<svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill="' .
-                    $colors["primaryColorContrast"] .
-                    '"> <title>IG Logo</title><g fill-rule="evenodd"><path d="M18 0c-4.889 0-5.501.02-7.421.108C8.663.196 7.354.5 6.209.945a8.823 8.823 0 0 0-3.188 2.076A8.83 8.83 0 0 0 .945 6.209C.5 7.354.195 8.663.108 10.58.021 12.499 0 13.11 0 18s.02 5.501.108 7.421c.088 1.916.392 3.225.837 4.37a8.823 8.823 0 0 0 2.076 3.188c1 1 2.005 1.616 3.188 2.076 1.145.445 2.454.75 4.37.837 1.92.087 2.532.108 7.421.108s5.501-.02 7.421-.108c1.916-.088 3.225-.392 4.37-.837a8.824 8.824 0 0 0 3.188-2.076c1-1 1.616-2.005 2.076-3.188.445-1.145.75-2.454.837-4.37.087-1.92.108-2.532.108-7.421s-.02-5.501-.108-7.421c-.088-1.916-.392-3.225-.837-4.37a8.824 8.824 0 0 0-2.076-3.188A8.83 8.83 0 0 0 29.791.945C28.646.5 27.337.195 25.42.108 23.501.021 22.89 0 18 0zm0 3.243c4.806 0 5.376.019 7.274.105 1.755.08 2.708.373 3.342.62.84.326 1.44.717 2.07 1.346.63.63 1.02 1.23 1.346 2.07.247.634.54 1.587.62 3.342.086 1.898.105 2.468.105 7.274s-.019 5.376-.105 7.274c-.08 1.755-.373 2.708-.62 3.342a5.576 5.576 0 0 1-1.346 2.07c-.63.63-1.23 1.02-2.07 1.346-.634.247-1.587.54-3.342.62-1.898.086-2.467.105-7.274.105s-5.376-.019-7.274-.105c-1.755-.08-2.708-.373-3.342-.62a5.576 5.576 0 0 1-2.07-1.346 5.577 5.577 0 0 1-1.346-2.07c-.247-.634-.54-1.587-.62-3.342-.086-1.898-.105-2.468-.105-7.274s.019-5.376.105-7.274c.08-1.755.373-2.708.62-3.342.326-.84.717-1.44 1.346-2.07.63-.63 1.23-1.02 2.07-1.346.634-.247 1.587-.54 3.342-.62 1.898-.086 2.468-.105 7.274-.105z"/><path d="M18 24.006a6.006 6.006 0 1 1 0-12.012 6.006 6.006 0 0 1 0 12.012zm0-15.258a9.252 9.252 0 1 0 0 18.504 9.252 9.252 0 0 0 0-18.504zm11.944-.168a2.187 2.187 0 1 1-4.374 0 2.187 2.187 0 0 1 4.374 0"/></g></svg>'
-            ),
-        ];
+        switch ($type) {;
+            case "clock":
+                return $this->base64EncodeImage(
+                    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="' .
+                        esc_attr(get_option(
+                            "recipe_creator__background_color_contrast",
+                            $this->backgroundColorContrastDefault
+                        )) .
+                        '" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="9" /><polyline points="12 7 12 12 15 15" /></svg>'
+                );
+            case "star":
+                return $this->base64EncodeImage(
+                    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="' .
+                        esc_attr(get_option("recipe_creator__primary_color", $this->primaryColorDefault)) .
+                        '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>'
+                );
+            case "starFilled":
+                return $this->base64EncodeImage(
+                    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="' .
+                        esc_attr(get_option("recipe_creator__primary_color", $this->primaryColorDefault)) .
+                        '" stroke="' .
+                        get_option("recipe_creator__primary_color", $this->primaryColorDefault) .
+                        '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>'
+                );
+            case "starHalfFilled":
+                return $this->base64EncodeImage(
+                    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="url(#half_grad)" stroke="' .
+                        esc_attr(get_option("recipe_creator__primary_color", $this->primaryColorDefault)) .
+                        '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="half_grad"><stop offset="50%" stop-color="' .
+                        esc_attr(get_option("recipe_creator__primary_color", $this->primaryColorDefault)) .
+                        '"/><stop offset="50%" stop-color="transparent" stop-opacity="1" /></linearGradient></defs><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>'
+                );
+            case "starHighlighted":
+                return $this->base64EncodeImage(
+                    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="' .
+                        esc_attr(get_option(
+                            "recipe_creator__primary_color_dark",
+                            $this->primaryColorDarkDefault
+                        )) .
+                        '" stroke="' .
+                        esc_attr(get_option(
+                            "recipe_creator__primary_color_dark",
+                            $this->primaryColorDarkDefault
+                        )) .
+                        '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>'
+                );
+            case "instagram":
+                return $this->base64EncodeImage(
+                    '<svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill="' .
+                        esc_attr(get_option(
+                            "recipe_creator__primary_color_contrast",
+                            $this->primaryColorContrastDefault
+                        )) .
+                        '"> <title>IG Logo</title><g fill-rule="evenodd"><path d="M18 0c-4.889 0-5.501.02-7.421.108C8.663.196 7.354.5 6.209.945a8.823 8.823 0 0 0-3.188 2.076A8.83 8.83 0 0 0 .945 6.209C.5 7.354.195 8.663.108 10.58.021 12.499 0 13.11 0 18s.02 5.501.108 7.421c.088 1.916.392 3.225.837 4.37a8.823 8.823 0 0 0 2.076 3.188c1 1 2.005 1.616 3.188 2.076 1.145.445 2.454.75 4.37.837 1.92.087 2.532.108 7.421.108s5.501-.02 7.421-.108c1.916-.088 3.225-.392 4.37-.837a8.824 8.824 0 0 0 3.188-2.076c1-1 1.616-2.005 2.076-3.188.445-1.145.75-2.454.837-4.37.087-1.92.108-2.532.108-7.421s-.02-5.501-.108-7.421c-.088-1.916-.392-3.225-.837-4.37a8.824 8.824 0 0 0-2.076-3.188A8.83 8.83 0 0 0 29.791.945C28.646.5 27.337.195 25.42.108 23.501.021 22.89 0 18 0zm0 3.243c4.806 0 5.376.019 7.274.105 1.755.08 2.708.373 3.342.62.84.326 1.44.717 2.07 1.346.63.63 1.02 1.23 1.346 2.07.247.634.54 1.587.62 3.342.086 1.898.105 2.468.105 7.274s-.019 5.376-.105 7.274c-.08 1.755-.373 2.708-.62 3.342a5.576 5.576 0 0 1-1.346 2.07c-.63.63-1.23 1.02-2.07 1.346-.634.247-1.587.54-3.342.62-1.898.086-2.467.105-7.274.105s-5.376-.019-7.274-.105c-1.755-.08-2.708-.373-3.342-.62a5.576 5.576 0 0 1-2.07-1.346 5.577 5.577 0 0 1-1.346-2.07c-.247-.634-.54-1.587-.62-3.342-.086-1.898-.105-2.468-.105-7.274s.019-5.376.105-7.274c.08-1.755.373-2.708.62-3.342.326-.84.717-1.44 1.346-2.07.63-.63 1.23-1.02 2.07-1.346.634-.247 1.587-.54 3.342-.62 1.898-.086 2.468-.105 7.274-.105z"/><path d="M18 24.006a6.006 6.006 0 1 1 0-12.012 6.006 6.006 0 0 1 0 12.012zm0-15.258a9.252 9.252 0 1 0 0 18.504 9.252 9.252 0 0 0 0-18.504zm11.944-.168a2.187 2.187 0 1 1-4.374 0 2.187 2.187 0 0 1 4.374 0"/></g></svg>'
+                );
+            default:
+                return '';
+        }
     }
 
     private function base64EncodeImage($svg)
@@ -1340,5 +1325,23 @@ class RecipeCreator
             }
         }
         return $ret;
+    }
+
+    public function formatDuration($duration)
+    {
+        if (isset($duration) && $duration !== '') {
+            $minutes = intval($duration);
+
+            if ($minutes < 60) {
+                return $minutes . ' ' . __('minutes', 'recipe-creator');
+            } else {
+                $hours = floor($minutes / 60);
+                $rest = $minutes % 60;
+
+                return $hours . ' ' . __('hours', 'recipe-creator') . ($rest > 0 ? ' ' . $rest . ' ' . __('minutes', 'recipe-creator') : '');
+            }
+        }
+
+        return '';
     }
 }
