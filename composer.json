@@ -5,9 +5,5 @@
       "name": "Oliver Wagner",
       "email": "oliver@recipe-creator.de"
     }
-  ],
-  "require": {
-    "zordius/lightncandy": "1.2.6",
-    "erusev/parsedown": "^1.7"
-  }
+  ]
 }
