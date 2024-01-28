@@ -9,7 +9,6 @@
     "create-release": "npm run build && npx ts-node ./build-tools/create-release.ts",
     "prebuild": "rm -rf ./build",
     "build": "wp-scripts build",
-    "postbuild": "php ./build-tools/compile-hbs-templates.php",
     "format:js": "wp-scripts format-js",
     "lint:css": "wp-scripts lint-style",
     "lint:js": "wp-scripts lint-js",
