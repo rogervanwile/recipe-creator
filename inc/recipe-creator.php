@@ -703,7 +703,7 @@ class RecipeCreator
 
     public function renderRecipeBlockStyles()
     {
-        include(__DIR__ . '/../partials/style-block.php');
+        include(__DIR__ . '/../partials/recipe-block-styles.php');
     }
 
     public function getDummyData()

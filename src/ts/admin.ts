@@ -1,25 +1,29 @@
 import Color from "color";
-
-const styleBlockTemplate = require("../blocks/recipe/style-block.hbs");
-
 import "../styles/admin.scss";
 
 class AdminSettings {
   private styleContainer: HTMLElement | null = null;
 
-  private styleBlockTemplate = styleBlockTemplate;
-
   private settingsForm: HTMLFormElement;
 
   constructor() {
+    this.settingsForm = document.getElementById("recipe-creator--settings-form") as HTMLFormElement;
+
+    if (!this.settingsForm) {
+      console.error("The settings form can not be found.");
+      return;
+    }
+
     this.initColorPicker();
     this.initOtherPicker();
-
-    this.settingsForm = document.getElementById("recipe-creator--settings-form") as HTMLFormElement;
   }
 
   private initColorPicker() {
-    const colorPickers = document.querySelectorAll(".recipe-creator--color-picker");
+    if (!this.settingsForm) {
+      return;
+    }
+
+    const colorPickers = this.settingsForm.querySelectorAll(".recipe-creator--color-picker");
     colorPickers.forEach((colorPicker) => {
       var defaultValue = colorPicker.getAttribute("data-default-value") || null;
 
@@ -36,16 +40,14 @@ class AdminSettings {
   }
 
   private initOtherPicker() {
-    const adminForm = document.querySelector<HTMLElement>(".recipe-creator--settings-form ");
-
-    if (!adminForm) {
+    if (!this.settingsForm) {
       return;
     }
 
-    const inputs = adminForm.querySelectorAll<HTMLInputElement>('input[type="number"],input[type="checkbox"]');
+    const inputs = this.settingsForm.querySelectorAll<HTMLInputElement>('input[type="number"],input[type="checkbox"]');
 
     inputs.forEach((input) => {
-      input.addEventListener("change", () => {
+      input.addEventListener("change", (event) => {
         this.refreshStyles();
       });
     });
@@ -57,66 +59,62 @@ class AdminSettings {
       ...update,
     };
 
-    // Migrate the form to the needed data structure
-    const migratedData: { [key: string]: any } = {};
+    // Calculate light and dark colors
+
+    const calculatedColors: { [key: string]: string } = {};
 
     Object.keys(data).map((key) => {
       switch (key) {
         case "recipe_creator__primary_color":
-          migratedData["primaryColor"] = data[key];
-          migratedData["primaryColorContrast"] = this.getContrastColor(data[key]);
-          migratedData["primaryColorLight"] = this.lightenColor(data[key]);
-          migratedData["primaryColorLightContrast"] = this.getContrastColor(migratedData["primaryColorLight"]);
-          migratedData["primaryColorDark"] = this.darkenColor(data[key]);
-
-          this.updateSettingsFormField(
-            "recipe_creator__primary_color_contrast",
-            migratedData["primaryColorContrast"],
-          );
-          this.updateSettingsFormField("recipe_creator__primary_color_light", migratedData["primaryColorLight"]);
-          this.updateSettingsFormField(
-            "recipe_creator__primary_color_light_contrast",
-            migratedData["primaryColorLightContrast"],
-          );
-          this.updateSettingsFormField("recipe_creator__primary_color_dark", migratedData["primaryColorDark"]);
+          calculatedColors.recipe_creator__primary_color_contrast = this.getContrastColor(data[key]);
+          const primaryColorLight = this.lightenColor(data[key]);
+          calculatedColors.recipe_creator__primary_color_light = primaryColorLight;
+          calculatedColors.recipe_creator__primary_color_light_contrast = this.getContrastColor(primaryColorLight);
+          calculatedColors.recipe_creator__primary_color_dark = this.darkenColor(data[key]);
           break;
         case "recipe_creator__secondary_color":
-          migratedData["secondaryColor"] = data[key];
-          migratedData["secondaryColorContrast"] = this.getContrastColor(data[key]);
-
-          this.updateSettingsFormField(
-            "recipe_creator__secondary_color_contrast",
-            migratedData["secondaryColorContrast"],
-          );
+          calculatedColors.recipe_creator__secondary_color_contrast = this.getContrastColor(data[key]);
           break;
         case "recipe_creator__background_color":
-          migratedData["backgroundColor"] = data[key];
-          migratedData["backgroundColorContrast"] = this.getContrastColor(data[key]);
-
-          this.updateSettingsFormField(
-            "recipe_creator__background_color_contrast",
-            migratedData["backgroundColorContrast"],
-          );
+          calculatedColors.recipe_creator__background_color_contrast = this.getContrastColor(data[key]);
           break;
-        case "recipe_creator__show_border":
-          migratedData["showBorder"] = data[key];
-          break;
-        case "recipe_creator__show_box_shadow":
-          migratedData["showBoxShadow"] = data[key];
-          break;
-        case "recipe_creator__border_radius":
-          migratedData["borderRadius"] = data[key];
-          break;
-        // case "recipe_creator__primary_color_light":
-        //   migratedData["primaryColorLight"] = data[key];
-        //   break;
-        // case "recipe_creator__primary_color_dark":
-        //   migratedData["primaryColorDark"] = data[key];
-        //   break;
       }
     });
 
-    var finalHtml = this.styleBlockTemplate({ options: migratedData });
+    // Add calculated colors in settings form
+    Object.keys(calculatedColors).forEach((key) => {
+      this.updateSettingsFormField(key, calculatedColors[key]);
+    });
+
+    const mergedData = {
+      ...data,
+      ...calculatedColors,
+    };
+
+    var finalHtml = `<style>
+.recipe-creator--block.recipe-creator--block {
+  --background: ${mergedData.recipe_creator__background_color};
+  --background-contrast: ${mergedData.recipe_creator__background_color_contrast};
+  --secondary: ${mergedData.recipe_creator__secondary_color};
+  --secondary-contrast: ${mergedData.recipe_creator__secondary_color_contrast};
+  --primary: ${mergedData.recipe_creator__primary_color};
+  --primary-contrast: ${mergedData.recipe_creator__primary_color_contrast};
+  --primary-light: ${mergedData.recipe_creator__primary_color_light};
+  --primary-light-contrast: ${mergedData.recipe_creator__primary_color_light_contrast};
+  --primary-dark: ${mergedData.recipe_creator__primary_color_dark};
+  --border-radius: ${mergedData.recipe_creator__border_radius}px;
+${
+  mergedData.recipe_creator__show_box_shadow
+    ? "  --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)"
+    : "  --box-shadow: none"
+};
+${
+  mergedData.recipe_creator__show_border
+    ? "  --border: 1px solid " + mergedData.recipe_creator__primary_color
+    : "  --box-shadow: none"
+};
+}
+</style>`;
 
     if (!this.styleContainer) {
       this.styleContainer = document.getElementById("recipe-creator--style-container");
@@ -152,7 +150,6 @@ class AdminSettings {
 
   private updateSettingsFormField(name: string, value: any) {
     if (!this.settingsForm) {
-      console.error("The settings form can not be found.");
       return;
     }
 
@@ -167,7 +164,6 @@ class AdminSettings {
 
   private getFormValue() {
     if (!this.settingsForm) {
-      console.error("The settings form can not be found.");
       return;
     }
 

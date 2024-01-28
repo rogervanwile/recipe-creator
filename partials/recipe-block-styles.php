@@ -1,3 +1,4 @@
+<?php var_dump(get_option("recipe_creator__show_box_shadow", $this->showBoxShadowDefault)); ?>
 <style>
     .recipe-creator--block.recipe-creator--block {
         --background: <?php echo esc_attr(get_option("recipe_creator__background_color", $this->backgroundColorDefault)); ?>;
@@ -29,9 +30,9 @@
                         )); ?>;
         --border-radius: <?php echo esc_attr(get_option("recipe_creator__border_radius", $this->borderRadiusDefault)); ?>px;
 
-        <?php if (get_option("recipe_creator__show_box_shadow", $this->showBoxShadowDefault) === true) { ?>--box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        <?php if (get_option("recipe_creator__show_box_shadow", $this->showBoxShadowDefault) === "1") { ?>--box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         <?php } else { ?>--box-shadow: none;
-        <?php } ?><?php if (get_option("recipe_creator__show_border", $this->showBorderDefault) === true) { ?>--border: 1px solid <?php echo esc_attr(get_option("recipe_creator__primary_color", $this->primaryColorDefault)); ?>;
+        <?php } ?><?php if (get_option("recipe_creator__show_border", $this->showBorderDefault) === "1") { ?>--border: 1px solid <?php echo esc_attr(get_option("recipe_creator__primary_color", $this->primaryColorDefault)); ?>;
         <?php  } else { ?>--border: 0px;
         <?php } ?>--clock-url: url(<?php echo esc_attr($this->getStyledSvg('clock')); ?>);
         --star-url: url(<?php echo esc_attr($this->getStyledSvg('star')); ?>);
