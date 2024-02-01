@@ -43,8 +43,6 @@ class RecipeCreator
 
         add_filter("the_content", [$this, "handleContent"], 1);
 
-        add_action("admin_notices", [$this, "showReleaseInfo"]);
-
         add_action('manage_posts_columns', [$this, "registerPostColumns"]);
         add_action('manage_posts_custom_column', [$this, "renderPostColumn"], 10, 2);
         add_filter('manage_edit-post_sortable_columns', [$this, "registerSortableColumns"]);
@@ -114,30 +112,6 @@ class RecipeCreator
         } else if ($orderby === 'recipe_creator__rating_count') {
             $query->set('meta_key', 'recipe_creator__rating_count');
             $query->set('orderby', 'meta_value_num');
-        }
-    }
-
-    public function showReleaseInfo()
-    {
-        $currentVersion = $this->getPluginVersion();
-        $lastVersionWithHint = get_option("recipe_creator__release_info_shown", "0.0.1");
-
-        if (version_compare($currentVersion, $lastVersionWithHint, ">")) {
-            update_option("recipe_creator__release_info_shown", $currentVersion); ?>
-            <div class="notice notice-info is-dismissible">
-                <p>
-                    <?php echo sprintf(
-                        /* translators: %s: link to release notes */
-                        __(
-                            'We\'ve updated the <strong>Recipe Creator</strong> plugin. Check out the <a href="%s">release notes</a> to see which new features you can use now.',
-                            "recipe-creator"
-                        ),
-                        esc_url(
-                            get_admin_url(get_current_network_id(), "admin.php?page=recipe_creator_release_notes")
-                        )
-                    ); ?></p>
-            </div>
-<?php
         }
     }
 
@@ -234,18 +208,6 @@ class RecipeCreator
                 return require_once plugin_dir_path(__FILE__) . "../pages/admin-index-page.php";
             },
             10
-        );
-
-        add_submenu_page(
-            "recipe_creator",
-            __("Release notes", "recipe-creator"),
-            __("Release notes", "recipe-creator"),
-            "manage_options",
-            "recipe_creator_release_notes",
-            function () {
-                return require_once plugin_dir_path(__FILE__) . "../templates/admin-release-notes-page.php";
-            },
-            20
         );
 
         do_action("recipe_creator__pages_registered");
