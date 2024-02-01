@@ -218,7 +218,7 @@ class RecipeCreator
             "manage_options",
             "recipe_creator",
             function () {
-                return require_once plugin_dir_path(__FILE__) . "../templates/admin-index-page.php";
+                return require_once plugin_dir_path(__FILE__) . "../pages/admin-index-page.php";
             },
             "dashicons-carrot",
             100
@@ -231,7 +231,7 @@ class RecipeCreator
             "manage_options",
             "recipe_creator",
             function () {
-                return require_once plugin_dir_path(__FILE__) . "../templates/admin-index-page.php";
+                return require_once plugin_dir_path(__FILE__) . "../pages/admin-index-page.php";
             },
             10
         );

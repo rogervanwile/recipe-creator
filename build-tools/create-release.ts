@@ -70,9 +70,8 @@ rl.question("What is the new version? ", function (version: string) {
     "./build",
     "./inc",
     "./languages",
-    "./templates",
-    "./vendor",
-    "./src", // TODO: Remove in the next release
+    "./partials",
+    "./pages",
   ];
 
   const filesToCopy: string[] = [
