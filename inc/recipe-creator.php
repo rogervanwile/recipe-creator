@@ -148,40 +148,33 @@ class RecipeCreator
         ]);
     }
 
-    private function getPluginVersion()
+    public function enqueueAdminJs($hook_suffix)
     {
-        if (!function_exists("get_plugin_data")) {
-            require_once ABSPATH . "wp-admin/includes/plugin.php";
+        if ($hook_suffix === 'toplevel_page_recipe_creator') {
+            // Enable Color Picker for Settings Page
+            wp_enqueue_style("wp-color-picker");
+            wp_enqueue_style("iris");
+
+            wp_enqueue_style("recipe-creator-recipe-style");
+
+            $adminAsset = require plugin_dir_path(__FILE__) . "../build/admin.asset.php";
+
+            wp_enqueue_script(
+                "recipe-creator-settings-js",
+                plugins_url("build/admin.js", dirname(__FILE__)),
+                ["wp-color-picker", ...$adminAsset["dependencies"]],
+                $adminAsset["version"],
+                true
+            );
+
+            wp_enqueue_style(
+                "recipe-creator-settings-css",
+                plugins_url("build/admin.css", dirname(__FILE__)),
+                $adminAsset["dependencies"],
+                $adminAsset["version"],
+                "all"
+            );
         }
-        $plugin_data = get_plugin_data(plugin_dir_path(__FILE__) . "../recipe-creator.php");
-        return $plugin_data["Version"];
-    }
-
-    public function enqueueAdminJs()
-    {
-        // Enable Color Picker for Settings Page
-        wp_enqueue_style("wp-color-picker");
-        wp_enqueue_style("iris");
-
-        wp_enqueue_style("recipe-creator-recipe-style");
-
-        $adminAsset = require plugin_dir_path(__FILE__) . "../build/admin.asset.php";
-
-        wp_enqueue_script(
-            "recipe-creator-settings-js",
-            plugins_url("build/admin.js", dirname(__FILE__)),
-            ["wp-color-picker", ...$adminAsset["dependencies"]],
-            $adminAsset["version"],
-            true
-        );
-
-        wp_enqueue_style(
-            "recipe-creator-settings-css",
-            plugins_url("build/admin.css", dirname(__FILE__)),
-            $adminAsset["dependencies"],
-            $adminAsset["version"],
-            "all"
-        );
     }
 
     public function registerSettingsPage()
