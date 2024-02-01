@@ -179,15 +179,15 @@
             <header class="recipe-creator--recipe-block--headline">
                 <h3><?php echo esc_html(__("How do you like the recipe?", "recipe-creator")); ?></h3>
             </header>
-            <div class="recipe-creator--recipe-block--rating recipe-creator--recipe-block--interactive" data-post-id="<?php echo esc_attr(get_the_ID()); ?>" <?php if (!empty($attributes['ajaxUrl'])) { ?>data-save-url="<?php echo esc_url($attributes['ajaxUrl']); ?>" <?php } ?> <?php if (!empty($attributes['nonce'])) { ?>data-nonce="<?php echo esc_attr($attributes['nonce']); ?>"><?php } ?>
+            <div class="recipe-creator--recipe-block--rating recipe-creator--recipe-block--interactive" data-post-id="<?php echo esc_attr(get_the_ID()); ?>" <?php if (!empty($attributes['ajaxUrl'])) { ?>data-save-url="<?php echo esc_url($attributes['ajaxUrl']); ?>" <?php } ?> <?php if (!empty($attributes['nonce'])) { ?>data-nonce="<?php echo esc_attr($attributes['nonce']); ?>"><?php } ?>>
 
-            <ol>
-                <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['userRating'])) { ?>selected<?php } ?>" data-rating="1">1</li>
-                <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['userRating']) && (int)$attributes['userRating'] >= 2) { ?> selected<?php } else if (!empty($attributes['userRating']) && (int)$attributes['userRating'] >= 1.5) { ?> half-selected<?php } ?>" data-rating="2">2</li>
-                <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['userRating']) && (int)$attributes['userRating'] >= 3) { ?> selected<?php } else if (!empty($attributes['userRating']) && (int)$attributes['userRating'] >= 2.5) { ?> half-selected<?php } ?>" data-rating="3">3</li>
-                <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['userRating']) && (int)$attributes['userRating'] >= 4) { ?> selected<?php } else if (!empty($attributes['userRating']) && (int)$attributes['userRating'] >= 3.5) { ?> half-selected<?php } ?>" data-rating="4">4</li>
-                <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['userRating']) && (int)$attributes['userRating'] >= 5) { ?> selected<?php } else if (!empty($attributes['userRating']) && (int)$attributes['userRating'] >= 4.5) { ?> half-selected<?php } ?>" data-rating="5">5</li>
-            </ol>
+                <ol>
+                    <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['userRating'])) { ?>selected<?php } ?>" data-rating="1">1</li>
+                    <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['userRating']) && (int)$attributes['userRating'] >= 2) { ?> selected<?php } else if (!empty($attributes['userRating']) && (int)$attributes['userRating'] >= 1.5) { ?> half-selected<?php } ?>" data-rating="2">2</li>
+                    <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['userRating']) && (int)$attributes['userRating'] >= 3) { ?> selected<?php } else if (!empty($attributes['userRating']) && (int)$attributes['userRating'] >= 2.5) { ?> half-selected<?php } ?>" data-rating="3">3</li>
+                    <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['userRating']) && (int)$attributes['userRating'] >= 4) { ?> selected<?php } else if (!empty($attributes['userRating']) && (int)$attributes['userRating'] >= 3.5) { ?> half-selected<?php } ?>" data-rating="4">4</li>
+                    <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['userRating']) && (int)$attributes['userRating'] >= 5) { ?> selected<?php } else if (!empty($attributes['userRating']) && (int)$attributes['userRating'] >= 4.5) { ?> half-selected<?php } ?>" data-rating="5">5</li>
+                </ol>
             </div>
         </section>
 
@@ -238,5 +238,5 @@
             <?php echo esc_js($attributes['ldJson']); ?>
         </script>
     <?php } ?>
-    <?php include(__DIR__ . '/../partials/style-block.php'); ?>
+    <?php include(__DIR__ . '/../partials/recipe-block-styles.php'); ?>
 </div>

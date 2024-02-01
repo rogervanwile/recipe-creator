@@ -47,7 +47,7 @@ class AdminSettings {
     const inputs = this.settingsForm.querySelectorAll<HTMLInputElement>('input[type="number"],input[type="checkbox"]');
 
     inputs.forEach((input) => {
-      input.addEventListener("change", (event) => {
+      input.addEventListener("change", () => {
         this.refreshStyles();
       });
     });
@@ -177,7 +177,6 @@ ${
 
     // When a checkbox is disabled, it is not part of the FormData
     // So lets process the checkboxes before
-
     const checkboxes = this.settingsForm.querySelectorAll<HTMLInputElement>('input[type="checkbox"]');
 
     checkboxes.forEach((checkbox) => {
