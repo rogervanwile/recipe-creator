@@ -29,7 +29,7 @@ class RecipeCreator
         add_action("init", [$this, "loadTranslations"]);
 
         add_action("admin_init", [$this, "registerRecipeBlockSettings"]);
-        add_action("admin_menu", [$this, "registerSettingsPage"]);
+        add_action("admin_menu", [$this, "registerSettingsPage"], 10);
 
         add_action("admin_enqueue_scripts", [$this, "enqueueAdminJs"]);
 
@@ -55,8 +55,8 @@ class RecipeCreator
 
     public function registerPostColumns(array $columns): array
     {
-        $columns['recipe-creator_average_rating'] = __('Average rating', 'recipe-creator');
-        $columns['recipe-creator_rating_count'] = __('Ratings', 'recipe-creator');
+        $columns['recipe-creator__average_rating'] = __('Average rating', 'recipe-creator');
+        $columns['recipe-creator__rating_count'] = __('Ratings', 'recipe-creator');
         return $columns;
     }
 
@@ -67,23 +67,23 @@ class RecipeCreator
             return;
         }
 
-        if ($column_id !== 'recipe-creator_average_rating' &&  $column_id !== 'recipe-creator_rating_count') {
+        if ($column_id !== 'recipe-creator__average_rating' &&  $column_id !== 'recipe-creator__rating_count') {
             return;
         }
 
         switch ($column_id) {
-            case 'recipe-creator_average_rating':
-                $averageRating = get_post_meta($post_id, 'average_rating', true);
+            case 'recipe-creator__average_rating':
+                $averageRating = get_post_meta($post_id, 'recipe_creator__average_rating', true);
                 if (isset($averageRating) && $averageRating !== '') {
                     echo '<span class="recipe-creator--rating">' . esc_html($averageRating) . '&nbsp;<span class="dashicons dashicons-star-filled"></span></span>';
                 } else {
                     echo '-';
                 }
                 break;
-            case 'recipe-creator_rating_count':
-                $ratingCount = get_post_meta($post_id, 'rating_count', true);
+            case 'recipe-creator__rating_count':
+                $ratingCount = get_post_meta($post_id, 'recipe_creator__rating_count', true);
                 if (isset($ratingCount) && $ratingCount !== '') {
-                    echo esc_html(get_post_meta($post_id, 'rating_count', true));
+                    echo esc_html(get_post_meta($post_id, 'recipe_creator__rating_count', true));
                 } else {
                     echo '-';
                 }
@@ -93,8 +93,8 @@ class RecipeCreator
 
     public function registerSortableColumns($columns)
     {
-        $columns['recipe-creator_average_rating'] = 'average_rating';
-        $columns['recipe-creator_rating_count']  = 'rating_count';
+        $columns['recipe-creator__average_rating'] = 'recipe_creator__average_rating';
+        $columns['recipe-creator__rating_count']  = 'recipe_creator__rating_count';
         return $columns;
     }
 
@@ -110,11 +110,11 @@ class RecipeCreator
 
         $orderby = $query->get('orderby');
 
-        if ($orderby === 'average_rating') {
-            $query->set('meta_key', 'average_rating');
+        if ($orderby === 'recipe_creator__average_rating') {
+            $query->set('meta_key', 'recipe_creator__average_rating');
             $query->set('orderby', 'meta_value_num');
-        } else if ($orderby === 'rating_count') {
-            $query->set('meta_key', 'rating_count');
+        } else if ($orderby === 'recipe_creator__rating_count') {
+            $query->set('meta_key', 'recipe_creator__rating_count');
             $query->set('orderby', 'meta_value_num');
         }
     }
@@ -525,37 +525,37 @@ class RecipeCreator
 
     public function registerMeta()
     {
-        register_meta("post", "rating_1_votes", [
+        register_meta("post", "recipe_creator__rating_1_votes", [
             "show_in_rest" => true,
             "type" => "number",
             "single" => true,
         ]);
-        register_meta("post", "rating_2_votes", [
+        register_meta("post", "recipe_creator__rating_2_votes", [
             "show_in_rest" => true,
             "type" => "number",
             "single" => true,
         ]);
-        register_meta("post", "rating_3_votes", [
+        register_meta("post", "recipe_creator__rating_3_votes", [
             "show_in_rest" => true,
             "type" => "number",
             "single" => true,
         ]);
-        register_meta("post", "rating_4_votes", [
+        register_meta("post", "recipe_creator__rating_4_votes", [
             "show_in_rest" => true,
             "type" => "number",
             "single" => true,
         ]);
-        register_meta("post", "rating_5_votes", [
+        register_meta("post", "recipe_creator__rating_5_votes", [
             "show_in_rest" => true,
             "type" => "number",
             "single" => true,
         ]);
-        register_meta("post", "rating_count", [
+        register_meta("post", "recipe_creator__rating_count", [
             "show_in_rest" => true,
             "type" => "number",
             "single" => true,
         ]);
-        register_meta("post", "average_rating", [
+        register_meta("post", "recipe_creator__average_rating", [
             "show_in_rest" => true,
             "type" => "number",
             "single" => true,
@@ -607,32 +607,32 @@ class RecipeCreator
             $postId = intval(sanitize_text_field($_POST["postId"]));
             $rating = intval(sanitize_text_field($_POST["rating"]));
 
-            $amountOfRating1Votes = intval(get_post_meta($postId, "rating_1_votes", true)) ?: 0;
-            $amountOfRating2Votes = intval(get_post_meta($postId, "rating_2_votes", true)) ?: 0;
-            $amountOfRating3Votes = intval(get_post_meta($postId, "rating_3_votes", true)) ?: 0;
-            $amountOfRating4Votes = intval(get_post_meta($postId, "rating_4_votes", true)) ?: 0;
-            $amountOfRating5Votes = intval(get_post_meta($postId, "rating_5_votes", true)) ?: 0;
+            $amountOfRating1Votes = intval(get_post_meta($postId, "recipe_creator__rating_1_votes", true)) ?: 0;
+            $amountOfRating2Votes = intval(get_post_meta($postId, "recipe_creator__rating_2_votes", true)) ?: 0;
+            $amountOfRating3Votes = intval(get_post_meta($postId, "recipe_creator__rating_3_votes", true)) ?: 0;
+            $amountOfRating4Votes = intval(get_post_meta($postId, "recipe_creator__rating_4_votes", true)) ?: 0;
+            $amountOfRating5Votes = intval(get_post_meta($postId, "recipe_creator__rating_5_votes", true)) ?: 0;
 
             switch ($rating) {
                 case 1:
                     $amountOfRating1Votes++;
-                    update_post_meta($postId, "rating_1_votes", $amountOfRating1Votes);
+                    update_post_meta($postId, "recipe_creator__rating_1_votes", $amountOfRating1Votes);
                     break;
                 case 2:
                     $amountOfRating2Votes++;
-                    update_post_meta($postId, "rating_2_votes", $amountOfRating2Votes);
+                    update_post_meta($postId, "recipe_creator__rating_2_votes", $amountOfRating2Votes);
                     break;
                 case 3:
                     $amountOfRating3Votes++;
-                    update_post_meta($postId, "rating_3_votes", $amountOfRating3Votes);
+                    update_post_meta($postId, "recipe_creator__rating_3_votes", $amountOfRating3Votes);
                     break;
                 case 4:
                     $amountOfRating4Votes++;
-                    update_post_meta($postId, "rating_4_votes", $amountOfRating4Votes);
+                    update_post_meta($postId, "recipe_creator__rating_4_votes", $amountOfRating4Votes);
                     break;
                 case 5:
                     $amountOfRating5Votes++;
-                    update_post_meta($postId, "rating_5_votes", $amountOfRating5Votes);
+                    update_post_meta($postId, "recipe_creator__rating_5_votes", $amountOfRating5Votes);
                     break;
             }
 
@@ -650,8 +650,8 @@ class RecipeCreator
                 $amountOfRating5Votes * 5;
             $averageRating = round($totalRating / $totalAmount, 1);
 
-            update_post_meta($postId, "rating_count", $totalAmount);
-            update_post_meta($postId, "average_rating", $averageRating);
+            update_post_meta($postId, "recipe_creator__rating_count", $totalAmount);
+            update_post_meta($postId, "recipe_creator__average_rating", $averageRating);
 
             wp_send_json_success([
                 "averageRating" => $averageRating,
@@ -703,7 +703,9 @@ class RecipeCreator
 
     public function renderRecipeBlockStyles()
     {
+        ob_start();
         include(__DIR__ . '/../partials/recipe-block-styles.php');
+        return ob_get_clean();
     }
 
     public function getDummyData()
@@ -778,7 +780,9 @@ class RecipeCreator
     public function renderRecipeBlockDummy()
     {
         $attributes = $this->getDummyData();
+        ob_start();
         include(__DIR__ . '/../partials/recipe-block.php');
+        return ob_get_clean();
     }
 
     private function getRecipeBlockTranslations()
@@ -816,8 +820,8 @@ class RecipeCreator
 
         // $attributes["postId"] = get_the_ID();
 
-        $averageRating = get_post_meta(get_the_ID(), "average_rating", true) ?: 0;
-        $ratingCount = get_post_meta(get_the_ID(), "rating_count", true) ?: 0;
+        $averageRating = get_post_meta(get_the_ID(), "recipe_creator__average_rating", true) ?: 0;
+        $ratingCount = get_post_meta(get_the_ID(), "recipe_creator__rating_count", true) ?: 0;
 
         $recipeYield = isset($attributes["recipeYield"]) ? intval($attributes["recipeYield"]) : 1;
         $recipeYieldWidth = isset($attributes["recipeYieldWidth"]) ? intval($attributes["recipeYieldWidth"]) : 0;
@@ -874,33 +878,6 @@ class RecipeCreator
                 $attributes["recipeYield"] = $recipeYield;
                 break;
         }
-
-        // // In version 1.4.0 I added the possibility to split ingredient lists
-        // // So we have to migrate the old list (ingredients) to the new structure
-        // // of ingredientsGroups.
-
-        // if (isset($attributes["ingredients"]) && !empty($attributes["ingredients"])) {
-        //     $attributes["ingredientsGroups"] = [
-        //         [
-        //             "title" => "",
-        //             "list" => $attributes["ingredients"],
-        //         ],
-        //     ];
-        //     unset($attributes["ingredients"]);
-        // }
-
-        // // In version 1.5.0 I added the possibility to split preparation step lists
-        // // So we have to migrate the old list (preparationSteps) to the new structure
-        // // of preparationStepsGroups.
-        // if (isset($attributes["preparationSteps"]) && !empty($attributes["preparationSteps"])) {
-        //     $attributes["preparationStepsGroups"] = [
-        //         [
-        //             "title" => "",
-        //             "list" => $attributes["preparationSteps"],
-        //         ],
-        //     ];
-        //     unset($attributes["preparationSteps"]);
-        // }
 
         $attributes["ingredientsGroups"] = $this->prepareIngredientsForRenderer($attributes["ingredientsGroups"]);
 
@@ -1057,7 +1034,9 @@ class RecipeCreator
         $attributes["instagramUsername"] = get_option("recipe_creator__instagram__username", "");
         $attributes["instagramHashtag"] = get_option("recipe_creator__instagram__hashtag", "");
 
+        ob_start();
         include(__DIR__ . '/../partials/recipe-block.php');
+        return ob_get_clean();
     }
 
     private function getRecipeYieldUnitFormatted($unit, $amount)
@@ -1172,7 +1151,9 @@ class RecipeCreator
 
     public function renderJumpToRecipeBlock()
     {
+        ob_start();
         include(__DIR__ . '/../partials/jump-to-recipe-block.php');
+        return ob_get_clean();
     }
 
     private function getStyleOptions()
