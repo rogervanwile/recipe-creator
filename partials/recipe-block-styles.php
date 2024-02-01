@@ -1,4 +1,3 @@
-<?php var_dump(get_option("recipe_creator__show_box_shadow", $this->showBoxShadowDefault)); ?>
 <style>
     .recipe-creator--block.recipe-creator--block {
         --background: <?php echo esc_attr(get_option("recipe_creator__background_color", $this->backgroundColorDefault)); ?>;
