@@ -38,7 +38,7 @@ If you change the handlebar templates, you must recompile them for usage in the 
 - Update version in `package.json`
 - Update version in `recipe-creator.php`
 - Update version in `readme.txt` (Stable tag)
-- Update `changelog.md` and `changelod-de_DE.md`
+- Update changelogs in `changelog.txt` and copy the newest changes to the `readme.txt`
 - Update latest wp version ("tested") in `build-tools/create-release.ts`
 - Update latest wp version ("Tested up to") in `readme.txt`
 

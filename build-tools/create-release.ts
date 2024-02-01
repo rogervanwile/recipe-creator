@@ -81,8 +81,7 @@ rl.question("What is the new version? ", function (version: string) {
     "./screenshot-1.png",
     "./screenshot-2.png",
     "./readme.txt",
-    "./changelog.md",
-    "./changelog-de_DE.md",
+    "./changelog.txt",
     "./uninstall.php",
   ];
 

@@ -32,14 +32,8 @@ Clicking on it takes the user to Instagram. Take a look at their privacy policy 
 
 == Changelog ==
 
-= 1.0.3 =
+= 1.0.0 =
+
+Release date: tbd
+
 * Inital Release
-
-= 1.1.0 =
-* Change the main image to the aspect ratio of 3:2
-* Add link to foodblogkitchens blog to give more information about selecting the right images.
-
-= 1.2.0 =
-* You now need a license key to fully use the plugin. If you don't have one yet please contact support@recipe-creator.de
-* We have added a possibility to print the recipes
-* There is now the possibility to upload one Pinterest image per post which will be used in the recipes plugin.
