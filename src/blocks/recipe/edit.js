@@ -99,13 +99,13 @@ export default function Edit(props) {
 
   function updateRating(update) {
     const currentRating = {
-      rating_1_votes: props.data.meta.rating_1_votes || 0,
-      rating_2_votes: props.data.meta.rating_2_votes || 0,
-      rating_3_votes: props.data.meta.rating_3_votes || 0,
-      rating_4_votes: props.data.meta.rating_4_votes || 0,
-      rating_5_votes: props.data.meta.rating_5_votes || 0,
-      rating_count: props.data.meta.rating_count,
-      average_rating: props.data.meta.average_rating,
+      recipe_creator__rating_1_votes: props.data.meta.recipe_creator__rating_1_votes || 0,
+      recipe_creator__rating_2_votes: props.data.meta.recipe_creator__rating_2_votes || 0,
+      recipe_creator__rating_3_votes: props.data.meta.recipe_creator__rating_3_votes || 0,
+      recipe_creator__rating_4_votes: props.data.meta.recipe_creator__rating_4_votes || 0,
+      recipe_creator__rating_5_votes: props.data.meta.recipe_creator__rating_5_votes || 0,
+      recipe_creator__rating_count: props.data.meta.recipe_creator__rating_count,
+      recipe_creator__average_rating: props.data.meta.recipe_creator__average_rating,
     };
 
     const mergedRating = {
@@ -114,25 +114,25 @@ export default function Edit(props) {
     };
 
     const ratingCount =
-      +mergedRating.rating_1_votes +
-      +mergedRating.rating_2_votes +
-      +mergedRating.rating_3_votes +
-      +mergedRating.rating_4_votes +
-      +mergedRating.rating_5_votes;
+      +mergedRating.recipe_creator__rating_1_votes +
+      +mergedRating.recipe_creator__rating_2_votes +
+      +mergedRating.recipe_creator__rating_3_votes +
+      +mergedRating.recipe_creator__rating_4_votes +
+      +mergedRating.recipe_creator__rating_5_votes;
 
     const totalRating =
-      +mergedRating.rating_1_votes * 1 +
-      +mergedRating.rating_2_votes * 2 +
-      +mergedRating.rating_3_votes * 3 +
-      +mergedRating.rating_4_votes * 4 +
-      +mergedRating.rating_5_votes * 5;
+      +mergedRating.recipe_creator__rating_1_votes * 1 +
+      +mergedRating.recipe_creator__rating_2_votes * 2 +
+      +mergedRating.recipe_creator__rating_3_votes * 3 +
+      +mergedRating.recipe_creator__rating_4_votes * 4 +
+      +mergedRating.recipe_creator__rating_5_votes * 5;
 
     const averageRating = Math.round((totalRating / ratingCount) * 10) / 10;
 
     const finalRating = {
       ...mergedRating,
-      rating_count: ratingCount,
-      average_rating: averageRating,
+      recipe_creator__rating_count: ratingCount,
+      recipe_creator__average_rating: averageRating,
     };
 
     setMeta(finalRating);
@@ -147,19 +147,19 @@ export default function Edit(props) {
   }
 
   function getRatingElement() {
-    if (props.data.meta.rating_count) {
+    if (props.data.meta.recipe_creator__rating_count) {
       return (
         <div className="featured-snipped-preview--rating">
-          {props.data.meta.average_rating}&nbsp;
+          {props.data.meta.recipe_creator__average_rating}&nbsp;
           <span className="featured-snipped-preview--stars">
             <span
               className="featured-snipped-preview--stars--rated"
               style={{
-                width: getRatedStarsWidth(props.data.meta.average_rating) + "px",
+                width: getRatedStarsWidth(props.data.meta.recipe_creator__average_rating) + "px",
               }}
             ></span>
           </span>
-          &nbsp;({props.data.meta.rating_count})
+          &nbsp;({props.data.meta.recipe_creator__rating_count})
         </div>
       );
     } else {
@@ -378,16 +378,16 @@ export default function Edit(props) {
                 <div className="featured-result-preview-mobile--rating-col">
                   <header>{__("Rating", "recipe-creator")}</header>
                   <p>
-                    <span>{props.data.meta.average_rating}</span>
+                    <span>{props.data.meta.recipe_creator__average_rating}</span>
                     <span className="featured-snipped-preview--stars">
                       <span
                         className="featured-snipped-preview--stars--rated"
                         style={{
-                          width: getRatedStarsWidth(props.data.meta.average_rating) + "px",
+                          width: getRatedStarsWidth(props.data.meta.recipe_creator__average_rating) + "px",
                         }}
                       ></span>
                     </span>
-                    <span>({props.data.meta.rating_count})</span>{" "}
+                    <span>({props.data.meta.recipe_creator__rating_count})</span>{" "}
                   </p>
                 </div>
 
@@ -419,9 +419,9 @@ export default function Edit(props) {
             <NumberControl
               label={__("1 star", "recipe-creator")}
               min="0"
-              value={props.data.meta.rating_1_votes || 0}
-              onChange={(rating_1_votes) => {
-                updateRating({ rating_1_votes });
+              value={props.data.meta.recipe_creator__rating_1_votes || 0}
+              onChange={(recipe_creator__rating_1_votes) => {
+                updateRating({ recipe_creator__rating_1_votes });
               }}
             />
           </PanelRow>
@@ -429,9 +429,9 @@ export default function Edit(props) {
             <NumberControl
               label={__("2 stars", "recipe-creator")}
               min="0"
-              value={props.data.meta.rating_2_votes || 0}
-              onChange={(rating_2_votes) => {
-                updateRating({ rating_2_votes });
+              value={props.data.meta.recipe_creator__rating_2_votes || 0}
+              onChange={(recipe_creator__rating_2_votes) => {
+                updateRating({ recipe_creator__rating_2_votes });
               }}
             />
           </PanelRow>
@@ -439,9 +439,9 @@ export default function Edit(props) {
             <NumberControl
               label={__("3 stars", "recipe-creator")}
               min="0"
-              value={props.data.meta.rating_3_votes || 0}
-              onChange={(rating_3_votes) => {
-                updateRating({ rating_3_votes });
+              value={props.data.meta.recipe_creator__rating_3_votes || 0}
+              onChange={(recipe_creator__rating_3_votes) => {
+                updateRating({ recipe_creator__rating_3_votes });
               }}
             />
           </PanelRow>
@@ -449,9 +449,9 @@ export default function Edit(props) {
             <NumberControl
               label={__("4 stars", "recipe-creator")}
               min="0"
-              value={props.data.meta.rating_4_votes || 0}
-              onChange={(rating_4_votes) => {
-                updateRating({ rating_4_votes });
+              value={props.data.meta.recipe_creator__rating_4_votes || 0}
+              onChange={(recipe_creator__rating_4_votes) => {
+                updateRating({ recipe_creator__rating_4_votes });
               }}
             />
           </PanelRow>
@@ -459,16 +459,17 @@ export default function Edit(props) {
             <NumberControl
               label={__("5 stars", "recipe-creator")}
               min="0"
-              value={props.data.meta.rating_5_votes || 0}
-              onChange={(rating_5_votes) => {
-                updateRating({ rating_5_votes });
+              value={props.data.meta.recipe_creator__rating_5_votes || 0}
+              onChange={(recipe_creator__rating_5_votes) => {
+                updateRating({ recipe_creator__rating_5_votes });
               }}
             />
           </PanelRow>
           <PanelRow>
             <p>
               <strong>
-                {__("Rating", "recipe-creator")}: {props.data.meta.average_rating} ({props.data.meta.rating_count}){" "}
+                {__("Rating", "recipe-creator")}: {props.data.meta.recipe_creator__average_rating} (
+                {props.data.meta.recipe_creator__rating_count}){" "}
               </strong>
             </p>
           </PanelRow>
