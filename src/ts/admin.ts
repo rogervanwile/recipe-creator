@@ -1,7 +1,7 @@
 import Color from "color";
 import "../styles/admin.scss";
 
-class AdminSettings {
+class RecipeCreatorAdminSettings {
   private styleContainer: HTMLElement | null = null;
 
   private settingsForm: HTMLFormElement;
@@ -193,4 +193,4 @@ ${
   }
 }
 
-new AdminSettings();
+new RecipeCreatorAdminSettings();
