@@ -1066,7 +1066,7 @@ class RecipeCreator
                             " " .
                             (isset($item["unit"]) ? $item["unit"] : "") .
                             " " .
-                            (isset($item["ingredient"]) ? strip_tags($item["ingredient"]) : "")
+                            (isset($item["ingredient"]) ? wp_strip_all_tags($item["ingredient"]) : "")
                     );
                 }
             }
@@ -1089,7 +1089,7 @@ class RecipeCreator
                 $itemsList = array_map(function ($item) {
                     return [
                         "@type" => "HowToStep",
-                        "text" => strip_tags($item),
+                        "text" => wp_strip_all_tags($item),
                     ];
                 }, explode('\n', str_replace("li><li", 'li>\n<li', $group["list"])));
 
