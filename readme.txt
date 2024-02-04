@@ -32,7 +32,7 @@ Clicking on it takes the user to Instagram. Take a look at their privacy policy 
 
 == Changelog ==
 
-= 1.0.0 =
+= 2.0.0 =
 
 Release date: tbd
 
