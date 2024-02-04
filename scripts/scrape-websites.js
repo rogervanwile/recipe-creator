@@ -45,7 +45,7 @@ const domains = [
   "https://leichtgelassen.de",
 ];
 
-const elementsToCheck = [".foodblogkitchen-toolkit--recipe-block", ".foodblogkitchen-toolbar--faq-block"];
+const elementsToCheck = [".foodblogkitchen-toolkit--recipe-block", ".foodblogkitchen-toolbar--faq-block", '.foodblogkitchen-toolkit--recipe-block--share-on-pinterest'];
 
 // Funktion zum Abrufen der Sitemap und Extrahieren der URLs
 async function fetchSitemapUrls(domain) {
