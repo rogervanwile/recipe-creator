@@ -84,7 +84,7 @@
                         <div class="recipe-creator--recipe-block--servings-editor">
                             <span disabled="disabled">
                                 <span class="recipe-servings"><?php echo esc_html($attributes['recipeYieldFormatted']); ?></span>
-                                <?php esc_html($attributes['recipeYieldUnitFormatted']); ?>
+                                <?php echo esc_html($attributes['recipeYieldUnitFormatted']); ?>
                             </span>
                         </div>
                     <?php } ?>
@@ -232,11 +232,4 @@
             </section>
         <?php } ?>
     </section>
-
-    <?php if (!empty($attributes['ldJson'])) { ?>
-        <script type="application/ld+json">
-            <?php echo esc_js($attributes['ldJson']); ?>
-        </script>
-    <?php } ?>
-    <?php include(__DIR__ . '/../partials/recipe-block-styles.php'); ?>
 </div>

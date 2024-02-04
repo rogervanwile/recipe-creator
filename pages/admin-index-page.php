@@ -42,11 +42,11 @@ $recipeCreator = new RecipeCreator(); ?>
     </div>
     <div id="col-right">
       <div class="col-wrap">
-        <?php echo esc_html($recipeCreator->renderRecipeBlockDummy()); ?>
+        <?php $recipeCreator->renderRecipeBlockDummy(); ?>
       </div>
     </div>
     <div id="recipe-creator--style-container">
-      <?php echo esc_html($recipeCreator->renderRecipeBlockStyles()); ?>
+      <?php $this->renderRecipeBlockStyles(); ?>
     </div>
   </div>
 </div>

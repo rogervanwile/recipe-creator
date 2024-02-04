@@ -210,35 +210,35 @@ class RecipeCreator
     {
         $value = esc_attr(get_option($name, $defaultValue));
         echo '<input type="text" class="recipe-creator--color-picker" name="' .
-            $name .
+            esc_attr($name) .
             '" value="' .
-            $value .
+            esc_attr($value) .
             '" data-default-value="' .
-            $defaultValue .
+            esc_attr($defaultValue) .
             '" />';
     }
 
     private function renderNumberInput($name, $defaultValue)
     {
         $value = esc_attr(get_option($name, $defaultValue));
-        echo '<input type="number" name="' . $name . '" value="' . $value . '" />';
+        echo '<input type="number" name="' . esc_attr($name) . '" value="' . esc_attr($value) . '" />';
     }
 
     private function renderTextInput($name, $defaultValue)
     {
         $value = esc_attr(get_option($name, $defaultValue));
-        echo '<input type="text" name="' . $name . '" value="' . $value . '" />';
+        echo '<input type="text" name="' . esc_attr($name) . '" value="' .  esc_attr($value) . '" />';
     }
 
     private function renderCheckboxInput($name, $defaultValue, $text)
     {
         $value = esc_attr(get_option($name, $defaultValue));
         echo '<label><input type="checkbox" name="' .
-            $name .
+            esc_attr($name) .
             '" value="1" ' .
-            (isset($value) && $value === "1" ? 'checked="checked"' : "") .
+            esc_attr(isset($value) && $value === "1" ? 'checked="checked"' : "") .
             " /> " .
-            $text .
+            esc_html($text) .
             "</label>";
     }
 
@@ -303,7 +303,7 @@ class RecipeCreator
             __("General settings", "recipe-creator"),
             function () {
                 echo "<p>" .
-                    __("Configure how the recipe block should behave on your blog posts.", "recipe-creator") .
+                    esc_html__("Configure how the recipe block should behave on your blog posts.", "recipe-creator") .
                     "</p>";
             },
             "recipe_creator__general"
@@ -313,7 +313,7 @@ class RecipeCreator
             __("Instagram", "recipe-creator"),
             function () {
                 echo "<p>" .
-                    __(
+                    esc_html__(
                         "Provide informations about your instagram profile and we show a call to action below your recipe.",
                         "recipe-creator"
                     ) .
@@ -326,7 +326,7 @@ class RecipeCreator
             __("Visual settings", "recipe-creator"),
             function () {
                 echo "<p>" .
-                    __("Configure how the recipe block should look for your visitors.", "recipe-creator") .
+                    esc_html__("Configure how the recipe block should look for your visitors.", "recipe-creator") .
                     "</p>";
             },
             "recipe_creator__general"
@@ -658,6 +658,15 @@ class RecipeCreator
     {
         ob_start();
         include(__DIR__ . '/../partials/recipe-block-styles.php');
+        $html = ob_get_clean();
+
+        echo wp_kses($html, ["style" => []]);
+    }
+
+    public function renderRecipeBlockSchema()
+    {
+        ob_start();
+        include(__DIR__ . '/../partials/recipe-block-schema.php');
         return ob_get_clean();
     }
 
@@ -667,7 +676,6 @@ class RecipeCreator
             "translations" => $this->getRecipeBlockTranslations(),
             "recipeYield" => 2,
             "recipeYieldUnit" => "servings",
-            "recipeYieldUnitFormatted" => __("servings", "recipe-creator"),
             "difficulty" => __("simple", "recipe-creator"),
             "prepTime" => 5,
             "cookTime" => 5,
@@ -680,28 +688,13 @@ class RecipeCreator
             "ingredientsGroups" => [
                 [
                     "title" => "",
-                    "items" => [
-                        [
-                            "amount" => 500,
-                            "unit" => "ml",
-                            "ingredient" => __("milk", "recipe-creator"),
-                        ],
-                        [
-                            "amount" => 1,
-                            "unit" => "",
-                            "ingredient" => __("banana", "recipe-creator"),
-                        ],
-                        [
-                            "amount" => 1,
-                            "unit" => "TL",
-                            "ingredient" => __("sugar", "recipe-creator"),
-                        ],
-                        [
-                            "amount" => 0,
-                            "unit" => "",
-                            "ingredient" => __("cinnamon", "recipe-creator"),
-                        ],
-                    ],
+                    "list" => "<li>" . join("</li><li>", [
+                        "500ml " . __("milk", "recipe-creator"),
+                        "1 " .  __("banana", "recipe-creator"),
+                        "1 TL " . __("sugar", "recipe-creator"),
+                        __("cinnamon", "recipe-creator"),
+                    ]) .
+                    "</li>",
                 ],
             ],
             "utensils" =>
@@ -733,9 +726,7 @@ class RecipeCreator
     public function renderRecipeBlockDummy()
     {
         $attributes = $this->getDummyData();
-        ob_start();
-        include(__DIR__ . '/../partials/recipe-block.php');
-        return ob_get_clean();
+        echo wp_kses_post($this->renderRecipeBlock($attributes));
     }
 
     private function getRecipeBlockTranslations()
@@ -765,13 +756,9 @@ class RecipeCreator
         ];
     }
 
-    public function renderRecipeBlock($attributes, $context)
+    public function renderRecipeBlock($attributes)
     {
         wp_enqueue_script("recipe-creator--recipe-view-script");
-
-        // $attributes["translations"] = $this->getRecipeBlockTranslations();
-
-        // $attributes["postId"] = get_the_ID();
 
         $averageRating = get_post_meta(get_the_ID(), "recipe_creator__average_rating", true) ?: 0;
         $ratingCount = get_post_meta(get_the_ID(), "recipe_creator__rating_count", true) ?: 0;
