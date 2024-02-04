@@ -33,11 +33,6 @@
         <?php } else { ?>--box-shadow: none;
         <?php } ?><?php if (get_option("recipe_creator__show_border", $this->showBorderDefault) === "1") { ?>--border: 1px solid <?php echo esc_attr(get_option("recipe_creator__primary_color", $this->primaryColorDefault)); ?>;
         <?php  } else { ?>--border: 0px;
-        <?php } ?>--clock-url: url(<?php echo esc_attr($this->getStyledSvg('clock')); ?>);
-        --star-url: url(<?php echo esc_attr($this->getStyledSvg('star')); ?>);
-        --star-filled-url: url(<?php echo esc_attr($this->getStyledSvg('starFilled')); ?>);
-        --star-half-filled-url: url(<?php echo esc_attr($this->getStyledSvg('starHalfFilled')); ?>);
-        --star-highlighted-url: url(<?php echo esc_attr($this->getStyledSvg('starHighlighted')); ?>);
-        --instagram-url: url(<?php echo esc_attr($this->getStyledSvg('instagram')); ?>);
+        <?php } ?>
     }
 </style>
