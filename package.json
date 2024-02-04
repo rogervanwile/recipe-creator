@@ -7,8 +7,11 @@
   "main": "build/index.js",
   "scripts": {
     "create-release": "npm run build && npx ts-node ./build-tools/create-release.ts",
-    "prebuild": "rm -rf ./build",
+    "prebuild": "npm run cleanup",
+    "cleanup": "rm -rf ./build",
     "build": "wp-scripts build",
+    "fix:font-svgs": "node node_modules/oslllo-svg-fixer/src/cli.js --source ./src/svgs --destination ./src/svgs",
+    "build:fonts": "svgtofont --sources ./src/svgs --output ./src/blocks/recipe/fonts/recipe-creator-icons/",
     "format:js": "wp-scripts format-js",
     "lint:css": "wp-scripts lint-style",
     "lint:js": "wp-scripts lint-js",
@@ -51,9 +54,11 @@
     "handlebars-loader": "1.7.3",
     "husky": "^8.0.3",
     "lint-staged": "^15.1.0",
+    "oslllo-svg-fixer": "^3.0.0",
     "prompt": "^1.1.0",
     "qrcode": "^1.5.0",
     "showdown": "2.1.0",
+    "svgtofont": "^4.1.1",
     "ts-loader": "9.3.1",
     "ts-node": "10.9.1",
     "typescript": "^4.1.3",
@@ -65,5 +70,17 @@
   },
   "prettier": {
     "printWidth": 120
+  },
+  "svgtofont": {
+    "fontName": "recipe-creator-icons",
+    "emptyDist": true,
+    "css": {
+      "output": "./src/blocks/recipe/",
+      "fileName": "_recipe-creator-icons",
+      "cssPath": "./fonts/recipe-creator-icons/",
+      "include": "\\.scss$"
+    },
+    "website": false,
+    "outSVGReact": false
   }
 }

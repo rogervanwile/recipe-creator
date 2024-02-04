@@ -32,6 +32,16 @@ If you change the handlebar templates, you must recompile them for usage in the 
 
 `npm run build`
 
+## Update SVG icons
+
+Run `npm run build:fonts`
+
+### Error: Some icons are not visible
+
+Its possible that some icons must be "fixed" before converting to a webfont. For that, use:
+
+`npm run fix:font-svgs`
+
 # Publish a new version
 
 - `npm run build`

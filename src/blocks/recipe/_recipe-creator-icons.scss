@@ -1,0 +1,30 @@
+@font-face {font-family: "recipe-creator-icons";
+  src: url('./fonts/recipe-creator-icons/recipe-creator-icons.eot?t=1707039290975'); /* IE9*/
+  src: url('./fonts/recipe-creator-icons/recipe-creator-icons.eot?t=1707039290975#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url("./fonts/recipe-creator-icons/recipe-creator-icons.woff2?t=1707039290975") format("woff2"),
+  url("./fonts/recipe-creator-icons/recipe-creator-icons.woff?t=1707039290975") format("woff"),
+  url('./fonts/recipe-creator-icons/recipe-creator-icons.ttf?t=1707039290975') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('./fonts/recipe-creator-icons/recipe-creator-icons.svg?t=1707039290975#recipe-creator-icons') format('svg'); /* iOS 4.1- */
+}
+
+[class^="recipe-creator-icons-"], [class*=" recipe-creator-icons-"] {
+  font-family: 'recipe-creator-icons' !important;font-size: undefined;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.recipe-creator-icons-clock:before { content: "\ea01"; }
+.recipe-creator-icons-instagram:before { content: "\ea02"; }
+.recipe-creator-icons-star-filled:before { content: "\ea03"; }
+.recipe-creator-icons-star-half-filled:before { content: "\ea04"; }
+.recipe-creator-icons-star-highlighted:before { content: "\ea05"; }
+.recipe-creator-icons-star:before { content: "\ea06"; }
+
+$recipe-creator-icons-clock: "\ea01";
+$recipe-creator-icons-instagram: "\ea02";
+$recipe-creator-icons-star-filled: "\ea03";
+$recipe-creator-icons-star-half-filled: "\ea04";
+$recipe-creator-icons-star-highlighted: "\ea05";
+$recipe-creator-icons-star: "\ea06";
+

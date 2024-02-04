@@ -86,24 +86,20 @@
       .recipe-creator--recipe-block--timings {
         padding: 1em 0 0 0;
         margin: 0;
+        position: relative;
+
+        &::before {
+          font-family: "recipe-creator-icons";
+          content: $recipe-creator-icons-clock;
+          font-size: 48px;
+          line-height: 48px;
+          position: absolute;
+          top: calc(50% - 0.5em);
+          left: 0;
+        }
 
         ul {
           padding-left: 4em !important;
-
-          &::before {
-            content: "";
-            background-image: var(--clock-url);
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: 3em 3em;
-            display: block;
-            position: absolute;
-            top: calc(50% - 0.5em);
-            left: 0;
-            width: 3em;
-            height: 3em;
-            transform: translateY(-50%);
-          }
 
           li {
             display: inline-block;
