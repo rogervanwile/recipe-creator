@@ -683,7 +683,6 @@ class RecipeCreator
     public function getDummyData()
     {
         return [
-            "translations" => $this->getRecipeBlockTranslations(),
             "recipeYield" => 2,
             "recipeYieldUnit" => "servings",
             "difficulty" => __("simple", "recipe-creator"),
@@ -739,33 +738,6 @@ class RecipeCreator
         $attributes = $this->prepareRecipeBlockAttributes($rawAttributes);
         $attributes['averageRating'] = 4.5;
         echo wp_kses_post($this->getRecipeBlock($attributes));
-    }
-
-    private function getRecipeBlockTranslations()
-    {
-        return [
-            "prepTime" => __("Prep time", "recipe-creator"),
-            "restTime" => __("Rest time", "recipe-creator"),
-            "cookTime" => __("Cook time", "recipe-creator"),
-            "bakingTime" => __("Baking time", "recipe-creator"),
-            "totalTime" => __("Total time", "recipe-creator"),
-            "yield" => __("yields", "recipe-creator"),
-            "ingredients" => __("Ingredients", "recipe-creator"),
-            "utensils" => __("Utensils", "recipe-creator"),
-            "preparationSteps" => __("Steps of preparation", "recipe-creator"),
-            "print" => __("Print", "recipe-creator"),
-            "pinIt" => __("Pin it", "recipe-creator"),
-            "yourRating" => __("Your rating", "recipe-creator"),
-            "averageRating" => __("Average rating", "recipe-creator"),
-            "notes" => __("Notes", "recipe-creator"),
-            "feedback" => __("How do you like the recipe?", "recipe-creator"),
-            "servings" => __("servings", "recipe-creator"),
-            "video" => __("Video", "recipe-creator"),
-            "instagramHeadline" => __("You tried this recipe?", "recipe-creator"),
-            "instagramThenLink" => __("Then link", "recipe-creator"),
-            "instagramOnInstagram" => __("on Instagram", "recipe-creator"),
-            "instagramOrUseHashtag" => __("on Instagram or use the hashtag", "recipe-creator"),
-        ];
     }
 
     public function renderRecipeBlock($rawAttributes)

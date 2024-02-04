@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Recipe Creator 2.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recipe-creator\n"
-"POT-Creation-Date: 2024-02-04T16:12:53+00:00\n"
-"PO-Revision-Date: 2024-02-04 17:18+0100\n"
+"POT-Creation-Date: 2024-02-04T16:23:03+00:00\n"
+"PO-Revision-Date: 2024-02-04 17:23+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -38,7 +38,7 @@ msgstr "recipe-creator.de"
 msgid "https://recipe-creator.de/"
 msgstr "https://recipe-creator.de/"
 
-#: inc/recipe-creator.php:54 inc/recipe-creator.php:759
+#: inc/recipe-creator.php:54
 msgid "Average rating"
 msgstr "Durchschnittliche Bewertung"
 
@@ -134,16 +134,16 @@ msgstr "Eckradius"
 msgid "Image width"
 msgstr "Bildbreite"
 
-#: inc/recipe-creator.php:689 inc/recipe-creator.php:808
+#: inc/recipe-creator.php:688 inc/recipe-creator.php:780
 #: build/blocks/recipe/editor.js:1
 msgid "simple"
 msgstr "einfach"
 
-#: inc/recipe-creator.php:692
+#: inc/recipe-creator.php:691
 msgid "Banana shake"
 msgstr "Bananen-Shake"
 
-#: inc/recipe-creator.php:693
+#: inc/recipe-creator.php:692
 msgid ""
 "You have bananas left over again and don't know what to do with them? How "
 "about a delicious shake?"
@@ -151,184 +151,160 @@ msgstr ""
 "Du hast wieder Bananen übrig und weißt nichts damit anzufangen? Wie wäre es "
 "mit einem leckeren Shake?"
 
-#: inc/recipe-creator.php:702
+#: inc/recipe-creator.php:701
 msgid "milk"
 msgstr "Milch"
 
-#: inc/recipe-creator.php:703
+#: inc/recipe-creator.php:702
 msgid "banana"
 msgstr "Banane"
 
-#: inc/recipe-creator.php:704
+#: inc/recipe-creator.php:703
 msgid "sugar"
 msgstr "Zucker"
 
-#: inc/recipe-creator.php:705
+#: inc/recipe-creator.php:704
 msgid "cinnamon"
 msgstr "Zimt"
 
-#: inc/recipe-creator.php:711
+#: inc/recipe-creator.php:710
 msgid "Knife"
 msgstr "Messer"
 
-#: inc/recipe-creator.php:711
+#: inc/recipe-creator.php:710
 msgid "Blender"
 msgstr "Mixer"
 
-#: inc/recipe-creator.php:718
+#: inc/recipe-creator.php:717
 msgid "Peel banana."
 msgstr "Banane schälen."
 
-#: inc/recipe-creator.php:719
+#: inc/recipe-creator.php:718
 msgid ""
 "Put all the ingredients in the blender and mix everything for 30 seconds."
 msgstr "Alle Zutaten in den Mixer geben und alles für 30 Sekunden mixen."
 
-#: inc/recipe-creator.php:723
+#: inc/recipe-creator.php:722
 msgid "Pour into a glass and enjoy."
 msgstr "In ein Glas füllen und genießen."
 
-#: inc/recipe-creator.php:730
+#: inc/recipe-creator.php:729
 msgid "The milkshake becomes particularly creamy with UHT milk."
 msgstr "Besonders cremig wird der Milchshake mit H-Milch."
 
-#: inc/recipe-creator.php:747 partials/recipe-block.php:42
-#: build/blocks/recipe/editor.js:1
-msgid "Prep time"
-msgstr "Vorbereitungszeit"
-
-#: inc/recipe-creator.php:748 partials/recipe-block.php:49
-#: build/blocks/recipe/editor.js:1
-msgid "Rest time"
-msgstr "Ruhezeit"
-
-#: inc/recipe-creator.php:749 partials/recipe-block.php:56
-#: build/blocks/recipe/editor.js:1
-msgid "Cook time"
-msgstr "Kochzeit"
-
-#: inc/recipe-creator.php:750 partials/recipe-block.php:63
-#: build/blocks/recipe/editor.js:1
-msgid "Baking time"
-msgstr "Backzeit"
-
-#: inc/recipe-creator.php:751 partials/recipe-block.php:70
-#: build/blocks/recipe/editor.js:1
-msgid "Total time"
-msgstr "Gesamtzeit"
-
-#: inc/recipe-creator.php:752
-msgid "yields"
-msgstr "Stück"
-
-#: inc/recipe-creator.php:753 partials/recipe-block.php:81
-#: build/blocks/recipe/editor.js:1
-msgid "Ingredients"
-msgstr "Zutaten"
-
-#: inc/recipe-creator.php:754 partials/recipe-block.php:130
-#: build/blocks/recipe/editor.js:1
-msgid "Utensils"
-msgstr "Utensilien"
-
-#: inc/recipe-creator.php:755 partials/recipe-block.php:141
-#: build/blocks/recipe/editor.js:1
-msgid "Steps of preparation"
-msgstr "Zubereitung"
-
-#: inc/recipe-creator.php:756
-msgid "Print"
-msgstr "Drucken"
-
-#: inc/recipe-creator.php:757 partials/recipe-block.php:197
-msgid "Pin it"
-msgstr "Pin it"
-
-#: inc/recipe-creator.php:758
-msgid "Your rating"
-msgstr "Deine Bewertung"
-
-#: inc/recipe-creator.php:760 partials/recipe-block.php:172
-#: build/blocks/recipe/editor.js:1
-msgid "Notes"
-msgstr "Notizen"
-
-#: inc/recipe-creator.php:761 partials/recipe-block.php:180
-msgid "How do you like the recipe?"
-msgstr "Wie findest du das Rezept?"
-
-#: inc/recipe-creator.php:762 inc/recipe-creator.php:1036
-#: build/blocks/recipe/editor.js:1
-msgid "servings"
-msgstr "Portionen"
-
-#: inc/recipe-creator.php:763 partials/recipe-block.php:161
-#: build/blocks/recipe/editor.js:1
-msgid "Video"
-msgstr "Video"
-
-#: inc/recipe-creator.php:764 partials/recipe-block.php:207
-msgid "You tried this recipe?"
-msgstr "Du hast das Rezept ausprobiert?"
-
-#: inc/recipe-creator.php:765 partials/recipe-block.php:211
-#: partials/recipe-block.php:218 partials/recipe-block.php:225
-msgid "Then link"
-msgstr "Dann verlinke"
-
-#: inc/recipe-creator.php:766 partials/recipe-block.php:220
-#: partials/recipe-block.php:227
-msgid "on Instagram"
-msgstr "auf Instagram"
-
-#: inc/recipe-creator.php:767 partials/recipe-block.php:213
-msgid "on Instagram or use the hashtag"
-msgstr "auf Instagram oder nutze den Hashtag"
-
-#: inc/recipe-creator.php:811 build/blocks/recipe/editor.js:1
+#: inc/recipe-creator.php:783 build/blocks/recipe/editor.js:1
 msgid "moderate"
 msgstr "mittel"
 
-#: inc/recipe-creator.php:814 build/blocks/recipe/editor.js:1
+#: inc/recipe-creator.php:786 build/blocks/recipe/editor.js:1
 msgid "challenging"
 msgstr "herausfordernd"
 
-#: inc/recipe-creator.php:1015 build/blocks/recipe/editor.js:1
+#: inc/recipe-creator.php:987 build/blocks/recipe/editor.js:1
 msgid "piece"
 msgstr "Stück"
 
-#: inc/recipe-creator.php:1017
+#: inc/recipe-creator.php:989
 msgid "pieces"
 msgstr "Stücke"
 
-#: inc/recipe-creator.php:1020 inc/recipe-creator.php:1022
+#: inc/recipe-creator.php:992 inc/recipe-creator.php:994
 #: build/blocks/recipe/editor.js:1
 msgid "springform pan"
 msgstr "Springform"
 
-#: inc/recipe-creator.php:1024 build/blocks/recipe/editor.js:1
+#: inc/recipe-creator.php:996 build/blocks/recipe/editor.js:1
 msgid "square baking pan"
 msgstr "Backform (eckig)"
 
-#: inc/recipe-creator.php:1027 build/blocks/recipe/editor.js:1
+#: inc/recipe-creator.php:999 build/blocks/recipe/editor.js:1
 msgid "baking tray"
 msgstr "Backblech"
 
-#: inc/recipe-creator.php:1029
+#: inc/recipe-creator.php:1001
 msgid "baking trays"
 msgstr "Backbleche"
 
-#: inc/recipe-creator.php:1034
+#: inc/recipe-creator.php:1006
 msgid "serving"
 msgstr "Portion"
 
-#: inc/recipe-creator.php:1156 inc/recipe-creator.php:1161
+#: inc/recipe-creator.php:1008 build/blocks/recipe/editor.js:1
+msgid "servings"
+msgstr "Portionen"
+
+#: inc/recipe-creator.php:1128 inc/recipe-creator.php:1133
 msgid "minutes"
 msgstr "Minuten"
 
-#: inc/recipe-creator.php:1161
+#: inc/recipe-creator.php:1133
 msgid "hours"
 msgstr "Stunden"
+
+#: partials/recipe-block.php:42 build/blocks/recipe/editor.js:1
+msgid "Prep time"
+msgstr "Vorbereitungszeit"
+
+#: partials/recipe-block.php:49 build/blocks/recipe/editor.js:1
+msgid "Rest time"
+msgstr "Ruhezeit"
+
+#: partials/recipe-block.php:56 build/blocks/recipe/editor.js:1
+msgid "Cook time"
+msgstr "Kochzeit"
+
+#: partials/recipe-block.php:63 build/blocks/recipe/editor.js:1
+msgid "Baking time"
+msgstr "Backzeit"
+
+#: partials/recipe-block.php:70 build/blocks/recipe/editor.js:1
+msgid "Total time"
+msgstr "Gesamtzeit"
+
+#: partials/recipe-block.php:81 build/blocks/recipe/editor.js:1
+msgid "Ingredients"
+msgstr "Zutaten"
+
+#: partials/recipe-block.php:130 build/blocks/recipe/editor.js:1
+msgid "Utensils"
+msgstr "Utensilien"
+
+#: partials/recipe-block.php:141 build/blocks/recipe/editor.js:1
+msgid "Steps of preparation"
+msgstr "Zubereitung"
+
+#: partials/recipe-block.php:161 build/blocks/recipe/editor.js:1
+msgid "Video"
+msgstr "Video"
+
+#: partials/recipe-block.php:172 build/blocks/recipe/editor.js:1
+msgid "Notes"
+msgstr "Notizen"
+
+#: partials/recipe-block.php:180
+msgid "How do you like the recipe?"
+msgstr "Wie findest du das Rezept?"
+
+#: partials/recipe-block.php:197
+msgid "Pin it"
+msgstr "Pin it"
+
+#: partials/recipe-block.php:207
+msgid "You tried this recipe?"
+msgstr "Du hast das Rezept ausprobiert?"
+
+#: partials/recipe-block.php:211 partials/recipe-block.php:218
+#: partials/recipe-block.php:225
+msgid "Then link"
+msgstr "Dann verlinke"
+
+#: partials/recipe-block.php:213
+msgid "on Instagram or use the hashtag"
+msgstr "auf Instagram oder nutze den Hashtag"
+
+#: partials/recipe-block.php:220 partials/recipe-block.php:227
+msgid "on Instagram"
+msgstr "auf Instagram"
 
 #: build/blocks/recipe/editor.js:1
 msgid "Change image"
