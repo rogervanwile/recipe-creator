@@ -1,5 +1,5 @@
 <?php if (!empty($attributes['ldJson'])) { ?>
     <script type="application/ld+json">
-        <?php echo esc_js($attributes['ldJson']); ?>
+        <?php echo json_encode($attributes['ldJson']); ?>
     </script>
 <?php } ?>

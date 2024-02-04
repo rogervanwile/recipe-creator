@@ -654,20 +654,30 @@ class RecipeCreator
         return str_replace(',', '.', $rawAmount);
     }
 
-    public function renderRecipeBlockStyles()
+    private function getRecipeBlockStyles()
     {
         ob_start();
         include(__DIR__ . '/../partials/recipe-block-styles.php');
-        $html = ob_get_clean();
+        return ob_get_clean();
+    }
 
+    public function renderRecipeBlockStyles()
+    {
+        $html = $this->getRecipeBlockStyles();
         echo wp_kses($html, ["style" => []]);
     }
 
-    public function renderRecipeBlockSchema()
+    public function getRecipeBlockSchema($attributes)
     {
         ob_start();
         include(__DIR__ . '/../partials/recipe-block-schema.php');
         return ob_get_clean();
+    }
+
+    public function renderRecipeBlockSchema($attributes)
+    {
+        $html = $this->getRecipeBlockSchema($attributes);
+        echo wp_kses($html, ["script" => ["type" => "application/ld+json"]]);
     }
 
     public function getDummyData()
@@ -694,7 +704,7 @@ class RecipeCreator
                         "1 TL " . __("sugar", "recipe-creator"),
                         __("cinnamon", "recipe-creator"),
                     ]) .
-                    "</li>",
+                        "</li>",
                 ],
             ],
             "utensils" =>
@@ -725,8 +735,10 @@ class RecipeCreator
 
     public function renderRecipeBlockDummy()
     {
-        $attributes = $this->getDummyData();
-        echo wp_kses_post($this->renderRecipeBlock($attributes));
+        $rawAttributes = $this->getDummyData();
+        $attributes = $this->prepareRecipeBlockAttributes($rawAttributes);
+        $attributes['averageRating'] = 4.5;
+        echo wp_kses_post($this->getRecipeBlock($attributes));
     }
 
     private function getRecipeBlockTranslations()
@@ -756,12 +768,29 @@ class RecipeCreator
         ];
     }
 
-    public function renderRecipeBlock($attributes)
+    public function renderRecipeBlock($rawAttributes)
     {
         wp_enqueue_script("recipe-creator--recipe-view-script");
 
-        $averageRating = get_post_meta(get_the_ID(), "recipe_creator__average_rating", true) ?: 0;
-        $ratingCount = get_post_meta(get_the_ID(), "recipe_creator__rating_count", true) ?: 0;
+        $attributes = $this->prepareRecipeBlockAttributes($rawAttributes);
+
+        $attributes["averageRating"] = get_post_meta(get_the_ID(), "recipe_creator__average_rating", true) ?: 0;
+        $attributes["ratingCount"] = get_post_meta(get_the_ID(), "recipe_creator__rating_count", true) ?: 0;
+
+        $attributes["keywords"] = get_the_tags();
+        $attributes["categories"] = get_the_category();
+
+        $attributes["ldJson"] = $this->getSchemaFromRecipeAttributes($attributes);
+
+        $recipeBlock = $this->getRecipeBlock($attributes);
+        $schema =  $this->getRecipeBlockSchema($attributes);
+        $styles = $this->getRecipeBlockStyles();
+
+        return $recipeBlock . $schema . $styles;
+    }
+
+    private function prepareRecipeBlockAttributes($attributes)
+    {
 
         $recipeYield = isset($attributes["recipeYield"]) ? intval($attributes["recipeYield"]) : 1;
         $recipeYieldWidth = isset($attributes["recipeYieldWidth"]) ? intval($attributes["recipeYieldWidth"]) : 0;
@@ -820,31 +849,6 @@ class RecipeCreator
         }
 
         $attributes["ingredientsGroups"] = $this->prepareIngredientsForRenderer($attributes["ingredientsGroups"]);
-
-        $attributes["averageRating"] = $averageRating;
-
-        $keywords = get_the_tags();
-
-        if ($keywords !== false && count($keywords) > 0) {
-            $keywordsString = implode(
-                ", ",
-                array_map(function ($tag) {
-                    return $tag->name;
-                }, $keywords)
-            );
-        } else {
-            $keywordsString = "";
-        }
-
-        $categories = get_the_category();
-        if ($categories !== false && count($categories) > 0) {
-            $category = array_map(function ($category) {
-                return $category->name;
-            }, $categories)[0];
-        } else {
-            $category = "";
-        }
-
         $thumbnailImageCandidates = ["image3_2", "image4_3", "image16_9", "image1_1"];
 
         foreach ($thumbnailImageCandidates as $imageCandidate) {
@@ -867,28 +871,9 @@ class RecipeCreator
             $attributes["thumbnail"] = $postThumbnail;
         }
 
-        $images = [];
-
-        if (!empty($attributes["image16_9"])) {
-            $images[] = $attributes["image16_9"];
-        }
-        if (!empty($attributes["image3_2"])) {
-            $images[] = $attributes["image3_2"];
-        }
-        if (!empty($attributes["image4_3"])) {
-            $images[] = $attributes["image4_3"];
-        }
-        if (!empty($attributes["image1_1"])) {
-            $images[] = $attributes["image1_1"];
-        }
-        if (!empty($attributes["thumbnail"])) {
-            $images[] = $attributes["thumbnail"];
-        }
-
         $description = !empty($attributes["description"]) ? $attributes["description"] : "";
 
         // Process the pinterest image
-
         if (!empty($attributes["pinterestImageId"])) {
             $pinterestImageId = (int)$attributes['pinterestImageId'];
             if ($pinterestImageId !== null) {
@@ -907,7 +892,52 @@ class RecipeCreator
             }
         }
 
-        $attributes["ldJson"] = [
+        // Instagram-CTA
+        $attributes["instagramUsername"] = get_option("recipe_creator__instagram__username", "");
+        $attributes["instagramHashtag"] = get_option("recipe_creator__instagram__hashtag", "");
+
+        return $attributes;
+    }
+
+    private function getSchemaFromRecipeAttributes($attributes)
+    {
+        $images = [];
+
+        if (!empty($attributes["image16_9"])) {
+            $images[] = $attributes["image16_9"];
+        }
+        if (!empty($attributes["image3_2"])) {
+            $images[] = $attributes["image3_2"];
+        }
+        if (!empty($attributes["image4_3"])) {
+            $images[] = $attributes["image4_3"];
+        }
+        if (!empty($attributes["image1_1"])) {
+            $images[] = $attributes["image1_1"];
+        }
+        if (!empty($attributes["thumbnail"])) {
+            $images[] = $attributes["thumbnail"];
+        }
+
+
+        $keywordsString = '';
+        if (!empty($attributes["keywords"]) && count($attributes["keywords"]) > 0) {
+            $keywordsString = implode(
+                ", ",
+                array_map(function ($tag) {
+                    return $tag->name;
+                }, $attributes["keywords"])
+            );
+        }
+
+        $category = "";
+        if (!empty($attributes["categories"]) && count($attributes["categories"]) > 0) {
+            $category = array_map(function ($category) {
+                return $category->name;
+            }, $attributes["categories"])[0];
+        }
+
+        $schema = [
             "@context" => "https://schema.org/",
             "@type" => "Recipe",
             "name" => isset($attributes["name"]) ? $attributes["name"] : "",
@@ -917,7 +947,7 @@ class RecipeCreator
                 "name" => get_the_author_meta("display_name"),
             ],
             "datePublished" => get_the_date("Y-m-d"), // "2018-03-10",
-            "description" => $description,
+            "description" => !empty($attributes["description"]) ? $attributes["description"] : "",
             "recipeCuisine" => isset($attributes["recipeCuisine"]) ? $attributes["recipeCuisine"] : "",
             "prepTime" => isset($attributes["prepTime"])
                 ? $this->toIso8601Duration(intval($attributes["prepTime"]) * 60)
@@ -929,8 +959,8 @@ class RecipeCreator
             "keywords" => $keywordsString,
             "recipeYield" => isset($attributes["recipeYield"])
                 ? $attributes["recipeYield"] .
-                (isset($attributes["recipeYieldUnit"])
-                    ? " " . $this->getRecipeYieldUnitFormatted($attributes["recipeYieldUnit"], $recipeYield ?: 1)
+                (isset($attributes["recipeYieldUnitFormatted"])
+                    ? " " . $attributes["recipeYieldUnitFormatted"]
                     : "")
                 : "",
             "recipeCategory" => $category,
@@ -945,16 +975,16 @@ class RecipeCreator
             "recipeInstructions" => $this->preparePreparationStepsForJsonLd($attributes["preparationStepsGroups"]),
         ];
 
-        if ($averageRating > 0 && $ratingCount > 0) {
-            $attributes["ldJson"]["aggregateRating"] = [
+        if (!empty($attributes["averageRating"]) && !empty($attributes["ratingCount"]) && $attributes["averageRating"] > 0 && $attributes["ratingCount"] > 0) {
+            $schema["aggregateRating"] = [
                 "@type" => "AggregateRating",
-                "ratingValue" => "$averageRating",
-                "ratingCount" => "$ratingCount",
+                "ratingValue" => "" . $attributes["averageRating"],
+                "ratingCount" => "" . $attributes["ratingCount"],
             ];
         }
 
         if (!empty($attributes["videoIframeUrl"])) {
-            $attributes["ldJson"]["video"] = [
+            $schema["video"] = [
                 "@type" => "VideoObject",
                 "description" => $attributes["description"],
                 "name" => isset($attributes["name"]) ? $attributes["name"] : "",
@@ -965,15 +995,13 @@ class RecipeCreator
         }
 
         // Remove empty strings from ldJon
-        $attributes["ldJson"] = array_filter($attributes["ldJson"]);
+        $schema = array_filter($schema);
 
-        $attributes["options"] = $this->getStyleOptions();
-        // $attributes["svgs"] = $this->getSvgs($attributes["options"]);
+        return $schema;
+    }
 
-        // Instagram-CTA
-        $attributes["instagramUsername"] = get_option("recipe_creator__instagram__username", "");
-        $attributes["instagramHashtag"] = get_option("recipe_creator__instagram__hashtag", "");
-
+    private function getRecipeBlock($attributes)
+    {
         ob_start();
         include(__DIR__ . '/../partials/recipe-block.php');
         return ob_get_clean();
@@ -1094,42 +1122,6 @@ class RecipeCreator
         ob_start();
         include(__DIR__ . '/../partials/jump-to-recipe-block.php');
         return ob_get_clean();
-    }
-
-    private function getStyleOptions()
-    {
-        return [
-            "primaryColor" => get_option("recipe_creator__primary_color", $this->primaryColorDefault),
-            "primaryColorContrast" => get_option(
-                "recipe_creator__primary_color_contrast",
-                $this->primaryColorContrastDefault
-            ),
-            "primaryColorLight" => get_option(
-                "recipe_creator__primary_color_light",
-                $this->primaryColorLightDefault
-            ),
-            "primaryColorLightContrast" => get_option(
-                "recipe_creator__primary_color_light_contrast",
-                $this->primaryColorLightContrastDefault
-            ),
-            "primaryColorDark" => get_option(
-                "recipe_creator__primary_color_dark",
-                $this->primaryColorDarkDefault
-            ),
-            "secondaryColor" => get_option("recipe_creator__secondary_color", $this->secondaryColorDefault),
-            "secondaryColorContrast" => get_option(
-                "recipe_creator__secondary_color_contrast",
-                $this->secondaryColorContrastDefault
-            ),
-            "backgroundColor" => get_option("recipe_creator__background_color", $this->backgroundColorDefault),
-            "backgroundColorContrast" => get_option(
-                "recipe_creator__background_color_contrast",
-                $this->backgroundColorContrastDefault
-            ),
-            "showBorder" => get_option("recipe_creator__show_border", $this->showBorderDefault),
-            "showBoxShadow" => get_option("recipe_creator__show_box_shadow", $this->showBoxShadowDefault),
-            "borderRadius" => get_option("recipe_creator__border_radius", $this->borderRadiusDefault),
-        ];
     }
 
     private function toIso8601Duration($seconds)
