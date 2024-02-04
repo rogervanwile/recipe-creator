@@ -773,7 +773,7 @@ class RecipeCreator
         $attributes["bakingTime"] = isset($attributes["bakingTime"]) ? floatval($attributes["bakingTime"]) : 0;
         $attributes["totalTime"] = isset($attributes["totalTime"]) ? floatval($attributes["totalTime"]) : 0;
 
-        if (isset($attributes["difficulty"]) && !empty($attributes["difficulty"])) {
+        if (!empty($attributes["difficulty"])) {
             switch ($attributes["difficulty"]) {
                 case 'simple';
                     $attributes["difficulty"] = __('simple', "recipe-creator");
@@ -869,19 +869,19 @@ class RecipeCreator
 
         $images = [];
 
-        if (isset($attributes["image16_9"]) && !empty($attributes["image16_9"])) {
+        if (!empty($attributes["image16_9"])) {
             $images[] = $attributes["image16_9"];
         }
-        if (isset($attributes["image3_2"]) && !empty($attributes["image3_2"])) {
+        if (!empty($attributes["image3_2"])) {
             $images[] = $attributes["image3_2"];
         }
-        if (isset($attributes["image4_3"]) && !empty($attributes["image4_3"])) {
+        if (!empty($attributes["image4_3"])) {
             $images[] = $attributes["image4_3"];
         }
-        if (isset($attributes["image1_1"]) && !empty($attributes["image1_1"])) {
+        if (!empty($attributes["image1_1"])) {
             $images[] = $attributes["image1_1"];
         }
-        if (isset($attributes["thumbnail"]) && !empty($attributes["thumbnail"])) {
+        if (!empty($attributes["thumbnail"])) {
             $images[] = $attributes["thumbnail"];
         }
 
@@ -889,7 +889,7 @@ class RecipeCreator
 
         // Process the pinterest image
 
-        if (isset($attributes['pinterestImageId']) && !empty($attributes["pinterestImageId"])) {
+        if (!empty($attributes["pinterestImageId"])) {
             $pinterestImageId = (int)$attributes['pinterestImageId'];
             if ($pinterestImageId !== null) {
                 $pinterestImageUrl = wp_get_attachment_image_src($pinterestImageId, "recipe-creator--pinterest");
@@ -935,7 +935,7 @@ class RecipeCreator
                 : "",
             "recipeCategory" => $category,
             "nutrition" =>
-            isset($attributes["calories"]) && !empty($attributes["calories"])
+            !empty($attributes["calories"])
                 ? [
                     "@type" => "NutritionInformation",
                     "calories" => $attributes["calories"],
@@ -953,7 +953,7 @@ class RecipeCreator
             ];
         }
 
-        if (isset($attributes["videoIframeUrl"]) && !empty($attributes["videoIframeUrl"])) {
+        if (!empty($attributes["videoIframeUrl"])) {
             $attributes["ldJson"]["video"] = [
                 "@type" => "VideoObject",
                 "description" => $attributes["description"],
