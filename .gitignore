@@ -31,3 +31,4 @@ vendor
 build/
 updates/
 .DS_Store
+releases/
