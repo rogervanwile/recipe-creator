@@ -341,6 +341,10 @@
 
         li.recipe-creator--recipe-block--star {
           cursor: pointer;
+          &::before {
+            font-size: 32px;
+            line-height: 32px;
+          }
 
           &:hover,
           &.selected:hover,
@@ -367,16 +371,14 @@
     box-sizing: content-box;
     background-repeat: no-repeat;
     display: inline-block;
-    width: 32px;
-    height: 32px;
 
     &::before {
       font-family: "recipe-creator-icons";
       content: $recipe-creator-icons-star;
-      font-size: 32px;
-      line-height: 32px;
       color: var(--primary);
     }
+
+    // TODO: Kann vielleicht weg
     // Enforces the background image to be visible when printing
     -webkit-print-color-adjust: exact;
 
