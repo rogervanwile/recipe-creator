@@ -276,7 +276,7 @@
           margin-right: 0.5em;
           background-color: var(--primary-light) !important;
           border-radius: 50%;
-          color: var(--primary);
+          color: var(--primary-light-contrast);
           position: absolute;
           top: 0.5em;
           left: 0;
@@ -296,7 +296,7 @@
     background-color: var(--primary-light) !important;
     padding: 0.25em 0.75em;
     border: 1px solid var(--primary);
-    color: var(--primary);
+    color: var(--primary-light-contrast);
     display: inline-block;
     font-size: 1em;
     line-height: 1.4;
