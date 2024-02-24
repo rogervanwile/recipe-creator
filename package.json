@@ -1,6 +1,6 @@
 {
   "name": "recipe-creator",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "The easy to use recipe plugin for WordPress' Gutenberg editor. Easily create recipes and optimize them for Google & Co automatically.",
   "author": "Oliver Wagner",
   "license": "GPL-2.0-or-later",

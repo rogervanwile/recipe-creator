@@ -32,8 +32,8 @@ Clicking on it takes the user to Instagram. Take a look at their privacy policy 
 
 == Changelog ==
 
-= 2.0.0 =
+= 2.0.1 =
 
-Release date: 23/02/2024
+Release date: 24/02/2024
 
-* Inital Release
+* Update some texts in the app
