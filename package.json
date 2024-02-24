@@ -5,6 +5,8 @@
   "author": "Oliver Wagner",
   "license": "GPL-2.0-or-later",
   "main": "build/index.js",
+  "repository": "https://github.com/rogervanwile/recipe-creator",
+  "bugs": "https://github.com/rogervanwile/recipe-creator/issues",
   "scripts": {
     "create-release": "npm run build && npx ts-node ./build-tools/create-release.ts",
     "prebuild": "npm run cleanup",

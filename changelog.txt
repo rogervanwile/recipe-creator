@@ -2,7 +2,7 @@
 
 = 2.0.0 =
 
-Release date: tbd
+Release date: 23/02/2024
 
 * Inital Release of the Recipe Creator
 

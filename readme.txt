@@ -1,4 +1,4 @@
-=== Starter Block ===
+=== Recipe Creator ===
 Tags:              recipe, block
 Requires at least: 5.3.2
 Tested up to:      6.4.1
@@ -34,6 +34,6 @@ Clicking on it takes the user to Instagram. Take a look at their privacy policy 
 
 = 2.0.0 =
 
-Release date: tbd
+Release date: 23/02/2024
 
 * Inital Release
