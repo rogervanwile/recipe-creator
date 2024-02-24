@@ -1,7 +1,7 @@
 === Recipe Creator ===
 Tags:              recipe, block
 Requires at least: 5.3.2
-Tested up to:      6.4.1
+Tested up to:      6.4.3
 Stable tag:        2.0.0
 Requires PHP:      7.0.0
 License:           GPLv3
