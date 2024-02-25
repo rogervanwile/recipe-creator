@@ -1,10 +1,8 @@
 name: Deploy and Release Plugin
 on:
   push:
-    # tags:
-    #   - "*"
-    branches:
-    - main
+    tags:
+      - "*"
 jobs:
   tag:
     name: New tag
