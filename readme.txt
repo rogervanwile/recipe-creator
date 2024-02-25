@@ -2,7 +2,7 @@
 Tags:              recipe, block
 Requires at least: 5.3.2
 Tested up to:      6.4.3
-Stable tag:        2.0.0
+Stable tag:        2.0.1
 Requires PHP:      7.0.0
 License:           GPLv3
 License URI:       https://www.gnu.org/licenses/gpl-3.0
