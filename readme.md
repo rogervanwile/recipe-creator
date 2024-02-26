@@ -44,17 +44,15 @@ Its possible that some icons must be "fixed" before converting to a webfont. For
 
 # Publish a new version
 
-- `npm run build`
-- Update version in `package.json`
+- Update version in `package.json` and run `npm install`
 - Update version in `recipe-creator.php`
 - Update version in `readme.txt` (Stable tag)
-- Update changelogs in `changelog.txt` and copy the newest changes to the `readme.txt`
-- Update latest wp version ("tested") in `build-tools/create-release.ts`
-- Update latest wp version ("Tested up to") in `readme.txt`
+- Update changelogs in `changelog.txt` and copy the latest changes to the `readme.txt`
+- Create a new tag on the `main` branch.
 
-`$ npm run create-release`
+=> The release will be created within a github workflow and is pushed to the wordpress plugin directory.
 
-- Run tests
+# Run tests - outdated
 
 `$ npm run test:start`
 
