@@ -275,7 +275,7 @@ export default function Edit(props) {
               type="number"
               label={__("Calories", "recipe-creator")}
               value={props.attributes.calories}
-              description={__("Calories per serving or piece")}
+              description={__("Calories per serving or piece", "recipe-creator")}
               suffix="kcal"
               onChange={(calories) => {
                 props.setAttributes({ calories });

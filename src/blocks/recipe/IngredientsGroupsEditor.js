@@ -18,7 +18,9 @@ export default function IngredientsGroupsEditor({ props }) {
 
   function removeGroup(index) {
     if (props.attributes.ingredientsGroups[index]) {
-      if (confirm(__("Are you shure you want to delete this group. All ingredients will be deleted."))) {
+      if (
+        confirm(__("Are you shure you want to delete this group. All ingredients will be deleted.", "recipe-creator"))
+      ) {
         const update = [...props.attributes.ingredientsGroups];
         update.splice(index, 1);
 
