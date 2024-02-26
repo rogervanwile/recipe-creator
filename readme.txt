@@ -1,5 +1,5 @@
 === Recipe Creator ===
-Tags:              recipe, block, recipes, food, cooking, ingredients, gutenberg
+Tags:              recipe, block, recipes, cooking, gutenberg
 Requires at least: 5.3.2
 Tested up to:      6.4.3
 Stable tag:        2.0.1
