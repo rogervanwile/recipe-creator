@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Recipe Creator 2.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recipe-creator\n"
-"POT-Creation-Date: 2024-02-04T16:23:03+00:00\n"
-"PO-Revision-Date: 2024-02-04 17:23+0100\n"
+"POT-Creation-Date: 2024-02-26T21:41:18+00:00\n"
+"PO-Revision-Date: 2024-02-26 22:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -335,6 +335,12 @@ msgid "Group name"
 msgstr "Gruppentitel"
 
 #: build/blocks/recipe/editor.js:1
+msgid "Are you shure you want to delete this group? All steps will be deleted."
+msgstr ""
+"Bist du sicher, dass du diese Gruppe löschen möchtest? Es werden alle "
+"Schritte gelöscht."
+
+#: build/blocks/recipe/editor.js:1
 msgid "Remove Group"
 msgstr "Gruppe entfernen"
 
@@ -349,6 +355,13 @@ msgstr "Schritte in Gruppen aufteilen"
 #: build/blocks/recipe/editor.js:1
 msgid "Add additional group"
 msgstr "Zusätzliche Gruppe hinzufügen"
+
+#: build/blocks/recipe/editor.js:1
+msgid ""
+"Are you shure you want to delete this group? All ingredients will be deleted."
+msgstr ""
+"Bist du sicher, dass du diese Gruppe löschen möchtest? Es werden alle "
+"Zutaten gelöscht."
 
 #: build/blocks/recipe/editor.js:1
 msgid "Add the ingredients here..."
@@ -396,6 +409,10 @@ msgstr "z.B. „Italienisch“ oder „Deutsch“"
 #: build/blocks/recipe/editor.js:1
 msgid "Calories"
 msgstr "Kalorien"
+
+#: build/blocks/recipe/editor.js:1
+msgid "Calories per serving or piece"
+msgstr "Kalorien pro Portion oder Stück"
 
 #: build/blocks/recipe/editor.js:1
 msgid "Picture of the finished dish"

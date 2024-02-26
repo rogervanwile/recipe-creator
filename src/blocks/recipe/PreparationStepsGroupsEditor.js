@@ -18,7 +18,7 @@ export default function PreparationStepsGroupsEditor({ props }) {
 
   function removeGroup(index) {
     if (props.attributes.preparationStepsGroups[index]) {
-      if (confirm(__("Are you shure you want to delete this group. All steps will be deleted.", "recipe-creator"))) {
+      if (confirm(__("Are you shure you want to delete this group? All steps will be deleted.", "recipe-creator"))) {
         const update = [...props.attributes.preparationStepsGroups];
         update.splice(index, 1);
 
