@@ -1,5 +1,5 @@
 === Recipe Creator ===
-Tags:              recipe, block
+Tags:              recipe, block, recipes, food, cooking, ingredients, gutenberg
 Requires at least: 5.3.2
 Tested up to:      6.4.3
 Stable tag:        2.0.1
@@ -9,21 +9,19 @@ License URI:       https://www.gnu.org/licenses/gpl-3.0
 
 == Description ==
 
-Create recipes and optimize them easily for search engines.
+Our plugin provides you with a recipe block for the Gutenberg editor, with which you can easily insert recipes into your blog posts. You can edit the recipe directly in the editor. The recipe is automatically optimized in the background for search engines such as Google by adding structured data to the recipe in the background.
 
-Use our Gutenberg recipe block to easy blog recipes. You can even add a Pinterest image, to every recipe, which creates a "Pin on Pinterest" button and shares this image.
+You can automatically insert a "Jump to recipe" block at the beginning of all blog posts so that your readers can easily jump to the recipe in your blog post. 
 
-In that case, your users will be redirected to https://www.pinterest.com.
-See there data pricacy policy to inform your users: https://help.pinterest.com/de/article/your-privacy-and-data-settings
+You can customize the design of the recipes to your blog. 
 
-With an optional call-to-action, you can ask your visitors to tag you on Instagram when they have cooked your recipe. This includes a link to your Instagram profile.
-
-Clicking on it takes the user to Instagram. Take a look at their privacy policy (https://privacycenter.instagram.com/policy) and inform your user about this in your privacy policy, if needed.
+You can also ask your readers to share the recipe on Pinterest or tag you in their posts of the recipe on Instagram. If you use these functions, please refer to the privacy policies of Pinterest (https://help.pinterest.com/de/article/your-privacy-and-data-settings) and Instagram (https://privacycenter.instagram.com/policy) on your privacy page.
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/recipe-creator` directory, or install the plugin through the WordPress plugins screen directly.
-2. Activate the plugin through the 'Plugins' screen in WordPress
+1. Install the plugin via the WordPress plugin directory or upload the ZIP file on the plugin page.
+2. Activate the plugin.
+3. Now you can easily use the block in the Gutenberg editor by adding a recipe block.
 
 == Screenshots ==
 
