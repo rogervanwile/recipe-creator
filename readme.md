@@ -26,12 +26,6 @@ More Infos: https://developer.wordpress.org/block-editor/developers/internationa
 
 `npm run start`
 
-## Changes in Handlebar-Templates
-
-If you change the handlebar templates, you must recompile them for usage in the plugin. Just run:
-
-`npm run build`
-
 ## Update SVG icons
 
 Run `npm run build:fonts`
@@ -51,26 +45,3 @@ Its possible that some icons must be "fixed" before converting to a webfont. For
 - Create a new tag on the `main` branch.
 
 => The release will be created within a github workflow and is pushed to the wordpress plugin directory.
-
-# Run tests - outdated
-
-`$ npm run test:start`
-
-- Publish (or copy via FTP)
-
-(You need sshpass): `brew install hudochenkov/sshpass/sshpass`
-
-`$ ./build-tools/publish-latest.sh`
-
-# Testing
-
-This plugin is using https://cypress.io for integration tests.
-It is orchestrated with https://github.com/bigbite/wp-cypress.
-
-## Running tests
-
-```
-npm run install
-npm run test:start
-npm run test:stop
-```
