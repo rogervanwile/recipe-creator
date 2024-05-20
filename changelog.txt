@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 2.1.0 =
+
+Release date: 20/05/2024
+
+* Add some improvements to enable other plugins to interact with the plugin
+
 = 2.0.2 =
 
 Release date: 26/02/2024

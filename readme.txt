@@ -2,7 +2,7 @@
 Tags:              recipe, block, recipes, cooking, gutenberg
 Requires at least: 5.3.2
 Tested up to:      6.5.3
-Stable tag:        2.0.2
+Stable tag:        2.1.0
 Requires PHP:      7.0.0
 License:           GPLv3
 License URI:       https://www.gnu.org/licenses/gpl-3.0
@@ -30,8 +30,8 @@ You can also ask your readers to share the recipe on Pinterest or tag you in the
 
 == Changelog ==
 
-= 2.0.2 =
+= 2.1.0 =
 
-Release date: 26/02/2024
+Release date: 20/05/2024
 
-* Fix some translations in the plugin
+* Add some improvements to enable other plugins to interact with the plugin
