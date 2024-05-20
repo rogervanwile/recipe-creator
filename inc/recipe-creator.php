@@ -560,34 +560,56 @@ class RecipeCreator
             $postId = intval(sanitize_text_field($_POST["postId"]));
             $rating = intval(sanitize_text_field($_POST["rating"]));
 
-            $amountOfRating1Votes = intval(get_post_meta($postId, "recipe_creator__rating_1_votes", true)) ?: 0;
-            $amountOfRating2Votes = intval(get_post_meta($postId, "recipe_creator__rating_2_votes", true)) ?: 0;
-            $amountOfRating3Votes = intval(get_post_meta($postId, "recipe_creator__rating_3_votes", true)) ?: 0;
-            $amountOfRating4Votes = intval(get_post_meta($postId, "recipe_creator__rating_4_votes", true)) ?: 0;
-            $amountOfRating5Votes = intval(get_post_meta($postId, "recipe_creator__rating_5_votes", true)) ?: 0;
+            $this->saveRating($postId, $rating);
+            $this->updateRating($postId);
 
+            $averageRating  = $this->getAverageRating($postId);
+
+            wp_send_json_success([
+                "averageRating" => $averageRating,
+            ]);
+            wp_die();
+        }
+    }
+
+    private function saveRating($postId, $rating)
+    {
             switch ($rating) {
                 case 1:
+                $amountOfRating1Votes = intval(get_post_meta($postId, "recipe_creator__rating_1_votes", true)) ?: 0;
                     $amountOfRating1Votes++;
                     update_post_meta($postId, "recipe_creator__rating_1_votes", $amountOfRating1Votes);
                     break;
                 case 2:
+                $amountOfRating2Votes = intval(get_post_meta($postId, "recipe_creator__rating_2_votes", true)) ?: 0;
                     $amountOfRating2Votes++;
                     update_post_meta($postId, "recipe_creator__rating_2_votes", $amountOfRating2Votes);
                     break;
                 case 3:
+                $amountOfRating3Votes = intval(get_post_meta($postId, "recipe_creator__rating_3_votes", true)) ?: 0;
                     $amountOfRating3Votes++;
                     update_post_meta($postId, "recipe_creator__rating_3_votes", $amountOfRating3Votes);
                     break;
                 case 4:
+                $amountOfRating4Votes = intval(get_post_meta($postId, "recipe_creator__rating_4_votes", true)) ?: 0;
                     $amountOfRating4Votes++;
                     update_post_meta($postId, "recipe_creator__rating_4_votes", $amountOfRating4Votes);
                     break;
                 case 5:
+                $amountOfRating5Votes = intval(get_post_meta($postId, "recipe_creator__rating_5_votes", true)) ?: 0;
                     $amountOfRating5Votes++;
                     update_post_meta($postId, "recipe_creator__rating_5_votes", $amountOfRating5Votes);
                     break;
             }
+    }
+
+    private function updateRating($postId)
+    {
+        $amountOfRating1Votes = intval(get_post_meta($postId, "recipe_creator__rating_1_votes", true)) ?: 0;
+        $amountOfRating2Votes = intval(get_post_meta($postId, "recipe_creator__rating_2_votes", true)) ?: 0;
+        $amountOfRating3Votes = intval(get_post_meta($postId, "recipe_creator__rating_3_votes", true)) ?: 0;
+        $amountOfRating4Votes = intval(get_post_meta($postId, "recipe_creator__rating_4_votes", true)) ?: 0;
+        $amountOfRating5Votes = intval(get_post_meta($postId, "recipe_creator__rating_5_votes", true)) ?: 0;
 
             $totalAmount =
                 $amountOfRating1Votes +
@@ -601,16 +623,16 @@ class RecipeCreator
                 $amountOfRating3Votes * 3 +
                 $amountOfRating4Votes * 4 +
                 $amountOfRating5Votes * 5;
+
             $averageRating = round($totalRating / $totalAmount, 1);
 
             update_post_meta($postId, "recipe_creator__rating_count", $totalAmount);
             update_post_meta($postId, "recipe_creator__average_rating", $averageRating);
+    }
 
-            wp_send_json_success([
-                "averageRating" => $averageRating,
-            ]);
-            wp_die();
-        }
+    function getAverageRating($postId)
+    {
+        return get_post_meta($postId, "recipe_creator__average_rating", true);
     }
 
     private function extractIngredients($ingredientsHtml)
