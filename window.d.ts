@@ -1,5 +1,8 @@
+import { EventManager } from "./src/blocks/recipe/EventManager";
+
+declare global {
   interface Window {
-  recipeCreatorConfig: any;
+    RecipeCreatorEventManager: EventManager;
     recipeCreatorConfig: {
       ajaxUrl: string;
       nonce: string;

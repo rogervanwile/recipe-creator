@@ -1,44 +1,92 @@
 export class Rating {
   private constructionDate = new Date();
 
-  private hasRated = false;
+  private ratingInProgress = false;
 
   constructor(private ratingElement: HTMLElement) {
-    const postId = ratingElement.getAttribute("data-post-id");
+    const postId = ratingElement.getAttribute("data-post-id") || null;
 
     if (!postId) {
       return;
     }
 
-    const savedRating = window.localStorage.getItem("recipe-creator::" + postId);
+    this.initEvents();
 
-    if (!savedRating) {
+    if (!this.hasSavedRating(postId)) {
       ratingElement.querySelectorAll<HTMLElement>(".recipe-creator--recipe-block--star").forEach((starElement) => {
         starElement.addEventListener("click", (event) => {
-          this.markAsSelected(starElement);
+          const currentDate = new Date();
+          const diff = Math.abs(this.constructionDate.getTime() - currentDate.getTime());
 
-          if (this.hasRated) {
-            // Only one rating is allowed
+          if (diff < 2000) {
+            // The user rated the recipe in less than 2 seconds.
+            // This rating can be ignored because it must be a spam bot.
             return;
           }
 
-          this.hasRated = true;
+          if (this.ratingInProgress) {
+            return;
+          }
+
+          if (this.hasSavedRating(postId)) {
+            return;
+          }
+
+          this.ratingInProgress = true;
 
           const rating = starElement.getAttribute("data-rating");
-
           if (!rating) {
             return;
           }
 
-          // To show the users vote and prevent multiple votes
-          window.localStorage.setItem("recipe-creator::" + postId, rating);
-
-          this.storeRatingInDatabase(postId, rating);
+          window.RecipeCreatorEventManager.emit("recipe-creator:rating-clicked", { postId, rating: +rating });
         });
       });
     } else {
       this.hideRating();
     }
+  }
+
+  private hasSavedRating(postId: string) {
+    return !!window.localStorage.getItem("recipe-creator::" + postId);
+  }
+
+  private initEvents() {
+    window.RecipeCreatorEventManager.on(
+      "recipe-creator:rating-clicked",
+      async (data: { postId: string; rating: number }) => {
+        window.localStorage.setItem("recipe-creator::" + data.postId, "" + data.rating);
+        const response = await this.storeRatingInDatabase(data.postId, data.rating);
+
+        window.RecipeCreatorEventManager.emit("recipe-creator:recipe-rated", { ...data, ...response });
+      },
+    );
+
+    window.RecipeCreatorEventManager.on(
+      "recipe-creator:recipe-rated",
+      (data: { postId: string; rating: number; averageRating: number }) => {
+        if (data.averageRating) {
+          const averageVotingElement = this.ratingElement.querySelector(
+            ".recipe-creator--recipe-block--average-voting",
+          );
+
+          if (averageVotingElement) {
+            averageVotingElement.innerHTML = "" + data.averageRating;
+          }
+        }
+
+        const selectedStarElement = this.ratingElement.querySelector<HTMLElement>(
+          '.recipe-creator--recipe-block--star[data-rating="' + data.rating + '"]',
+        );
+        if (selectedStarElement) {
+          this.markAsSelected(selectedStarElement);
+        }
+
+        this.ratingElement.classList.remove("recipe-creator--recipe-block--interactive");
+
+        this.ratingInProgress = false;
+      },
+    );
   }
 
   private hideRating() {
@@ -52,45 +100,31 @@ export class Rating {
     ratingWrapper.style.display = "none";
   }
 
-  private storeRatingInDatabase(postId: string, rating: string) {
-    const currentDate = new Date();
-    const diff = Math.abs(this.constructionDate.getTime() - currentDate.getTime());
-
-    if (diff < 5000) {
-      // The user rated the recipe in unter 5 seconds.
-      // This rating can be ignored cause it must be a spam bot.
-      return;
-    }
-
-    fetch(window.recipeCreatorConfig.ajaxUrl, {
-      method: "POST",
-      body: new URLSearchParams({
-        _ajax_nonce: window.recipeCreatorConfig.nonce,
-        action: "recipe_creator_set_rating",
-        postId,
-        rating,
-      }),
-    })
-      .then((response) => {
-        if (response.status === 400) {
-          return;
-        }
-
-        response.json().then((responseData) => {
-          if (responseData && responseData.data && responseData.data.averageRating) {
-            const averageVotingElement = document.querySelector(
-              '[data-post-id="' + postId + '"] .recipe-creator--recipe-block--average-voting',
-            );
-
-            if (averageVotingElement) {
-              averageVotingElement.innerHTML = responseData.data.averageRating;
-            }
-          }
-        });
+  private storeRatingInDatabase(postId: string, rating: number) {
+    return new Promise<{ averageRating: number }>((resolve, reject) => {
+      return fetch(window.recipeCreatorConfig.ajaxUrl, {
+        method: "POST",
+        body: new URLSearchParams({
+          _ajax_nonce: window.recipeCreatorConfig.nonce,
+          action: "recipe_creator_set_rating",
+          postId,
+          rating: "" + rating,
+        }),
       })
-      .catch((error) => {
-        console.error(error);
-      });
+        .then(async (response) => {
+          if (response.status === 400) {
+            return;
+          }
+
+          const responseData = await response.json();
+
+          resolve({ averageRating: responseData?.data?.averageRating || 0 });
+        })
+        .catch((error) => {
+          console.error(error);
+          reject();
+        });
+    });
   }
 
   private markAsSelected(selectedStarElement: HTMLElement) {
