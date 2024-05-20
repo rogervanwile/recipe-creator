@@ -1,4 +1,4 @@
-<div class="recipe-creator--block recipe-creator--recipe-block <?php if (!empty($attributes['align'])) { ?> align<?php echo esc_attr($attributes['align']); ?><?php } ?>" id="recipe-creator--recipe">
+<div class="recipe-creator recipe-creator--block recipe-creator--recipe-block <?php if (!empty($attributes['align'])) { ?> align<?php echo esc_attr($attributes['align']); ?><?php } ?>" id="recipe-creator--recipe">
     <section class="recipe-creator--block--inner">
         <div class="recipe-creator--recipe-block--title">
             <?php if (!empty($attributes['name'])) { ?>

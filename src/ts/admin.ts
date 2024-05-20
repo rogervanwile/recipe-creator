@@ -92,7 +92,7 @@ class RecipeCreatorAdminSettings {
     };
 
     var finalHtml = `<style>
-.recipe-creator--block.recipe-creator--block {
+.recipe-creator.recipe-creator {
   --background: ${mergedData.recipe_creator__background_color};
   --background-contrast: ${mergedData.recipe_creator__background_color_contrast};
   --secondary: ${mergedData.recipe_creator__secondary_color};

@@ -476,7 +476,7 @@ export default function Edit(props) {
         </PanelBody>
       </InspectorControls>
       <div {...useBlockProps()}>
-        <div className="wp-block recipe-creator--block recipe-creator--recipe-block">
+        <div className="wp-block recipe-creator recipe-creator--block recipe-creator--recipe-block">
           <BlockControls></BlockControls>
           <div className="recipe-creator--block--inner">
             <div className="recipe-creator--recipe-block--title">

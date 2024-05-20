@@ -1,5 +1,5 @@
 <style>
-    .recipe-creator--block.recipe-creator--block {
+    .recipe-creator.recipe-creator {
         --background: <?php echo esc_attr(get_option("recipe_creator__background_color", $this->backgroundColorDefault)); ?>;
         --background-contrast: <?php echo esc_attr(get_option(
                                     "recipe_creator__background_color_contrast",
