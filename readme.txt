@@ -30,8 +30,8 @@ You can also ask your readers to share the recipe on Pinterest or tag you in the
 
 == Changelog ==
 
-= 2.1.0 =
+= 2.1.1 =
 
-Release date: 20/05/2024
+Release date: 21/05/2024
 
-* Add some improvements to enable other plugins to interact with the plugin
+* Refactor rating management
