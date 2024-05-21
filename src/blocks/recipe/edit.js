@@ -395,83 +395,8 @@ export default function Edit(props) {
                   <header>{__("Preparation", "recipe-creator")}</header>
                   <p>{props.attributes.totalTime} Min.</p>
                 </div>
-
-                {/* <div className="featured-result-preview-mobile--calories-col">
-                  <header>{__("Calories", 'recipe-creator')}</header>
-                  <p>{__("Calories", 'recipe-creator')}: 99</p>
-                </div> */}
               </div>
             </section>
-          </PanelRow>
-        </PanelBody>
-
-        <PanelBody title={__("Rating", "recipe-creator")} className="recipe-creator--sidebar">
-          <PanelRow>
-            <p>
-              <strong>{__("Attention:", "recipe-creator")}</strong>{" "}
-              {__(
-                "Adjusting the ratings can have an impact on your Google ranking. Be careful with this function.",
-                "recipe-creator",
-              )}
-            </p>
-          </PanelRow>
-          <PanelRow>
-            <NumberControl
-              label={__("1 star", "recipe-creator")}
-              min="0"
-              value={props.data.meta.recipe_creator__rating_1_votes || 0}
-              onChange={(recipe_creator__rating_1_votes) => {
-                updateRating({ recipe_creator__rating_1_votes });
-              }}
-            />
-          </PanelRow>
-          <PanelRow>
-            <NumberControl
-              label={__("2 stars", "recipe-creator")}
-              min="0"
-              value={props.data.meta.recipe_creator__rating_2_votes || 0}
-              onChange={(recipe_creator__rating_2_votes) => {
-                updateRating({ recipe_creator__rating_2_votes });
-              }}
-            />
-          </PanelRow>
-          <PanelRow>
-            <NumberControl
-              label={__("3 stars", "recipe-creator")}
-              min="0"
-              value={props.data.meta.recipe_creator__rating_3_votes || 0}
-              onChange={(recipe_creator__rating_3_votes) => {
-                updateRating({ recipe_creator__rating_3_votes });
-              }}
-            />
-          </PanelRow>
-          <PanelRow>
-            <NumberControl
-              label={__("4 stars", "recipe-creator")}
-              min="0"
-              value={props.data.meta.recipe_creator__rating_4_votes || 0}
-              onChange={(recipe_creator__rating_4_votes) => {
-                updateRating({ recipe_creator__rating_4_votes });
-              }}
-            />
-          </PanelRow>
-          <PanelRow>
-            <NumberControl
-              label={__("5 stars", "recipe-creator")}
-              min="0"
-              value={props.data.meta.recipe_creator__rating_5_votes || 0}
-              onChange={(recipe_creator__rating_5_votes) => {
-                updateRating({ recipe_creator__rating_5_votes });
-              }}
-            />
-          </PanelRow>
-          <PanelRow>
-            <p>
-              <strong>
-                {__("Rating", "recipe-creator")}: {props.data.meta.recipe_creator__average_rating} (
-                {props.data.meta.recipe_creator__rating_count}){" "}
-              </strong>
-            </p>
           </PanelRow>
         </PanelBody>
       </InspectorControls>
