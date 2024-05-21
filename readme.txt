@@ -2,7 +2,7 @@
 Tags:              recipe, block, recipes, cooking, gutenberg
 Requires at least: 5.3.2
 Tested up to:      6.5.3
-Stable tag:        2.1.0
+Stable tag:        2.1.1
 Requires PHP:      7.0.0
 License:           GPLv3
 License URI:       https://www.gnu.org/licenses/gpl-3.0

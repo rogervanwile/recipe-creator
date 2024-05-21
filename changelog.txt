@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 2.1.1 =
+
+Release date: 21/05/2024
+
+* Refactor rating management
+
 = 2.1.0 =
 
 Release date: 20/05/2024
