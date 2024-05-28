@@ -142,7 +142,11 @@ class RecipeCreator
 
     private function addRecipeBlockConfig()
     {
+        $wp_styles = wp_styles();
+        $recipeBlockStyle = $wp_styles->registered["recipe-creator-recipe-style"];
+
         wp_localize_script("recipe-creator-recipe-view-script", "recipeCreatorConfig", [
+            "recipeBlockStyleUrl" => $recipeBlockStyle->src,
             "ajaxUrl" => admin_url("admin-ajax.php"),
             "nonce" => wp_create_nonce("recipe-creator"),
         ]);
