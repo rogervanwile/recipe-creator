@@ -957,12 +957,7 @@ class RecipeCreator
                 ? $this->toIso8601Duration(intval($attributes["totalTime"]) * 60)
                 : "",
             "keywords" => $keywordsString,
-            "recipeYield" => isset($attributes["recipeYield"])
-                ? $attributes["recipeYield"] .
-                (isset($attributes["recipeYieldUnitFormatted"])
-                    ? " " . $attributes["recipeYieldUnitFormatted"]
-                    : "")
-                : "",
+            "recipeYield" => $this->getRecipeYieldForSchema($attributes),
             "recipeCategory" => $category,
             "nutrition" =>
             !empty($attributes["calories"])
@@ -998,6 +993,18 @@ class RecipeCreator
         $schema = array_filter($schema);
 
         return $schema;
+    }
+
+    private function getRecipeYieldForSchema($attributes)
+    {
+        if (isset($attributes["recipeYieldFormatted"])) {
+            if (isset($attributes["recipeYieldUnitFormatted"])) {
+                return $attributes["recipeYieldFormatted"] . " " . $attributes["recipeYieldUnitFormatted"];
+            }
+            return $attributes["recipeYieldFormatted"];
+        }
+
+        return "";
     }
 
     private function getRecipeBlock($attributes)
