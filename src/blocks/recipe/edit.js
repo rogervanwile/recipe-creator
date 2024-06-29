@@ -17,8 +17,6 @@ import {
 import { Fragment, useEffect } from "@wordpress/element";
 import ImageUpload from "./ImageUpload";
 
-import { extractTextFromHTMLString } from "./helper";
-
 import { useDispatch, select, dispatch } from "@wordpress/data";
 
 import RecipeYieldSelector from "./RecipeYieldSelector";
@@ -136,35 +134,6 @@ export default function Edit(props) {
     };
 
     setMeta(finalRating);
-  }
-
-  function getRatedStarsWidth(averageRating) {
-    if (averageRating) {
-      return (65 / 5) * averageRating;
-    } else {
-      return 0;
-    }
-  }
-
-  function getRatingElement() {
-    if (props.data.meta.recipe_creator__rating_count) {
-      return (
-        <div className="featured-snipped-preview--rating">
-          {props.data.meta.recipe_creator__average_rating}&nbsp;
-          <span className="featured-snipped-preview--stars">
-            <span
-              className="featured-snipped-preview--stars--rated"
-              style={{
-                width: getRatedStarsWidth(props.data.meta.recipe_creator__average_rating) + "px",
-              }}
-            ></span>
-          </span>
-          &nbsp;({props.data.meta.recipe_creator__rating_count})
-        </div>
-      );
-    } else {
-      return <div className="featured-snipped-preview--rating">{__("No reviews", "recipe-creator")}</div>;
-    }
   }
 
   function getYoutubeId(url) {
@@ -316,87 +285,6 @@ export default function Edit(props) {
           <hr />
           <PanelRow>
             <ImageUpload props={props} keyName="image1_1" label="1:1" className="1-1"></ImageUpload>
-          </PanelRow>
-          <hr />
-
-          <PanelRow>
-            <h3>{__("Previews", "recipe-creator")}</h3>
-            <h4>{__("Featured Snippet", "recipe-creator")}</h4>
-          </PanelRow>
-
-          <PanelRow>
-            <section className="featured-snipped-preview">
-              <div className="featured-snipped-preview--image-wrapper">
-                <div
-                  className="featured-snipped-preview--image"
-                  style={{
-                    backgroundImage: "url(" + props.attributes.image16_9 + ")",
-                  }}
-                ></div>
-              </div>
-              <div className="featured-snipped-preview--title">{extractTextFromHTMLString(props.attributes.name)}</div>
-              <div className="featured-snipped-preview--blog-title">
-                {extractTextFromHTMLString(props.data.site.title)}
-              </div>
-              {getRatingElement()}
-              <div className="featured-snipped-preview--total-time">{props.attributes.totalTime} Min.</div>
-            </section>
-          </PanelRow>
-
-          <PanelRow>
-            <h4>{__("Mobile Search Result", "recipe-creator")}</h4>
-          </PanelRow>
-
-          <PanelRow>
-            <section className="featured-result-preview-mobile">
-              <header className="featured-result-preview-mobile--header">
-                <span className="featured-result-preview-mobile--breadcrumb">
-                  {(props.data.site.url || "").replace(/https?:\/\//, "")}
-                </span>
-                <h3 className="featured-result-preview-mobile--headline">
-                  {extractTextFromHTMLString(props.attributes.name)}
-                </h3>
-              </header>
-              <div className="featured-result-preview-mobile--image-text">
-                <div
-                  className="featured-result-preview-mobile--image"
-                  style={{
-                    backgroundImage: "url(" + props.attributes.image1_1 + ")",
-                  }}
-                ></div>
-                <div className="featured-result-preview-mobile--text">
-                  <div className="featured-result-preview-mobile--extract">
-                    {/* <span className="featured-result-preview-mobile--date">
-                      {props.data.publishDate} —
-                    </span> */}
-                    {__("Google displays here a text that matches the search term.", "recipe-creator")}
-                  </div>
-                </div>
-              </div>
-
-              <div className="featured-result-preview-mobile--footer">
-                <div className="featured-result-preview-mobile--rating-col">
-                  <header>{__("Rating", "recipe-creator")}</header>
-                  <p>
-                    <span>{props.data.meta.recipe_creator__average_rating}</span>
-                    <span className="featured-snipped-preview--stars">
-                      <span
-                        className="featured-snipped-preview--stars--rated"
-                        style={{
-                          width: getRatedStarsWidth(props.data.meta.recipe_creator__average_rating) + "px",
-                        }}
-                      ></span>
-                    </span>
-                    <span>({props.data.meta.recipe_creator__rating_count})</span>{" "}
-                  </p>
-                </div>
-
-                <div className="featured-result-preview-mobile--time-col">
-                  <header>{__("Preparation", "recipe-creator")}</header>
-                  <p>{props.attributes.totalTime} Min.</p>
-                </div>
-              </div>
-            </section>
           </PanelRow>
         </PanelBody>
       </InspectorControls>
