@@ -4,7 +4,7 @@
  * Plugin Name:     Recipe Creator
  * Author URI:      https://recipe-creator.de/
  * Description:     The easy to use recipe plugin for WordPress' Gutenberg editor. Easily create recipes and optimize them for Google & Co automatically.
- * Version:         2.1.3
+ * Version:         2.2.0
  * Author:          recipe-creator.de
  * Text Domain:     recipe-creator
  * Domain Path:     /languages

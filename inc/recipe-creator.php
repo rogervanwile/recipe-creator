@@ -959,13 +959,6 @@ class RecipeCreator
             "keywords" => $keywordsString,
             "recipeYield" => $this->getRecipeYieldForSchema($attributes),
             "recipeCategory" => $category,
-            "nutrition" =>
-            !empty($attributes["calories"])
-                ? [
-                    "@type" => "NutritionInformation",
-                    "calories" => $attributes["calories"],
-                ]
-                : "",
             "recipeIngredient" => $this->prepareIngredientsForJsonLd($attributes["ingredientsGroups"]),
             "recipeInstructions" => $this->preparePreparationStepsForJsonLd($attributes["preparationStepsGroups"]),
         ];
