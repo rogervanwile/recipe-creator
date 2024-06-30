@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Recipe Creator 2.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recipe-creator\n"
-"POT-Creation-Date: 2024-05-21T18:53:53+00:00\n"
-"PO-Revision-Date: 2024-05-21 20:54+0200\n"
+"POT-Creation-Date: 2024-06-30T09:01:24+00:00\n"
+"PO-Revision-Date: 2024-06-30 11:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Domain: recipe-creator\n"
 
 #. Plugin Name of the plugin
-#: inc/recipe-creator.php:183 inc/recipe-creator.php:184
+#: inc/recipe-creator.php:187 inc/recipe-creator.php:188
 msgid "Recipe Creator"
 msgstr "Recipe Creator"
 
@@ -46,24 +46,24 @@ msgstr "Durchschnittliche Bewertung"
 msgid "Ratings"
 msgstr "Bewertungen"
 
-#: inc/recipe-creator.php:196 inc/recipe-creator.php:197
+#: inc/recipe-creator.php:200 inc/recipe-creator.php:201
 msgid "Recipe Block"
 msgstr "Rezepte-Block"
 
-#: inc/recipe-creator.php:303
+#: inc/recipe-creator.php:307
 msgid "General settings"
 msgstr "Allgemeine Einstellungen"
 
-#: inc/recipe-creator.php:306
+#: inc/recipe-creator.php:310
 msgid "Configure how the recipe block should behave on your blog posts."
 msgstr ""
 "Konfiguriere, wie sich der Rezept-Block in deinem Beitrag verhalten soll."
 
-#: inc/recipe-creator.php:313
+#: inc/recipe-creator.php:317
 msgid "Instagram"
 msgstr "Instagram"
 
-#: inc/recipe-creator.php:316
+#: inc/recipe-creator.php:320
 msgid ""
 "Provide informations about your instagram profile and we show a call to "
 "action below your recipe."
@@ -71,79 +71,79 @@ msgstr ""
 "Gib Informationen über dein Instagram-Profil an und wir zeigen einen Hinweis "
 "unter deinem Rezept an."
 
-#: inc/recipe-creator.php:326
+#: inc/recipe-creator.php:330
 msgid "Visual settings"
 msgstr "Visuelle Einstellungen"
 
-#: inc/recipe-creator.php:329
+#: inc/recipe-creator.php:333
 msgid "Configure how the recipe block should look for your visitors."
 msgstr "Konfiguriere, wie der Rezeptblock für deine Besucher aussehen soll."
 
-#: inc/recipe-creator.php:338 partials/jump-to-recipe-block.php:3
+#: inc/recipe-creator.php:342 partials/jump-to-recipe-block.php:3
 #: build/blocks/jump-to-recipe/editor.js:1
 msgid "Jump to recipe"
 msgstr "Zum Rezept springen"
 
-#: inc/recipe-creator.php:343
+#: inc/recipe-creator.php:347
 msgid "Add a \"Jump to recipe\" button on every page with the recipe block."
 msgstr ""
 "Füge einen „Zum Rezept springen“-Button in jeden Beitrag ein, in dem sich "
 "ein Rezept-Block befindet."
 
-#: inc/recipe-creator.php:355
+#: inc/recipe-creator.php:359
 msgid "Your username"
 msgstr "Dein Benutzername"
 
-#: inc/recipe-creator.php:368
+#: inc/recipe-creator.php:372
 msgid "Hashtag"
 msgstr "Hashtag"
 
-#: inc/recipe-creator.php:381
+#: inc/recipe-creator.php:385
 msgid "Primary color"
 msgstr "Hauptfarbe"
 
-#: inc/recipe-creator.php:393
+#: inc/recipe-creator.php:397
 msgid "Secondary color"
 msgstr "Nebenfarbe"
 
-#: inc/recipe-creator.php:405
+#: inc/recipe-creator.php:409
 msgid "Background color"
 msgstr "Hintergrundfarbe"
 
-#: inc/recipe-creator.php:418
+#: inc/recipe-creator.php:422
 msgid "Border"
 msgstr "Rahmen"
 
-#: inc/recipe-creator.php:423
+#: inc/recipe-creator.php:427
 msgid "Show border"
 msgstr "Rahmen anzeigen"
 
-#: inc/recipe-creator.php:434
+#: inc/recipe-creator.php:438
 msgid "Box shadow"
 msgstr "Box-Schatten"
 
-#: inc/recipe-creator.php:439
+#: inc/recipe-creator.php:443
 msgid "Show box shadow"
 msgstr "Box-Schatten anzeigen"
 
-#: inc/recipe-creator.php:450
+#: inc/recipe-creator.php:454
 msgid "Border radius"
 msgstr "Eckradius"
 
-#: inc/recipe-creator.php:462
+#: inc/recipe-creator.php:466
 msgid "Image width"
 msgstr "Bildbreite"
 
-#: inc/recipe-creator.php:710 inc/recipe-creator.php:804
+#: inc/recipe-creator.php:725 inc/recipe-creator.php:819
 #: build/blocks/recipe/editor.js:1
 msgid "simple"
 msgstr "einfach"
 
-#: inc/recipe-creator.php:713
+#: inc/recipe-creator.php:728
 msgid "Banana shake"
 msgstr "Bananen-Shake"
 
-#: inc/recipe-creator.php:714
+#: inc/recipe-creator.php:729
 msgid ""
 "You have bananas left over again and don't know what to do with them? How "
 "about a delicious shake?"
@@ -151,93 +151,93 @@ msgstr ""
 "Du hast wieder Bananen übrig und weißt nichts damit anzufangen? Wie wäre es "
 "mit einem leckeren Shake?"
 
-#: inc/recipe-creator.php:723
+#: inc/recipe-creator.php:738
 msgid "milk"
 msgstr "Milch"
 
-#: inc/recipe-creator.php:724
+#: inc/recipe-creator.php:739
 msgid "banana"
 msgstr "Banane"
 
-#: inc/recipe-creator.php:725
+#: inc/recipe-creator.php:740
 msgid "sugar"
 msgstr "Zucker"
 
-#: inc/recipe-creator.php:726
+#: inc/recipe-creator.php:741
 msgid "cinnamon"
 msgstr "Zimt"
 
-#: inc/recipe-creator.php:732
+#: inc/recipe-creator.php:747
 msgid "Knife"
 msgstr "Messer"
 
-#: inc/recipe-creator.php:732
+#: inc/recipe-creator.php:747
 msgid "Blender"
 msgstr "Mixer"
 
-#: inc/recipe-creator.php:739
+#: inc/recipe-creator.php:754
 msgid "Peel banana."
 msgstr "Banane schälen."
 
-#: inc/recipe-creator.php:740
+#: inc/recipe-creator.php:755
 msgid ""
 "Put all the ingredients in the blender and mix everything for 30 seconds."
 msgstr "Alle Zutaten in den Mixer geben und alles für 30 Sekunden mixen."
 
-#: inc/recipe-creator.php:744
+#: inc/recipe-creator.php:759
 msgid "Pour into a glass and enjoy."
 msgstr "In ein Glas füllen und genießen."
 
-#: inc/recipe-creator.php:751
+#: inc/recipe-creator.php:766
 msgid "The milkshake becomes particularly creamy with UHT milk."
 msgstr "Besonders cremig wird der Milchshake mit H-Milch."
 
-#: inc/recipe-creator.php:807 build/blocks/recipe/editor.js:1
+#: inc/recipe-creator.php:822 build/blocks/recipe/editor.js:1
 msgid "moderate"
 msgstr "mittel"
 
-#: inc/recipe-creator.php:810 build/blocks/recipe/editor.js:1
+#: inc/recipe-creator.php:825 build/blocks/recipe/editor.js:1
 msgid "challenging"
 msgstr "herausfordernd"
 
-#: inc/recipe-creator.php:1011 build/blocks/recipe/editor.js:1
+#: inc/recipe-creator.php:1027 build/blocks/recipe/editor.js:1
 msgid "piece"
 msgstr "Stück"
 
-#: inc/recipe-creator.php:1013
+#: inc/recipe-creator.php:1029
 msgid "pieces"
 msgstr "Stücke"
 
-#: inc/recipe-creator.php:1016 inc/recipe-creator.php:1018
+#: inc/recipe-creator.php:1032 inc/recipe-creator.php:1034
 #: build/blocks/recipe/editor.js:1
 msgid "springform pan"
 msgstr "Springform"
 
-#: inc/recipe-creator.php:1020 build/blocks/recipe/editor.js:1
+#: inc/recipe-creator.php:1036 build/blocks/recipe/editor.js:1
 msgid "square baking pan"
 msgstr "Backform (eckig)"
 
-#: inc/recipe-creator.php:1023 build/blocks/recipe/editor.js:1
+#: inc/recipe-creator.php:1039 build/blocks/recipe/editor.js:1
 msgid "baking tray"
 msgstr "Backblech"
 
-#: inc/recipe-creator.php:1025
+#: inc/recipe-creator.php:1041
 msgid "baking trays"
 msgstr "Backbleche"
 
-#: inc/recipe-creator.php:1030
+#: inc/recipe-creator.php:1046
 msgid "serving"
 msgstr "Portion"
 
-#: inc/recipe-creator.php:1032 build/blocks/recipe/editor.js:1
+#: inc/recipe-creator.php:1048 build/blocks/recipe/editor.js:1
 msgid "servings"
 msgstr "Portionen"
 
-#: inc/recipe-creator.php:1152 inc/recipe-creator.php:1157
+#: inc/recipe-creator.php:1176 inc/recipe-creator.php:1181
 msgid "minutes"
 msgstr "Minuten"
 
-#: inc/recipe-creator.php:1157
+#: inc/recipe-creator.php:1181
 msgid "hours"
 msgstr "Stunden"
 
@@ -273,36 +273,36 @@ msgstr "Utensilien"
 msgid "Steps of preparation"
 msgstr "Zubereitung"
 
-#: partials/recipe-block.php:161 build/blocks/recipe/editor.js:1
+#: partials/recipe-block.php:162 build/blocks/recipe/editor.js:1
 msgid "Video"
 msgstr "Video"
 
-#: partials/recipe-block.php:172 build/blocks/recipe/editor.js:1
+#: partials/recipe-block.php:173 build/blocks/recipe/editor.js:1
 msgid "Notes"
 msgstr "Notizen"
 
-#: partials/recipe-block.php:180
+#: partials/recipe-block.php:181
 msgid "How do you like the recipe?"
 msgstr "Wie findest du das Rezept?"
 
-#: partials/recipe-block.php:197
+#: partials/recipe-block.php:198
 msgid "Pin it"
 msgstr "Pin it"
 
-#: partials/recipe-block.php:207
+#: partials/recipe-block.php:208
 msgid "You tried this recipe?"
 msgstr "Du hast das Rezept ausprobiert?"
 
-#: partials/recipe-block.php:211 partials/recipe-block.php:218
-#: partials/recipe-block.php:225
+#: partials/recipe-block.php:212 partials/recipe-block.php:219
+#: partials/recipe-block.php:226
 msgid "Then link"
 msgstr "Dann verlinke"
 
-#: partials/recipe-block.php:213
+#: partials/recipe-block.php:214
 msgid "on Instagram or use the hashtag"
 msgstr "auf Instagram oder nutze den Hashtag"
 
-#: partials/recipe-block.php:220 partials/recipe-block.php:227
+#: partials/recipe-block.php:221 partials/recipe-block.php:228
 msgid "on Instagram"
 msgstr "auf Instagram"
 
@@ -407,14 +407,6 @@ msgid "e.g. \"Italian\" or \"German\""
 msgstr "z.B. „Italienisch“ oder „Deutsch“"
 
 #: build/blocks/recipe/editor.js:1
-msgid "Calories"
-msgstr "Kalorien"
-
-#: build/blocks/recipe/editor.js:1
-msgid "Calories per serving or piece"
-msgstr "Kalorien pro Portion oder Stück"
-
-#: build/blocks/recipe/editor.js:1
 msgid "Picture of the finished dish"
 msgstr "Bild des fertigen Gerichtes"
 
@@ -433,34 +425,6 @@ msgstr "https://recipe-creator.de/mehr-klicks-durch-optimierte-rezeptbilder"
 #: build/blocks/recipe/editor.js:1
 msgid "here"
 msgstr "hier"
-
-#: build/blocks/recipe/editor.js:1
-msgid "Previews"
-msgstr "Vorschau"
-
-#: build/blocks/recipe/editor.js:1
-msgid "Featured Snippet"
-msgstr "Featured Snippet"
-
-#: build/blocks/recipe/editor.js:1
-msgid "No reviews"
-msgstr "Keine Bewertungen"
-
-#: build/blocks/recipe/editor.js:1
-msgid "Mobile Search Result"
-msgstr "Mobiles Suchergebnis"
-
-#: build/blocks/recipe/editor.js:1
-msgid "Google displays here a text that matches the search term."
-msgstr "Google zeigt hier einen Text an, der zum Suchbegriff passt."
-
-#: build/blocks/recipe/editor.js:1
-msgid "Rating"
-msgstr "Bewertung"
-
-#: build/blocks/recipe/editor.js:1
-msgid "Preparation"
-msgstr "Vorbereitung"
 
 #: build/blocks/recipe/editor.js:1
 msgid "Title of your recipe"
@@ -511,6 +475,33 @@ msgctxt "block description"
 msgid "Add a recipe and optimize it easily for search engines."
 msgstr ""
 "Füge ein Rezept hinzu und optimiere es mit wenigen Klicks für Suchmaschinen."
+
+#~ msgid "Calories"
+#~ msgstr "Kalorien"
+
+#~ msgid "Calories per serving or piece"
+#~ msgstr "Kalorien pro Portion oder Stück"
+
+#~ msgid "Previews"
+#~ msgstr "Vorschau"
+
+#~ msgid "Featured Snippet"
+#~ msgstr "Featured Snippet"
+
+#~ msgid "No reviews"
+#~ msgstr "Keine Bewertungen"
+
+#~ msgid "Mobile Search Result"
+#~ msgstr "Mobiles Suchergebnis"
+
+#~ msgid "Google displays here a text that matches the search term."
+#~ msgstr "Google zeigt hier einen Text an, der zum Suchbegriff passt."
+
+#~ msgid "Rating"
+#~ msgstr "Bewertung"
+
+#~ msgid "Preparation"
+#~ msgstr "Vorbereitung"
 
 #~ msgid "Attention:"
 #~ msgstr "Achtung:"
