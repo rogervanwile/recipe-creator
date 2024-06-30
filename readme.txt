@@ -1,7 +1,7 @@
 === Recipe Creator ===
 Tags:              recipe, block, recipes, cooking, gutenberg
 Requires at least: 5.3.2
-Tested up to:      6.5.4
+Tested up to:      6.5.5
 Stable tag:        2.1.3
 Requires PHP:      7.0.0
 License:           GPLv3
