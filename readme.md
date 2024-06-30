@@ -40,8 +40,8 @@ Its possible that some icons must be "fixed" before converting to a webfont. For
 
 - Update version in `package.json` and run `npm install`
 - Update version in `recipe-creator.php`
-- Update version in `readme.txt` (Stable tag)
 - Update changelogs in `changelog.txt` and copy the latest changes to the `readme.txt`
+- Update version in `readme.txt` (Stable tag)
 - Create a new tag on the `main` branch.
 
 => The release will be created within a github workflow and is pushed to the wordpress plugin directory.

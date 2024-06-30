@@ -2,7 +2,7 @@
 Tags:              recipe, block, recipes, cooking, gutenberg
 Requires at least: 5.3.2
 Tested up to:      6.5.5
-Stable tag:        2.1.3
+Stable tag:        2.2.0
 Requires PHP:      7.0.0
 License:           GPLv3
 License URI:       https://www.gnu.org/licenses/gpl-3.0
@@ -30,8 +30,8 @@ You can also ask your readers to share the recipe on Pinterest or tag you in the
 
 == Changelog ==
 
-= 2.1.3 =
+= 2.2.0 =
 
-Release date: 20/06/2024
+Release date: 30/06/2024
 
-* Fixed an issue with missing recipe yield in the JSON Schema
+* Cleanup code and prepare nutrition feature for Pro version
