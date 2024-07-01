@@ -782,6 +782,11 @@ class RecipeCreator
 
         $attributes = apply_filters('recipe_creator__recipe_block__before_rendering', $attributes);
 
+        // Remove empty values from $attributes
+        $attributes["ldJson"] = array_filter($attributes["ldJson"], function ($value) {
+            return !empty($value);
+        });
+
         $recipeBlock = $this->getRecipeBlock($attributes);
         $schema =  $this->getRecipeBlockSchema($attributes);
         $styles = $this->getRecipeBlockStyles();
@@ -981,9 +986,6 @@ class RecipeCreator
                 "embedUrl" => $attributes["videoIframeUrl"],
             ];
         }
-
-        // Remove empty strings from ldJon
-        $schema = array_filter($schema);
 
         return $schema;
     }
