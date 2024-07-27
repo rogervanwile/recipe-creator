@@ -641,11 +641,17 @@ class RecipeCreator
 
     private function extractIngredients($ingredientsHtml)
     {
+        // Wenn $ingredientsHtml ein String ist, diesen erst splitten
+        if (!is_array($ingredientsHtml)) {
         $ingredientsArray = explode("</li><li>", $ingredientsHtml);
         $ingredientsArray = array_map(function ($item) {
             $result = str_replace(["<li>", "</li>"], "", $item);
             return $result;
         }, $ingredientsArray);
+        } else {
+            $ingredientsArray = $ingredientsHtml;
+        }
+
 
         $ingredientsArray = array_map(function ($item) {
             preg_match('/^ *([0-9,.\/-]*)? *(gramm|milliliter|kg|g|ml|tl|el|l)? (.*)$/i', $item, $matches);
@@ -1103,12 +1109,22 @@ class RecipeCreator
 
         foreach ($preparationStepsGroup as $group) {
             if (isset($group["list"])) {
+                if (!is_array($group["list"])) {
+                    $array = explode("</li><li>", $group["list"]);
+                    $array = array_map(function ($item) {
+                        $result = str_replace(["<li>", "</li>"], "", $item);
+                        return $result;
+                    }, $array);
+                } else {
+                    $array = $group["list"];
+                }
+
                 $itemsList = array_map(function ($item) {
                     return [
                         "@type" => "HowToStep",
                         "text" => wp_strip_all_tags($item),
                     ];
-                }, explode('\n', str_replace("li><li", 'li>\n<li', $group["list"])));
+                }, $array);
 
                 foreach ($itemsList as $howToStep) {
                     $flat[] = $howToStep;

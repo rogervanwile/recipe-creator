@@ -130,7 +130,7 @@
         }
       }
 
-      .recipe-creator--recipe-block--utensils-list {
+      .recipe-creator--recipe-block--utensils ul {
         li:nth-child(odd) {
           background-color: var(--primary-light) !important;
           color: var(--primary-light-contrast);

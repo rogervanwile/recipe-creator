@@ -9,27 +9,27 @@
   "textdomain": "recipe-creator",
   "supports": {
     "html": false,
-    "align": ["center", "wide", "full"]
+    "align": [
+      "center",
+      "wide",
+      "full"
+    ]
   },
   "attributes": {
-    "ingredients": {
-      "type": "string",
-      "default": ""
-    },
-    "preparationSteps": {
-      "type": "string",
-      "default": ""
-    },
     "utensils": {
-      "type": "string",
-      "default": ""
+      "type": "array",
+      "default": [
+        ""
+      ]
     },
     "ingredientsGroups": {
       "type": "array",
       "default": [
         {
           "title": "",
-          "list": ""
+          "list": [
+            ""
+          ]
         }
       ]
     },
@@ -38,7 +38,9 @@
       "default": [
         {
           "title": "",
-          "list": ""
+          "list": [
+            ""
+          ]
         }
       ]
     },

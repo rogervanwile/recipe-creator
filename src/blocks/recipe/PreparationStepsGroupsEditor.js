@@ -1,6 +1,8 @@
 import { __ } from "@wordpress/i18n";
 import { RichText } from "@wordpress/block-editor";
 import { Button } from "@wordpress/components";
+import RichTextList from "./RichTextList";
+import { cloneDeep } from "lodash";
 
 export default function PreparationStepsGroupsEditor({ props }) {
   function addGroup() {
@@ -19,7 +21,7 @@ export default function PreparationStepsGroupsEditor({ props }) {
   function removeGroup(index) {
     if (props.attributes.preparationStepsGroups[index]) {
       if (confirm(__("Are you shure you want to delete this group? All steps will be deleted.", "recipe-creator"))) {
-        const update = [...props.attributes.preparationStepsGroups];
+        const update = cloneDeep(props.attributes.preparationStepsGroups);
         update.splice(index, 1);
 
         if (update.length === 0) {
@@ -41,10 +43,10 @@ export default function PreparationStepsGroupsEditor({ props }) {
 
   return (
     <>
-      {props.attributes.preparationStepsGroups.map((group, index) => {
+      {props.attributes.preparationStepsGroups.map((group, groupIndex) => {
         return (
-          <div key={"preparationStepsGroups_" + index} className="recipe-creator--recipe-block--editor">
-            {index !== 0 || props.attributes.preparationStepsGroups.length > 1 ? (
+          <div key={"preparationStepsGroups_" + groupIndex} className="recipe-creator--recipe-block--editor">
+            {groupIndex !== 0 || props.attributes.preparationStepsGroups.length > 1 ? (
               <div className="recipe-creator--recipe-block--group-header">
                 <RichText
                   tagName="h3"
@@ -57,42 +59,38 @@ export default function PreparationStepsGroupsEditor({ props }) {
                       title: value,
                     };
 
-                    const update = [...props.attributes.preparationStepsGroups];
-                    update[index] = groupUpdate;
+                    const update = cloneDeep(props.attributes.preparationStepsGroups);
+                    update[groupIndex] = groupUpdate;
 
                     props.setAttributes({ preparationStepsGroups: update });
                   }}
                 />
-                <Button isTertiary={true} onClick={() => removeGroup(index)}>
+                <Button variant="tertiary" onClick={() => removeGroup(groupIndex)}>
                   {__("Remove Group", "recipe-creator")}
                 </Button>
               </div>
             ) : (
               ""
             )}
-            <RichText
-              tagName="ol"
-              multiline="li"
-              placeholder={__("Add the steps of preparation here...", "recipe-creator")}
-              value={group.list || ""}
-              __unstablePastePlainText={true}
-              onChange={(value) => {
-                const groupUpdate = {
-                  ...group,
-                  list: value,
-                };
 
-                const update = [...props.attributes.preparationStepsGroups];
-                update[index] = groupUpdate;
+            <RichTextList
+              tagName="ol"
+              list={group.list}
+              onChange={(value) => {
+                const update = cloneDeep(props.attributes.preparationStepsGroups);
+                update[groupIndex].list = value;
+
+                console.log("update", update);
 
                 props.setAttributes({ preparationStepsGroups: update });
               }}
+              placeholder={__("Add the steps of preparation here...", "recipe-creator")}
             />
           </div>
         );
       })}
 
-      <Button isSecondary={true} onClick={addGroup}>
+      <Button variant="secondary" onClick={addGroup}>
         {props.attributes.preparationStepsGroups.length === 1
           ? __("Split steps into groups", "recipe-creator")
           : __("Add additional group", "recipe-creator")}

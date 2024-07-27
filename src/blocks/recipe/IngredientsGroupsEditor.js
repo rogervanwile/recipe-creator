@@ -1,6 +1,8 @@
 import { __ } from "@wordpress/i18n";
 import { RichText } from "@wordpress/block-editor";
 import { Button } from "@wordpress/components";
+import RichTextList from "./RichTextList";
+import { cloneDeep } from "lodash";
 
 export default function IngredientsGroupsEditor({ props }) {
   function addGroup() {
@@ -8,7 +10,7 @@ export default function IngredientsGroupsEditor({ props }) {
       ...props.attributes.ingredientsGroups,
       {
         title: "",
-        list: "",
+        list: [""],
       },
     ];
     props.setAttributes({ ingredientsGroups: update });
@@ -21,13 +23,13 @@ export default function IngredientsGroupsEditor({ props }) {
       if (
         confirm(__("Are you shure you want to delete this group? All ingredients will be deleted.", "recipe-creator"))
       ) {
-        const update = [...props.attributes.ingredientsGroups];
+        const update = cloneDeep(props.attributes.ingredientsGroups);
         update.splice(index, 1);
 
         if (update.length === 0) {
           update.push({
             title: "",
-            list: "",
+            list: [""],
           });
         } else if (update.length === 1) {
           // If the length is now 1, the title must be reset to an empty string
@@ -43,10 +45,10 @@ export default function IngredientsGroupsEditor({ props }) {
 
   return (
     <>
-      {props.attributes.ingredientsGroups.map((group, index) => {
+      {props.attributes.ingredientsGroups.map((group, groupIndex) => {
         return (
-          <div key={"ingredientsGroups_" + index} className="recipe-creator--recipe-block--editor">
-            {index !== 0 || props.attributes.ingredientsGroups.length > 1 ? (
+          <div key={"ingredientsGroups_" + groupIndex} className="recipe-creator--recipe-block--editor">
+            {groupIndex !== 0 || props.attributes.ingredientsGroups.length > 1 ? (
               <div className="recipe-creator--recipe-block--group-header">
                 <RichText
                   tagName="h3"
@@ -59,42 +61,35 @@ export default function IngredientsGroupsEditor({ props }) {
                       title: value,
                     };
 
-                    const update = [...props.attributes.ingredientsGroups];
-                    update[index] = groupUpdate;
+                    const update = cloneDeep(props.attributes.ingredientsGroups);
+                    update[groupIndex] = groupUpdate;
 
                     props.setAttributes({ ingredientsGroups: update });
                   }}
                 />
-                <Button isTertiary={true} onClick={() => removeGroup(index)}>
+                <Button variant="tertiary" onClick={() => removeGroup(groupIndex)}>
                   {__("Remove Group", "recipe-creator")}
                 </Button>
               </div>
             ) : (
               ""
             )}
-            <RichText
-              tagName="ul"
-              multiline="li"
-              placeholder={__("Add the ingredients here...", "recipe-creator")}
-              value={group.list || ""}
-              __unstablePastePlainText={true}
+            {/* TODO: Herausfinden warum das erst beim hinzufügen eine Gruppe gespeichert wird */}
+            <RichTextList
+              list={group.list}
               onChange={(value) => {
-                const groupUpdate = {
-                  ...group,
-                  list: value,
-                };
-
-                const update = [...props.attributes.ingredientsGroups];
-                update[index] = groupUpdate;
+                const update = cloneDeep(props.attributes.ingredientsGroups);
+                update[groupIndex].list = value;
 
                 props.setAttributes({ ingredientsGroups: update });
               }}
+              placeholder={__("Add the ingredients here...", "recipe-creator")}
             />
           </div>
         );
       })}
 
-      <Button isSecondary={true} onClick={addGroup}>
+      <Button variant="secondary" onClick={addGroup}>
         {props.attributes.ingredientsGroups.length === 1
           ? __("Split ingredients into groups", "recipe-creator")
           : __("Add additional group", "recipe-creator")}
