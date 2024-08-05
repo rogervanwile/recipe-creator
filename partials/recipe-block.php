@@ -129,7 +129,7 @@
                 <div class="recipe-creator--recipe-block--headline">
                     <h3><?php echo esc_html(__("Utensils", "recipe-creator")); ?></h3>
                 </div>
-                <?php if (count($attributes['utensils']) > 1) { ?>
+                <?php if (count($attributes['utensils']) > 0) { ?>
                     <ul>
                         <?php foreach ($attributes['utensils'] as $utensil) { ?>
                             <li><?php echo wp_kses_post($utensil) ?></li>

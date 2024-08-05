@@ -27,6 +27,7 @@ class RecipeCreator
         add_action("init", [$this, "loadTranslations"]);
 
         add_action("admin_init", [$this, "registerRecipeBlockSettings"]);
+        add_action("admin_init", [$this, "checkMigrations"]);
         add_action("admin_menu", [$this, "registerSettingsPage"], 10);
 
         add_action("admin_enqueue_scripts", [$this, "enqueueAdminJs"]);
@@ -36,6 +37,7 @@ class RecipeCreator
             get_option("recipe_creator__thumbnail_size", $this->thumnailSizeDefault)
         );
         add_image_size("recipe-creator--pinterest", 1000, 0, false);
+        add_image_size("recipe-creator--schema", 600, 600, false);
 
         // Frontend-AJAX-Actions
         add_action("wp_ajax_recipe_creator_set_rating", [$this, "setRating"]);
@@ -48,6 +50,37 @@ class RecipeCreator
         add_filter('manage_edit-post_sortable_columns', [$this, "registerSortableColumns"]);
         add_action('pre_get_posts', [$this, 'handlePostSorting']);
     }
+
+    public function checkMigrations()
+    {
+        require __DIR__ . "/migration-handler.php";
+
+        $migrationHandler = new MigrationHandler();
+        if ($migrationHandler->migrationNeeded()) {
+            $success = $migrationHandler->runMigrations();
+
+            if ($success === true) {
+                add_action("admin_notices", function () {
+                    $this->showAdminHint(
+                        __("The Recipe Creator plugin has been sucesful updated.", "recipe-creator"),
+                        "success"
+                    );
+                });
+            }
+        }
+    }
+
+    public function showAdminHint($text, $type = "error")
+    {
+?>
+        <div class="notice notice-<?php echo esc_attr($type); ?>">
+            <p>
+                <?php echo wp_kses($text, ["strong" => [], "a" => ["href" => []]]); ?>
+            </p>
+        </div>
+<?php
+    }
+
 
     public function registerPostColumns(array $columns): array
     {
@@ -639,20 +672,8 @@ class RecipeCreator
         return get_post_meta($postId, "recipe_creator__average_rating", true);
     }
 
-    private function extractIngredients($ingredientsHtml)
+    private function extractIngredients($ingredients)
     {
-        // Wenn $ingredientsHtml ein String ist, diesen erst splitten
-        if (!is_array($ingredientsHtml)) {
-        $ingredientsArray = explode("</li><li>", $ingredientsHtml);
-        $ingredientsArray = array_map(function ($item) {
-            $result = str_replace(["<li>", "</li>"], "", $item);
-            return $result;
-        }, $ingredientsArray);
-        } else {
-            $ingredientsArray = $ingredientsHtml;
-        }
-
-
         $ingredientsArray = array_map(function ($item) {
             preg_match('/^ *([0-9,.\/-]*)? *(gramm|milliliter|kg|g|ml|tl|el|l)? (.*)$/i', $item, $matches);
             if (count($matches) >= 3) {
@@ -667,7 +688,7 @@ class RecipeCreator
                     "ingredient" => $item,
                 ];
             }
-        }, $ingredientsArray);
+        }, $ingredients);
 
         return $ingredientsArray;
     }
@@ -914,22 +935,17 @@ class RecipeCreator
     {
         $images = [];
 
-        if (!empty($attributes["image16_9"])) {
-            $images[] = $attributes["image16_9"];
-        }
-        if (!empty($attributes["image3_2"])) {
-            $images[] = $attributes["image3_2"];
-        }
-        if (!empty($attributes["image4_3"])) {
-            $images[] = $attributes["image4_3"];
-        }
-        if (!empty($attributes["image1_1"])) {
-            $images[] = $attributes["image1_1"];
-        }
-        if (!empty($attributes["thumbnail"])) {
-            $images[] = $attributes["thumbnail"];
-        }
+        $imagesOrder = ["image16_9", "image3_2", "image4_3", "image1_1", "thumbnail"];
 
+        foreach ($imagesOrder as $imageOrder) {
+            if (!empty($attributes[$imageOrder])) {
+                if (!empty($attributes[$imageOrder . "Id"])) {
+                    $images[] = wp_get_attachment_image_src($attributes[$imageOrder . "Id"], "recipe-creator--schema")[0];
+                } else {
+                    $images[] = $attributes[$imageOrder];
+                }
+            }
+        }
 
         $keywordsString = '';
         if (!empty($attributes["keywords"]) && count($attributes["keywords"]) > 0) {
@@ -1109,22 +1125,12 @@ class RecipeCreator
 
         foreach ($preparationStepsGroup as $group) {
             if (isset($group["list"])) {
-                if (!is_array($group["list"])) {
-                    $array = explode("</li><li>", $group["list"]);
-                    $array = array_map(function ($item) {
-                        $result = str_replace(["<li>", "</li>"], "", $item);
-                        return $result;
-                    }, $array);
-                } else {
-                    $array = $group["list"];
-                }
-
                 $itemsList = array_map(function ($item) {
                     return [
                         "@type" => "HowToStep",
                         "text" => wp_strip_all_tags($item),
                     ];
-                }, $array);
+                }, $group["list"]);
 
                 foreach ($itemsList as $howToStep) {
                     $flat[] = $howToStep;
