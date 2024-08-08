@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 2.3.1 =
+
+Release date: 08/08/2024
+
+* Remove utensils list in recipe block if there are no utensils
+
 = 2.3.0 =
 
 Release date: 08/08/2024
