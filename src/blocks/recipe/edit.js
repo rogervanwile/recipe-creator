@@ -22,6 +22,7 @@ import { useDispatch, select, dispatch } from "@wordpress/data";
 import RecipeYieldSelector from "./RecipeYieldSelector";
 import PreparationStepsGroupsEditor from "./PreparationStepsGroupsEditor";
 import IngredientsGroupsEditor from "./IngredientsGroupsEditor";
+import RichTextList from "./RichTextList";
 
 export default function Edit(props) {
   useEffect(() => {
@@ -458,14 +459,12 @@ export default function Edit(props) {
                 <h3>{__("Utensils", "recipe-creator")}</h3>
               </div>
 
-              <RichText
-                tagName="ul"
-                multiline="li"
-                className="recipe-creator--recipe-block--utensils-list"
+              <RichTextList
+                list={props.attributes.utensils}
+                onChange={(utensils) => {
+                  props.setAttributes({ utensils });
+                }}
                 placeholder={__("Add the needed utensils here...", "recipe-creator")}
-                value={props.attributes.utensils}
-                __unstablePastePlainText={true}
-                onChange={(utensils) => props.setAttributes({ utensils })}
               />
             </section>
 

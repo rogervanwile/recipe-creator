@@ -11,10 +11,10 @@
                 <div class="recipe-creator--recipe-block--rating recipe-creator--recipe-block--rating--small">
                     <ol>
                         <li class="recipe-creator--recipe-block--star selected" data-rating="1"></li>
-                        <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['averageRating']) && (double)$attributes['averageRating'] >= 2) { ?>selected<?php } else if (!empty($attributes['averageRating']) && (double)$attributes['averageRating'] >= 1.5) { ?>half-selected<?php } ?>" data-rating="2"></li>
-                        <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['averageRating']) && (double)$attributes['averageRating'] >= 3) { ?>selected<?php } else if (!empty($attributes['averageRating']) && (double)$attributes['averageRating'] >= 2.5) { ?>half-selected<?php } ?>" data-rating="3"></li>
-                        <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['averageRating']) && (double)$attributes['averageRating'] >= 4) { ?>selected<?php } else if (!empty($attributes['averageRating']) && (double)$attributes['averageRating'] >= 3.5) { ?>half-selected<?php } ?>" data-rating="4"></li>
-                        <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['averageRating']) && (double)$attributes['averageRating'] >= 5) { ?>selected<?php } else if (!empty($attributes['averageRating']) && (double)$attributes['averageRating'] >= 4.5) { ?>half-selected<?php } ?>" data-rating="5"></li>
+                        <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['averageRating']) && (float)$attributes['averageRating'] >= 2) { ?>selected<?php } else if (!empty($attributes['averageRating']) && (float)$attributes['averageRating'] >= 1.5) { ?>half-selected<?php } ?>" data-rating="2"></li>
+                        <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['averageRating']) && (float)$attributes['averageRating'] >= 3) { ?>selected<?php } else if (!empty($attributes['averageRating']) && (float)$attributes['averageRating'] >= 2.5) { ?>half-selected<?php } ?>" data-rating="3"></li>
+                        <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['averageRating']) && (float)$attributes['averageRating'] >= 4) { ?>selected<?php } else if (!empty($attributes['averageRating']) && (float)$attributes['averageRating'] >= 3.5) { ?>half-selected<?php } ?>" data-rating="4"></li>
+                        <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['averageRating']) && (float)$attributes['averageRating'] >= 5) { ?>selected<?php } else if (!empty($attributes['averageRating']) && (float)$attributes['averageRating'] >= 4.5) { ?>half-selected<?php } ?>" data-rating="5"></li>
                     </ol>
                 </div>
             <?php } ?>
@@ -129,9 +129,13 @@
                 <div class="recipe-creator--recipe-block--headline">
                     <h3><?php echo esc_html(__("Utensils", "recipe-creator")); ?></h3>
                 </div>
-                <ul class="recipe-creator--recipe-block--utensils-list">
-                    <?php echo wp_kses_post($attributes['utensils']) ?>
-                </ul>
+                <?php if (count($attributes['utensils']) > 0) { ?>
+                    <ul>
+                        <?php foreach ($attributes['utensils'] as $utensil) { ?>
+                            <li><?php echo wp_kses_post($utensil) ?></li>
+                        <?php } ?>
+                    </ul>
+                <?php } ?>
             </section>
         <?php } ?>
 
@@ -148,7 +152,9 @@
                     <?php } ?>
                     <?php if (!empty($preparationStepsGroup['list'])) { ?>
                         <ol>
-                            <?php echo wp_kses_post($preparationStepsGroup['list']) ?>
+                            <?php foreach ($preparationStepsGroup['list'] as $item) { ?>
+                                <li><?php echo wp_kses_post($item) ?></li>
+                            <?php } ?>
                         </ol>
                     <?php } ?>
                 <?php } ?>
@@ -182,10 +188,10 @@
             <div class="recipe-creator--recipe-block--rating recipe-creator--recipe-block--interactive" data-post-id="<?php echo esc_attr(get_the_ID()); ?>" <?php if (!empty($attributes['ajaxUrl'])) { ?>data-save-url="<?php echo esc_url($attributes['ajaxUrl']); ?>" <?php } ?> <?php if (!empty($attributes['nonce'])) { ?>data-nonce="<?php echo esc_attr($attributes['nonce']); ?>"><?php } ?>>
                 <ol>
                     <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['userRating'])) { ?>selected<?php } ?>" data-rating="1">1</li>
-                    <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['userRating']) && (double)$attributes['userRating'] >= 2) { ?> selected<?php } else if (!empty($attributes['userRating']) && (double)$attributes['userRating'] >= 1.5) { ?> half-selected<?php } ?>" data-rating="2">2</li>
-                    <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['userRating']) && (double)$attributes['userRating'] >= 3) { ?> selected<?php } else if (!empty($attributes['userRating']) && (double)$attributes['userRating'] >= 2.5) { ?> half-selected<?php } ?>" data-rating="3">3</li>
-                    <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['userRating']) && (double)$attributes['userRating'] >= 4) { ?> selected<?php } else if (!empty($attributes['userRating']) && (double)$attributes['userRating'] >= 3.5) { ?> half-selected<?php } ?>" data-rating="4">4</li>
-                    <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['userRating']) && (double)$attributes['userRating'] >= 5) { ?> selected<?php } else if (!empty($attributes['userRating']) && (double)$attributes['userRating'] >= 4.5) { ?> half-selected<?php } ?>" data-rating="5">5</li>
+                    <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['userRating']) && (float)$attributes['userRating'] >= 2) { ?> selected<?php } else if (!empty($attributes['userRating']) && (float)$attributes['userRating'] >= 1.5) { ?> half-selected<?php } ?>" data-rating="2">2</li>
+                    <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['userRating']) && (float)$attributes['userRating'] >= 3) { ?> selected<?php } else if (!empty($attributes['userRating']) && (float)$attributes['userRating'] >= 2.5) { ?> half-selected<?php } ?>" data-rating="3">3</li>
+                    <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['userRating']) && (float)$attributes['userRating'] >= 4) { ?> selected<?php } else if (!empty($attributes['userRating']) && (float)$attributes['userRating'] >= 3.5) { ?> half-selected<?php } ?>" data-rating="4">4</li>
+                    <li class="recipe-creator--recipe-block--star <?php if (!empty($attributes['userRating']) && (float)$attributes['userRating'] >= 5) { ?> selected<?php } else if (!empty($attributes['userRating']) && (float)$attributes['userRating'] >= 4.5) { ?> half-selected<?php } ?>" data-rating="5">5</li>
                 </ol>
             </div>
         </section>

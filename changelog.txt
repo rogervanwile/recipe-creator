@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 2.3.0 =
+
+Release date: 08/08/2024
+
+* Make the plugin ready for WordPress 6.6
+
 = 2.2.1 =
 
 Release date: 01/07/2024
