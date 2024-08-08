@@ -809,6 +809,9 @@ class RecipeCreator
 
         $attributes = apply_filters('recipe_creator__recipe_block__before_rendering', $attributes);
 
+        // Recursive remove empty strings in array
+        $attributes  = $this->filterEmptyStrings($attributes);
+
         // Remove empty values from $attributes
         $attributes["ldJson"] = array_filter($attributes["ldJson"], function ($value) {
             return !empty($value);
@@ -819,6 +822,21 @@ class RecipeCreator
         $styles = $this->getRecipeBlockStyles();
 
         return $recipeBlock . $schema . $styles;
+    }
+
+    private function filterEmptyStrings($haystack)
+    {
+        foreach ($haystack as $key => $value) {
+            if (is_array($value)) {
+                $haystack[$key] = $this->filterEmptyStrings($haystack[$key]);
+            }
+
+            if (empty($haystack[$key])) {
+                unset($haystack[$key]);
+            }
+        }
+
+        return $haystack;
     }
 
     private function prepareRecipeBlockAttributes($attributes)
@@ -940,7 +958,10 @@ class RecipeCreator
         foreach ($imagesOrder as $imageOrder) {
             if (!empty($attributes[$imageOrder])) {
                 if (!empty($attributes[$imageOrder . "Id"])) {
-                    $images[] = wp_get_attachment_image_src($attributes[$imageOrder . "Id"], "recipe-creator--schema")[0];
+                    $attachment = wp_get_attachment_image_src($attributes[$imageOrder . "Id"], "recipe-creator--schema");
+                    if ($attachment) {
+                        $images[] = $attachment[0];
+                    }
                 } else {
                     $images[] = $attributes[$imageOrder];
                 }
