@@ -8,7 +8,6 @@ export default function RichTextList({ list, onChange, placeholder, tagName = "u
   const [backspaceCounter, setBackspaceCounter] = useState(0);
 
   useEffect(() => {
-    console.log("list", list);
     if (list.length === 0) {
       // The list must always have one item
       onChange([""]);

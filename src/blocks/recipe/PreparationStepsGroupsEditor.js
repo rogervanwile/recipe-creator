@@ -80,8 +80,6 @@ export default function PreparationStepsGroupsEditor({ props }) {
                 const update = cloneDeep(props.attributes.preparationStepsGroups);
                 update[groupIndex].list = value;
 
-                console.log("update", update);
-
                 props.setAttributes({ preparationStepsGroups: update });
               }}
               placeholder={__("Add the steps of preparation here...", "recipe-creator")}
