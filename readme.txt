@@ -1,8 +1,8 @@
 === Recipe Creator ===
 Tags:              recipe, block, recipes, cooking, gutenberg
 Requires at least: 5.3.2
-Tested up to:      6.5.5
-Stable tag:        2.2.1
+Tested up to:      6.6.1
+Stable tag:        2.3.0
 Requires PHP:      7.0.0
 License:           GPLv3
 License URI:       https://www.gnu.org/licenses/gpl-3.0
@@ -30,8 +30,8 @@ You can also ask your readers to share the recipe on Pinterest or tag you in the
 
 == Changelog ==
 
-= 2.2.1 =
+= 2.3.0 =
 
-Release date: 01/07/2024
+Release date: 08/08/2024
 
-* Fix issue with empty data in schema data
+* Make the plugin ready for WordPress 6.6
