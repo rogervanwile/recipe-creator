@@ -62,7 +62,7 @@ class RecipeCreator
             if ($success === true) {
                 add_action("admin_notices", function () {
                     $this->showAdminHint(
-                        __("The Recipe Creator plugin has been sucesful updated.", "recipe-creator"),
+                        __("The Recipe Creator plugin has been successfully updated.", "recipe-creator"),
                         "success"
                     );
                 });
