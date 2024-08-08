@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 2.3.2 =
+
+Release date: 08/08/2024
+
+* Remove empty list items from ingredients, utensils and preperation steps when render them
+
 = 2.3.1 =
 
 Release date: 08/08/2024
