@@ -51,13 +51,28 @@ export default function RichTextList({ list, onChange, placeholder, tagName = "u
                 if (event.key === "Enter") {
                   addItem(index);
 
+                  // If the cursor is not at the end, split the text
+                  const selection = window.getSelection();
+                  const range = selection.getRangeAt(0);
+                  if (range.endOffset < range.endContainer.length) {
+                    const text = range.endContainer.textContent;
+                    const textBefore = text.substring(0, range.endOffset);
+                    const textAfter = text.substring(range.endOffset);
+
+                    const update = cloneDeep(list);
+                    update[index] = textBefore;
+                    update[index + 1] = textAfter;
+
+                    onChange(update);
+                  }
+
                   // Focus next item
-                  requestAnimationFrame(() => {
+                  window.setTimeout(() => {
                     const nextIndex = index + 1;
                     if (richTextRefs.current[nextIndex]) {
                       richTextRefs.current[nextIndex].focus();
                     }
-                  });
+                  }, 0);
                 }
 
                 if (event.key === "Backspace" && item === "") {
