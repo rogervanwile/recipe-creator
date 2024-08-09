@@ -23,7 +23,8 @@
 
 .recipe-creator--block {
   padding: 0;
-  margin-bottom: 2.5em;
+  margin-bottom: 0 auto 2.5em auto;
+  max-width: 730px;
   box-shadow: var(--box-shadow);
   border: var(--border);
   border-radius: var(--border-radius);
