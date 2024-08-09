@@ -805,12 +805,12 @@ class RecipeCreator
         $attributes["keywords"] = get_the_tags();
         $attributes["categories"] = get_the_category();
 
+        // Recursive remove empty strings in array
+        $attributes  = $this->filterEmptyStrings($attributes);
+
         $attributes["ldJson"] = $this->getSchemaFromRecipeAttributes($attributes);
 
         $attributes = apply_filters('recipe_creator__recipe_block__before_rendering', $attributes);
-
-        // Recursive remove empty strings in array
-        $attributes  = $this->filterEmptyStrings($attributes);
 
         // Remove empty values from $attributes
         $attributes["ldJson"] = array_filter($attributes["ldJson"], function ($value) {
