@@ -750,31 +750,27 @@ class RecipeCreator
             "ingredientsGroups" => [
                 [
                     "title" => "",
-                    "list" => "<li>" . join("</li><li>", [
+                    "list" => [
                         "500ml " . __("milk", "recipe-creator"),
                         "1 " .  __("banana", "recipe-creator"),
                         "1 TL " . __("sugar", "recipe-creator"),
                         __("cinnamon", "recipe-creator"),
-                    ]) .
-                        "</li>",
+                    ],
                 ],
             ],
-            "utensils" =>
-            "<li>" . join("</li><li>", [__("Knife", "recipe-creator"), __("Blender", "recipe-creator")]) . "</li>",
+            "utensils" => [__("Knife", "recipe-creator"), __("Blender", "recipe-creator")],
             "preparationStepsGroups" => [
                 [
                     "title" => "",
                     "list" =>
-                    "<li>" .
-                        join("</li><li>", [
-                            __("Peel banana.", "recipe-creator"),
-                            __(
-                                "Put all the ingredients in the blender and mix everything for 30 seconds.",
-                                "recipe-creator"
-                            ),
-                            __("Pour into a glass and enjoy.", "recipe-creator"),
-                        ]) .
-                        "</li>",
+                    [
+                        __("Peel banana.", "recipe-creator"),
+                        __(
+                            "Put all the ingredients in the blender and mix everything for 30 seconds.",
+                            "recipe-creator"
+                        ),
+                        __("Pour into a glass and enjoy.", "recipe-creator"),
+                    ],
                 ],
             ],
             "averageRating" => 4.5,
