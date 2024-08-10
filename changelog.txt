@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 2.3.4 =
+
+Release date: 10/08/2024
+
+* Fix fatal error in recipe creator settings page
+
 = 2.3.3 =
 
 Release date: 09/08/2024
