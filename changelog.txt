@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 2.3.7 =
+
+Release date: 11/08/2024
+
+* Fix migration handling
+
 = 2.3.6 =
 
 Release date: 11/08/2024
