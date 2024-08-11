@@ -4,11 +4,10 @@ class Migration_2_3_6
 {
     public function migrate()
     {
-
         $posts = $this->getPostsWithBlockName('recipe-creator/recipe');
 
         if (count($posts) === 0) {
-            return false;
+            return true;
         }
 
         remove_action('save_post', [$this, "deleteTransientsOnPostSave"]);

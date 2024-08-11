@@ -51,7 +51,7 @@ class MigrationHandler
             $migrationInstance = new $migrationClass();
             $success = $migrationInstance->migrate();
 
-            if (!$success) {
+            if ($success === false) {
                 break;
             }
 

@@ -4,11 +4,10 @@ class Migration_2_3_0
 {
     public function migrate()
     {
-
         $posts = $this->getPostsWithBlockName('recipe-creator/recipe');
 
         if (count($posts) === 0) {
-            return false;
+            return false; // Must be false to handle Foodblog-Toolkit-Migrations
         }
 
         remove_action('save_post', [$this, "deleteTransientsOnPostSave"]);
@@ -46,7 +45,7 @@ class Migration_2_3_0
     private function getPostsWithBlockName($blockName)
     {
         $args = array(
-            'post_type' => $this->getPostTypes(),
+            'post_type' => get_post_types(),
             'posts_per_page' => -1,
             's' => $blockName,
             'post_status' => 'any',
@@ -54,11 +53,6 @@ class Migration_2_3_0
         );
 
         return  get_posts($args);
-    }
-
-    public function getPostTypes()
-    {
-        return ['post', 'page', 'recipe'];
     }
 
     private function migrateRecipeBlock(&$old)
