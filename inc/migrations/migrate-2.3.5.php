@@ -1,6 +1,6 @@
 <?php
 
-class Migration_2_3_4
+class Migration_2_3_5
 {
     public function migrate()
     {
