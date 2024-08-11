@@ -8,7 +8,7 @@ class MigrationHandler
 {
     private $migrations = [
         "2.3.0" => __DIR__ . "/migrations/migrate-2.3.0.php",
-        "2.3.5" => __DIR__ . "/migrations/migrate-2.3.5.php",
+        "2.3.6" => __DIR__ . "/migrations/migrate-2.3.6.php",
     ];
 
     public function migrationNeeded()
