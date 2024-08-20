@@ -2,7 +2,7 @@
 Tags:              recipe, block, recipes, cooking, gutenberg
 Requires at least: 5.3.2
 Tested up to:      6.6.1
-Stable tag:        2.3.7
+Stable tag:        2.3.8
 Requires PHP:      7.0.0
 License:           GPLv3
 License URI:       https://www.gnu.org/licenses/gpl-3.0
@@ -30,8 +30,8 @@ You can also ask your readers to share the recipe on Pinterest or tag you in the
 
 == Changelog ==
 
-= 2.3.7 =
+= 2.3.8 =
 
-Release date: 11/08/2024
+Release date: 20/08/2024
 
-* Fix migration handling
+* Fix missing prepTime, cookTime and restTime fields 

@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 2.3.8 =
+
+Release date: 20/08/2024
+
+* Fix missing prepTime, cookTime and restTime fields 
+
 = 2.3.7 =
 
 Release date: 11/08/2024
