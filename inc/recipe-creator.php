@@ -552,17 +552,11 @@ class RecipeCreator
         ]);
     }
 
-    public function activate()
-    {
-    }
+    public function activate() {}
 
-    public function deactivate()
-    {
-    }
+    public function deactivate() {}
 
-    public static function uninstall()
-    {
-    }
+    public static function uninstall() {}
 
     public function registerBlocks()
     {
@@ -827,7 +821,7 @@ class RecipeCreator
                 $haystack[$key] = $this->filterEmptyStrings($haystack[$key]);
             }
 
-            if (empty($haystack[$key])) {
+            if (is_string($haystack[$key]) && trim($haystack[$key]) === '') {
                 unset($haystack[$key]);
             }
         }
