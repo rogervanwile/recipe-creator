@@ -61,7 +61,12 @@ export default function RichTextList({ list, onChange, placeholder, tagName = "u
 
                     const update = cloneDeep(list);
                     update[index] = textBefore;
-                    update[index + 1] = textAfter;
+
+                    if (update.length >= index + 1) {
+                      update.splice(index + 1, 0, textAfter);
+                    } else {
+                      update.push(textAfter);
+                    }
 
                     onChange(update);
                   }
