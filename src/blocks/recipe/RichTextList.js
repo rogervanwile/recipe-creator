@@ -5,7 +5,6 @@ import { cloneDeep } from "lodash";
 
 export default function RichTextList({ list, onChange, placeholder, tagName = "ul" }) {
   const richTextRefs = useRef([]);
-  const [backspaceCounter, setBackspaceCounter] = useState(0);
 
   useEffect(() => {
     if (list.length === 0) {
@@ -19,15 +18,6 @@ export default function RichTextList({ list, onChange, placeholder, tagName = "u
     listUpdate.splice(index + 1, 0, "");
 
     onChange(listUpdate);
-  }
-
-  function removeItem(index) {
-    if (typeof list[index] !== "undefined") {
-      const update = cloneDeep(list);
-      update.splice(index, 1);
-
-      onChange(update);
-    }
   }
 
   const TagName = tagName;
@@ -80,32 +70,45 @@ export default function RichTextList({ list, onChange, placeholder, tagName = "u
                   }, 0);
                 }
 
-                if (event.key === "Backspace" && item === "") {
-                  // TODO: Wenn das Item direkt am Anfang leer ist, muss man aktuell 2 mal Backspace drücken
-                  if (backspaceCounter > 0) {
-                    removeItem(index);
+                if (event.key === "Backspace") {
+                  const range = window.getSelection().getRangeAt(0);
+                  const cursorPosition = range.startOffset;
 
-                    // Focus previous item
+                  // TODO: Wenn ein HTML-Element in dem Listeneintrag ist, funktioniert das Löschen mit Backspace nicht korrekt
+                  if (cursorPosition === 0) {
                     const prevIndex = index - 1;
-                    if (prevIndex < richTextRefs.current.length) {
-                      const richTextElementToFocus = richTextRefs.current[prevIndex];
-                      richTextElementToFocus.focus();
+                    let prevItemOffset = null;
+                    if (prevIndex >= 0) {
+                      const listUpdate = cloneDeep(list);
+                      prevItemOffset = richTextRefs.current[prevIndex].innerText.length;
+                      listUpdate[prevIndex] = list[prevIndex] + item;
+                      listUpdate.splice(index, 1);
 
-                      // Focus at the end of the input
-                      const range = document.createRange();
-                      const selection = window.getSelection();
-                      range.setStart(richTextElementToFocus, richTextElementToFocus.childNodes.length);
-                      range.collapse(true);
-                      selection.removeAllRanges();
-                      selection.addRange(range);
+                      onChange(listUpdate);
                     }
-                  } else {
-                    setBackspaceCounter(backspaceCounter + 1);
-                  }
-                }
 
-                if (event.key !== "Backspace") {
-                  setBackspaceCounter(0);
+                    window.setTimeout(() => {
+                      // Focus previous item
+                      try {
+                        if (prevIndex < richTextRefs.current.length) {
+                          const richTextElementToFocus = richTextRefs.current[prevIndex];
+                          richTextElementToFocus.focus();
+
+                          const selection = window.getSelection();
+
+                          // Set the caret to the beggining
+                          selection.collapse(richTextElementToFocus, 0);
+
+                          // Move the caret to the position
+                          for (let index = 0; index < prevItemOffset; index++) {
+                            selection.modify("move", "forward", "character");
+                          }
+                        }
+                      } catch (e) {
+                        console.error(e);
+                      }
+                    });
+                  }
                 }
               }}
               ref={(el) => (richTextRefs.current[index] = el)}
