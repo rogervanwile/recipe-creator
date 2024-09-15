@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 2.3.10 =
+
+Release date: 15/09/2024
+
+* Fix list editing issues like removing empty rows and line breaks
+
 = 2.3.9 =
 
 Release date: 01/09/2024
