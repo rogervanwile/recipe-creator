@@ -1,11 +1,11 @@
 import { __ } from "@wordpress/i18n";
 import { RichText } from "@wordpress/block-editor";
-import { useRef, useEffect, useState } from "@wordpress/element";
+import { useRef, useEffect } from "@wordpress/element";
 import { cloneDeep } from "lodash";
+import { create, split, toHTMLString } from "@wordpress/rich-text";
 
 export default function RichTextList({ list, onChange, placeholder, tagName = "ul" }) {
   const richTextRefs = useRef([]);
-  const [backspaceCounter, setBackspaceCounter] = useState(0);
 
   useEffect(() => {
     if (list.length === 0) {
@@ -13,22 +13,6 @@ export default function RichTextList({ list, onChange, placeholder, tagName = "u
       onChange([""]);
     }
   }, []);
-
-  function addItem(index) {
-    const listUpdate = cloneDeep(list);
-    listUpdate.splice(index + 1, 0, "");
-
-    onChange(listUpdate);
-  }
-
-  function removeItem(index) {
-    if (typeof list[index] !== "undefined") {
-      const update = cloneDeep(list);
-      update.splice(index, 1);
-
-      onChange(update);
-    }
-  }
 
   const TagName = tagName;
 
@@ -49,63 +33,85 @@ export default function RichTextList({ list, onChange, placeholder, tagName = "u
               }}
               onKeyUp={(event) => {
                 if (event.key === "Enter") {
-                  addItem(index);
+                  event.stopPropagation();
+                  event.preventDefault();
 
-                  // If the cursor is not at the end, split the text
-                  const selection = window.getSelection();
-                  const range = selection.getRangeAt(0);
-                  if (range.endOffset < range.endContainer.length) {
-                    const text = range.endContainer.textContent;
-                    const textBefore = text.substring(0, range.endOffset);
-                    const textAfter = text.substring(range.endOffset);
+                  const { offset: start } = wp.data.select("core/block-editor").getSelectionStart();
+                  const { offset: end } = wp.data.select("core/block-editor").getSelectionEnd();
 
-                    const update = cloneDeep(list);
-                    update[index] = textBefore;
-
-                    if (update.length >= index + 1) {
-                      update.splice(index + 1, 0, textAfter);
-                    } else {
-                      update.push(textAfter);
-                    }
-
-                    onChange(update);
+                  // Cannot split if there is no selection.
+                  if (typeof start !== "number" || typeof end !== "number") {
+                    return;
                   }
 
+                  const richTextValue = create({ html: item });
+                  richTextValue.start = start;
+                  richTextValue.end = end;
+
+                  const array = split(richTextValue).map((v) => toHTMLString({ value: v }));
+
+                  const newValues = list.slice();
+                  newValues.splice(index, 1, ...array);
+                  onChange(newValues);
+
                   // Focus next item
-                  window.setTimeout(() => {
+                  window.requestAnimationFrame(() => {
                     const nextIndex = index + 1;
                     if (richTextRefs.current[nextIndex]) {
                       richTextRefs.current[nextIndex].focus();
                     }
-                  }, 0);
+                  });
                 }
 
-                if (event.key === "Backspace" && item === "") {
-                  // TODO: Wenn das Item direkt am Anfang leer ist, muss man aktuell 2 mal Backspace drücken
-                  if (backspaceCounter > 0) {
-                    removeItem(index);
+                if (event.key === "Backspace") {
+                  const { offset: start } = wp.data.select("core/block-editor").getSelectionStart();
+                  const { offset: end } = wp.data.select("core/block-editor").getSelectionEnd();
 
-                    // Focus previous item
-                    const prevIndex = index - 1;
-                    if (prevIndex < richTextRefs.current.length) {
-                      const richTextElementToFocus = richTextRefs.current[prevIndex];
-                      richTextElementToFocus.focus();
+                  const newValues = list.slice();
 
-                      // Focus at the end of the input
-                      const range = document.createRange();
-                      const selection = window.getSelection();
-                      range.setStart(richTextElementToFocus, richTextElementToFocus.childNodes.length);
-                      range.collapse(true);
-                      selection.removeAllRanges();
-                      selection.addRange(range);
-                    }
+                  const prevIndex = index - 1;
+                  let prevItemOffset = richTextRefs.current[prevIndex].innerText.length;
+
+                  if (item === "") {
+                    // Remove a empty line
+                    newValues.splice(index, 1);
+                  } else if (start === 0 && end === 0) {
+                    // Remove a line break when pressing backspace at the beginning of a line
+
+                    newValues[prevIndex] = list[prevIndex] + item;
+                    newValues.splice(index, 1);
                   } else {
-                    setBackspaceCounter(backspaceCounter + 1);
+                    return;
                   }
-                }
 
-                if (event.key !== "Backspace") {
-                  setBackspaceCounter(0);
+                  event.preventDefault();
+                  event.stopPropagation();
+
+                  onChange(newValues);
+
+                  // Move the caret to the position
+                  window.requestAnimationFrame(() => {
+                    // Focus previous item
+                    try {
+                      const prevIndex = index - 1;
+                      if (prevIndex > 0) {
+                        const richTextElementToFocus = richTextRefs.current[prevIndex];
+                        richTextElementToFocus.focus();
+
+                        const selection = window.getSelection();
+
+                        // Set the caret to the beggining
+                        selection.collapse(richTextElementToFocus, 0);
+
+                        // Move the caret to the position
+                        for (let index = 0; index < prevItemOffset; index++) {
+                          selection.modify("move", "forward", "character");
+                        }
+                      }
+                    } catch (e) {
+                      console.error(e);
+                    }
+                  });
                 }
               }}
               ref={(el) => (richTextRefs.current[index] = el)}
