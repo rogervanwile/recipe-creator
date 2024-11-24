@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Recipe Creator 2.2.1\n"
+"Project-Id-Version: Recipe Creator 2.3.10\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recipe-creator\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-08-08T06:48:40+00:00\n"
+"POT-Creation-Date: 2024-11-24T11:13:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: recipe-creator\n"
@@ -21,7 +21,7 @@ msgid "Recipe Creator"
 msgstr ""
 
 #. Description of the plugin
-msgid "The easy to use recipe plugin for WordPress' Gutenberg editor. Easily create recipes and optimize them for Google & Co automatically."
+msgid "The easy to use recipe plugin for the Gutenberg editor. Easily create recipes and optimize them for search enginges automatically."
 msgstr ""
 
 #. Author of the plugin
@@ -75,10 +75,7 @@ msgstr ""
 
 #: inc/recipe-creator.php:375
 #: partials/jump-to-recipe-block.php:3
-#: build/blocks/jump-to-recipe/editor.js:31
-#: build/blocks/jump-to-recipe/editor.js:195
-#: build/blocks/jump-to-recipe/editor.js:9
-#: build/blocks/jump-to-recipe/editor.js:84
+#: build/blocks/jump-to-recipe/editor.js:1
 msgid "Jump to recipe"
 msgstr ""
 
@@ -130,397 +127,317 @@ msgstr ""
 msgid "Image width"
 msgstr ""
 
-#: inc/recipe-creator.php:741
-#: inc/recipe-creator.php:840
-#: build/blocks/recipe/editor.js:823
-#: build/blocks/recipe/editor.js:770
+#: inc/recipe-creator.php:735
+#: inc/recipe-creator.php:848
+#: build/blocks/recipe/editor.js:1
 msgid "simple"
 msgstr ""
 
-#: inc/recipe-creator.php:744
+#: inc/recipe-creator.php:738
 msgid "Banana shake"
 msgstr ""
 
-#: inc/recipe-creator.php:745
+#: inc/recipe-creator.php:739
 msgid "You have bananas left over again and don't know what to do with them? How about a delicious shake?"
 msgstr ""
 
-#: inc/recipe-creator.php:754
+#: inc/recipe-creator.php:748
 msgid "milk"
 msgstr ""
 
-#: inc/recipe-creator.php:755
+#: inc/recipe-creator.php:749
 msgid "banana"
 msgstr ""
 
-#: inc/recipe-creator.php:756
+#: inc/recipe-creator.php:750
 msgid "sugar"
 msgstr ""
 
-#: inc/recipe-creator.php:757
+#: inc/recipe-creator.php:751
 msgid "cinnamon"
 msgstr ""
 
-#: inc/recipe-creator.php:763
+#: inc/recipe-creator.php:755
 msgid "Knife"
 msgstr ""
 
-#: inc/recipe-creator.php:763
+#: inc/recipe-creator.php:755
 msgid "Blender"
 msgstr ""
 
-#: inc/recipe-creator.php:770
+#: inc/recipe-creator.php:761
 msgid "Peel banana."
 msgstr ""
 
-#: inc/recipe-creator.php:771
+#: inc/recipe-creator.php:762
 msgid "Put all the ingredients in the blender and mix everything for 30 seconds."
 msgstr ""
 
-#: inc/recipe-creator.php:775
+#: inc/recipe-creator.php:766
 msgid "Pour into a glass and enjoy."
 msgstr ""
 
-#: inc/recipe-creator.php:782
+#: inc/recipe-creator.php:772
 msgid "The milkshake becomes particularly creamy with UHT milk."
 msgstr ""
 
-#: inc/recipe-creator.php:843
-#: build/blocks/recipe/editor.js:831
-#: build/blocks/recipe/editor.js:781
+#: inc/recipe-creator.php:851
+#: build/blocks/recipe/editor.js:1
 msgid "moderate"
 msgstr ""
 
-#: inc/recipe-creator.php:846
-#: build/blocks/recipe/editor.js:839
-#: build/blocks/recipe/editor.js:792
+#: inc/recipe-creator.php:854
+#: build/blocks/recipe/editor.js:1
 msgid "challenging"
 msgstr ""
 
-#: inc/recipe-creator.php:1039
-#: build/blocks/recipe/editor.js:335
-#: build/blocks/recipe/editor.js:280
+#: inc/recipe-creator.php:1050
+#: build/blocks/recipe/editor.js:1
 msgid "piece"
 msgstr ""
 
-#: inc/recipe-creator.php:1041
+#: inc/recipe-creator.php:1052
 msgid "pieces"
 msgstr ""
 
-#: inc/recipe-creator.php:1044
-#: inc/recipe-creator.php:1046
-#: build/blocks/recipe/editor.js:338
-#: build/blocks/recipe/editor.js:284
+#: inc/recipe-creator.php:1055
+#: inc/recipe-creator.php:1057
+#: build/blocks/recipe/editor.js:1
 msgid "springform pan"
 msgstr ""
 
-#: inc/recipe-creator.php:1048
-#: build/blocks/recipe/editor.js:341
-#: build/blocks/recipe/editor.js:288
+#: inc/recipe-creator.php:1059
+#: build/blocks/recipe/editor.js:1
 msgid "square baking pan"
 msgstr ""
 
-#: inc/recipe-creator.php:1051
-#: build/blocks/recipe/editor.js:344
-#: build/blocks/recipe/editor.js:292
+#: inc/recipe-creator.php:1062
+#: build/blocks/recipe/editor.js:1
 msgid "baking tray"
 msgstr ""
 
-#: inc/recipe-creator.php:1053
+#: inc/recipe-creator.php:1064
 msgid "baking trays"
 msgstr ""
 
-#: inc/recipe-creator.php:1058
+#: inc/recipe-creator.php:1069
 msgid "serving"
 msgstr ""
 
-#: inc/recipe-creator.php:1060
-#: build/blocks/recipe/editor.js:332
-#: build/blocks/recipe/editor.js:276
+#: inc/recipe-creator.php:1071
+#: build/blocks/recipe/editor.js:1
 msgid "servings"
 msgstr ""
 
-#: inc/recipe-creator.php:1180
-#: inc/recipe-creator.php:1185
+#: inc/recipe-creator.php:1191
+#: inc/recipe-creator.php:1196
 msgid "minutes"
 msgstr ""
 
-#: inc/recipe-creator.php:1185
+#: inc/recipe-creator.php:1196
 msgid "hours"
 msgstr ""
 
 #: partials/recipe-block.php:42
-#: build/blocks/recipe/editor.js:882
-#: build/blocks/recipe/editor.js:841
+#: build/blocks/recipe/editor.js:1
 msgid "Prep time"
 msgstr ""
 
 #: partials/recipe-block.php:49
-#: build/blocks/recipe/editor.js:897
-#: build/blocks/recipe/editor.js:856
+#: build/blocks/recipe/editor.js:1
 msgid "Rest time"
 msgstr ""
 
 #: partials/recipe-block.php:56
-#: build/blocks/recipe/editor.js:912
-#: build/blocks/recipe/editor.js:871
+#: build/blocks/recipe/editor.js:1
 msgid "Cook time"
 msgstr ""
 
 #: partials/recipe-block.php:63
-#: build/blocks/recipe/editor.js:927
-#: build/blocks/recipe/editor.js:886
+#: build/blocks/recipe/editor.js:1
 msgid "Baking time"
 msgstr ""
 
 #: partials/recipe-block.php:70
-#: build/blocks/recipe/editor.js:942
-#: build/blocks/recipe/editor.js:902
+#: build/blocks/recipe/editor.js:1
 msgid "Total time"
 msgstr ""
 
 #: partials/recipe-block.php:81
-#: build/blocks/recipe/editor.js:953
-#: build/blocks/recipe/editor.js:912
+#: build/blocks/recipe/editor.js:1
 msgid "Ingredients"
 msgstr ""
 
 #: partials/recipe-block.php:130
-#: build/blocks/recipe/editor.js:968
-#: build/blocks/recipe/editor.js:923
+#: build/blocks/recipe/editor.js:1
 msgid "Utensils"
 msgstr ""
 
-#: partials/recipe-block.php:145
-#: build/blocks/recipe/editor.js:984
-#: build/blocks/recipe/editor.js:937
+#: partials/recipe-block.php:143
+#: build/blocks/recipe/editor.js:1
 msgid "Steps of preparation"
 msgstr ""
 
-#: partials/recipe-block.php:167
-#: build/blocks/recipe/editor.js:994
-#: build/blocks/recipe/editor.js:945
+#: partials/recipe-block.php:165
+#: build/blocks/recipe/editor.js:1
 msgid "Video"
 msgstr ""
 
-#: partials/recipe-block.php:178
-#: build/blocks/recipe/editor.js:1024
-#: build/blocks/recipe/editor.js:974
+#: partials/recipe-block.php:176
+#: build/blocks/recipe/editor.js:1
 msgid "Notes"
 msgstr ""
 
-#: partials/recipe-block.php:186
+#: partials/recipe-block.php:184
 msgid "How do you like the recipe?"
 msgstr ""
 
-#: partials/recipe-block.php:203
+#: partials/recipe-block.php:201
 msgid "Pin it"
 msgstr ""
 
-#: partials/recipe-block.php:213
+#: partials/recipe-block.php:211
 msgid "You tried this recipe?"
 msgstr ""
 
-#: partials/recipe-block.php:217
+#: partials/recipe-block.php:216
+msgid "Then link %s on Instagram or use the hashtag %s."
+msgstr ""
+
 #: partials/recipe-block.php:224
-#: partials/recipe-block.php:231
-msgid "Then link"
+msgid "Then link %s on Instagram."
 msgstr ""
 
-#: partials/recipe-block.php:219
-msgid "on Instagram or use the hashtag"
+#: partials/recipe-block.php:232
+msgid "Then link %s on Instagram"
 msgstr ""
 
-#: partials/recipe-block.php:226
-#: partials/recipe-block.php:233
-msgid "on Instagram"
-msgstr ""
-
-#: build/blocks/recipe/editor.js:65
-#: build/blocks/recipe/editor.js:44
+#: build/blocks/recipe/editor.js:1
 msgid "Change image"
 msgstr ""
 
-#: build/blocks/recipe/editor.js:73
-#: build/blocks/recipe/editor.js:54
+#: build/blocks/recipe/editor.js:1
 msgid "Remove image"
 msgstr ""
 
-#: build/blocks/recipe/editor.js:78
-#: build/blocks/recipe/editor.js:729
-#: build/blocks/recipe/editor.js:59
-#: build/blocks/recipe/editor.js:680
+#: build/blocks/recipe/editor.js:1
 msgid "Select image"
 msgstr ""
 
-#: build/blocks/recipe/editor.js:129
-#: build/blocks/recipe/editor.js:92
-msgid "Are you shure you want to delete this group? All ingredients will be deleted."
-msgstr ""
-
-#: build/blocks/recipe/editor.js:157
-#: build/blocks/recipe/editor.js:267
-#: build/blocks/recipe/editor.js:124
-#: build/blocks/recipe/editor.js:222
-msgid "Group name"
-msgstr ""
-
-#: build/blocks/recipe/editor.js:173
-#: build/blocks/recipe/editor.js:283
-#: build/blocks/recipe/editor.js:139
-#: build/blocks/recipe/editor.js:237
-msgid "Remove Group"
-msgstr ""
-
-#: build/blocks/recipe/editor.js:184
-#: build/blocks/recipe/editor.js:154
-msgid "Add the ingredients here..."
-msgstr ""
-
-#: build/blocks/recipe/editor.js:190
-#: build/blocks/recipe/editor.js:162
-msgid "Split ingredients into groups"
-msgstr ""
-
-#: build/blocks/recipe/editor.js:190
-#: build/blocks/recipe/editor.js:301
-#: build/blocks/recipe/editor.js:163
-#: build/blocks/recipe/editor.js:262
-msgid "Add additional group"
-msgstr ""
-
-#: build/blocks/recipe/editor.js:239
-#: build/blocks/recipe/editor.js:191
-msgid "Are you shure you want to delete this group? All steps will be deleted."
-msgstr ""
-
-#: build/blocks/recipe/editor.js:295
-#: build/blocks/recipe/editor.js:253
-msgid "Add the steps of preparation here..."
-msgstr ""
-
-#: build/blocks/recipe/editor.js:301
-#: build/blocks/recipe/editor.js:261
-msgid "Split steps into groups"
-msgstr ""
-
-#: build/blocks/recipe/editor.js:350
-#: build/blocks/recipe/editor.js:380
-#: build/blocks/recipe/editor.js:301
-#: build/blocks/recipe/editor.js:326
+#: build/blocks/recipe/editor.js:1
 msgid "Results in"
 msgstr ""
 
-#: build/blocks/recipe/editor.js:361
-#: build/blocks/recipe/editor.js:377
-#: build/blocks/recipe/editor.js:392
-#: build/blocks/recipe/editor.js:309
-#: build/blocks/recipe/editor.js:321
-#: build/blocks/recipe/editor.js:338
+#: build/blocks/recipe/editor.js:1
 msgid "cm"
 msgstr ""
 
-#: build/blocks/recipe/editor.js:394
-#: build/blocks/recipe/editor.js:342
+#: build/blocks/recipe/editor.js:1
 msgid "Unit"
 msgstr ""
 
-#: build/blocks/recipe/editor.js:704
-#: build/blocks/recipe/editor.js:665
-msgid "Pinterest"
+#: build/blocks/recipe/editor.js:1
+msgid "Group name"
 msgstr ""
 
-#: build/blocks/recipe/editor.js:736
-#: build/blocks/recipe/editor.js:688
-msgid "SEO"
+#: build/blocks/recipe/editor.js:1
+msgid "Are you shure you want to delete this group? All steps will be deleted."
 msgstr ""
 
-#: build/blocks/recipe/editor.js:740
-#: build/blocks/recipe/editor.js:691
-msgid "Google and other search engines need more information to present your recipe in the best possible way. You should provide this information as good as possible."
+#: build/blocks/recipe/editor.js:1
+msgid "Remove Group"
 msgstr ""
 
-#: build/blocks/recipe/editor.js:744
-#: build/blocks/recipe/editor.js:699
-msgid "Cuisine"
+#: build/blocks/recipe/editor.js:1
+msgid "Add the steps of preparation here..."
 msgstr ""
 
-#: build/blocks/recipe/editor.js:746
-#: build/blocks/recipe/editor.js:701
-msgid "e.g. \"Italian\" or \"German\""
+#: build/blocks/recipe/editor.js:1
+msgid "Split steps into groups"
 msgstr ""
 
-#: build/blocks/recipe/editor.js:755
-#: build/blocks/recipe/editor.js:711
-msgid "Picture of the finished dish"
+#: build/blocks/recipe/editor.js:1
+msgid "Add additional group"
 msgstr ""
 
-#: build/blocks/recipe/editor.js:757
-#: build/blocks/recipe/editor.js:713
-msgid "Depending on the usage Google uses different image formats of your recipe. You can find more information"
+#: build/blocks/recipe/editor.js:1
+msgid "Are you shure you want to delete this group? All ingredients will be deleted."
 msgstr ""
 
-#: build/blocks/recipe/editor.js:758
-#: build/blocks/recipe/editor.js:719
-msgid "https://recipe-creator.de/mehr-klicks-durch-optimierte-rezeptbilder"
+#: build/blocks/recipe/editor.js:1
+msgid "Add the ingredients here..."
 msgstr ""
 
-#: build/blocks/recipe/editor.js:760
-#: build/blocks/recipe/editor.js:722
-msgid "here"
+#: build/blocks/recipe/editor.js:1
+msgid "Split ingredients into groups"
 msgstr ""
 
-#: build/blocks/recipe/editor.js:805
-#: build/blocks/recipe/editor.js:753
-msgid "Title of your recipe"
-msgstr ""
-
-#: build/blocks/recipe/editor.js:844
-#: build/blocks/recipe/editor.js:799
-msgid "Short description of your recipe"
-msgstr ""
-
-#: build/blocks/recipe/editor.js:892
-#: build/blocks/recipe/editor.js:907
-#: build/blocks/recipe/editor.js:922
-#: build/blocks/recipe/editor.js:937
-#: build/blocks/recipe/editor.js:944
-#: build/blocks/recipe/editor.js:851
-#: build/blocks/recipe/editor.js:866
-#: build/blocks/recipe/editor.js:881
-#: build/blocks/recipe/editor.js:896
-#: build/blocks/recipe/editor.js:904
-msgid "Min."
-msgstr ""
-
-#: build/blocks/recipe/editor.js:977
-#: build/blocks/recipe/editor.js:931
-msgid "Add the needed utensils here..."
-msgstr ""
-
-#: build/blocks/recipe/editor.js:999
-#: build/blocks/recipe/editor.js:950
-msgid "YouTube or Vimeo link"
-msgstr ""
-
-#: build/blocks/recipe/editor.js:1029
-#: build/blocks/recipe/editor.js:980
-msgid "Additional notes ..."
-msgstr ""
-
-#: build/blocks/recipe/editor.js:1046
-#: build/blocks/recipe/editor.js:999
-msgid "Show additional settings"
-msgstr ""
-
-#: build/blocks/recipe/editor.js:1261
-#: build/blocks/recipe/editor.js:1080
+#: build/blocks/recipe/editor.js:1
 msgid "Recipe"
 msgstr ""
 
-#: build/blocks/recipe/editor.js:1262
-#: build/blocks/recipe/editor.js:1081
+#: build/blocks/recipe/editor.js:1
 msgid "Add a recipe and optimize it easily for search engines."
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Pinterest"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "SEO"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Google and other search engines need more information to present your recipe in the best possible way. You should provide this information as good as possible."
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Cuisine"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "e.g. \"Italian\" or \"German\""
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Picture of the finished dish"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Depending on the usage Google uses different image formats of your recipe. You can find more information <a href=\"%s\" target=\"_blank\">here</a>."
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "https://recipe-creator.de/mehr-klicks-durch-optimierte-rezeptbilder"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Title of your recipe"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Short description of your recipe"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Min."
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Add the needed utensils here..."
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "YouTube or Vimeo link"
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Additional notes ..."
+msgstr ""
+
+#: build/blocks/recipe/editor.js:1
+msgid "Show additional settings"
 msgstr ""
 
 #: build/blocks/jump-to-recipe/block.json

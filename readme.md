@@ -1,18 +1,11 @@
-# Update Translations-Template file (POT)
+# Translations
+
+Update *.pot file by running:
 
 `npm run i18n:make-pot`
 
-- Open `recipe-creator-de_DE.po` in Poedit
-- Click "Katalog" > "Aus POT-Datei aktualisieren"
-- Select the `recipe-creator.pot`
-- Update the translations
-- Save the file and click "Datei" > "MO-Datei erstellen"
-
-The translations for the JS files have to be a JSON file.
-
-`npm run i18n:make-json`
-
-More Infos: https://developer.wordpress.org/block-editor/developers/internationalization/
+After that, the translations for the `Recipe Creator` are handled by WordPress.
+You can edit them [here](https://translate.wordpress.org/projects/wp-plugins/recipe-creator/).
 
 # Development
 
