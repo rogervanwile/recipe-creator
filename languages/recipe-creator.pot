@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-24T11:13:20+00:00\n"
+"POT-Creation-Date: 2024-11-24T11:20:03+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: recipe-creator\n"
@@ -129,7 +129,7 @@ msgstr ""
 
 #: inc/recipe-creator.php:735
 #: inc/recipe-creator.php:848
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "simple"
 msgstr ""
 
@@ -182,12 +182,12 @@ msgid "The milkshake becomes particularly creamy with UHT milk."
 msgstr ""
 
 #: inc/recipe-creator.php:851
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "moderate"
 msgstr ""
 
 #: inc/recipe-creator.php:854
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "challenging"
 msgstr ""
 
@@ -239,52 +239,52 @@ msgid "hours"
 msgstr ""
 
 #: partials/recipe-block.php:42
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "Prep time"
 msgstr ""
 
 #: partials/recipe-block.php:49
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "Rest time"
 msgstr ""
 
 #: partials/recipe-block.php:56
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "Cook time"
 msgstr ""
 
 #: partials/recipe-block.php:63
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "Baking time"
 msgstr ""
 
 #: partials/recipe-block.php:70
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "Total time"
 msgstr ""
 
 #: partials/recipe-block.php:81
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "Ingredients"
 msgstr ""
 
 #: partials/recipe-block.php:130
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "Utensils"
 msgstr ""
 
 #: partials/recipe-block.php:143
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "Steps of preparation"
 msgstr ""
 
 #: partials/recipe-block.php:165
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "Video"
 msgstr ""
 
 #: partials/recipe-block.php:176
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "Notes"
 msgstr ""
 
@@ -300,15 +300,13 @@ msgstr ""
 msgid "You tried this recipe?"
 msgstr ""
 
-#: partials/recipe-block.php:216
-msgid "Then link %s on Instagram or use the hashtag %s."
-msgstr ""
-
-#: partials/recipe-block.php:224
+#. translators: %s:Link to Instagram profile
+#: partials/recipe-block.php:226
 msgid "Then link %s on Instagram."
 msgstr ""
 
-#: partials/recipe-block.php:232
+#. translators: %s:Link to Instagram hashtag
+#: partials/recipe-block.php:235
 msgid "Then link %s on Instagram"
 msgstr ""
 
@@ -404,39 +402,40 @@ msgstr ""
 msgid "Picture of the finished dish"
 msgstr ""
 
-#: build/blocks/recipe/editor.js:1
+#. translators: %s: URL to the blog post
+#: build/blocks/recipe/editor.js:3
 msgid "Depending on the usage Google uses different image formats of your recipe. You can find more information <a href=\"%s\" target=\"_blank\">here</a>."
 msgstr ""
 
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "https://recipe-creator.de/mehr-klicks-durch-optimierte-rezeptbilder"
 msgstr ""
 
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "Title of your recipe"
 msgstr ""
 
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "Short description of your recipe"
 msgstr ""
 
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "Min."
 msgstr ""
 
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "Add the needed utensils here..."
 msgstr ""
 
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "YouTube or Vimeo link"
 msgstr ""
 
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "Additional notes ..."
 msgstr ""
 
-#: build/blocks/recipe/editor.js:1
+#: build/blocks/recipe/editor.js:3
 msgid "Show additional settings"
 msgstr ""
 

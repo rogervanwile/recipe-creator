@@ -213,7 +213,8 @@
                         <?php if (!empty($attributes['instagramHashtag'])) { ?>
                             <p>
                                 <?php echo wp_kses_post(sprintf(
-                                    __("Then link %s on Instagram or use the hashtag %s.", "recipe-creator"),
+                                    // translators: %s:Link to Instagram profile, %s:Link to Instagram hashtag
+                                    __("Then link %1$s on Instagram or use the hashtag %2$s.", "recipe-creator"),
                                     '<a href="https://www.instagram.com/' . esc_attr($attributes['instagramUsername']) . '/" target="_blank" rel="nofollow noopener">@' . esc_html($attributes['instagramUsername']) . '</a>',
                                     '<a href="https://www.instagram.com/explore/tags/' . esc_attr($attributes['instagramHashtag']) . '/" target="_blank" rel="nofollow noopener">#' . esc_html($attributes['instagramHashtag']) . '</a>'
                                 )); ?>
@@ -221,6 +222,7 @@
                         <?php } else { ?>
                             <p>
                                 <?php echo wp_kses_post(sprintf(
+                                    // translators: %s:Link to Instagram profile
                                     __("Then link %s on Instagram.", "recipe-creator"),
                                     '<a href="https://www.instagram.com/' . esc_attr($attributes['instagramUsername']) . '/" target="_blank" rel="nofollow noopener">@' . esc_html($attributes['instagramUsername']) . '</a>'
                                 )); ?>
@@ -229,6 +231,7 @@
                     <?php } else { ?>
                         <p>
                             <?php echo wp_kses_post(sprintf(
+                                // translators: %s:Link to Instagram hashtag
                                 __("Then link %s on Instagram", "recipe-creator"),
                                 '<a href="https://www.instagram.com/explore/tags/' . esc_attr($attributes['instagramHashtag']) . '/" target="_blank" rel="nofollow noopener">#' . esc_html($attributes['instagramHashtag']) . '</a>'
                             )); ?>

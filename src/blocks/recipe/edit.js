@@ -247,6 +247,7 @@ export default function Edit(props) {
             <h4>{__("Picture of the finished dish", "recipe-creator")}</h4>
             <p
               dangerouslySetInnerHTML={{
+                // translators: %s: URL to the blog post
                 __html: sprintf(
                   __(
                     'Depending on the usage Google uses different image formats of your recipe. You can find more information <a href="%s" target="_blank">here</a>.',
