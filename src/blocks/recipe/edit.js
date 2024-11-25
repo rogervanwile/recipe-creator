@@ -1,4 +1,4 @@
-import { __ } from "@wordpress/i18n";
+import { __, sprintf } from "@wordpress/i18n";
 import {
   TextControl,
   PanelBody,
@@ -245,20 +245,18 @@ export default function Edit(props) {
 
           <PanelRow>
             <h4>{__("Picture of the finished dish", "recipe-creator")}</h4>
-            <p>
-              {__(
-                "Depending on the usage Google uses different image formats of your recipe. You can find more information",
-                "recipe-creator",
-              )}
-              &nbsp;
-              <a
-                href={__("https://recipe-creator.de/mehr-klicks-durch-optimierte-rezeptbilder", "recipe-creator")}
-                target="_blank"
-              >
-                {__("here", "recipe-creator")}
-              </a>
-              .
-            </p>
+            <p
+              dangerouslySetInnerHTML={{
+                // translators: %s: URL to the blog post
+                __html: sprintf(
+                  __(
+                    'Depending on the usage Google uses different image formats of your recipe. You can find more information <a href="%s" target="_blank">here</a>.',
+                    "recipe-creator",
+                  ),
+                  __("https://recipe-creator.de/mehr-klicks-durch-optimierte-rezeptbilder", "recipe-creator"),
+                ),
+              }}
+            ></p>
           </PanelRow>
           <PanelRow>
             <ImageUpload props={props} keyName="image16_9" label="16:9" className="16-9"></ImageUpload>

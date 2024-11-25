@@ -212,23 +212,29 @@
                     <?php if (!empty($attributes['instagramUsername'])) { ?>
                         <?php if (!empty($attributes['instagramHashtag'])) { ?>
                             <p>
-                                <?php echo esc_html(__("Then link", "recipe-creator")); ?>
-                                <a href="https://www.instagram.com/<?php echo esc_attr($attributes['instagramUsername']); ?>/" target="_blank" rel="nofollow noopener">@<?php echo esc_html($attributes['instagramUsername']); ?></a>
-                                <?php echo esc_html(__("on Instagram or use the hashtag", "recipe-creator")); ?>
-                                <a href="https://www.instagram.com/explore/tags/<?php echo esc_attr($attributes['instagramHashtag']); ?>/" target="_blank" rel="nofollow noopener">#<?php echo esc_html($attributes['instagramHashtag']); ?></a>.
+                                <?php echo wp_kses_post(sprintf(
+                                    // translators: %s:Link to Instagram profile, %s:Link to Instagram hashtag
+                                    __("Then link %1$s on Instagram or use the hashtag %2$s.", "recipe-creator"),
+                                    '<a href="https://www.instagram.com/' . esc_attr($attributes['instagramUsername']) . '/" target="_blank" rel="nofollow noopener">@' . esc_html($attributes['instagramUsername']) . '</a>',
+                                    '<a href="https://www.instagram.com/explore/tags/' . esc_attr($attributes['instagramHashtag']) . '/" target="_blank" rel="nofollow noopener">#' . esc_html($attributes['instagramHashtag']) . '</a>'
+                                )); ?>
                             </p>
                         <?php } else { ?>
                             <p>
-                                <?php echo esc_html(__("Then link", "recipe-creator")); ?>
-                                <a href="https://www.instagram.com/<?php echo esc_attr($attributes['instagramUsername']); ?>/" target="_blank" rel="nofollow noopener">@<?php echo esc_html($attributes['instagramUsername']); ?></a>
-                                <?php echo esc_html(__("on Instagram", "recipe-creator")); ?>.
+                                <?php echo wp_kses_post(sprintf(
+                                    // translators: %s:Link to Instagram profile
+                                    __("Then link %s on Instagram.", "recipe-creator"),
+                                    '<a href="https://www.instagram.com/' . esc_attr($attributes['instagramUsername']) . '/" target="_blank" rel="nofollow noopener">@' . esc_html($attributes['instagramUsername']) . '</a>'
+                                )); ?>
                             </p>
                         <?php } ?>
                     <?php } else { ?>
                         <p>
-                            <?php echo esc_html(__("Then link", "recipe-creator")); ?>
-                            <a href="https://www.instagram.com/explore/tags/<?php echo esc_attr($attributes['instagramHashtag']); ?>/" target="_blank" rel="nofollow noopener">#<?php echo esc_html($attributes['instagramHashtag']); ?></a>
-                            <?php echo esc_html(__("on Instagram", "recipe-creator")); ?>.
+                            <?php echo wp_kses_post(sprintf(
+                                // translators: %s:Link to Instagram hashtag
+                                __("Then link %s on Instagram", "recipe-creator"),
+                                '<a href="https://www.instagram.com/explore/tags/' . esc_attr($attributes['instagramHashtag']) . '/" target="_blank" rel="nofollow noopener">#' . esc_html($attributes['instagramHashtag']) . '</a>'
+                            )); ?>
                         </p>
                     <?php } ?>
                 </div>
